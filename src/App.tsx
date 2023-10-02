@@ -1,11 +1,13 @@
 import React from 'react';
+import { Layout } from 'antd';
+import Navbar from './components/common/Navbar';
 import './App.css';
 
 const App = () => {
   return (
-    <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
-      <div className='text-richblack-5'>TEST</div>
-    </div>
+    <Layout className="w-screen min-h-screen bg-richblack-900 flex flex-col fom=nt-inter">
+      <Navbar/>
+    </Layout>
   );
 };
 
