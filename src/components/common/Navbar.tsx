@@ -10,7 +10,9 @@ const Navbar = () => {
                 href="/login" 
                 icon={<UserOutlined />} 
                 size="large"
-                className="btn"
+                type="primary"
+                style={{ background: "#2C333F" }}
+                className="btn text-orange-5 border border-orange-5 hover:text-richblack-700"
             >
               Login
             </Button>              

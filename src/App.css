@@ -34,12 +34,3 @@ body {
 *:hover::-webkit-scrollbar-thumb {
   visibility: visible;
 }
-
-.btn {
-  background-color: red;
-  color: white;
-  border: transparent;
-}
-.antd-btn-disabled:hover {
-  color: white;
-}
