@@ -1,21 +1,21 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
-html,
+/* html,
 body {
   overflow-x: hidden;
-}
+}*/
 
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
-* {
+/* * {
   scrollbar-width: auto;
   scrollbar-color: #afb2bf;
-}
+} */
 
 /* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
   width: 3px;
 }
 
@@ -33,4 +33,4 @@ body {
 *:focus::-webkit-scrollbar-thumb,
 *:hover::-webkit-scrollbar-thumb {
   visibility: visible;
-}
+} */
