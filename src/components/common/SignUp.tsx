@@ -12,6 +12,7 @@ import {
 import logo1 from "../../assets/images/logos-facebook.svg";
 import logo2 from "../../assets/images/logo-apple.svg";
 import logo3 from "../../assets/images/Google__G__Logo.svg.png";
+import logo4 from "../../assets/images/linkedin.svg";
 
 import { Link } from "react-router-dom";
 import {
@@ -175,11 +176,14 @@ export default class SignUp extends Component {
                   <img src={logo1} alt="logo 1" />
                 </Button>
                 <Button>
-                  <img src={logo2} alt="logo 2" />
+                  <img src={logo4} alt="logo 4" />
                 </Button>
                 <Button>
                   <img src={logo3} alt="logo 3" />
                 </Button>
+                {/* <Button>
+                  <img src={logo2} alt="logo 2" />
+                </Button> */}
               </div>
               <p className="text-center my-25 font-semibold text-muted">Or</p>
               <Form
