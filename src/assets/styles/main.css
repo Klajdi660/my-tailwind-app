@@ -1786,6 +1786,10 @@ body {
 .layout-default.ant-layout.layout-sign-up {
   padding: 11px;
 }
+.header-col.header-nav li {
+  display: flex;
+  align-items: center;
+}
 .header-col.header-nav li:after {
   display: none;
 }
@@ -1813,12 +1817,15 @@ body {
 }
 
 .header-col.header-nav {
-  color: #fff;
+  /* color: #fff; */
+  color: #000;
   font-weight: 600;
 }
 
 .header-col.header-nav ul li {
-  color: #fff !important;
+  /* color: #fff !important; */
+  color: #000;
+  margin-right: 15px;
 }
 
 .header-col.header-nav ul li img {
