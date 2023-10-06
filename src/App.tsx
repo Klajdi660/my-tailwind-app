@@ -8,6 +8,8 @@ import SignIn from './pages/SignIn';
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 // import "antd/dist/reset.css";
+import Main from './components/layout/Main';
+import Home from './pages/Home';
 
 const App = () => {
   return (
@@ -19,6 +21,9 @@ const App = () => {
       <Routes>
         <Route path="/sign-up"element={ <SignUp /> }/>
         <Route path="sign-in" element={ <SignIn /> }/>
+        <Route path="/" element={ <Main /> }>
+          {/* <Route path="/dashboard" element={<Home />}/> */}
+        </Route>
       </Routes>
     </div>
   );

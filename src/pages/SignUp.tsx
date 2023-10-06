@@ -71,32 +71,6 @@ const SignUp = () => {
           <h5>Antd Dashboard</h5>
         </div>
         <div className="header-col header-nav">
-          {/* <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
-            <Menu.Item key="1">
-              <Link to="/dashboard">
-                {templateIcon}
-                <span> Dashboard</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Link to="/profile">
-                {profileIcon}
-                <span>Profile</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Link to="/sign-up">
-                {signupIcon}
-                <span> Sign Up</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="4">
-              <Link to="/sign-in">
-                {signinIcon}
-                <span> Sign In</span>
-              </Link>
-            </Menu.Item>
-          </Menu> */}
           <Menu 
             defaultSelectedKeys={["1"]} 
             mode="horizontal" 
@@ -115,12 +89,9 @@ const SignUp = () => {
             </p>
           </div>
         </div>
-
         <Card
           className="card-signup header-solid h-full ant-card pt-0"
-          title={<h5>Register With</h5>}
-        //   bordered="false"
-            
+          title={<h5>Register With</h5>}            
         >
           <div className="sign-up-gateways">
             <Button>
@@ -165,7 +136,6 @@ const SignUp = () => {
             >
               <Input placeholder="Passwoed" />
             </Form.Item>
-
             <Form.Item name="remember" valuePropName="checked">
               <Checkbox>
                 I agree the{" "}
@@ -174,7 +144,6 @@ const SignUp = () => {
                 </a>
               </Checkbox>
             </Form.Item>
-
             <Form.Item>
               <Button
                 style={{ width: "100%" }}

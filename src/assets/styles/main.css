@@ -139,7 +139,9 @@ body {
   .ant-menu-submenu.ant-menu-item-selected
   .active,
 .layout-dashboard .ant-layout-sider.sider-primary .ant-menu-submenu .active {
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #fad4c7;
+  /* color: #8c8c8c; */
   box-shadow: 0 20px 27px rgb(0 0 0 / 5%);
   font-weight: 600;
 }
@@ -226,7 +228,8 @@ body {
 }
 .layout-dashboard .ant-layout-sider.sider-primary .ant-menu-item svg path,
 .layout-dashboard .ant-layout-sider.sider-primary .ant-menu-submenu svg path {
-  fill: #bfbfbf;
+  /* fill: #bfbfbf; */
+  fill: #E95420;
 }
 
 .layout-dashboard .ant-layout-sider.sider-primary .ant-menu-item a:hover,
@@ -367,7 +370,8 @@ body {
   overflow-x: hidden;
 }
 .layout-dashboard .ant-layout {
-  background: transparent;
+  /* background: transparent; */
+  background: rgba(0, 0, 0, 0.65);
   position: relative;
   min-height: 100vh;
   width: 100%;
@@ -375,7 +379,8 @@ body {
 }
 
 .layout-dashboard .ant-layout-header {
-  background: transparent;
+  /* background: transparent; */
+  background: rgba(255, 255, 255, 0.8);
   height: auto;
   padding: 16px;
   margin: 10px 4px;
