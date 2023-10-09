@@ -1,11 +1,10 @@
 import { Menu, Button } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import { AiOutlineAppstore, AiOutlineCloudUpload, AiOutlineFolderOpen  } from "react-icons/ai";
+import { AiOutlineAppstore, AiOutlineCloudUpload, AiOutlineFolderOpen, AiOutlineSetting  } from "react-icons/ai";
 import { LuBadgeHelp } from "react-icons/lu";
-import { CgProfile } from "react-icons/cg";
 import { PiSignIn } from "react-icons/pi";
-import { FaRegAddressCard } from "react-icons/fa";
+import { CgLogOut } from "react-icons/cg";
 
 const Sidenav = ({ color }: any) => {
   const { pathname } = useLocation();
@@ -15,11 +14,14 @@ const Sidenav = ({ color }: any) => {
     <>
       <div className="brand">
         <img src={logo} alt="" />
-        <span>Muse Dashboard</span>
+        <span>StudyNotion</span>
       </div>
       <hr />
       <Menu theme="light" mode="inline">
-        <Menu.Item key="1">
+      <Menu.Item className="menu-item-header" key="1">
+          Dashboard Pages
+        </Menu.Item>
+        <Menu.Item key="2">
           <NavLink to="/dashboard">
             <span
               className="icon"
@@ -32,7 +34,7 @@ const Sidenav = ({ color }: any) => {
             <span className="label">Dashboard</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="2">
+        <Menu.Item key="3">
           <NavLink to="/tables">
             <span
               className="icon"
@@ -45,7 +47,7 @@ const Sidenav = ({ color }: any) => {
             <span className="label">My Courses</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="3">
+        <Menu.Item key="4">
           <NavLink to="/billing">
             <span
               className="icon"
@@ -58,10 +60,10 @@ const Sidenav = ({ color }: any) => {
             <span className="label">Add Course</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item className="menu-item-header" key="4">
+        <Menu.Item className="menu-item-header" key="5">
           Account Pages
         </Menu.Item>
-        <Menu.Item key="5">
+        <Menu.Item key="6">
           <NavLink to="/profile">
             <span
               className="icon"
@@ -69,21 +71,15 @@ const Sidenav = ({ color }: any) => {
                 background: page === "profile" ? color : "",
               }}
             >
-                <CgProfile size={20} />
+                <AiOutlineSetting size={20} />
             </span>
-            <span className="label">Profile</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="6">
-          <NavLink to="/sign-in">
-            <span className="icon"><PiSignIn size={20}/></span>
-            <span className="label">Sign In</span>
+            <span className="label">Settings</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="7">
-          <NavLink to="/sign-up">
-            <span className="icon"><FaRegAddressCard size={20}/></span>
-            <span className="label">Sign Up</span>
+          <NavLink to="/sign-in">
+            <span className="icon"><CgLogOut size={20}/></span>
+            <span className="label">Logout</span>
           </NavLink>
         </Menu.Item>
       </Menu>

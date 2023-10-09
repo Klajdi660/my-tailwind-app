@@ -8,7 +8,6 @@ import Footer from "./Footer";
 const { Header: AntHeader, Content, Sider } = Layout;
 
 const Main = ({ children }: any) => {
-    const [placement, setPlacement] = useState("right");
     const [visible, setVisible] = useState(false);
     const [sidenavColor, setSidenavColor] = useState("#E95420"); // #1890ff
     const [sidenavType, setSidenavType] = useState("transparent");
@@ -20,33 +19,23 @@ const Main = ({ children }: any) => {
     let { pathname } = useLocation();
     pathname = pathname.replace("/", "");
 
-    useEffect(() => {
-        pathname === "rtl" ? setPlacement("left") : setPlacement("right");
-    }, [pathname]);
+    // useEffect(() => {
+    //     pathname === "rtl" ? setPlacement("left") : setPlacement("right");
+    // }, [pathname]);
 
     return (
-        <Layout
-            className={`layout-dashboard ${
-                pathname === "profile" ? "layout-profile" : ""
-            } ${pathname === "rtl" ? "layout-dashboart-rtl" : ""}`}
-        >
+        <Layout className="layout-dashboard">
             <Drawer
                 title={false}
-                placement={placement === "right" ? "left" : "right"}
+                placement="left"
                 closable={false}
                 onClose={() => setVisible(false)}
                 open={visible}
-                key={placement === "right" ? "left" : "right"}
+                key="left"
                 width={250}
-                className={`drawer-sidebar ${
-                    pathname === "rtl" ? "drawer-sidebar-rtl" : ""
-                } `}
+                className="drawer-sidebar"
             >
-                <Layout
-                    className={`layout-dashboard ${
-                    pathname === "rtl" ? "layout-dashboard-rtl" : ""
-                    }`}
-                >
+                <Layout className="layout-dashboard">
                     <Sider
                         breakpoint="lg"
                         collapsedWidth="0"
@@ -55,7 +44,7 @@ const Main = ({ children }: any) => {
                         }}
                         trigger={null}
                         width={250}
-                        theme="light"
+                        theme="dark"
                         className={`sider-primary ant-layout-sider-primary ${
                             sidenavType === "#fff" ? "active-route" : ""
                         }`}
@@ -86,8 +75,8 @@ const Main = ({ children }: any) => {
                     <AntHeader className="ant-header-fixed">
                         <Header
                             onPress={openDrawer}
-                            // name={pathname}
-                            // subName={pathname}
+                            name={pathname}
+                            subName={pathname}
                             // handleSidenavColor={handleSidenavColor}
                             // handleSidenavType={handleSidenavType}
                             // handleFixedNavbar={handleFixedNavbar}

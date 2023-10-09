@@ -12,6 +12,9 @@
     flex-shrink: 1;
     margin-left: 270px;
   }
+  .layout-dashboard .header-control {
+    /* display: block; */
+  }
   .layout-dashboard .header-control .sidebar-toggler {
     display: none;
   }

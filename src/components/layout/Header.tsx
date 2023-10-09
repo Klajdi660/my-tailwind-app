@@ -13,6 +13,7 @@ import {
   Drawer,
   Typography,
   Switch,
+  Menu
 } from "antd";
 
 import {
@@ -20,13 +21,17 @@ import {
   StarOutlined,
   TwitterOutlined,
   FacebookFilled,
+  HeartOutlined
 } from "@ant-design/icons";
-import { BiUserCircle } from "react-icons/bi";
+import { BiUserCircle, BiBookAlt, BiCategory } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { AiOutlineSetting, AiOutlineBell } from "react-icons/ai";
+import { AiOutlineSetting, AiOutlineShoppingCart, AiOutlineBell } from "react-icons/ai";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
+import { LuLayoutDashboard } from "react-icons/lu";
 import { NavLink, Link } from "react-router-dom";
 // import styled from "styled-components";
 // import avtar from "../../assets/images/team-2.jpg";
+import type { MenuProps } from "antd";
 
 // const ButtonContainer = styled.div`
 //   .ant-btn-primary {
@@ -152,15 +157,54 @@ const menu = (
     )}
   />
 );
+
+const categItems: MenuProps["items"] = [
+  {
+    label: "Categories",
+    key: "category",
+    icon: <BiCategory />,
+    children: [
+      {
+        type: 'group',
+        label: 'Item 1',
+        children: [
+          {
+            label: 'Option 1',
+            key: 'setting:1',
+          },
+          {
+            label: 'Option 2',
+            key: 'setting:2',
+          },
+        ],
+      },
+      {
+        type: 'group',
+        label: 'Item 2',
+        children: [
+          {
+            label: 'Option 3',
+            key: 'setting:3',
+          },
+          {
+            label: 'Option 4',
+            key: 'setting:4',
+          },
+        ],
+      },
+    ],
+  }
+];
 interface HeaderProps {
   onPress: () => void; 
+  name: string;
+  subName: string;
 }
-
 
 const Header: React.FC<HeaderProps> = ({
   // placement,
-  // name,
-  // subName,
+  name,
+  subName,
   onPress,
   // handleSidenavColor,
   // handleSidenavType,
@@ -175,28 +219,37 @@ const Header: React.FC<HeaderProps> = ({
 
   const showDrawer = () => setVisible(true);
   const hideDrawer = () => setVisible(false);
+  console.log('name :>> ', name);
+  const breadcrumbItems = [
+    {
+      href: "/",
+      title: "Pages"
+    },
+    {
+      // href: ,
+      title: (
+        <span className="breadcrumb-title">
+          {/* <LuLayoutDashboard style={{ marginRight: "3px" }}/> */}
+          {name.replace("/", "")}
+        </span>
+      )
+    }
+  ];
 
   return (
     <>
-      <div className="setting-drwer" onClick={showDrawer}>
+      {/* <div className="setting-drwer" onClick={showDrawer}>
         <AiOutlineSetting />
-      </div>
+      </div> */}
       <Row gutter={[24, 0]}>
         <Col span={24} md={6}>
-          <Breadcrumb>
-            <Breadcrumb.Item>
-              <NavLink to="/">Pages</NavLink>
-            </Breadcrumb.Item>
-            {/* <Breadcrumb.Item style={{ textTransform: "capitalize" }}>
-              {name.replace("/", "")}
-            </Breadcrumb.Item> */}
-          </Breadcrumb>
+          <Breadcrumb items={breadcrumbItems}/>
           <div className="ant-page-header-heading">
             <span
               className="ant-page-header-heading-title"
               style={{ textTransform: "capitalize" }}
             >
-              {/* {subName.replace("/", "")} */}
+              {subName.replace("/", "")}
             </span>
           </div>
         </Col>
@@ -213,7 +266,10 @@ const Header: React.FC<HeaderProps> = ({
             </Dropdown>
           </Badge>
           <Button type="link" onClick={showDrawer}>
-            <AiOutlineSetting />
+            <AiOutlineShoppingCart />
+          </Button>
+          <Button type="link">
+            <HeartOutlined />
           </Button>
           <Button
             type="link"
@@ -225,8 +281,8 @@ const Header: React.FC<HeaderProps> = ({
           <Drawer
             className="settings-drawer"
             mask={true}
-            // width={360}
-            // onClose={hideDrawer}
+            width={360}
+            onClose={hideDrawer}
             // placement={placement}
             open={visible}
           >
@@ -329,10 +385,17 @@ const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
           </Drawer>
-          <Link to="/sign-in" className="btn-sign-in">
-            <BiUserCircle />
-            <span>Sign in</span>
+          <Link to="/mylearning" className="btn-sign-in">
+            <BiBookAlt />
+            <span>My Learning</span>
           </Link>
+          {/* <Link to="/category" className="btn-sign-in">
+            <BiCategory />
+            <span>Categories</span>
+          </Link> */}
+          <Menu 
+            items={categItems}
+          />
           <Input
             className="header-search"
             placeholder="Type here..."
