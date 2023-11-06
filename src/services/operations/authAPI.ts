@@ -1,6 +1,6 @@
 import { endpoints } from "../apis";
 import { apiConnector } from "../apiconnector";
-import { setLoading } from "../../slices/authSlice";
+import { setLoading } from "../slices/authSlice";
 import { Dispatch } from 'redux';
 import { AnyAction } from '@reduxjs/toolkit';
 

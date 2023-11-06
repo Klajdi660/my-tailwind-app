@@ -180,7 +180,7 @@ const SignUp = () => {
             >
               <Input 
                 name="email"
-                placeholder="email" 
+                placeholder="Email" 
                 value={inputVal.email}
                 onChange={handleInputChange}
               />
@@ -194,6 +194,7 @@ const SignUp = () => {
               <Input.Password
                 name="password"
                 placeholder="Password" 
+                autoComplete="password"
                 value={inputVal.password}
                 onChange={handleInputChange}
               />
@@ -206,6 +207,7 @@ const SignUp = () => {
             >
               <Input.Password
                 name="passwordConfirm"
+                autoComplete="passwordConfirm"
                 placeholder="Confirm password" 
                 value={inputVal.passwordConfirm}
                 onChange={handleInputChange}
