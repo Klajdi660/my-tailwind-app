@@ -13,7 +13,9 @@ import logo1 from "../assets/images/facebook-icon.svg";
 import logo2 from "../assets/images/linkedin-icon.svg";
 import logo3 from "../assets/images/google-icon.svg";
 import { iconsSvg } from "../assets/images/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../services/hooks";
 import {
   DribbbleOutlined,
   TwitterOutlined,
@@ -26,6 +28,7 @@ import {
 import type { MenuProps } from 'antd';
 import { MdDashboard } from "react-icons/md";
 import { BiSolidUserCircle } from "react-icons/bi";
+import { sendotp } from "../services/operations/authAPI";
 
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
@@ -55,13 +58,31 @@ const headerItems: MenuProps['items'] = [
   },
 ];
 
+const inputs = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  username: "",
+  password: "",
+  passwordConfirm: "",
+  agreedToTerms: false
+};
+
 const SignUp = () => {
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const [inputVal, setInputVal] = useState(inputs);
+  const [form] = Form.useForm();
+  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
+  const handleInputChange = (e: any) => {
+    const { name, value, checked } = e.target;
+    
+    setInputVal({ ...inputVal, [name]: value ? value : checked });
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+  const handleOnSubmit = () => {
+    dispatch(sendotp(inputVal.email, navigate));
   };
 
   return (
@@ -107,18 +128,49 @@ const SignUp = () => {
           <p className="text-center my-25 font-semibold text-muted">Or</p>
           <Form
             name="basic"
+            form={form}
             initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
+            onFinish={handleOnSubmit}
             className="row-col"
           >
             <Form.Item
-              name="Name"
+              name="firstName"
               rules={[
-                { required: true, message: "Please input your username!" },
+                { required: true, message: "Please input your First name!" },
               ]}
             >
-              <Input placeholder="Name" />
+              <Input 
+                name="firstName"
+                placeholder="First Name" 
+                value={inputVal.firstName}
+                onChange={handleInputChange}
+              />
+            </Form.Item>
+            <Form.Item
+              name="lastName"
+              rules={[
+                { required: true, message: "Please input your Last name!" },
+              ]}
+            >
+              <Input 
+                name="lastName"
+                placeholder="Last Name" 
+                value={inputVal.lastName}
+                onChange={handleInputChange}
+              />
+            </Form.Item>
+            <Form.Item
+              name="username"
+              rules={[
+                { required: true, message: "Please input your Username!" },
+              ]}
+            >
+              <Input 
+                name="username"
+                placeholder="Username" 
+                value={inputVal.username}
+                onChange={handleInputChange}
+              />
             </Form.Item>
             <Form.Item
               name="email"
@@ -126,7 +178,12 @@ const SignUp = () => {
                 { required: true, message: "Please input your email!" },
               ]}
             >
-              <Input placeholder="email" />
+              <Input 
+                name="email"
+                placeholder="email" 
+                value={inputVal.email}
+                onChange={handleInputChange}
+              />
             </Form.Item>
             <Form.Item
               name="password"
@@ -134,10 +191,34 @@ const SignUp = () => {
                 { required: true, message: "Please input your password!" },
               ]}
             >
-              <Input placeholder="Passwoed" />
+              <Input.Password
+                name="password"
+                placeholder="Password" 
+                value={inputVal.password}
+                onChange={handleInputChange}
+              />
             </Form.Item>
-            <Form.Item name="remember" valuePropName="checked">
-              <Checkbox>
+            <Form.Item
+              name="passwordConfirm"
+              rules={[
+                { required: true, message: "Please input your password again!" },
+              ]}
+            >
+              <Input.Password
+                name="passwordConfirm"
+                placeholder="Confirm password" 
+                value={inputVal.passwordConfirm}
+                onChange={handleInputChange}
+              />
+            </Form.Item>
+            <Form.Item 
+              name="agreedToTerms" 
+              valuePropName="checked">
+              <Checkbox
+                name="agreedToTerms"
+                checked={inputVal.agreedToTerms}
+                onChange={handleInputChange}
+              >
                 I agree the{" "}
                 <a href="#pablo" className="font-bold text-dark">
                   Terms and Conditions

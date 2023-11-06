@@ -64,7 +64,7 @@ const Sidenav = ({ color }: any) => {
           Account Pages
         </Menu.Item>
         <Menu.Item key="6">
-          <NavLink to="/profile">
+          <NavLink to="/signUp">
             <span
               className="icon"
               style={{
