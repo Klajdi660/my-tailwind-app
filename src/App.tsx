@@ -17,10 +17,10 @@ const App = () => {
     //   <Navbar/>
     // </Layout>
     // <SignUp/>
-    <div className="App">
+    <div className="relative sm:-8 p-4 bg-[#13131a] min-h-screen flex flex-row">
       <Routes>
-        <Route path="/signUp"element={ <SignUp /> }/>
-        <Route path="sign-in" element={ <SignIn /> }/>
+        {/* <Route path="/signUp"element={ <SignUp /> }/>
+        <Route path="sign-in" element={ <SignIn /> }/> */}
         <Route path="/" element={ <Main /> }>
           <Route path="/dashboard" element={<Home />}/>
         </Route>

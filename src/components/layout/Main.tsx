@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import Sidenav from "./Sidenav";
 import Footer from "./Footer";
+import Sidebar from "../common/Sidebar";
 
 const { Header: AntHeader, Content, Sider } = Layout;
 
@@ -24,69 +25,72 @@ const Main = ({ children }: any) => {
     // }, [pathname]);
 
     return (
-        <Layout className="layout-dashboard">
-            <Drawer
-                title={false}
-                placement="left"
-                closable={false}
-                onClose={() => setVisible(false)}
-                open={visible}
-                key="left"
-                width={250}
-                className="drawer-sidebar"
-            >
-                <Layout className="layout-dashboard">
-                    <Sider
-                        breakpoint="lg"
-                        collapsedWidth="0"
-                        onCollapse={(collapsed, type) => {
-                            console.log(collapsed, type);
-                        }}
-                        trigger={null}
-                        width={250}
-                        theme="dark"
-                        className={`sider-primary ant-layout-sider-primary ${
-                            sidenavType === "#fff" ? "active-route" : ""
-                        }`}
-                        style={{ background: sidenavType }}
-                    >
-                        <Sidenav color={sidenavColor} />
-                    </Sider>
-                </Layout>                                                                                                                                                                                                                                                                                   
-            </Drawer>
-            <Sider
-                breakpoint="lg"
-                collapsedWidth="0"
-                onCollapse={(collapsed, type) => {
-                    console.log(collapsed, type);
-                }}
-                trigger={null}
-                width={250}
-                theme="light"
-                className={`sider-primary ant-layout-sider-primary ${
-                    sidenavType === "#fff" ? "active-route" : ""
-                }`}
-                style={{ background: sidenavType }}
-            >
-                <Sidenav color={sidenavColor} />
-            </Sider>
-            <Layout>
-                <Affix>
-                    <AntHeader className="ant-header-fixed">
-                        <Header
-                            onPress={openDrawer}
-                            name={pathname}
-                            subName={pathname}
-                            // handleSidenavColor={handleSidenavColor}
-                            // handleSidenavType={handleSidenavType}
-                            // handleFixedNavbar={handleFixedNavbar}
-                        />
-                    </AntHeader>
-                </Affix> 
-                <Content className="content-ant">{children}</Content> 
-                {/* <Footer /> */}
-            </Layout>
-        </Layout>
+      // <Layout className="layout-dashboard">
+      //     <Drawer
+      //         title={false}
+      //         placement="left"
+      //         closable={false}
+      //         onClose={() => setVisible(false)}
+      //         open={visible}
+      //         key="left"
+      //         width={250}
+      //         className="drawer-sidebar"
+      //     >
+      //         <Layout className="layout-dashboard">
+      //             <Sider
+      //                 breakpoint="lg"
+      //                 collapsedWidth="0"
+      //                 onCollapse={(collapsed, type) => {
+      //                     console.log(collapsed, type);
+      //                 }}
+      //                 trigger={null}
+      //                 width={250}
+      //                 theme="dark"
+      //                 className={`sider-primary ant-layout-sider-primary ${
+      //                     sidenavType === "#fff" ? "active-route" : ""
+      //                 }`}
+      //                 style={{ background: sidenavType }}
+      //             >
+      //                 <Sidenav color={sidenavColor} />
+      //             </Sider>
+      //         </Layout>                                                                                                                                                                                                                                                                                   
+      //     </Drawer>
+      //     <Sider
+      //         breakpoint="lg"
+      //         collapsedWidth="0"
+      //         onCollapse={(collapsed, type) => {
+      //             console.log(collapsed, type);
+      //         }}
+      //         trigger={null}
+      //         width={250}
+      //         theme="light"
+      //         className={`sider-primary ant-layout-sider-primary ${
+      //             sidenavType === "#fff" ? "active-route" : ""
+      //         }`}
+      //         style={{ background: sidenavType }}
+      //     >
+      //         <Sidenav color={sidenavColor} />
+      //     </Sider>
+      //     <Layout>
+      //         <Affix>
+      //             <AntHeader className="ant-header-fixed">
+      //                 <Header
+      //                     onPress={openDrawer}
+      //                     name={pathname}
+      //                     subName={pathname}
+      //                     // handleSidenavColor={handleSidenavColor}
+      //                     // handleSidenavType={handleSidenavType}
+      //                     // handleFixedNavbar={handleFixedNavbar}
+      //                 />
+      //             </AntHeader>
+      //         </Affix> 
+      //         <Content className="content-ant">{children}</Content> 
+      //         {/* <Footer /> */}
+      //     </Layout>
+      // </Layout>
+      <div className="sm:flex hidden mr-10 relative">
+        <Sidebar />
+      </div>
     );
 };
 
