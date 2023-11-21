@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-import axiosRetry from 'axios-retry';
+// import axiosRetry from 'axios-retry';
 import { AXIOS_TIMEOUT_DURATION } from '../../config';
 
 const instance = axios.create({
@@ -10,21 +10,21 @@ const instance = axios.create({
     },
 });
 
-axiosRetry(instance, {
-    retries: 1,
-    async retryCondition(error) {
-      switch (error.response?.status) {
-        case 401:
-        //   if (error.config?.method === "get") {
-        //     let token = await getToken("l")
-        //     globalObject.lToken = token
-        //   }
-          return true;
-        default:
-          return false;
-      }
-    },
-});
+// axiosRetry(instance, {
+//     retries: 1,
+//     async retryCondition(error) {
+//       switch (error.response?.status) {
+//         case 401:
+//         //   if (error.config?.method === "get") {
+//         //     let token = await getToken("l")
+//         //     globalObject.lToken = token
+//         //   }
+//           return true;
+//         default:
+//           return false;
+//       }
+//     },
+// });
 
 export class HttpClient {
     static instance = instance
