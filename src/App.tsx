@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { Loading } from "./components/Loading/Loading";
+import { Loading } from "./components";
 import { persistor } from "./store/redux";
 import { AuthProvider } from "./contexts";
 import Routes from "./routes";
