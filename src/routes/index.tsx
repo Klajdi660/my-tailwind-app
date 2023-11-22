@@ -12,7 +12,7 @@ const Routes = () =>
       element: (
         <PublicGuard>
           <PublicLayout>
-            <DashboardPage />
+            {/* <DashboardPage /> */}
           </PublicLayout>
         </PublicGuard>
       ),
@@ -21,6 +21,6 @@ const Routes = () =>
 
 export default Routes;
 
-const DashboardPage = Loadable(
-    lazy(() => import("../components/common/Sidebar"))
-);
+// const DashboardPage = Loadable(
+//   lazy(() => import("../pages/Dashboard"))
+// );

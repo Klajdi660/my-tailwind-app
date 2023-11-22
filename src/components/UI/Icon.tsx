@@ -1,6 +1,6 @@
 import { Tooltip } from "antd";
 
-const Icon = ({ styles, imgUrl, disabled, handleClick, isActive, name }: any)  => {
+export const Icon = ({ styles, imgUrl, disabled, handleClick, isActive, name }: any)  => {
   return (
     <Tooltip placement="right" title={name} color="#2c2f32">
       <div 
@@ -26,4 +26,4 @@ const Icon = ({ styles, imgUrl, disabled, handleClick, isActive, name }: any)  =
   );
 };
 
-export default Icon;
+// export default Icon;

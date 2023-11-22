@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { loader } from '../../assets/img';
+import { loader } from '../assets/img';
 
 export const Loading: FunctionComponent = () => {
   return (

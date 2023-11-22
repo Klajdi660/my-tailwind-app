@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { navlinks } from '../../config/nav';
-// import Link from 'next/link';
-// import { useRouter } from 'next/navigation';
-import Icon from './Icon';
-// import { sun } from '@/public/assets';
-import { logo } from '../../assets/img';
-import user from "../../assets/img/user.svg";
+import { navlinks } from '../config/nav';
+import { Icon } from '../components';
+import { logo } from '../assets/img';
+import user from "../assets/img/user.svg";
 import { Tooltip } from 'antd';
 
-export default function Sidebar ()  {
-  // const router = useRouter();
+export const Sidebar = () => {
   const [activeLink, setActiveLink] = useState('dashboard');
 
   return (
-    <div className='sm:flex hidden mr-10 relative '>
+    <div className='sm:flex hidden mr-10 relative'>
       <div className='flex justify-between items-center flex-col sticky top-5 h-[90vh]'>
         <Link to='/'>
           <Icon imgUrl={logo} styles="w-[52px] h-[52px] bg-[#2c2f32]"/>
@@ -38,9 +34,7 @@ export default function Sidebar ()  {
           <Tooltip placement="right" title="Login" color="#2c2f32">
             <Link to='/'>
               <Icon 
-                // imgUrl={navlinks[4].imgUrl} 
                 imgUrl={user}
-                // className={`${activeLink !== user ? 'grayscale' : null}`}
                 styles="w-[52px] h-[52px] bg-[#2c2f32] rounded-[50%]"
               />
             </Link>
@@ -50,3 +44,5 @@ export default function Sidebar ()  {
     </div>
   );
 };
+
+// export default Sidebar;
