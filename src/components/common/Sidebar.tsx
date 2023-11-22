@@ -35,7 +35,7 @@ export default function Sidebar ()  {
               />
             ))}
           </div>
-          <Tooltip placement="right" title="Login" color="#2c2f32" arrow={false}>
+          <Tooltip placement="right" title="Login" color="#2c2f32">
             <Link to='/'>
               <Icon 
                 // imgUrl={navlinks[4].imgUrl} 

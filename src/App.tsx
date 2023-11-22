@@ -1,20 +1,40 @@
-import { Routes, Route } from 'react-router-dom';
-import "./assets/styles/main.css";
-import "./assets/styles/responsive.css";
-// import "antd/dist/reset.css";
-import Main from './components/layout/Main';
-import Home from './pages/Home';
+import { ConfigProvider, theme, App } from "antd";
+import { BrowserRouter as Router } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+import { PersistGate } from "redux-persist/integration/react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Loading } from "./components/Loading/Loading";
+import { persistor } from "./store/redux";
+import { AuthProvider } from "./contexts";
+import Routes from "./routes";
 
-const App = () => {
+const themeConfig = {
+  algorithm: theme.defaultAlgorithm,
+  token: {
+    colorPrimary: "#3d7cef",
+  },
+};
+
+const reactQueryClient = new QueryClient();
+
+const Application = () => {
   return (
-    <div className="relative sm:-8 p-4 bg-[#13131a] min-h-screen flex flex-row">
-      <Routes>
-        <Route path="/" element={ <Main /> }>
-          <Route path="/dashboard" element={<Home />}/>
-        </Route>
-      </Routes>
-    </div>
+    <HelmetProvider>
+      <PersistGate loading={<Loading/>} persistor={persistor}>
+        <AuthProvider>
+          <QueryClientProvider client={reactQueryClient}>
+            <ConfigProvider theme={themeConfig}>
+              <App>
+                <Router>
+                  <Routes />
+                </Router>
+              </App>
+            </ConfigProvider>
+          </QueryClientProvider>
+        </AuthProvider>
+      </PersistGate>
+    </HelmetProvider>
   );
 };
 
-export default App;
+export default Application;

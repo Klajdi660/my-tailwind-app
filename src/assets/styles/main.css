@@ -17,7 +17,7 @@ body {
   font-family: open sans, Helvetica, Arial, sans-serif; */
 }
 .ant-tooltip-content {
-  left: 20px;
+  /* left: 20px; */
 }
 
 .ant-layout.ant-layout-has-sider {
