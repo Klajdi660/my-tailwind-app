@@ -9,13 +9,13 @@ import {
   Input,
   Checkbox,
 } from "antd";
-import logo1 from "../assets/images/facebook-icon.svg";
-import logo2 from "../assets/images/linkedin-icon.svg";
-import logo3 from "../assets/images/google-icon.svg";
-import { iconsSvg } from "../assets/images/icons";
+import logo1 from "../../assets/images/facebook-icon.svg";
+import logo2 from "../../assets/images/linkedin-icon.svg";
+import logo3 from "../../assets/images/google-icon.svg";
+import { iconsSvg } from "../../assets/images/icons";
 import { Link, useNavigate } from "react-router-dom";
 // import { useDispatch } from "react-redux";
-import { useAppDispatch } from "../services/hooks";
+import { useAppDispatch } from "../../services/hooks";
 import {
   DribbbleOutlined,
   TwitterOutlined,
@@ -28,7 +28,7 @@ import {
 import type { MenuProps } from 'antd';
 import { MdDashboard } from "react-icons/md";
 import { BiSolidUserCircle } from "react-icons/bi";
-import { sendotp } from "../services/operations/authAPI";
+import { sendotp } from "../../services/operations/authAPI";
 
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;

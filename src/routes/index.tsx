@@ -12,15 +12,16 @@ const Routes = () =>
       element: (
         <PublicGuard>
           <PublicLayout>
-            {/* <DashboardPage /> */}
+            <DashboardPage />
           </PublicLayout>
         </PublicGuard>
       ),
+      index: true
     },
   ]);
 
 export default Routes;
 
-// const DashboardPage = Loadable(
-//   lazy(() => import("../pages/Dashboard"))
-// );
+const DashboardPage = Loadable(
+  lazy(() => import("../pages/Dashboard"))
+);

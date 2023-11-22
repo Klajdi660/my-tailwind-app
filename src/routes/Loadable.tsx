@@ -1,5 +1,5 @@
 import { FunctionComponent, Suspense } from "react";
-import { Loading } from "../components/Loading";
+import { Loading } from "../components";
 
 const Loadable = (Component: FunctionComponent<any>) => (props: any) => {
     return (

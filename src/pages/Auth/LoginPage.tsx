@@ -20,7 +20,7 @@ import {
   AppstoreOutlined,
   UserOutlined
 } from "@ant-design/icons";
-import { iconsSvg } from "../assets/images/icons";
+import { iconsSvg } from "../../assets/images/icons";
 import type { MenuProps } from 'antd';
 
 const { Title } = Typography;
