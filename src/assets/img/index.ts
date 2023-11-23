@@ -12,6 +12,16 @@ import menu from "./menu.svg";
 import money from "./money.svg";
 import loader from "./loader.svg";
 import thirdweb from "./thirdweb.png";
+import loginImg from "./login.webp";
+import signupImg from "./signup.webp";
+import frameImg from "./frame.png";
+import user from "./user.svg";
+
+// social networks
+import facebookIcon from "./facebook-icon.svg";
+import googleIcon from "./google-icon.svg";
+import linkedinIcon from "./linkedin-icon.svg";
+import appleIcon from "./apple-icon.svg";
 
 export {
     createCampaign,
@@ -27,5 +37,13 @@ export {
     menu,
     money,
     loader,
-    thirdweb
+    thirdweb,
+    loginImg,
+    signupImg,
+    frameImg,
+    user,
+    facebookIcon,
+    googleIcon,
+    linkedinIcon,
+    appleIcon,
 };

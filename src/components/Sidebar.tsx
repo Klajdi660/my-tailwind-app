@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { navlinks } from '../config/nav';
-import { Icon } from '../components';
-import { logo } from '../assets/img';
-import user from "../assets/img/user.svg";
 import { Tooltip } from 'antd';
+import { navlinks } from '../data';
+import { Icon } from '../components';
+import { logo, user } from '../assets/img';
 
 export const Sidebar = () => {
   const [activeLink, setActiveLink] = useState('dashboard');

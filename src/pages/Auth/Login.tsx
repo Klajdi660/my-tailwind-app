@@ -1,7 +1,8 @@
+import { FunctionComponent } from "react";
 import { Template } from "../../components";
-import loginImg from "../../assets/img/money.svg";
+import { loginImg } from "../../assets/img";
 
-const Login = () => {
+const Login: FunctionComponent = () => {
   return (
     <Template
       title="Welcome Back"
