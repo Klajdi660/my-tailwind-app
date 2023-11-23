@@ -7,11 +7,13 @@ import { Loading } from "./components";
 import { persistor } from "./store/redux";
 import { AuthProvider } from "./contexts";
 import Routes from "./routes";
+import "./App.css";
 
 const themeConfig = {
   algorithm: theme.defaultAlgorithm,
   token: {
-    colorPrimary: "#3d7cef",
+    // colorPrimary: "#3d7cef",
+    colorPrimary: "#E95420",
   },
 };
 

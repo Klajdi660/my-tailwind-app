@@ -12,51 +12,7 @@ import {
 import logo1 from "../../assets/images/facebook-icon.svg";
 import logo2 from "../../assets/images/linkedin-icon.svg";
 import logo3 from "../../assets/images/google-icon.svg";
-import { iconsSvg } from "../../assets/images/icons";
-import { Link, useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-import { useAppDispatch } from "../../services/hooks";
-import {
-  DribbbleOutlined,
-  TwitterOutlined,
-  InstagramOutlined,
-  GithubOutlined,
-  FacebookFilled,
-  AppstoreOutlined,
-  UserOutlined
-} from "@ant-design/icons";
-import type { MenuProps } from 'antd';
-import { MdDashboard } from "react-icons/md";
-import { BiSolidUserCircle } from "react-icons/bi";
-import { sendotp } from "../../services/operations/authAPI";
-
-const { Title } = Typography;
-const { Header, Footer, Content } = Layout;
-const { templateIcon, profileIcon, signupIcon, signinIcon } = iconsSvg.headerFormIcons;
-
-    
-const headerItems: MenuProps['items'] = [
-  {
-    label: 'Dashboard',
-    key: '1',
-    icon: <MdDashboard style={{ color: "#fff", fontSize: "20px" }}/>,
-  },
-  {
-    label: 'Profile',
-    key: '2',
-    icon: <BiSolidUserCircle style={{ color: "#fff", fontSize: "20px" }}/>,
-  },
-  {
-    label: 'Sign Up',
-    key: '3',
-    icon: signupIcon,
-  },
-  {
-    label: 'Sign In',
-    key: '4',
-    icon: signinIcon,
-  },
-];
+import { Link } from "react-router-dom";
 
 const inputs = {
   firstName: "",
@@ -71,9 +27,6 @@ const inputs = {
 const SignUp = () => {
   const [inputVal, setInputVal] = useState(inputs);
   const [form] = Form.useForm();
-  const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  const dispatch = useAppDispatch();
 
   const handleInputChange = (e: any) => {
     const { name, value, checked } = e.target;
@@ -81,13 +34,11 @@ const SignUp = () => {
     setInputVal({ ...inputVal, [name]: value ? value : checked });
   };
 
-  const handleOnSubmit = () => {
-    dispatch(sendotp(inputVal.email, navigate));
-  };
+  const handleOnSubmit = () => {};
 
   return (
-    <div className="layout-default ant-layout layout-sign-up">
-      <Header>
+    <div /*className="layout-default ant-layout layout-sign-up"*/>
+      {/* <Header>
         <div className="header-col header-brand">
           <h5>Antd Dashboard</h5>
         </div>
@@ -98,10 +49,10 @@ const SignUp = () => {
             items={headerItems} 
           />
         </div>
-      </Header>
+      </Header> */}
 
-      <Content className="p-0">
-        <div className="sign-up-header">
+      {/* <Content className="p-0"> */}
+        {/* <div className="sign-up-header">
           <div className="content">
             <Title>Sign Up</Title>
             <p className="text-lg">
@@ -109,23 +60,11 @@ const SignUp = () => {
               project for free.
             </p>
           </div>
-        </div>
+        </div> */}
         <Card
           className="card-signup header-solid h-full ant-card pt-0"
-          title={<h5>Register With</h5>}            
+          title={<h5>Login</h5>}            
         >
-          <div className="sign-up-gateways">
-            <Button>
-              <img src={logo1} alt="logo 1"/>
-            </Button>
-            <Button>
-              <img src={logo2} alt="logo 2" />
-            </Button>
-            <Button>
-              <img src={logo3} alt="logo 3" />
-            </Button>
-          </div>
-          <p className="text-center my-25 font-semibold text-muted">Or</p>
           <Form
             name="basic"
             form={form}
@@ -244,7 +183,7 @@ const SignUp = () => {
             </Link>
           </p>
         </Card>
-      </Content>
+      {/* </Content> */}
       {/* <Footer>
         <Menu mode="horizontal">
           <Menu.Item>Company</Menu.Item>

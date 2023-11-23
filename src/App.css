@@ -1,6 +1,45 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
+
+/* FORM STYLE */
+.form-style {
+  @apply border-transparent bg-richblack-700 p-3 text-[16px] leading-[24px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 focus:outline-none;
+}
+
+.form-style input {
+  background: none;
+  color: #F1F2FF;
+}
+.form-style2 input {
+  border: transparent;
+  background: #2C333F;
+  color: #F1F2FF;
+  height: 48px;
+  font-size: 16px;
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+.form-style input::placeholder,
+.form-style2 input::placeholder {
+  color: #6E727F;
+}
+
+.form-btn {
+  margin-top: 15px; 
+  height: 40px;
+  border-radius: 8px; 
+  font-weight: 500; 
+  width: 100%;
+  color: #F1F2FF; 
+}
+
+.form-btn:hover,
+.card:hover {
+  transform: scale(0.95); 
+  box-shadow: none; 
+  transition-duration: 200ms; 
+}
 
 /* html,
 body {

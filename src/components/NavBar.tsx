@@ -6,7 +6,7 @@ import { thirdweb, search } from '../assets/img';
 
 export const Navbar = () => {  
   return (
-    <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6 ">
+    <div className="flex md:flex-row flex-col-reverse justify-between  gap-6">
         <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
             <input 
                 type="text" 

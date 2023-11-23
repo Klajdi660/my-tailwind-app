@@ -26,13 +26,14 @@ export const Sidebar = () => {
                   if(!link.disabled) {
                     setActiveLink(link.name);
                     // router.push(link.link)
+                    <Link to={link.link} />
                   }
                 }}
               />
             ))}
           </div>
           <Tooltip placement="right" title="Login" color="#2c2f32">
-            <Link to='/'>
+            <Link to='/login'>
               <Icon 
                 imgUrl={user}
                 styles="w-[52px] h-[52px] bg-[#2c2f32] rounded-[50%]"
