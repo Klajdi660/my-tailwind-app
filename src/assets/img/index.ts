@@ -16,6 +16,7 @@ import loginImg from "./login.webp";
 import signupImg from "./signup.webp";
 import frameImg from "./frame.png";
 import user from "./user.svg";
+import img from "./img2.webp";
 
 // social networks
 import facebookIcon from "./facebook-icon.svg";
@@ -46,4 +47,5 @@ export {
     googleIcon,
     linkedinIcon,
     appleIcon,
+    img,
 };

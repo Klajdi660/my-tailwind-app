@@ -23,9 +23,9 @@ export const Template: FunctionComponent<TemplateProps> = ({
     formType
 }) => {
     return (
-        <Content className="min-h-[calc(100vh-3.5rem)] mt-12 place-items-center">
-            <Content className="mx-auto flex w-11/12 max-w-maxContent flex-col-reverse justify-between gap-y-12 md:flex-row md:gap-y-0 md:gap-x-12">
-                <Space direction="vertical" className="mx-auto w-12/12 max-w-[460px] md:mx-0 bg-[#1c1c24] rounded-lg p-7">
+        <Content className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+            <Content className="mx-auto flex w-11/12 max-w-maxContent flex-col-reverse justify-between gap-y-12 py-12 md:flex-row md:gap-y-0 md:gap-x-12">
+                <Space direction="vertical" className="mx-auto w-11/12 max-w-[460px] md:mx-0 bg-[#1c1c24] rounded-lg p-7">
                     <Title style={{ color: "#F1F2FF", fontSize: "1.875rem" }} className="text-center">
                         {title}
                     </Title>
@@ -37,7 +37,7 @@ export const Template: FunctionComponent<TemplateProps> = ({
                     </p>
                     {formType === "signup" ? <SignUpForm /> : <LoginForm />}
                 </Space>
-                <Space className="relative mx-auto w-11/12 max-w-[450px] md:mx-0 mt-5">
+                <div className="relative mx-auto w-11/12 max-w-[450px] md:mx-0">
                     <img
                         src={frameImg}
                         alt="Pattern"
@@ -51,9 +51,9 @@ export const Template: FunctionComponent<TemplateProps> = ({
                         width={558}
                         height={504}
                         loading="lazy"
-                        className="absolute -top-4 right-4 z-10"
+                        className="absolute -top-4 right-4 z-10 h-[404px]"
                     />
-                </Space>
+                </div>
             </Content>
         </Content>
     );

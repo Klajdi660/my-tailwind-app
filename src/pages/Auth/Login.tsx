@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Template } from "../../components";
-import { loginImg } from "../../assets/img";
+import { loginImg, img } from "../../assets/img";
 
 const Login: FunctionComponent = () => {
   return (
@@ -8,7 +8,7 @@ const Login: FunctionComponent = () => {
       title="Welcome Back"
       firstDescp="Build skills for today, tomorrow, and beyond."
       secondDescp="Education to future-proof your career."
-      image={loginImg}
+      image={img}
       formType="login"
     />
   );
