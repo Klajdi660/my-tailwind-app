@@ -28,6 +28,17 @@ const Routes = () =>
       ),
       index: true,
     },
+    {
+      path: "signup",
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <RegisterPage />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+      index: true,
+    },
   ]);
 
 export default Routes;
@@ -38,4 +49,8 @@ const DashboardPage = Loadable(
 
 const LoginPage = Loadable(
   lazy(() => import("../pages/Auth/Login"))
+);
+
+const RegisterPage = Loadable(
+  lazy(() => import("../pages/Auth/SignUp"))
 );

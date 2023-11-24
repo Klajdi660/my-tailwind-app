@@ -12,6 +12,7 @@ export interface UpdateUserInput extends Partial<User> {
 export interface LoginUserInput {
   username: string;
   password: string;
+  remember: boolean;
 }
 
 export type SocialLoginInputType = {

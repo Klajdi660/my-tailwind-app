@@ -3,6 +3,8 @@ import { FunctionComponent } from "react";
 
 export const SignUpForm: FunctionComponent = () => {
     return (
-        <Form></Form>
+        <Form>
+            <div className="text=[#fff]">TEST</div>
+        </Form>
     );
 };
