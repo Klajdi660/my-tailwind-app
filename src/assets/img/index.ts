@@ -17,6 +17,10 @@ import signupImg from "./signup.webp";
 import frameImg from "./frame.png";
 import user from "./user.svg";
 import img from "./img2.webp";
+import courses from "./courses.svg";
+import addCourse from "./add-course.svg";
+import favorite from "./favorite.svg";
+import later from "./later.svg";
 
 // social networks
 import facebookIcon from "./facebook-icon.svg";
@@ -48,4 +52,8 @@ export {
     linkedinIcon,
     appleIcon,
     img,
+    courses,
+    addCourse,
+    favorite,
+    later,
 };

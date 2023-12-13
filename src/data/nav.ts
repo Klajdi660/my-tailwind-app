@@ -4,39 +4,49 @@ import {
   logout, 
   payment, 
   profile, 
-  withdraw 
+  withdraw,
+  courses,
+  addCourse,
+  favorite,
+  later,
 } from '../assets/img';
 
 export const navlinks = [
   {
-    name: 'dashboard',
+    name: 'Dashboard',
     imgUrl: dashboard,
     link: '/',
   },
   {
-    name: 'campaign',
-    imgUrl: createCampaign,
-    link: '/create-campaign',
-  },
-  {
-    name: 'payment',
-    imgUrl: payment,
+    name: 'My courses',
+    imgUrl: courses,
     link: '/',
-    disabled: true,
   },
   {
-    name: 'withdraw',
-    imgUrl: withdraw,
+    name: 'Add Course',
+    imgUrl: addCourse,
     link: '/',
-    disabled: true,
+    // disabled: true,
   },
   {
-    name: 'profile',
+    name: 'Favorite',
+    imgUrl: favorite,
+    link: '/',
+    // disabled: true,
+  },
+  {
+    name: 'Watch Later',
+    imgUrl: later,
+    link: '/',
+    // disabled: true,
+  },
+  {
+    name: 'Profile',
     imgUrl: profile,
-    link: '/profile',
+    link: '/',
   },
   {
-    name: 'logout',
+    name: 'Logout',
     imgUrl: logout,
     link: '/',
     disabled: true,

@@ -1,6 +1,10 @@
-import { Tooltip } from "antd";
+import { FunctionComponent } from "react";
+import { Tooltip } from "antd"; 
+import { IconProps } from "../../types/user.type";
 
-export const Icon = ({ styles, imgUrl, disabled, handleClick, isActive, name }: any)  => {
+export const Icon: FunctionComponent<IconProps> = (props)  => {
+  const { styles, imgUrl, disabled, handleClick, isActive, name } = props;
+
   return (
     <Tooltip placement="right" title={name} color="#2c2f32">
       <div 
@@ -18,12 +22,10 @@ export const Icon = ({ styles, imgUrl, disabled, handleClick, isActive, name }: 
           : <img
               src={imgUrl} 
               alt={'fund_logo'}  
-              className={`w-3/4 h-3/4 ${isActive !== name ? 'grayscale' : null}`}
+              className={`w-2/4 h-2/4 ${isActive !== name ? 'grayscale' : null}`}
             />
         }
       </div>
     </Tooltip>
   );
 };
-
-// export default Icon;

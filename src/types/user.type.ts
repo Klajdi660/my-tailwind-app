@@ -9,11 +9,38 @@ export interface UpdateUserInput extends Partial<User> {
   id: string;
 }
 
+// components
 export interface LoginUserInput {
   username: string;
   password: string;
   remember: boolean;
 }
+
+export interface RegisterUserInput {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface CustomButtonProps {
+  htmlType: string,
+  type: string,
+  title: string,
+  handleClick: () => void,
+  styles: string,
+};
+
+export interface IconProps { 
+  styles?: string, 
+  imgUrl?: string, 
+  disabled?: boolean, 
+  handleClick?: () => void, 
+  isActive?: string, 
+  name?: string 
+};
+
+// 
+
 
 export type SocialLoginInputType = {
   provider: string;
@@ -23,12 +50,6 @@ export type SocialLoginInputType = {
 export type SendOtpCodeInputType = {
   phone_number: string;
 };
-
-export interface RegisterUserInput {
-  name: string;
-  email: string;
-  password: string;
-}
 
 export interface ForgotPasswordUserInput {
   email: string;

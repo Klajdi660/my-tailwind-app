@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Tooltip } from 'antd';
 import { navlinks } from '../data';
 import { Icon } from '../components';
@@ -7,6 +7,7 @@ import { logo, user } from '../assets/img';
 
 export const Sidebar = () => {
   const [activeLink, setActiveLink] = useState('dashboard');
+  const navigate = useNavigate();
 
   return (
     <div className='sm:flex hidden mr-10 relative'>
@@ -15,17 +16,17 @@ export const Sidebar = () => {
           <Icon imgUrl={logo} styles="w-[52px] h-[52px] bg-[#2c2f32]"/>
         </Link>
         <div className='flex-1 flex flex-col justify-between items-center bg-[#1c1c24] rounded-[20px] w-[74px] py-4 mt-10'>
-          <div className='flex flex-col justify-center items-center gap-10'>
+          <div className='flex flex-col justify-center items-center gap-2'>
             {navlinks.map((link) => (
               <Icon 
                 key={link.name}
                 {...link}
                 isActive={activeLink}
+                styles="hover:bg-[#2c2f32] w-[52px] h-[52px]"
                 handleClick={() => {
                   if(!link.disabled) {
                     setActiveLink(link.name);
-                    // router.push(link.link)
-                    <Link to={link.link} />
+                    navigate(link.link)
                   }
                 }}
               />
