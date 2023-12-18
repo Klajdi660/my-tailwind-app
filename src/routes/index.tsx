@@ -2,7 +2,7 @@ import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
 import { PrivateGuard, PublicGuard } from "../guards";
 import { PrivateLayout, PublicLayout } from "../layouts";
-import Loadable from "./Loadable";
+import { Loadable } from "../components";
 
 const Routes = () =>
   useRoutes([

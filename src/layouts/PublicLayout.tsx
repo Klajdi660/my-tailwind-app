@@ -10,7 +10,7 @@ export const PublicLayout = ({
   ...restProps
 }: Props): JSX.Element => {
   return (
-    <Layout /*style={{ height: "100vh" }}*/ className="relative sm:-8 p-4 bg-[#13131a] min-h-screen flex flex-row">
+    <body className="relative sm:-8 p-4 bg-[#13131a] min-h-screen flex flex-row">
       <div className="sm:flex hidden mr-10 relative">
         <Sidebar />
       </div>
@@ -19,7 +19,7 @@ export const PublicLayout = ({
         {children}
         <Footer/>
       </div>
-    </Layout>
+    </body>
   );
 };
 

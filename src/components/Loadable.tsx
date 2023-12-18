@@ -1,12 +1,10 @@
 import { FunctionComponent, Suspense } from "react";
-import { Loading } from "../components";
+import { Loading } from "./Loading";
 
-const Loadable = (Component: FunctionComponent<any>) => (props: any) => {
+export const Loadable = (Component: FunctionComponent<any>) => (props: any) => {
     return (
         <Suspense fallback={<Loading />}>
             <Component {...props} />
         </Suspense>
     );
 };
-
-export default Loadable;
