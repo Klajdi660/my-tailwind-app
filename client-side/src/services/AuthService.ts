@@ -17,7 +17,7 @@ const useAuthService = (): AuthService => {
   const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
   const navigate = useNavigate();
 
-  const login = async (username: string, password: string) => {
+  const login = async (username: string, password: string): Promise<void> => {
     let data = { usernameOrEmail: username, password };
 
     try {
