@@ -6,6 +6,7 @@ import { AuthResponse } from "../types/user.type";
 import { endpoints } from "./Api";
 
 const { LOGIN_API } = endpoints;
+console.log('endpoints :>> ', endpoints);
 interface AuthService {
   login: (username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -23,6 +24,7 @@ export const useAuthService = (): AuthService => {
     try {
       const response = await HttpClient.post<AuthResponse>(url, data);
       // const user = JSON.parse(atob(response.rToken.split(".")[1]));
+      console.log('response :>> ', response);
       const user = response.rToken;
       console.log('user :>> ', user);
       // if (![10, 11, 12].includes(user.role)) throw new Error();

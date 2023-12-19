@@ -15,7 +15,6 @@ export const LoginForm: FunctionComponent = () => {
     return (
         <Form
             onFinish={handleOnSubmit}
-            // form={form}
             className="mt-4"
             layout="vertical"
             initialValues={{
@@ -31,15 +30,12 @@ export const LoginForm: FunctionComponent = () => {
                 }
                 rules={[
                     {
-                    required: true,
-                    message: "Please input your Email!"
+                        required: true,
+                        message: "Please input your Email!"
                     }
                 ]}
             >
                 <Input
-                    // name="email"
-                    // value={email}
-                    // onChange={handleOnChange}
                     placeholder="Enter email address"
                     className="form-style w-full"
                     autoComplete="email"
@@ -54,15 +50,12 @@ export const LoginForm: FunctionComponent = () => {
                 }
                 rules={[
                     {
-                    required: true,
-                    message: "Please input your Password!"
+                        required: true,
+                        message: "Please input your Password!"
                     }
                 ]}
             >
                 <Input.Password
-                    // name="password"
-                    // value={password}
-                    // onChange={handleOnChange}
                     placeholder="Enter Password"
                     autoComplete="password"
                     className="form-style w-full"
