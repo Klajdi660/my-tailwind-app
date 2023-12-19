@@ -1,0 +1,44 @@
+{
+    "app": {
+        "port": 8080,
+        "prefix": "/api"
+    },
+    "cors": {
+        "cors_url": "http://localhost:3000"
+    },
+    "logLevel": "info",
+    "token": {
+        "access_token_secret": "Klajdi96@",
+        "accessTokenExpiresIn": 15,
+        "refreshTokenExpiresIn": 59,
+        "jwt_cookie_expires": "2d"
+    },
+    "mysql": {
+        "connectionLimit": 10,
+        "host": "localhost",
+        "user": "root",
+        "port": "",
+        "password": "Klajdi1996",
+        "database": "node-registration"
+    },
+    "redis_feed": {
+        "host": "127.0.01",
+        "port": 6379
+    },
+    "mail": {
+        "service": "gmail",
+        "host": "smtp.gmail.com",
+        "port": 587,
+        "secure": false,
+        "email": "klajdixhafkollari36@gmail.com",
+        "password": "nyekejfpjnjshevt"
+    },
+    "otp": {
+        "otpLength": 6,
+        "otpConfig": {
+            "lowerCaseAlphabets": false,
+            "upperCaseAlphabets": true,
+            "specialChars": false
+        }
+    }  
+}
