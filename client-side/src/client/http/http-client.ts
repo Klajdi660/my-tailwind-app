@@ -31,7 +31,6 @@ const instance = axios.create({
 
 // instance.interceptors.request.use(
 //   async (config: InternalAxiosRequestConfig) => {
-//     console.log('config :>> ', config.url);
 //     let token;
 //     if (!config.url?.includes("auth")) {
 //       if (config.method === "get") {
@@ -40,9 +39,7 @@ const instance = axios.create({
 //       }
 //       else token = await getToken("s");
 //     }
-//     console.log('token :>> ', token);
 //     config.headers["x-access-token"] = token || localStorage.rToken;
-//     console.log('config 22:>> ', config);
 //     return config;
 //   },
 //   (error: AxiosError) => Promise.reject(error),
@@ -61,7 +58,6 @@ const instance = axios.create({
 
 // instance.interceptors.request.use(
 //   async (config: InternalAxiosRequestConfig) => {
-//     console.log('config :>> ', config);
 //     const token = store.getState().auth.accessToken
   
 //     if (token) {

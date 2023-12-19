@@ -13,10 +13,10 @@ authRouter.post(
     validateResource(createLoginSchema),
     asyncHandler(async (req: Request, res: Response) => {
         const { usernameOrEmail, password } = req.body;
-        const response = await loginHandler(usernameOrEmail, password, res);
-        const { aToken, rToken } = response;
+        const response = await loginHandler(usernameOrEmail, password);
+        const { lToken, rToken } = response;
         res
-            .cookie("access_token", aToken, accessTokenCookieOptions)
+            .cookie("access_token", lToken, accessTokenCookieOptions)
             .cookie("refresh_token", rToken, refreshTokenCookieOptions)
             .cookie("logged_in", true, loginTokenCookieOptions)
             .json(response);

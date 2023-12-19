@@ -6,7 +6,7 @@ import { signToken, log, sendEmail } from "../../utils";
 import { UserTypesParams } from "../../types";
 
 // Controller for login user
-export const loginHandler = async (usernameOrEmail: string, password: string, res: any) => {
+export const loginHandler = async (usernameOrEmail: string, password: string) => {
     // Get the user from the collection
     const user: any = await getUserByEmailOrUsername(usernameOrEmail, usernameOrEmail);
 

@@ -8,6 +8,8 @@ import { persistor } from "./store/redux";
 import { AuthProvider } from "./contexts";
 import Routes from "./routes";
 import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const themeConfig = {
   algorithm: theme.defaultAlgorithm,
@@ -27,6 +29,15 @@ const Application = () => {
           <QueryClientProvider client={reactQueryClient}>
             <ConfigProvider theme={themeConfig}>
               <App>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  pauseOnFocusLoss
+                  pauseOnHover
+                />
                 <Router>
                   <Routes />
                 </Router>

@@ -15,15 +15,11 @@
 //             email,
 //             checkUserPresent: true,
 //         });
-//         console.log("SENDOTP API RESPONSE............", response);
-
-//         // console.log(response.data.error);
 
 //         // if (!response.data.error) {
 //             //   throw new Error(response.data.message);
 //         // }
 
-//         console.log("OTP Sent Successfully");
 //         // navigate(path.verifyOTP);
 //     } catch (error) {
 //         console.log("SENDOTP API ERROR............", error);

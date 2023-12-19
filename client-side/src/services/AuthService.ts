@@ -4,6 +4,7 @@ import { HttpClient } from "../client";
 import { globalObject } from "../utils";
 import { endpoints } from "./Api";
 import { AuthResponse } from "../types/user.type";
+import { toast } from "react-toastify";
 
 const { LOGIN_API, LOGOUT_API } = endpoints;
 
@@ -16,18 +17,22 @@ const useAuthService = (): AuthService => {
   const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
   const navigate = useNavigate();
 
-  const login = async (username: string, password: string): Promise<void> => {
+  const login = async (username: string, password: string) => {
     let data = { usernameOrEmail: username, password };
 
     try {
-      const response = await HttpClient.post<AuthResponse>(LOGIN_API, data);
-      const user = JSON.parse(atob(response.rToken.split(".")[1]));
-      localStorage.rToken = response.rToken;
-      localStorage.user = JSON.stringify(user);
-      setLToken(response.lToken);
-      globalObject.lToken = response.lToken;
-      authenticateUser({ id: user.id });
-      navigate("/");
+      const response = await HttpClient.post<AuthResponse>(LOGIN_API, data) as any;
+      if (response.error) {
+        toast.error(response.message);
+      } else {
+        const user = JSON.parse(atob(response.rToken.split(".")[1]));
+        localStorage.rToken = response.rToken;
+        localStorage.user = JSON.stringify(user);
+        setLToken(response.lToken);
+        globalObject.lToken = response.lToken;
+        authenticateUser({ id: user.id });
+        navigate("/");
+      }
     } catch (error) {
       console.error("Login failed:", error);
       throw error;

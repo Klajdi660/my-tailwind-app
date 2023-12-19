@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Form, Typography, Input, Checkbox } from "antd";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import useAuthService from "../../services/AuthService";
@@ -12,14 +12,14 @@ export const LoginForm: FunctionComponent = () => {
     const { login } = useAuthService();
     const { isAuthenticated } = useAuth();
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     useEffect(() => {
     }, []);
 
     const handleOnSubmit = async (values: LoginUserInput) => {
         const { username, password, remember } = values;
-        console.log('values :>> ', values);
+
         try {
             await login(username, password);
         } catch (error) {
@@ -32,21 +32,21 @@ export const LoginForm: FunctionComponent = () => {
             onFinish={handleOnSubmit}
             className="mt-4"
             layout="vertical"
-            // initialValues={{
-            //     remember: true
-            // }}
+            initialValues={{
+                remember: false
+            }}
         >
             <Form.Item 
                 name="username"
                 label={
                     <Title style={{ color: "#F1F2FF", fontSize: "0.875rem" }}>
-                        Email Address
+                        Email or Username
                     </Title>
                 }
                 rules={[
                     {
                         required: true,
-                        message: "Please input your Email!"
+                        message: "Please input your Email or Username!"
                     }
                 ]}
             >
@@ -84,7 +84,7 @@ export const LoginForm: FunctionComponent = () => {
                 />
             </Form.Item>
             <div className="flex flex-1 items-center h-[30px]">
-                <Form.Item name="remember" noStyle>
+                <Form.Item name="remember" valuePropName="checked" noStyle>
                     <Checkbox className="text-[#F1F2FF]" style={{ fontSize: "0.75rem", lineHeight: "1rem" }}>
                         Remember me
                     </Checkbox>
