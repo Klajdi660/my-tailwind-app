@@ -9,11 +9,11 @@ const Routes = () =>
     {
       path: "/",
       element: (
-        <PublicGuard>
-          <PublicLayout>
+        <PrivateGuard>
+          <PrivateLayout>
             <DashboardPage />
-          </PublicLayout>
-        </PublicGuard>
+          </PrivateLayout >
+        </PrivateGuard>
       ),
       index: true
     },

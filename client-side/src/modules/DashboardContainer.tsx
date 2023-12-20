@@ -4,6 +4,6 @@ interface DashBoardContainerProps {};
 
 export const DashBoardContainer: FunctionComponent<DashBoardContainerProps> = () => {
     return (
-        <h1>dashboard_page</h1>
+        <h1 style={{ color: "#fff"}}>dashboard_page</h1>
     );
 };

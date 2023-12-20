@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Typography, Input, Checkbox } from "antd";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import useAuthService from "../../services/AuthService";
@@ -11,10 +11,13 @@ const { Title } = Typography;
 export const LoginForm: FunctionComponent = () => {
     const { login } = useAuthService();
     const { isAuthenticated } = useAuth();
-
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
+        if (isAuthenticated) {
+            console.log('localStorage.lasLocation :>> ', localStorage.lasLocation);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleOnSubmit = async (values: LoginUserInput) => {

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Tooltip } from 'antd';
 import { navlinks } from '../data';
 import { Icon } from '../components';
-import { logo, user } from '../assets/img';
+import { logo, avatar } from '../assets/img';
+import { useAuth } from '../hooks';
 
-export const Sidebar = () => {
+export const Sidebar: FunctionComponent = () => {
   const [activeLink, setActiveLink] = useState('dashboard');
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   return (
     <div className='sm:flex hidden mr-10 relative'>
@@ -32,18 +34,17 @@ export const Sidebar = () => {
               />
             ))}
           </div>
-          <Tooltip placement="right" title="Login" color="#2c2f32">
+          {!user && <Tooltip placement="right" title="Login" color="#2c2f32">
             <Link to='/login'>
               <Icon 
-                imgUrl={user}
+                imgUrl={avatar}
                 styles="w-[52px] h-[52px] bg-[#2c2f32] rounded-[50%]"
               />
             </Link>
-          </Tooltip>
+          </Tooltip>}
+          {user && <Icon imgUrl={user?.id} styles="w-[52px] h-[52px] bg-[#2c2f32] rounded-[50%]" />}
         </div>
       </div>
     </div>
   );
 };
-
-// export default Sidebar;

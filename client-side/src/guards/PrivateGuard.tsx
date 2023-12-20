@@ -9,12 +9,10 @@ interface PrivateGuardProps {
 export const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({ children }) => {
   const location = useLocation();
   const { isAuthenticated } = useAuth();
-
+  
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
 
   return <>{children}</>;
 };
-
-// export default PrivateGuard;

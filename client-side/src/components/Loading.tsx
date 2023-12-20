@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react';
 import { loader } from '../assets/img';
-import "./Loading.css";
 
 export const Loading: FunctionComponent = () => {
   return (

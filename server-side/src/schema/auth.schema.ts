@@ -1,4 +1,4 @@
-import { object, string, custom, TypeOf } from "zod";
+import { object, string, boolean, custom, TypeOf } from "zod";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const usernameRegex = /^[a-zA-Z0-9]+$/;
@@ -14,6 +14,7 @@ export const createLoginSchema = object({
         password: string({
             required_error: "Password is required",
         }),
+        // remeber: boolean(),
     }),
 });
 
@@ -25,7 +26,9 @@ export const createRegisterSchema = object({
         }).regex(emailRegex, "Not a valid email"),
         username: string({
             required_error: "Username is required"
-        }).regex(usernameRegex, "Username should only contain letters and numbers"),
+        })
+            .regex(usernameRegex, "Username should only contain letters and numbers")
+            .min(8, { message: "Username must be at least 8 characters long" }),
         firstName: string({
             required_error: "First name is required",
         }),
@@ -34,13 +37,11 @@ export const createRegisterSchema = object({
         }),
         password: string({
             required_error: "Password is required",
-        }).refine(value => value.length >= 6, {
-            message: "Password must be at least 6 characters long",
-        }).refine(value => uppercaseRegex.test(value), {
-            message: "Password must contain at least one capital letter",
-        }).refine(value => sepecialCharacter.test(value), {
-            message: "Password must contain at least one special character",
-        }),
+        })
+            // .refine(value => value.length >= 8, { message: "Password must be at least 8 characters long" })
+            .min(8, { message: "Password must be at least 8 characters long" })
+            .refine(value => uppercaseRegex.test(value), { message: "Password must contain at least one capital letter" })
+            .refine(value => sepecialCharacter.test(value), { message: "Password must contain at least one special character" }),
         passwordConfirm: string({
             required_error: "Password confirmation is required",
         }),

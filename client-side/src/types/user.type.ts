@@ -17,9 +17,13 @@ export interface LoginUserInput {
 }
 
 export interface RegisterUserInput {
-  name: string;
+  firstname: string;
+  lastname: string;
   email: string;
+  username: string;
   password: string;
+  confirmPassword: string;
+  agreedToTerms: boolean;
 }
 
 export interface CustomButtonProps {
@@ -162,3 +166,9 @@ export interface RegisterQueryOptions extends QueryOptions {
 }
 
 export type RegisterPaginator = PaginatorInfo<User>;
+
+export interface TabProps {
+  tabData: any;
+  field: string;
+  setField: (tab: any) => void;
+}

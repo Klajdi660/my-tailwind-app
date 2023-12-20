@@ -12,11 +12,9 @@ interface TemplateProps {
     formType: string,
 };
 
-export const Template: FunctionComponent<TemplateProps> = ({ 
-    title,
-    description,
-    formType
-}) => {
+export const Template: FunctionComponent<TemplateProps> = (props) => {
+    const { title, description, formType } = props;
+    
     return (
         <Content className="mx-auto w-11/12 justify-center items-center flex flex-col">
             <Space direction="vertical" className="flex mx-auto w-[100%] max-w-[460px] md:mx-0 bg-[#1c1c24] rounded-lg p-5">
