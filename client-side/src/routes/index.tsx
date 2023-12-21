@@ -39,15 +39,35 @@ const Routes = () =>
       ),
       index: true,
     },
+    {
+      path: "verify-email",
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <VerifyEmailPage/>
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
+    {
+      path: "reset-password",
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <ResetPasswordPage/>
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    }
   ]);
 
 export default Routes;
 
 const delayLoad = (component: () => Promise<{ default: FunctionComponent<any> }>, delay: number) => {
   return new Promise<{ default: FunctionComponent<any> }>((resolve) => {
-      setTimeout(() => {
-          resolve(component());
-      }, delay);
+    setTimeout(() => {
+      resolve(component());
+    }, delay);
   });
 };
 
@@ -64,4 +84,12 @@ const LoginPage = Loadable(
 const RegisterPage = Loadable(
   // lazy(() => import("../pages/Auth/SignUp"))
   lazy(() => delayLoad(() => import("../pages/Auth/SignUp"), 1000))
+);
+
+const VerifyEmailPage = Loadable(
+  lazy(() => delayLoad(() => import("../pages/Auth/VerifyEmail"), 1000))
+);
+
+const ResetPasswordPage = Loadable(
+  lazy(() => delayLoad(() => import("../pages/Auth/ResetPassword"), 1000))
 );

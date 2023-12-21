@@ -172,3 +172,10 @@ export interface TabProps {
   field: string;
   setField: (tab: any) => void;
 }
+
+// auth-template
+export interface TemplateProps {
+  title: string,
+  description: string,
+  formType: string,
+}; 

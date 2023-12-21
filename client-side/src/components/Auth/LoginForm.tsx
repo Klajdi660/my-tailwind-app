@@ -8,7 +8,7 @@ import { LoginUserInput } from "../../types/user.type";
 
 const { Title } = Typography;
 
-export const LoginForm: FunctionComponent = () => {
+const LoginForm: FunctionComponent = () => {
     const { login } = useAuthService();
     const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
@@ -54,7 +54,7 @@ export const LoginForm: FunctionComponent = () => {
                 ]}
             >
                 <Input
-                    placeholder="Enter email address"
+                    placeholder="Enter email or username"
                     className="form-style w-full"
                     autoComplete="email"
                 />
@@ -116,3 +116,5 @@ export const LoginForm: FunctionComponent = () => {
         </Form>
     );
 };
+
+export default LoginForm;

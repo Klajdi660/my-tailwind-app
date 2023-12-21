@@ -8,7 +8,7 @@ import { RegisterUserInput } from "../../types/user.type";
 
 const { Title } = Typography;
 
-export const SignUpForm: FunctionComponent = () => {
+const SignUpForm: FunctionComponent = () => {
     // student or instructor
     const [accountType, setAccountType] = useState(accTypeData[0].tabName);
     
@@ -205,3 +205,5 @@ export const SignUpForm: FunctionComponent = () => {
         </>
     );
 };
+
+export default SignUpForm;
