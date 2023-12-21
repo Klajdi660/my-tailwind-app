@@ -71,26 +71,27 @@ const VerifyEmailForm: FunctionComponent = () => {
             >
                 Verify Email
             </Button>
-            {secondsLeft > 0 &&
+            {secondsLeft > 0 ? (
                 <Progress
                     percent={(secondsLeft / 60) * 100}
-                    steps={5}
+                    steps={6}
                     className="mt-4"
                     size={20}
                     strokeColor={progressColor}
                     format={() => (
-                        <span style={{ color: '#EB6536' }}>{`${secondsLeft}s`}</span>
+                        <span style={{ color: progressColor }}>{`${secondsLeft}s`}</span>
                     )}
                 />
-            }
-            <div className="flex justify-center text-[#F1F2FF] mt-4">
-                Can't get OTP Code? &nbsp;
-                <Link to="/signup">
-                    <p className="hover:text-orange-5">
-                        Resend it!
-                    </p>
-                </Link>
-            </div>
+            ) : (
+                <div className="flex justify-center text-richblack-5 mt-4">
+                    OTP code expired &nbsp;
+                    <Link to="/signup">
+                        <p className="hover:text-orange-5">
+                            Resend it!
+                        </p>
+                    </Link>
+                </div>
+            )}
 		</Form>
     );
 };
