@@ -2,7 +2,8 @@ import { PaginatorInfo, QueryOptions } from './general.type';
 
 export interface User {
   id: string,
-  auths?: string
+  auths?: string,
+  image?: string;
 }
 
 export interface UpdateUserInput extends Partial<User> {
@@ -40,7 +41,8 @@ export interface IconProps {
   disabled?: boolean, 
   handleClick?: () => void, 
   isActive?: string, 
-  name?: string 
+  name?: string | any;
+  type?: string;
 };
 
 // 

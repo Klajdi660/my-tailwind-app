@@ -5,11 +5,12 @@ import { navlinks } from '../data';
 import { Icon } from '../components';
 import { logo, avatar } from '../assets/img';
 import { useAuth } from '../hooks';
+import ProfileDropdown from './Auth/ProfileDropDown';
 
 export const Sidebar: FunctionComponent = () => {
   const [activeLink, setActiveLink] = useState('dashboard');
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
     <div className='sm:flex hidden mr-10 relative'>
@@ -34,15 +35,16 @@ export const Sidebar: FunctionComponent = () => {
               />
             ))}
           </div>
-          {!user && <Tooltip placement="right" title="Login" color="#2c2f32">
+          {!isAuthenticated && 
             <Link to='/login'>
               <Icon 
                 imgUrl={avatar}
                 styles="w-[52px] h-[52px] bg-[#2c2f32] rounded-[50%]"
+                name='Login'
               />
             </Link>
-          </Tooltip>}
-          {user && <Icon imgUrl={user?.id} styles="w-[52px] h-[52px] bg-[#2c2f32] rounded-[50%]" />}
+          }
+          {isAuthenticated !== null && <ProfileDropdown/>}
         </div>
       </div>
     </div>

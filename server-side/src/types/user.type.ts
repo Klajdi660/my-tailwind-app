@@ -1,4 +1,5 @@
 export interface UserTypesParams {
+    accountType?: string;
     email: string;
     username: string;
     firstName: string;

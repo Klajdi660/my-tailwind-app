@@ -35,12 +35,16 @@ export const getUserByEmailOrUsername = async (email: string, username: string) 
     })
 };
 
-export const createUser = async (data: UserTypesParams) => {
-    const { email, username, firstName, lastName, password } = data;
+export const createUser = async (data: UserTypesParams, approved: boolean) => {
+    const { email, username, firstName, lastName, password, accountType } = data;
 
     const extraData = {
         firstName, 
         lastName,
+        gender: null,
+        dateOfBirthL: null,
+        about: null,
+        contactNumber: null,
     };
 
     const newUser = new User({
@@ -48,6 +52,9 @@ export const createUser = async (data: UserTypesParams) => {
         username,
         hash: password,
         extra: JSON.stringify(extraData),
+        accountType,
+        image: "",
+        approved,
     });
 
     const saveUser = await newUser

@@ -53,9 +53,9 @@ export const registerHandler = async (data: UserTypesParams) => {
     }
 
     const hash = crypto
-    .createHash("sha1")
-    .update(password + username)
-    .digest("hex")
+        .createHash("sha1")
+        .update(password + username)
+        .digest("hex");
 
     const user_registration: UserTypesParams = {
         ...data,
@@ -120,16 +120,20 @@ export const confirmRegisterHandler = async (code: string, email: string) => {
         log.error(`[confirmUser]: ${JSON.stringify({ action: "expired User", data: redisObj })}`);
         return { error: true, message: "Your OTP code has expired. Please request a new OTP code" };
     }
-    
+
+    // Create the user
+    let approved: string | boolean = "";
+    approved === "Instructor" ? (approved = false) : (approved = true)
+
     // insert user in database
-    const user = await createUser(redisObj);
+    const user = await createUser(redisObj, approved);
 
     if (!user) {
         console.log(JSON.stringify({ action: "Confirm createUser Req", data: user }))
         return { error: true, message: "Failed to register user!" };
     }
 
-    // await redisCLI.del(`register_pending_${email}`);
+    await redisCLI.del(`register_pending_${email}`);
 
     return {
         error: false,

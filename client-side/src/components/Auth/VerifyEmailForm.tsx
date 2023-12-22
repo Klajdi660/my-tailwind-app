@@ -36,7 +36,7 @@ const VerifyEmailForm: FunctionComponent = () => {
 
     return (
         <Form 
-            className="mt-4 items-center flex flex-col" 
+            className="mt-4 items-center flex flex-col justify-center" 
             onFinish={handleOnSubmit}
 	    >
             <Form.Item>
@@ -73,10 +73,11 @@ const VerifyEmailForm: FunctionComponent = () => {
             </Button>
             {secondsLeft > 0 ? (
                 <Progress
+                    style={{ display: "flex", justifyContent: "center", marginRight: "-3px" }}
                     percent={(secondsLeft / 60) * 100}
-                    steps={6}
+                    // steps={6}
                     className="mt-4"
-                    size={20}
+                    // size={20}
                     strokeColor={progressColor}
                     format={() => (
                         <span style={{ color: progressColor }}>{`${secondsLeft}s`}</span>
@@ -85,7 +86,7 @@ const VerifyEmailForm: FunctionComponent = () => {
             ) : (
                 <div className="flex justify-center text-richblack-5 mt-4">
                     OTP code expired &nbsp;
-                    <Link to="/signup">
+                    <Link to="#">
                         <p className="hover:text-orange-5">
                             Resend it!
                         </p>

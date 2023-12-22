@@ -1,4 +1,4 @@
-import { object, string, boolean, custom, TypeOf } from "zod";
+import { object, string, custom, TypeOf } from "zod";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const usernameRegex = /^[a-zA-Z0-9]+$/;
@@ -21,6 +21,9 @@ export const createLoginSchema = object({
 // Register Schema
 export const createRegisterSchema = object({
     body: object({
+        accountType: string({
+            required_error: "Choose account type"
+        }),
         email: string({
             required_error: "Email is required",
         }).regex(emailRegex, "Not a valid email"),
