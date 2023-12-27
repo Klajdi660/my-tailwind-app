@@ -40,9 +40,12 @@ const MenuContainer = () => {
 };
 
 const ProfileDropdown: FunctionComponent = () => {
-  const user = JSON.parse(localStorage.user);
-  const extra = JSON.parse(user.extra);
-  const { firstName, lastName } = extra;
+  const { user } = useAuth();
+  // const user = JSON.parse(localStorage.user);
+  // const extra = JSON.parse(user.extra);
+  // const { firstName, lastName } = extra;
+  const firstName = "Klajdi";
+  const lastName = " Xhafkollari";
 
   const getInitials = () => {
     const firstNameInitial = firstName.charAt(0) || '';
