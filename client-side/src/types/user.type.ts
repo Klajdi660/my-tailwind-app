@@ -2,7 +2,8 @@ import { PaginatorInfo, QueryOptions } from './general.type';
 
 export interface User {
   id: string,
-  auths?: string,
+  extra?: any;
+  // auths?: string,
   image?: string;
 }
 

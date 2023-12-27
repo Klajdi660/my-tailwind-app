@@ -1,6 +1,4 @@
 import config from "config";
-import crypto from "crypto";
-import dayjs from "dayjs";
 import otpGenerator from "otp-generator";
 import { Op } from "sequelize";
 import { User } from "../../models";

@@ -23,15 +23,17 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [lToken, setLToken] = useState("");
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
-  
+  console.log('localStorage :>> ', localStorage.user);
   useEffect(() => {
-    if (localStorage.rToken) setUser({ id: JSON.parse(localStorage.user).id })
+    if (localStorage.rToken) setUser(JSON.parse(localStorage.user));
+    // if (localStorage.rToken) setUser({ id: JSON.parse(localStorage.user).id })
+
   }, []);
 
   const authenticateUser = (user: User) => {
     setUser(user);
   };
-  
+
   const unAuthenticateUser = () => {
     setUser(null);
   };

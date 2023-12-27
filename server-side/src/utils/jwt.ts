@@ -33,7 +33,10 @@ export const signToken = async (user: any) => {
     });
 
     // Sign the refresh token
-    const refresh_token = signJWT({ id: user.id }, "refreshTokenPrivateKey", {
+    // const refresh_token = signJWT({ id: user.id }, "refreshTokenPrivateKey", {
+    //     expiresIn: `${refreshTokenExpiresIn}m`
+    // });
+    const refresh_token = signJWT(user , "refreshTokenPrivateKey", {
         expiresIn: `${refreshTokenExpiresIn}m`
     });
 

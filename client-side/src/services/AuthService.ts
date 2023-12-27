@@ -21,7 +21,7 @@ const useAuthService = (): AuthService => {
     let data = { usernameOrEmail: username, password };
 
     try {
-      const response = await HttpClient.post<AuthResponse>(LOGIN_API, data) as any;
+      const response = await HttpClient.post<AuthResponse>(LOGIN_API, data);
       if (response.error) {
         toast.error(response.message);
       } else {
