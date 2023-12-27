@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* FORM STYLE */
+/* Start Form*/
 .form-style {
   @apply border-transparent bg-richblack-700 p-3 text-[16px] leading-[24px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 focus:outline-none;
 }
@@ -11,18 +11,39 @@
   background: none;
   color: #F1F2FF;
 }
-/* .form-style2 input {
-  border: transparent;
-  background: #2C333F;
-  color: #F1F2FF;
-  height: 48px;
-  font-size: 16px;
-  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5);
-} */
 
 .form-style input::placeholder {
-/* .form-style2 input::placeholder { */
   color: #6E727F;
+}
+
+.ant-form-vertical .ant-form-item-label {
+  padding: 0px;
+}
+
+.card-form .form-gateways {
+  text-align: center;
+}
+
+.card-form .form-gateways .ant-btn {
+  margin-right: 10px;
+  margin-left: 10px;
+  height: 60px;
+  width: 80px;
+  box-shadow: none;
+  border-radius: 6px;
+  border: transparent;
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  background: #2C333F;
+}
+
+.card-form .form-gateways .ant-btn:hover {
+  transform: scale(0.95); 
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  transition-duration: 200ms; 
+}
+
+.card-form .form-gateways .ant-btn img {
+  width: 30px;
 }
 
 .form-btn {
@@ -40,6 +61,7 @@
   box-shadow: none; 
   transition-duration: 200ms; 
 }
+/* End Form */
 
 /* Start Loading */
 .wrapper {
@@ -156,4 +178,3 @@
   align-items: center;
 }
 /* End Tab */
-

@@ -41,18 +41,16 @@ const MenuContainer = () => {
 
 const ProfileDropdown: FunctionComponent = () => {
   const { user } = useAuth();
-  // const user = JSON.parse(localStorage.user);
-  // const extra = JSON.parse(user.extra);
-  // const { firstName, lastName } = extra;
-  const firstName = "Klajdi";
-  const lastName = " Xhafkollari";
-
+  
   const getInitials = () => {
-    const firstNameInitial = firstName.charAt(0) || '';
-    const lastNameInitial = lastName.charAt(0) || '';
-      
+    const firstName = "Klajdi";
+    const lastName = "Xhafkollari";
+
+    const firstNameInitial = firstName?.charAt(0) || "";
+    const lastNameInitial = lastName?.charAt(0) || "";
     return `https://place-hold.it/52x52/2c2f32/ffffff&text=${firstNameInitial}${lastNameInitial}&fontsize=25`;
   };
+
 
   if (!user) return null;
 
