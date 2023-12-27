@@ -40,19 +40,6 @@ const MenuContainer = () => {
 };
 
 const ProfileDropdown: FunctionComponent = () => {
-<<<<<<< HEAD
-  const { user } = useAuth();
-
-  const getInitials = () => {
-    const firstName = "Klajdi";
-    const lastName = "Xhafkollari";
-    
-    const firstNameInitial = firstName?.charAt(0) || '';
-    const lastNameInitial = lastName?.charAt(0) || '';
-    return `https://place-hold.it/52x52/2c2f32/ffffff&text=${firstNameInitial}${lastNameInitial}&fontsize=25`;
-    // return `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`;
-=======
-  // const { user } = useAuth();
   const user = JSON.parse(localStorage.user);
   const extra = JSON.parse(user.extra);
   const { firstName, lastName } = extra;
@@ -62,7 +49,6 @@ const ProfileDropdown: FunctionComponent = () => {
     const lastNameInitial = lastName.charAt(0) || '';
       
     return `https://place-hold.it/52x52/2c2f32/ffffff&text=${firstNameInitial}${lastNameInitial}&fontsize=25`;
->>>>>>> 2fa27de7badcbfac6920f27966fe1672ad8c8e1c
   };
 
   if (!user) return null;
