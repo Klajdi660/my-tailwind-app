@@ -11,9 +11,9 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
     const { title, description, formType } = props;
 
     return (
-        <Content className="mx-auto w-11/12 justify-center items-center flex flex-col">
+        <Content className="mx-auto w-12/12 justify-center items-center flex flex-col">
             <Space
-                className="card-form flex mx-auto w-[100%] max-w-[460px] md:mx-0 bg-[#1c1c24] rounded-lg p-5"
+                className="card-form flex mx-auto w-[100%] max-w-[520px] md:mx-0 bg-[#1c1c24] rounded-lg p-5"
                 direction="vertical"
             >
                 <Title style={{ color: "#F1F2FF", fontSize: "1.875rem" }} className="text-center">
