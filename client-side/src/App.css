@@ -173,7 +173,7 @@
 .inactive-button {
   background-color: transparent; 
   color: #999DAA; 
-  border-radius: 9999px; 
+  /* border-radius: 9999px;  */
   padding: 8px 20px;
   transition: all 0.2s; 
   border: none;
