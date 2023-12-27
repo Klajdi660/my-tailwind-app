@@ -1,10 +1,7 @@
 import { 
-  createCampaign, 
   dashboard, 
   logout, 
-  payment, 
   profile, 
-  withdraw,
   courses,
   addCourse,
   favorite,
@@ -20,7 +17,7 @@ export const navlinks = [
   {
     name: 'My courses',
     imgUrl: courses,
-    link: '/',
+    link: '/my-courses',
   },
   {
     name: 'Add Course',

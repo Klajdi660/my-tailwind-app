@@ -1,6 +1,5 @@
 import React, { useState, FunctionComponent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Tooltip } from 'antd';
 import { navlinks } from '../data';
 import { Icon } from '../components';
 import { logo, avatar } from '../assets/img';
@@ -20,7 +19,8 @@ export const Sidebar: FunctionComponent = () => {
         </Link>
         <div className='flex-1 flex flex-col justify-between items-center bg-[#1c1c24] rounded-[20px] w-[74px] py-4 mt-10'>
           <div className='flex flex-col justify-center items-center gap-2'>
-            {navlinks.map((link) => (
+            {navlinks.map((link) => {
+              return (
               <Icon 
                 key={link.name}
                 {...link}
@@ -33,7 +33,7 @@ export const Sidebar: FunctionComponent = () => {
                   }
                 }}
               />
-            ))}
+            )})}
           </div>
           {!isAuthenticated && 
             <Link to='/login'>

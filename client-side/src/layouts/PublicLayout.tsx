@@ -1,6 +1,5 @@
 import { Layout } from "antd";
 import { Footer, Navbar, Sidebar } from "../components";
-
 interface Props {
   children?: React.ReactNode,
 };
