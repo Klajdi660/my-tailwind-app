@@ -22,7 +22,7 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
                 <p className="text-[1.125rem] leading-[1.625rem] text-center mb-[14px]">
                    <span className="text-richblack-100">{description}</span>
                 </p>
-                {formType === "signup" || "login" ? <FormGateway/> : null}
+                {(formType === "signup" || formType === "login") && <FormGateway/>}
                 {authFormData[formType] || null}
             </Space>
         </Content>
