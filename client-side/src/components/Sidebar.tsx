@@ -1,6 +1,5 @@
 import React, { useState, FunctionComponent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Tooltip } from 'antd';
 import { navlinks } from '../data';
 import { Icon } from '../components';
 import { logo, avatar } from '../assets/img';
