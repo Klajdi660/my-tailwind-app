@@ -5,7 +5,8 @@ const Login: FunctionComponent = () => {
   return (
     <Template
       title="Welcome Back"
-      description="Education to future-proof your career."
+      // description="Education to future-proof your career."
+      description="Login With"
       formType="login"
     />
   );

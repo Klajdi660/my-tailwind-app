@@ -16,9 +16,9 @@ authRouter.post(
         const response = await loginHandler(usernameOrEmail, password);
         const { lToken, rToken } = response;
         res
-            .cookie("access_token", lToken, accessTokenCookieOptions)
-            .cookie("refresh_token", rToken, refreshTokenCookieOptions)
-            .cookie("logged_in", true, loginTokenCookieOptions)
+            // .cookie("access_token", lToken, accessTokenCookieOptions)
+            // .cookie("refresh_token", rToken, refreshTokenCookieOptions)
+            // .cookie("logged_in", true, loginTokenCookieOptions)
             .json(response);
     })
 );
@@ -47,14 +47,15 @@ authRouter.post(
 authRouter.get(
     "/logout",
     asyncHandler(async (req: Request, res: Response) => {
-        console.log('res.locals :>> ', res.locals);
         const user = res.locals.user;
+        console.log('user :>> ', user);
+        console.log('res.locals :>> ', res.locals);
         const response = await logoutHandler(user);
 
         res
-            .cookie("access_token", "", { maxAge: 1 })
-            .cookie("refresh_token", "", { maxAge: 1 })
-            .cookie("logged_in", "", { maxAge: 1 })
+            // .cookie("access_token", "", { maxAge: 1 })
+            // .cookie("refresh_token", "", { maxAge: 1 })
+            // .cookie("logged_in", "", { maxAge: 1 })
             .json(response);
     })
 );

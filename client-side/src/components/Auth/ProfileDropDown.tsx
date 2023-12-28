@@ -3,8 +3,11 @@ import { Menu } from "antd";
 import { Icon } from "../UI/Icon";
 import { useAuth } from "../../hooks";
 import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
+import useAuthService from "../../services/AuthService";
 
 const MenuContainer = () => {
+  const { logout } = useAuthService();
+
   const menuItems = [
     {
       label: "Profile",
@@ -23,7 +26,9 @@ const MenuContainer = () => {
     },
   ];
   
-  const handleLogOut = async () => {};
+  const handleLogOut = async () => {
+    logout();
+  };
 
   const onClick = ({ key }: any) => {
     key === "log_out" && handleLogOut();
@@ -41,10 +46,10 @@ const MenuContainer = () => {
 
 const ProfileDropdown: FunctionComponent = () => {
   const { user } = useAuth();
-  
+
   const getInitials = () => {
-    const firstName = "Klajdi";
-    const lastName = "Xhafkollari";
+    const firstName = user?.extra?.firstName;
+    const lastName = user?.extra?.lastName;
 
     const firstNameInitial = firstName?.charAt(0) || "";
     const lastNameInitial = lastName?.charAt(0) || "";

@@ -34,7 +34,7 @@ const SignUpForm: FunctionComponent = () => {
             >
                 <Space className="flex gap-x-4">
                     <Form.Item
-                        name="firstname"
+                        name="firstName"
                         label={
                             <Title
                                 style={{ color: "#F1F2FF", fontSize: "0.875rem", fontWeight: 400 }}
@@ -50,7 +50,6 @@ const SignUpForm: FunctionComponent = () => {
                         ]}
                     >
                         <Input
-                            name="firstName"
                             placeholder="Enter first name"
                             className="form-style"
                         />
@@ -116,9 +115,9 @@ const SignUpForm: FunctionComponent = () => {
                     ]}
                 >
                     <Input
-                        placeholder="Enter email address"
+                        placeholder="Enter username"
                         className="form-style w-full"
-                        autoComplete="email"
+                        autoComplete="username"
                     />
                 </Form.Item>
                 <Space className="flex gap-x-4">
@@ -139,7 +138,7 @@ const SignUpForm: FunctionComponent = () => {
                         ]}    
                     >
                         <Input.Password
-                            placeholder="Enter Password"
+                            placeholder="Enter password"
                             className="form-style"
                             autoComplete="password"
                             iconRender={(visible) => 
@@ -168,7 +167,7 @@ const SignUpForm: FunctionComponent = () => {
                         ]}
                     >
                         <Input.Password
-                            placeholder="Confirm Password"
+                            placeholder="Enter confirm password"
                             className="form-style"
                             autoComplete="confirmPassword"
                             iconRender={(visible) =>
@@ -193,10 +192,10 @@ const SignUpForm: FunctionComponent = () => {
                 >
                     Create Account
                 </Button>
-                <div className="flex justify-center text-[#F1F2FF] mt-4">
+                <div className="flex justify-center text-richblack-5 mt-4">
                     Already have an account? &nbsp;
                     <Link to="/login">
-                        <p className="hover:text-orange-5">
+                        <p className="text-orange-10 hover:text-richblack-5">
                             Login!
                         </p>
                     </Link>

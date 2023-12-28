@@ -1,31 +1,53 @@
-export interface SearchParamOptions {}
+// auth template
+export interface TemplateProps {
+  title: string;
+  description: string;
+  formType: string;
+}; 
+// 
+
+// tab
+export interface TabProps {
+  tabData: any;
+  field: string;
+  setField: (tab: any) => void;
+}
+
+export interface TabMap {
+  id: number;
+  tabName: string;
+  type: string;
+}
+// 
+
+export interface SearchParamOptions {};
 
 export interface QueryOptions {
-  language: string
-  page?: number
-  limit?: number
-}
+  language: string;
+  page?: number;
+  limit?: number;
+};
 
 export interface PaginatorInfo<T> {
-  current_page: number
-  data: T[]
-  first_page_url: string
-  from: number
-  last_page: number
-  last_page_url: string
-  links: string[]
-  next_page_url: string | null
-  path: string
-  per_page: number
-  prev_page_url: string | null
-  to: number
-  total: number
-}
+  current_page: number;
+  data: T[];
+  first_page_url: string;
+  from: number;
+  last_page: number;
+  last_page_url: string;
+  links: string[];
+  next_page_url: string | null;
+  path: string;
+  per_page: number;
+  prev_page_url: string | null;
+  to: number;
+  total: number;
+};
 
 export interface Error {
   response: {
     data: {
-      message: string
+      message: string;
     }
-  }
-}
+  };
+};

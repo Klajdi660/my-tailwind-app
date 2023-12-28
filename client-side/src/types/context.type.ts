@@ -4,14 +4,14 @@ import { Translations } from "./language.type";
 
 // Auth context
 export interface AuthProviderProps {
-    children: ReactNode,
+    children: ReactNode;
 };
   
 export interface AuthContextType {
     isAuthenticated: boolean;
     user?: User | null;
-    lToken: string | undefined,
-    setLToken: (lToken: string) => void,
+    lToken: string | undefined;
+    setLToken: (lToken: string) => void;
     authenticateUser: (user: User) => void;
     unAuthenticateUser: () => void;
     updateUser: () => void;
@@ -19,7 +19,7 @@ export interface AuthContextType {
 
 // Store context
 export interface ProviderProps {
-    children: ReactNode,
+    children: ReactNode;
 };
 
 // export type usersType = {
@@ -33,17 +33,17 @@ export interface ProviderProps {
 // };
 
 export interface StoreContextType {
-    user?: User | null,
-    userStore: object,
-    setUserStore: (userStore: object) => void,
-    loading: boolean,
-    setLoading: (loading: boolean) => void,
-    selectedTimeZone: string,
-    setSelectedTimeZone: (selectedTImeZone: string) => void,
-    timeZones: string[],
-    usersTimeZone: string,
-    lang: string,
-    setLang: (lang: string) => void,
-    translations: Translations,
-    setTranslations: (translations: Translations) => void,
+    user?: User | null;
+    userStore: object;
+    setUserStore: (userStore: object) => void;
+    loading: boolean;
+    setLoading: (loading: boolean) => void;
+    selectedTimeZone: string;
+    setSelectedTimeZone: (selectedTImeZone: string) => void;
+    timeZones: string[];
+    usersTimeZone: string;
+    lang: string;
+    setLang: (lang: string) => void;
+    translations: Translations;
+    setTranslations: (translations: Translations) => void;
 };

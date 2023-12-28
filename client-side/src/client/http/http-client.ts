@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axiosRetry from 'axios-retry';
-// import { getToken, globalObject } from '../../utils';
+import { getToken, globalObject } from '../../utils';
 // import { store } from '../../store/redux';
 // import { deleteUser } from '../../store/redux/slices/auth';
 import { APP_URL, AXIOS_TIMEOUT_DURATION } from '../../config';
@@ -19,8 +19,8 @@ const instance = axios.create({
 //     switch (error.response?.status) {
 //       case 401:
 //         if (error.config?.method === "get") {
-//           let token = await getToken("l")
-//           globalObject.lToken = token
+//           let token = await getToken("l");
+//           globalObject.lToken = token;
 //         }
 //         return true;
 //       default:

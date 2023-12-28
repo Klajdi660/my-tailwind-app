@@ -13,12 +13,14 @@ const LoginForm: FunctionComponent = () => {
     const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (isAuthenticated) {
-            console.log('localStorage.lasLocation :>> ', localStorage.lasLocation);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     if (isAuthenticated) {
+    //         navigate("/");
+    //         console.log('localStorage.lastLocation :>> ', localStorage.lastLocation);
+    //         console.log('HYRIIIII :>> ');
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     const handleOnSubmit = async (values: LoginUserInput) => {
         const { username, password, remember } = values;
@@ -33,7 +35,6 @@ const LoginForm: FunctionComponent = () => {
     return (
         <Form
             onFinish={handleOnSubmit}
-            className="mt-4"
             layout="vertical"
             initialValues={{
                 remember: false
@@ -74,7 +75,7 @@ const LoginForm: FunctionComponent = () => {
                 ]}
             >
                 <Input.Password
-                    placeholder="Enter Password"
+                    placeholder="Enter password"
                     autoComplete="password"
                     className="form-style w-full"
                     iconRender={(visible) =>
@@ -108,7 +109,7 @@ const LoginForm: FunctionComponent = () => {
             <div className="flex justify-center text-[#F1F2FF] mt-4">
                 Don't have an Account? &nbsp;
                 <Link to="/signup">
-                    <p className="hover:text-orange-5">
+                    <p className="text-orange-10 hover:text-richblack-5">
                         Sign up!
                     </p>
                 </Link>

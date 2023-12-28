@@ -15,7 +15,7 @@ const Routes = () =>
           </PrivateLayout >
         </PrivateGuard>
       ),
-      index: true
+      // index: true
     },
     {
       path: "login",
@@ -26,7 +26,7 @@ const Routes = () =>
           </PublicLayout>
         </PublicGuard>
       ),
-      index: true,
+      // index: true,
     },
     {
       path: "signup",
@@ -37,7 +37,7 @@ const Routes = () =>
           </PublicLayout>
         </PublicGuard>
       ),
-      index: true,
+      // index: true,
     },
     {
       path: "verify-email",

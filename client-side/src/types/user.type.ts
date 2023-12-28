@@ -1,9 +1,9 @@
 import { PaginatorInfo, QueryOptions } from './general.type';
 
 export interface User {
-  id: string,
+  id: string;
   extra?: any;
-  // auths?: string,
+  // auths?: string;
   image?: string;
 }
 
@@ -29,48 +29,33 @@ export interface RegisterUserInput {
 }
 
 export interface CustomButtonProps {
-  htmlType: string,
-  type: string,
-  title: string,
-  handleClick: () => void,
-  styles: string,
+  htmlType: string;
+  type: string;
+  title: string;
+  handleClick: () => void;
+  styles: string;
 };
 
 export interface IconProps { 
-  styles?: string, 
-  imgUrl?: string, 
+  styles?: string;
+  imgUrl?: string; 
   disabled?: boolean, 
-  handleClick?: () => void, 
-  isActive?: string, 
+  handleClick?: () => void;
+  isActive?: string;
   name?: string | any;
   type?: string;
 };
-
 // 
-
 
 export type SocialLoginInputType = {
   provider: string;
   access_token: string;
 };
 
-export type SendOtpCodeInputType = {
-  phone_number: string;
-};
-
-export interface ForgotPasswordUserInput {
-  email: string;
-}
-
 export interface ResetPasswordUserInput {
   email: string;
   token: string;
   password: string;
-}
-
-export interface VerifyForgotPasswordUserInput {
-  token: string;
-  email: string;
 }
 
 export interface ChangePasswordUserInput {
@@ -95,36 +80,36 @@ export interface AuthResponse {
   // meta: [];
 }
 export interface UsersDataType {
-  key: number,
-  id: number,
+  key: number;
+  id: number;
   user_id: string;
-  createdAt: string,
-  updatedAt: string,
+  createdAt: string;
+  updatedAt: string;
   username: string;
   first_name: string;
   last_name: string;
   phone_nr: string;
   gender: string;
   birthday: string;
-  newsletter: number,
-  offers_mail: number,
+  newsletter: number;
+  offers_mail: number;
   street: string;
   city: string;
   postal_code: string;
   country: string;
   user_confirmed: number;
-  extra: any
+  extra: any;
 }
 export interface UsersResponse {
-  error: boolean,
-  msg: string,
-  meta: any,
-  data: Array<UsersDataType>
+  error: boolean;
+  msg: string;
+  meta: any;
+  data: Array<UsersDataType>;
 }
 export interface UserDetailsResponse {
-  error: boolean,
-  data: UsersDataType,
-  msg: string
+  error: boolean;
+  data: UsersDataType;
+  msg: string;
 }
 
 export interface OTPResponse {
@@ -169,16 +154,3 @@ export interface RegisterQueryOptions extends QueryOptions {
 }
 
 export type RegisterPaginator = PaginatorInfo<User>;
-
-export interface TabProps {
-  tabData: any;
-  field: string;
-  setField: (tab: any) => void;
-}
-
-// auth-template
-export interface TemplateProps {
-  title: string,
-  description: string,
-  formType: string,
-}; 

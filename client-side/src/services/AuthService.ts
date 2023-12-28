@@ -41,10 +41,13 @@ const useAuthService = (): AuthService => {
 
   const logout = async (): Promise<void> => {
     try {
-      await HttpClient.post<AuthResponse>(LOGOUT_API);
+      const resp = await HttpClient.post<AuthResponse>(LOGOUT_API);
       unAuthenticateUser();
       delete localStorage.rToken;
       delete localStorage.user;
+      console.log('resp :>> ', resp);
+      // toast.success("Logout Success")
+      navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
       throw error;

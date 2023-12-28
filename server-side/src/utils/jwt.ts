@@ -29,7 +29,7 @@ const signJWT = (
 export const signToken = async (user: any) => {
     // Sign the access token
     const access_token = signJWT({ id: user.id }, "accessTokenPrivateKey", {
-        expiresIn: `${accessTokenExpiresIn}m`,
+        expiresIn: `${accessTokenExpiresIn}d`,
     });
 
     // Sign the refresh token
