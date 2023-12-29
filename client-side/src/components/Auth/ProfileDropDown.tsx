@@ -47,21 +47,11 @@ const MenuContainer = () => {
 const ProfileDropdown: FunctionComponent = () => {
   const { user } = useAuth();
 
-  const getInitials = () => {
-    const firstName = user?.extra?.firstName;
-    const lastName = user?.extra?.lastName;
-
-    const firstNameInitial = firstName?.charAt(0) || "";
-    const lastNameInitial = lastName?.charAt(0) || "";
-    return `https://place-hold.it/52x52/2c2f32/ffffff&text=${firstNameInitial}${lastNameInitial}&fontsize=25`;
-  };
-
-
   if (!user) return null;
 
   return (        
     <Icon 
-      imgUrl={user?.image ? user?.image : getInitials()} 
+      imgUrl={user.image}
       styles="w-[52px] h-[52px] bg-[#2c2f32] rounded-[50%]"
       name={MenuContainer}
       type="click"

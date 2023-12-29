@@ -4,13 +4,13 @@ import { IconProps } from "../../types/user.type";
 
 export const Icon: FunctionComponent<IconProps> = (props)  => {
   const { styles, imgUrl, disabled, handleClick, isActive, name, type } = props;
-  
+
   const triggerType = type === "click" ? "click": "hover";
 
   return (
     <Tooltip placement="right" title={name} color="#2c2f32" trigger={[triggerType]}>
       <div 
-        className={`w-8 relative h-8 rounded-[10px] ${isActive && isActive === name ? 'bg-[#2c2f32]' : null} flex justify-center items-center ${!disabled && 'cursor-pointer'} ${styles}`} 
+        className={`w-8 relative h-8 rounded-[10px] ${isActive && isActive === name ? 'bg-[#2c2f32] border border-solid border-orange-10' : null} flex justify-center items-center ${!disabled && 'cursor-pointer'} ${styles}`} 
         onClick={handleClick}
       >
         {!isActive

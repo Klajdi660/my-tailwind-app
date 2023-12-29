@@ -1,7 +1,7 @@
 import { lazy, FunctionComponent } from "react";
 import { useRoutes } from "react-router-dom";
-import { PrivateGuard, PublicGuard } from "../guards";
-import { PrivateLayout, PublicLayout } from "../layouts";
+import { PublicGuard } from "../guards";
+import { PublicLayout } from "../layouts";
 import { Loadable } from "../components";
 
 const Routes = () =>
@@ -9,11 +9,11 @@ const Routes = () =>
     {
       path: "/",
       element: (
-        <PrivateGuard>
-          <PrivateLayout>
+        <PublicGuard>
+          <PublicLayout>
             <DashboardPage />
-          </PrivateLayout >
-        </PrivateGuard>
+          </PublicLayout >
+        </PublicGuard>
       ),
       // index: true
     },

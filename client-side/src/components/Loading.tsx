@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { loader } from '../assets/img';
+// import { loader } from '../assets/img';
 
 export const Loading: FunctionComponent = () => {
   return (
@@ -11,17 +11,16 @@ export const Loading: FunctionComponent = () => {
     // />
     
     // Loading 2 
-    // <div className="wrapper">
-    //   <div className="circle"></div>
-    //   <div className="circle"></div>
-    //   <div className="circle"></div>
-    //   <div className="shadow"></div>
-    //   <div className="shadow"></div>
-    //   <div className="shadow"></div>
-    // </div>
+    <div className="wrapper">
+      <div className="circle"></div>
+      <div className="circle"></div>
+      <div className="circle"></div>
+      <div className="shadow"></div>
+      <div className="shadow"></div>
+      <div className="shadow"></div>
+    </div>
 
     // Loading 3
-    <div className='animate-ping w-16 h-16 m-8 rounded-full bg-orange-5'> 
-    </div>
+    // <div className='animate-ping w-16 h-16 m-8 rounded-full bg-orange-5'> </div>
   );
 };

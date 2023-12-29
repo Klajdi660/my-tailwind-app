@@ -13,17 +13,13 @@ const LoginForm: FunctionComponent = () => {
     const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //         navigate("/");
-    //         console.log('localStorage.lastLocation :>> ', localStorage.lastLocation);
-    //         console.log('HYRIIIII :>> ');
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+    useEffect(() => {
+        if (isAuthenticated) localStorage.lastLocation ? navigate(`/${localStorage.lastLocation}`) : navigate("/");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleOnSubmit = async (values: LoginUserInput) => {
-        const { username, password, remember } = values;
+        const { username, password, /*remember*/ } = values;
 
         try {
             await login(username, password);

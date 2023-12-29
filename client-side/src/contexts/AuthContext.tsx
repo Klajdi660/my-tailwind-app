@@ -23,11 +23,21 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [lToken, setLToken] = useState("");
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
-  
+
   useEffect(() => {
     if (localStorage.rToken) {
-      setUser({ ...JSON.parse(localStorage.user), extra: JSON.parse(JSON.parse(localStorage.user).extra) });
+      const extraParse = JSON.parse(JSON.parse(localStorage.user).extra);
+      const userParse = JSON.parse(localStorage.user);
+      const firstNameInitial = extraParse.firstName.charAt(0) || "";
+      const lastNameInitial = extraParse.lastName.charAt(0) || "";
+    
+      const userImage = userParse.image
+        ? userParse.image
+        : `https://place-hold.it/52x52/2c2f32/ffffff&text=${firstNameInitial}${lastNameInitial}&fontsize=25`;
+        
+      setUser({ ...userParse, image: userImage, extra: extraParse });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localStorage.rToken]);
 
   const authenticateUser = (user: User) => {

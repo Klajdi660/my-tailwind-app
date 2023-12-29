@@ -7,7 +7,7 @@ import { useAuth } from '../hooks';
 import ProfileDropdown from './Auth/ProfileDropDown';
 
 export const Sidebar: FunctionComponent = () => {
-  const [activeLink, setActiveLink] = useState('dashboard');
+  const [activeLink, setActiveLink] = useState(navlinks[0].name);
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
 
@@ -25,7 +25,7 @@ export const Sidebar: FunctionComponent = () => {
                 key={link.name}
                 {...link}
                 isActive={activeLink}
-                styles="hover:bg-[#2c2f32] w-[52px] h-[52px]"
+                styles="w-[50px] h-[50px] hover:bg-[#2c2f32]"
                 handleClick={() => {
                   if(!link.disabled) {
                     setActiveLink(link.name);
@@ -45,6 +45,18 @@ export const Sidebar: FunctionComponent = () => {
             </Link>
           }
           {isAuthenticated !== null && <ProfileDropdown/>}
+          {/* {isAuthenticated !== null && (
+            <>
+              <Link to="#">
+                <Icon
+                  imgUrl={plus}
+                  styles="w-[50px] h-[50px] hover:bg-[#2c2f32]"
+                  name="enable"
+                />
+              </Link>
+              <ProfileDropdown />
+            </>
+          )} */}
         </div>
       </div>
     </div>

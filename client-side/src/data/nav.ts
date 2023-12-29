@@ -17,7 +17,7 @@ export const navlinks = [
   {
     name: 'My courses',
     imgUrl: courses,
-    link: '/my-courses',
+    link: '/',
   },
   {
     name: 'Add Course',
