@@ -12,11 +12,8 @@ import menu from "./menu.svg";
 import money from "./money.svg";
 import loader from "./loader.svg";
 import thirdweb from "./thirdweb.png";
-import loginImg from "./login.webp";
-import signupImg from "./signup.webp";
 import frameImg from "./frame.png";
 import avatar from "./user.svg";
-import img from "./img2.webp";
 import courses from "./courses.svg";
 import addCourse from "./add-course.svg";
 import favorite from "./favorite.svg";
@@ -44,15 +41,12 @@ export {
     money,
     loader,
     thirdweb,
-    loginImg,
-    signupImg,
     frameImg,
     avatar,
     facebookIcon,
     googleIcon,
     linkedinIcon,
     appleIcon,
-    img,
     courses,
     addCourse,
     favorite,

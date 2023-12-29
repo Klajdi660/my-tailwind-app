@@ -2,7 +2,7 @@ import React, { useState, FunctionComponent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { navlinks } from '../data';
 import { Icon } from '../components';
-import { logo, avatar } from '../assets/img';
+import { logo, avatar, plus } from '../assets/img';
 import { useAuth } from '../hooks';
 import ProfileDropdown from './Auth/ProfileDropDown';
 
@@ -44,7 +44,16 @@ export const Sidebar: FunctionComponent = () => {
               />
             </Link>
           }
-          {isAuthenticated !== null && <ProfileDropdown/>}
+          {/* {isAuthenticated !== null && <ProfileDropdown/>} */}
+          {isAuthenticated && (
+            <Link to="#">
+              <Icon
+                imgUrl={plus}
+                styles="w-[50px] h-[50px] bg-[#2c2f32] rounded-[50%]"
+                name='Enable/Disable'
+              />
+            </Link>
+          )}
           {/* {isAuthenticated !== null && (
             <>
               <Link to="#">

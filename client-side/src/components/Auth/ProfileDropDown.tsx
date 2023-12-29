@@ -54,6 +54,7 @@ const ProfileDropdown: FunctionComponent = () => {
       imgUrl={user.image}
       styles="w-[52px] h-[52px] bg-[#2c2f32] rounded-[50%]"
       name={MenuContainer}
+      isActive="Login"
       type="click"
     />
   );
