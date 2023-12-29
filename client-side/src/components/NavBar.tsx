@@ -1,14 +1,10 @@
-import React/*, { useContext, useState }*/ from 'react';
-import { Link } from 'react-router-dom';
-// import CustomButton  from './Button';
-// import { logo, menu, search, thirdweb } from '@/public/assets';
-import { /*thirdweb,*/ search, avatar } from '../assets/img';
-import { Icon } from './UI/Icon';
+import React from 'react';
+import { search } from '../assets/img';
 import ProfileDropdown from './Auth/ProfileDropDown';
 import { useAuth } from '../hooks';
 
 export const Navbar = () => {  
-    const { user, isAuthenticated } = useAuth();
+    const { isAuthenticated } = useAuth();
 
     return (
         <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -27,24 +23,6 @@ export const Navbar = () => {
                 </div>
             </div>
             <div className="sm:flex hidden flex-row justify-end gap-4">
-                {/* <Link to="/profile">
-                    <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-                        <img 
-                            src={user?.image} 
-                            alt="user" 
-                            className="w-[60%] h-[60%] object-contain"
-                        />
-                    </div>
-                </Link> */}
-                 {/* {!isAuthenticated && 
-                    <Link to='/login'>
-                        <Icon 
-                            imgUrl={avatar}
-                            styles="w-[52px] h-[52px] bg-[#2c2f32] rounded-[50%]"
-                            name='Login'
-                        />
-                    </Link> 
-                } */}
                 {isAuthenticated !== null && <ProfileDropdown/>}
             </div>
 

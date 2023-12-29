@@ -4,7 +4,9 @@ import { navlinks } from '../data';
 import { Icon } from '../components';
 import { logo, avatar, plus } from '../assets/img';
 import { useAuth } from '../hooks';
-import ProfileDropdown from './Auth/ProfileDropDown';
+// import ProfileDropdown from './Auth/ProfileDropDown';
+import { FloatButton } from 'antd';
+import { PlusOutlined, CommentOutlined } from '@ant-design/icons';
 
 export const Sidebar: FunctionComponent = () => {
   const [activeLink, setActiveLink] = useState(navlinks[0].name);
@@ -47,27 +49,25 @@ export const Sidebar: FunctionComponent = () => {
           }
           {/* {isAuthenticated !== null && <ProfileDropdown/>} */}
           {isAuthenticated && (
-            <Link to="#">
-              <Icon
-                imgUrl={plus}
-                styles="w-[50px] h-[50px] bg-richblack-700 rounded-full"
-                name='Enable/Disable'
-                className='enable'
-              />
-            </Link>
+            // <Icon
+            //   imgUrl={plus}
+            //   styles="w-[50px] h-[50px] bg-richblack-700 rounded-full"
+            //   name='Enable/Disable'
+            //   className='enable'
+            //   handleClick={() => {}}
+            // />
+            <FloatButton.Group
+              trigger="click"
+              type="primary"
+              style={{
+                right: 24,
+              }}
+             icon={<PlusOutlined />}
+          >
+            <FloatButton />
+            <FloatButton icon={<CommentOutlined />} />
+          </FloatButton.Group>
           )}
-          {/* {isAuthenticated !== null && (
-            <>
-              <Link to="#">
-                <Icon
-                  imgUrl={plus}
-                  styles="w-[50px] h-[50px] hover:bg-[#2c2f32]"
-                  name="enable"
-                />
-              </Link>
-              <ProfileDropdown />
-            </>
-          )} */}
         </div>
       </div>
     </div>
