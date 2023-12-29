@@ -10,14 +10,15 @@ export const Tab: FunctionComponent<TabProps> = (props) => {
             style={{
                 boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.5)"
             }}
-            className="flex bg-richblack-700 p-1 gap-x-1 my-3 rounded-xl max-w-max"
+            className="flex p-1 gap-x-1 my-3 rounded-xl max-w-max"
+            // bg-richblack-700
         >
             {tabData.map((tab: TabMap) => (
                 <Button
                     type="primary"
                     key={tab.id}
                     onClick={() => setField(tab.type)}
-                    style={{ backgroundColor: field === tab.type ? "transparent" : "transparent", color: field === tab.type ? "#EB6536" : "#999DAA" }}
+                    style={{ backgroundColor: field === tab.type ? "#2C333F" : "transparent", color: field === tab.type ? "#EB6536" : "#999DAA" }}
                     className={`${ field === tab.type ? "active-button" : "inactive-button" }`}
                 >
                     {tab.tabName}

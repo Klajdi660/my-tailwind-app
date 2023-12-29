@@ -15,9 +15,9 @@ export const Sidebar: FunctionComponent = () => {
     <div className='sm:flex hidden mr-10 relative'>
       <div className='flex justify-between items-center flex-col sticky top-5 h-[90vh]'>
         <Link to='/'>
-          <Icon imgUrl={logo} styles="w-[52px] h-[52px] bg-[#2c2f32]"/>
+          <Icon imgUrl={logo} styles="w-[52px] h-[52px] bg-richblack-700"/>
         </Link>
-        <div className='flex-1 flex flex-col justify-between items-center bg-[#1c1c24] rounded-[20px] w-[74px] py-4 mt-10'>
+        <div className='flex-1 flex flex-col justify-between items-center bg-[#1c1c24] rounded-2xl w-[74px] py-4 mt-10'>
           <div className='flex flex-col justify-center items-center gap-2'>
             {navlinks.map((link) => {
               return (
@@ -25,7 +25,8 @@ export const Sidebar: FunctionComponent = () => {
                 key={link.name}
                 {...link}
                 isActive={activeLink}
-                styles="w-[50px] h-[50px] hover:bg-[#2c2f32]"
+                // styles="w-[50px] h-[50px] hover:bg-richblack-15"
+                styles="w-[50px] h-[50px] hover:bg-richblack-700"
                 handleClick={() => {
                   if(!link.disabled) {
                     setActiveLink(link.name);
@@ -39,7 +40,7 @@ export const Sidebar: FunctionComponent = () => {
             <Link to='/login'>
               <Icon 
                 imgUrl={avatar}
-                styles="w-[52px] h-[52px] bg-[#2c2f32] rounded-[50%]"
+                styles="w-[52px] h-[52px] bg-richblack-700 rounded-full"
                 name='Login'
               />
             </Link>
@@ -49,8 +50,9 @@ export const Sidebar: FunctionComponent = () => {
             <Link to="#">
               <Icon
                 imgUrl={plus}
-                styles="w-[50px] h-[50px] bg-[#2c2f32] rounded-[50%]"
+                styles="w-[50px] h-[50px] bg-richblack-700 rounded-full"
                 name='Enable/Disable'
+                className='enable'
               />
             </Link>
           )}

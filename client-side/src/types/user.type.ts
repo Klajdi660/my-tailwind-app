@@ -44,6 +44,7 @@ export interface IconProps {
   isActive?: string;
   name?: string | any;
   type?: string;
+  className?: string;
 };
 // 
 

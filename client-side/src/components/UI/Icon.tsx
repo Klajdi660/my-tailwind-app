@@ -3,7 +3,7 @@ import { Tooltip } from "antd";
 import { IconProps } from "../../types/user.type";
 
 export const Icon: FunctionComponent<IconProps> = (props)  => {
-  const { styles, imgUrl, disabled, handleClick, isActive, name, type } = props;
+  const { styles, imgUrl, disabled, handleClick, isActive, name, type, className } = props;
 
   const triggerType = type === "click" ? "click": "hover";
   const placement = isActive === "Login" ? "bottom" : "right";
@@ -11,7 +11,7 @@ export const Icon: FunctionComponent<IconProps> = (props)  => {
   return (
     <Tooltip placement={placement} title={name} color="#2c2f32" trigger={[triggerType]}>
       <div 
-        className={`w-8 relative h-8 rounded-[10px] ${isActive && isActive === name ? 'bg-[#2c2f32]' : null} flex justify-center items-center ${!disabled && 'cursor-pointer'} ${styles}`} 
+        className={`w-8 relative h-8 rounded-[10px] ${isActive && isActive === name ? 'bg-richblack-700' : null} flex justify-center items-center ${!disabled && 'cursor-pointer'} ${styles} ${className}`} 
         onClick={handleClick}
       >
         {!isActive

@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 const themeConfig = {
   algorithm: theme.defaultAlgorithm,
   token: {
-    colorPrimary: "#E95420",
+    colorPrimary: "#EB6536",
   },
 };
 

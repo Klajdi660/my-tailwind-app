@@ -9,7 +9,7 @@ export const Footer: FunctionComponent = () => {
             <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
                 <Icon 
                     imgUrl={logo} 
-                    styles="w-[52px] h-[52px] bg-[#2c2f32]" 
+                    styles="w-[52px] h-[52px] bg-richblack-700" 
                 />
                 <p className="text-center text-sm leading-loose md:text-left">
                 built_by {" "}

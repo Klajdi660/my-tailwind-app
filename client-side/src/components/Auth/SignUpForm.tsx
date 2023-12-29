@@ -52,6 +52,7 @@ const SignUpForm: FunctionComponent = () => {
                         <Input
                             placeholder="Enter first name"
                             className="form-style"
+                            autoComplete="off"
                         />
                     </Form.Item>
                     <Form.Item
@@ -73,6 +74,7 @@ const SignUpForm: FunctionComponent = () => {
                         <Input
                             placeholder="Enter last name"
                             className="form-style"
+                            autoComplete="off"
                         />
                     </Form.Item>
                 </Space>                
@@ -95,7 +97,7 @@ const SignUpForm: FunctionComponent = () => {
                     <Input
                         placeholder="Enter email address"
                         className="form-style w-full"
-                        autoComplete="email"
+                        autoComplete="off"
                     />
                 </Form.Item>
                 <Form.Item 
@@ -117,7 +119,7 @@ const SignUpForm: FunctionComponent = () => {
                     <Input
                         placeholder="Enter username"
                         className="form-style w-full"
-                        autoComplete="username"
+                        autoComplete="off"
                     />
                 </Form.Item>
                 <Space className="flex gap-x-4">

@@ -13,6 +13,8 @@ module.exports = {
       transparent: "#ffffff00",
       richblack: {
         5: "#F1F2FF",
+        10: "#1C1C24",
+        15: "#2C2F32",
         25: "#DBDDEA",
         50: "#C5C7D4",
         100: "#AFB2BF",
