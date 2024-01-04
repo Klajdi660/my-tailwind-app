@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Space, Input, Button, Typography, Checkbox } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Tab } from "../UI/Tab";
 import { accTypeData } from "../../data";
 import { RegisterUserInput } from "../../types/user.type";
@@ -145,9 +145,9 @@ const SignUpForm: FunctionComponent = () => {
                             autoComplete="password"
                             iconRender={(visible) => 
                                 visible ? (
-                                    <EyeOutlined style={{ color: "#AFB2BF", cursor: "pointer" }}/>
+                                    <FiEye style={{ color: "#AFB2BF", cursor: "pointer" }}/>
                                 ) : (
-                                    <EyeInvisibleOutlined style={{ color: "#6E727F", cursor: "pointer" }}/>
+                                    <FiEyeOff style={{ color: "#6E727F", cursor: "pointer" }}/>
                                 )
                             }
                         />
@@ -174,9 +174,9 @@ const SignUpForm: FunctionComponent = () => {
                             autoComplete="confirmPassword"
                             iconRender={(visible) =>
                                 visible ? (
-                                    <EyeOutlined style={{ color: '#6E727F', cursor: "pointer" }} />
+                                    <FiEye style={{ color: '#6E727F', cursor: "pointer" }} />
                                 ) : (
-                                    <EyeInvisibleOutlined style={{ color: '#6E727F', cursor: "pointer" }} />
+                                    <FiEyeOff style={{ color: '#6E727F', cursor: "pointer" }} />
                                 )
                             }
                         />

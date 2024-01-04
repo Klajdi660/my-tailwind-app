@@ -1,8 +1,8 @@
 import { Router, Request, Response } from "express";
 import { asyncHandler } from "../../utils";
 import { validateResource } from "../../middleware";
-import { createLoginSchema, createRegisterSchema, createOTPCodeSchema } from "../../schema";
-import { loginHandler, registerHandler, confirmRegisterHandler, logoutHandler } from "./auth.controller";
+import { createLoginSchema, createRegisterSchema, createOTPCodeSchema, createResetPassTokenSchema } from "../../schema";
+import { loginHandler, registerHandler, confirmRegisterHandler, logoutHandler, resetPasswordTokenHandler } from "./auth.controller";
 import { accessTokenCookieOptions, refreshTokenCookieOptions, loginTokenCookieOptions } from "../../utils";
 
 const authRouter = Router();
@@ -57,6 +57,17 @@ authRouter.get(
             // .cookie("refresh_token", "", { maxAge: 1 })
             // .cookie("logged_in", "", { maxAge: 1 })
             .json(response);
+    })
+);
+
+// Route for generating a reset password token
+authRouter.post(
+    "/reset-password-token",
+    validateResource(createResetPassTokenSchema),
+    asyncHandler(async (req: Request, res: Response) => {
+        const { email } = req.body;
+        const response = await resetPasswordTokenHandler(email);
+        res.json(response);
     })
 );
 

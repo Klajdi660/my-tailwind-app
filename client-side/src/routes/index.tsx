@@ -3,11 +3,14 @@ import { useRoutes } from "react-router-dom";
 import { PublicGuard } from "../guards";
 import { PublicLayout } from "../layouts";
 import { Loadable } from "../components";
+import { path } from "../data";
+
+const { home, login, signup, verifyEmail, forgotPassword, changePassword } = path;
 
 const Routes = () =>
   useRoutes([
     {
-      path: "/",
+      path: home,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -18,7 +21,7 @@ const Routes = () =>
       // index: true
     },
     {
-      path: "login",
+      path: login,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -29,7 +32,7 @@ const Routes = () =>
       // index: true,
     },
     {
-      path: "signup",
+      path: signup,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -40,7 +43,7 @@ const Routes = () =>
       // index: true,
     },
     {
-      path: "verify-email",
+      path: verifyEmail,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -50,11 +53,21 @@ const Routes = () =>
       ),
     },
     {
-      path: "reset-password",
+      path: forgotPassword,
       element: (
         <PublicGuard>
           <PublicLayout>
             <ResetPasswordPage/>
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
+    {
+      path: changePassword,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <UpdatePasswordPage/>
           </PublicLayout>
         </PublicGuard>
       ),
@@ -92,4 +105,8 @@ const VerifyEmailPage = Loadable(
 
 const ResetPasswordPage = Loadable(
   lazy(() => delayLoad(() => import("../pages/Auth/ResetPassword"), 1000))
+);
+
+const UpdatePasswordPage = Loadable(
+  lazy(() => delayLoad(() => import("../pages/Auth/ChangePassword"), 1000))
 );

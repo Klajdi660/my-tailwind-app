@@ -69,6 +69,16 @@ export const createOTPCodeSchema = object({
     }),
 });
 
+// Reset Password Token Schema
+export const createResetPassTokenSchema = object({
+    body: object({
+        email: string({
+            required_error: "Email is required",
+        }).regex(emailRegex, "Not a valid email"),
+    }),
+});
+
 export type LoginInput = TypeOf<typeof createLoginSchema>["body"];
 export type RegisterInput = TypeOf<typeof createRegisterSchema>["body"];
 export type OTPCodeInput = TypeOf<typeof createOTPCodeSchema>["body"];
+export type ResetPasswordTokenInput = TypeOf<typeof createResetPassTokenSchema>["body"];

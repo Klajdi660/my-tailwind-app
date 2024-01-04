@@ -6,27 +6,27 @@ import { Icon } from '../components';
 import { logo, avatar } from '../assets/img';
 import { useAuth } from '../hooks';
 // import ProfileDropdown from './Auth/ProfileDropDown';
-import { Button, Dropdown, Tooltip, List, Avatar } from 'antd';
+import { Button, Dropdown, Tooltip/*, List, Avatar*/ } from 'antd';
 import { TbGridDots } from "react-icons/tb";
 import { ShowApp } from './ShowApp';
 
-const menu = (
-  <List
-    min-width="100%"
-    className="header-notifications-dropdown "
-    itemLayout="horizontal"
-    // dataSource={data}
-    renderItem={(item: any) => (
-      <List.Item>
-        <List.Item.Meta
-          avatar={<Avatar shape="square" src={item.avatar} />}
-          title={item.title}
-          description={item.description}
-        />
-      </List.Item>
-    )}
-  />
-);
+// const menu = (
+//   <List
+//     min-width="100%"
+//     className="header-notifications-dropdown "
+//     itemLayout="horizontal"
+//     // dataSource={data}
+//     renderItem={(item: any) => (
+//       <List.Item>
+//         <List.Item.Meta
+//           avatar={<Avatar shape="square" src={item.avatar} />}
+//           title={item.title}
+//           description={item.description}
+//         />
+//       </List.Item>
+//     )}
+//   />
+// );
 
 
 export const Sidebar: FunctionComponent = () => {

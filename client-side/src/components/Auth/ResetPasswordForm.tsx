@@ -1,13 +1,16 @@
 import { FunctionComponent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Typography, Input } from "antd";
-import { DoubleLeftOutlined } from "@ant-design/icons";
+import { HiChevronDoubleLeft } from "react-icons/hi";
 
 const { Title } = Typography;
 
 const ResetPasswordForm: FunctionComponent = () => {
+    const navigate = useNavigate();
+
     const handleOnSubmit = async (value: string) => {
         console.log('value :>> ', value);
+        navigate("/update-password");
     };
 
     return (
@@ -47,8 +50,8 @@ const ResetPasswordForm: FunctionComponent = () => {
                 Reset Password
             </Button>
             <Link to="/login" className="ml-auto max-w-max text-base text-start text-richblack-5">
-                <p className="mt-4 hover:text-orange-5">
-                    <DoubleLeftOutlined className="mr-2"/>
+                <p className="mt-4 flex flex-row items-center hover:text-orange-5">
+                    <HiChevronDoubleLeft className="mr-2" size={20}/>
                     Back to Login
                 </p>
             </Link>

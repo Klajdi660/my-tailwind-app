@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import dayjs from "dayjs";
 import { redisCLI } from "../../clients";
-import { getUserByEmailOrUsername, createUser, generateUniqueOTP } from "./auth.service";
+import { getUserByEmail, getUserByEmailOrUsername, createUser, generateUniqueOTP } from "./auth.service";
 import { signToken, log, sendEmail } from "../../utils";
 import { UserTypesParams } from "../../types";
 
@@ -150,4 +150,37 @@ export const logoutHandler = async (user: any) => {
         log.error(`[logoutCatch]: ${JSON.stringify({ action: "logout catch", message: error.message })}`);
         return { error: true, message: error.message}
     }
+};
+
+export const resetPasswordTokenHandler = async (email: string) => {
+    const user: any = await getUserByEmail(email);
+
+    if (!user) {
+        return { error: true, message: `This email: '${email}' is not register with us. Please enter a valid email.` };
+    }
+
+    const hash = crypto
+        .createHash("sha1")
+        .update(email + user.username)
+        .digest("hex")
+    const expirationTime = dayjs().add(60, 's').toISOString();
+    
+    const url = `http://localhost:3000/update-password/${email}/${user.username}/${hash}/${expirationTime}`;
+
+    let templatePath= "ResetPassToken";
+    const templateData = {
+        title: "Password Reset",
+        subject: "Your Link for email verification is:",
+        url: url,
+        urlTitle: "Reset Password",
+        subject2: "Please click this url to reset your password."
+    };
+    
+    const mailSent = await sendEmail(templatePath, templateData);
+
+    if (!mailSent) {
+        return { error: true, message: "Somenthing went wrong. Email not sent." };
+    }
+        
+    return { error: false, message: "Email Sent Successfully, Please Check Your Email to Continue Further" };
 };

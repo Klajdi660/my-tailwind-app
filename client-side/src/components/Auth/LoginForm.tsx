@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Typography, Input, Checkbox } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import useAuthService from "../../services/AuthService";
 import { useAuth } from "../../hooks";
 import { LoginUserInput } from "../../types/user.type";
@@ -76,9 +76,9 @@ const LoginForm: FunctionComponent = () => {
                     className="form-style w-full"
                     iconRender={(visible) =>
                         visible ? (
-                            <EyeOutlined style={{ color: '#6E727F', cursor: "pointer" }} />
+                            <FiEye style={{ color: '#6E727F', cursor: "pointer" }} />
                         ) : (
-                            <EyeInvisibleOutlined style={{ color: '#6E727F', cursor: "pointer" }} />
+                            <FiEyeOff style={{ color: '#6E727F', cursor: "pointer" }} />
                         )
                     }
                 />
