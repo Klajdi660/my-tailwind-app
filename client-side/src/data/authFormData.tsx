@@ -10,5 +10,6 @@ export const authFormData: Record<string, ReactNode> = {
     login: <LoginForm />,
     verifyEmail: <VerifyEmailForm />,
     resetPassword: <ResetPasswordForm/>,
-    changePassword: <ChangePasswordForm/>
+    changePassword: <ChangePasswordForm/>,
+    checkEmail: "",
 };
