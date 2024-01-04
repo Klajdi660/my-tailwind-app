@@ -19,7 +19,8 @@ export const Footer: FunctionComponent = () => {
                     rel="noreferrer"
                     className="font-medium underline underline-offset-4"
                 >
-                    Rozales
+                    {/* Rozales */}
+                    WHY
                 </a>
                 
                 . The source code is available on{" "}
