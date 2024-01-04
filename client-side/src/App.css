@@ -36,6 +36,17 @@
   /* background: #2C333F; */
   background: transparent;
 }
+.ant-btn {
+  border: transparent;
+}
+
+.app-btn {
+  border-top: 1px solid #2C333F;
+}
+
+.ant-tooltip-inner {
+  margin-left: 8px;
+}
 
 .card-form .form-gateways .ant-btn:hover {
   transform: scale(0.95); 

@@ -39,7 +39,7 @@ const MenuContainer = () => {
       items={menuItems} 
       mode="inline" 
       onClick={onClick} 
-      style={{ background: "transparent", color: "#fff"}}
+      style={{ background: "transparent", color: "#fff" }}
     />
   );
 };
