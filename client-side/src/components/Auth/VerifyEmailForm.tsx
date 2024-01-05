@@ -2,13 +2,14 @@ import { FunctionComponent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import OtpInput from "react18-input-otp";
 import { Form, Button, Progress } from "antd";
+import { useAuth } from "../../hooks";
 
 const VerifyEmailForm: FunctionComponent = () => {
     const [code, setCode] = useState<string>("");
     const [secondsLeft, setSecondsLeft] = useState<number>(60);
     const [progressColor, setProgressColor] = useState<string>('#EB6536');
-
-
+    const { signupData } = useAuth();
+    console.log('signupData :>> ', signupData);
     const handleOtpChange = async (code: string) => {
         setCode(code);
     };

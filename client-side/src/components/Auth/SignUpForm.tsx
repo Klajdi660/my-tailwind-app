@@ -4,17 +4,33 @@ import { Form, Space, Input, Button, Typography, Checkbox } from "antd";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Tab } from "../UI/Tab";
 import { accTypeData } from "../../data";
+import useAuthService from "../../services/AuthService";
 import { RegisterUserInput } from "../../types/user.type";
+import { useAuth } from "../../hooks";
+import { toast } from "react-toastify";
 
 const { Title } = Typography;
 
 const SignUpForm: FunctionComponent = () => {
     // student or instructor
     const [accountType, setAccountType] = useState(accTypeData[0].tabName);
-    
-    const handleOnSubmit = (values: RegisterUserInput) => {
-        console.log('values :>> ', values);
-        console.log('accountType :>> ', accountType);
+    const { signup } = useAuthService();
+    const { setSignUpData } = useAuth();
+
+    const handleOnSubmit = async (values: RegisterUserInput) => {
+        try {
+            const signupValues = { 
+                ...values, 
+                accountType 
+            };
+            
+            setSignUpData(signupValues);
+            
+            await signup(values, accountType);
+        } catch (error: any) {
+            const { message } = error.response.data;
+            toast.error(message);
+        }
     };
 
     return (
@@ -153,7 +169,7 @@ const SignUpForm: FunctionComponent = () => {
                         />
                     </Form.Item>
                     <Form.Item
-                        name="confirmPassword"
+                        name="passwordConfirm"
                         label={
                             <Title
                                 style={{ color: "#F1F2FF", fontSize: "0.875rem" }}
@@ -171,7 +187,7 @@ const SignUpForm: FunctionComponent = () => {
                         <Input.Password
                             placeholder="Enter confirm password"
                             className="form-style"
-                            autoComplete="confirmPassword"
+                            autoComplete="passwordConfirm"
                             iconRender={(visible) =>
                                 visible ? (
                                     <FiEye style={{ color: '#6E727F', cursor: "pointer" }} />

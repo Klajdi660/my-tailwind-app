@@ -5,7 +5,7 @@ import {
   useMemo,
   useState, 
 } from "react";
-import { User } from "../types/user.type";
+import { User, RegisterUserInput } from "../types/user.type";
 import { AuthContextType, AuthProviderProps } from "../types/context.type";
 
 const initialState: AuthContextType = {
@@ -15,6 +15,7 @@ const initialState: AuthContextType = {
   authenticateUser: () => {},
   unAuthenticateUser: () => {},
   updateUser: () => {},
+  setSignUpData: () => {},
 };
   
 const AuthContext = createContext(initialState);
@@ -22,6 +23,8 @@ const AuthContext = createContext(initialState);
 const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [lToken, setLToken] = useState("");
+  // const [signupData, setSignUpData] = useState<RegisterUserInput | null>(null);
+  const [signupData, setSignUpData] = useState();
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
   useEffect(() => {
@@ -49,7 +52,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   };
 
   const updateUser = () => {};
-  
+
   useEffect(() => {
     updateUser();
   }, []);
@@ -63,7 +66,9 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
         authenticateUser,
         unAuthenticateUser,
         lToken,
-        setLToken
+        setLToken,
+        signupData,
+        setSignUpData,
       }}
     >
       {children}

@@ -1,5 +1,5 @@
 import { Layout, Typography, Space } from "antd";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import { authFormData } from "../../data";
 import { TemplateProps } from "../../types/general.type";
 import { FormGateway } from "../UI/FormGateway";
@@ -9,7 +9,7 @@ const { Title } = Typography;
 
 export const Template: FunctionComponent<TemplateProps> = (props) => {
     const { title, description, formType } = props;
-
+    
     return (
         <Content className="mx-auto w-11/12 justify-center items-center flex flex-col">
             <Space

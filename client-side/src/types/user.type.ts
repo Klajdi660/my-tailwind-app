@@ -26,6 +26,18 @@ export interface RegisterUserInput {
   password: string;
   confirmPassword: string;
   agreedToTerms: boolean;
+  accountType?: string;
+}
+
+export interface RegisterUser {
+  firstname: string;
+  lastname: string;
+  email: string;
+  username: string;
+  password: string;
+  confirmPassword: string;
+  agreedToTerms: boolean;
+  accountType: string;
 }
 
 export interface CustomButtonProps {

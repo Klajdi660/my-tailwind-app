@@ -14,7 +14,7 @@ authRouter.post(
     asyncHandler(async (req: Request, res: Response) => {
         const { usernameOrEmail, password } = req.body;
         const response = await loginHandler(usernameOrEmail, password);
-        const { lToken, rToken } = response;
+        // const { lToken, rToken } = response;
         res
             // .cookie("access_token", lToken, accessTokenCookieOptions)
             // .cookie("refresh_token", rToken, refreshTokenCookieOptions)
@@ -35,7 +35,7 @@ authRouter.post(
 
 // Route for sending OTP code to the user's email
 authRouter.post(
-    "/confirm",
+    "/register-confirm",
     validateResource(createOTPCodeSchema),
     asyncHandler(async (req: Request, res: Response) => {
         const { code, email } = req.body;
@@ -44,19 +44,12 @@ authRouter.post(
     })
 );
 
-authRouter.get(
+authRouter.post(
     "/logout",
     asyncHandler(async (req: Request, res: Response) => {
-        const user = res.locals.user;
-        console.log('user :>> ', user);
-        console.log('res.locals :>> ', res.locals);
-        const response = await logoutHandler(user);
-
-        res
-            // .cookie("access_token", "", { maxAge: 1 })
-            // .cookie("refresh_token", "", { maxAge: 1 })
-            // .cookie("logged_in", "", { maxAge: 1 })
-            .json(response);
+        // const user = res.locals.user;
+        // const response = await logoutHandler(user);
+        res.json({ error: false, message: "Logout success" });
     })
 );
 

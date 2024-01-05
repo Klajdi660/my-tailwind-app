@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { User } from "../types/user.type";
 import { Translations } from "./language.type";
+import { RegisterUser } from "../types/user.type";
 
 // Auth context
 export interface AuthProviderProps {
@@ -15,6 +16,9 @@ export interface AuthContextType {
     authenticateUser: (user: User) => void;
     unAuthenticateUser: () => void;
     updateUser: () => void;
+    signupData?: RegisterUser | any;
+    // setSignUpData?: any;
+    setSignUpData: (signupData: RegisterUser | any) => void;
 };
 
 // Store context

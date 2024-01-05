@@ -24,7 +24,7 @@ const LoginForm: FunctionComponent = () => {
         try {
             await login(username, password);
         } catch (error) {
-            console.error("Failed to login!")
+            console.error("Failed to login!", error)
         }
     };
 

@@ -46,12 +46,12 @@ app.all("*", (req: Request, res: Response, next: NextFunction) => {
 });
 
 // Global Error Handler
-// const errorHandler = (error: any, req: Request, res: Response, next: NextFunction) => {
-//     console.error(`[errorHandler]: ${JSON.stringify({ action: "errorHandler", data: error })}`);
-//     if (res?.headersSent) return next(error);
-//     res?.json({ error: true, message: "Internal error" });
-// };
-// app.use(errorHandler);
+const errorHandler = (error: any, req: Request, res: Response, next: NextFunction) => {
+    console.error(`[errorHandler]: ${JSON.stringify({ action: "errorHandler", data: error })}`);
+    if (res?.headersSent) return next(error);
+    res?.json({ error: true, message: "Internal error" });
+};
+app.use(errorHandler);
 
 // Start server only when we have valid connection
 const startServer = async () => {
