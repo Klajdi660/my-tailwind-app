@@ -36,7 +36,7 @@ const Application = () => {
                   closeOnClick
                   pauseOnFocusLoss={false}
                   pauseOnHover={false}
-                  // theme="dark"
+                  theme="dark"
                 />
                 <Router>
                   <Routes />
