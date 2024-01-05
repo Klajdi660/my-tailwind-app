@@ -200,6 +200,6 @@
   transition-duration: 200ms; 
 }
 
-.Toastify__toast-theme--light {
-  background: #e74c3c;
+.Toastify__toast--error {
+  background: #1C1C24 !important;
 }

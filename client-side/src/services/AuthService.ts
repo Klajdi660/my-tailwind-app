@@ -30,7 +30,7 @@ const useAuthService = (): AuthService => {
         // toast.error(response.message);
         toast.error(response.message, { 
           style: { 
-            background: "#1C1C24",
+            // background: "#1C1C24",
             // color: "#fff" 
           } 
         });
