@@ -34,8 +34,9 @@ const Application = () => {
                   hideProgressBar={false}
                   newestOnTop={false}
                   closeOnClick
-                  pauseOnFocusLoss
-                  pauseOnHover
+                  pauseOnFocusLoss={false}
+                  pauseOnHover={false}
+                  // theme="dark"
                 />
                 <Router>
                   <Routes />

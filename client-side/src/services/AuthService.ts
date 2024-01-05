@@ -27,7 +27,13 @@ const useAuthService = (): AuthService => {
       const response = await HttpClient.post<AuthResponse>(LOGIN_API, data);
 
       if (response.error) {
-        toast.error(response.message);
+        // toast.error(response.message);
+        toast.error(response.message, { 
+          style: { 
+            // background: "#1C1C24",
+            // color: "#fff" 
+          } 
+        });
         return;
       }
       
@@ -62,7 +68,6 @@ const useAuthService = (): AuthService => {
       unAuthenticateUser();
       delete localStorage.rToken;
       delete localStorage.user;
-      // toast.success("Logout Success")
       navigate("/");
     } catch (error) {
       console.error(`Logout failed: ${error}`);

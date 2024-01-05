@@ -5,7 +5,7 @@ import {
   useMemo,
   useState, 
 } from "react";
-import { User, RegisterUserInput } from "../types/user.type";
+import { User } from "../types/user.type";
 import { AuthContextType, AuthProviderProps } from "../types/context.type";
 
 const initialState: AuthContextType = {

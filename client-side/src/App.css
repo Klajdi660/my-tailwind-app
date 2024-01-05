@@ -199,3 +199,7 @@
   box-shadow: none; 
   transition-duration: 200ms; 
 }
+
+.Toastify__toast-theme--light {
+  background: #e74c3c;
+}
