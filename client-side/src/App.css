@@ -200,6 +200,10 @@
   transition-duration: 200ms; 
 }
 
+.Toastify__toast,
+.Toastify__toast--info,
+.Toastify__toast--success, 
+.Toastify__toast--warning,
 .Toastify__toast--error {
   background: #1C1C24 !important;
 }

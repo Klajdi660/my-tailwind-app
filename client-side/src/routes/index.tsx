@@ -5,12 +5,23 @@ import { PublicLayout } from "../layouts";
 import { Loadable } from "../components";
 import { path } from "../data";
 
-const { home, login, signup, verifyEmail, forgotPassword, changePassword } = path;
+const { home, login, signup, verifyEmail, forgotPassword, changePassword, myCourses } = path;
 
 const Routes = () =>
   useRoutes([
     {
       path: home,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <HomePage />
+          </PublicLayout >
+        </PublicGuard>
+      ),
+      // index: true
+    },
+    {
+      path: myCourses,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -87,6 +98,11 @@ const delayLoad = (component: () => Promise<{ default: FunctionComponent<any> }>
 const DashboardPage = Loadable(
   // lazy(() => import("../pages/Dashboard"))
   lazy(() => delayLoad(() => import("../pages/Dashboard"), 1000))
+);
+
+const HomePage = Loadable(
+  // lazy(() => import("../pages/Dashboard"))
+  lazy(() => delayLoad(() => import("../pages/Home"), 1000))
 );
 
 const LoginPage = Loadable(

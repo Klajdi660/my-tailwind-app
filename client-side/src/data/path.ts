@@ -5,4 +5,5 @@ export const path = {
     verifyEmail: "verify-email",
     forgotPassword: "forgot-password",
     changePassword: "update-password/:email/:username/:h/:exp",
+    myCourses: "my-courses"
 };

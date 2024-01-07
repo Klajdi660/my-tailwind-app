@@ -9,6 +9,7 @@ import { useAuth } from '../hooks';
 import { Button, Tooltip } from 'antd';
 import { TbGridDots } from "react-icons/tb";
 // import { ShowApp } from './ShowApp';
+import { toast } from 'react-toastify';
 
 export const Sidebar: FunctionComponent = () => {
   const [activeLink, setActiveLink] = useState(navlinks[0].name);
@@ -28,6 +29,17 @@ export const Sidebar: FunctionComponent = () => {
   //   setActiveLink("showApp")
   // });
 
+
+  const handleLinkClick = (link: any) => {
+    if (!isAuthenticated && link.name !== 'Dashboard') {
+      toast.info(`Please login to access ${link.name} page`);
+      return;
+    }
+
+    setActiveLink(link.name);
+    navigate(link.link);
+  };
+
   return (
     <div className='sm:flex hidden mr-10 relative'>
       <div className='flex justify-between items-center flex-col sticky top-5 h-[90vh]'>
@@ -43,12 +55,13 @@ export const Sidebar: FunctionComponent = () => {
                 isActive={activeLink}
                 // styles="w-[50px] h-[50px] hover:bg-richblack-15"
                 styles="w-[52px] h-[52px] hover:bg-richblack-700"
-                handleClick={() => {
-                  if(!link.disabled) {
-                    setActiveLink(link.name);
-                    navigate(link.link)
-                  }
-                }}
+                // handleClick={() => {
+                //   if(!link.disabled) {
+                //     setActiveLink(link.name);
+                //     navigate(link.link)
+                //   } 
+                // }}
+                handleClick={() => handleLinkClick(link)}
               />
             ))}
           </div>
