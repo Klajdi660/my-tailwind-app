@@ -207,3 +207,20 @@
 .Toastify__toast--error {
   background: #1C1C24 !important;
 }
+
+/* CUSTOM SCROLLBAR*/
+::-webkit-scrollbar {
+  @apply w-[5px];
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-button {
+  @apply hidden;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[red] rounded-full hover:bg-[#0e0d0d] transition duration-300;
+}

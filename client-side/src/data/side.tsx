@@ -47,5 +47,29 @@ export const sidebarLinks = [
         name: "Profile",
         icon: <CgProfile />,
         link: "/profile"
-    }
+    },
+    {
+        id: 8,
+        name: "Watch Later",
+        icon: <MdOutlineWatchLater />,
+        link: "/watch-later"
+    },
+    {
+        id: 9,
+        name: "Watch Later",
+        icon: <MdOutlineWatchLater />,
+        link: "/watch-later"
+    },
+    {
+        id: 10,
+        name: "Watch Later",
+        icon: <MdOutlineWatchLater />,
+        link: "/watch-later"
+    },
+    {
+        id: 11,
+        name: "Watch Later",
+        icon: <MdOutlineWatchLater />,
+        link: "/watch-later"
+    },
 ];

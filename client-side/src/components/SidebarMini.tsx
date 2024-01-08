@@ -31,15 +31,15 @@ const SidebarMini: FunctionComponent = () => {
   };
 
   return (
-    <>
-      <div className="shrink-0 max-w-[80px] w-full py-8 flex flex-col items-center justify-between h-screen sticky top-0 bg-richblack-10">
-        <Link to="/">
-          <Icon 
-            imgUrl={logo} 
-            styles="w-[52px] h-[52px] bg-richblack-700"
-          />
-        </Link>
-        <div className="flex flex-col gap-1">
+    <div className="shrink-0 max-w-[80px] w-full py-8 flex flex-col items-center justify-between h-screen sticky top-0 bg-richblack-10 overflow-auto">
+      <Link to="/">
+        <Icon 
+          imgUrl={logo} 
+          styles="w-[52px] h-[52px] bg-richblack-700"
+        />
+      </Link>
+      <div className="flex flex-col items-center gap-1">
+        {/* <div style={{ maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}> */}
           {sidebarLinks.map((sidelink) => (
             <Tooltip key={sidelink.id} placement="right" title={sidelink.name} color="#2C333F" trigger={["hover"]} arrow={false}>
               <Button
@@ -55,31 +55,31 @@ const SidebarMini: FunctionComponent = () => {
               />
             </Tooltip>
           ))}
-        </div>
-        {!isAuthenticated && 
-          <Link to='/login'>
-            <Icon 
-              imgUrl={avatar}
-              styles="w-[52px] h-[52px] bg-richblack-700 rounded-xl"
-              name='Login'
-            />
-          </Link>
-        }
-        {isAuthenticated && (
-          <div className="app-btn pt-2">
-            <Tooltip placement="right" title="Show Applications" color="#2C333F" trigger={["hover"]} arrow={false}>
-              <Button
-                name='showApp'
-                className={`border border-transparent flex justify-center items-center ${isButtonClicked ? "bg-richblack-700" : "hover:bg-richblack-700"}`}
-                style={{ width: "52px", height: "52px" }}
-                icon={<TbGridDots color={isButtonClicked ? "#EB6536" : "#fff"} size={30}/>}
-                onClick={() => setIsButtonClicked(!isButtonClicked)}
-              />
-            </Tooltip>
-          </div>
-        )}
+        {/* </div> */}
       </div>
-    </>
+      {!isAuthenticated && 
+        <Link to='/login'>
+          <Icon 
+            imgUrl={avatar}
+            styles="w-[52px] h-[52px] bg-richblack-700 rounded-xl"
+            name='Login'
+          />
+        </Link>
+      }
+      {isAuthenticated && (
+        <div className="app-btn pt-2">
+          <Tooltip placement="right" title="Show Applications" color="#2C333F" trigger={["hover"]} arrow={false}>
+            <Button
+              name='showApp'
+              className={`border border-transparent flex justify-center items-center ${isButtonClicked ? "bg-richblack-700" : "hover:bg-richblack-700"}`}
+              style={{ width: "52px", height: "52px" }}
+              icon={<TbGridDots color={isButtonClicked ? "#EB6536" : "#fff"} size={30}/>}
+              onClick={() => setIsButtonClicked(!isButtonClicked)}
+            />
+          </Tooltip>
+        </div>
+      )}
+    </div>
   );
 };
 
