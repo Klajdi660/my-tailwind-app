@@ -1,24 +1,28 @@
 import { FunctionComponent, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../hooks";
-import { navlinks } from "../data";
 import { Button, Tooltip } from "antd";
 import { Icon } from "./UI/Icon";
 import { logo, avatar } from "../assets/img";
 import { TbGridDots } from "react-icons/tb";
+import { sidebarLinks } from "../data";
 
 const SidebarMini: FunctionComponent = () => {
-  const [activeLink, setActiveLink] = useState(navlinks[0].name);
+  const [activeLink, setActiveLink] = useState(sidebarLinks[0].name);
   const [isButtonClicked, setIsButtonClicked] = useState(false); 
 
-  const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
 
   const handleLinkClick = (link: any) => {
-    if (!isAuthenticated && link.name !== 'Dashboard') {
-      toast.info(`Please login to access ${link.name} page`);
+    if (!isAuthenticated && link.name !== 'Home') {
+      // toast.info(`Please login to access ${link.name} page`);
+      toast.info(
+        <span>
+          Please login to access <span className="text-orange-10">{link.name}</span> page
+        </span>
+      );      
       return;
     }
 
@@ -36,22 +40,27 @@ const SidebarMini: FunctionComponent = () => {
           />
         </Link>
         <div className="flex flex-col gap-1">
-          {navlinks.map((navlink) => (
-            <Icon
-              key={navlink.id}
-              {...navlink}
-              handleClick={() => handleLinkClick(navlink)}
-              className={`rounded-xl hover:text-primary transition duration-300 hover:bg-[#2C333F] ${
-                location.pathname === navlink.link && "text-[#EB6536] bg-[#2C333F]"
-              }`}
-            />
+          {sidebarLinks.map((sidelink) => (
+            <Tooltip key={sidelink.id} placement="right" title={sidelink.name} color="#2C333F" trigger={["hover"]} arrow={false}>
+              <Button
+                key={sidelink.id}
+                className={`border border-transparent rounded-xl flex justify-center items-center ${activeLink && activeLink === sidelink.name ? 'bg-richblack-700' : null} hover:bg-richblack-700`}
+                style={{ width: "52px", height: "52px" }}
+                onClick={() => handleLinkClick(sidelink)}
+                icon={
+                  <div className={`text-2xl ${activeLink && activeLink === sidelink.name ? "text-orange-10" : "text-richblack-30" }`}>
+                    {sidelink.icon}
+                  </div>
+                }
+              />
+            </Tooltip>
           ))}
         </div>
         {!isAuthenticated && 
           <Link to='/login'>
             <Icon 
               imgUrl={avatar}
-              styles="w-[52px] h-[52px] bg-richblack-700 rounded-full"
+              styles="w-[52px] h-[52px] bg-richblack-700 rounded-xl"
               name='Login'
             />
           </Link>
