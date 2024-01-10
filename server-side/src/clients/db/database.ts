@@ -28,9 +28,10 @@ const connectToDb = async () => {
     try {
         await sequelizeConnection.authenticate();
         log.info(`[database]: ${JSON.stringify({ action: "Database Conn", messsage: "Successfully connected to database" })}`);
+        return true;
     } catch (error) {
-        log.error(`[database]: ${JSON.stringify({ action: "Database Conn Catch", messsage: "Failed to connect to databaser", data: error })}`);
-        return error;
+        log.error(`[database]: ${JSON.stringify({ action: "Database Conn Catch", messsage: "Failed to connect to database", data: error })}`);
+        return false;
     }
 };
 

@@ -55,16 +55,15 @@ app.use(errorHandler);
 
 // Start server only when we have valid connection
 const startServer = async () => {
-    try {
-        await connectToDb();
+    const isConnected = await connectToDb();
+
+    if (isConnected) {
         app.listen(port, () => { 
             log.info(`[server]: ${JSON.stringify({ action: "Server Run", messsage: `Server is running at http://localhost:${port}` })}`);
         });
-    } catch (error) {
-        log.error(`[server]: ${JSON.stringify({ action: "Server Catch", messsage: "Cannot connect to the server", data: error })}`);
+    } else {
+        log.error(`[server]: ${JSON.stringify({ action: "Server Catch", messsage: "Cannot connect to the server", data: isConnected })}`);
     }
 };
 
-startServer().catch((error) => {
-    log.error(`[database]: ${JSON.stringify({ action: "Database Catch", messsage: "Invalid database connection", data: error })}`);
-});
+startServer();

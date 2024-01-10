@@ -72,4 +72,40 @@ export const sidebarLinks = [
         icon: <MdOutlineWatchLater />,
         link: "/watch-later"
     },
+    {
+        id: 11,
+        name: "Watch Later",
+        icon: <MdOutlineWatchLater />,
+        link: "/watch-later"
+    },
+    {
+        id: 11,
+        name: "Watch Later",
+        icon: <MdOutlineWatchLater />,
+        link: "/watch-later"
+    },
+    {
+        id: 11,
+        name: "Watch Later",
+        icon: <MdOutlineWatchLater />,
+        link: "/watch-later"
+    },
+    {
+        id: 11,
+        name: "Watch Later",
+        icon: <MdOutlineWatchLater />,
+        link: "/watch-later"
+    },
+    {
+        id: 11,
+        name: "Watch Later",
+        icon: <MdOutlineWatchLater />,
+        link: "/watch-later"
+    },
+    {
+        id: 11,
+        name: "Watch Later",
+        icon: <MdOutlineWatchLater />,
+        link: "/watch-later"
+    },
 ];

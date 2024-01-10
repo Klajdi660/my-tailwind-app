@@ -17,7 +17,7 @@
         "connectionLimit": 10,
         "host": "localhost",
         "user": "root",
-        "port": "",
+        "port": 3306,
         "password": "Klajdi1996",
         "database": "node-registration"
     },

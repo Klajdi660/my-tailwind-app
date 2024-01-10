@@ -32,31 +32,32 @@ const SidebarMini: FunctionComponent = () => {
 
   return (
     <div className="shrink-0 max-w-[80px] w-full py-8 flex flex-col items-center justify-between h-screen sticky top-0 bg-richblack-10 overflow-auto">
-      <Link to="/">
-        <Icon 
-          imgUrl={logo} 
-          styles="w-[52px] h-[52px] bg-richblack-700"
-        />
-      </Link>
-      <div className="flex flex-col items-center gap-1">
-        {/* <div style={{ maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}> */}
-          {sidebarLinks.map((sidelink) => (
-            <Tooltip key={sidelink.id} placement="right" title={sidelink.name} color="#2C333F" trigger={["hover"]} arrow={false}>
-              <Button
-                key={sidelink.id}
-                className={`border border-transparent rounded-xl flex justify-center items-center ${activeLink && activeLink === sidelink.name ? 'bg-richblack-700' : null} hover:bg-richblack-700`}
-                style={{ width: "52px", height: "52px" }}
-                onClick={() => handleLinkClick(sidelink)}
-                icon={
-                  <div className={`text-2xl ${activeLink && activeLink === sidelink.name ? "text-orange-10" : "text-richblack-30" }`}>
-                    {sidelink.icon}
-                  </div>
-                }
-              />
-            </Tooltip>
-          ))}
-        {/* </div> */}
+      <div className="fixed top-0">
+        <Link to="/">
+          <Icon 
+            imgUrl={logo} 
+            styles="w-[52px] h-[52px] bg-richblack-700"
+          />
+        </Link>
       </div>
+      <div className="flex flex-col items-center gap-1 py-2">
+        {sidebarLinks.map((sidelink) => (
+          <Tooltip key={sidelink.id} placement="right" title={sidelink.name} color="#2C333F" trigger={["hover"]} arrow={false}>
+            <Button
+              key={sidelink.id}
+              className={`border border-transparent rounded-xl flex justify-center items-center ${activeLink && activeLink === sidelink.name ? 'bg-richblack-700' : null} hover:bg-richblack-700`}
+              style={{ width: "52px", height: "52px" }}
+              onClick={() => handleLinkClick(sidelink)}
+              icon={
+                <div className={`text-2xl ${activeLink && activeLink === sidelink.name ? "text-orange-10" : "text-richblack-30" }`}>
+                  {sidelink.icon}
+                </div>
+              }
+            />
+          </Tooltip>
+        ))}
+      </div>
+      <div className="fixed bottom-0">
       {!isAuthenticated && 
         <Link to='/login'>
           <Icon 
@@ -66,6 +67,7 @@ const SidebarMini: FunctionComponent = () => {
           />
         </Link>
       }
+      
       {isAuthenticated && (
         <div className="app-btn pt-2">
           <Tooltip placement="right" title="Show Applications" color="#2C333F" trigger={["hover"]} arrow={false}>
@@ -79,6 +81,7 @@ const SidebarMini: FunctionComponent = () => {
           </Tooltip>
         </div>
       )}
+      </div>
     </div>
   );
 };
