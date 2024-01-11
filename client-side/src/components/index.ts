@@ -1,4 +1,4 @@
-export * from "./Sidebar";
+export * from "./Sidebar/Sidebar";
 export * from './NavBar';
 export * from "./Loading";
 export * from "./Loadable";

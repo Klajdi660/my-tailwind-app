@@ -49,13 +49,14 @@ const ProfileDropdown: FunctionComponent = () => {
 
   if (!user) return null;
 
-  return (        
+  return (  
     <Icon 
       imgUrl={user.image}
       styles="w-[52px] h-[52px] bg-richblack-700 rounded-full"
       name={MenuContainer}
       isActive="Login"
       type="click"
+      className="border-2 border-white mt-6"
     />
   );
 };
