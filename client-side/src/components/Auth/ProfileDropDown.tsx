@@ -56,7 +56,7 @@ const ProfileDropdown: FunctionComponent = () => {
       name={MenuContainer}
       isActive="Login"
       type="click"
-      className="border-2 border-white mt-6"
+      // className="border-2 border-white mt-6"
     />
   );
 };

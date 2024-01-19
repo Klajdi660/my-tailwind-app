@@ -11,7 +11,7 @@ export const Icon: FunctionComponent<IconProps> = (props)  => {
   return (
     <Tooltip placement={placement} title={name} color="#2C333F" trigger={[triggerType]} arrow={false}>
       <div 
-        className={`w-8 relative h-8 rounded-[10px] ${isActive && isActive === name ? 'bg-richblack-700' : null} flex justify-center items-center ${!disabled && 'cursor-pointer'} ${styles} ${className}`} 
+        className={`w-8 relative h-8 rounded-[10px]  ${isActive && isActive === name ? 'bg-richblack-700' : null} flex justify-center items-center ${!disabled && 'cursor-pointer'} ${styles} ${className}`} 
         onClick={handleClick}
       >
         {!isActive

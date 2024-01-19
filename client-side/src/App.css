@@ -242,3 +242,15 @@
 .sideMenuWrapper::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
+
+
+/* NEW */
+.layout {}
+
+.sider {}
+
+.header {}
+
+.content {}
+
+.footer {}
