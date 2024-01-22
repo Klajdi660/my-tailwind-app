@@ -1,7 +1,14 @@
 import crypto from "crypto";
 import dayjs from "dayjs";
 import { redisCLI } from "../../clients";
-import { getUserByEmail, getUserByEmailOrUsername, createUser, generateUniqueOTP } from "./auth.service";
+import { 
+    getUserByEmail, 
+    getUserByEmailOrUsername, 
+    createUser, 
+    generateUniqueOTP, 
+    getUserById, 
+    updateUserPassword, 
+} from "./auth.service";
 import { signToken, log, sendEmail } from "../../utils";
 import { UserTypesParams } from "../../types";
 
@@ -122,11 +129,7 @@ export const confirmRegisterHandler = async (code: string, email: string) => {
     }
 
     // Create the user
-    let approved: string | boolean = "";
-    approved === "Instructor" ? (approved = false) : (approved = true)
-
-    // insert user in database
-    const user = await createUser(redisObj, approved);
+    const user = await createUser(redisObj, /*approved*/);
 
     if (!user) {
         console.log(JSON.stringify({ action: "Confirm createUser Req", data: user }))
@@ -143,16 +146,11 @@ export const confirmRegisterHandler = async (code: string, email: string) => {
 
 // Controller for logout user
 export const logoutHandler = async (user: any) => {
-    try {
-        await redisCLI.del(user.id.toString());
-        return { error: false, message: "Logout success" };
-    } catch (error: any) {
-        log.error(`[logoutCatch]: ${JSON.stringify({ action: "logout catch", message: error.message })}`);
-        return { error: true, message: error.message}
-    }
+    await redisCLI.del(user.id.toString());
+    return { error: false, message: "Logout success" };
 };
 
-export const resetPasswordTokenHandler = async (email: string) => {
+export const forgotPasswordHandler = async (email: string) => {
     const user: any = await getUserByEmail(email);
 
     if (!user) {
@@ -164,10 +162,16 @@ export const resetPasswordTokenHandler = async (email: string) => {
         .update(email + user.username)
         .digest("hex")
     const expirationTime = dayjs().add(60, 's').toISOString();
+    console.log('hash :>> ', hash);
+    console.log('expirationTime :>> ', expirationTime);
+    // const token = {
+    //     hash,
+    //     expirationTime
+    // }
     
-    const url = `http://localhost:3000/update-password/${email}/${user.username}/${hash}/${expirationTime}`;
-
-    let templatePath= "ResetPassToken";
+    const url = `http://localhost:3000/update-password/${user.id}/${hash}/${expirationTime}`;
+    
+    let templatePath= "ForgotPassword";
     const templateData = {
         title: "Password Reset",
         subject: "Your Link for email verification is:",
@@ -182,5 +186,53 @@ export const resetPasswordTokenHandler = async (email: string) => {
         return { error: true, message: "Somenthing went wrong. Email not sent." };
     }
         
-    return { error: false, message: "Email Sent Successfully, Please Check Your Email to Continue Further" };
+    return { error: false, message: "Email Sent Successfully, Please Check Your Email to Continue Further." };
+};
+
+export const resetPasswordHandler = async (id: string, h: string, exp: string, password: string) => {
+    const user = await getUserById(id) as any;
+
+    if (!user) {
+        return { error: true, message: "User is not Registered with us, please SignUp to continue." };
+    }
+
+    const expectedHash = crypto
+        .createHash("sha1")
+        .update(user.email + user.username)
+        .digest("hex");
+    if (h !== expectedHash) {
+        return { error: true, message: "Token is Invalid!" };
+    }
+
+    if (dayjs(exp).isBefore(dayjs())) {
+        return { error: true, message: "Your token has expired. Please attempt to reset your password again." };
+    }
+
+    const hash = crypto
+        .createHash("sha1")
+        .update(password + user.username)
+        .digest("hex");
+
+    const newPassword = await updateUserPassword(hash, id);
+    if (!newPassword) {
+        return { error: true, message: "Some Error in Updating the Password" };
+    }
+
+    const url = `http://localhost:3000/login`;
+    
+    let templatePath= "ResetPassword";
+    const templateData = {
+        title: "Login",
+        subject: "Login with your new password.",
+        url: url,
+        urlTitle: "Login",
+    };
+
+    const mailSent = await sendEmail(templatePath, templateData);
+
+    if (!mailSent) {
+        return { error: true, message: "Somenthing went wrong. Email not sent." };
+    }
+
+    return { error: true, message: "Password Reset Successful" };
 };

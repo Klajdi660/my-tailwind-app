@@ -23,19 +23,8 @@ User.init(
             type: DataTypes.TEXT,
             allowNull: false
         },
-        accountType: {
+        avatar: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                isIn: [['Admin', 'Student', 'Instructor']],
-            }
-        },
-        image: {
-            type: DataTypes.STRING,
-        },
-        approved: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: true,
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -50,6 +39,7 @@ User.init(
     },
     {
        sequelize: sequelizeConnection,
+       timestamps: true,
        modelName: "Users",
        tableName: "users" 
     }

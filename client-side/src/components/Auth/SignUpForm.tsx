@@ -35,15 +35,16 @@ const SignUpForm: FunctionComponent = () => {
 
     return (
         <>
-            <Tab 
+            {/* <Tab 
                 tabData={accTypeData}
                 field={accountType}
                 setField={setAccountType}
-            />
+            /> */}
             <Form 
                 onFinish={handleOnSubmit} 
                 layout="vertical"
-                className="mt-6"
+                // className="mt-6"
+                className="mt-4"
                 initialValues={{
                     remember: false
                 }}

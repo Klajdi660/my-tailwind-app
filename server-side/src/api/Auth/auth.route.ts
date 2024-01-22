@@ -1,8 +1,21 @@
 import { Router, Request, Response } from "express";
 import { asyncHandler } from "../../utils";
 import { validateResource } from "../../middleware";
-import { createLoginSchema, createRegisterSchema, createOTPCodeSchema, createResetPassTokenSchema } from "../../schema";
-import { loginHandler, registerHandler, confirmRegisterHandler, logoutHandler, resetPasswordTokenHandler } from "./auth.controller";
+import { 
+    createLoginSchema, 
+    createRegisterSchema, 
+    createOTPCodeSchema, 
+    createForgotPasswordSchema,
+    createResetPasswordSchema,
+} from "../../schema";
+import { 
+    loginHandler, 
+    registerHandler, 
+    confirmRegisterHandler, 
+    logoutHandler, 
+    forgotPasswordHandler, 
+    resetPasswordHandler 
+} from "./auth.controller";
 import { accessTokenCookieOptions, refreshTokenCookieOptions, loginTokenCookieOptions } from "../../utils";
 
 const authRouter = Router();
@@ -53,13 +66,26 @@ authRouter.post(
     })
 );
 
-// Route for generating a reset password token
+// Route for generating a reset password
 authRouter.post(
-    "/reset-password-token",
-    validateResource(createResetPassTokenSchema),
+    "/forgot-password",
+    validateResource(createForgotPasswordSchema),
     asyncHandler(async (req: Request, res: Response) => {
         const { email } = req.body;
-        const response = await resetPasswordTokenHandler(email);
+        const response = await forgotPasswordHandler(email);
+        res.json(response);
+    })
+);
+
+// Route for change password
+authRouter.put(
+    "/reset-password/:id",
+    validateResource(createResetPasswordSchema),
+    asyncHandler(async ( req: Request, res: Response) => {
+        const { id } = req.params;
+        const { h, exp } = req.query as any;
+        const { password } = req.body;
+        const response = await resetPasswordHandler(id, h, exp, password);
         res.json(response);
     })
 );

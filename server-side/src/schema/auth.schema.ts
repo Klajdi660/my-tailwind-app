@@ -69,8 +69,8 @@ export const createOTPCodeSchema = object({
     }),
 });
 
-// Reset Password Token Schema
-export const createResetPassTokenSchema = object({
+// Forgot Password Schema
+export const createForgotPasswordSchema = object({
     body: object({
         email: string({
             required_error: "Email is required",
@@ -78,7 +78,40 @@ export const createResetPassTokenSchema = object({
     }),
 });
 
+// Reset Password Schema
+export const createResetPasswordSchema = object({
+    params: object({
+        id: string({
+            required_error: "Id is required",
+        }),
+    }),
+    query: object({
+        h: string({
+            required_error: "h parameter is required",
+        }),
+        exp: string({
+            required_error: "exp parameter is required",
+        }),
+    }),
+    body: object({
+        password: string({
+            required_error: "Password is required",
+        })
+            .min(8, { message: "Password must be at least 8 characters long" })
+            .refine(value => uppercaseRegex.test(value), { message: "Password must contain at least one capital letter" })
+            .refine(value => sepecialCharacter.test(value), { message: "Password must contain at least one special character" }),
+        passwordConfirm: string({
+            required_error: "Password confirmation is required",
+        }),
+    }).refine((data) => data.password === data.passwordConfirm, {
+        message: "Passwords do not match",
+        path: ["passwordConfirmation"],
+    }),
+})
+
 export type LoginInput = TypeOf<typeof createLoginSchema>["body"];
 export type RegisterInput = TypeOf<typeof createRegisterSchema>["body"];
 export type OTPCodeInput = TypeOf<typeof createOTPCodeSchema>["body"];
-export type ResetPasswordTokenInput = TypeOf<typeof createResetPassTokenSchema>["body"];
+export type ForgotPasswordInput = TypeOf<typeof createForgotPasswordSchema>["body"];
+// export type ResetPasswordInput = TypeOf<typeof createResetPasswordSchema>["body"];
+export type ResetPasswordInput = TypeOf<typeof createResetPasswordSchema>;

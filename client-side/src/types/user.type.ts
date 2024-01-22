@@ -4,7 +4,7 @@ export interface User {
   id: string;
   extra?: any;
   // auths?: string;
-  image?: string;
+  avatar?: string;
 }
 
 export interface UpdateUserInput extends Partial<User> {

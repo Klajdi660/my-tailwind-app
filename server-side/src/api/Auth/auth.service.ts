@@ -7,7 +7,7 @@ import { OtpSettings, UserTypesParams } from "../../types";
 
 const { otpLength, otpConfig } = config.get<OtpSettings>("otp");
 
-export const getUserById = async (id: number) => {
+export const getUserById = async (id: string) => {
     return User.findOne({
         where: { id }
     }).catch((error) => {
@@ -33,14 +33,14 @@ export const getUserByEmailOrUsername = async (email: string, username: string) 
     })
 };
 
-export const createUser = async (data: UserTypesParams, approved: boolean) => {
+export const createUser = async (data: UserTypesParams) => {
     const { email, username, firstName, lastName, password, accountType } = data;
 
     const extraData = {
         firstName, 
         lastName,
         gender: null,
-        dateOfBirthL: null,
+        dateOfBirth: null,
         about: null,
         contactNumber: null,
     };
@@ -51,8 +51,7 @@ export const createUser = async (data: UserTypesParams, approved: boolean) => {
         hash: password,
         extra: JSON.stringify(extraData),
         accountType,
-        image: "",
-        approved,
+        avatar: "",
     });
 
     const saveUser = await newUser
@@ -62,6 +61,14 @@ export const createUser = async (data: UserTypesParams, approved: boolean) => {
         });
 
     return saveUser;
+};
+
+export const updateUserPassword = async (hash: string, id: string) => {
+    const update = User.update(
+        { hash },
+        { where: { id }}
+    );
+    return update;
 };
 
 

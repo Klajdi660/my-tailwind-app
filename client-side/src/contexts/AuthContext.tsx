@@ -34,11 +34,11 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
       const firstNameInitial = extraParse.firstName.charAt(0) || "";
       const lastNameInitial = extraParse.lastName.charAt(0) || "";
     
-      const userImage = userParse.image
-        ? userParse.image
+      const userAvatar = userParse.avatar
+        ? userParse.avatar
         : `https://place-hold.it/52x52/2c2f32/ffffff&text=${firstNameInitial}${lastNameInitial}&fontsize=25`;
         
-      setUser({ ...userParse, image: userImage, extra: extraParse });
+      setUser({ ...userParse, avatar: userAvatar, extra: extraParse });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localStorage.rToken]);
