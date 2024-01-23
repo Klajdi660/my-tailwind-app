@@ -42,12 +42,13 @@ export const Sidebar: FunctionComponent = () => {
 
     setActiveLink(link.name);
     navigate(link.link);
+    // localStorage.lastLocation = link.name.toLowerCase();
   };
 
   return (
     <div className={`sidebarWrapper md:translate-x-0 -translate-x-full md:z-0 z-50`}>
       <div className="md:w-[80px] h-full flex-col flex flex-shrink-0 items-center justify-center overflow-hidden py-4">
-        <Link to="/">
+        <Link to="/home">
           <Icon 
             imgUrl={logo} 
             styles="w-[52px] h-[52px] bg-richblack-700"

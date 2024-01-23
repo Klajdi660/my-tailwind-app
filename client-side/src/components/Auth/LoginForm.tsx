@@ -10,13 +10,13 @@ const { Title } = Typography;
 
 const LoginForm: FunctionComponent = () => {
     const { login } = useAuthService();
-    const { isAuthenticated } = useAuth();
-    const navigate = useNavigate();
+    // const { isAuthenticated } = useAuth();
+    // const navigate = useNavigate();
 
-    useEffect(() => {
-        if (isAuthenticated) localStorage.lastLocation ? navigate(`/${localStorage.lastLocation}`) : navigate("/");
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     if (isAuthenticated) localStorage.lastLocation ? navigate(`/${localStorage.lastLocation}`) : navigate("/home");
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     const handleOnSubmit = async (values: LoginUserInput) => {
         const { username, password, /*remember*/ } = values;

@@ -41,7 +41,8 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
       setUser({ ...userParse, avatar: userAvatar, extra: extraParse });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [localStorage.rToken]);
+  // }, [localStorage.rToken]);
+  }, []);
 
   const authenticateUser = (user: User) => {
     setUser(user);
