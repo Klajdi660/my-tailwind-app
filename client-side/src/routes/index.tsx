@@ -5,7 +5,16 @@ import { PublicLayout } from "../layouts";
 import { Loadable } from "../components";
 import { path } from "../data";
 
-const { home, login, signup, verifyEmail, forgotPassword, changePassword, myCourses } = path;
+const { 
+  home, 
+  login, 
+  signup, 
+  verifyEmail, 
+  forgotPassword, 
+  changePassword, 
+  myCourses,
+  profile,
+} = path;
 
 const Routes = () =>
   useRoutes([
@@ -82,7 +91,17 @@ const Routes = () =>
           </PublicLayout>
         </PublicGuard>
       ),
-    }
+    },
+    {
+      path: profile,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <ProfilePage/>
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
   ]);
 
 export default Routes;
@@ -125,4 +144,9 @@ const ResetPasswordPage = Loadable(
 
 const UpdatePasswordPage = Loadable(
   lazy(() => delayLoad(() => import("../pages/Auth/ChangePassword"), 1000))
+);
+
+const ProfilePage = Loadable(
+  // lazy(() => import("../pages/Dashboard"))
+  lazy(() => delayLoad(() => import("../pages/Profile"), 1000))
 );
