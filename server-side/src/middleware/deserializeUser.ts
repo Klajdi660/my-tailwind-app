@@ -8,7 +8,7 @@ export const deserializeUser = async (
     res: Response,
     next: NextFunction
 ) => {
-    try {
+    // try {
         const { authorization } = req.headers;
         const { access_token } = req.cookies;
 
@@ -20,37 +20,37 @@ export const deserializeUser = async (
             accessToken = access_token
         }
 
-        if (accessToken) {
+        if (!accessToken) {
+            console.log('HYRIIII2222 :>> ');
             return { error: true, message: "You are not logged in" };
         }
 
         // Validate Access Token
-        const decoded: any = verifyJWT(accessToken, "accessTokenPublicKey");
-
+        const decoded: any = verifyJWT(accessToken, "accessTokenPrivateKey");
         if (!decoded) {
-            return { error: true, message: "Invalid token or user doesn't exist" };
+            return next({ error: true, message: "Invalid token or user doesn't exist" });
         }
 
         // Check if user has a valid session
-        const session = await redisCLI.get(decoded.sub);
+        // const session = await redisCLI.get(decoded.sub);
 
-        if (!session) {
-            return { error: true, message: "User session has expired" };
-        }
+        // if (!session) {
+        //     return { error: true, message: "User session has expired" };
+        // }
 
-        // Check if user still exist
-        const user = await getUserById(JSON.parse(session).id);
+        // // Check if user still exist
+        // const user = await getUserById(JSON.parse(session).id);
 
-        if (!user) {
-            return { error: true, messahe: "User with that token no longer exist" };
-        }
+        // if (!user) {
+        //     return { error: true, messahe: "User with that token no longer exist" };
+        // }
       
-        // You can do: (req.user or res.locals.user)
-        res.locals.user = user;
+        // // You can do: (req.user or res.locals.user)
+        // res.locals.user = user;
 
         next();
-    } catch (error) {
-        log.error(`[deserializeUser]: ${JSON.stringify({ action: "deserializeUser catch", data: error })}`);
-        return error;
-    }
+    // } catch (error) {
+    //     log.error(`[deserializeUser]: ${JSON.stringify({ action: "deserializeUser catch", data: error })}`);
+    //     return error;
+    // }
 };

@@ -59,6 +59,6 @@ export const verifyJWT = (token: string, key: string) => {
         return decoded;
     } catch (error) {
         log.error(`[verifyJWT]: ${JSON.stringify({ action: "verifyJWT catch", data: error })}`);
-        return null;
+        // return null;
     }
 };
