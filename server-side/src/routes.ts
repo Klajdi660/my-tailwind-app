@@ -9,6 +9,6 @@ const { prefix } = config.get<AppParams>("app");
 const routes = Router();
 
 routes.use(`${prefix}/auth`, authRoutes)
-routes.use(`${prefix}/users`, userRoutes);
+routes.use(`${prefix}`, userRoutes);
 
 export default routes;

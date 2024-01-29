@@ -7,11 +7,12 @@ import { userHandler } from "./user.controller";
 const userRoutes = Router();
 
 // Route for register user 
-userRoutes.post(
+userRoutes.get(
     "/user",
     validateResource(createUserSchema),
-    asyncHandler(async (req: Request, res: Response) => {   
-        const response = await userHandler(req.body);
+    asyncHandler(async (req: Request, res: Response) => { 
+        const { page = 1, pageSize = 10 } = req.query;  
+        const response = await userHandler(+page, +pageSize);
         res.json(response);
     })
 );
