@@ -5,6 +5,11 @@ export class User extends Model {};
 
 User.init(
     {
+        // id: {
+        //     type: DataTypes.NUMBER,
+        //     allowNull: false,
+        //     primaryKey: true,
+        // },
         email: {
             type: DataTypes.STRING,
             allowNull: false,

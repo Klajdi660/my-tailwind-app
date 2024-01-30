@@ -1,4 +1,5 @@
 import { User } from "../../models";
+import { getUserById } from "../Auth/auth.service";
 
 export const userHandler = async (page: number, pageSize: number) => {
     console.log('page :>> ', page);
@@ -15,3 +16,11 @@ export const userHandler = async (page: number, pageSize: number) => {
     console.log('totalPages :>> ', totalPages);
     console.log('users :>> ', users);
 };
+
+export const oneUserHandler = async (id: string) => {
+    const user = await getUserById(id);
+    if (!user) {
+        return { error: true, message: "User does not exist in our database!" };
+    }
+    return user;
+}; 

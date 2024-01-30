@@ -1,3 +1,3 @@
-export * from "./deserializeUser";
+export * from "./authenticate";
 export * from "./validateResource";
 export * from "./requireUser";

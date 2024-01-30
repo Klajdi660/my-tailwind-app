@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import { asyncHandler } from "../../utils";
-import { validateResource } from "../../middleware";
+import { validateResource, authenticate } from "../../middleware";
 import { 
     createLoginSchema, 
     createRegisterSchema, 
@@ -16,7 +16,6 @@ import {
     forgotPasswordHandler, 
     resetPasswordHandler 
 } from "./auth.controller";
-import { accessTokenCookieOptions, refreshTokenCookieOptions, loginTokenCookieOptions } from "../../utils";
 
 const authRouter = Router();
 
@@ -52,12 +51,13 @@ authRouter.post(
     })
 );
 
-authRouter.post(
+authRouter.get(
     "/logout",
-    asyncHandler(async (req: Request, res: Response) => {
-        // const user = res.locals.user;
-        // const response = await logoutHandler(user);
-        res.json({ error: false, message: "Logout success" });
+    authenticate,
+    asyncHandler(async (req: Request | any, res: Response) => {
+        const user = res.locals.user;
+        const response = await logoutHandler(user);
+        res.json(response);
     })
 );
 

@@ -3,12 +3,12 @@ import { redisCLI } from "../clients";
 import { verifyJWT, log } from "../utils";
 import { getUserById } from "../api/Auth/auth.service";
 
-export const deserializeUser = async (
+export const authenticate = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
-    // try {
+    try {
         const { authorization } = req.headers;
         const { access_token } = req.cookies;
 
@@ -21,7 +21,6 @@ export const deserializeUser = async (
         }
 
         if (!accessToken) {
-            console.log('HYRIIII2222 :>> ');
             return { error: true, message: "You are not logged in" };
         }
 
@@ -30,27 +29,25 @@ export const deserializeUser = async (
         if (!decoded) {
             return next({ error: true, message: "Invalid token or user doesn't exist" });
         }
-
+    
         // Check if user has a valid session
-        // const session = await redisCLI.get(decoded.sub);
+        const session = await redisCLI.get(`session_${decoded.id}`);
+        if (!session) {
+            return next({ error: true, message: "User session has expired" });
+        }
 
-        // if (!session) {
-        //     return { error: true, message: "User session has expired" };
-        // }
-
-        // // Check if user still exist
-        // const user = await getUserById(JSON.parse(session).id);
-
-        // if (!user) {
-        //     return { error: true, messahe: "User with that token no longer exist" };
-        // }
+        // Check if user still exist
+        const user = await getUserById(JSON.parse(session).id);
+        if (!user) {
+            return next({ error: true, messahe: "User with that token no longer exist" });
+        }
       
-        // // You can do: (req.user or res.locals.user)
-        // res.locals.user = user;
+        // You can do: (req.user or res.locals.user)
+        res.locals.user = user;
 
         next();
-    // } catch (error) {
-    //     log.error(`[deserializeUser]: ${JSON.stringify({ action: "deserializeUser catch", data: error })}`);
-    //     return error;
-    // }
+    } catch (error) {
+        log.error(`[deserializeUser]: ${JSON.stringify({ action: "deserializeUser catch", data: error })}`);
+        next(error);
+    }
 };

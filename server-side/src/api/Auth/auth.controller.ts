@@ -146,7 +146,7 @@ export const confirmRegisterHandler = async (code: string, email: string) => {
 
 // Controller for logout user
 export const logoutHandler = async (user: any) => {
-    await redisCLI.del(user.id.toString());
+    await redisCLI.del(`session_${user.id}`);
     return { error: false, message: "Logout success" };
 };
 
