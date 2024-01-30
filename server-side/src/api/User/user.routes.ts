@@ -6,10 +6,11 @@ import { userHandler, oneUserHandler } from "./user.controller";
 
 const userRoutes = Router();
 
+userRoutes.use(authenticate);
+
 userRoutes.get(
     "/user",
     validateResource(createAllUserSchema),
-    authenticate,
     asyncHandler(async (req: Request, res: Response) => { 
         const { page = 1, pageSize = 10 } = req.query;  
         const response = await userHandler(+page, +pageSize);
@@ -20,7 +21,6 @@ userRoutes.get(
 userRoutes.get(
     "/user/:id",
     validateResource(createUserByIdSchema),
-    authenticate,
     asyncHandler(async (req: Request, res: Response) => {
         const { id } = req.params;
         console.log('id :>> ', typeof id);
