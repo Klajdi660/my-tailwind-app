@@ -55,7 +55,7 @@ export const registerHandler = async (data: UserTypesParams) => {
     const existingUser: any = await getUserByEmailOrUsername(email, username);
 
     if (existingUser) {
-        log.info(`[User]: ${JSON.stringify({ action: "createUser existingUser", data: existingUser })}`);
+        log.info(`[existingUser]: ${JSON.stringify({ action: "createUser existingUser", data: existingUser })}`);
         return { error: true, message: "User with the provided email or username already exists" };
     }
 
@@ -162,12 +162,6 @@ export const forgotPasswordHandler = async (email: string) => {
         .update(email + user.username)
         .digest("hex")
     const expirationTime = dayjs().add(60, 's').toISOString();
-    console.log('hash :>> ', hash);
-    console.log('expirationTime :>> ', expirationTime);
-    // const token = {
-    //     hash,
-    //     expirationTime
-    // }
     
     const url = `http://localhost:3000/update-password/${user.id}/${hash}/${expirationTime}`;
     
