@@ -6,7 +6,6 @@ import cookieParser from "cookie-parser";
 import { connectToDb } from "./clients";
 import { log } from "./utils";
 import routes from "./routes";
-// import { deserializeUser } from "./middleware";
 import { AppParams } from "./types";
 
 const { port, client_url } = config.get<AppParams>("app");
@@ -31,8 +30,6 @@ app.options("*", cors());
 
 // 4. less hackers know about our stack
 app.disable("x-powered-by");
-
-// app.use(deserializeUser);
 
 // 5. routes
 app.use(routes);
