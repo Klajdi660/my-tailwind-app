@@ -1,12 +1,12 @@
 import { Request, Response, Router } from "express";
 import { asyncHandler } from "../../utils";
-import { authenticate, validateResource } from "../../middleware";
+import { authenticate, requireUser, validateResource } from "../../middleware";
 import { createAllUserSchema, createUserByIdSchema } from "../../schema";
 import { userHandler, oneUserHandler } from "./user.controller";
 
 const userRoutes = Router();
 
-userRoutes.use(authenticate);
+userRoutes.use(authenticate, requireUser);
 
 userRoutes.get(
     "/user",
