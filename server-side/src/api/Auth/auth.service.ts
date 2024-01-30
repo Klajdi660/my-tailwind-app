@@ -11,7 +11,7 @@ export const getUserById = async (id: string) => {
     return User.findOne({
         where: { id }
     }).catch((error) => {
-        log.error(`[User]: ${JSON.stringify({ action: "getUserByEmail catch", data: error })}`);
+        log.error(`[UserById]: ${JSON.stringify({ action: "getUserByEmail catch", data: error })}`);
     })
 };
 
@@ -19,7 +19,7 @@ export const getUserByEmail = async (email: string) => {
     return User.findOne({
         where: { email }
     }).catch((error) => {
-        log.error(`[User]: ${JSON.stringify({ action: "getUserByEmail catch", data: error })}`);
+        log.error(`[UserByEmail]: ${JSON.stringify({ action: "getUserByEmail catch", data: error })}`);
     })
 };
 
@@ -29,7 +29,7 @@ export const getUserByEmailOrUsername = async (email: string, username: string) 
             [Op.or]: [{ email }, { username }]
         }
     }).catch((error) => {
-        log.error(`[User]: ${JSON.stringify({ action: "getUserByEmailOrUsername catch", data: error })}`);
+        log.error(`[UserByEmailOrUsername]: ${JSON.stringify({ action: "getUserByEmailOrUsername catch", data: error })}`);
     })
 };
 
@@ -57,7 +57,7 @@ export const createUser = async (data: UserTypesParams) => {
     const saveUser = await newUser
         .save()
         .catch((error) => {
-            log.error(`[User]: ${JSON.stringify({ action: "createUser catch", data: error })}`);
+            log.error(`[createUser]: ${JSON.stringify({ action: "createUser catch", data: error })}`);
         });
 
     return saveUser;
