@@ -1,11 +1,10 @@
-import { object, string, custom, TypeOf } from "zod";
+import { object, string, boolean, custom, TypeOf } from "zod";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const usernameRegex = /^[a-zA-Z0-9]+$/;
 const uppercaseRegex = /[A-Z]/;
 const sepecialCharacter = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
 
-// Login Schema
 export const createLoginSchema = object({
     body: object({
         usernameOrEmail: string({
@@ -18,7 +17,6 @@ export const createLoginSchema = object({
     }),
 });
 
-// Register Schema
 export const createRegisterSchema = object({
     body: object({
         accountType: string({
@@ -59,7 +57,6 @@ export const createRegisterSchema = object({
     }),
 });
 
-// OTP Schema
 export const createOTPCodeSchema = object({
     body: object({
         code: string({
@@ -69,7 +66,6 @@ export const createOTPCodeSchema = object({
     }),
 });
 
-// Forgot Password Schema
 export const createForgotPasswordSchema = object({
     body: object({
         email: string({
@@ -78,7 +74,6 @@ export const createForgotPasswordSchema = object({
     }),
 });
 
-// Reset Password Schema
 export const createResetPasswordSchema = object({
     params: object({
         id: string({
@@ -113,5 +108,4 @@ export type LoginInput = TypeOf<typeof createLoginSchema>["body"];
 export type RegisterInput = TypeOf<typeof createRegisterSchema>["body"];
 export type OTPCodeInput = TypeOf<typeof createOTPCodeSchema>["body"];
 export type ForgotPasswordInput = TypeOf<typeof createForgotPasswordSchema>["body"];
-// export type ResetPasswordInput = TypeOf<typeof createResetPasswordSchema>["body"];
 export type ResetPasswordInput = TypeOf<typeof createResetPasswordSchema>;

@@ -21,5 +21,4 @@ export const createUserByIdSchema = object({
 
 export type AllUserInput = TypeOf<typeof createAllUserSchema>["query"];
 export type UserByIdInput = TypeOf<typeof createUserByIdSchema>["params"];
-
  

@@ -2,61 +2,43 @@ import crypto from "crypto";
 import config from "config";
 import dayjs from "dayjs";
 import { redisCLI } from "../../clients";
-import { 
-    getUserByEmail, 
-    getUserByEmailOrUsername, 
-    createUser, 
-    generateUniqueOTP, 
-    getUserById, 
-    updateUserPassword, 
-} from "./auth.service";
+import { generateUniqueOTP, updateUserPassword } from "./auth.service";
+import { getUserById, getUserByEmail, getUserByEmailOrUsername, createUser } from "../User/user.service";
 import { signToken, log, sendEmail } from "../../utils";
 import { AppParams, UserTypesParams } from "../../types";
 
 const { client_url } = config.get<AppParams>("app");
 
-// Controller for login user
 export const loginHandler = async (usernameOrEmail: string, password: string) => {
-    // Get the user from the collection
     const user: any = await getUserByEmailOrUsername(usernameOrEmail, usernameOrEmail);
-
-    // Check if user exist
     if (!user) {
         return { error: true, message: "User is not Registered with us, please SignUp to continue." };
     }
 
-    // Check if password is correct
     const expectedHash = crypto
         .createHash("sha1")
         .update(password + user.username)
-        .digest("hex");
-    
+        .digest("hex");    
     if (user.hash !== expectedHash) {
         return { error: true, message: "Invalid Password! Please enter valid password." };
     }
 
-    // Create the Access and refresh Tokens
     const { access_token, refresh_token } = await signToken(user);
 
-    // Send Access Token
     return {
         lToken: access_token,
         rToken: refresh_token
     }
 };
 
-// Controller for register user
 export const registerHandler = async (data: UserTypesParams) => {
     const { agreedToTerms, email, username, password } = data;
 
-    // Agreed to terms
     if (!agreedToTerms) {
         return { error: true, message: "You must agree to the terms and conditions to register." };
     }
 
-    // check user in database
     const existingUser: any = await getUserByEmailOrUsername(email, username);
-
     if (existingUser) {
         log.info(`[existingUser]: ${JSON.stringify({ action: "createUser existingUser", data: existingUser })}`);
         return { error: true, message: "User with the provided email or username already exists" };
@@ -106,7 +88,6 @@ export const registerHandler = async (data: UserTypesParams) => {
     return { error: false, message: "A message with a code has been sent to your phone number. Please enter this code to proceed" };
 };
 
-// Controller for confirm user
 export const confirmRegisterHandler = async (code: string, email: string) => {
     let redisObj: any = await redisCLI.get(`register_pending_${email}`);
     redisObj = JSON.parse(redisObj);
@@ -125,15 +106,12 @@ export const confirmRegisterHandler = async (code: string, email: string) => {
     const currentDateTime = dayjs();
     const expiresAtDateTime = dayjs(expiredCodeAt);
     const isExpired = currentDateTime.isAfter(expiresAtDateTime);
-
     if (isExpired) {
         log.error(`[confirmUser]: ${JSON.stringify({ action: "expired User", data: redisObj })}`);
         return { error: true, message: "Your OTP code has expired. Please request a new OTP code" };
     }
 
-    // Create the user
     const user = await createUser(redisObj, /*approved*/);
-
     if (!user) {
         console.log(JSON.stringify({ action: "Confirm createUser Req", data: user }))
         return { error: true, message: "Failed to register user!" };
@@ -147,7 +125,6 @@ export const confirmRegisterHandler = async (code: string, email: string) => {
     }
 };
 
-// Controller for logout user
 export const logoutHandler = async (user: any) => {
     await redisCLI.del(`session_${user.id}`);
     return { error: false, message: "Logout success" };
@@ -155,7 +132,6 @@ export const logoutHandler = async (user: any) => {
 
 export const forgotPasswordHandler = async (email: string) => {
     const user: any = await getUserByEmail(email);
-
     if (!user) {
         return { error: true, message: `This email: '${email}' is not register with us. Please enter a valid email.` };
     }
@@ -177,7 +153,6 @@ export const forgotPasswordHandler = async (email: string) => {
     };
     
     const mailSent = await sendEmail(templatePath, templateData);
-
     if (!mailSent) {
         return { error: true, message: "Somenthing went wrong. Email not sent." };
     }
@@ -187,7 +162,6 @@ export const forgotPasswordHandler = async (email: string) => {
 
 export const resetPasswordHandler = async (id: string, h: string, exp: string, password: string) => {
     const user = await getUserById(id) as any;
-
     if (!user) {
         return { error: true, message: "User is not Registered with us, please SignUp to continue." };
     }
@@ -224,7 +198,6 @@ export const resetPasswordHandler = async (id: string, h: string, exp: string, p
     };
 
     const mailSent = await sendEmail(templatePath, templateData);
-
     if (!mailSent) {
         return { error: true, message: "Somenthing went wrong. Email not sent." };
     }

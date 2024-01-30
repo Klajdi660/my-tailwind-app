@@ -17,12 +17,6 @@ export const validateResource = (schema: AnyZodObject) => (
         next();
     } catch (e: any) {
         log.error(`[validateResource]: ${JSON.stringify({ action: "validateResource catch", data: e.errors })}`);
-       
-        return res
-            .status(400)
-            .json({
-                error: true,
-                message: e.errors[0].message
-            })
+        next({ error: true, message: e.errors[0].message });
     }
 };

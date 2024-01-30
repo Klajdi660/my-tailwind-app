@@ -6,7 +6,6 @@ import { userHandler, oneUserHandler } from "./user.controller";
 
 const userRoutes = Router();
 
-// Route for register user 
 userRoutes.get(
     "/user",
     authenticate,
@@ -17,6 +16,7 @@ userRoutes.get(
         res.json(response);
     })
 );
+
 userRoutes.get(
     "/user/:id",
     validateResource(createUserByIdSchema),

@@ -12,14 +12,11 @@ const { port, client_url } = config.get<AppParams>("app");
 
 const app: Express = express();
 
-// 1. Body parser 
 app.use(express.json({ limit: "10mb" })); 
 app.use(express.urlencoded({ extended: true })); 
 
-// 2. Cookie parser
 app.use(cookieParser());
 
-// 3. Cors
 const corsOptions = {
     origin: client_url,
     credentials: true
@@ -28,10 +25,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options("*", cors());
 
-// 4. less hackers know about our stack
+// less hackers know about our stack
 app.disable("x-powered-by");
 
-// 5. routes
 app.use(routes);
 
 // Unknown routes

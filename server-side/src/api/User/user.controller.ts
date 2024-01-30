@@ -1,11 +1,9 @@
 import { User } from "../../models";
-import { getUserById } from "../Auth/auth.service";
+import { getUserById } from "./user.service";
 
 export const userHandler = async (page: number, pageSize: number) => {
-    console.log('page :>> ', page);
-    console.log('pageSize :>> ', pageSize);
     const offset = (page - 1) * pageSize;
-    console.log('offset :>> ', offset);
+
     const { rows: users, count: totalUsers } = await User.findAndCountAll({
         limit: +pageSize,
         offset,

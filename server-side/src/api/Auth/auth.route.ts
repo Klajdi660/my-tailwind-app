@@ -19,7 +19,6 @@ import {
 
 const authRouter = Router();
 
-// Login user route
 authRouter.post(
     "/login",
     validateResource(createLoginSchema),
@@ -30,7 +29,6 @@ authRouter.post(
     })
 );
 
-// Register user route 
 authRouter.post(
     "/register",
     validateResource(createRegisterSchema),
@@ -40,7 +38,6 @@ authRouter.post(
     })
 );
 
-// Route for sending OTP code to the user's email
 authRouter.post(
     "/register-confirm",
     validateResource(createOTPCodeSchema),
@@ -61,7 +58,6 @@ authRouter.get(
     })
 );
 
-// Route for generating a reset password
 authRouter.post(
     "/forgot-password",
     validateResource(createForgotPasswordSchema),
@@ -72,7 +68,6 @@ authRouter.post(
     })
 );
 
-// Route for change password
 authRouter.put(
     "/reset-password/:id",
     validateResource(createResetPasswordSchema),

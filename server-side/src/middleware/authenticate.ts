@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { redisCLI } from "../clients";
 import { verifyJWT, log } from "../utils";
-import { getUserById } from "../api/Auth/auth.service";
+import { getUserById } from "../api/User/user.service";
 
 export const authenticate = async (
     req: Request,
