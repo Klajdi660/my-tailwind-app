@@ -2,8 +2,5 @@
 export interface AppParams {
     port?: number;
     prefix?: string;
-}
-
-export interface CorsParams {
-    cors_url: string;
+    client_url?: string;
 }

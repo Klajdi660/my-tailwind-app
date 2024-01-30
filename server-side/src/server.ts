@@ -7,10 +7,9 @@ import { connectToDb } from "./clients";
 import { log } from "./utils";
 import routes from "./routes";
 // import { deserializeUser } from "./middleware";
-import { AppParams, CorsParams } from "./types";
+import { AppParams } from "./types";
 
-const { port, prefix } = config.get<AppParams>("app");
-const { cors_url } = config.get<CorsParams>("cors");
+const { port, client_url } = config.get<AppParams>("app");
 
 const app: Express = express();
 
@@ -23,7 +22,7 @@ app.use(cookieParser());
 
 // 3. Cors
 const corsOptions = {
-    origin: cors_url,
+    origin: client_url,
     credentials: true
 };
 

@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import config from "config";
 import dayjs from "dayjs";
 import { redisCLI } from "../../clients";
 import { 
@@ -10,7 +11,9 @@ import {
     updateUserPassword, 
 } from "./auth.service";
 import { signToken, log, sendEmail } from "../../utils";
-import { UserTypesParams } from "../../types";
+import { AppParams, UserTypesParams } from "../../types";
+
+const { client_url } = config.get<AppParams>("app");
 
 // Controller for login user
 export const loginHandler = async (usernameOrEmail: string, password: string) => {
@@ -163,8 +166,7 @@ export const forgotPasswordHandler = async (email: string) => {
         .digest("hex")
     const expirationTime = dayjs().add(60, 's').toISOString();
     
-    const url = `http://localhost:3000/update-password/${user.id}/${hash}/${expirationTime}`;
-    
+    const url = `${client_url}/update-password/${user.id}/${hash}/${expirationTime}`;
     let templatePath= "ForgotPassword";
     const templateData = {
         title: "Password Reset",
@@ -212,8 +214,7 @@ export const resetPasswordHandler = async (id: string, h: string, exp: string, p
         return { error: true, message: "Some Error in Updating the Password" };
     }
 
-    const url = `http://localhost:3000/login`;
-    
+    const url = `${client_url}/login`;
     let templatePath= "ResetPassword";
     const templateData = {
         title: "Login",
