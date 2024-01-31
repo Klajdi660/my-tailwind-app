@@ -3,7 +3,7 @@ import express, { Express, Request, Response, NextFunction } from "express";
 import config from "config";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { connectToDb } from "./clients";
+import { sequelizeConnection } from "./clients";
 import { log } from "./utils";
 import routes from "./routes";
 import { AppParams } from "./types";
@@ -46,16 +46,15 @@ const errorHandler = (error: any, req: Request, res: Response, next: NextFunctio
 app.use(errorHandler);
 
 // Start server only when we have valid connection
-const startServer = async () => {
-    const isConnected = await connectToDb();
+sequelizeConnection
+    .authenticate()
+    .then(() => {
+        log.info(`${JSON.stringify({ action: "Database Run", message: "Database connection has been established successfully." })}`);
 
-    if (isConnected) {
-        app.listen(port, () => { 
-            log.info(`[server]: ${JSON.stringify({ action: "Server Run", messsage: `Server is running at http://localhost:${port}` })}`);
+        app.listen(port, () => {
+            log.info(`${JSON.stringify({ action: "Server Run", messsage: `Server is running at http://localhost:${port}` })}`);
         });
-    } else {
-        log.error(`[server]: ${JSON.stringify({ action: "Server Catch", messsage: "Cannot connect to the server", data: isConnected })}`);
-    }
-};
+    }).catch((error) => {
+        log.error(`${JSON.stringify({ action: "Server Catch", messsage: "Cannot connect to the server", data: error })}`);
+    });
 
-startServer();
