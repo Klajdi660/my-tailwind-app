@@ -23,8 +23,18 @@ authRouter.post(
     "/login",
     validateResource(createLoginSchema),
     asyncHandler(async (req: Request, res: Response) => {
-        const { usernameOrEmail, password } = req.body;
-        const response = await loginHandler(usernameOrEmail, password);
+        const { usernameOrEmail, password, rememberMe } = req.body;
+        const response = await loginHandler(usernameOrEmail, password, rememberMe) as any;
+        if (rememberMe) {
+            console.log('response :>> ', response);
+            const { maxAge, access_token } = response;
+            res.cookie('rememberMeToken', access_token, {
+                httpOnly: true,
+                maxAge,
+            });
+    
+        }
+
         res.json(response);
     })
 );
@@ -53,7 +63,13 @@ authRouter.get(
     authenticate,
     asyncHandler(async (req: Request | any, res: Response) => {
         const user = res.locals.user;
+        console.log('req.cookie :>> ', req.cookies);
+        // const { rememberMe } = req.cookie;
+        // console.log('rememberMe :>> ', rememberMe);
         const response = await logoutHandler(user);
+        // if (req.cookies.rememberMeToken) {
+        //     res.clearCookie('rememberMeToken');
+        // }
         res.json(response);
     })
 );

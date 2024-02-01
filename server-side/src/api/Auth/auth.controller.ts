@@ -9,7 +9,7 @@ import { AppParams, UserTypesParams } from "../../types";
 
 const { client_url } = config.get<AppParams>("app");
 
-export const loginHandler = async (usernameOrEmail: string, password: string) => {
+export const loginHandler = async (usernameOrEmail: string, password: string, rememberMe: boolean) => {
     const user: any = await getUserByEmailOrUsername(usernameOrEmail, usernameOrEmail);
     if (!user) {
         return { error: true, message: "User is not Registered with us, please SignUp to continue." };
@@ -24,6 +24,11 @@ export const loginHandler = async (usernameOrEmail: string, password: string) =>
     }
 
     const { access_token, refresh_token } = await signToken(user);
+
+    if (rememberMe) {
+        const maxAge = 30 * 24 * 60 * 60 * 1000;
+        return { maxAge, access_token };
+    }
 
     return {
         lToken: access_token,

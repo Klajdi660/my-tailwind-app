@@ -13,7 +13,7 @@ export const createLoginSchema = object({
         password: string({
             required_error: "Password is required",
         }),
-        // remeber: boolean(),
+        rememberMe: boolean(),
     }),
 });
 
