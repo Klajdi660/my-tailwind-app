@@ -265,3 +265,10 @@
 .content {}
 
 .footer {}
+
+/* FormGateway */
+.form-gateways .form-gateways-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

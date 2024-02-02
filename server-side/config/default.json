@@ -34,7 +34,7 @@
     "google": {
         "client_id": "604086717415-8pnd2d5v4itf0pp1s5c1ha2t87bhnlnm.apps.googleusercontent.com",
         "client_secret": "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",
-        "callback_url": "http://localhost:3000/api/auth/google/callback"
+        "callback_url": "http://localhost:8080/api/auth/google/callback"
     },
     "otp": {
         "otpLength": 6,

@@ -1,5 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelizeConnection } from "../clients/db/database";
+import { EMAIL_PROVIDER } from "../constants";
 
 export class User extends Model {};
 
@@ -25,6 +26,15 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        provider: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: EMAIL_PROVIDER.Email, 
+        },
+        googleId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         extra: {
             type: DataTypes.TEXT,
             allowNull: false
@@ -45,7 +55,7 @@ User.init(
     },
     {
        sequelize: sequelizeConnection,
-       timestamps: true,
+    //    timestamps: true,
        modelName: "Users",
        tableName: "users" 
     }

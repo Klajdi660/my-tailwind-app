@@ -7,10 +7,21 @@ import { sequelizeConnection } from "./clients";
 import { log } from "./utils";
 import routes from "./routes";
 import { AppParams } from "./types";
+import passport from "passport";
+import session from 'express-session';
+import SequelizeStore from "connect-session-sequelize";
+import passportConfig from "../config/passport";
 
 const { port, client_url } = config.get<AppParams>("app");
 
 const app: Express = express();
+
+// Initialize SequelizeStore for session storage
+const SequelizeSessionStore = SequelizeStore(session.Store);
+const sessionStore = new SequelizeSessionStore({
+    db: sequelizeConnection,
+    expiration: 24 * 60 * 60 * 1000, // Session expiration time in milliseconds (optional)
+});
 
 app.use(express.json({ limit: "10mb" })); 
 app.use(express.urlencoded({ extended: true })); 
@@ -28,6 +39,15 @@ app.options("*", cors());
 // less hackers know about our stack
 app.disable("x-powered-by");
 
+app.use(
+    session({
+        secret: "keyboard cat",
+        resave: false,
+        saveUninitialized: false,
+        store: sessionStore,
+    })
+);
+
 app.use(routes);
 
 // Unknown routes
@@ -44,6 +64,13 @@ const errorHandler = (error: any, req: Request, res: Response, next: NextFunctio
     res?.json({ error: true, message: "Internal error" });
 };
 app.use(errorHandler);
+
+// passport config
+passportConfig(passport);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Start server only when we have valid connection
 sequelizeConnection

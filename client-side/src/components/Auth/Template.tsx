@@ -1,5 +1,5 @@
 import { Layout, Typography, Space } from "antd";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { authFormData } from "../../data";
 import { TemplateProps } from "../../types/general.type";
 import { FormGateway } from "../UI/FormGateway";

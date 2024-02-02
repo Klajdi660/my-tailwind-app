@@ -16,6 +16,7 @@ import {
     forgotPasswordHandler, 
     resetPasswordHandler 
 } from "./auth.controller";
+import passport from "passport";
 
 const authRouter = Router();
 
@@ -93,6 +94,27 @@ authRouter.put(
         const { password } = req.body;
         const response = await resetPasswordHandler(id, h, exp, password);
         res.json(response);
+    })
+);
+
+authRouter.get(
+    "/google",
+    passport.authenticate(
+        "google",
+        {
+            scope: ["profile", "email"]
+        }
+    )
+);
+
+authRouter.get(
+    '/google/callback',
+    passport.authenticate(
+        'google', 
+        { failureRedirect: '/login' }
+    ),
+    asyncHandler(async (req: Request, res: Response) => {
+      res.redirect('/')
     })
 );
 

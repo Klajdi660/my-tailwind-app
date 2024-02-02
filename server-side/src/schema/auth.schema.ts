@@ -19,9 +19,9 @@ export const createLoginSchema = object({
 
 export const createRegisterSchema = object({
     body: object({
-        accountType: string({
-            required_error: "Choose account type"
-        }),
+        // accountType: string({
+        //     required_error: "Choose account type"
+        // }),
         email: string({
             required_error: "Email is required",
         }).regex(emailRegex, "Not a valid email"),

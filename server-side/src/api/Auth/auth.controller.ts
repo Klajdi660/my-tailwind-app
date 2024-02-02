@@ -6,13 +6,19 @@ import { generateUniqueOTP, updateUserPassword } from "./auth.service";
 import { getUserById, getUserByEmail, getUserByEmailOrUsername, createUser } from "../User/user.service";
 import { signToken, log, sendEmail } from "../../utils";
 import { AppParams, UserTypesParams } from "../../types";
+import { EMAIL_PROVIDER } from "../../constants";
 
 const { client_url } = config.get<AppParams>("app");
 
-export const loginHandler = async (usernameOrEmail: string, password: string, rememberMe: boolean) => {
+export const loginHandler = async (usernameOrEmail: string, password: string, rememberMe: boolean) => {   
     const user: any = await getUserByEmailOrUsername(usernameOrEmail, usernameOrEmail);
     if (!user) {
         return { error: true, message: "User is not Registered with us, please SignUp to continue." };
+    }
+
+    
+    if (user && user.provider !== EMAIL_PROVIDER.Email) {
+        return { error: true, message: `That email address is already in use using ${user.provider} provider.` };
     }
 
     const expectedHash = crypto
