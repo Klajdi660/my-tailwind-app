@@ -1,4 +1,5 @@
 import { Router, Request, Response } from "express";
+import config from "config";
 import { asyncHandler } from "../../utils";
 import { validateResource, authenticate } from "../../middleware";
 import { 
@@ -17,6 +18,9 @@ import {
     resetPasswordHandler 
 } from "./auth.controller";
 import passport from "passport";
+import { AppParams } from "../../types";
+
+const { client_url } = config.get<AppParams>("app");
 
 const authRouter = Router();
 
@@ -111,10 +115,13 @@ authRouter.get(
     '/google/callback',
     passport.authenticate(
         'google', 
-        { failureRedirect: '/login' }
+        { 
+            failureRedirect: `${client_url}/login`,
+            session: false,
+        },
     ),
     asyncHandler(async (req: Request, res: Response) => {
-      res.redirect('/')
+        res.redirect(`${client_url}`);
     })
 );
 

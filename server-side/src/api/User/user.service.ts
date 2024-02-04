@@ -46,7 +46,7 @@ export const createUser = async (data: UserTypesParams) => {
         username,
         hash: password,
         extra: JSON.stringify(extraData),
-        accountType,
+        // accountType,
         avatar: "",
     });
 

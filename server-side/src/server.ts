@@ -1,30 +1,38 @@
 require("dotenv").config();
 import express, { Express, Request, Response, NextFunction } from "express";
 import config from "config";
-import cors from "cors";
+import passport from "passport";
+import session from 'express-session';
+// import SequelizeStore from "connect-session-sequelize";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+import helmet from "helmet";
 import { sequelizeConnection } from "./clients";
 import { log } from "./utils";
 import routes from "./routes";
-import { AppParams } from "./types";
-import passport from "passport";
-import session from 'express-session';
-import SequelizeStore from "connect-session-sequelize";
 import passportConfig from "../config/passport";
+import { AppParams } from "./types";
 
 const { port, client_url } = config.get<AppParams>("app");
 
 const app: Express = express();
 
 // Initialize SequelizeStore for session storage
-const SequelizeSessionStore = SequelizeStore(session.Store);
-const sessionStore = new SequelizeSessionStore({
-    db: sequelizeConnection,
-    expiration: 24 * 60 * 60 * 1000, // Session expiration time in milliseconds (optional)
-});
+// const SequelizeSessionStore = SequelizeStore(session.Store);
+// const sessionStore = new SequelizeSessionStore({
+//     db: sequelizeConnection,
+//     expiration: 24 * 60 * 60 * 1000, 
+// });
 
 app.use(express.json({ limit: "10mb" })); 
 app.use(express.urlencoded({ extended: true })); 
+
+app.use(
+    helmet({
+        contentSecurityPolicy: false,
+        frameguard: true,
+    })
+);
 
 app.use(cookieParser());
 
@@ -39,20 +47,21 @@ app.options("*", cors());
 // less hackers know about our stack
 app.disable("x-powered-by");
 
-app.use(
-    session({
-        secret: "keyboard cat",
-        resave: false,
-        saveUninitialized: false,
-        store: sessionStore,
-    })
-);
+// app.use(
+//     session({
+//         secret: "keyboard cat",
+//         resave: false,
+//         saveUninitialized: false,
+//         store: sessionStore,
+//     })
+// );
 
 app.use(routes);
 
 // Unknown routes
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
     const err = new Error(`Route ${req.originalUrl} not found`) as any;
+    console.log('err :>> ', err, "dd", req.originalUrl);
     err.statusCode = 404;
     next(err);
 });
@@ -69,8 +78,8 @@ app.use(errorHandler);
 passportConfig(passport);
 
 // Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Start server only when we have valid connection
 sequelizeConnection
