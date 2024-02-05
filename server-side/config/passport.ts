@@ -42,11 +42,11 @@ const googleAuth = async () => {
             firstName: profile.name.givenName,
             lastName: profile.name.familyName,
           };
+          const username = profile.displayName.split(' ').join('').toLowerCase();
 
           const newUser = {
             googleId: profile.id,
-            // displayName: profile.displayName,
-            username: "",
+            username,
             hash: "",
             extra: JSON.stringify(extraData),
             avatar: profile.photos[0].value,
