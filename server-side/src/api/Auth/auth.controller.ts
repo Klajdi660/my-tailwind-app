@@ -5,13 +5,13 @@ import { redisCLI } from "../../clients";
 import { generateUniqueOTP, updateUserPassword } from "./auth.service";
 import { getUserById, getUserByEmail, getUserByEmailOrUsername, createUser } from "../User/user.service";
 import { signToken, log, sendEmail } from "../../utils";
-import { AppParams, UserTypesParams } from "../../types";
+import { AppParams, UserParams } from "../../types";
 import { EMAIL_PROVIDER } from "../../constants";
 
 const { client_url } = config.get<AppParams>("app");
 
 export const loginHandler = async (usernameOrEmail: string, password: string, rememberMe: boolean) => {   
-    const user: any = await getUserByEmailOrUsername(usernameOrEmail, usernameOrEmail);
+    const user = await getUserByEmailOrUsername(usernameOrEmail, usernameOrEmail);
     if (!user) {
         return { error: true, message: "User is not Registered with us, please SignUp to continue." };
     }
@@ -42,14 +42,14 @@ export const loginHandler = async (usernameOrEmail: string, password: string, re
     }
 };
 
-export const registerHandler = async (data: UserTypesParams) => {
+export const registerHandler = async (data: UserParams) => {
     const { agreedToTerms, email, username, password } = data;
 
     if (!agreedToTerms) {
         return { error: true, message: "You must agree to the terms and conditions to register." };
     }
 
-    const existingUser: any = await getUserByEmailOrUsername(email, username);
+    const existingUser = await getUserByEmailOrUsername(email, username);
     if (existingUser) {
         log.info(`[existingUser]: ${JSON.stringify({ action: "createUser existingUser", data: existingUser })}`);
         return { error: true, message: "User with the provided email or username already exists" };
@@ -60,7 +60,7 @@ export const registerHandler = async (data: UserTypesParams) => {
         .update(password + username)
         .digest("hex");
 
-    const user_registration: UserTypesParams = {
+    const user_registration: UserParams = {
         ...data,
         password: hash,
         passwordConfirm: hash
@@ -96,7 +96,7 @@ export const registerHandler = async (data: UserTypesParams) => {
         return { error: true, message: "Somenthing went wrong. Email not sent." };
     }
         
-    return { error: false, message: "A message with a code has been sent to your phone number. Please enter this code to proceed" };
+    return { error: false, message: "A message with a code has been sent to your email. Please enter this code to proceed" };
 };
 
 export const confirmRegisterHandler = async (code: string, email: string) => {
@@ -142,7 +142,7 @@ export const logoutHandler = async (user: any) => {
 };
 
 export const forgotPasswordHandler = async (email: string) => {
-    const user: any = await getUserByEmail(email);
+    const user = await getUserByEmail(email);
     if (!user) {
         return { error: true, message: `This email: '${email}' is not register with us. Please enter a valid email.` };
     }
@@ -172,7 +172,7 @@ export const forgotPasswordHandler = async (email: string) => {
 };
 
 export const resetPasswordHandler = async (id: string, h: string, exp: string, password: string) => {
-    const user = await getUserById(id) as any;
+    const user = await getUserById(id);
     if (!user) {
         return { error: true, message: "User is not Registered with us, please SignUp to continue." };
     }

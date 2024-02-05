@@ -23,7 +23,6 @@ userRoutes.get(
     validateResource(createUserByIdSchema),
     asyncHandler(async (req: Request, res: Response) => {
         const { id } = req.params;
-        console.log('id :>> ', typeof id);
         const response = await oneUserHandler(id);
         res.json(response);
     })

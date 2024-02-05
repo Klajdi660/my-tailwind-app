@@ -2,7 +2,18 @@ import { DataTypes, Model } from "sequelize";
 import { sequelizeConnection } from "../clients/db/database";
 import { EMAIL_PROVIDER } from "../constants";
 
-export class User extends Model {};
+export class User extends Model {
+    id: number;
+    email: string;
+    username: string;
+    hash: string;
+    provider: string;
+    googleId: string;
+    extra: string;
+    avatar: string;
+    createdAt: string;
+    updatedAt: string;
+};
 
 User.init(
     {

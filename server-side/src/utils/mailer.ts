@@ -2,9 +2,9 @@ import config from "config";
 import path from "path";
 import hbs from "nodemailer-express-handlebars";
 import { createTransport } from "nodemailer";
-import { smtpEmailTypesParams } from "../types";
+import { SmtpEmailTypesParams } from "../types";
 
-const smtp = config.get<smtpEmailTypesParams>("mail");
+const smtp = config.get<SmtpEmailTypesParams>("mail");
 
 export const sendEmail = (templatePath: string, templateData: any) => {
     let transporter = createTransport({

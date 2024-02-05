@@ -1,7 +1,7 @@
 import { Op } from "sequelize";
 import { User } from "../../models";
 import { log } from "../../utils";
-import { UserTypesParams } from "../../types";
+import { UserParams } from "../../types";
 
 export const getUserById = async (id: string) => {
     return User.findOne({
@@ -29,7 +29,7 @@ export const getUserByEmailOrUsername = async (email: string, username: string) 
     })
 };
 
-export const createUser = async (data: UserTypesParams) => {
+export const createUser = async (data: UserParams) => {
     const { email, username, firstName, lastName, password, accountType } = data;
 
     const extraData = {

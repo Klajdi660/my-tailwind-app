@@ -2,7 +2,7 @@ require("dotenv").config();
 import express, { Express, Request, Response, NextFunction } from "express";
 import config from "config";
 import passport from "passport";
-import session from 'express-session';
+// import session from 'express-session';
 // import SequelizeStore from "connect-session-sequelize";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -59,12 +59,11 @@ app.disable("x-powered-by");
 app.use(routes);
 
 // Unknown routes
-app.all("*", (req: Request, res: Response, next: NextFunction) => {
-    const err = new Error(`Route ${req.originalUrl} not found`) as any;
-    console.log('err :>> ', err, "dd", req.originalUrl);
-    err.statusCode = 404;
-    next(err);
-});
+// app.all("*", (req: Request, res: Response, next: NextFunction) => {
+//     const err = new Error(`Route ${req.originalUrl} not found`) as any;
+//     err.statusCode = 404;
+//     next(err);
+// });
 
 // Global Error Handler
 const errorHandler = (error: any, req: Request, res: Response, next: NextFunction) => {

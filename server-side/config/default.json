@@ -7,8 +7,8 @@
     "logLevel": "info",
     "token": {
         "access_token_secret": "Klajdi96@",
-        "accessTokenExpiresIn": 60,
-        "refreshTokenExpiresIn": 15,
+        "access_token_expires": 60,
+        "refresh_token_expires": 15,
         "jwt_cookie_expires": "2d"
     },
     "mysql": {
@@ -16,7 +16,7 @@
         "host": "localhost",
         "user": "root",
         "port": 3306,
-        "password": "",
+        "password": "Klajdi1996",
         "database": "node-registration"
     },
     "redis_feed": {

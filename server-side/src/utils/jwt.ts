@@ -2,8 +2,9 @@ import config from "config";
 import jwt from "jsonwebtoken";
 import { redisCLI } from "../clients";
 import { log } from "./logger";
+import { JWTParams } from "../types";
 
-const { accessTokenExpiresIn, refreshTokenExpiresIn }= config.get<any>("token");
+const { access_token_expires, refresh_token_expires } = config.get<JWTParams>("token");
 
 const signJWT = (
     payload: object,
@@ -27,15 +28,16 @@ const signJWT = (
 };
 
 export const signToken = async (user: any) => {
+    console.log('user :>> ', user);
     const access_token = signJWT({ id: user.id }, "accessTokenPrivateKey", {
-        expiresIn: `${accessTokenExpiresIn}d`,
+        expiresIn: `${access_token_expires}d`,
     });
 
     // const refresh_token = signJWT({ id: user.id }, "refreshTokenPrivateKey", {
     //     expiresIn: `${refreshTokenExpiresIn}m`
     // });
     const refresh_token = signJWT(user , "refreshTokenPrivateKey", {
-        expiresIn: `${refreshTokenExpiresIn}m`
+        expiresIn: `${refresh_token_expires}m`
     });
 
     // Create a Session
