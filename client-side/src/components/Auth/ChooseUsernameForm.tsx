@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Typography, Input } from "antd";
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import { genUsername } from "../../assets/img";
-import { Icon } from "../UI/Icon";
 
 const { Title } = Typography;
 
@@ -27,7 +26,6 @@ const ChooseUsernameForm: FunctionComponent = () => {
             </div>
             <Form
                 onFinish={handleOnSubmit}
-                // className="mt-4"
                 layout="vertical"
                 initialValues={{
                     remember: false
