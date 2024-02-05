@@ -26,6 +26,8 @@ import googleIcon from "./google-icon.svg";
 import linkedinIcon from "./linkedin-icon.svg";
 import appleIcon from "./apple-icon.svg";
 
+import genUsername from "./username.svg";
+
 export {
     createCampaign,
     dashboard,
@@ -52,4 +54,5 @@ export {
     favorite,
     later,
     plus,
+    genUsername,
 };

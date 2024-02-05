@@ -4,6 +4,7 @@ import LoginForm from "../components/Auth/LoginForm";
 import VerifyEmailForm from "../components/Auth/VerifyEmailForm";
 import ResetPasswordForm from "../components/Auth/ResetPasswordForm";
 import ChangePasswordForm from "../components/Auth/ChangePasswordForm";
+import ChooseUsernameForm from "../components/Auth/ChooseUsernameForm";
 
 export const authFormData: Record<string, ReactNode> = {
     signup: <SignUpForm />,
@@ -11,5 +12,6 @@ export const authFormData: Record<string, ReactNode> = {
     verifyEmail: <VerifyEmailForm />,
     resetPassword: <ResetPasswordForm/>,
     changePassword: <ChangePasswordForm/>,
+    chooseUsername: <ChooseUsernameForm />,
     checkEmail: "",
 };

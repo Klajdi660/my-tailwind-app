@@ -14,6 +14,7 @@ const {
   changePassword, 
   myCourses,
   profile,
+  chooseUsername,
 } = path;
 
 const Routes = () =>
@@ -102,6 +103,16 @@ const Routes = () =>
         </PublicGuard>
       ),
     },
+    {
+      path: chooseUsername,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <ChooseUsernamePage />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    }
   ]);
 
 export default Routes;
@@ -149,4 +160,8 @@ const UpdatePasswordPage = Loadable(
 const ProfilePage = Loadable(
   // lazy(() => import("../pages/Dashboard"))
   lazy(() => delayLoad(() => import("../pages/Profile"), 1000))
+);
+
+const ChooseUsernamePage = Loadable(
+  lazy(() => delayLoad(() => import("../pages/Auth/ChooseUsername"), 1000))
 );
