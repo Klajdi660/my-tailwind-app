@@ -24,6 +24,7 @@ export const Navbar = () => {
             </div>
             <div className="sm:flex hidden flex-row justify-end gap-4">
                 {isAuthenticated !== null && <ProfileDropdown/>}
+                {/* <ProfileDropdown /> */}
             </div>
 
             {/* Small screen navigation */}    

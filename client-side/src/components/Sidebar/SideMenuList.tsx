@@ -15,7 +15,7 @@ const SideMenuList: FunctionComponent<SideMenuListPorps> = (props) => {
         <div className="sideMenuWrapper p-2">
             <div ref={iconRef}>
                 {sidebarLinks.map((sidelink: any) => (
-                    <Tooltip key={sidelink.id} placement="right" title={sidelink.name} color="#2C333F" trigger={["hover"]} arrow={false}>
+                    <Tooltip key={sidelink.id} placement="right" title={sidelink.name} color="#2C333F" trigger={["hover"]} /*arrow={false}*/>
                         <Button
                             key={sidelink.id}
                             className={`border border-transparent rounded-xl flex justify-center items-center mb-1 ${activeLink && activeLink === sidelink.name ? 'bg-richblack-700' : null} hover:bg-richblack-700`}

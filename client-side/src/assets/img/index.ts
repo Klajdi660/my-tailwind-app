@@ -27,6 +27,7 @@ import linkedinIcon from "./linkedin-icon.svg";
 import appleIcon from "./apple-icon.svg";
 
 import genUsername from "./username.svg";
+import picon from "./picon.svg";
 
 export {
     createCampaign,
@@ -55,4 +56,5 @@ export {
     later,
     plus,
     genUsername,
+    picon,
 };

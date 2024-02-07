@@ -5,7 +5,7 @@ import { useClickAway } from "react-use";
 import { useAuth } from "../../hooks";
 import { Button, Tooltip } from "antd";
 import { Icon } from "../UI/Icon";
-import { logo, avatar } from "../../assets/img";
+import { logo, avatar, picon } from "../../assets/img";
 import { TbGridDots } from "react-icons/tb";
 import { sidebarLinks } from "../../data";
 import SideMenuList from "./SideMenuList";
@@ -46,10 +46,10 @@ export const Sidebar: FunctionComponent = () => {
 
   return (
     <div className={`sidebarWrapper md:translate-x-0 -translate-x-full md:z-0 z-50`}>
-      <div className="md:w-[80px] h-full flex-col flex flex-shrink-0 items-center justify-center overflow-hidden py-4 pt-8">
+      <div className="md:w-[60px] h-full flex-col flex flex-shrink-0 items-center justify-center overflow-hidden py-4 pt-8">
         <Link to="/home">
           <Icon 
-            imgUrl={logo} 
+            imgUrl={picon} 
             styles="w-[52px] h-[52px] bg-richblack-700"
           />
         </Link>

@@ -40,9 +40,9 @@
   border: transparent;
 }
 
-.ant-tooltip-inner {
+/* .ant-tooltip-inner {
   margin-left: 9px;
-}
+} */
 
 .card-form .form-gateways .ant-btn:hover {
   transform: scale(0.95); 
@@ -224,7 +224,7 @@
 
 
 .sidebarWrapper {
-  @apply lg:block absolute flex flex-col left-0 top-0 md:static md:left-auto md:top-auto h-screen overflow-y-scroll md:overflow-y-auto w-full md:w-[80px] shrink-0 transition-all duration-200 ease-in-out z-40 bg-richblack-10;
+  @apply lg:block absolute flex flex-col left-0 top-0 md:static md:left-auto md:top-auto h-screen overflow-y-scroll md:overflow-y-auto w-full md:w-[60px] shrink-0 transition-all duration-200 ease-in-out z-40 bg-richblack-10;
 }
 
 .sideMenuWrapper {
