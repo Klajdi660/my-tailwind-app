@@ -43,5 +43,9 @@
             "upperCaseAlphabets": true,
             "specialChars": false
         }
+    },
+    "rwg": {
+        "rwg_url": "https://api.rawg.io/api",
+        "rwg_key": "5e59bc246cf8419fb6556b220c462685"
     }  
 }

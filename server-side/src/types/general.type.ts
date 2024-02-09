@@ -18,6 +18,11 @@ export interface RedisParams {
     port: number;
 }
 
+export interface RWGParams {
+    rwg_url: string;
+    rwg_key: string;
+}
+
 // utils mailer
 export interface SmtpEmailTypesParams {
     service: string;
