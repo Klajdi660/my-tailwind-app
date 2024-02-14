@@ -65,6 +65,10 @@ export const formList: FormListMap = {
             label: "Password",
             props: { type: "password", placeholder: "" },
         },
+        {
+            formName: "Create your account",
+            btnTxt: "Register"
+        }
     ],
     "verify-email": [],
     "forgot-password": [
