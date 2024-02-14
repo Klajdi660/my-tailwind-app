@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Form, Space, Input, Button, Typography, Checkbox } from "antd";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Tab } from "../UI/Tab";
-import { accTypeData } from "../../data";
+import { accountTypes } from "../../constants";
 import useAuthService from "../../services/AuthService";
 import { RegisterUserInput } from "../../types/user.type";
 import { useAuth } from "../../hooks";
@@ -13,7 +13,7 @@ const { Title } = Typography;
 
 const SignUpForm: FunctionComponent = () => {
     // student or instructor
-    const [accountType, setAccountType] = useState(accTypeData[0].tabName);
+    const [accountType, setAccountType] = useState(accountTypes[0].tabName);
     const { signup } = useAuthService();
     const { setSignUpData } = useAuth();
 

@@ -3,7 +3,7 @@ import axiosRetry from 'axios-retry';
 import { getToken, globalObject } from '../../utils';
 // import { store } from '../../store/redux';
 // import { deleteUser } from '../../store/redux/slices/auth';
-import { APP_URL, AXIOS_TIMEOUT_DURATION } from '../../config';
+import { APP_URL, AXIOS_TIMEOUT_DURATION } from '../../configs';
 
 const instance = axios.create({
   baseURL: APP_URL,

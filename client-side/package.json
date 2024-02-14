@@ -13,6 +13,7 @@
     "axios": "^1.6.2",
     "axios-retry": "^3.9.1",
     "dayjs": "^1.11.10",
+    "lodash": "^4.17.21",
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.44",
     "postcss-cli": "^10.1.0",
@@ -23,6 +24,7 @@
     "react-lazy-load-image-component": "^1.6.0",
     "react-query": "^3.39.3",
     "react-redux": "^8.1.3",
+    "react-responsive": "^9.0.2",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.3",
@@ -39,6 +41,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^20.9.0",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",

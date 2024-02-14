@@ -1,6 +1,14 @@
 import { FunctionComponent } from "react";
 import { Tooltip } from "antd"; 
 import { IconProps } from "../../types/user.type";
+import { IconParams, IconsMap } from "../../types/general.type";
+import { IconContext } from "react-icons";
+import { classNames } from "../../utils";
+
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { MdHome } from "react-icons/md";
+import { SlGameController } from "react-icons/sl";
 
 export const Icon: FunctionComponent<IconProps> = (props)  => {
   const { styles, imgUrl, disabled, handleClick, isActive, name, type, className } = props;
@@ -30,5 +38,34 @@ export const Icon: FunctionComponent<IconProps> = (props)  => {
         }
       </div>
     </Tooltip>
+  );
+};
+
+
+
+const icons: IconsMap = { 
+  FaGithub,
+  FcGoogle,
+  MdHome, 
+  SlGameController 
+};
+
+export const Icons: FunctionComponent<IconParams> = ({
+  name = "MdHome",
+  size = 20,
+  className = "",
+  ...props
+}) => {
+  const Icon = icons?.[name] || icons?.["MdHome"];
+
+  return (
+    <IconContext.Provider
+      value={{
+        className: classNames("text-onNeutralBg", className),
+        ...props,
+      }}
+    >
+      <Icon size={size} />
+    </IconContext.Provider>
   );
 };
