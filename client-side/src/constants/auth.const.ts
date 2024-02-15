@@ -24,23 +24,29 @@ export const socialAuthList = [
 export const formList: FormListMap = {
     "login": [
         {
+            formName: "Login",
+            formTitle: "Login",
+            btnTxt: "Login"
+        },
+        {
             type: "input",
-            name: "email",
+            name: "username",
             label: "Email address or Username",
-            props: { type: "email", placeholder: "" },
+            props: { type: "username", placeholder: "" },
         },
         {
             type: "input",
             name: "password",
             label: "Password",
             props: { type: "password", placeholder: "" },
-        },  
-        {
-            formName: "Login",
-            btnTxt: "Login"
         }
     ],
     "register": [
+        {
+            formName: "Register",
+            formTitle: "Create your account",
+            btnTxt: "Register"
+        },
         {
             type: "input",
             name: "email",
@@ -64,10 +70,6 @@ export const formList: FormListMap = {
             name: "password",
             label: "Password",
             props: { type: "password", placeholder: "" },
-        },
-        {
-            formName: "Create your account",
-            btnTxt: "Register"
         }
     ],
     "verify-email": [],

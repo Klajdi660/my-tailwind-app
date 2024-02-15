@@ -7,8 +7,8 @@ import ChangePasswordForm from "../components/Auth/ChangePasswordForm";
 import ChooseUsernameForm from "../components/Auth/ChooseUsernameForm";
 
 export const authFormData: Record<string, ReactNode> = {
-    signup: <SignUpForm />,
-    login: <LoginForm />,
+    "register": <SignUpForm />,
+    "login": <LoginForm />,
     verifyEmail: <VerifyEmailForm />,
     resetPassword: <ResetPasswordForm/>,
     changePassword: <ChangePasswordForm/>,

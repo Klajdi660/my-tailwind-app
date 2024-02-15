@@ -29,6 +29,7 @@ authRouter.post(
     validateResource(createLoginSchema),
     asyncHandler(async (req: Request, res: Response) => {
         const { usernameOrEmail, password, rememberMe } = req.body;
+        console.log('req.body :>> ', req.body);
         const response = await loginHandler(usernameOrEmail, password, rememberMe) as any;
         if (rememberMe) {
             console.log('response :>> ', response);

@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { HttpClient } from "../client";
 import { globalObject } from "../utils";
 import { endpoints } from "./Api";
+import { useNotification } from "../hooks";
 import { AuthResponse, RegisterUserInput } from "../types/user.type";
-import { toast } from "react-toastify";
-// import { path } from "../data";
+// import { toast } from "react-toastify";
 
 const { LOGIN_API, LOGOUT_API, SIGNUP_API } = endpoints;
-// const { verifyEmail } = path;
 
 interface AuthService {
   login: (username: string, password: string) => Promise<void>;
@@ -18,6 +17,8 @@ interface AuthService {
 
 const useAuthService = (): AuthService => {
   const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
+  const [notify] = useNotification();
+
   const navigate = useNavigate();
 
   const login = async (username: string, password: string): Promise<void> => {
@@ -28,11 +29,16 @@ const useAuthService = (): AuthService => {
 
       if (response.error) {
         // toast.error(response.message);
-        toast.error(response.message, { 
-          style: { 
-            // background: "#1C1C24",
-            // color: "#fff" 
-          } 
+        // toast.error(response.message, { 
+        //   style: { 
+        //     // background: "#1C1C24",
+        //     // color: "#fff" 
+        //   } 
+        // });
+        notify({
+          title: "Error",
+          variant: "error",
+          description: response.message,
         });
         return;
       }

@@ -26,8 +26,9 @@
 
 import { Outlet } from "react-router-dom";
 import { Sidebar, Navbar, Footer } from "../components";
+import { FunctionComponent } from "react";
 
-export const PrivateLayout = () => {
+export const PrivateLayout: FunctionComponent = () => {
   return (
     <>
       <div className="relative sm:-8 p-4 bg-richblack-20 min-h-screen flex flex-row">

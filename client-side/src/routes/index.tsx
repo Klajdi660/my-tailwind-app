@@ -6,6 +6,7 @@ import { Loadable } from "../components";
 import { paths } from "../constants";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { PrivateLayout, PublicLayout } from "../layouts";
+import { FormListProvider } from "../contexts/FormListContext";
 
 const { 
   login, 
@@ -173,7 +174,11 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        element: <PublicLayout />,
+        element:(
+          <FormListProvider>
+            <PublicLayout />
+          </FormListProvider>
+        ),
         errorElement: <ErrorPage />,
         children: [
           {

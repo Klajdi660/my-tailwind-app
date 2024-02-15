@@ -1,7 +1,9 @@
 import { FunctionComponent } from 'react';
 // import { loader } from '../assets/img';
 
-export const Loading: FunctionComponent = () => {
+interface LoadingPorps {};
+
+export const Loading: FunctionComponent<LoadingPorps> = () => {
   return (
     // Loading 1
     // <img 

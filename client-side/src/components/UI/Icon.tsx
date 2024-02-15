@@ -5,6 +5,7 @@ import { IconParams, IconsMap } from "../../types/general.type";
 import { IconContext } from "react-icons";
 import { classNames } from "../../utils";
 
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { MdHome } from "react-icons/md";
@@ -44,6 +45,8 @@ export const Icon: FunctionComponent<IconProps> = (props)  => {
 
 
 const icons: IconsMap = { 
+  AiFillEye,
+  AiFillEyeInvisible,
   FaGithub,
   FcGoogle,
   MdHome, 

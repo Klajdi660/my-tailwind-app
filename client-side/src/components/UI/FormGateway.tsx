@@ -2,7 +2,9 @@ import { FunctionComponent } from "react";
 import { Button } from "antd";
 import { facebookIcon, googleIcon, linkedinIcon } from "../../assets/img";
 
-export const FormGateway: FunctionComponent = () => {
+interface FormGatewayProps {};
+
+export const FormGateway: FunctionComponent<FormGatewayProps> = () => {
     return (
         <div className="form-gateways">
             <Button

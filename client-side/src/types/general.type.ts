@@ -19,6 +19,19 @@ export interface TitleProps {
 export type FontSizesMap = {
   [key: string]: string;
 };
+
+export interface FormListItem {
+  type: string;
+  name: string;
+  label: string;
+  props: {
+    type: string;
+    placeholder: string;
+  };
+  formName: string;
+  formTitle: string;
+  btnTxt: string;
+};
 export interface TemplateProps {
   title?: string;
   description?: string;

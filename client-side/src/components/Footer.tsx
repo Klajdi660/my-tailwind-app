@@ -2,7 +2,9 @@ import { FunctionComponent } from "react";
 import { Icon } from "../components";
 import { logo } from "../assets/img";
 
-export const Footer: FunctionComponent = () => {
+interface FooterProps {};
+
+export const Footer: FunctionComponent<FooterProps> = () => {
     return (
         <footer className='text-white'>
             <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">

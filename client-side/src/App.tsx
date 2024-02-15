@@ -16,7 +16,8 @@ import { StylesProvider } from "./providers";
 const themeConfig = {
   algorithm: theme.defaultAlgorithm,
   token: {
-    colorPrimary: "#EB6536",
+    // colorPrimary: "#EB6536",
+    colorPrimary: "#0077B5",
   },
 };
 

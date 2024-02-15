@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { search } from '../assets/img';
 import ProfileDropdown from './Auth/ProfileDropDown';
 import { useAuth } from '../hooks';
 
-export const Navbar = () => {  
+interface NavbarProps {};
+
+export const Navbar: FunctionComponent<NavbarProps> = () => {  
     const { isAuthenticated } = useAuth();
 
     return (

@@ -1,4 +1,15 @@
-const FormField = (props: any) => {
+import { FunctionComponent } from "react";
+
+interface FormFieldPorps {
+  labelName: string;
+  placeholder: string;
+  inputType: string;
+  isTextArea: boolean;
+  value: string;
+  handleChange: any;
+};
+
+export const FormField: FunctionComponent<FormFieldPorps> = (props) => {
   const { labelName, placeholder, inputType, isTextArea, value, handleChange } = props;
   
   return (
@@ -29,5 +40,3 @@ const FormField = (props: any) => {
     </label>
   );
 };
-
-export default FormField;

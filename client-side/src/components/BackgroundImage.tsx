@@ -4,10 +4,14 @@ interface BackgroundImageProps {
     img: string
 };
 
+type BgImage = {
+    [key: string]: string; 
+};
+
 export const BackgroundImage: FunctionComponent<BackgroundImageProps> = (props) => {
     const { img } = props;
 
-    const bg_images = {
+    const bg_images: BgImage = {
         "wall-1": "../assets/bgImg/wallpapers/wall-1.webp",
         "wall-2": "../assets/bgImg/wallpapers/wall-2.webp",
         "wall-3": "../assets/bgImg/wallpapers/wall-3.webp",
@@ -20,13 +24,13 @@ export const BackgroundImage: FunctionComponent<BackgroundImageProps> = (props) 
 
     return (
         <div 
-            // style={{ 
-            //     backgroundImage: `url(${bg_images[img]})`, 
-            //     backgroundSize: "cover", 
-            //     backgroundRepeat: "no-repeat", 
-            //     backgroundPositionX: "center" 
-            // }} 
-            // className="bg-ubuntu-img absolute -z-10 top-0 right-0 overflow-hidden h-full w-full"
+            style={{ 
+                backgroundImage: `url(${bg_images[img]})`, 
+                backgroundSize: "cover", 
+                backgroundRepeat: "no-repeat", 
+                backgroundPositionX: "center" 
+            }} 
+            className="bg-ubuntu-img absolute -z-10 top-0 right-0 overflow-hidden h-full w-full"
         />
     );
 };
