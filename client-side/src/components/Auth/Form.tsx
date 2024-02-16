@@ -28,6 +28,7 @@ export const Form: FunctionComponent<FormProps> = (props) => {
 
     const [showPass, setShowPass] = useState(null);
     const [code, setCode] = useState<string>("");
+    const [otpFilled, setOtpFilled] = useState(false);
 
     const [{ formName, formTitle, footerTitle, footerLink, linkTo, btnTxt }] = lists;
     const pathname = formName.toLowerCase();
@@ -41,12 +42,14 @@ export const Form: FunctionComponent<FormProps> = (props) => {
         resolver: yupResolver(schema),
         shouldFocusError: false,
     });    
-    console.log('form :>> ', form);
 
     const handleOtpChange = async (code: string) => {
+        console.log("OTP Code Changed:", code);
         setCode(code);
+        setOtpFilled(code.length === 6);
+        console.log("Is OTP Filled:", code.length === 6);
     };
-
+    console.log('isValid :>> ', isValid);
     return (
         <>
             <div className="flex flex-col items-center mb-6 lg:mb-6">
@@ -80,41 +83,34 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                 </>
             )}
             <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
-                <OtpInput
-                            value={code}
-                            onChange={handleOtpChange}
-                            // {...form(code)}
-                            numInputs={6}
-                            separator={<span style={{ width: "10px" }}></span>}
-                            // isInputNum={true} only number
-                            shouldAutoFocus={true}
-                            inputStyle={{
-                                border: "transparent",
-                                borderRadius: "8px",
-                                boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.5)",
-                                // background: "#2C333F",
-                                width: "54px",
-                                height: "54px",
-                                fontSize: "12px",
-                                color: "black",
-                                fontWeight: "400",
-                            }}
-                            focusStyle={{
-                                border: "1px solid #EB6536",
-                                outline: "none"
-                            }}
-                        />
+                {pathname === "verify-email" && <div className="relative px-2 py-1 border rounded border-divider focus-within:border-primary">
+                    <OtpInput
+                        value={code}
+                        onChange={handleOtpChange}
+                        numInputs={6}
+                        separator={<span style={{ width: "10px" }}></span>}
+                        // isInputNum={true} only number
+                        shouldAutoFocus={true}
+                        inputStyle={{
+                            // border: "transparent",
+                            border: "1px solid red",
+                            borderRadius: "8px",
+                            boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.5)",
+                            // background: "#2C333F",
+                            width: "54px",
+                            height: "54px",
+                            fontSize: "12px",
+                            color: "black",
+                            fontWeight: "400",
+                        }}
+                        focusStyle={{
+                            border: "1px solid #EB6536",
+                            outline: "none"
+                        }}
+                    />
+                </div>}
                 {lists.map((list, index) => (
                     <Fragment key={index}>
-                        {/* {list.type === "code" && (
-                            <div className="w-16 h-16 ">
-                                <input 
-                                    // {...form(list.name)}
-                                    className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700" 
-                                    type={list.type}
-                                />
-                            </div>
-                        )} */}
                         {["input", "textarea"].includes(list.type) && (
                             <fieldset>
                                 <div className="flex items-baseline justify-between">
@@ -176,7 +172,7 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                         label={btnTxt}
                         variant="contained"
                         className="w-full"
-                        disabled={!isValid}
+                        disabled={pathname === "verify-email" ? !otpFilled : !isValid}
                         onClick={() => handleSubmit(onSubmit)}
                     />
                 </div>  
