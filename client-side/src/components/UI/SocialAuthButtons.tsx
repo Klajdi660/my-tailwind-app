@@ -10,7 +10,7 @@ export const SocialAuthButton: FunctionComponent<SocialAuthButtonProps> = () => 
             {socialAuthList.map((item) => (
                 <button
                     key={item.id}
-                    className="flex items-center justify-center w-full gap-2 p-3 text-left border rounded border-divider hover:bg-primary-opacity"
+                    className="flex items-center w-full gap-2 p-3 text-left border rounded border-divider hover:bg-primary-opacity"
                 >
                     <Icons name={item.icon}/>
                     <span className="text-sm text-onNeutralBg">Continue with {item.name}</span>

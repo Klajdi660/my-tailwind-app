@@ -24,9 +24,12 @@ export const socialAuthList = [
 export const formList: FormListMap = {
     "login": [
         {
-            formName: "Login",
+            formName: "login",
             formTitle: "Login",
-            btnTxt: "Login"
+            btnTxt: "Login",
+            footerTitle: "No account?",
+            footerLink: "Sign up",
+            linkTo: "/register"
         },
         {
             type: "input",
@@ -43,9 +46,12 @@ export const formList: FormListMap = {
     ],
     "register": [
         {
-            formName: "Register",
+            formName: "register",
             formTitle: "Create your account",
-            btnTxt: "Register"
+            btnTxt: "Register",
+            footerTitle: "Have an account?",
+            footerLink: "Sign in",
+            linkTo: "/login"
         },
         {
             type: "input",
@@ -72,8 +78,45 @@ export const formList: FormListMap = {
             props: { type: "password", placeholder: "" },
         }
     ],
-    "verify-email": [],
+    "verify-email": [
+        {
+            formName: "verify-email",
+            formTitle: "Verify your account",
+            btnTxt: "Verify",
+            footerTitle: "Didn't recieve code?",
+            footerLink: "Resend",
+            linkTo: "/login"
+        },
+        {
+            type: "code",
+            name: "code1",
+            props: { type: "number", placeholder: "" },
+        },
+        // {
+        //     type: "code",
+        //     name: "code2",
+        //     props: { type: "number", placeholder: "" },
+        // },
+        // {
+        //     type: "code",
+        //     name: "code3",
+        //     props: { type: "number", placeholder: "" },
+        // },
+        // {
+        //     type: "code",
+        //     name: "code4",
+        //     props: { type: "number", placeholder: "" },
+        // },
+    ],
     "forgot-password": [
+        {
+            formName: "forgot-password",
+            formTitle: "Reset Password",
+            btnTxt: "Send Email",
+            footerTitle: "Remember Password?",
+            footerLink: "Go back",
+            linkTo: "/login"
+        },
         {
             type: "input",
             name: "email",
@@ -82,6 +125,14 @@ export const formList: FormListMap = {
         },
     ],
     "reset-password": [
+        {
+            formName: "reset-password",
+            formTitle: "Change Password",
+            btnTxt: "Reset Password",
+            footerTitle: "Remember Password?",
+            footerLink: "Go back",
+            linkTo: "/login"
+        },
         {
             type: "input",
             name: "password",

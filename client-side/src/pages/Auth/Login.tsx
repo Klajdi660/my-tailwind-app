@@ -27,9 +27,8 @@ const Login: FunctionComponent = () => {
     // />
     <Form 
       lists={lists}
-      btnTxt={lists[0].btnTxt}
-      onSubmit={handleOnSubmit}
       schema={loginValidation}
+      onSubmit={handleOnSubmit}
     />
   );
 };

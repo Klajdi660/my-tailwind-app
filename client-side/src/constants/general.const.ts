@@ -6,7 +6,8 @@ export const paths = {
     register: "register",
     verifyEmail: "verify-email",
     forgotPassword: "forgot-password",
-    changePassword: "update-password/:email/:username/:h/:exp",
+    // changePassword: "update-password/:email/:username/:h/:exp",
+    resetPassword: "reset-password",
     chooseUsername: "choose-username",
     myCourses: "my-courses",
     profile: "profile"

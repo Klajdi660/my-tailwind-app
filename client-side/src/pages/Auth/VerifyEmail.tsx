@@ -1,15 +1,20 @@
 import { FunctionComponent } from "react";
-import { Template } from "../../components";
-
+import { useFormList } from "../../hooks";
+import { Form } from "../../components/Auth/Form";
+import { verifyValidation } from "../../utils";
 
 const VerifyEmail: FunctionComponent = () => {
-    return (
-      <Template
-        title="Verify Email"
-        description="Enter Your OTP Code"
-        formType="verifyEmail"
-      />
-    );
-  };
+  const { lists } = useFormList();
+
+  const handleOnSubmit = async (values: any) => {};
+
+  return (
+    <Form 
+      lists={lists}
+      onSubmit={handleOnSubmit}
+      schema={verifyValidation}
+    />
+  );
+};
   
-  export default VerifyEmail;
+export default VerifyEmail;

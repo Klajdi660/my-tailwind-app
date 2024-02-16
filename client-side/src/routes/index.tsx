@@ -11,6 +11,9 @@ import { FormListProvider } from "../contexts/FormListContext";
 const { 
   login, 
   register,
+  verifyEmail,
+  forgotPassword,
+  resetPassword,
 } = paths;
 
 // const Routes = () =>
@@ -134,18 +137,15 @@ const LoginPage = Loadable(
 const RegisterPage = Loadable(
   lazy(() => import("../pages/Auth/SignUp"))
 );
-
-// const VerifyEmailPage = Loadable(
-//   lazy(() => import("../pages/Auth/VerifyEmail"))
-// );
-
-// const ResetPasswordPage = Loadable(
-//   lazy(() => import("../pages/Auth/ResetPassword"))
-// );
-
-// const UpdatePasswordPage = Loadable(
-//   lazy(() => import("../pages/Auth/ChangePassword"))
-// );
+const VerifyEmailPage = Loadable(
+  lazy(() => import("../pages/Auth/VerifyEmail"))
+);
+const ResetPasswordPage = Loadable(
+  lazy(() => import("../pages/Auth/ResetPassword"))
+);
+const ChangePasswordPage = Loadable(
+  lazy(() => import("../pages/Auth/ChangePassword"))
+);
 
 // const ProfilePage = Loadable(
 //   lazy(() => import("../pages/Dashboard"))
@@ -188,6 +188,18 @@ export const router = createBrowserRouter([
           {
             path: register,
             element: <RegisterPage />
+          },
+          {
+            path: verifyEmail,
+            element: <VerifyEmailPage />
+          },
+          {
+            path: forgotPassword,
+            element: <ResetPasswordPage />
+          },
+          {
+            path: resetPassword,
+            element: <ChangePasswordPage />
           }
         ]
       },

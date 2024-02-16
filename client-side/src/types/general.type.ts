@@ -31,6 +31,9 @@ export interface FormListItem {
   formName: string;
   formTitle: string;
   btnTxt: string;
+  footerTitle: string;
+  footerLink: string;
+  linkTo: string;
 };
 export interface TemplateProps {
   title?: string;

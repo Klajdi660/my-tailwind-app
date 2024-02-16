@@ -1,12 +1,18 @@
 import { FunctionComponent } from "react";
-import { Template } from "../../components";
+import { useFormList } from "../../hooks";
+import { Form } from "../../components/Auth/Form";
+import { forgotPassValidation } from "../../utils";
 
 const ResetPassword: FunctionComponent = () => {
+  const { lists } = useFormList();
+
+  const handleOnSubmit = async (values: any) => {};
+
   return (
-    <Template
-      title="Reset your password"
-      description="We'll email you instructions to reset your password. If you don't have access to your email we can try account recovery."
-      formType="resetPassword"
+    <Form 
+      lists={lists}
+      onSubmit={handleOnSubmit}
+      schema={forgotPassValidation}
     />
   );
 };
