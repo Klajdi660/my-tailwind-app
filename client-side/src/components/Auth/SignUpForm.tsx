@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Space, Input, Button, Checkbox } from "antd";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-// import { Tab } from "../UI/Tab";
+import { Tab } from "../UI";
 import { accountTypes } from "../../constants";
 import useAuthService from "../../services/AuthService";
 import { RegisterUserInput } from "../../types/user.type";
@@ -34,7 +34,7 @@ export const SignUpForm: FunctionComponent = () => {
     return (
         <>
             {/* <Tab 
-                tabData={accTypeData}
+                tabData={accountTypes}
                 field={accountType}
                 setField={setAccountType}
             /> */}
