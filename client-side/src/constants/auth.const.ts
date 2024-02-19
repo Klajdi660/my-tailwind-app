@@ -12,13 +12,27 @@ export const socialAuthList = [
     { 
         id: 1,
         name: "Google", 
-        icon: "FcGoogle"
+        icon: "FcGoogle",
+        link: "http://localhost:8080/api/auth/google",
     },
     { 
         id: 2,
         name: "Github", 
-        icon: "FaGithub" 
+        icon: "FaGithub",
+        link: "", 
     },
+    // { 
+    //     id: 1,
+    //     name: "Google", 
+    //     icon: "FcGoogle",
+    //     link: "",
+    // },
+    // { 
+    //     id: 2,
+    //     name: "Github", 
+    //     icon: "FaGithub",
+    //     link: "",
+    // }
 ];
 
 export const formList: FormListMap = {
@@ -42,6 +56,12 @@ export const formList: FormListMap = {
             name: "password",
             label: "Password",
             props: { type: "password", placeholder: "" },
+        },
+        {
+            type: "checkbox",
+            name: "remember",
+            label: "Remember Me",
+            props: { type: "checkbox", placeholder: "" },
         }
     ],
     "register": [

@@ -36,8 +36,8 @@ export interface FormListItem {
   linkTo: string;
 };
 export interface TemplateProps {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   formType: string;
 }; 
 // 

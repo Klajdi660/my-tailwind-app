@@ -1,4 +1,37 @@
-export const themeConfig = {
+interface ThemeConfig {
+  modes: string[];
+  colors: {
+    [key: string]: {
+      primary: string;
+      primaryLightGray: string;
+      primaryOpacity: string;
+    };
+  };
+  themes: {
+    [key: string]: {
+      neutralBg: string;
+      neutralBgOpacity: string;
+      neutralBgAlt: string;
+      onNeutralBg: string;
+      onNeutralBgSecondary: string;
+      onNeutralBgDivider: string;
+      switchBg: string;
+      cardBg: string;
+      cardSkeletonBg: string;
+      cardBgHover: string;
+      player: string;
+    };
+  };
+  layouts: string[];
+  players: string[];
+  fontFamilies: string[];
+  sidebars: {
+    folded: string;
+    full: string;
+  };
+}
+
+export const themeConfig: ThemeConfig = {
   modes: ["light", "dark"],
   colors: {
     cyan: {
@@ -48,8 +81,7 @@ export const themeConfig = {
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 export const defaultThemeConfig = {
-  // mode: themeConfig?.modes?.[prefersDark ? 1 : 0],
-  mode: themeConfig?.modes?.[prefersDark ? 0 : 1],  
+  mode: themeConfig?.modes?.[prefersDark ? 1 : 0],
   layout: themeConfig?.layouts?.[0],
   color: Object.keys(themeConfig?.colors)?.[0],
   sidebar: Object.keys(themeConfig?.sidebars)?.[1],

@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import { useFormList } from "../../hooks";
 import { Form } from "../../components/Auth/Form";
 import { resetPassValidation} from "../../utils";
+import { Template } from "../../components";
 
 const ChangePassword: FunctionComponent = () => {
   const { lists } = useFormList();
@@ -9,10 +10,10 @@ const ChangePassword: FunctionComponent = () => {
   const handleOnSubmit = async (values: any) => {};
 
   return (
-    <Form 
-      lists={lists}
-      onSubmit={handleOnSubmit}
-      schema={resetPassValidation}
+    <Template
+      title="Change Password"
+      description="to continue to Groove"
+      formType="reset-password"
     />
   );
 };

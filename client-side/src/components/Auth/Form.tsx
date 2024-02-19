@@ -5,8 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import OtpInput from "react18-input-otp";
 import { logo } from "../../constants";
 import { FormListItem } from "../../types/general.type";
-import { /*Button,*/ IconButton, Icons, Title, SocialAuthButton } from "../UI";
-import { Button } from "antd";
+import { Button, IconButton, Icons, Title, SocialAuthButton } from "../UI";
+
 interface FormProps {
     lists: FormListItem[];
     onSubmit?: any;
@@ -30,6 +30,7 @@ export const Form: FunctionComponent<FormProps> = (props) => {
     const [code, setCode] = useState<string>("");
     const [otpFilled, setOtpFilled] = useState(false);
 
+
     const [{ formName, formTitle, footerTitle, footerLink, linkTo, btnTxt }] = lists;
     const pathname = formName.toLowerCase();
 
@@ -44,10 +45,8 @@ export const Form: FunctionComponent<FormProps> = (props) => {
     });    
 
     const handleOtpChange = async (code: string) => {
-        console.log("OTP Code Changed:", code);
         setCode(code);
         setOtpFilled(code.length === 6);
-        console.log("Is OTP Filled:", code.length === 6);
     };
   
     const isButtonDisabled = pathname === "verify-email" ? !otpFilled : !isValid;
@@ -171,16 +170,30 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                         )}
                     </Fragment>
                 ))}
-                {/* <div className="flex items-center justify-start w-full hover:brightness-110"> */}
-                    {/* <Button 
+                {/* {pathname === "login" && (
+                    <div className="flex flex-1 items-center">
+                        <input type="checkbox" id="remember" name="remember" value="remember"/>
+                        <label className="ml-2">Remember Me</label>
+                        <div className="ml-auto max-w-max text-right">
+                            <Link
+                                to="/forgot-password"
+                                className="text-onNeutralBg"
+                            >
+                                <p className="hover:underline underline-offset-2">Forgot Password!</p>
+                            </Link>
+                        </div>
+                    </div>
+                )} */}
+                <div className="flex items-center justify-start w-full hover:brightness-110">
+                    <Button 
                         type="submit"
                         label={btnTxt}
                         variant="contained"
                         className="w-full"
                         disabled={isButtonDisabled}
                         onClick={() => handleSubmit(onSubmit)}
-                    /> */}
-                    <Button 
+                    />
+                    {/* <Button 
                         className="w-full h-10 bg-primary" 
                         type="primary" 
                         htmlType="submit"
@@ -188,11 +201,11 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                         onClick={() => handleSubmit(onSubmit)}
                     >
                         {btnTxt}
-                    </Button>
-                {/* </div>   */}
+                    </Button> */}
+                </div>  
             </form>
             <div className="flex flex-col items-center justify-center gap-2 mt-4 text-sm text-onNeutralBg">
-                {pathname === "login" && (
+                {/* {pathname === "login" && (
                     <div>
                         Forgot Password?{" "}
                         <Link
@@ -202,7 +215,7 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                             Reset
                         </Link>
                     </div>
-                )}
+                )} */}
                 <div>
                     {footerTitle}{" "}
                     <Link

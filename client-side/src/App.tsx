@@ -10,13 +10,12 @@ import { AuthProvider } from "./contexts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { router } from "./routes";
-import "./index.css";
 import { StylesProvider } from "./providers";
+import "./index.css";
 
 const themeConfig = {
   algorithm: theme.defaultAlgorithm,
   token: {
-    // colorPrimary: "#EB6536",
     colorPrimary: "#0077B5",
   },
 };
@@ -32,16 +31,7 @@ const Application = () => {
             <ConfigProvider theme={themeConfig}>
               <App>
                 <StylesProvider />
-                <ToastContainer
-                  // position="top-right"
-                  // autoClose={5000}
-                  // hideProgressBar={false}
-                  // newestOnTop={false}
-                  // closeOnClick
-                  // pauseOnFocusLoss={false}
-                  // pauseOnHover={false}
-                  // theme="dark"
-                />
+                <ToastContainer />
                 {/* <Router>
                   <Routes />
                 </Router> */}

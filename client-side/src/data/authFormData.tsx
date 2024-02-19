@@ -1,17 +1,10 @@
 import { ReactNode } from "react";
-import SignUpForm from "../components/Auth/SignUpForm";
-import LoginForm from "../components/Auth/LoginForm";
-import VerifyEmailForm from "../components/Auth/VerifyEmailForm";
-import ResetPasswordForm from "../components/Auth/ResetPasswordForm";
-import ChangePasswordForm from "../components/Auth/ChangePasswordForm";
-import ChooseUsernameForm from "../components/Auth/ChooseUsernameForm";
+import { ForgotPasswordForm, LoginForm, SignUpForm, VerifyEmailForm, ResetPasswordForm } from "../components/Auth";
 
 export const authFormData: Record<string, ReactNode> = {
     "register": <SignUpForm />,
     "login": <LoginForm />,
-    verifyEmail: <VerifyEmailForm />,
-    resetPassword: <ResetPasswordForm/>,
-    changePassword: <ChangePasswordForm/>,
-    chooseUsername: <ChooseUsernameForm />,
-    checkEmail: "",
+    "verify-email": <VerifyEmailForm />,
+    "forgot-password": <ForgotPasswordForm/>,
+    "reset-password": <ResetPasswordForm/>,
 };

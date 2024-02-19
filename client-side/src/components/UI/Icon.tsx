@@ -6,7 +6,8 @@ import { IconContext } from "react-icons";
 import { classNames } from "../../utils";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { FaGithub } from "react-icons/fa";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { FaGithub, FaApple } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { MdHome } from "react-icons/md";
 import { SlGameController } from "react-icons/sl";
@@ -50,7 +51,10 @@ const icons: IconsMap = {
   FaGithub,
   FcGoogle,
   MdHome, 
-  SlGameController 
+  SlGameController,
+  FiEye,
+  FiEyeOff,
+  FaApple,
 };
 
 export const Icons: FunctionComponent<IconParams> = ({

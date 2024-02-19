@@ -1,30 +1,48 @@
 import { FunctionComponent } from "react";
-import { Layout, Typography, Space } from "antd";
+import { Link } from "react-router-dom";
 import { authFormData } from "../../data";
 import { TemplateProps } from "../../types/general.type";
-import { FormGateway } from "../UI/FormGateway";
-
-const { Content } = Layout;
-const { Title } = Typography;
+import { Icons, SocialAuthButton, Title } from "../UI";
+import { logo } from "../../constants";
 
 export const Template: FunctionComponent<TemplateProps> = (props) => {
     const { title, description, formType } = props;
 
     return (
-        <Content className="mx-auto w-11/12 justify-center items-center flex flex-col">
-            <Space
-                className="card-form flex mx-auto w-[100%] max-w-[460px] md:mx-0 bg-[#1c1c24] rounded-xl p-5"
-                direction="vertical"
-            >
-                <Title style={{ color: "#F1F2FF", fontSize: "1.875rem" }} className="text-center">
-                   {title}
-                </Title>
-                <p className="text-[1.125rem] leading-[1.625rem] text-center mb-[14px]">
-                   <span className="text-richblack-100">{description}</span>
-                </p>
-                {(formType === "signup" || formType === "login") && <FormGateway/>}
+        <div className="flex-col h-full py-6 m-auto bg-main flex_justify_center">
+            <div className="w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 bg-card rounded">
+                <div className="flex flex-col items-center mb-6 lg:mb-6">
+                    <Link
+                        to="/"
+                        className="flex flex-row items-center gap-1 m-0 logo"                
+                    >
+                        <Icons
+                            name={logo.icon}
+                            className="!text-primary"
+                            size={20}
+                        />
+                        <h1 className="text-[20px] text-primary font-bold">
+                            {logo.name}
+                        </h1>
+                    </Link>
+                </div>
+                <Title 
+                    name={title || ""}
+                    desc={description}
+                    type="medium"
+                />
+                {["login", "register"]?.includes(formType) && (
+                    <>
+                        <SocialAuthButton />
+                        <div className="flex items-center justify-center gap-4 my-6 divider">
+                            <div className="h-[1px] bg-divider flex-1" />
+                            <span className="text-sm text-onNeutralBg">or</span>
+                            <div className="h-[1px] bg-divider flex-1" />
+                        </div>
+                    </>
+                )}
                 {authFormData[formType] || null}
-            </Space>
-        </Content>
+            </div>
+        </div>
     );
 };

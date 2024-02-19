@@ -1,17 +1,15 @@
 import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, Space, Input, Button, Typography, Checkbox } from "antd";
+import { Form, Space, Input, Button, Checkbox } from "antd";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Tab } from "../UI/Tab";
+// import { Tab } from "../UI/Tab";
 import { accountTypes } from "../../constants";
 import useAuthService from "../../services/AuthService";
 import { RegisterUserInput } from "../../types/user.type";
 import { useAuth } from "../../hooks";
 import { toast } from "react-toastify";
 
-const { Title } = Typography;
-
-const SignUpForm: FunctionComponent = () => {
+export const SignUpForm: FunctionComponent = () => {
     // student or instructor
     const [accountType, setAccountType] = useState(accountTypes[0].tabName);
     const { signup } = useAuthService();
@@ -43,8 +41,7 @@ const SignUpForm: FunctionComponent = () => {
             <Form 
                 onFinish={handleOnSubmit} 
                 layout="vertical"
-                // className="mt-6"
-                className="mt-4"
+                className="flex flex-col gap-5"
                 initialValues={{
                     remember: false
                 }}
@@ -53,11 +50,9 @@ const SignUpForm: FunctionComponent = () => {
                     <Form.Item
                         name="firstName"
                         label={
-                            <Title
-                                style={{ color: "#F1F2FF", fontSize: "0.875rem", fontWeight: 400 }}
-                            >
+                            <div className="text-xs font-semibold text-secondary">        
                                 First Name
-                            </Title>
+                            </div>
                         }
                         rules={[
                             {
@@ -67,19 +62,17 @@ const SignUpForm: FunctionComponent = () => {
                         ]}
                     >
                         <Input
-                            placeholder="Enter first name"
-                            className="form-style"
+                            placeholder="First Name"
+                            className="h-10"
                             autoComplete="off"
                         />
                     </Form.Item>
                     <Form.Item
                         name="lastName"
                         label={
-                            <Title 
-                                style={{ color: "#F1F2FF", fontSize: "0.875rem", fontWeight: 400 }}
-                            >
+                            <div className="text-xs font-semibold text-secondary">        
                                 Last Name
-                            </Title>
+                            </div>
                         }
                         rules={[
                             {
@@ -89,8 +82,8 @@ const SignUpForm: FunctionComponent = () => {
                         ]}
                     >
                         <Input
-                            placeholder="Enter last name"
-                            className="form-style"
+                            placeholder="Last Name"
+                            className="h-10"
                             autoComplete="off"
                         />
                     </Form.Item>
@@ -98,11 +91,9 @@ const SignUpForm: FunctionComponent = () => {
                 <Form.Item 
                     name="email"
                     label={
-                        <Title
-                            style={{ color: "#F1F2FF", fontSize: "0.875rem" }}
-                        >
+                        <div className="text-xs font-semibold text-secondary">
                             Email Address
-                        </Title>
+                        </div>
                     }
                     rules={[
                         {
@@ -112,19 +103,17 @@ const SignUpForm: FunctionComponent = () => {
                     ]}
                 >
                     <Input
-                        placeholder="Enter email address"
-                        className="form-style w-full"
+                        placeholder="Email Address"
+                        className="w-full h-10"
                         autoComplete="off"
                     />
                 </Form.Item>
                 <Form.Item 
                     name="username"
                     label={
-                        <Title
-                            style={{ color: "#F1F2FF", fontSize: "0.875rem" }}
-                        >
+                        <div className="text-xs font-semibold text-secondary">        
                             Username
-                        </Title>
+                        </div>
                     }
                     rules={[
                         {
@@ -134,8 +123,8 @@ const SignUpForm: FunctionComponent = () => {
                     ]}
                 >
                     <Input
-                        placeholder="Enter username"
-                        className="form-style w-full"
+                        placeholder="Username"
+                        className="w-full h-10"
                         autoComplete="off"
                     />
                 </Form.Item>
@@ -143,11 +132,9 @@ const SignUpForm: FunctionComponent = () => {
                     <Form.Item 
                         name="password"
                         label={
-                            <Title
-                                style={{ color: "#F1F2FF", fontSize: "0.875rem" }}
-                            >
+                            <div className="text-xs font-semibold text-secondary">        
                                 Password
-                            </Title>
+                            </div>
                         }
                         rules={[
                             {
@@ -157,8 +144,8 @@ const SignUpForm: FunctionComponent = () => {
                         ]}    
                     >
                         <Input.Password
-                            placeholder="Enter password"
-                            className="form-style"
+                            placeholder="Password"
+                            className="h-10"
                             autoComplete="password"
                             iconRender={(visible) => 
                                 visible ? (
@@ -172,11 +159,9 @@ const SignUpForm: FunctionComponent = () => {
                     <Form.Item
                         name="passwordConfirm"
                         label={
-                            <Title
-                                style={{ color: "#F1F2FF", fontSize: "0.875rem" }}
-                            >
+                            <div className="text-xs font-semibold text-secondary">        
                                 Confirm Password
-                            </Title>
+                            </div>
                         }
                         rules={[
                             {
@@ -186,8 +171,8 @@ const SignUpForm: FunctionComponent = () => {
                         ]}
                     >
                         <Input.Password
-                            placeholder="Enter confirm password"
-                            className="form-style"
+                            placeholder="Confirm Password"
+                            className="h-10"
                             autoComplete="passwordConfirm"
                             iconRender={(visible) =>
                                 visible ? (
@@ -200,28 +185,26 @@ const SignUpForm: FunctionComponent = () => {
                     </Form.Item>
                 </Space>
                 <Form.Item name="agreedToTerms" valuePropName="checked" noStyle>
-                    <Checkbox className="text-[#F1F2FF]" style={{ fontSize: "0.75rem", lineHeight: "1rem" }}>
-                        I accept the <Link to="#">Terms and Conditions!</Link>
+                    <Checkbox className="text-secondary" style={{ fontSize: "12px", lineHeight: "16px" }}>
+                        I accept the <Link to="#" className="text-primary hover:underline underline-offset-2">Terms and Conditions!</Link>
                     </Checkbox>
                 </Form.Item>
                 <Button
                     type="primary"
                     htmlType="submit"
-                    className="form-btn bg-orange-10"
+                    className="h-10 bg-primary"
                 >
-                    Create Account
+                    Register
                 </Button>
-                <div className="flex justify-center text-richblack-5 mt-4">
+                <div className="flex justify-center text-sm text-onNeutralBg">
                     Already have an account? &nbsp;
                     <Link to="/login">
-                        <p className="text-orange-10 hover:text-richblack-5">
+                        <p className="text-primary hover:underline underline-offset-2">
                             Login!
                         </p>
                     </Link>
-            </div>
+                </div>
             </Form>
         </>
     );
 };
-
-export default SignUpForm;

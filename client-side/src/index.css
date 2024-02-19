@@ -124,3 +124,10 @@ input:-webkit-autofill:focus {
   background-color: var(--neutralBgAlt) !important;
   color: var(--onNeutralBg) !important;
 }
+
+/* ANTD */
+.ant-form-vertical .ant-form-item {
+  margin-bottom: 0px;
+}
+
+.ant-form-vertical .ant-form-item input::placeholder {}

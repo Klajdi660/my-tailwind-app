@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import OtpInput from "react18-input-otp";
 import { Form, Button, Progress } from "antd";
 
-const VerifyEmailForm: FunctionComponent = () => {
+export const VerifyEmailForm: FunctionComponent = () => {
     const [code, setCode] = useState<string>("");
     const [secondsLeft, setSecondsLeft] = useState<number>(60);
-    const [progressColor, setProgressColor] = useState<string>('#EB6536');
+    const [progressColor, setProgressColor] = useState<string>("#00A300");
+    const [otpFilled, setOtpFilled] = useState(false);
 
     const handleOtpChange = async (code: string) => {
         setCode(code);
+        setOtpFilled(code.length === 6);
     };
 
     const handleOnSubmit = async () => {};
@@ -35,7 +37,8 @@ const VerifyEmailForm: FunctionComponent = () => {
 
     return (
         <Form 
-            className="mt-4 items-center flex flex-col justify-center" 
+            className="flex flex-col gap-5" 
+            layout="vertical"
             onFinish={handleOnSubmit}
 	    >
             <Form.Item>
@@ -43,51 +46,53 @@ const VerifyEmailForm: FunctionComponent = () => {
                     value={code}
                     onChange={handleOtpChange}
                     numInputs={6}
-                    separator={<span style={{ width: "10px" }}></span>}
+                    separator={false}
                     // isInputNum={true} only number
                     shouldAutoFocus={true}
+                    containerStyle={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "5px",
+                    }}
                     inputStyle={{
-                        border: "transparent",
-                        borderRadius: "8px",
-                        boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.5)",
-                        background: "#2C333F",
-                        width: "54px",
-                        height: "54px",
-                        fontSize: "12px",
-                        color: "#fff",
-                        fontWeight: "400",
+                        width: "48px",
+                        height: "48px",
+                        margin: "0 5px",
+                        fontSize: "18px",
+                        textAlign: "center",
+                        border: "1px solid #e5e5e5",
+                        borderRadius: "5px",
+                        outline: "none",
                     }}
                     focusStyle={{
-                        border: "1px solid #EB6536",
+                        border: "1px solid #0077B5",
                         outline: "none"
                     }}
                 />
             </Form.Item>
             <Button
-                className="form-btn bg-orange-10"
+                className="h-10 bg-primary"
                 type="primary"
                 htmlType="submit"
+                disabled={!otpFilled}
             >
                 Verify Email
             </Button>
             {secondsLeft > 0 ? (
                 <Progress
-                    style={{ display: "flex", justifyContent: "center", marginRight: "-3px" }}
+                    // style={{ display: "flex", justifyContent: "center", marginRight: "-3px" }}
                     percent={(secondsLeft / 60) * 100}
-                    // steps={6}
-                    className="mt-4"
-                    // size={20}
                     strokeColor={progressColor}
                     format={() => (
                         <span style={{ color: progressColor }}>{`${secondsLeft}s`}</span>
                     )}
                 />
             ) : (
-                <div className="flex justify-center text-richblack-5 mt-4">
-                    OTP code expired &nbsp;
+                <div className="flex justify-center text-sm text-onNeutralBg">
+                    Didn't recieve code? &nbsp;
                     <Link to="#">
-                        <p className="hover:text-orange-5">
-                            Resend it!
+                        <p className="text-primary hover:underline underline-offset-2">
+                            Resend
                         </p>
                     </Link>
                 </div>
@@ -95,5 +100,3 @@ const VerifyEmailForm: FunctionComponent = () => {
 		</Form>
     );
 };
-
-export default VerifyEmailForm;

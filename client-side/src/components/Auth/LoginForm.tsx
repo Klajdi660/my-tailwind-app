@@ -1,14 +1,15 @@
 import { FunctionComponent, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Form, Typography, Input, Checkbox } from "antd";
-import { FiEye, FiEyeOff } from "react-icons/fi";
+import { Button, Form, Input, Checkbox } from "antd";
+// import { FiEye, FiEyeOff } from "react-icons/fi";
 import useAuthService from "../../services/AuthService";
-import { useAuth } from "../../hooks";
+// import { useAuth } from "../../hooks";
 import { LoginUserInput } from "../../types/user.type";
+import { IconButton } from "../UI";
+import { loginValidation } from "../../utils";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-const { Title } = Typography;
-
-const LoginForm: FunctionComponent = () => {
+export const LoginForm: FunctionComponent = () => {
     const { login } = useAuthService();
     // const { isAuthenticated } = useAuth();
     // const navigate = useNavigate();
@@ -28,10 +29,15 @@ const LoginForm: FunctionComponent = () => {
         }
     };
 
+    const [form] = Form.useForm();
+    console.log('form :>> ', form);
+
     return (
         <Form
             onFinish={handleOnSubmit}
+            form={form}
             layout="vertical"
+            className="flex flex-col gap-5"
             initialValues={{
                 remember: false
             }}
@@ -39,9 +45,9 @@ const LoginForm: FunctionComponent = () => {
             <Form.Item 
                 name="username"
                 label={
-                    <Title style={{ color: "#F1F2FF", fontSize: "0.875rem" }}>
+                    <div className="text-xs font-semibold text-secondary">
                         Email or Username
-                    </Title>
+                    </div>
                 }
                 rules={[
                     {
@@ -51,17 +57,17 @@ const LoginForm: FunctionComponent = () => {
                 ]}
             >
                 <Input
-                    placeholder="Enter email or username"
-                    className="form-style w-full"
+                    placeholder="Email Address or Username"
+                    className="w-full h-10"
                     autoComplete="email"
                 />
             </Form.Item>
             <Form.Item 
                 name="password"
                 label={
-                    <Title style={{ color: "#F1F2FF", fontSize: "0.875rem" }}>
+                    <div className="text-xs font-semibold text-secondary">
                         Password
-                    </Title>
+                    </div>
                 }
                 rules={[
                     {
@@ -71,41 +77,47 @@ const LoginForm: FunctionComponent = () => {
                 ]}
             >
                 <Input.Password
-                    placeholder="Enter password"
+                    placeholder="Password"
                     autoComplete="password"
-                    className="form-style w-full"
-                    iconRender={(visible) =>
-                        visible ? (
-                            <FiEye style={{ color: '#6E727F', cursor: "pointer" }} />
-                        ) : (
-                            <FiEyeOff style={{ color: '#6E727F', cursor: "pointer" }} />
-                        )
-                    }
+                    className="mb-0 w-full h-10"
+                    // iconRender={(visible) =>
+                    //     visible ? (
+                    //         <FiEye style={{ color: '#6E727F', cursor: "pointer" }} />
+                    //     ) : (
+                    //         <FiEyeOff style={{ color: '#6E727F', cursor: "pointer" }} />
+                    //     )
+                    // }
+                    iconRender={(visible) => (
+                        <IconButton
+                            name={visible ? "AiFillEye" : "AiFillEyeInvisible"}
+                            iconClassName="text-onNeutralBg"
+                        />
+                    )}
                 />
             </Form.Item>
             <div className="flex flex-1 items-center h-[30px]">
                 <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox className="text-[#F1F2FF]" style={{ fontSize: "0.75rem", lineHeight: "1rem" }}>
+                    <Checkbox className="text-secondary" style={{ fontSize: "12px", lineHeight: "16px" }}>
                         Remember me
                     </Checkbox>
                 </Form.Item>
-                <Link to="/forgot-password" className="ml-auto max-w-max text-xs text-right text-[#F1F2FF]">
-                    <p className="hover:text-orange-5">
-                        Forgot Password
+                <Link to="/forgot-password" className="ml-auto max-w-max text-xs text-right text-onNeutralBg">
+                    <p className="text-xs text-primary hover:underline underline-offset-2">
+                        Forgot Password!
                     </p>
                 </Link>
             </div>
             <Button
                 type="primary"
                 htmlType="submit"
-                className="form-btn bg-orange-10"
+                className="h-10 bg-primary"
             >
-                Sign In
+                Login
             </Button>
-            <div className="flex justify-center text-[#F1F2FF] mt-4">
+            <div className="flex justify-center text-sm text-onNeutralBg">
                 Don't have an Account? &nbsp;
-                <Link to="/signup">
-                    <p className="text-orange-10 hover:text-richblack-5">
+                <Link to="/register">
+                    <p className="text-primary hover:underline underline-offset-2">
                         Sign up!
                     </p>
                 </Link>
@@ -113,5 +125,3 @@ const LoginForm: FunctionComponent = () => {
         </Form>
     );
 };
-
-export default LoginForm;

@@ -1,62 +1,91 @@
 import { FunctionComponent } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Form, Typography, Input } from "antd";
-import { HiChevronDoubleLeft } from "react-icons/hi";
+import { Link, useParams } from "react-router-dom";
+import { Button, Form, Input } from "antd";
+import { IconButton } from "../UI";
 
-const { Title } = Typography;
-
-const ResetPasswordForm: FunctionComponent = () => {
-    const navigate = useNavigate();
-
+export const ResetPasswordForm: FunctionComponent = () => {
+    const params = useParams();
+    console.log('params :>> ', params);
     const handleOnSubmit = async (value: string) => {
         console.log('value :>> ', value);
-        navigate("/update-password");
     };
 
     return (
         <Form
             onFinish={handleOnSubmit}
-            className="mt-4"
             layout="vertical"
+            className="flex flex-col gap-5"
             initialValues={{
                 remember: false
             }}
         >
-            <Form.Item 
-                name="email"
+             <Form.Item 
+                name="password"
                 label={
-                    <Title style={{ color: "#F1F2FF", fontSize: "0.875rem" }}>
-                        Email Address
-                    </Title>
+                    <div className="text-xs font-semibold text-secondary">
+                        Password
+                    </div>
                 }
                 rules={[
                     {
                         required: true,
-                        message: "Please input your Email address!"
+                        message: "Please input your Password!"
                     }
                 ]}
             >
-                <Input
-                    placeholder="Enter email address"
-                    className="form-style w-full"
-                    autoComplete="email"
+                <Input.Password
+                    placeholder="Password"
+                    autoComplete="password"
+                    className="w-full h-10"
+                    iconRender={(visible) => (
+                        <IconButton
+                            name={visible ? "AiFillEye" : "AiFillEyeInvisible"}
+                            iconClassName="text-onNeutralBg"
+                        />
+                    )}
+                />
+            </Form.Item>
+            <Form.Item
+                name="confirmPassword"
+                label={
+                    <div className="text-xs font-semibold text-secondary">
+                        Confirm Password
+                    </div>
+                }
+                rules={[
+                    {
+                        required: true,
+                        message: "Please input again Password!"
+                    }
+                ]}
+            >
+                <Input.Password
+                    placeholder="Confirm Password"
+                    className="w-full h-10"
+                    autoComplete="confirmPassword"
+                    iconRender={(visible) => (
+                        <IconButton
+                            name={visible ? "AiFillEye" : "AiFillEyeInvisible"}
+                            iconClassName="text-onNeutralBg"
+                        />
+                    )}
                 />
             </Form.Item>
             <Button
                 type="primary"
                 htmlType="submit"
-                className="form-btn bg-orange-10"
+                className="h-10 bg-primary"
             >
                 Reset Password
             </Button>
-            <Link to="/login" className="ml-auto max-w-max text-base text-start text-richblack-5">
-                <p className="mt-4 flex flex-row items-center hover:text-orange-5">
-                    <HiChevronDoubleLeft className="mr-2" size={20}/>
-                    Back to Login
-                </p>
-            </Link>
+            <div className="flex justify-center text-sm text-onNeutralBg">
+                Remember Password? &nbsp;
+                <Link to="/login">
+                    <p className="text-primary hover:underline underline-offset-2">
+                        Go back
+                    </p>
+                </Link>
+            </div>
         </Form>
     );
 };
-
-export default ResetPasswordForm;

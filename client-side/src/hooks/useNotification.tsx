@@ -21,7 +21,7 @@ export const useNotification = () => {
         
         toastFunc(
             <div className="flex flex-col gap-2 text-sm ">
-                <span className="text-onNeurtralBg">{title}</span>
+                {/* <span className="text-onNeurtralBg">{title}</span> */}
                 <span className="text-onNeurtralBg">{description}</span>
             </div>,
             {
@@ -29,7 +29,9 @@ export const useNotification = () => {
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
-                pauseOnHover: true,
+                // pauseOnHover: true,
+                pauseOnFocusLoss: false,
+                pauseOnHover: false,
                 draggable: true,
                 progress: undefined,
                 theme: "dark",

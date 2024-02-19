@@ -15,7 +15,6 @@ export const loginHandler = async (usernameOrEmail: string, password: string, re
     if (!user) {
         return { error: true, message: "User is not Registered with us, please SignUp to continue." };
     }
-
     
     if (user && user.provider !== EMAIL_PROVIDER.Email) {
         return { error: true, message: `That email address is already in use using ${user.provider} provider.` };
