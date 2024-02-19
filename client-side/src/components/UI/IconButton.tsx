@@ -37,9 +37,9 @@ export const IconButton: FunctionComponent<IconButtonProps> = forwardRef(
         {...props}
       >
         <Icons 
-            name={name} 
-            size={size} 
-            className={iconClassName} 
+          name={name} 
+          size={size} 
+          className={iconClassName} 
         />
       </button>
     );

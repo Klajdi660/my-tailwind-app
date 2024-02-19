@@ -5,8 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import OtpInput from "react18-input-otp";
 import { logo } from "../../constants";
 import { FormListItem } from "../../types/general.type";
-import { Button, IconButton, Icons, Title, SocialAuthButton } from "../UI";
-
+import { /*Button,*/ IconButton, Icons, Title, SocialAuthButton } from "../UI";
+import { Button } from "antd";
 interface FormProps {
     lists: FormListItem[];
     onSubmit?: any;
@@ -49,7 +49,9 @@ export const Form: FunctionComponent<FormProps> = (props) => {
         setOtpFilled(code.length === 6);
         console.log("Is OTP Filled:", code.length === 6);
     };
-    console.log('isValid :>> ', isValid);
+  
+    const isButtonDisabled = pathname === "verify-email" ? !otpFilled : !isValid;
+
     return (
         <>
             <div className="flex flex-col items-center mb-6 lg:mb-6">
@@ -83,32 +85,35 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                 </>
             )}
             <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
-                {pathname === "verify-email" && <div className="relative px-2 py-1 border rounded border-divider focus-within:border-primary">
+                {pathname === "verify-email" && (
                     <OtpInput
                         value={code}
                         onChange={handleOtpChange}
                         numInputs={6}
-                        separator={<span style={{ width: "10px" }}></span>}
-                        // isInputNum={true} only number
+                        separator={false}
                         shouldAutoFocus={true}
-                        inputStyle={{
-                            // border: "transparent",
-                            border: "1px solid red",
-                            borderRadius: "8px",
-                            boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.5)",
-                            // background: "#2C333F",
-                            width: "54px",
-                            height: "54px",
-                            fontSize: "12px",
-                            color: "black",
-                            fontWeight: "400",
+                        containerStyle={{
+                            display: "flex",
+                            justifyContent: "center",
+                            marginTop: "4px",
                         }}
+                        inputStyle={{
+                            width: "48px",
+                            height: "48px",
+                            margin: "0 5px",
+                            fontSize: "18px",
+                            textAlign: "center",
+                            border: "1px solid #e5e5e5",
+                            borderRadius: "5px",
+                            outline: "none",
+                        }}
+
                         focusStyle={{
-                            border: "1px solid #EB6536",
+                            border: "1px solid #0077B5",
                             outline: "none"
                         }}
                     />
-                </div>}
+                )}
                 {lists.map((list, index) => (
                     <Fragment key={index}>
                         {["input", "textarea"].includes(list.type) && (
@@ -166,16 +171,25 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                         )}
                     </Fragment>
                 ))}
-                <div className="flex items-center justify-start w-full hover:brightness-110">
-                    <Button 
+                {/* <div className="flex items-center justify-start w-full hover:brightness-110"> */}
+                    {/* <Button 
                         type="submit"
                         label={btnTxt}
                         variant="contained"
                         className="w-full"
-                        disabled={pathname === "verify-email" ? !otpFilled : !isValid}
+                        disabled={isButtonDisabled}
                         onClick={() => handleSubmit(onSubmit)}
-                    />
-                </div>  
+                    /> */}
+                    <Button 
+                        className="w-full h-10 bg-primary" 
+                        type="primary" 
+                        htmlType="submit"
+                        disabled={isButtonDisabled}
+                        onClick={() => handleSubmit(onSubmit)}
+                    >
+                        {btnTxt}
+                    </Button>
+                {/* </div>   */}
             </form>
             <div className="flex flex-col items-center justify-center gap-2 mt-4 text-sm text-onNeutralBg">
                 {pathname === "login" && (

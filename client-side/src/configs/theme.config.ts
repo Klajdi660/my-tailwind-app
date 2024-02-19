@@ -48,7 +48,8 @@ export const themeConfig = {
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 export const defaultThemeConfig = {
-  mode: themeConfig?.modes?.[prefersDark ? 1 : 0],
+  // mode: themeConfig?.modes?.[prefersDark ? 1 : 0],
+  mode: themeConfig?.modes?.[prefersDark ? 0 : 1],  
   layout: themeConfig?.layouts?.[0],
   color: Object.keys(themeConfig?.colors)?.[0],
   sidebar: Object.keys(themeConfig?.sidebars)?.[1],
