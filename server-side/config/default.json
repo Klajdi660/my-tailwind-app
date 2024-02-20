@@ -29,7 +29,9 @@
         "port": 587,
         "secure": false,
         "email": "klajdixhafkollari36@gmail.com",
-        "password": "nyekejfpjnjshevt"
+        "password": "nyekejfpjnjshevt",
+        "grooveit-email": "grooveit96@gmail.com",
+        "grooveit-pass": "vfvbqstwxcauoydk"
     },
     "google": {
         "client_id": "604086717415-8pnd2d5v4itf0pp1s5c1ha2t87bhnlnm.apps.googleusercontent.com",
