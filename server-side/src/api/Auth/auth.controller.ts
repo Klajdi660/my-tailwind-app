@@ -42,7 +42,7 @@ export const loginHandler = async (usernameOrEmail: string, password: string, re
 };
 
 export const registerHandler = async (data: UserParams) => {
-    const { agreedToTerms, email, username, password } = data;
+    const { agreedToTerms, email, username, password, isSubscribed } = data;
 
     if (!agreedToTerms) {
         return { error: true, message: "You must agree to the terms and conditions to register." };
@@ -152,7 +152,15 @@ export const forgotPasswordHandler = async (email: string) => {
         .digest("hex")
     const expirationTime = dayjs().add(60, 's').toISOString();
     
-    const url = `${client_url}/update-password/${user.id}/${hash}/${expirationTime}`;
+    // const tokenData = {
+    //     id: user.id,
+    //     h: hash,
+    //     exp: expirationTime
+    // };
+    // const token = Buffer.from(JSON.stringify(tokenData)).toString('base64');
+    const { refresh_token } = await signToken(user);
+    const url = `${client_url}/reset-password/${refresh_token}`;
+
     let templatePath= "ForgotPassword";
     const templateData = {
         title: "Password Reset",
@@ -170,7 +178,9 @@ export const forgotPasswordHandler = async (email: string) => {
     return { error: false, message: "Email Sent Successfully, Please Check Your Email to Continue Further." };
 };
 
-export const resetPasswordHandler = async (id: string, h: string, exp: string, password: string) => {
+export const resetPasswordHandler = async (token: string, password: string) => {
+    const decodedToken = JSON.parse(atob(token));
+    const { id, h, exp } = decodedToken;
     const user = await getUserById(id);
     if (!user) {
         return { error: true, message: "User is not Registered with us, please SignUp to continue." };
@@ -212,5 +222,5 @@ export const resetPasswordHandler = async (id: string, h: string, exp: string, p
         return { error: true, message: "Somenthing went wrong. Email not sent." };
     }
 
-    return { error: true, message: "Password Reset Successful" };
+    return { error: false, message: "Password Reset Successful" };
 };

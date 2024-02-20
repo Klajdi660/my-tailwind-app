@@ -1,5 +1,4 @@
 export interface UserParams {
-    accountType?: string;
     email: string;
     username: string;
     firstName: string;
@@ -7,6 +6,7 @@ export interface UserParams {
     password: string;
     passwordConfirm: string;
     agreedToTerms?: boolean;
+    isSubscribed?: boolean;
     otpCode?: string;
     expiredCodeAt?: any;
 };

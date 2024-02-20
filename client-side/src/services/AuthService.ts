@@ -7,12 +7,14 @@ import { useNotification } from "../hooks";
 import { AuthResponse, RegisterUserInput } from "../types/user.type";
 // import { toast } from "react-toastify";
 
-const { LOGIN_API, LOGOUT_API, SIGNUP_API } = endpoints;
+const { LOGIN_API, LOGOUT_API, SIGNUP_API, FORGOTPASSWORD_API, RESETPASSWORD_API } = endpoints;
 
 interface AuthService {
   login: (username: string, password: string) => Promise<void>;
   signup: (values: RegisterUserInput, accountType: string) => Promise<void>;
   logout: () => Promise<void>;
+  forgotPassword: (email: string) => Promise<void>;
+  resetPassword: (data: any, token: string) => Promise<void>;
 }
 
 const useAuthService = (): AuthService => {
@@ -81,7 +83,50 @@ const useAuthService = (): AuthService => {
     }
   };
 
-  return { login, signup, logout };
+  const forgotPassword = async (data: any): Promise<void> => {
+    try {
+      const response = await HttpClient.post<AuthResponse>(FORGOTPASSWORD_API, data);
+      if (response.error) {
+        notify({
+          title: "Error",
+          variant: "error",
+          description: response.message,
+        });
+        return;
+      }   
+      notify({
+        title: "Success",
+        variant: "info",
+        description: response.message,
+      });   
+    } catch (error) {
+      console.error(`Forgot Pass Failed: ${error}`);
+    }    
+  };
+
+  const resetPassword = async (data: any, token: string): Promise<void> => {
+    try {
+      const response = await HttpClient.put<AuthResponse>(`${RESETPASSWORD_API}/${token}`, data);
+      console.log('response :>> ', response);
+      if (response.error) {
+        notify({
+          title: "Error",
+          variant: "error",
+          description: response.message,
+        });
+        return;
+      }   
+      notify({
+        title: "Success",
+        variant: "info",
+        description: response.message,
+      });
+    } catch (error) {
+      console.error(`Reset Pass Failed: ${error}`); 
+    }
+  };
+
+  return { login, signup, logout, forgotPassword, resetPassword };
 };
 
 export default useAuthService;

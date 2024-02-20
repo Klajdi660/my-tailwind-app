@@ -38,11 +38,11 @@ app.use(cookieParser());
 
 const corsOptions = {
     origin: client_url,
-    credentials: true
+    credentials: true,
+    optionSuccessStatus:200
 };
-
 app.use(cors(corsOptions));
-app.options("*", cors());
+// app.options("*", cors());
 
 // less hackers know about our stack
 app.disable("x-powered-by");

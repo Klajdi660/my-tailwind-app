@@ -15,6 +15,7 @@ const {
   forgotPassword,
   resetPassword,
 } = paths;
+console.log('paths :>> ', paths);
 
 // const Routes = () =>
 //   useRoutes([

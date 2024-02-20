@@ -1,13 +1,17 @@
 import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Input } from "antd";
+import useAuthService from "../../services/AuthService";
 
 export const ForgotPasswordForm: FunctionComponent = () => {
-    const navigate = useNavigate();
+    const { forgotPassword } = useAuthService();
 
-    const handleOnSubmit = async (value: string) => {
-        console.log('value :>> ', value);
-        navigate("/update-password");
+    const handleOnSubmit = async (value: any) => {
+        try {
+            await forgotPassword(value);
+        } catch (error) {
+            console.error("Forgot Password Failed!", error)
+        }
     };
 
     return (

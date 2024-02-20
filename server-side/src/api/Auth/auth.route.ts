@@ -91,13 +91,12 @@ authRouter.post(
 );
 
 authRouter.put(
-    "/reset-password/:id",
+    "/reset-password/:token",
     validateResource(createResetPasswordSchema),
     asyncHandler(async ( req: Request, res: Response) => {
-        const { id } = req.params;
-        const { h, exp } = req.query as any;
+        const { token } = req.params;
         const { password } = req.body;
-        const response = await resetPasswordHandler(id, h, exp, password);
+        const response = await resetPasswordHandler(token, password);
         res.json(response);
     })
 );

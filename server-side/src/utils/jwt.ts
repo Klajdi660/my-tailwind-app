@@ -15,7 +15,7 @@ const signJWT = (
         config.get<string>(key),
         "base64"
     ).toString("ascii");
-
+    console.log('key 1111:>> ', key);
     return jwt.sign(
         payload,
         privateKey,
@@ -31,7 +31,6 @@ export const signToken = async (user: any) => {
     const access_token = signJWT({ id: user.id }, "accessTokenPrivateKey", {
         expiresIn: `${access_token_expires}d`,
     });
-
     // const refresh_token = signJWT({ id: user.id }, "refreshTokenPrivateKey", {
     //     expiresIn: `${refreshTokenExpiresIn}m`
     // });
@@ -52,9 +51,9 @@ export const verifyJWT = (token: string, key: string) => {
             config.get<string>(key), 
             "base64"
         ).toString("ascii");
-
+        console.log('key :>> ', key);
         const decoded = jwt.verify(token, publicKey);
-        
+        console.log('decoded :>> ', decoded);
         return decoded;
     } catch (error) {
         log.error(`[verifyJWT]: ${JSON.stringify({ action: "verifyJWT catch", data: error })}`);

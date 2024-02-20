@@ -19,9 +19,6 @@ export const createLoginSchema = object({
 
 export const createRegisterSchema = object({
     body: object({
-        // accountType: string({
-        //     required_error: "Choose account type"
-        // }),
         email: string({
             required_error: "Email is required",
         }).regex(emailRegex, "Not a valid email"),
@@ -46,11 +43,12 @@ export const createRegisterSchema = object({
         passwordConfirm: string({
             required_error: "Password confirmation is required",
         }),
-        agreedToTerms: custom((value) => {
-            return value === true;
-        }, {
-            message: "You must agree to the terms and conditions to register"
-        })
+        // agreedToTerms: custom((value) => {
+        //     return value === true;
+        // }, {
+        //     message: "You must agree to the terms and conditions to register"
+        // })
+        isSubscribed: boolean({}).optional(),
     }).refine((data) => data.password === data.passwordConfirm, {
         message: "Passwords do not match",
         path: ["passwordConfirmation"],
@@ -76,18 +74,18 @@ export const createForgotPasswordSchema = object({
 
 export const createResetPasswordSchema = object({
     params: object({
-        id: string({
+        token: string({
             required_error: "Id is required",
         }),
     }),
-    query: object({
-        h: string({
-            required_error: "h parameter is required",
-        }),
-        exp: string({
-            required_error: "exp parameter is required",
-        }),
-    }),
+    // query: object({
+    //     h: string({
+    //         required_error: "h parameter is required",
+    //     }),
+    //     exp: string({
+    //         required_error: "exp parameter is required",
+    //     }),
+    // }),
     body: object({
         password: string({
             required_error: "Password is required",
@@ -95,10 +93,10 @@ export const createResetPasswordSchema = object({
             .min(8, { message: "Password must be at least 8 characters long" })
             .refine(value => uppercaseRegex.test(value), { message: "Password must contain at least one capital letter" })
             .refine(value => sepecialCharacter.test(value), { message: "Password must contain at least one special character" }),
-        passwordConfirm: string({
+        confirmPassword: string({
             required_error: "Password confirmation is required",
         }),
-    }).refine((data) => data.password === data.passwordConfirm, {
+    }).refine((data) => data.password === data.confirmPassword, {
         message: "Passwords do not match",
         path: ["passwordConfirmation"],
     }),

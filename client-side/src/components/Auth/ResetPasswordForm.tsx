@@ -2,12 +2,19 @@ import { FunctionComponent } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import { IconButton } from "../UI";
+import useAuthService from "../../services/AuthService";
 
 export const ResetPasswordForm: FunctionComponent = () => {
+    const { resetPassword } = useAuthService();
     const params = useParams();
-    console.log('params :>> ', params);
-    const handleOnSubmit = async (value: string) => {
-        console.log('value :>> ', value);
+    const { token } = params;
+
+    const handleOnSubmit = async (value: any) => {
+        try {    
+            await resetPassword(value, token as string);
+        } catch (error) {
+            console.error("Reset Password Failed!", error)
+        }
     };
 
     return (
