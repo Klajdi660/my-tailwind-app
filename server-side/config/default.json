@@ -16,7 +16,7 @@
         "host": "localhost",
         "user": "root",
         "port": 3306,
-        "password": "Klajdi1996",
+        "password": "",
         "database": "node-registration"
     },
     "redis_feed": {
@@ -28,10 +28,8 @@
         "host": "smtp.gmail.com",
         "port": 587,
         "secure": false,
-        "email": "klajdixhafkollari36@gmail.com",
-        "password": "nyekejfpjnjshevt",
-        "grooveit-email": "grooveit96@gmail.com",
-        "grooveit-pass": "vfvbqstwxcauoydk"
+        "email": "grooveit96@gmail.com",
+        "password": "vfvbqstwxcauoydk"
     },
     "google": {
         "client_id": "604086717415-8pnd2d5v4itf0pp1s5c1ha2t87bhnlnm.apps.googleusercontent.com",
