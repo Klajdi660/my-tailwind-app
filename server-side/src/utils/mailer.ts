@@ -35,9 +35,13 @@ export const sendEmail = (templatePath: string, templateData: any) => {
         subject: templateData.title,
         template: templatePath,
         context: templateData,
-        html: ""
+        html: "",
+        attachments: [{
+            filename: 'grooveIT.png',
+            path: `${__dirname}/src/public/assets/logo.png`,
+            cid: 'logo'
+        }]
     };
-
     const info = transporter.sendMail(mailOptions);
     return info;
 };

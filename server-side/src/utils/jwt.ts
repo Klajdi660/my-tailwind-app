@@ -15,7 +15,7 @@ const signJWT = (
         config.get<string>(key),
         "base64"
     ).toString("ascii");
-    console.log('key 1111:>> ', key);
+
     return jwt.sign(
         payload,
         privateKey,
@@ -51,9 +51,8 @@ export const verifyJWT = (token: string, key: string) => {
             config.get<string>(key), 
             "base64"
         ).toString("ascii");
-        console.log('key :>> ', key);
+
         const decoded = jwt.verify(token, publicKey);
-        console.log('decoded :>> ', decoded);
         return decoded;
     } catch (error) {
         log.error(`[verifyJWT]: ${JSON.stringify({ action: "verifyJWT catch", data: error })}`);

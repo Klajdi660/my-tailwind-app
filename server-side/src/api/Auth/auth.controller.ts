@@ -163,11 +163,9 @@ export const forgotPasswordHandler = async (email: string) => {
 
     let templatePath= "ForgotPassword";
     const templateData = {
-        title: "Password Reset",
-        subject: "Your Link for email verification is:",
+        title: "Reset Password",
         url: url,
         urlTitle: "Reset Password",
-        subject2: "Please click this url to reset your password."
     };
     
     const mailSent = await sendEmail(templatePath, templateData);
