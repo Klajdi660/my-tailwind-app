@@ -30,7 +30,7 @@ export const sendEmail = (templatePath: string, templateData: any) => {
     transporter.use("compile", hbs(handlebarOptions as any));
 
     const mailOptions = {
-        from: "klajdixhafkollari36@gmail.com",
+        from: `GrooveIT <${smtp.email}>`,
         to: "klajdixhafkollari36@gmail.com",
         subject: templateData.title,
         template: templatePath,
