@@ -30,7 +30,7 @@ export const getUserByEmailOrUsername = async (email: string, username: string) 
 };
 
 export const createUser = async (data: UserParams) => {
-    const { email, username, firstName, lastName, password, accountType } = data;
+    const { email, username, firstName, lastName, password } = data;
 
     const extraData = {
         firstName, 
