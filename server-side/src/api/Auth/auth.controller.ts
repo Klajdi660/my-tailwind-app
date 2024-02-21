@@ -179,7 +179,7 @@ export const forgotPasswordHandler = async (email: string) => {
 export const resetPasswordHandler = async (token: string, password: string) => {
     const decodedToken = JSON.parse(atob(token));
     const { id, h, exp } = decodedToken;
-    const user = await getUserById(id);
+    const user = await getUserById(id) as any;
     if (!user) {
         return { error: true, message: "User is not Registered with us, please SignUp to continue." };
     }
@@ -209,8 +209,9 @@ export const resetPasswordHandler = async (token: string, password: string) => {
     const url = `${client_url}/login`;
     let templatePath= "ResetPassword";
     const templateData = {
-        title: "Login",
-        subject: "Login with your new password.",
+        title: "Password Update Confirmation",
+        name: `${user.firstName} ${user.lastName}`,
+        email: user.email,
         url: url,
         urlTitle: "Login",
     };
