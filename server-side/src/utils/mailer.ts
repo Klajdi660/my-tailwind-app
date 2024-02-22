@@ -37,8 +37,8 @@ export const sendEmail = (templatePath: string, templateData: any) => {
         context: templateData,
         html: "",
         attachments: [{
-            filename: 'grooveIT.png',
-            path: `${__dirname}/src/public/assets/icon3.png`,
+            filename: 'icon.png',
+            path: `${__dirname}/src/public/assets/icon.png`,
             cid: 'icon'
         }]
     };
