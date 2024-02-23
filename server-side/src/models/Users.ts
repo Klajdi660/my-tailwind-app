@@ -18,9 +18,8 @@ export class User extends Model {
 User.init(
     {
         id: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
-            allowNull: false,
             primaryKey: true,
         },
         email: {

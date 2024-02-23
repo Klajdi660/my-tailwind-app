@@ -42,6 +42,7 @@ export const sendEmail = (templatePath: string, templateData: any) => {
             cid: 'icon'
         }]
     };
+    
     const info = transporter.sendMail(mailOptions);
     return info;
 };

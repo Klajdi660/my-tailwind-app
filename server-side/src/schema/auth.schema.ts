@@ -17,7 +17,7 @@ export const createLoginSchema = object({
     }),
 });
 
-export const createRegisterSchema = object({
+export const createUserSchema = object({
     body: object({
         email: string({
             required_error: "Email is required",
@@ -103,7 +103,7 @@ export const createResetPasswordSchema = object({
 })
 
 export type LoginInput = TypeOf<typeof createLoginSchema>["body"];
-export type RegisterInput = TypeOf<typeof createRegisterSchema>["body"];
+export type CreateUserInput = TypeOf<typeof createUserSchema>["body"];
 export type OTPCodeInput = TypeOf<typeof createOTPCodeSchema>["body"];
 export type ForgotPasswordInput = TypeOf<typeof createForgotPasswordSchema>["body"];
 export type ResetPasswordInput = TypeOf<typeof createResetPasswordSchema>;

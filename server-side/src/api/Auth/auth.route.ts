@@ -1,10 +1,11 @@
 import { Router, Request, Response } from "express";
+import crypto from "crypto";
 import config from "config";
 import { asyncHandler } from "../../utils";
 import { validateResource, authenticate } from "../../middleware";
 import { 
     createLoginSchema, 
-    createRegisterSchema, 
+    createUserSchema, 
     createOTPCodeSchema, 
     createForgotPasswordSchema,
     createResetPasswordSchema,
@@ -12,7 +13,7 @@ import {
 import { 
     loginHandler, 
     registerHandler, 
-    confirmRegisterHandler, 
+    verifyEmailHandler, 
     logoutHandler, 
     forgotPasswordHandler, 
     resetPasswordHandler 
@@ -47,7 +48,7 @@ authRouter.post(
 
 authRouter.post(
     "/register",
-    validateResource(createRegisterSchema),
+    validateResource(createUserSchema),
     asyncHandler(async (req: Request, res: Response) => {   
         const response = await registerHandler(req.body);
         res.json(response);
@@ -59,7 +60,7 @@ authRouter.post(
     validateResource(createOTPCodeSchema),
     asyncHandler(async (req: Request, res: Response) => {
         const { code, email } = req.body;
-        const response = await confirmRegisterHandler(code, email);
+        const response = await verifyEmailHandler(code, email);
         res.json(response);
     })
 );
