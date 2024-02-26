@@ -95,3 +95,5 @@ export const createVerificationCode = () => {
     return otp;
 };
 
+export const createResetToken = () => {};
+ 

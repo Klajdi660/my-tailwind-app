@@ -72,7 +72,7 @@ export const loginHandler = async (req: Request, res: Response) => {
         });
     }
 
-    
+
     const { access_token, refresh_token } = await signToken(user);
 
     res.json({
@@ -208,6 +208,10 @@ export const forgotPasswordHandler = async (req: Request, res: Response) => {
         res.json({ error: true, message: `This email: '${email}' is not register with us. Please enter a valid email.` });
     }
 
+    if (!user.verified) {
+        res.json({ error: true, message: "User not verified" });
+    }
+
     // const hash = crypto
     //     .createHash("sha1")
     //     .update(email + user.username)
@@ -232,7 +236,7 @@ export const forgotPasswordHandler = async (req: Request, res: Response) => {
     
     const mailSent = await sendEmail(templatePath, templateData);
     if (!mailSent) {
-        res.json({ error: true, message: "Somenthing went wrong. Email not sent." });
+        res.json({ error: true, message: "There was an error sending email, please try again" });
     }
         
     res.json({ error: false, message: "Email Sent Successfully, Please Check Your Email to Continue Further." });
@@ -267,7 +271,6 @@ export const resetPasswordHandler = async (req: Request, res: Response) => {
         .update(password + user.username)
         .digest("hex");
 
-    // const newPassword = await updateUserPassword(hash, id);
     const newPassword = await getAndUpdateUser(id, { password: hash });
     if (!newPassword) {
         res.json({ error: true, message: "Some Error in Updating the Password" });
