@@ -1,4 +1,5 @@
 import config from "config";
+import crypto from "crypto";
 import dayjs from "dayjs";
 import otpGenerator from "otp-generator";
 import { Op } from "sequelize";
@@ -95,5 +96,11 @@ export const createVerificationCode = () => {
     return otp;
 };
 
-export const createResetToken = () => {};
- 
+export const createResetToken = (email: string, username: string) => {
+    const resetToken = crypto
+        .createHash("sha1")
+        .update(email + username)
+        .digest("hex")
+
+    return resetToken;
+};

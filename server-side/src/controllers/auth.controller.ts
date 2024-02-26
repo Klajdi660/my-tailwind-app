@@ -10,6 +10,7 @@ import {
     createUser, 
     createVerificationCode,
     getAndUpdateUser,
+    createResetToken,
 } from "../services/user.service";
 import { signToken, log, sendEmail } from "../utils";
 import { AppParams, UserParams } from "../types";
@@ -38,14 +39,14 @@ export const loginHandler = async (req: Request, res: Response) => {
     }
 
     if (!user.verified) {
-        const otp = createVerificationCode();
+        const code = createVerificationCode();
 
         const user_registration = {
-            otpCode: otp,
+            otpCode: code,
             expiredCodeAt: dayjs().add(60, 's'),
         };
 
-        const addedToRedis = await redisCLI.setnx(`register_pending_${user.email}`, JSON.stringify(user_registration));
+        const addedToRedis = await redisCLI.setnx(`verify_email_${user.email}`, JSON.stringify(user_registration));
         if (!addedToRedis) {
             res.json({ error: true, message: "Email already registered." });
         }
@@ -58,7 +59,7 @@ export const loginHandler = async (req: Request, res: Response) => {
         const templateData = {
             title: subject,
             name: `${extra.firstName} ${extra.lastName}`,
-            code: otp
+            code
         };
         
         const mailSent = await sendEmail(templatePath, templateData);
@@ -107,10 +108,10 @@ export const registerHandler = async (req: Request, res: Response) => {
     };
  
     // create random code to sent in email
-    const otp = createVerificationCode();
+    const code = createVerificationCode();
 
     // put code and expiredCodeAt in user_registration 
-    user_registration["otpCode"] = otp;
+    user_registration["otpCode"] = code;
     user_registration["expiredCodeAt"] = dayjs().add(60, 's');
 
     // put user in redis
@@ -119,16 +120,16 @@ export const registerHandler = async (req: Request, res: Response) => {
         res.json({ error: true, message: "Email already registered." });
     }
 
-    await redisCLI.expire(`register_pending_${email}`, 3600);
+    await redisCLI.expire(`verify_email_${email}`, 3600);
 
     // send otp code in user email
-    const { firstName, lastName, otpCode } = user_registration;
+    const { firstName, lastName } = user_registration;
     let subject = "OTP Verification Email";
     let templatePath= "OTP";
     const templateData = {
         title: subject,
         name: `${firstName} ${lastName}`,
-        code: otpCode
+        code
     };
     
     const mailSent = await sendEmail(templatePath, templateData);
@@ -145,7 +146,7 @@ export const registerHandler = async (req: Request, res: Response) => {
 export const verifyEmailHandler = async (req: Request, res: Response) => {
     const { code, email } = req.body;
     
-    let redisObj: any = await redisCLI.get(`register_pending_${email}`);
+    let redisObj: any = await redisCLI.get(`verify_email_${email}`);
     redisObj = JSON.parse(redisObj);
     if (!redisObj) {
         res.json({ error: true, message: "Confirmation time expired!" });
@@ -158,13 +159,13 @@ export const verifyEmailHandler = async (req: Request, res: Response) => {
     }
 
     // check if otp code is expired
-    const currentDateTime = dayjs();
-    const expiresAtDateTime = dayjs(expiredCodeAt);
-    const isExpired = currentDateTime.isAfter(expiresAtDateTime);
-    if (isExpired) {
-        log.error(`${JSON.stringify({ action: "expired User", data: redisObj })}`);
-        res.json({ error: true, message: "Your OTP code has expired. Please request a new OTP code" });
-    }
+    // const currentDateTime = dayjs();
+    // const expiresAtDateTime = dayjs(expiredCodeAt);
+    // const isExpired = currentDateTime.isAfter(expiresAtDateTime);
+    // if (isExpired) {
+    //     log.error(`${JSON.stringify({ action: "expired User", data: redisObj })}`);
+    //     res.json({ error: true, message: "Your OTP code has expired. Please request a new OTP code" });
+    // } // nuk duhet
 
     const existingUser = await getUserByEmail(email);
     let user;
@@ -212,20 +213,19 @@ export const forgotPasswordHandler = async (req: Request, res: Response) => {
         res.json({ error: true, message: "User not verified" });
     }
 
-    // const hash = crypto
-    //     .createHash("sha1")
-    //     .update(email + user.username)
-    //     .digest("hex")
-    // const expirationTime = dayjs().add(60, 's').toISOString();
-    
-    // const tokenData = {
-    //     id: user.id,
-    //     h: hash,
-    //     exp: expirationTime
-    // };
-    // const token = Buffer.from(JSON.stringify(tokenData)).toString('base64');
-    const { refresh_token } = await signToken(user);
-    const url = `${client_url}/reset-password/${refresh_token}`;
+    const resetToken = createResetToken(email, user.username);
+    const user_reset = {
+        h: resetToken,
+        ...user
+    };
+
+    const addedToRedis = await redisCLI.setnx(`reset_password_pending_${user.email}`, JSON.stringify(user_reset));
+    if (!addedToRedis) {
+      res.json({ error: true, message: "New password waiting for confirmation. Please check your inbox!" });
+    }
+    await redisCLI.expire(`reset_password_pending_${user.email}`, 300); // 5 min
+
+    const url = `${client_url}/reset-password/${user.id}`;
 
     let templatePath= "ForgotPassword";
     const templateData = {
@@ -243,35 +243,31 @@ export const forgotPasswordHandler = async (req: Request, res: Response) => {
 };
 
 export const resetPasswordHandler = async (req: Request, res: Response) => {
-    const { token } = req.params;
-    const { password } = req.body;
+    const { id } = req.params;
+    const { password, email } = req.body;
 
-    const decodedToken = JSON.parse(atob(token));
-    const { id, h, exp } = decodedToken;
-
-    const user = await getUserById(id);
-    if (!user) {
-        res.json({ error: true, message: "User is not Registered with us, please SignUp to continue." });
+    let redisObj: any = await redisCLI.get(`reset_password_pending_${email}`);
+    redisObj = JSON.parse(redisObj);
+    if (!redisObj) {
+        res.json({ error: true, message: "Your token has expired. Please attempt to reset your password again." });
     }
+
+    const { username, h, firstName, lastName } = redisObj; 
 
     const expectedHash = crypto
         .createHash("sha1")
-        .update(user.email + user.username)
+        .update(email + username)
         .digest("hex");
     if (h !== expectedHash) {
         res.json({ error: true, message: "Token is Invalid!" });
     }
 
-    if (dayjs(exp).isBefore(dayjs())) {
-        res.json({ error: true, message: "Your token has expired. Please attempt to reset your password again." });
-    }
-
     const hash = crypto
         .createHash("sha1")
-        .update(password + user.username)
+        .update(password + username)
         .digest("hex");
 
-    const newPassword = await getAndUpdateUser(id, { password: hash });
+    const newPassword = await getAndUpdateUser(+id, { password: hash });
     if (!newPassword) {
         res.json({ error: true, message: "Some Error in Updating the Password" });
     }
@@ -280,8 +276,8 @@ export const resetPasswordHandler = async (req: Request, res: Response) => {
     let templatePath= "ResetPassword";
     const templateData = {
         title: "Password Update Confirmation",
-        name: `${user.firstName} ${user.lastName}`,
-        email: user.email,
+        name: `${firstName} ${lastName}`,
+        email,
         url: url,
         urlTitle: "Login",
     };
