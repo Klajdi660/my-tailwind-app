@@ -45,13 +45,13 @@ export const createUserSchema = object({
 
 export const loginUserSchema = object({
     body: object({
-        usernameOrEmail: string({
+        identifier: string({
             required_error: "Username/Email is required",
         }),
         password: string({
             required_error: "Password is required",
         }),
-        rememberMe: boolean().optional(),
+        remember: boolean().optional(),
     }),
 });
 

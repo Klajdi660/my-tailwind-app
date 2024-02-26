@@ -18,12 +18,14 @@ import { EMAIL_PROVIDER } from "../constants";
 
 const { client_url } = config.get<AppParams>("app");
 
-export const loginHandler = async (req: Request, res: Response) => {
-    const { usernameOrEmail, password, rememberMe } = req.body;   
+export const otpSendHandler = async (req: Request, res: Response) => {};
 
-    const user = await getUserByEmailOrUsername(usernameOrEmail, usernameOrEmail);
+export const loginHandler = async (req: Request, res: Response) => {
+    const { identifier, password, remember } = req.body;   
+
+    const user = await getUserByEmailOrUsername(identifier, identifier);
     if (!user) {
-        res.json({ error: true, message: "User is not Registered with us, please SignUp to continue." });
+        res.json({ error: true, message: "User is not Registered with us, please Sign Up to continue." });
     }
 
     if (user && user.provider !== EMAIL_PROVIDER.Email) {
@@ -115,12 +117,12 @@ export const registerHandler = async (req: Request, res: Response) => {
     user_registration["expiredCodeAt"] = dayjs().add(60, 's');
 
     // put user in redis
-    const addedToRedis = await redisCLI.setnx(`register_pending_${email}`, JSON.stringify(user_registration));
+    const addedToRedis = await redisCLI.setnx(`verify_email_${email}`, JSON.stringify(user_registration));
     if (!addedToRedis) {
         res.json({ error: true, message: "Email already registered." });
     }
 
-    await redisCLI.expire(`verify_email_${email}`, 3600);
+    await redisCLI.expire(`verify_email_${email}`, 300); // 5 min
 
     // send otp code in user email
     const { firstName, lastName } = user_registration;
@@ -185,7 +187,7 @@ export const verifyEmailHandler = async (req: Request, res: Response) => {
         }
     }
 
-    await redisCLI.del(`register_pending_${email}`);
+    await redisCLI.del(`verify_email_${email}`);
 
     res.json({
         error: false,
