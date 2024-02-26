@@ -1,13 +1,17 @@
-import rwgApi from "../../rwg/rwg.api";
+import { Request, Response } from "express";
+import rwgApi from "../rwg/rwg.api";
 
-export const gameListHandler = async (rwgType: string, page: number | any, pageSize: any) => {
+export const gameListHandler = async (req: Request, res: Response) => {
+    const { rwgType } = req.params;
+    const { page, pageSize } = req.query;
+
     let params = {
         page,
         page_size: pageSize
     };
-    
-    const pageNumber = parseInt(page) || 1;
-    const page_size = parseInt(pageSize) || 50;
+
+    const pageNumber = parseInt(page as string) || 1;
+    const page_size = parseInt(pageSize as string) || 50;
 
     const startIndex = (pageNumber - 1) * page_size;
     const endIndex = startIndex + page_size;
@@ -17,5 +21,5 @@ export const gameListHandler = async (rwgType: string, page: number | any, pageS
     const paginatedData = response.results.slice(startIndex, endIndex);
 
     console.log('response.result.length :>> ', paginatedData.length);
-    return paginatedData;
+    res.json({ error: false, data: paginatedData });
 };

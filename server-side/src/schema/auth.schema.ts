@@ -5,18 +5,6 @@ const usernameRegex = /^[a-zA-Z0-9]+$/;
 const uppercaseRegex = /[A-Z]/;
 const sepecialCharacter = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
 
-export const createLoginSchema = object({
-    body: object({
-        usernameOrEmail: string({
-            required_error: "Username/Email is required",
-        }),
-        password: string({
-            required_error: "Password is required",
-        }),
-        rememberMe: boolean().optional(),
-    }),
-});
-
 export const createUserSchema = object({
     body: object({
         email: string({
@@ -55,7 +43,19 @@ export const createUserSchema = object({
     }),
 });
 
-export const createOTPCodeSchema = object({
+export const loginUserSchema = object({
+    body: object({
+        usernameOrEmail: string({
+            required_error: "Username/Email is required",
+        }),
+        password: string({
+            required_error: "Password is required",
+        }),
+        rememberMe: boolean().optional(),
+    }),
+});
+
+export const verifyEmailSchema = object({
     body: object({
         code: string({
             required_error: "OTP code is required",
@@ -64,7 +64,7 @@ export const createOTPCodeSchema = object({
     }),
 });
 
-export const createForgotPasswordSchema = object({
+export const forgotPasswordSchema = object({
     body: object({
         email: string({
             required_error: "Email is required",
@@ -72,7 +72,7 @@ export const createForgotPasswordSchema = object({
     }),
 });
 
-export const createResetPasswordSchema = object({
+export const resetPasswordSchema = object({
     params: object({
         token: string({
             required_error: "Id is required",
@@ -102,8 +102,8 @@ export const createResetPasswordSchema = object({
     }),
 })
 
-export type LoginInput = TypeOf<typeof createLoginSchema>["body"];
 export type CreateUserInput = TypeOf<typeof createUserSchema>["body"];
-export type OTPCodeInput = TypeOf<typeof createOTPCodeSchema>["body"];
-export type ForgotPasswordInput = TypeOf<typeof createForgotPasswordSchema>["body"];
-export type ResetPasswordInput = TypeOf<typeof createResetPasswordSchema>;
+export type LoginInput = TypeOf<typeof loginUserSchema>["body"];
+export type VerifyEmailInput = TypeOf<typeof verifyEmailSchema>["body"];
+export type ForgotPasswordInput = TypeOf<typeof forgotPasswordSchema>["body"];
+export type ResetPasswordInput = TypeOf<typeof resetPasswordSchema>;

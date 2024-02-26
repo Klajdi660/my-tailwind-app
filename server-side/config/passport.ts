@@ -47,7 +47,7 @@ const googleAuth = async () => {
           const newUser = {
             googleId: profile.id,
             username,
-            hash: "",
+            passport: "",
             extra: JSON.stringify(extraData),
             avatar: profile.photos[0].value,
             email: profile.emails[0].value,

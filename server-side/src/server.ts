@@ -42,7 +42,7 @@ const corsOptions = {
     optionSuccessStatus:200
 };
 app.use(cors(corsOptions));
-// app.options("*", cors());
+app.options("*", cors());
 
 // less hackers know about our stack
 app.disable("x-powered-by");
@@ -58,20 +58,23 @@ app.disable("x-powered-by");
 
 app.use(routes);
 
-// Unknown routes
-// app.all("*", (req: Request, res: Response, next: NextFunction) => {
-//     const err = new Error(`Route ${req.originalUrl} not found`) as any;
-//     err.statusCode = 404;
-//     next(err);
-// });
-
+// UnKnown Routes
+app.all("*", (req: Request, res: Response, next: NextFunction) => {
+    const err = new Error(`Route ${req.originalUrl} not found`) as any;
+    err.statusCode = 404;
+    next(err);
+});
+  
 // Global Error Handler
-const errorHandler = (error: any, req: Request, res: Response, next: NextFunction) => {
-    console.error(`[errorHandler]: ${JSON.stringify({ action: "errorHandler", data: error })}`);
-    if (res?.headersSent) return next(error);
-    res?.json({ error: true, message: "Internal error" });
-};
-app.use(errorHandler);
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    err.status = err.status || "error";
+    err.statusCode = err.statusCode || 500;
+  
+    res.status(err.statusCode).json({
+      status: err.status,
+      message: err.message,
+    });
+});
 
 // passport config
 passportConfig(passport);

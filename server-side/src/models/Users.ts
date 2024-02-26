@@ -6,11 +6,11 @@ export class User extends Model {
     id: number;
     email: string;
     username: string;
-    hash: string;
+    password: string;
     provider: string;
     googleId: string;
     extra: string;
-    avatar: string;
+    verified: boolean;
     createdAt: string;
     updatedAt: string;
 };
@@ -32,7 +32,7 @@ User.init(
             allowNull: false,
             unique: true
         },
-        hash: {
+        password: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -49,8 +49,10 @@ User.init(
             type: DataTypes.TEXT,
             allowNull: false
         },
-        avatar: {
-            type: DataTypes.STRING,
+        verified: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
         },
         createdAt: {
             type: DataTypes.DATE,
