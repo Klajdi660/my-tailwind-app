@@ -73,19 +73,6 @@ export const forgotPasswordSchema = object({
 });
 
 export const resetPasswordSchema = object({
-    params: object({
-        token: string({
-            required_error: "Id is required",
-        }),
-    }),
-    // query: object({
-    //     h: string({
-    //         required_error: "h parameter is required",
-    //     }),
-    //     exp: string({
-    //         required_error: "exp parameter is required",
-    //     }),
-    // }),
     body: object({
         password: string({
             required_error: "Password is required",
@@ -96,6 +83,7 @@ export const resetPasswordSchema = object({
         confirmPassword: string({
             required_error: "Password confirmation is required",
         }),
+        email: string({}),
     }).refine((data) => data.password === data.confirmPassword, {
         message: "Passwords do not match",
         path: ["passwordConfirmation"],
@@ -106,4 +94,5 @@ export type CreateUserInput = TypeOf<typeof createUserSchema>["body"];
 export type LoginInput = TypeOf<typeof loginUserSchema>["body"];
 export type VerifyEmailInput = TypeOf<typeof verifyEmailSchema>["body"];
 export type ForgotPasswordInput = TypeOf<typeof forgotPasswordSchema>["body"];
-export type ResetPasswordInput = TypeOf<typeof resetPasswordSchema>;
+// export type ResetPasswordInput = TypeOf<typeof resetPasswordSchema>;
+export type ResetPasswordInput = TypeOf<typeof resetPasswordSchema>["body"];

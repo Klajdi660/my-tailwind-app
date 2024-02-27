@@ -8,6 +8,17 @@ import { EMAIL_PROVIDER } from "../src/constants";
 
 const { client_id, client_secret, callback_url } = config.get<any>("google");
 
+type ProfileType = {
+  [key: string]: any;
+};
+
+interface VerifyCallbackParams {
+  accessToken: string;
+  refreshToken: string;
+  profile: ProfileType;
+  done: () => void;
+};
+
 // const secret = "Klajdi96@";
 // let opts = {} as any;
 // opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -30,64 +41,52 @@ const { client_id, client_secret, callback_url } = config.get<any>("google");
 
 const googleAuth = async () => {
   try {
-    passport.use(
-      new GoogleStrategy(
-        {
-          clientID: client_id,
-          clientSecret: client_secret,
-          callbackURL: callback_url,
-        },
-        async (accessToken, refreshToken, profile: any, done) => {
-          const extraData = {
-            firstName: profile.name.givenName,
-            lastName: profile.name.familyName,
-          };
-          const username = profile.displayName.split(' ').join('').toLowerCase();
+    const strategyOptions = {
+      clientID: client_id,
+      clientSecret: client_secret,
+      callbackURL: callback_url,
+    };
 
-          const newUser = {
-            googleId: profile.id,
-            username,
-            passport: "",
-            extra: JSON.stringify(extraData),
-            avatar: profile.photos[0].value,
-            email: profile.emails[0].value,
-            provider: EMAIL_PROVIDER.Google,
-          };
+    const verifyCallback = async (accessToken: string, refreshToken: string, profile: {[key: string]: any}, done: any) => {
+      const { givenName, familyName, displayName, photos, emails, id } = profile;
+      console.log('accessToken :>> ', accessToken);
+      console.log('refreshToken :>> ', refreshToken);
 
-          try {
-            let user = await User.findOne({
-              where: { googleId: profile.id }
-            });
-  
-            if (user) {
-              done(null, user);
-            } else {
-              user = await User.create(newUser);
-              done(null, user);
-            }
-          } catch (err) {
-            console.error(err);
-          }
+      const username = displayName.replace(/\s/g, '').toLowerCase();
+
+      const extraData = { 
+        firstName: givenName, 
+        lastName: familyName,
+        photos: photos[0].value,
+      };
+
+      const newUser = {
+        email: emails[0].value,
+        username,
+        password: "",
+        provider: EMAIL_PROVIDER.Google,
+        googleId: id,
+        extra: JSON.stringify(extraData),
+        verified: true,
+      };
+
+      try {
+        let user = await User.findOne({ where: { googleId: id } });
+
+        if (user) {
+          done(null, user);
+        } else {
+          user = await User.create(newUser);
+          done(null, user);
         }
-      )
-    );
-    
-    // // used to serialize the user for the session
-    // passport.serializeUser((user: any, done: any) => {
-    //   done(null, user.id);
-    // });
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-    // // used to deserialize the user
-    // passport.deserializeUser(async (id: any, done: any) => {
-    //   try {
-    //     const user = await User.findByPk(id);
-    //     done(null, user);
-    //   } catch (err) {
-    //     done(err, null);
-    //   }
-    // });
-  } catch (e) {
-    console.log(JSON.stringify({ action: "googleAuthCatch", message: "Missing google keys!", data: e }));
+    passport.use(new GoogleStrategy(strategyOptions, verifyCallback));
+  } catch (error) {
+    console.error(JSON.stringify({ action: "googleAuthCatch", message: "Missing google keys!", data: error }));
   }
 };
 

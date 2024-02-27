@@ -10,15 +10,15 @@ export const SocialAuthButton: FunctionComponent<SocialAuthButtonProps> = () => 
         // <div className="flex flex-col gap-3 mt-4 social_medium_buttons">
         <div className="flex justify-center gap-5 mt-7 social_medium_buttons">
             {socialAuthList.map((item) => (
-                <button
-                    // href={item.link}
+                <Button
+                    href={item.link}
                     key={item.id}
                     // className="flex items-center w-14 h-14 gap-2 p-3 text-left border rounded border-divider hover:bg-primary-opacity"
                     className="flex items-center justify-center w-16 h-16 border rounded border-divider hover:bg-primary-opacity"
                 >
                     <Icons name={item.icon} size={30}/>
                     {/* <span className="text-sm text-onNeutralBg">Continue with {item.name}</span> */}
-                </button>
+                </Button>
             ))}
         </div>
     );

@@ -95,12 +95,3 @@ export const createVerificationCode = () => {
 
     return otp;
 };
-
-export const createResetToken = (email: string, username: string) => {
-    const resetToken = crypto
-        .createHash("sha1")
-        .update(email + username)
-        .digest("hex")
-
-    return resetToken;
-};

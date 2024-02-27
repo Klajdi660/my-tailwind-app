@@ -40,7 +40,7 @@ authRouter.get("/logout", authenticate, logoutHandler);
 authRouter.post("/forgot-password", validateResource(forgotPasswordSchema), forgotPasswordHandler);
 
 // Reset Password Route
-authRouter.put("/reset-password/:token", validateResource(resetPasswordSchema), resetPasswordHandler);
+authRouter.put("/reset-password", validateResource(resetPasswordSchema), resetPasswordHandler);
 
 authRouter.get(
     "/google",
