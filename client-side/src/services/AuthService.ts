@@ -24,7 +24,7 @@ const useAuthService = (): AuthService => {
   const navigate = useNavigate();
 
   const login = async (username: string, password: string): Promise<void> => {
-    let data = { usernameOrEmail: username, password };
+    let data = { identifier: username, password };
 
     try {
       const response = await HttpClient.post<AuthResponse>(LOGIN_API, data);
