@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import config from "config";
 import passport from "passport";
 // import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
@@ -48,30 +49,38 @@ const googleAuth = async () => {
     };
 
     const verifyCallback = async (accessToken: string, refreshToken: string, profile: {[key: string]: any}, done: any) => {
-      const { givenName, familyName, displayName, photos, emails, id } = profile;
-      console.log('accessToken :>> ', accessToken);
-      console.log('refreshToken :>> ', refreshToken);
-
+      // const { givenName, familyName, displayName, photos, emails, id: googleId } = profile;
+      const { name, displayName, photos, emails, id: googleId, _json } = profile;
+      const { email_verified } = _json;
+      console.log('_json :>> ', _json);
       const username = displayName.replace(/\s/g, '').toLowerCase();
 
       const extraData = { 
-        firstName: givenName, 
-        lastName: familyName,
+        firstName: name.givenName, 
+        lastName: name.familyName,
         photos: photos[0].value,
+        googleId,
       };
-
+  
       const newUser = {
         email: emails[0].value,
         username,
         password: "",
         provider: EMAIL_PROVIDER.Google,
-        googleId: id,
+        // googleId: id,
         extra: JSON.stringify(extraData),
-        verified: true,
+        verified: email_verified,
       };
 
       try {
-        let user = await User.findOne({ where: { googleId: id } });
+        // let user = await User.findOne({ where: { googleId: id } });
+        let user = await User.findOne({
+          where: {
+            extra: {
+              [Op.like]: `%${googleId}%`
+            }
+          }
+        });
 
         if (user) {
           done(null, user);

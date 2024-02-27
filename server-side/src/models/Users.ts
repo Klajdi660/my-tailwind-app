@@ -8,7 +8,6 @@ export class User extends Model {
     username: string;
     password: string;
     provider: string;
-    googleId: string;
     extra: string;
     verified: boolean;
     createdAt: string;
@@ -40,10 +39,6 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: EMAIL_PROVIDER.Email, 
-        },
-        googleId: {
-            type: DataTypes.STRING,
-            allowNull: false,
         },
         extra: {
             type: DataTypes.TEXT,
