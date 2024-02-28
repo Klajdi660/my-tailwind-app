@@ -67,9 +67,8 @@ const googleAuth = async () => {
         username,
         password: "",
         provider: EMAIL_PROVIDER.Google,
-        // googleId: id,
         extra: JSON.stringify(extraData),
-        verified: email_verified,
+        verified: true,
       };
 
       try {

@@ -16,7 +16,7 @@
         "host": "localhost",
         "user": "root",
         "port": 3306,
-        "password": "",
+        "password": "Klajdi1996",
         "database": "node-registration"
     },
     "redis_feed": {
@@ -50,5 +50,11 @@
     "rwg": {
         "rwg_url": "https://api.rawg.io/api",
         "rwg_key": "5e59bc246cf8419fb6556b220c462685"
+    },
+    "twitch": {
+        "tw_auth_url": "https://id.twitch.tv/oauth2/token",
+        "tw_base_url": "https://api.igdb.com/v4",
+        "tw_client_id": "90glkqgpxqwkhw0j23wrcjvmq03aoh",
+        "tw_client_secret": "erdz0ocnbmp7wvh9ouyp7k3rkslnxb"
     }  
 }
