@@ -42,7 +42,6 @@ export const authenticate = async (
             return next({ error: true, messahe: "User with that token no longer exist" });
         }
       
-        // You can do: (req.user or res.locals.user)
         res.locals.user = user;
 
         next();

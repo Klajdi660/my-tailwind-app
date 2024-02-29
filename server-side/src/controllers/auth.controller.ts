@@ -10,7 +10,14 @@ import {
     createVerificationCode,
     getAndUpdateUser,
 } from "../services/user.service";
-import { signToken, log, sendEmail } from "../utils";
+import { 
+    signToken, 
+    log, 
+    sendEmail, 
+    accessTokenCookieOptions, 
+    refreshTokenCookieOptions, 
+    loginTokenCookieOptions
+} from "../utils";
 import { AppParams, UserParams } from "../types";
 import { EMAIL_PROVIDER } from "../constants";
 
@@ -76,11 +83,12 @@ export const loginHandler = async (req: Request, res: Response) => {
 
     const { access_token, refresh_token } = await signToken(user);
 
-    return res.json({
-        error: false,
-        lToken: access_token,
-        rToken: refresh_token
-    });
+    // Send Access & Refresh Tokens in Cookie
+    res.cookie("access_token", access_token, accessTokenCookieOptions);
+    res.cookie("refresh_token", refresh_token, refreshTokenCookieOptions);
+    res.cookie("logged_in", true, loginTokenCookieOptions); 
+
+    return res.json({ error: false, atoken: access_token });
 };
 
 export const registerHandler = async (req: Request, res: Response) => {
@@ -197,11 +205,17 @@ export const logoutHandler = async (req: Request, res: Response) => {
     const { user } = res.locals;
 
     await redisCLI.del(`session_${user.id}`);
+
+    res.cookie("access_token", "", { maxAge: 1 });
+    res.cookie("refresh_token", "", { maxAge: 1 });
+    res.cookie("logged_in", "", { maxAge: 1 });
     
     return res.json({ error: false, message: "Logout success" });
 };
 
-export const refreshAccessTokenHandler = async (req: Request, res: Response) => {};
+export const refreshAccessTokenHandler = async (req: Request, res: Response) => {
+    const refresh_token = req.cookies.refresh_token as string;
+};
 
 export const forgotPasswordHandler = async (req: Request, res: Response) => {
     const { email } = req.body;

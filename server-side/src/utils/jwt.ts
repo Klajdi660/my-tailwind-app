@@ -27,14 +27,15 @@ const signJWT = (
     );
 };
 
+// Sign Token
 export const signToken = async (user: any) => {
+    // Sign the access token
     const access_token = signJWT({ id: user.id }, "accessTokenPrivateKey", {
-        expiresIn: `${access_token_expires}d`,
+        expiresIn: `${access_token_expires}m`,
     });
-    // const refresh_token = signJWT({ id: user.id }, "refreshTokenPrivateKey", {
-    //     expiresIn: `${refreshTokenExpiresIn}m`
-    // });
-    const refresh_token = signJWT(user , "refreshTokenPrivateKey", {
+
+    // Sign the refresh token
+    const refresh_token = signJWT({ id: user.id }, "refreshTokenPrivateKey", {
         expiresIn: `${refresh_token_expires}m`
     });
 
