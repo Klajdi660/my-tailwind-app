@@ -201,6 +201,8 @@ export const logoutHandler = async (req: Request, res: Response) => {
     return res.json({ error: false, message: "Logout success" });
 };
 
+export const refreshAccessTokenHandler = async (req: Request, res: Response) => {};
+
 export const forgotPasswordHandler = async (req: Request, res: Response) => {
     const { email } = req.body;
 

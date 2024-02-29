@@ -3,20 +3,30 @@ import { User } from "../models";
 import { getUserById } from "../services/user.service";
 
 export const getAllUsersHandler = async (req: Request, res: Response) => {
-    const { page, pageSize } = req.body;
+    const { page, limit } = req.query;
 
-    const offset = (page - 1) * pageSize;
+    const parsedPage = Number(page) || 1;
+    const parsedLimit = Number(limit) || 10;
+
+    const offset = (parsedPage - 1) * parsedLimit;
 
     const { rows: users, count: totalUsers } = await User.findAndCountAll({
-        limit: +pageSize,
+        limit: parsedLimit,
         offset,
-        order: [["createdAt", "DESC"]], // Change the order as per your requirements
+        // order: [["createdAt", "DESC"]], // sorted by createdAt
+        order: [["id", "ASC"]], // sorted by id (1, 2, ...)
     });
 
-    const totalPages = Math.ceil(totalUsers / pageSize);
-    console.log('totalPages :>> ', totalPages);
-    console.log('users :>> ', users);
-    res.json({ error: false, data: { totalPages, users }})
+    const totalPages = Math.ceil(totalUsers / parsedLimit);
+
+    res.json({ 
+        error: false, 
+        data: { 
+            users,
+            totalPages,
+            currentPage: parsedPage,
+            totalUsers 
+        }})
 };
 
 export const getUserByIdHandler = async (req: Request, res: Response) => {

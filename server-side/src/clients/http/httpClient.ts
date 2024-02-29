@@ -22,4 +22,9 @@ export class HttpClient {
         const response = await this.instance.get<T>(url, { params });
         return response.data;
     };
+
+    static async post<T>(url: string, data?: unknown, options?: any) {
+        const response = await this.instance.post<T>(url, data, options);
+        return response.data
+    }
 };

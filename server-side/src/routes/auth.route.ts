@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
 import config from "config";
 import { asyncHandler } from "../utils";
-import { validateResource, authenticate } from "../middleware";
+import { validateResource, authenticate, requireUser } from "../middleware";
 import { 
     loginUserSchema, 
     createUserSchema, 
@@ -15,7 +15,8 @@ import {
     verifyEmailHandler, 
     logoutHandler, 
     forgotPasswordHandler, 
-    resetPasswordHandler 
+    resetPasswordHandler,
+    refreshAccessTokenHandler 
 } from "../controllers/auth.controller";
 import passport from "passport";
 import { AppParams } from "../types";
@@ -34,33 +35,32 @@ authRouter.post("/verify-email", validateResource(verifyEmailSchema), verifyEmai
 authRouter.post("/login", validateResource(loginUserSchema), loginHandler);
 
 // Logout User Route
-authRouter.get("/logout", authenticate, logoutHandler);
+authRouter.get("/logout", authenticate, requireUser, logoutHandler);
+
+// Refresh Access Token Route
+authRouter.get("/refresh", refreshAccessTokenHandler);
 
 // Forgot Password Route
 authRouter.post("/forgot-password", validateResource(forgotPasswordSchema), forgotPasswordHandler);
 
 // Reset Password Route
-authRouter.put("/reset-password", validateResource(resetPasswordSchema), resetPasswordHandler);
+authRouter.post("/reset-password", validateResource(resetPasswordSchema), resetPasswordHandler);
 
 authRouter.get(
     "/google",
-    passport.authenticate(
-        "google",
-        {
-            scope: ["profile", "email"]
-        }
-    )
+    passport.authenticate("google", {
+        session: false,
+        scope: ["profile", "email"],
+        accessType: "offline",
+    })
 );
 
 authRouter.get(
     '/google/callback',
-    passport.authenticate(
-        'google', 
-        { 
-            failureRedirect: `${client_url}/login`,
-            session: false,
-        },
-    ),
+    passport.authenticate("google", { 
+        failureRedirect: `${client_url}/login`,
+        session: false,
+    }),
     asyncHandler(async (req: Request, res: Response) => {
         res.redirect(`${client_url}`);
     })
