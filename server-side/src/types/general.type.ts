@@ -35,10 +35,8 @@ export interface SmtpEmailTypesParams {
 
 // utils jwt && cookiOpts
 export interface JWTParams {
-    access_token_secret?: string;
     access_token_expires?: number | any;
     refresh_token_expires?: number | any;
-    jwt_cookie_expires?: string;
 }
 
 // OTP 

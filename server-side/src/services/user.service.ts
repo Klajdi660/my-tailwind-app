@@ -1,5 +1,4 @@
 import config from "config";
-import crypto from "crypto";
 import dayjs from "dayjs";
 import otpGenerator from "otp-generator";
 import { Op } from "sequelize";
@@ -9,11 +8,11 @@ import { UserParams, OtpSettings } from "../types";
 
 const { otpLength, otpConfig } = config.get<OtpSettings>("otp");
 
-export const getUserById = async (id: string): Promise<User | any> => {
+export const getUserById = async (id: number): Promise<User | any> => {
     return User.findOne({
         where: { id }
     }).catch((error) => {
-        log.error(`${JSON.stringify({ action: "getUserByEmail catch", data: error })}`);
+        log.error(`${JSON.stringify({ action: "getUserById catch", data: error })}`);
     })
 };
 
@@ -57,35 +56,42 @@ export const createUser = async (data: UserParams, verified: boolean): Promise<U
         verified,
     });
 
-    const saveUser = await newUser
+    return newUser
         .save()
         .catch((error) => {
             log.error(`${JSON.stringify({ action: "createUser catch", data: error })}`);
         });
-
-    return saveUser;
 };
 
 export const getAndUpdateUser = async (id: number, updatedField: { [key: string]: any }): Promise<User | any> => {
     const currentTimestamp = dayjs().toDate();
     updatedField.updatedAt = currentTimestamp;
 
-    const update = User.update(
+    return User.update(
         updatedField,
         { where: { id }}
-    );
-
-    return update;
+    ).catch((error) => {
+        log.error(`${JSON.stringify({ action: "getAndUpdateUser catch", data: error })}`);
+    });
 };
 
 export const updateUserPassword = async (hash: string, id: string): Promise<User | any> => {
     const currentTimestamp = dayjs().toDate();
 
-    const update = User.update(
+    return User.update(
         { hash, updatedAt: currentTimestamp },
         { where: { id }}
-    );
-    return update;
+    ).catch((error) => {
+        log.error(`${JSON.stringify({ action: "updateUserPassword catch", data: error })}`);
+    });
+};
+
+export const deleteUser = async (id: number): Promise<User | any> => {
+    return User.destroy({
+        where: { id }
+    }).catch((error) => {
+        log.error(`${JSON.stringify({ action: "deleteUser catch", data: error })}`);
+    })
 };
 
 export const createVerificationCode = () => {

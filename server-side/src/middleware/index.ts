@@ -1,3 +1,4 @@
-export * from "./authenticate";
-export * from "./validateResource";
-export * from "./requireUser";
+export { authenticate } from "./authenticate";
+export { validateResource } from "./validateResource";
+export { requireUser } from "./requireUser";
+export { restrictTo } from "./restrictTo";

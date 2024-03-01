@@ -1,5 +1,5 @@
 import config from "config";
-import jwt from "jsonwebtoken";
+import jwt, { SignOptions } from "jsonwebtoken";
 import { redisCLI } from "../clients";
 import { log } from "./logger";
 import { JWTParams } from "../types";
@@ -9,22 +9,16 @@ const { access_token_expires, refresh_token_expires } = config.get<JWTParams>("t
 const signJWT = (
     payload: object,
     key: string,
-    options = {}
+    // key: "accessTokenPrivateKey" | "refreshTokenPrivateKey",
+    options: SignOptions = {}
 ) => {
-    const privateKey = Buffer.from(
-        config.get<string>(key),
-        "base64"
-    ).toString("ascii");
+    const privateKey = Buffer.from(config.get<string>(key), "base64").toString("ascii");
 
-    return jwt.sign(
-        payload,
-        privateKey,
-        {
-            ...(options && options),
-            algorithm: "HS256",
-            allowInsecureKeySizes: true,
-        }
-    );
+    return jwt.sign(payload, privateKey, {
+        ...(options && options),
+        algorithm: "HS256",
+        // algorithm: "RS256",
+    });
 };
 
 // Sign Token
@@ -46,14 +40,15 @@ export const signToken = async (user: any) => {
     return { access_token, refresh_token };
 };
 
-export const verifyJWT = (token: string, key: string) => {
+export const verifyJWT = <T>(
+    token: string, 
+    key: string
+    // key: "accessTokenPublicKey" | "refreshTokenPublicKey"
+): T | null => {
     try {
-        const publicKey = Buffer.from(
-            config.get<string>(key), 
-            "base64"
-        ).toString("ascii");
+        const publicKey = Buffer.from(config.get<string>(key), "base64").toString("ascii");
 
-        const decoded = jwt.verify(token, publicKey);
+        const decoded = jwt.verify(token, publicKey) as T;
         return decoded;
     } catch (error) {
         log.error(`[verifyJWT]: ${JSON.stringify({ action: "verifyJWT catch", data: error })}`);

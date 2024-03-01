@@ -21,11 +21,12 @@ export const authenticate = async (
         }
 
         if (!accessToken) {
-            return { error: true, message: "You are not logged in" };
+            return next({ error: true, message: "You are not logged in" });
         }
 
         // Validate Access Token
         const decoded: any = verifyJWT(accessToken, "accessTokenPrivateKey");
+        // const decoded: any = verifyJWT(accessToken, "accessTokenPublicKey");
         if (!decoded) {
             return next({ error: true, message: "Invalid token or user doesn't exist" });
         }
@@ -45,8 +46,8 @@ export const authenticate = async (
         res.locals.user = user;
 
         next();
-    } catch (error) {
-        log.error(`${JSON.stringify({ action: "deserializeUser catch", data: error })}`);
-        next(error);
+    } catch (e: any) {
+        log.error(`${JSON.stringify({ action: "deserializeUser catch", message: e.message })}`);
+        next(e);
     }
 };

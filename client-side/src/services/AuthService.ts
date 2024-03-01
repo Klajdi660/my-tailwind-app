@@ -30,13 +30,6 @@ const useAuthService = (): AuthService => {
       const response = await HttpClient.post<AuthResponse>(LOGIN_API, data);
 
       if (response.error) {
-        // toast.error(response.message);
-        // toast.error(response.message, { 
-        //   style: { 
-        //     // background: "#1C1C24",
-        //     // color: "#fff" 
-        //   } 
-        // });
         notify({
           title: "Error",
           variant: "error",
@@ -44,13 +37,14 @@ const useAuthService = (): AuthService => {
         });
         return;
       }
-      
-      const user = JSON.parse(atob(response.rToken.split(".")[1]));
-      localStorage.rToken = response.rToken;
-      localStorage.user = JSON.stringify(user);
-      setLToken(response.lToken);
-      globalObject.lToken = response.lToken;
-      authenticateUser({ id: user.id });
+      console.log('response :>> ', response);
+      const user = JSON.parse(atob(response.atoken.split(".")[1]));
+      console.log('user :>> ', user);
+      // localStorage.rToken = response.rToken;
+      // localStorage.user = JSON.stringify(user);
+      // setLToken(response.lToken);
+      // globalObject.lToken = response.lToken;
+      // authenticateUser({ id: user.id });
       navigate("/");
     } catch (error) {
       console.error(`Login failed: ${error}`);

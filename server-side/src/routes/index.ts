@@ -12,7 +12,7 @@ const routes = Router();
 
 routes.use(`${prefix}/auth`, authRoutes);
 routes.use(`${prefix}/oauth`, sessionRoutes);
-routes.use(`${prefix}/users`, userRoutes);
+routes.use(`${prefix}/user`, userRoutes);
 routes.use(`${prefix}/game`, gameRouter);
 
 export default routes;
