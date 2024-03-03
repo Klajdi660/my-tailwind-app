@@ -54,28 +54,28 @@ export const deleteUserHandler = async (req: Request, res: Response) => {
 export const updateUserProfileHandler = async (req: Request, res: Response) => {
     const { id } = req.params;
     const data = req.body;
-    const { extra } = req.body;
+    console.log('data :>> ', data);
+    // const { extra } = req.body;
 
-    const user = await getUserById(+id);
-    if (!user) {
-        return res.json({ error: true, message: "User not found!" });
-    };
+    // const user = await getUserById(+id);
+    // if (!user) {
+    //     return res.json({ error: true, message: "User not found!" });
+    // };
+ 
+    // const extraFields = JSON.parse(user.extra || '{}');
+    // const dataToSend = Object.assign(user, data);
 
-    const extraFields = JSON.parse(user.extra || '{}');
-    const test = Object.assign(user, data);
-    const test2 =  Object.assign(extraFields, extra || {});
-    const test3 = JSON.stringify(extraFields);
-    const test4 = test;
-    console.log('test :>> ', test);
-    console.log('test2 :>> ', test2);
-    console.log('test3 :>> ', test3);
-    console.log('test4 :>> ', test4);
-    // const dataToSend = Object.assign(user, req.body);
-    // console.log('dataToSend :>> ', dataToSend);
-    // const updatedProfileUser = await getAndUpdateUser(+id, { username, extra: JSON.stringify(extraData) });
+    // let extraToSend;
+    // if (typeof extra === "string") {
+    //     extraToSend = extra;
+    // } else {
+    //     extraToSend = JSON.stringify(Object.assign(extraFields, extra || {}));
+    // }
+   
+    // const updatedProfileUser = await getAndUpdateUser(+id, { ...dataToSend, extra: extraToSend });
     // if (!updatedProfileUser) {
-    //     return res.json({ error: true, message: "Profile not updated. Please try agin later." });
+    //     return res.json({ error: true, message: "Profile not updated. Please try again later." });
     // }
 
-    res.json({ error: false, message: "Profile updated successfully!" });
+    // res.json({ error: false, message: "Profile updated successfully!" });
 };
