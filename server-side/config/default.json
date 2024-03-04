@@ -54,5 +54,10 @@
         "tw_base_url": "https://api.igdb.com/v4",
         "tw_client_id": "90glkqgpxqwkhw0j23wrcjvmq03aoh",
         "tw_client_secret": "erdz0ocnbmp7wvh9ouyp7k3rkslnxb"
-    }  
+    },
+    "cloudinary": {
+        "api_key": "221733471778223",
+        "api_secret": "1ZdoT62w3blDFxzNfnyRwGKwJtg",
+        "cloud_name": "dpgexgnsn"
+    }
 }
