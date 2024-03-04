@@ -7,6 +7,7 @@ import passport from "passport";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import helmet from "helmet";
+import fileUpload from "express-fileupload";
 import { sequelizeConnection } from "./clients";
 import { log } from "./utils";
 import routes from "./routes";
@@ -55,6 +56,15 @@ app.disable("x-powered-by");
 //         store: sessionStore,
 //     })
 // );
+
+app.use(
+	fileUpload({
+		useTempFiles:true,
+		tempFileDir:"/tmp",
+	})
+)
+//cloudinary connection
+// cloudinaryConnect();
 
 app.use(routes);
 

@@ -245,7 +245,7 @@ export const forgotPasswordHandler = async (req: Request, res: Response) => {
     let templatePath= "ForgotPassword";
     const templateData = {
         title: "Reset Password",
-        urlTitle: "Reset Password",
+        // urlTitle: "Reset Password",
         code,
         name: user.email
     };
@@ -287,10 +287,10 @@ export const resetPasswordHandler = async (req: Request, res: Response) => {
 
     await redisCLI.del(`reset_password_pending_${email}`);
 
-    let templatePath= "ResetPassword";
+    let templatePath= "UpdatePassword";
     const templateData = {
         title: "Password Update Confirmation",
-        urlTitle: "Login",
+        // urlTitle: "Login",
         name: `${firstName} ${lastName}`,
         email,
     };

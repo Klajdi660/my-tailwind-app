@@ -2,7 +2,7 @@ import config from "config";
 import dayjs from "dayjs";
 import otpGenerator from "otp-generator";
 import { Op } from "sequelize";
-import { User } from "../models";
+import { User, Contact } from "../models";
 import { log } from "../utils";
 import { UserParams, OtpSettings } from "../types";
 
@@ -100,4 +100,29 @@ export const createVerificationCode = () => {
     }); 
 
     return otp;
+};
+
+export const getContactByEmail = async (email: string): Promise<Contact | any> => {
+    return Contact.findOne({
+        where: { email }
+    }).catch((error) => {
+        log.error(`${JSON.stringify({ action: "getContactByEmail catch", data: error })}`);
+    })
+};
+
+export const createContact = async (data: any): Promise<Contact | any> => {
+    const { email, name, phoneNr, subject, message } = data;
+    const newContact = new Contact({
+        email,
+        name,
+        phoneNr,
+        subject,
+        message,
+    });
+
+    return newContact
+        .save()
+        .catch((error) => {
+            log.error(`${JSON.stringify({ action: "createContact catch", data: error })}`);
+        });
 };

@@ -15,10 +15,10 @@ export const validateResource =
             next();
         } catch (e: any) {
             if (e instanceof ZodError) {
-                log.error(`[validateResource]: ${JSON.stringify({ action: "validateResource catch", data: e.errors })}`);
-                return res.json({ error: true, message: e.errors });
+                log.error(`${JSON.stringify({ action: "validateResource catch", data: e.errors })}`);
+                return res.json({ error: true, message: e.errors[0].message });
             }
-            
+
             next({ error: true, message: e.errors[0].message });
         }
     };

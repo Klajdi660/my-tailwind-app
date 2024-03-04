@@ -1,6 +1,15 @@
 import { Request, Response } from "express";
+import crypto from "crypto";
+import { redisCLI } from "../clients";
 import { User } from "../models";
-import { getUserById, deleteUser, getAndUpdateUser } from "../services/user.service";
+import { sendEmail } from "../utils";
+import { 
+    getUserById, 
+    deleteUser, 
+    getAndUpdateUser, 
+    getContactByEmail, 
+    createContact 
+} from "../services/user.service";
 
 export const getAllUsersHandler = async (req: Request, res: Response) => {
     const { page, limit } = req.query;
@@ -13,7 +22,6 @@ export const getAllUsersHandler = async (req: Request, res: Response) => {
     const { rows: users, count: totalUsers } = await User.findAndCountAll({
         limit: parsedLimit,
         offset,
-        // order: [["createdAt", "DESC"]], // sorted by createdAt
         order: [["id", "ASC"]], // sorted by id (1, 2, ...)
     });
 
@@ -52,30 +60,102 @@ export const deleteUserHandler = async (req: Request, res: Response) => {
 };
 
 export const updateUserProfileHandler = async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const data = req.body;
-    console.log('data :>> ', data);
-    // const { extra } = req.body;
+    // const { id } = req.params;
+    const updates = req.body;
+    const { user } = res.locals;
 
     // const user = await getUserById(+id);
     // if (!user) {
     //     return res.json({ error: true, message: "User not found!" });
     // };
- 
-    // const extraFields = JSON.parse(user.extra || '{}');
-    // const dataToSend = Object.assign(user, data);
+    
+    // Exclude extra field from updates
+    const { extra, ...userUpdates} = updates;
 
-    // let extraToSend;
-    // if (typeof extra === "string") {
-    //     extraToSend = extra;
-    // } else {
-    //     extraToSend = JSON.stringify(Object.assign(extraFields, extra || {}));
-    // }
-   
-    // const updatedProfileUser = await getAndUpdateUser(+id, { ...dataToSend, extra: extraToSend });
-    // if (!updatedProfileUser) {
-    //     return res.json({ error: true, message: "Profile not updated. Please try again later." });
-    // }
+    // Update user fields
+    Object.assign(user, userUpdates);
 
-    // res.json({ error: false, message: "Profile updated successfully!" });
+    // Parse extra field and merge updates
+    // const extraData = { ...JSON.parse(user.extra || '{}'), ...extra };
+    const extraData = Object.assign({}, JSON.parse(user.extra || '{}'), extra);
+          
+    const updatedProfileUser = await getAndUpdateUser(user.id, { ...user, extra: JSON.stringify(extraData) });
+    if (!updatedProfileUser) {
+        return res.json({ error: true, message: "Profile not updated. Please try again later." });
+    }
+
+    const updatedUser = await getUserById(user.id);
+
+    res.json({ 
+        error: false, 
+        message: "Profile updated successfully!",
+        data: updatedUser, 
+    });
+};
+
+export const changeUserPasswordHandler = async (req: Request, res: Response) => {
+    const { newPassword } = req.body;
+    const { user } = res.locals;
+    const { username, email, firstName, lastName } = user;
+    
+    const hash = crypto
+        .createHash("sha1")
+        .update(newPassword + username)
+        .digest("hex");
+    
+    const updatedUserPassword = await getAndUpdateUser(user.id, { password: hash });
+    if (!updatedUserPassword) {
+        return res.json({ error: true, message: "Error occurred while updating password" });
+    }
+
+    let templatePath= "UpdatePassword";
+    const templateData = {
+        title: "Password Updated",
+        name: `${firstName} ${lastName}`,
+        email,
+    };
+
+    const mailSent = await sendEmail(templatePath, templateData);
+    if (!mailSent) {
+        return res.json({ error: true, message: "Somenthing went wrong. Email not sent." });
+    }
+
+    res.json({ error: false, message: "Password updated successfully" });
+};
+
+export const updatedUserPhotoHandler = async (req: Request, res: Response) => {
+    const test = req.files;
+};
+
+export const contactUsHandler = async (req: Request, res: Response) => {
+    const { email, name, phoneNr, subject, message } = req.body;
+
+    // const existingContact = await getContactByEmail(email);
+    const existingContact = await redisCLI.get(`contact_us_${email}`);
+    if (existingContact) {
+        return res.json({ error: true, message: "A request already existed for same email address" });
+    }
+    const user_contact = {
+        email,
+        name,
+        phoneNr,
+        subject,
+        message,
+    };
+
+    // const contactDoc = await createContact(req.body);
+    const contactDoc = await redisCLI.setnx(`contact_us_${email}`, JSON.stringify(user_contact));
+    if (!contactDoc) {
+        return res.json({ error: true, message: "Your request could not be processed. Please try again." });
+    }
+
+    await redisCLI.expire(`contact_us_${email}`, 3600);
+
+    res.json({ 
+        error: false,
+        message: `We receved your message, we will reach you on email address ${email} or in phone`,
+        data: {
+            contact: req.body
+        }
+    });
 };
