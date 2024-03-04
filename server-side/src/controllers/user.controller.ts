@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import crypto from "crypto";
 import { redisCLI } from "../clients";
 import { User } from "../models";
-import { sendEmail } from "../utils";
+import { sendEmail, uploadImgToCloudinary } from "../utils";
 import { 
     getUserById, 
     deleteUser, 
@@ -124,7 +124,16 @@ export const changeUserPasswordHandler = async (req: Request, res: Response) => 
 };
 
 export const updatedUserPhotoHandler = async (req: Request, res: Response) => {
-    const test = req.files;
+    const { user } = res.locals;
+    const { displayImg } = req.files as any;
+    const image = await uploadImgToCloudinary(
+        displayImg,
+        "grooveit",
+        1000,
+        1000
+    ) as any;  
+    console.log('image :>> ', image);
+    // const updatedProfileImg = await getAndUpdateUser(user.id, { extra: image.source_url });
 };
 
 export const contactUsHandler = async (req: Request, res: Response) => {

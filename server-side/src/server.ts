@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import helmet from "helmet";
 import fileUpload from "express-fileupload";
-import { sequelizeConnection } from "./clients";
+import { sequelizeConnection, cloudinaryConnect } from "./clients";
 import { log } from "./utils";
 import routes from "./routes";
 import passportConfig from "../config/passport";
@@ -64,7 +64,7 @@ app.use(
 	})
 )
 //cloudinary connection
-// cloudinaryConnect();
+cloudinaryConnect();
 
 app.use(routes);
 
