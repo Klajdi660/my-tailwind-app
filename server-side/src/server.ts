@@ -8,10 +8,11 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import helmet from "helmet";
 import fileUpload from "express-fileupload";
-import { sequelizeConnection, cloudinaryConnect } from "./clients";
+import { sequelizeConnection } from "./clients";
 import { log } from "./utils";
 import routes from "./routes";
 import passportConfig from "../config/passport";
+import { cloudinaryConnect } from "../config/cloudinary";
 import { AppParams } from "./types";
 
 const { port, client_url } = config.get<AppParams>("app");
@@ -25,7 +26,7 @@ const app: Express = express();
 //     expiration: 24 * 60 * 60 * 1000, 
 // });
 
-app.use(express.json({ limit: "10mb" })); 
+app.use(express.json({ limit: "10kb" })); 
 app.use(express.urlencoded({ extended: true })); 
 
 app.use(
@@ -40,7 +41,7 @@ app.use(cookieParser());
 const corsOptions = {
     origin: client_url,
     credentials: true,
-    optionSuccessStatus:200
+    optionSuccessStatus: 200
 };
 app.use(cors(corsOptions));
 app.options("*", cors());
@@ -65,6 +66,16 @@ app.use(
 )
 //cloudinary connection
 cloudinaryConnect();
+
+app.get(
+    "/api/healthChecker",
+    (req: Request, res: Response, next: NextFunction) => {
+      res.json({
+        error: false,
+        message: "Welcome to GrooveIT😂😂👈👈",
+      });
+    }
+);
 
 app.use(routes);
 

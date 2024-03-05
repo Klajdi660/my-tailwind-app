@@ -66,7 +66,7 @@ export const createUser = async (data: UserParams, verified: boolean): Promise<U
 export const getAndUpdateUser = async (id: number, updatedField: { [key: string]: any }): Promise<User | any> => {
     const currentTimestamp = dayjs().toDate();
     updatedField.updatedAt = currentTimestamp;
-console.log('updatedField :>> ', updatedField);
+
     return User.update(
         updatedField,
         { where: { id }}

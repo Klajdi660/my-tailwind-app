@@ -1,24 +1,24 @@
 import { FunctionComponent } from "react";
 import { Template } from "../../components";
-import { useFormList } from "../../hooks";
-import useAuthService from "../../services/AuthService";
-import { Form } from "../../components/Auth/Form";
-import { LoginUserInput } from "../../types/user.type";
-import { loginValidation } from "../../utils";
+// import { useFormList } from "../../hooks";
+// import useAuthService from "../../services/AuthService";
+// import { Form } from "../../components/Auth/Form";
+// import { LoginUserInput } from "../../types/user.type";
+// import { loginValidation } from "../../utils";
 
 const Login: FunctionComponent = () => {
-  const { lists } = useFormList();
-  const { login } = useAuthService();
+  // const { lists } = useFormList();
+  // const { login } = useAuthService();
 
-  const handleOnSubmit = async (values: LoginUserInput) => {
-    const { username, password, remember } = values;
-    console.log('remember :>> ', remember);
-    try {
-      await login(username, password);
-    } catch (error) {
-      console.error("Failed to login!", error)
-    }
-  };
+  // const handleOnSubmit = async (values: LoginUserInput) => {
+  //   const { username, password, remember } = values;
+
+  //   try {
+  //     await login(username, password);
+  //   } catch (error) {
+  //     console.error("Failed to login!", error)
+  //   }
+  // };
 
   return (
     <Template

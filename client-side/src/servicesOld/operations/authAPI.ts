@@ -22,7 +22,7 @@
 
 //         // navigate(path.verifyOTP);
 //     } catch (error) {
-//         console.log("SENDOTP API ERROR............", error);
+//         console.error("SENDOTP API ERROR............", error);
 //     }
 
 //     dispatch(setLoading(false));

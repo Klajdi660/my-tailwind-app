@@ -1,7 +1,7 @@
 import { useAuth } from "../hooks";
 import { useNavigate } from "react-router-dom";
 import { HttpClient } from "../client";
-import { globalObject } from "../utils";
+// import { globalObject } from "../utils";
 import { endpoints } from "./Api";
 import { useNotification } from "../hooks";
 import { AuthResponse, RegisterUserInput } from "../types/user.type";
@@ -11,6 +11,7 @@ const { LOGIN_API, LOGOUT_API, SIGNUP_API, FORGOTPASSWORD_API, RESETPASSWORD_API
 
 interface AuthService {
   login: (username: string, password: string) => Promise<void>;
+  socialAuth: (tokenParam: string) => Promise<void>;
   signup: (values: RegisterUserInput, accountType: string) => Promise<void>;
   logout: () => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
@@ -37,17 +38,34 @@ const useAuthService = (): AuthService => {
         });
         return;
       }
-      console.log('response :>> ', response);
+
       const user = JSON.parse(atob(response.atoken.split(".")[1]));
-      console.log('user :>> ', user);
-      // localStorage.rToken = response.rToken;
-      // localStorage.user = JSON.stringify(user);
+
+      localStorage.atoken = response.atoken;
+      localStorage.user = JSON.stringify(user);
       // setLToken(response.lToken);
       // globalObject.lToken = response.lToken;
-      // authenticateUser({ id: user.id });
+      authenticateUser({ id: user.id });
       navigate("/");
     } catch (error) {
       console.error(`Login failed: ${error}`);
+      throw error;
+    }
+  };
+
+  const socialAuth = async (tokenParam: string) => {
+    try { 
+      const token = tokenParam
+        .slice(tokenParam.indexOf('=') + 1)
+        .replace('%20', ' ');
+      
+      const user = JSON.parse(atob(token.split(".")[1]));
+    
+      localStorage.atoken = token;
+      localStorage.user = JSON.stringify(user);
+      authenticateUser({ id: user.id });
+    } catch (error) {
+      console.error(`SocialAuth login failed: ${error}`);
       throw error;
     }
   };
@@ -68,7 +86,7 @@ const useAuthService = (): AuthService => {
     try {
       await HttpClient.post<AuthResponse>(LOGOUT_API);
       unAuthenticateUser();
-      delete localStorage.rToken;
+      delete localStorage.aToken;
       delete localStorage.user;
       navigate("/");
     } catch (error) {
@@ -101,7 +119,6 @@ const useAuthService = (): AuthService => {
   const resetPassword = async (data: any, token: string): Promise<void> => {
     try {
       const response = await HttpClient.put<AuthResponse>(`${RESETPASSWORD_API}/${token}`, data);
-      console.log('response :>> ', response);
       if (response.error) {
         notify({
           title: "Error",
@@ -110,6 +127,7 @@ const useAuthService = (): AuthService => {
         });
         return;
       }   
+
       notify({
         title: "Success",
         variant: "info",
@@ -120,7 +138,7 @@ const useAuthService = (): AuthService => {
     }
   };
 
-  return { login, signup, logout, forgotPassword, resetPassword };
+  return { login, socialAuth, signup, logout, forgotPassword, resetPassword };
 };
 
 export default useAuthService;

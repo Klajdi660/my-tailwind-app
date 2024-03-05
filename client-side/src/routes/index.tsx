@@ -14,8 +14,8 @@ const {
   verifyEmail,
   forgotPassword,
   resetPassword,
+  socialAuth,
 } = paths;
-console.log('paths :>> ', paths);
 
 // const Routes = () =>
 //   useRoutes([
@@ -135,6 +135,9 @@ const ErrorPage = Loadable(
 const LoginPage = Loadable(
   lazy(() => import("../pages/Auth/Login"))
 );
+const SocialAuth = Loadable(
+  lazy(() => import("../components/Auth/SocialAuth"))
+);
 const RegisterPage = Loadable(
   lazy(() => import("../pages/Auth/SignUp"))
 );
@@ -185,6 +188,10 @@ export const router = createBrowserRouter([
           {
             path: login,
             element: <LoginPage />
+          },
+          {
+            path: socialAuth,
+            element: <SocialAuth />
           },
           {
             path: register,

@@ -47,7 +47,7 @@ export const authenticate = async (
 
         next();
     } catch (e: any) {
-        log.error(`${JSON.stringify({ action: "deserializeUser catch", message: e.message })}`);
+        log.error(`${JSON.stringify({ action: "authenticate catch", message: e.message })}`);
         next(e);
     }
 };

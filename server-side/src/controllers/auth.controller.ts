@@ -182,13 +182,13 @@ export const verifyEmailHandler = async (req: Request, res: Response) => {
     if (existingUser) {
         user = await getAndUpdateUser(existingUser.id, { verified });
         if (!user) {
-            console.log(JSON.stringify({ action: "Confirm updateUser Req", data: user }))
+            log.error(JSON.stringify({ action: "Confirm updateUser Req", data: user }))
             return res.json({ error: true, message: "Failed to update user!" });
         }
     } else {
         user = await createUser(redisObj, verified);
         if (!user) {
-            console.log(JSON.stringify({ action: "Confirm createUser Req", data: user }))
+            log.error(JSON.stringify({ action: "Confirm createUser Req", data: user }))
             return res.json({ error: true, message: "Failed to register user!" });
         }
     }
@@ -304,6 +304,13 @@ export const resetPasswordHandler = async (req: Request, res: Response) => {
 };
 
 export const googleOauthHandler = async (req: Request, res: Response) => {
-    res.redirect(`${client_url}`);
-};
+    const user = req.user;
+    
+    const { access_token } = await signToken(user);
+    // const jwToken = `Bearer ${access_token}`
 
+    return res.redirect(`${client_url}/social-auth?token=${access_token}`);
+
+    // return res.redirect(`${client_url}/auth/success?token=${jwToken}`);
+    // return res.json({ error: false, atoken: access_token });
+};

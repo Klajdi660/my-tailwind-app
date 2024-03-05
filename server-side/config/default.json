@@ -30,12 +30,9 @@
         "password": "vfvbqstwxcauoydk"
     },
     "google": {
-        "client_id": "604086717415-8pnd2d5v4itf0pp1s5c1ha2t87bhnlnm.apps.googleusercontent.com",
-        "client_secret": "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",
-        "callback_url": "http://localhost:8080/api/auth/google/callback",
-        "gr_client_id": "520444729444-77uefhl8fv8a3708n1rf5tev6j9tdtf9.apps.googleusercontent.com",
-        "gr_client_secret": "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",
-        "gr_callback_url": "http://localhost:8080/api/auth/google/callback"
+        "client_id": "520444729444-77uefhl8fv8a3708n1rf5tev6j9tdtf9.apps.googleusercontent.com",
+        "client_secret": "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",
+        "callback_url": "http://localhost:8080/api/auth/google/callback"
     },
     "otp": {
         "otpLength": 6,

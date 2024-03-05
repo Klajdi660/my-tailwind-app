@@ -18,7 +18,6 @@ export class HttpClient {
     static instance = instance;
 
     static async get<T>(url: string, params?: unknown, options?: any) {
-        console.log('params :>> ', params);
         const response = await this.instance.get<T>(url, { params });
         return response.data;
     };

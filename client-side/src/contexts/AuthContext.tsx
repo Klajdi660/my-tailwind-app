@@ -28,7 +28,8 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
   useEffect(() => {
-    if (localStorage.rToken) {
+    if (localStorage.atoken) {
+      console.log("HYRIIIII")
       const extraParse = JSON.parse(JSON.parse(localStorage.user).extra);
       const userParse = JSON.parse(localStorage.user);
       const firstNameInitial = extraParse.firstName.charAt(0) || "";

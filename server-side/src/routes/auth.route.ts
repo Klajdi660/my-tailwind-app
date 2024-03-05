@@ -1,6 +1,5 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import config from "config";
-import { asyncHandler } from "../utils";
 import { validateResource, authenticate, requireUser } from "../middleware";
 import { 
     loginUserSchema, 
@@ -16,7 +15,8 @@ import {
     logoutHandler, 
     forgotPasswordHandler, 
     resetPasswordHandler,
-    refreshAccessTokenHandler 
+    refreshAccessTokenHandler, 
+    googleOauthHandler
 } from "../controllers/auth.controller";
 import passport from "passport";
 import { AppParams } from "../types";
@@ -61,9 +61,7 @@ authRouter.get(
         failureRedirect: `${client_url}/login`,
         session: false,
     }),
-    asyncHandler(async (req: Request, res: Response) => {
-        res.redirect(`${client_url}`);
-    })
+    googleOauthHandler    
 );
 
 export default authRouter;
