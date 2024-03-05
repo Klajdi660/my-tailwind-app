@@ -88,7 +88,7 @@ export const loginHandler = async (req: Request, res: Response) => {
     res.cookie("refresh_token", refresh_token, refreshTokenCookieOptions);
     res.cookie("logged_in", true, loginTokenCookieOptions); 
 
-    return res.json({ error: false, atoken: access_token });
+    res.json({ error: false, atoken: access_token });
 };
 
 export const registerHandler = async (req: Request, res: Response) => {
@@ -305,12 +305,9 @@ export const resetPasswordHandler = async (req: Request, res: Response) => {
 
 export const googleOauthHandler = async (req: Request, res: Response) => {
     const user = req.user;
-    
+    console.log('user :>> ', user);
     const { access_token } = await signToken(user);
     // const jwToken = `Bearer ${access_token}`
 
     return res.redirect(`${client_url}/social-auth?token=${access_token}`);
-
-    // return res.redirect(`${client_url}/auth/success?token=${jwToken}`);
-    // return res.json({ error: false, atoken: access_token });
 };

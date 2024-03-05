@@ -32,12 +32,13 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
       console.log("HYRIIIII")
       const extraParse = JSON.parse(JSON.parse(localStorage.user).extra);
       const userParse = JSON.parse(localStorage.user);
-      const firstNameInitial = extraParse.firstName.charAt(0) || "";
-      const lastNameInitial = extraParse.lastName.charAt(0) || "";
+      console.log('extraParse :>> ', extraParse);
+      // const firstNameInitial = extraParse.firstName.charAt(0) || "";
+      // const lastNameInitial = extraParse.lastName.charAt(0) || "";
     
-      const userAvatar = userParse.avatar
-        ? userParse.avatar
-        : `https://place-hold.it/52x52/2c2f32/ffffff&text=${firstNameInitial}${lastNameInitial}&fontsize=25`;
+      const userAvatar = userParse.photos
+        // ? userParse.photos
+        // : `https://place-hold.it/52x52/2c2f32/ffffff&text=${firstNameInitial}${lastNameInitial}&fontsize=25`;
         
       setUser({ ...userParse, avatar: userAvatar, extra: extraParse });
     }

@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import useAuthService from "../../services/AuthService";
 import { useAuth } from "../../hooks";
 
@@ -8,7 +8,6 @@ const SocialAuth: FunctionComponent = () => {
     const { isAuthenticated } = useAuth();
 
     const location = useLocation();
-    const navigate = useNavigate();
 
     const tokenParam = location.search;
 
@@ -17,11 +16,12 @@ const SocialAuth: FunctionComponent = () => {
             await socialAuth(tokenParam);
         };
         fetchData();
-    }, [socialAuth, tokenParam]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>
-            {isAuthenticated ? navigate("/discover") : navigate("/login")}
+            {isAuthenticated ? <Navigate to="/discover" /> : <Navigate to="/login" />}
         </>
     );
 };

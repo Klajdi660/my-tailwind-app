@@ -12,14 +12,12 @@ export const accessTokenCookieOptions: CookieOptions = {
     expires: accessTokenExpitesAt,
     maxAge: access_token_expires * 60 * 1000,
     httpOnly: true,
-    sameSite: "lax",
 };
 
 export const refreshTokenCookieOptions: CookieOptions = {
     expires: refreshTokenExpitesAt,
     maxAge: refresh_token_expires * 60 * 1000,
     httpOnly: true,
-    sameSite: "lax",
 };
 
 export const loginTokenCookieOptions = {

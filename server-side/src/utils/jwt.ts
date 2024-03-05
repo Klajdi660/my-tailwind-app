@@ -24,7 +24,10 @@ const signJWT = (
 // Sign Token
 export const signToken = async (user: any) => {
     // Sign the access token
-    const access_token = signJWT({ id: user.id }, "accessTokenPrivateKey", {
+    // const access_token = signJWT({ id: user.id }, "accessTokenPrivateKey", {
+    //     expiresIn: `${access_token_expires}m`,
+    // });
+    const access_token = signJWT(user, "accessTokenPrivateKey", {
         expiresIn: `${access_token_expires}m`,
     });
 
