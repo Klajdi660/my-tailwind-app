@@ -84,9 +84,9 @@ const useAuthService = (): AuthService => {
 
   const logout = async (): Promise<void> => {
     try {
-      await HttpClient.post<AuthResponse>(LOGOUT_API);
+      await HttpClient.get<AuthResponse>(LOGOUT_API);
       unAuthenticateUser();
-      delete localStorage.aToken;
+      delete localStorage.atoken;
       delete localStorage.user;
       navigate("/");
     } catch (error) {
