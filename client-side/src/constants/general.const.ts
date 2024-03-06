@@ -44,3 +44,77 @@ export const accountTypes = [
         type: "Admin",
     },
 ];
+
+export const navlinks = [
+    {
+        name: "Home",
+        subLinks: [
+            {
+                id: "discover",
+                name: "Discover",
+                to: "/discover",
+                icon: "FaWpexplorer",
+                tooltip: "hover",
+            },
+            {
+                id: "browse",
+                name: "Browse",
+                to: "/browse",
+                icon: "MdOutlineExplore",
+                tooltip: "hover",
+            },  
+        ],
+    },
+    {
+        name: "You",
+        subLinks: [
+            {
+                id: "my_games",
+                name: "My Games",
+                to: "/my-games",
+                icon: "MdOutlineGames",
+                tooltip: "hover",
+            },
+            {
+                id: "wishlist",
+                name: "Wishlist",
+                to: "/wishlist",
+                icon: "SlSocialDropbox",
+                tooltip: "hover",
+            },
+            {
+                id: "store",
+                name: "Store",
+                to: "/store",
+                icon: "MdStorefront",
+                tooltip: "hover",
+            },
+        ]
+    },
+    {
+        name: "Explore",
+        subLinks: [
+            {
+                id: "collection",
+                name: "Collections",
+                to: "/collection",
+                icon: "RiFirefoxLine",
+                tooltip: "hover",
+            },
+            {
+                id: "platforms",
+                name: "Platforms",
+                to: "/platforms",
+                icon: "CgGames",
+                tooltip: "hover",
+            },
+            {
+                id: "genres",
+                name: "Genres",
+                to: "/genres",
+                icon: "BiGame",
+                tooltip: "hover",
+            },
+        ]
+    }
+];

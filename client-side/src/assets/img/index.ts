@@ -19,6 +19,7 @@ import addCourse from "./add-course.svg";
 import favorite from "./favorite.svg";
 import later from "./later.svg";
 import plus from "./plus.svg";
+import icon from "./icon.png";
 
 // social networks
 import facebookIcon from "./facebook-icon.svg";
@@ -57,4 +58,5 @@ export {
     plus,
     genUsername,
     picon,
+    icon,
 };

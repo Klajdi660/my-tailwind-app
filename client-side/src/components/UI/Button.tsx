@@ -3,10 +3,10 @@ import { classNames } from "../../utils";
 import { Icons } from "./Icon";
 
 interface ButtonProps {
-  type: "button" | "submit" | "reset";
+  type?: "button" | "submit" | "reset";
   label: string;
-  disabled: boolean;
-  className: string;
+  disabled?: boolean;
+  className?: string;
   variant: "outlined" | "contained" | "gradient" | "filled";
   labelIcon?: any;
   isSubmitting?: boolean;

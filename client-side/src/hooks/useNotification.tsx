@@ -2,8 +2,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface NotifyParams {
-    title: string;
-    description: string;
+    title?: string;
+    description: string | any;
     variant: any;
 };
 

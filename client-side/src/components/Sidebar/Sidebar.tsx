@@ -1,87 +1,113 @@
-import { FunctionComponent, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useClickAway } from "react-use";
-import { useAuth } from "../../hooks";
-import { Button, Tooltip } from "antd";
-import { Icon } from "../UI/Icon";
-import { logo, avatar, picon } from "../../assets/img";
-import { TbGridDots } from "react-icons/tb";
-import { sidebarLinks } from "../../data";
-import SideMenuList from "./SideMenuList";
+import { FunctionComponent, useMemo, Fragment } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth, useNotification } from "../../hooks";
+import { Icons } from "../UI/Icon";
+import { classNames } from "../../utils";
+import { navlinks } from "../../constants";
 
 export const Sidebar: FunctionComponent = () => {
-  const [activeLink, setActiveLink] = useState(sidebarLinks[0].name);
-  const [isButtonClicked, setIsButtonClicked] = useState(false); 
-
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
+  const [notify] = useNotification();
   
-  const buttonRef = useRef<HTMLDivElement | null>(null);
-  const iconsRef = useRef<HTMLDivElement | null>(null);
-
-  // Use the useClickAway hook to handle clicks outside the button
-  useClickAway(buttonRef, () => {
-    setIsButtonClicked(false);
-  });
-
-  useClickAway(iconsRef, () => {
-    setActiveLink("showApp")
-  });
-
   const handleLinkClick = (link: any) => {
-    if (!isAuthenticated && link.name !== 'Home') {
-      // toast.info(`Please login to access ${link.name} page`);
-      toast.info(
+    if (!isAuthenticated && link.name !== "Discover") {
+      const description = (
         <span>
-          Please login to access <span className="text-orange-10">{link.name}</span> page
+          Please login to access <span className="text-primary">{link.name}</span> page.
         </span>
-      );      
-      return;
+      );
+
+      return notify({
+        variant: "info",
+        description,
+      });
     }
-    setActiveLink(link.name);
+
     navigate(link.link);
     // localStorage.lastLocation = link.name.toLowerCase();
   };
 
+  const navLists = useMemo(() => {
+    return navlinks;
+  }, []); // user
+
+  // const hoverWidth = themeConfig.sidebars.full;
+
   return (
-    <div className={`sidebarWrapper md:translate-x-0 -translate-x-full md:z-0 z-50`}>
-      <div className="md:w-[60px] h-full flex-col flex flex-shrink-0 items-center justify-center overflow-hidden py-4 pt-8">
-        <Link to="/home">
-          <Icon 
-            imgUrl={picon} 
-            styles="w-[52px] h-[52px] bg-richblack-700"
-          />
-        </Link>
-        <SideMenuList
-          sidebarLinks={sidebarLinks}
-          activeLink={activeLink}
-          handleLinkClick={handleLinkClick}
-          iconRef={iconsRef}
-        />
-        <div className={`${isAuthenticated ? "pt-2 border-t border-richblack-700" : null }`}>
-          {!isAuthenticated ? ( 
-            <Link to='/login'>
-              <Icon 
-                imgUrl={avatar}
-                styles="w-[52px] h-[52px] bg-richblack-700 rounded-xl"
-                name='Login'
-              />
-            </Link>
-          ) : (
-            <Tooltip placement="right" title="Show Applications" color="#2C333F" trigger={["hover"]} arrow={false}>
-              <Button
-                ref={buttonRef}
-                name='showApp'
-                className={`border border-transparent flex justify-center items-center rounded-xl ${isButtonClicked ? "bg-richblack-700" : "hover:bg-richblack-700"}`}
-                style={{ width: "52px", height: "52px" }}
-                icon={<TbGridDots color={isButtonClicked ? "#EB6536" : "#fff"} size={30}/>}
-                onClick={() => setIsButtonClicked(!isButtonClicked)}
-              />
-            </Tooltip>
-          )} 
+    <section
+      className={classNames(
+        "sidebar_section z-[1100] fixed top-0 h-full",
+      )}
+    >
+      <div
+        className={classNames(
+          "nav-list overflow-auto hide_scrollbar relative top-navbar sidebar_height w-sidebar duration-500 transition-all pb-[100px] bg-sidebar",
+        )}
+      >
+        <div
+          className={classNames(
+            "relative text-white text-base",
+          )}
+        >
+          <>
+            {navLists.map((item) => (
+              <div
+                key={item.name}
+                className={classNames("mt-4")}
+              >
+                <span
+                  className={classNames(
+                    "block p-3 mx-3 text-gray-400 text-sm uppercase"
+                  )}
+                >
+                  {item.name}
+                </span>
+                <ul>
+                  {item.subLinks.map((link) => (
+                    <Fragment key={link.name}>
+                      <li
+                        key={link.name}
+                        className={classNames(
+                          `dropdown_${link.id}`,
+                          "relative px-[10px] group",
+                        )}
+                      >
+                        <button
+                          className={classNames(
+                            "flex flex-row items-center gap-2 h-12 w-full outline-0 border-none pl-[20px]",
+                            pathname.includes(link.to) && "rounded bg-primary-opacity"
+                          )}
+                          onClick={() => handleLinkClick(link)}
+                        >
+                          <Icons
+                            name={link.icon}
+                            className={classNames(
+                              "group-hover:!text-primary",
+                              pathname.includes(link.to) && "!text-primary"
+                            )}
+                            size={20}
+                          />
+                          <div
+                            className={classNames(
+                              "group-hover:text-primary text-sm flex items-center gap-3 whitespace-nowrap",
+                              pathname.includes(link.to) ? "text-primary" : "text-onNeutralBg",
+                              "opacity-100 transition-opacity duration-1000"
+                            )}
+                          >
+                            {link.name}
+                          </div>
+                        </button>
+                      </li>
+                    </Fragment>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

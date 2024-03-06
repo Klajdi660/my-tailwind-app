@@ -1,5 +1,5 @@
-import { useAuth } from "../hooks";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks";
 import { HttpClient } from "../client";
 // import { globalObject } from "../utils";
 import { endpoints } from "./Api";
@@ -88,6 +88,7 @@ const useAuthService = (): AuthService => {
       unAuthenticateUser();
       delete localStorage.atoken;
       delete localStorage.user;
+      delete localStorage.lastLocation;
       navigate("/");
     } catch (error) {
       console.error(`Logout failed: ${error}`);

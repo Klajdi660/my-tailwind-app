@@ -6,11 +6,14 @@ import { IconContext } from "react-icons";
 import { classNames } from "../../utils";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { FiEye, FiEyeOff } from "react-icons/fi";
-import { FaGithub, FaApple } from "react-icons/fa";
+import { CgGames } from "react-icons/cg";
+import { BiGame, BiSearch } from "react-icons/bi"; 
+import { FaGithub, FaApple, FaWpexplorer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { MdHome } from "react-icons/md";
-import { SlGameController } from "react-icons/sl";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { MdHome, MdOutlineExplore, MdOutlineGames, MdStorefront } from "react-icons/md";
+import { RiFirefoxLine } from "react-icons/ri";
+import { SlGameController, SlSocialDropbox } from "react-icons/sl";
 
 export const Icon: FunctionComponent<IconProps> = (props)  => {
   const { styles, imgUrl, disabled, handleClick, isActive, name, type, className } = props;
@@ -48,13 +51,22 @@ export const Icon: FunctionComponent<IconProps> = (props)  => {
 const icons: IconsMap = { 
   AiFillEye,
   AiFillEyeInvisible,
+  BiGame,
+  BiSearch,
+  CgGames,
+  FaApple,
   FaGithub,
+  FaWpexplorer,
   FcGoogle,
-  MdHome, 
-  SlGameController,
   FiEye,
   FiEyeOff,
-  FaApple,
+  MdHome, 
+  MdOutlineExplore,
+  MdOutlineGames,
+  MdStorefront,
+  RiFirefoxLine,
+  SlGameController,
+  SlSocialDropbox,
 };
 
 export const Icons: FunctionComponent<IconParams> = ({
