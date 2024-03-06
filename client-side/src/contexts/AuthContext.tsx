@@ -36,7 +36,8 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
       // const firstNameInitial = extraParse.firstName.charAt(0) || "";
       // const lastNameInitial = extraParse.lastName.charAt(0) || "";
     
-      const userAvatar = userParse.photos
+      const userAvatar = extraParse.photos;
+      console.log('userAvatar :>> ', userAvatar);
         // ? userParse.photos
         // : `https://place-hold.it/52x52/2c2f32/ffffff&text=${firstNameInitial}${lastNameInitial}&fontsize=25`;
         

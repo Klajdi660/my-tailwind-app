@@ -4,6 +4,7 @@ import { useAuth } from '../hooks';
 import { classNames } from '../utils';
 import { icon } from '../assets/img';
 import { Icons, Button } from './UI';
+import ProfileDropdown from './Auth/ProfileDropDown';
 
 interface NavbarProps {};
 
@@ -60,7 +61,9 @@ const Searchbar = () => {
     );
 };
 
-const SignUpButton = (navigate: any) => {
+const SignUpButton = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="flex items-center gap-0 px-4">
             <Button
@@ -73,7 +76,6 @@ const SignUpButton = (navigate: any) => {
 };
 
 export const Navbar: FunctionComponent<NavbarProps> = () => {  
-    const navigate = useNavigate();
     const { isAuthenticated } = useAuth();
 
     return (
@@ -89,7 +91,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
                         <Searchbar/>
                     </div>
                     <div className="flex items-center h-full gap-4 nav-icons">
-                        <SignUpButton navigate={navigate} />
+                        {isAuthenticated ? <ProfileDropdown /> : <SignUpButton />}
                     </div>
                 </div>
             </div>

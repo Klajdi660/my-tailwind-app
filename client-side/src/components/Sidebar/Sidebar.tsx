@@ -20,7 +20,7 @@ export const Sidebar: FunctionComponent = () => {
       );
 
       return notify({
-        variant: "info",
+        variant: "warning",
         description,
       });
     }

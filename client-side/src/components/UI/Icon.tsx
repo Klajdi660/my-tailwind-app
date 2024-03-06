@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Tooltip } from "antd"; 
+import { Tooltip, Dropdown } from "antd"; 
 import { IconProps } from "../../types/user.type";
 import { IconParams, IconsMap } from "../../types/general.type";
 import { IconContext } from "react-icons";
@@ -17,7 +17,7 @@ import { SlGameController, SlSocialDropbox } from "react-icons/sl";
 
 export const Icon: FunctionComponent<IconProps> = (props)  => {
   const { styles, imgUrl, disabled, handleClick, isActive, name, type, className } = props;
-
+  console.log('props :>> ', props);
   const triggerType = type === "click" ? "click": "hover";
   const placement = isActive === "Login" ? "bottom" : "right";
 
