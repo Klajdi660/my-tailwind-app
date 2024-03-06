@@ -7,11 +7,12 @@ import { classNames } from "../../utils";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { CgGames } from "react-icons/cg";
-import { BiGame, BiSearch } from "react-icons/bi"; 
+import { BiGame, BiSearch, BiUser } from "react-icons/bi"; 
 import { FaGithub, FaApple, FaWpexplorer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { MdHome, MdOutlineExplore, MdOutlineGames, MdStorefront } from "react-icons/md";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { MdHome, MdLogout, MdOutlineExplore, MdOutlineGames, MdStorefront } from "react-icons/md";
 import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox } from "react-icons/sl";
 
@@ -53,6 +54,7 @@ const icons: IconsMap = {
   AiFillEyeInvisible,
   BiGame,
   BiSearch,
+  BiUser,
   CgGames,
   FaApple,
   FaGithub,
@@ -60,7 +62,9 @@ const icons: IconsMap = {
   FcGoogle,
   FiEye,
   FiEyeOff,
+  IoMdNotificationsOutline,
   MdHome, 
+  MdLogout,
   MdOutlineExplore,
   MdOutlineGames,
   MdStorefront,

@@ -10,7 +10,7 @@ interface ButtonProps {
   variant: "outlined" | "contained" | "gradient" | "filled";
   labelIcon?: any;
   isSubmitting?: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export const Button: FunctionComponent<ButtonProps> = forwardRef(

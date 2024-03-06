@@ -133,3 +133,8 @@ input:-webkit-autofill:focus {
 .ant-form-vertical .ant-form-item input {}
 
 .ant-form-vertical .ant-form-item input::placeholder {}
+
+.ant-popover-content {
+  right: -12px;
+  margin-top: 15px;
+}
