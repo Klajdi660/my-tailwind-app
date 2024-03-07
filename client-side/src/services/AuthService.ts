@@ -40,7 +40,8 @@ const useAuthService = (): AuthService => {
       }
 
       const user = JSON.parse(atob(response.atoken.split(".")[1]));
-
+      console.log('user :>> ', user);
+      console.log('response :>> ', response);
       localStorage.atoken = response.atoken;
       localStorage.user = JSON.stringify(user);
       // setLToken(response.lToken);
@@ -60,7 +61,7 @@ const useAuthService = (): AuthService => {
         .replace('%20', ' ');
       
       const user = JSON.parse(atob(token.split(".")[1]));
-      console.log('user :>> ', user);
+
       localStorage.atoken = token;
       localStorage.user = JSON.stringify(user);
       authenticateUser({ id: user.id });
@@ -106,12 +107,14 @@ const useAuthService = (): AuthService => {
           description: response.message,
         });
         return;
-      }   
+      }  
+
       notify({
         title: "Success",
         variant: "info",
         description: response.message,
-      });   
+      });
+      navigate("/verify-email");   
     } catch (error) {
       console.error(`Forgot Pass Failed: ${error}`);
     }    

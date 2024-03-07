@@ -15,7 +15,6 @@ export const LoginForm: FunctionComponent = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('localStorage.lastLocarion :>> ', localStorage.lastLocation);
         if (isAuthenticated) localStorage.lastLocation ? navigate(`/${localStorage.lastLocation}`) : navigate("/discover");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

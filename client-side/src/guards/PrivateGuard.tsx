@@ -33,8 +33,7 @@ const InfoModal = () => {
 export const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({ children }) => {
   const location = useLocation();
   const { isAuthenticated } = useAuth();
-  // console.log('location pg:>> ', location);
-  // console.log('isAuthenticated pg:>> ', isAuthenticated);
+  
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} />;
     // InfoModal();

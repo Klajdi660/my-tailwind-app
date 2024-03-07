@@ -18,7 +18,7 @@ import { SlGameController, SlSocialDropbox } from "react-icons/sl";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 export const Icon: FunctionComponent<IconProps> = (props)  => {
   const { styles, imgUrl, disabled, handleClick, isActive, name, type, className } = props;
-  console.log('props :>> ', props);
+
   const triggerType = type === "click" ? "click": "hover";
   const placement = isActive === "Login" ? "bottom" : "right";
 

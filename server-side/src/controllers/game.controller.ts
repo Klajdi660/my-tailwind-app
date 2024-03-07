@@ -9,7 +9,6 @@ const { tw_base_url, tw_client_id } = config.get<any>("twitch");
 
 export const gameListHandler = async (req: Request, res: Response) => {
     const token = await getAuthToken();
-    console.log('token :>> ', token);
     if (!token) {
         return res.json({ error: true, message: "Authentication Failed!" });
     }

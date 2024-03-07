@@ -82,13 +82,15 @@ export const loginHandler = async (req: Request, res: Response) => {
 
 
     const { access_token, refresh_token } = await signToken(user);
+    const expiredCodeAt = dayjs().add(60, 's');
+
 
     // Send Access & Refresh Tokens in Cookie
     res.cookie("access_token", access_token, accessTokenCookieOptions);
     res.cookie("refresh_token", refresh_token, refreshTokenCookieOptions);
     res.cookie("logged_in", true, loginTokenCookieOptions); 
 
-    res.json({ error: false, atoken: access_token });
+    res.json({ error: false, atoken: access_token, exp: expiredCodeAt });
 };
 
 export const registerHandler = async (req: Request, res: Response) => {
@@ -305,7 +307,6 @@ export const resetPasswordHandler = async (req: Request, res: Response) => {
 
 export const googleOauthHandler = async (req: Request, res: Response) => {
     const user = req.user;
-    console.log('user :>> ', user);
     const { access_token } = await signToken(user);
     // const jwToken = `Bearer ${access_token}`
 

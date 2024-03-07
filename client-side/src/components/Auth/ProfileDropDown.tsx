@@ -89,7 +89,6 @@ const MenuContainer = (user: any) => {
 const ProfileDropdown: FunctionComponent = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
-  console.log('user :>> ', user);
   // const hide = () => {
   //   setOpen(false);
   // };
@@ -112,7 +111,7 @@ const ProfileDropdown: FunctionComponent = () => {
       >
         <div className={classNames("rounded-full right-0 flex_justify_center transition-colors duration-500 gap-2 cursor-pointer p-1 h-full group")}>
           {user.avatar ? (
-            <img src={user.avatar} className="w-10 h-10 rounded-full p-1 ring-2 ring-gray-300 dark:ring-gray-500" alt="Profile img" />
+            <img src={user.avatar} className="w-10 h-10 rounded-full p-1 ring-2 ring-gray-300" alt="Profile img" />
           ) : (
             <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-primary-opacity rounded-full border-2 border-gray-300 p-2">
               <span className="font-medium text-gray-600 dark:text-gray-300">{user.name}</span>
