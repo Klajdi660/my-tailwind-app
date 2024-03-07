@@ -4,6 +4,7 @@ import { authFormData } from "../../data";
 import { TemplateProps } from "../../types/general.type";
 import { Icons, SocialAuthButton, Title } from "../UI";
 import { logo } from "../../constants";
+import { icon } from "../../assets/img";
 
 export const Template: FunctionComponent<TemplateProps> = (props) => {
     const { title, description, formType } = props;
@@ -16,14 +17,19 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
                         to="/"
                         className="flex flex-row items-center gap-1 m-0 logo"                
                     >
-                        <Icons
+                        {/* <Icons
                             name={logo.icon}
                             className="!text-primary"
                             size={20}
                         />
                         <h1 className="text-[20px] text-primary font-bold">
                             {logo.name}
-                        </h1>
+                        </h1> */}
+                        <img
+                            src={icon} 
+                            alt={'fund_logo'} 
+                            width={100}
+                        />
                     </Link>
                 </div>
                 <Title 

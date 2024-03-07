@@ -8,6 +8,10 @@ interface PrivateGuardProps {
 
 const InfoModal = () => {
   const navigate = useNavigate();
+
+  const handleOk = () => {
+    navigate("/login");
+  };
   
   Modal.error({
     title: "Session Expired!",
@@ -22,20 +26,18 @@ const InfoModal = () => {
         color: "#fff"
       },
     },
-    onOk() {
-      navigate("/login");
-    },
+    onOk: handleOk,
   });
 };
 
 export const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({ children }) => {
-  // const location = useLocation();
+  const location = useLocation();
   const { isAuthenticated } = useAuth();
   // console.log('location pg:>> ', location);
-  console.log('isAuthenticated pg:>> ', isAuthenticated);
+  // console.log('isAuthenticated pg:>> ', isAuthenticated);
   if (!isAuthenticated) {
-    // return <Navigate to="/login" state={{ from: location }} />;
-    InfoModal();
+    return <Navigate to="/login" state={{ from: location }} />;
+    // InfoModal();
   }
 
   return <>{children}</>;
