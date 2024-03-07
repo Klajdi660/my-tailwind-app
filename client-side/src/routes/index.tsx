@@ -1,6 +1,6 @@
 import { lazy, FunctionComponent } from "react";
 // import { useRoutes } from "react-router-dom";
-// import { PublicGuard } from "../guards";
+import { PrivateGuard } from "../guards";
 // import { PublicLayout } from "../layouts";
 import { Loadable } from "../components";
 import { paths } from "../constants";
@@ -164,7 +164,11 @@ export const router = createBrowserRouter([
     path: "/",
     children: [
       {
-        element: <PrivateLayout />,
+        element: (
+          <PrivateGuard>
+            <PrivateLayout />
+          </PrivateGuard>
+        ),
         errorElement: <ErrorPage />,
         children: [
           {
@@ -178,7 +182,7 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        element:(
+        element: (
           <FormListProvider>
             <PublicLayout />
           </FormListProvider>

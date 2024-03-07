@@ -202,10 +202,9 @@ export const verifyEmailHandler = async (req: Request, res: Response) => {
 };
 
 export const logoutHandler = async (req: Request, res: Response) => {
-    console.log("HYRIIII LO")
-    // const { user } = res.locals;
+    const { user } = res.locals;
 
-    // await redisCLI.del(`session_${user.id}`);
+    await redisCLI.del(`session_${user.id}`);
 
     res.cookie("access_token", "", { maxAge: 1 });
     res.cookie("refresh_token", "", { maxAge: 1 });

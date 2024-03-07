@@ -26,7 +26,7 @@ export const Sidebar: FunctionComponent = () => {
     }
 
     navigate(link.link);
-    // localStorage.lastLocation = link.name.toLowerCase();
+    localStorage.lastLocation = link.name.toLowerCase();
   };
 
   const navLists = useMemo(() => {

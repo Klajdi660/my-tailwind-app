@@ -5,7 +5,7 @@ import { IconParams, IconsMap } from "../../types/general.type";
 import { IconContext } from "react-icons";
 import { classNames } from "../../utils";
 
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { AiFillEye, AiFillEyeInvisible, AiOutlineSetting } from "react-icons/ai";
 import { CgGames } from "react-icons/cg";
 import { BiGame, BiSearch, BiUser } from "react-icons/bi"; 
 import { FaGithub, FaApple, FaWpexplorer } from "react-icons/fa";
@@ -15,7 +15,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdHome, MdLogout, MdOutlineExplore, MdOutlineGames, MdStorefront } from "react-icons/md";
 import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox } from "react-icons/sl";
-
+import { LiaSignOutAltSolid } from "react-icons/lia";
 export const Icon: FunctionComponent<IconProps> = (props)  => {
   const { styles, imgUrl, disabled, handleClick, isActive, name, type, className } = props;
   console.log('props :>> ', props);
@@ -52,6 +52,7 @@ export const Icon: FunctionComponent<IconProps> = (props)  => {
 const icons: IconsMap = { 
   AiFillEye,
   AiFillEyeInvisible,
+  AiOutlineSetting,
   BiGame,
   BiSearch,
   BiUser,
@@ -71,6 +72,7 @@ const icons: IconsMap = {
   RiFirefoxLine,
   SlGameController,
   SlSocialDropbox,
+  LiaSignOutAltSolid,
 };
 
 export const Icons: FunctionComponent<IconParams> = ({

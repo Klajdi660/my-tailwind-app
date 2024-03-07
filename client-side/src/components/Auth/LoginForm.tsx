@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button, Form, Input, Checkbox } from "antd";
 // import { FiEye, FiEyeOff } from "react-icons/fi";
 import useAuthService from "../../services/AuthService";
-// import { useAuth } from "../../hooks";
+import { useAuth } from "../../hooks";
 import { LoginUserInput } from "../../types/user.type";
 import { IconButton } from "../UI";
 import { loginValidation } from "../../utils";
@@ -11,13 +11,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 export const LoginForm: FunctionComponent = () => {
     const { login } = useAuthService();
-    // const { isAuthenticated } = useAuth();
-    // const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (isAuthenticated) localStorage.lastLocation ? navigate(`/${localStorage.lastLocation}`) : navigate("/home");
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+    useEffect(() => {
+        console.log('localStorage.lastLocarion :>> ', localStorage.lastLocation);
+        if (isAuthenticated) localStorage.lastLocation ? navigate(`/${localStorage.lastLocation}`) : navigate("/discover");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleOnSubmit = async (values: LoginUserInput) => {
         const { username, password, /*remember*/ } = values;

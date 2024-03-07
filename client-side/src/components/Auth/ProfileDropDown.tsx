@@ -1,15 +1,16 @@
 import { FunctionComponent, useState } from "react";
-import { Popover } from "antd";
+import { useNavigate } from "react-router-dom";
 import { Icons, Button } from "../UI";
 import { useAuth } from "../../hooks";
-import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 import useAuthService from "../../services/AuthService";
 import { classNames, getTimeOfDay } from "../../utils";
+import { Popover } from "antd";
 
 const MenuContainer = (user: any) => {
   const { logout } = useAuthService();
+  const navigate = useNavigate();
   const { email, username, extra } = user;
-  const { firstName, lastName } = extra;
+  // const { firstName, lastName } = extra;
 
   const menuItems = [
     {
@@ -19,34 +20,26 @@ const MenuContainer = (user: any) => {
       // onClick: () => navigate("profile"),
     },
     {
-      id: "notifications",
-      name: "Notifications",
-      icon: "IoMdNotificationsOutline",
-      // onClick: () => navigate("notifications"),
+      id: "settings",
+      name: "Settings",
+      icon: "AiOutlineSetting",
+      // onClick: () => navigate("settings"),
     },
     {
       id: "logout",
-      name: "Logout",
-      icon: "MdLogout",
-      // onClick: signOut,
+      name: "Sign out",
+      icon: "LiaSignOutAltSolid",
+      onClick: logout,
     }
   ];
   
-  const handleLogOut = async () => {
-    logout();
-  };
-
-  // const onClick = ({ key }: any) => {
-  //   key === "log_out" && handleLogOut();
-  // };
-
   return (
     <div className="p-2 space-y-3 min-w-[300px]">
       {email && (
         <div className="p-3 text-sm rounded bg-main">
           <h5 className="text-lg font-semibold">
             {getTimeOfDay()},{" "}
-            <span className="font-normal capitalize">{firstName} {lastName}</span>
+            <span className="font-normal capitalize">{extra?.firstName} {extra?.lastName}</span>
           </h5>
           <p className="text-base">@{username}</p>
         </div>
@@ -76,7 +69,7 @@ const MenuContainer = (user: any) => {
           >
             <button
               className="w-full p-4 text-left"
-              // onClick={item.onClick}
+              onClick={item.onClick}
             >
               <div className="flex gap-3">
                 <Icons
@@ -96,10 +89,10 @@ const MenuContainer = (user: any) => {
 const ProfileDropdown: FunctionComponent = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
-
-  const hide = () => {
-    setOpen(false);
-  };
+  console.log('user :>> ', user);
+  // const hide = () => {
+  //   setOpen(false);
+  // };
 
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
@@ -108,7 +101,7 @@ const ProfileDropdown: FunctionComponent = () => {
   if (!user) return null;  
 
   return (  
-    <div className="flex items-center h-full">
+    <div className="flex items-center h-full profile">
       <Popover 
         trigger="click" 
         arrow={false}
@@ -117,14 +110,14 @@ const ProfileDropdown: FunctionComponent = () => {
         onOpenChange={handleOpenChange} 
         placement="topRight" 
       >
-        <div className={classNames("rounded-full right-0 flex_justify_center transition-colors duration-500 gap-2 cursor-pointer bg-primary p-1 h-full group")}>
-          <div className="rounded-full w-9 h-9 flex_justify_center">
-            {user.avatar ? (
-              <img src={user.avatar} className="w-full h-full rounded-full" alt="Profile img" />
-            ) : (
-              <Icons name="FaRegUser" size={16} />
-            )}
-          </div>
+        <div className={classNames("rounded-full right-0 flex_justify_center transition-colors duration-500 gap-2 cursor-pointer p-1 h-full group")}>
+          {user.avatar ? (
+            <img src={user.avatar} className="w-10 h-10 rounded-full p-1 ring-2 ring-gray-300 dark:ring-gray-500" alt="Profile img" />
+          ) : (
+            <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-primary-opacity rounded-full border-2 border-gray-300 p-2">
+              <span className="font-medium text-gray-600 dark:text-gray-300">{user.name}</span>
+            </div>
+          )}
         </div>
       </Popover>  
     </div>

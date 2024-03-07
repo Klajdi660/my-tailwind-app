@@ -1,9 +1,8 @@
-// import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 // import axiosRetry from 'axios-retry';
 // import { getToken, globalObject } from '../../utils';
-// import { store } from '../../store/redux';
+import { store } from '../../store/redux';
 // import { deleteUser } from '../../store/redux/slices/auth';
-import axios from "axios";
 import { APP_URL, AXIOS_TIMEOUT_DURATION } from '../../configs';
 
 const instance = axios.create({
@@ -14,61 +13,17 @@ const instance = axios.create({
   },
 });
 
-// axiosRetry(instance, {
-//   retries: 1,
-//   async retryCondition(error) {
-//     switch (error.response?.status) {
-//       case 401:
-//         if (error.config?.method === "get") {
-//           let token = await getToken("l");
-//           globalObject.lToken = token;
-//         }
-//         return true;
-//       default:
-//         return false;
-//     }
-//   },
-// });
+instance.interceptors.request.use(
+  async (config: InternalAxiosRequestConfig) => {
+    if (config.url?.includes("auth/logout")) {
+      config.headers.Authorization = `Bearer ${localStorage.atoken}`;
+      return config;
+    }
 
-// instance.interceptors.request.use(
-//   async (config: InternalAxiosRequestConfig) => {
-//     let token;
-//     if (!config.url?.includes("auth")) {
-//       if (config.method === "get") {
-//         token = globalObject.lToken || await getToken("l");
-//         globalObject.lToken = token;
-//       }
-//       else token = await getToken("s");
-//     }
-//     config.headers["x-access-token"] = token || localStorage.rToken;
-//     return config;
-//   },
-//   (error: AxiosError) => Promise.reject(error),
-// );
-
-// instance.interceptors.response.use(
-//   (response: AxiosResponse) => response,
-//   async (error: AxiosError) => {
-//     if (error.response && error.response.status === 401) {
-//       store.dispatch(deleteUser());
-//     }
-
-//     return Promise.reject(error);
-//   },
-// );
-
-// instance.interceptors.request.use(
-//   async (config: InternalAxiosRequestConfig) => {
-//     const token = store.getState().auth.accessToken
-  
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`
-//     }
-
-//     return config
-//   },
-//   (error: AxiosError) => Promise.reject(error),
-// )
+    return config;
+  },
+  (error: AxiosError) => Promise.reject(error),
+);
 
 // instance.interceptors.response.use(
 //   (response: AxiosResponse) => response,

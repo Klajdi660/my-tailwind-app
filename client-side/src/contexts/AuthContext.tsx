@@ -23,28 +23,25 @@ const AuthContext = createContext(initialState);
 const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [lToken, setLToken] = useState("");
-  // const [signupData, setSignUpData] = useState<RegisterUserInput | null>(null);
   const [signupData, setSignUpData] = useState();
+
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
   useEffect(() => {
     if (localStorage.atoken) {
-      console.log("HYRIIIII")
       const extraParse = JSON.parse(JSON.parse(localStorage.user).extra);
       const userParse = JSON.parse(localStorage.user);
-      console.log('extraParse :>> ', extraParse);
-      // const firstNameInitial = extraParse.firstName.charAt(0) || "";
-      // const lastNameInitial = extraParse.lastName.charAt(0) || "";
     
+      const firstNameInitial = extraParse.firstName.charAt(0) || "";
+      const lastNameInitial = extraParse.lastName.charAt(0) || "";
+      const name = `${firstNameInitial}${lastNameInitial}`;
       const userAvatar = extraParse.photos;
-      console.log('userAvatar :>> ', userAvatar);
-        // ? userParse.photos
-        // : `https://place-hold.it/52x52/2c2f32/ffffff&text=${firstNameInitial}${lastNameInitial}&fontsize=25`;
+        // ? extraParse.photos
+        // : `https://place-hold.it/52x52/F3F4F6/4B5563&text=${firstNameInitial}${lastNameInitial}&fontsize=20`;
         
-      setUser({ ...userParse, avatar: userAvatar, extra: extraParse });
+      setUser({ ...userParse, avatar: userAvatar, extra: extraParse, name });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [localStorage.rToken]);
+    // if (localStorage.atoken) setUser({ id: JSON.parse(localStorage.user).id })
   }, []);
 
   const authenticateUser = (user: User) => {
@@ -60,7 +57,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     updateUser();
   }, []);
-        
+
   return (
     <AuthContext.Provider
       value={{

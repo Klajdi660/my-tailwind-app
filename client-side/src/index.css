@@ -134,7 +134,14 @@ input:-webkit-autofill:focus {
 
 .ant-form-vertical .ant-form-item input::placeholder {}
 
-.ant-popover-content {
-  right: -12px;
+/* .profile .ant-popover-content {
+  right: -15px;
   margin-top: 15px;
+}
+.notify .ant-popover-content {
+  margin-top: 15px;
+} */
+
+.notify a:hover {
+  color: inherit;
 }

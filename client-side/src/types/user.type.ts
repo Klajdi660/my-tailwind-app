@@ -5,6 +5,7 @@ export interface User {
   extra?: any;
   // auths?: string;
   avatar?: string;
+  name?: string;
 }
 
 export interface UpdateUserInput extends Partial<User> {
