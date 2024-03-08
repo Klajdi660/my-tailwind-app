@@ -11,8 +11,6 @@ import search from "./search.svg";
 import menu from "./menu.svg";
 import money from "./money.svg";
 import loader from "./loader.svg";
-import thirdweb from "./thirdweb.png";
-import frameImg from "./frame.png";
 import avatar from "./user.svg";
 import courses from "./courses.svg";
 import addCourse from "./add-course.svg";
@@ -44,8 +42,6 @@ export {
     menu,
     money,
     loader,
-    thirdweb,
-    frameImg,
     avatar,
     facebookIcon,
     googleIcon,

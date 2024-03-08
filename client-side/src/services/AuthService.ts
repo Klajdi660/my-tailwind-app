@@ -19,7 +19,7 @@ interface AuthService {
 }
 
 const useAuthService = (): AuthService => {
-  const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
+  const { authenticateUser, unAuthenticateUser, /*setLToken*/ } = useAuth();
   const [notify] = useNotification();
 
   const navigate = useNavigate();
@@ -40,8 +40,7 @@ const useAuthService = (): AuthService => {
       }
 
       const user = JSON.parse(atob(response.atoken.split(".")[1]));
-      console.log('user :>> ', user);
-      console.log('response :>> ', response);
+    
       localStorage.atoken = response.atoken;
       localStorage.user = JSON.stringify(user);
       // setLToken(response.lToken);
@@ -114,7 +113,7 @@ const useAuthService = (): AuthService => {
         variant: "info",
         description: response.message,
       });
-      navigate("/verify-email");   
+      navigate("/password-code");   
     } catch (error) {
       console.error(`Forgot Pass Failed: ${error}`);
     }    

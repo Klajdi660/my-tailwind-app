@@ -26,7 +26,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   const [signupData, setSignUpData] = useState();
 
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
-
+  console.log('isAuthenticated :>> ', isAuthenticated);
   useEffect(() => {
     if (localStorage.atoken) {
       const extraParse = JSON.parse(JSON.parse(localStorage.user).extra);
@@ -35,7 +35,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
       const firstNameInitial = extraParse?.firstName?.charAt(0) || "";
       const lastNameInitial = extraParse?.lastName?.charAt(0) || "";
       const name = `${firstNameInitial}${lastNameInitial}`;
-      // const name = "test";
+
       const userAvatar = extraParse.photos;
         // ? extraParse.photos
         // : `https://place-hold.it/52x52/F3F4F6/4B5563&text=${firstNameInitial}${lastNameInitial}&fontsize=20`;

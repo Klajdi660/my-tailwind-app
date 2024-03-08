@@ -1,34 +1,34 @@
 import { FunctionComponent, ReactNode } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, /*useNavigate*/ } from 'react-router-dom';
 import { useAuth } from '../hooks';
-import { Modal } from 'antd';
+// import { Modal } from 'antd';
 interface PrivateGuardProps {
   children: ReactNode,
 };
 
-const InfoModal = () => {
-  const navigate = useNavigate();
+// const InfoModal = () => {
+//   const navigate = useNavigate();
 
-  const handleOk = () => {
-    navigate("/login");
-  };
+//   const handleOk = () => {
+//     navigate("/login");
+//   };
   
-  Modal.error({
-    title: "Session Expired!",
-    content: (
-      <div>
-        <p>Your session has expired! Please sign in again.</p>
-      </div>
-    ),
-    okButtonProps: { 
-      style: {
-        backgroundColor: "#0077B5",
-        color: "#fff"
-      },
-    },
-    onOk: handleOk,
-  });
-};
+//   Modal.error({
+//     title: "Session Expired!",
+//     content: (
+//       <div>
+//         <p>Your session has expired! Please sign in again.</p>
+//       </div>
+//     ),
+//     okButtonProps: { 
+//       style: {
+//         backgroundColor: "#0077B5",
+//         color: "#fff"
+//       },
+//     },
+//     onOk: handleOk,
+//   });
+// };
 
 export const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({ children }) => {
   const location = useLocation();

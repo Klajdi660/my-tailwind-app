@@ -1,5 +1,5 @@
 import { ConfigProvider, theme, App } from "antd";
-import { BrowserRouter as Router, RouterProvider } from "react-router-dom";
+import { /*BrowserRouter as Router,*/ RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";

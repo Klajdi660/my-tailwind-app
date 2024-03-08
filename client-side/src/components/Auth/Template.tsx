@@ -1,13 +1,24 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { authFormData } from "../../data";
+import { authFormData } from "../../constants";
 import { TemplateProps } from "../../types/general.type";
-import { Icons, SocialAuthButton, Title } from "../UI";
-import { logo } from "../../constants";
+import { SocialAuthButton, Title, Icon } from "../UI";
 import { icon } from "../../assets/img";
 
 export const Template: FunctionComponent<TemplateProps> = (props) => {
-    const { title, description, formType } = props;
+    const { title, description, formType, btnText } = props;
+
+    const getAuthForm = () => {
+        const formComponent = authFormData[formType];
+
+        if (typeof formComponent === "function") {
+            return formComponent(btnText);
+        }
+
+        return formComponent || null;
+    };
+
+    const authForm = getAuthForm();
 
     return (
         <div className="flex-col h-full py-6 m-auto bg-main flex_justify_center">
@@ -17,17 +28,9 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
                         to="/"
                         className="flex flex-row items-center gap-1 m-0 logo"                
                     >
-                        {/* <Icons
-                            name={logo.icon}
-                            className="!text-primary"
-                            size={20}
-                        />
-                        <h1 className="text-[20px] text-primary font-bold">
-                            {logo.name}
-                        </h1> */}
-                        <img
-                            src={icon} 
-                            alt={'fund_logo'} 
+                        <Icon
+                            imgUrl={icon} 
+                            name={'fund_logo'} 
                             width={100}
                         />
                     </Link>
@@ -47,7 +50,7 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
                         </div>
                     </>
                 )}
-                {authFormData[formType] || null}
+                {authForm}
             </div>
         </div>
     );

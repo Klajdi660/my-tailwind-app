@@ -26,8 +26,10 @@ export const authenticate = async (
 
         // Validate Access Token
         const decoded: any = verifyJWT(accessToken, "accessTokenPrivateKey");
+
         // const decoded: any = verifyJWT(accessToken, "accessTokenPublicKey");
         if (!decoded) {
+            console.log("HYRIII")
             return next({ error: true, message: "Invalid token or user doesn't exist" });
         }
     

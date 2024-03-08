@@ -7,6 +7,7 @@ export const paths = {
     register: "register",
     verifyEmail: "verify-email",
     forgotPassword: "forgot-password",
+    passwordCode: "password-code",
     // changePassword: "update-password/:email/:username/:h/:exp",
     resetPassword: "reset-password/:token",
     chooseUsername: "choose-username",

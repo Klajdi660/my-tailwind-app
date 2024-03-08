@@ -1,31 +1,14 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks';
+import { useAuth, useTheme } from '../hooks';
 import { classNames } from '../utils';
 import { icon } from '../assets/img';
-import { Icons, Button } from './UI';
+import { Icons, Button, Icon } from './UI';
 import ProfileDropdown from './Auth/ProfileDropDown';
 import { Popover } from 'antd';
+import { defaultThemeConfig } from '../configs';
 
 interface NavbarProps {};
-
-const Logo = () => {
-  return (
-    <div
-      className={classNames(
-        "flex relative p-3 z-20 h-navbar duration-500 w-sidebar lg:bg-sidebar justify-center",
-      )}
-    >
-      <Link to="/" className="flex items-center h-full gap-2 logo">
-        <img
-          src={icon} 
-          alt={'fund_logo'} 
-          width={100}
-        />
-      </Link>
-    </div>
-  );
-};
 
 const Searchbar = () => {
   const [input, setInput] = useState("");
@@ -139,9 +122,9 @@ const NotifyContainer = () => {
 const NotificationButton = () => {
   const [open, setOpen] = useState(false);
 
-  const hide = () => {
-    setOpen(false);
-  };
+  // const hide = () => {
+  //   setOpen(false);
+  // };
 
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
@@ -175,8 +158,39 @@ const NotificationButton = () => {
   );
 };
 
+const DesktopToggleButton = (props: any) => {
+  const { theme, setTheme } = props;
+
+  const changeTheme = (value: any) => {
+    console.log('value :>> ', value);
+    setTheme({ ...theme, ...value });
+  };
+  console.log('theme upd:>> ', theme);
+  const sidebar = theme?.sidebar === "full" ? "folded" : "full";
+
+  console.log('sidebar2 :>> ', sidebar);
+
+  return(
+    <div className="items-center hidden h-full lg:flex">
+      <button
+        className="w-12 h-12 transition-colors duration-500 rounded flex_justify_center bg-primary-opacity hover:bg-primary group"
+        onClick={() => changeTheme({ sidebar })}
+      >
+        <Icons name="HiMenuAlt2" className="group-hover:!text-white" />
+      </button>
+    </div>
+  );
+};
+
 export const Navbar: FunctionComponent<NavbarProps> = () => {  
   const { isAuthenticated } = useAuth();
+  const [theme, updateTheme] = useTheme();
+  console.log('theme 2 :>> ', theme);
+  const { sidebar } = theme || defaultThemeConfig;
+  console.log('sidebar :>> ', sidebar);
+  const isFolded = sidebar === "folded";
+  console.log('isFolded :>> ', isFolded);
+  const showFull = Boolean(isFolded);
 
   return (
     <nav className="fixed z-[1200] h-navbar top-0 bg-neutralBgOpacity backdrop-blur-[50px] sidebar_horizontal_width">
@@ -185,9 +199,26 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
           "relative flex h-full items-center justify-between",
         )}
       >
-        <Logo/>
+        <div
+          className={classNames(
+            "flex relative p-3 z-20 h-navbar duration-500 w-sidebar lg:bg-sidebar justify-center",
+          )}
+        >
+          <Link to="/" className="flex items-center h-full gap-2 logo">
+            {showFull ? (
+              <Icon
+                imgUrl={icon} 
+                name={'fund_logo'} 
+                width={100}
+              />
+            ) : (
+              <div className='text-primary'>Test</div>
+            )}
+          </Link>
+        </div>
         <div className="flex items-center gap-4 px-3 lg:flex-1">
           <div className="z-20 flex items-center flex-1 h-full gap-4">
+            <DesktopToggleButton theme={theme} setTheme={updateTheme}/>
             <Searchbar/>
           </div>
           <div className="flex items-center h-full gap-4 nav-icons">

@@ -39,6 +39,7 @@ export interface TemplateProps {
   title: string;
   description: string;
   formType: string;
+  btnText?: string | any;
 }; 
 // 
 

@@ -1,16 +1,22 @@
-import { FunctionComponent, useMemo, Fragment } from "react";
+import { FunctionComponent, useMemo, Fragment, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth, useNotification } from "../../hooks";
+import { useAuth, useNotification, useTheme } from "../../hooks";
 import { Icons } from "../UI/Icon";
 import { classNames } from "../../utils";
 import { navlinks } from "../../constants";
+import { defaultThemeConfig, themeConfig } from "../../configs";
 
 export const Sidebar: FunctionComponent = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const [notify] = useNotification();
-  
+  const [theme] = useTheme();
+  const [toggleNav, setToggleNav] = useState(false);
+
+  const { sidebar } = theme || defaultThemeConfig;
+  const isFolded = sidebar === "folded";
+
   const handleLinkClick = (link: any) => {
     if (!isAuthenticated && link.name !== "Discover") {
       const description = (
@@ -33,8 +39,8 @@ export const Sidebar: FunctionComponent = () => {
     return navlinks;
   }, []); // user
 
-  // const hoverWidth = themeConfig.sidebars.full;
-
+  const hoverWidth = themeConfig.sidebars.full;
+  console.log('sidebar vkjdfnlkjnvlkdj:>> ', sidebar);
   return (
     <section
       className={classNames(
@@ -42,6 +48,7 @@ export const Sidebar: FunctionComponent = () => {
       )}
     >
       <div
+       {...(toggleNav &&{ style: { width: `${hoverWidth}px` } })}
         className={classNames(
           "nav-list overflow-auto hide_scrollbar relative top-navbar sidebar_height w-sidebar duration-500 transition-all pb-[100px] bg-sidebar",
         )}
@@ -57,13 +64,13 @@ export const Sidebar: FunctionComponent = () => {
                 key={item.name}
                 className={classNames("mt-4")}
               >
-                <span
+                {(!isFolded || toggleNav) && <span
                   className={classNames(
                     "block p-3 mx-3 text-gray-400 text-sm uppercase"
                   )}
                 >
                   {item.name}
-                </span>
+                </span>}
                 <ul>
                   {item.subLinks.map((link) => (
                     <Fragment key={link.name}>
@@ -93,7 +100,7 @@ export const Sidebar: FunctionComponent = () => {
                             className={classNames(
                               "group-hover:text-primary text-sm flex items-center gap-3 whitespace-nowrap",
                               pathname.includes(link.to) ? "text-primary" : "text-onNeutralBg",
-                              "opacity-100 transition-opacity duration-1000"
+                              !isFolded || toggleNav ? "opacity-100 transition-opacity duration-1000" : "invisible w-0 opacity-0",
                             )}
                           >
                             {link.name}

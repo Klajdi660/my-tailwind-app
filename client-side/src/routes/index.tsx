@@ -1,4 +1,4 @@
-import { lazy, FunctionComponent } from "react";
+import { lazy, /*FunctionComponent*/ } from "react";
 // import { useRoutes } from "react-router-dom";
 import { PrivateGuard } from "../guards";
 // import { PublicLayout } from "../layouts";
@@ -13,6 +13,7 @@ const {
   register,
   verifyEmail,
   forgotPassword,
+  passwordCode,
   resetPassword,
   socialAuth,
 } = paths;
@@ -147,6 +148,9 @@ const VerifyEmailPage = Loadable(
 const ResetPasswordPage = Loadable(
   lazy(() => import("../pages/Auth/ResetPassword"))
 );
+const PasswordConfirmCodePage = Loadable(
+  lazy(() => import("../pages/Auth/PasswordConfirmCode"))
+);
 const ChangePasswordPage = Loadable(
   lazy(() => import("../pages/Auth/ChangePassword"))
 );
@@ -212,6 +216,10 @@ export const router = createBrowserRouter([
           {
             path: resetPassword,
             element: <ChangePasswordPage />
+          },
+          {
+            path: passwordCode,
+            element: <PasswordConfirmCodePage />
           }
         ]
       },

@@ -21,8 +21,7 @@ export const Footer: FunctionComponent<FooterProps> = () => {
                     rel="noreferrer"
                     className="font-medium underline underline-offset-4"
                 >
-                    {/* Rozales */}
-                    WHY
+                    GrooveIT
                 </a>
                 
                 . The source code is available on{" "}

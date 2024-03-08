@@ -3,10 +3,16 @@ import { Link } from "react-router-dom";
 import OtpInput from "react18-input-otp";
 import { Form, Button, Progress } from "antd";
 
-export const VerifyEmailForm: FunctionComponent = () => {
+interface OTPCodeParams {
+    btnText: string;
+}
+
+export const OTPCodeForm: FunctionComponent<OTPCodeParams> = (props) => {
+    const { btnText } = props;
+
     const [code, setCode] = useState<string>("");
     const [secondsLeft, setSecondsLeft] = useState<number>(60);
-    const [progressColor, setProgressColor] = useState<string>("#00A300");
+    const [progressColor, setProgressColor] = useState<string>("#0077B5");
     const [otpFilled, setOtpFilled] = useState(false);
 
     const handleOtpChange = async (code: string) => {
@@ -76,7 +82,8 @@ export const VerifyEmailForm: FunctionComponent = () => {
                 htmlType="submit"
                 disabled={!otpFilled}
             >
-                Verify Email
+                {/* Verify Email */}
+                {btnText}
             </Button>
             {secondsLeft > 0 ? (
                 <Progress

@@ -1,14 +1,15 @@
 import { FunctionComponent, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Icons, Button } from "../UI";
+// import { useNavigate } from "react-router-dom";
+import { Icon, Icons, Button } from "../UI";
 import { useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
 import { classNames, getTimeOfDay } from "../../utils";
 import { Popover } from "antd";
+import { avatar } from "../../assets/img";
 
 const MenuContainer = (user: any) => {
   const { logout } = useAuthService();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { email, username, extra } = user;
   // const { firstName, lastName } = extra;
 
@@ -111,10 +112,14 @@ const ProfileDropdown: FunctionComponent = () => {
       >
         <div className={classNames("rounded-full right-0 flex_justify_center transition-colors duration-500 gap-2 cursor-pointer p-1 h-full group")}>
           {user.avatar ? (
-            <img src={user.avatar} className="w-10 h-10 rounded-full p-1 ring-2 ring-gray-300" alt="Profile img" />
+            <Icon 
+              imgUrl={user.avatar} 
+              styles="w-10 h-10 rounded-full p-1 ring-2 ring-gray-300" 
+              name="Profile Img" 
+            />
           ) : (
-            <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-primary-opacity rounded-full border-2 border-gray-300 p-2">
-              <span className="font-medium text-gray-600 dark:text-gray-300">{user.name}</span>
+            <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-primary-opacity rounded-full border border-1 border-gray-300">
+              <span className="font-medium text-inherit">{user.name}</span>
             </div>
           )}
         </div>
