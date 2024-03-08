@@ -1,20 +1,16 @@
-import { useState } from "react";
-// import useLocalStorage from "use-local-storage";
-import { defaultThemeConfig } from "../configs";
+import { useState } from 'react';
+import { defaultThemeConfig } from '../configs';
 
 export const useTheme = () => {
-    let [theme, setTheme] = useState<any>({});
+  const [theme, setTheme] = useState(() => {
+    const themeLS = localStorage.getItem('groove-theme-config');
+    return themeLS ? JSON.parse(themeLS) : defaultThemeConfig;
+  });
 
-    // const [themeLS] = useLocalStorage("groove-theme-config");
-    const themeLS = JSON.parse(localStorage.getItem("groove-theme-config") as any);
-    console.log('themeLS :>> ', themeLS);
-    theme = themeLS || defaultThemeConfig;
-    console.log('theme :>> ', theme);
-    const updateTheme = (newTheme: any) => {
-        console.log('newTheme :>> ', newTheme);
-        setTheme(newTheme);
-        localStorage.setItem("groove-theme-config", JSON.stringify(newTheme));
-    };
+  const updateTheme = (newTheme: any) => {
+    setTheme(newTheme);
+    localStorage.setItem('groove-theme-config', JSON.stringify(newTheme));
+  };
 
-    return [theme, updateTheme]
+  return [theme, updateTheme];
 };
