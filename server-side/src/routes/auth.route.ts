@@ -35,7 +35,7 @@ authRouter.post("/verify-email", validateResource(verifyEmailSchema), verifyEmai
 authRouter.post("/login", validateResource(loginUserSchema), loginHandler);
 
 // Logout User Route
-authRouter.get("/logout", authenticate, requireUser, logoutHandler);
+authRouter.get("/logout", /*authenticate, requireUser,*/ logoutHandler);
 
 // Refresh Access Token Route
 authRouter.get("/refresh", refreshAccessTokenHandler);

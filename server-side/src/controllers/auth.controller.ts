@@ -204,13 +204,13 @@ export const verifyEmailHandler = async (req: Request, res: Response) => {
 };
 
 export const logoutHandler = async (req: Request, res: Response) => {
-    const { user } = res.locals;
-    console.log('user :>> ', user);
-    if (!user) {
-       return res.json({ error: true, message: "test" }); 
-    }
+    // const { user } = res.locals;
+    // console.log('user :>> ', user);
+    // if (!user) {
+    //    return res.json({ error: true, message: "test" }); 
+    // }
 
-    await redisCLI.del(`session_${user.id}`);
+    // await redisCLI.del(`session_${user.id}`);
 
     res.cookie("access_token", "", { maxAge: 1 });
     res.cookie("refresh_token", "", { maxAge: 1 });
