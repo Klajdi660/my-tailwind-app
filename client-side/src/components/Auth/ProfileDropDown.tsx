@@ -124,11 +124,11 @@ const ProfileDropdown: FunctionComponent = () => {
           {user.avatar ? (
             <Icon 
               imgUrl={user.avatar} 
-              styles="w-10 h-10 rounded-full p-1 ring-2 ring-gray-300" 
+              styles={`w-10 h-10 rounded-full p-1 ring-2 ${open ? "ring-primary" : "ring-gray-300"}`}
               name="Profile Img" 
             />
           ) : (
-            <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-primary-opacity rounded-full border border-1 border-gray-300">
+            <div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-primary-opacity rounded-full border border-1 ${open ? "border-primary" : "border-primary-opacity"}`}>
               <span className="font-medium text-inherit">{user.name}</span>
             </div>
           )}
