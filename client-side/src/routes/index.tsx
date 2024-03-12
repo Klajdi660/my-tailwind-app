@@ -155,9 +155,9 @@ const ChangePasswordPage = Loadable(
   lazy(() => import("../pages/Auth/ChangePassword"))
 );
 
-// const ProfilePage = Loadable(
-//   lazy(() => import("../pages/Dashboard"))
-// );
+const ProfilePage = Loadable(
+  lazy(() => import("../pages/Profile"))
+);
 
 // const ChooseUsernamePage = Loadable(
 //   lazy(() => import("../pages/Auth/ChooseUsername"))
@@ -182,6 +182,10 @@ export const router = createBrowserRouter([
           {
             path: "/discover",
             element: <HomePage />
+          },
+          {
+            path: "/profile",
+            element: <ProfilePage />
           }
         ],
       },

@@ -5,18 +5,19 @@ import { classNames } from "../../utils";
 import { IconParams, IconsMap } from "../../types/general.type";
 // import { Tooltip } from "antd"; 
 
-import { AiFillEye, AiFillEyeInvisible, AiOutlineSetting } from "react-icons/ai";
+import { AiFillEye, AiFillEyeInvisible, AiOutlineCloudUpload, AiOutlineSetting, AiOutlineUser } from "react-icons/ai";
 import { CgGames } from "react-icons/cg";
 import { BiGame, BiSearch, BiUser } from "react-icons/bi"; 
 import { FaGithub, FaApple, FaWpexplorer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { HiMenuAlt2 } from "react-icons/hi"
+import { HiMenuAlt2, HiOutlineCamera } from "react-icons/hi"
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { MdHome, MdLogout, MdOutlineExplore, MdOutlineGames, MdStorefront } from "react-icons/md";
+import { MdHome, MdLogout, MdOutlineExplore, MdOutlineGames, MdStorefront, MdOutlineModeEdit } from "react-icons/md";
 import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox } from "react-icons/sl";
 import { LiaSignOutAltSolid } from "react-icons/lia";
+import { LuUpload } from "react-icons/lu";
 
 // export const Icon: FunctionComponent<IconProps> = (props)  => {
 //   const { styles, imgUrl, disabled, handleClick, isActive, name, type, className } = props;
@@ -67,7 +68,9 @@ export const Icon: FunctionComponent<IconProps> = (props) => {
 const icons: IconsMap = { 
   AiFillEye,
   AiFillEyeInvisible,
+  AiOutlineCloudUpload,
   AiOutlineSetting,
+  AiOutlineUser,
   BiGame,
   BiSearch,
   BiUser,
@@ -79,8 +82,10 @@ const icons: IconsMap = {
   FiEye,
   FiEyeOff,
   HiMenuAlt2,
+  HiOutlineCamera,
   IoMdNotificationsOutline,
   MdHome, 
+  MdOutlineModeEdit,
   MdLogout,
   MdOutlineExplore,
   MdOutlineGames,
@@ -89,6 +94,7 @@ const icons: IconsMap = {
   SlGameController,
   SlSocialDropbox,
   LiaSignOutAltSolid,
+  LuUpload,
 };
 
 export const Icons: FunctionComponent<IconParams> = ({

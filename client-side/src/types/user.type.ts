@@ -4,6 +4,8 @@ export interface User {
   id: string;
   extra?: any;
   // auths?: string;
+  email?: string;
+  username?: string;
   avatar?: string;
   name?: string;
 }

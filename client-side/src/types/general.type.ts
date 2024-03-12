@@ -9,7 +9,7 @@ export type FormListMap = {
 
 export interface TitleProps {
   name: string;
-  desc: string;
+  desc?: string;
   type: string;
   divider?: boolean;
   className?: string;

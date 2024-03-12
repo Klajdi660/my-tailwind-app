@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Icon, Icons, Button } from "../UI";
 import { useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
@@ -7,9 +7,9 @@ import { classNames, getTimeOfDay } from "../../utils";
 import { Popover } from "antd";
 import { avatar } from "../../assets/img";
 
-const MenuContainer = (user: any) => {
+const UserMenu = (user: any, hidden: () => void) => {
   const { logout } = useAuthService();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { email, username, extra } = user;
   // const { firstName, lastName } = extra;
 
@@ -18,19 +18,28 @@ const MenuContainer = (user: any) => {
       id: "profile",
       name: "Profile",
       icon: "BiUser",
-      // onClick: () => navigate("profile"),
+      onClick: () => {
+        navigate("profile");
+        hidden();
+      },
     },
     {
       id: "settings",
       name: "Settings",
       icon: "AiOutlineSetting",
-      // onClick: () => navigate("settings"),
+      onClick: () => {
+        navigate("settings");
+        hidden();
+      },
     },
     {
       id: "logout",
       name: "Sign out",
       icon: "LiaSignOutAltSolid",
-      onClick: logout,
+      onClick: () => {
+        logout();
+        hidden();
+      }
     }
   ];
   
@@ -90,9 +99,10 @@ const MenuContainer = (user: any) => {
 const ProfileDropdown: FunctionComponent = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
-  // const hide = () => {
-  //   setOpen(false);
-  // };
+
+  const hide = () => {
+    setOpen(false);
+  };
 
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
@@ -105,7 +115,7 @@ const ProfileDropdown: FunctionComponent = () => {
       <Popover 
         trigger="click" 
         arrow={false}
-        content={MenuContainer(user)} 
+        content={UserMenu(user, hide)} 
         open={open} 
         onOpenChange={handleOpenChange} 
         placement="topRight" 
