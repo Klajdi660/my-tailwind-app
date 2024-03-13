@@ -46,12 +46,12 @@ const UserMenu = (user: any, hidden: () => void) => {
   return (
     <div className="p-2 space-y-3 min-w-[300px]">
       {email && (
-        <div className="flex items-center gap-4 bg-main p-3 rounded text-sm">
+        <div className="flex items-center gap-4 p-2 rounded text-sm cursor-pointer hover:bg-primary-opacity hover:text-primary">
         {/* // <div className="p-3 text-sm rounded bg-main"> */}
           <Icon imgUrl={avatar} styles="w-10 h-10 rounded-full" name="user" />
           <div>
             <div className="font-normal capitalize">{extra?.firstName} {extra?.lastName}</div> 
-            <div className="text-gray-500 dark:text-gray-400">@{username}</div>           
+            {/* <div className="text-gray-500 dark:text-gray-400">@{username}</div>            */}
           </div>
           {/* <h5 className="text-lg font-semibold">
             {getTimeOfDay()},{" "}
