@@ -162,13 +162,10 @@ const DesktopToggleButton = (props: any) => {
   const { theme, setTheme } = props;
 
   const changeTheme = (value: any) => {
-    console.log('value :>> ', value);
     setTheme({ ...theme, ...value });
   };
-  console.log('theme upd:>> ', theme);
-  const sidebar = theme?.sidebar === "full" ? "folded" : "full";
 
-  console.log('sidebar2 :>> ', sidebar);
+  const sidebar = theme?.sidebar === "full" ? "folded" : "full";
 
   return(
     <div className="items-center hidden h-full lg:flex">
@@ -185,11 +182,9 @@ const DesktopToggleButton = (props: any) => {
 export const Navbar: FunctionComponent<NavbarProps> = () => {  
   const { isAuthenticated } = useAuth();
   const [theme, updateTheme] = useTheme();
-  console.log('theme 2 :>> ', theme);
+
   const { sidebar } = theme || defaultThemeConfig;
-  console.log('sidebar :>> ', sidebar);
   const isFolded = sidebar === "folded";
-  console.log('isFolded :>> ', isFolded);
   const showFull = Boolean(isFolded);
 
   return (

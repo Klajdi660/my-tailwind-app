@@ -1,6 +1,6 @@
 import { FunctionComponent, useMemo, useState } from "react";
 import { Form } from "../Auth/Form";
-import { PatternBg, Button } from "../UI";
+import { PatternBg } from "../UI";
 import { profileList } from "../../constants";
 import { editProfileValidation } from "../../utils/validations";
 
@@ -8,11 +8,15 @@ interface EditProfileProps {
     email: string | any;
     username: string | any;
     imgUrl: string | any;
+    provider: string | any;
 };
 
 export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
-    const { email, username, imgUrl } = props;
+    const { email, username, imgUrl, provider } = props;
+
     const [files, setFiles] = useState(null);
+
+    const hasProvider = provider !== "Email";
 
     const lists = useMemo(() => {
         return profileList;
@@ -30,6 +34,7 @@ export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
                 schema={editProfileValidation}
                 files={files}
                 setFiles={setFiles}
+                hasProvider={hasProvider}
                 defaultValues={{
                     username,
                     email,

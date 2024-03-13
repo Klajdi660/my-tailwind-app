@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { useAuth } from "../hooks";
-import { DeleteAccount, EditProfile, ChangePassword, Title } from "../components";
+import { DeleteAccount, EditProfile, ChangePassword, Title, PersonalDetails } from "../components";
 
 interface ProfileProps {};
 
@@ -19,7 +19,9 @@ const Profile: FunctionComponent<ProfileProps> = () => {
                     email={user?.email}
                     username={user?.username}
                     imgUrl={user?.avatar}
+                    provider={user?.provider}
                 />
+                <PersonalDetails />
                 <ChangePassword provider={user?.provider} />
                 <DeleteAccount />
             </div>

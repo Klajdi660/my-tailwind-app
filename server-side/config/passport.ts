@@ -29,7 +29,6 @@ opts.secretOrKey = secret;
 
 passport.use(
   new JwtStrategy(opts, async (payload, done) => {
-    console.log('payload :>> ', payload);
     try {
       const user = await User.findByPk(payload.id);
       if (user) {
@@ -55,7 +54,6 @@ const googleAuth = async () => {
       // const { givenName, familyName, displayName, photos, emails, id: googleId } = profile;
       const { name, displayName, photos, emails, id: googleId, _json } = profile;
       const { email_verified } = _json;
-      console.log('_json :>> ', _json);
       const username = displayName.replace(/\s/g, '').toLowerCase();
 
       const extraData = { 

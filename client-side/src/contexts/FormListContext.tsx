@@ -15,13 +15,13 @@ const FormListContext = createContext(initialState);
 
 const FormListProvider: FunctionComponent<FormListProviderProps> = ({ children }) => {
     let { pathname } = useLocation();
-    console.log('pathName :>> ', pathname);
+
     pathname = pathname.replace(/\//,'');
 
     const lists = useMemo(() => {
         return formList[pathname];
     }, [pathname]);
-    console.log('lists 11:>> ', lists);
+
     return (
         <FormListContext.Provider
             value={{

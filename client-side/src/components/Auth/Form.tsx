@@ -1,5 +1,5 @@
 import { Fragment, FunctionComponent, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 // import OtpInput from "react18-input-otp";
@@ -14,6 +14,7 @@ interface FormProps {
     defaultValues?: any;
     files?: any;
     setFiles?: any;
+    hasProvider?: boolean; 
 };
 
 const FormMessage = ({ errorMessage }: any) => {
@@ -27,7 +28,7 @@ const FormMessage = ({ errorMessage }: any) => {
 };
 
 export const Form: FunctionComponent<FormProps> = (props) => {
-    const { lists, onSubmit, schema, defaultValues, files, setFiles } = props;
+    const { lists, onSubmit, schema, defaultValues, files, setFiles, hasProvider } = props;
     const [showPass, setShowPass] = useState(null);
     const [code, setCode] = useState<string>("");
     const [otpFilled, setOtpFilled] = useState(false);
@@ -193,10 +194,12 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                                     containerDims = "h-36 w-36"
                                     borderType = "rounded-full"            
                                 />
-                                <button className="w-36 h-8 mt-1 rounded flex_justify_center items-center bg-primary text-white hover:brightness-110">
-                                    <Icons name="AiOutlineEdit" className="mr-1 text-white" size={18}/>
-                                    Change photo
-                                </button>
+                                {hasProvider && (
+                                    <button className="w-36 h-8 mt-1 rounded flex_justify_center items-center bg-primary text-white hover:brightness-110">
+                                        <Icons name="AiOutlineEdit" className="mr-1 text-white" size={18}/>
+                                        Change photo
+                                    </button>
+                                )}
                                 <FormMessage />
                             </fieldset>
                         )}

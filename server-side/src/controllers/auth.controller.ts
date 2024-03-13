@@ -82,7 +82,6 @@ export const loginHandler = async (req: Request, res: Response) => {
 
 
     const { access_token, refresh_token } = await signToken(user);
-    console.log('refresh_token :>> ', atob(refresh_token.split(".")[1]));
     const expiredCodeAt = dayjs().add(60, 's');
 
     // Send Access & Refresh Tokens in Cookie
@@ -205,7 +204,6 @@ export const verifyEmailHandler = async (req: Request, res: Response) => {
 
 export const logoutHandler = async (req: Request, res: Response) => {
     // const { user } = res.locals;
-    // console.log('user :>> ', user);
     // if (!user) {
     //    return res.json({ error: true, message: "test" }); 
     // }

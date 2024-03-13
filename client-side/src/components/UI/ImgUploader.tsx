@@ -50,10 +50,10 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = (props) => {
                     <div className="flex flex-col items-center gap-2">
                         <Icons
                             name="AiOutlineCloudUpload"
-                            size={25}
+                            size={28}
                             className="!text-secondary"
                         />
-                        <div className="text-sm font-semibold text-center text-secondary">
+                        <div className="text-base font-semibold text-center text-secondary">
                             Browse file to upload
                         </div>
                     </div>

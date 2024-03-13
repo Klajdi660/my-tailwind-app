@@ -19,4 +19,4 @@ export * from "./UI/Icon";
 export { DeleteAccount } from "./Settings/DeleteAccount";
 export { EditProfile } from "./Settings/EditProfile";
 export { ChangePassword } from "./Settings/ChangePassword";
-
+export { PersonalDetails } from "./Settings/PersonalDetails";
