@@ -8,6 +8,7 @@ export interface User {
   username?: string;
   avatar?: string;
   name?: string;
+  provider?: string;
 }
 
 export interface UpdateUserInput extends Partial<User> {

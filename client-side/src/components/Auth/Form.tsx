@@ -1,16 +1,19 @@
-import { Fragment, FunctionComponent, useState } from "react";
+import { Fragment, FunctionComponent, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import OtpInput from "react18-input-otp";
-import { logo } from "../../constants";
+// import OtpInput from "react18-input-otp";
+// import { logo } from "../../constants";
 import { FormListItem } from "../../types/general.type";
-import { Button, IconButton, Icons, Title, SocialAuthButton } from "../UI";
+import { Button, IconButton, Icons, Title, SocialAuthButton, ImgUploader } from "../UI";
 
 interface FormProps {
-    lists: FormListItem[];
+    lists: FormListItem[] | any;
     onSubmit?: any;
     schema?: any;
+    defaultValues?: any;
+    files?: any;
+    setFiles?: any;
 };
 
 const FormMessage = ({ errorMessage }: any) => {
@@ -24,15 +27,14 @@ const FormMessage = ({ errorMessage }: any) => {
 };
 
 export const Form: FunctionComponent<FormProps> = (props) => {
-    const { lists, onSubmit, schema } = props;
-
+    const { lists, onSubmit, schema, defaultValues, files, setFiles } = props;
     const [showPass, setShowPass] = useState(null);
     const [code, setCode] = useState<string>("");
     const [otpFilled, setOtpFilled] = useState(false);
-
+    const imageRef = useRef(null);
 
     const [{ formName, formTitle, footerTitle, footerLink, linkTo, btnTxt }] = lists;
-    const pathname = formName.toLowerCase();
+    // const pathname = formName.toLowerCase();
 
     const {
         register: form,
@@ -41,19 +43,19 @@ export const Form: FunctionComponent<FormProps> = (props) => {
     } = useForm({
         mode: "onTouched",
         resolver: yupResolver(schema),
-        shouldFocusError: false,
-    });    
+        defaultValues,
+    });  
 
-    const handleOtpChange = async (code: string) => {
-        setCode(code);
-        setOtpFilled(code.length === 6);
-    };
+    // const handleOtpChange = async (code: string) => {
+    //     setCode(code);
+    //     setOtpFilled(code.length === 6);
+    // };
   
-    const isButtonDisabled = pathname === "verify-email" ? !otpFilled : !isValid;
+    // const isButtonDisabled = pathname === "verify-email" ? !otpFilled : !isValid;
 
     return (
         <>
-            <div className="flex flex-col items-center mb-6 lg:mb-6">
+            {/* <div className="flex flex-col items-center mb-6 lg:mb-6">
                 <Link
                     to="/"
                     className="flex flex-row items-center gap-1 m-0 logo"                
@@ -72,8 +74,8 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                 name={formTitle || ""}
                 desc="to continue to Groove"
                 type="medium"
-            />
-            {["register", "login"]?.includes(pathname) && (
+            /> */}
+            {/* {["register", "login"]?.includes(pathname) && (
                 <>
                     <SocialAuthButton />
                     <div className="flex items-center justify-center gap-4 my-6 divider">
@@ -82,9 +84,9 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                         <div className="h-[1px] bg-divider flex-1" />
                     </div>
                 </>
-            )}
+            )} */}
             <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
-                {pathname === "verify-email" && (
+                {/* {pathname === "verify-email" && (
                     <OtpInput
                         value={code}
                         onChange={handleOtpChange}
@@ -112,8 +114,8 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                             outline: "none"
                         }}
                     />
-                )}
-                {lists.map((list, index) => (
+                )} */}
+                {lists.map((list: any, index: any) => (
                     <Fragment key={index}>
                         {["input", "textarea"].includes(list.type) && (
                             <fieldset>
@@ -135,7 +137,7 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                                                 placeholder={
                                                     list.props.placeholder || list.label
                                                 }
-                                                // disabled={list.props.disabled || isSubmitting}
+                                                disabled={list.props.disabled}
                                                 type={
                                                     ["password", "confirmPassword"]?.includes(list.props.type)
                                                         ? showPass?.[list.name]
@@ -146,7 +148,7 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                                             />
                                             {["password", "confirmPassword"]?.includes(list.props.type) && (
                                                 <span className="absolute right-2 top-[50%] translate-y-[-50%]">
-                                                    <IconButton
+                                                    {!list.props.disabled && <IconButton
                                                         name={
                                                         !showPass?.[list.name]
                                                             ? "AiFillEyeInvisible"
@@ -159,13 +161,43 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                                                                 [list.name]: !prevS?.[list.name],
                                                             }))
                                                         }
-                                                    />
+                                                    />}
                                                 </span>
                                             )}
                                         </div>
                                     )}
                                 </div>
                                 <FormMessage errorMessage={errors?.[list.name]?.message} />
+                            </fieldset>
+                        )}
+                        {["image_dropzone"].includes(list.type) && (
+                            <fieldset className="flex flex-col">
+                                {list.label && (
+                                    <label
+                                        className="mb-2 text-sm font-semibold text-secondary"
+                                        htmlFor={list.item}
+                                    >
+                                        {list.label || "Upload Image"}
+                                    </label>
+                                )}
+                                <input 
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    ref={imageRef}
+                                />
+                                <ImgUploader
+                                    blobUrl={defaultValues.image}
+                                    //   onImageDelete={() => {}}
+                                    imageRef={imageRef}
+                                    containerDims = "h-36 w-36"
+                                    borderType = "rounded-full"            
+                                />
+                                <button className="w-36 h-8 mt-1 rounded flex_justify_center items-center bg-primary text-white hover:brightness-110">
+                                    <Icons name="AiOutlineEdit" className="mr-1 text-white" size={18}/>
+                                    Change photo
+                                </button>
+                                <FormMessage />
                             </fieldset>
                         )}
                     </Fragment>
@@ -189,8 +221,10 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                         type="submit"
                         label={btnTxt}
                         variant="contained"
-                        className="w-full"
-                        disabled={isButtonDisabled}
+                        // className="w-full"
+                        className="w-fit"
+                        // disabled={isButtonDisabled}
+                        disabled={!isValid}
                         onClick={() => handleSubmit(onSubmit)}
                     />
                     {/* <Button 
@@ -204,7 +238,7 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                     </Button> */}
                 </div>  
             </form>
-            <div className="flex flex-col items-center justify-center gap-2 mt-4 text-sm text-onNeutralBg">
+            {/* <div className="flex flex-col items-center justify-center gap-2 mt-4 text-sm text-onNeutralBg"> */}
                 {/* {pathname === "login" && (
                     <div>
                         Forgot Password?{" "}
@@ -216,7 +250,7 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                         </Link>
                     </div>
                 )} */}
-                <div>
+                {/* <div>
                     {footerTitle}{" "}
                     <Link
                         to={linkTo}
@@ -225,7 +259,7 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                         {footerLink}
                     </Link>
                 </div>
-            </div>
+            </div> */}
         </>
     );
 };

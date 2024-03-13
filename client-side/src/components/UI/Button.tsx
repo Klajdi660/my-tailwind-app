@@ -7,7 +7,7 @@ interface ButtonProps {
   label: string;
   disabled?: boolean;
   className?: string;
-  variant: "outlined" | "contained" | "gradient" | "filled";
+  variant: "outlined" | "contained" | "gradient" | "filled" | "delete" | "upload";
   labelIcon?: any;
   isSubmitting?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -31,6 +31,9 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
       <button
         className={classNames(
           variant === "outlined" && "border border-primary text-primary",
+          // variant === "upload" && "bg-primary-opacity hover:bg-primary hover:text-white",
+          variant === "delete" && "bg-primary-opacity text-red-500 hover:bg-red-500 hover:text-white",
+          // variant === "delete" && "bg-red-500 text-white hover:brightness-110",
           variant === "contained" && "bg-primary text-white",
           variant === "gradient" &&
             "bg-gradient-to-r from-button_gradient_from to-button_gradient_to text-white",

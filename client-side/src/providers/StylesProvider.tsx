@@ -80,7 +80,8 @@ export const StylesProvider = () => {
       --logo-width: ${120}px;
       --main-width: calc(100% - ${sidebarWidth}px - ${asideMobile}px);
       --main-margin-top: ${
-        !isMobile ? `${navHeight * 2}px` : `${navHeight}px`
+        `${navHeight}px`
+        // !isMobile ? `${navHeight * 2}px` : `${navHeight}px`
       };
       --direction: ${layout};
       --font-family: ${startCase(fontFamily)};

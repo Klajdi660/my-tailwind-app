@@ -166,5 +166,31 @@ export const formList: FormListMap = {
             props: { type: "confirmPassword", placeholder: "" },
         },
     ],
+    "profile": [
+        {
+            formName: "profile",
+            formTitle: "Profile",
+            btnTxt: "Save",
+        },
+        {
+          type: "input",
+          name: "username",
+          label: "Username",
+          props: {
+            type: "text",
+            placeholder: "",
+          },
+        },
+        {
+          type: "input",
+          name: "email",
+          label: "Email",
+          props: {
+            disabled: true,
+            type: "text",
+            placeholder: "",
+          },
+        },
+    ],
 };
   

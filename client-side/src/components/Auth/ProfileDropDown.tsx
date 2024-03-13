@@ -5,12 +5,12 @@ import { useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
 import { classNames, getTimeOfDay } from "../../utils";
 import { Popover } from "antd";
-import { avatar } from "../../assets/img";
+// import { avatar } from "../../assets/img";
 
 const UserMenu = (user: any, hidden: () => void) => {
   const { logout } = useAuthService();
   const navigate = useNavigate();
-  const { email, username, extra } = user;
+  const { email, username, avatar, extra } = user;
   // const { firstName, lastName } = extra;
 
   const menuItems = [
@@ -46,12 +46,18 @@ const UserMenu = (user: any, hidden: () => void) => {
   return (
     <div className="p-2 space-y-3 min-w-[300px]">
       {email && (
-        <div className="p-3 text-sm rounded bg-main">
-          <h5 className="text-lg font-semibold">
+        <div className="flex items-center gap-4 bg-main p-3 rounded text-sm">
+        {/* // <div className="p-3 text-sm rounded bg-main"> */}
+          <Icon imgUrl={avatar} styles="w-10 h-10 rounded-full" name="user" />
+          <div>
+            <div className="font-normal capitalize">{extra?.firstName} {extra?.lastName}</div> 
+            <div className="text-gray-500 dark:text-gray-400">@{username}</div>           
+          </div>
+          {/* <h5 className="text-lg font-semibold">
             {getTimeOfDay()},{" "}
             <span className="font-normal capitalize">{extra?.firstName} {extra?.lastName}</span>
           </h5>
-          <p className="text-base">@{username}</p>
+          <p className="text-base">@{username}</p> */}
         </div>
       )}
 
@@ -125,7 +131,7 @@ const ProfileDropdown: FunctionComponent = () => {
             <Icon 
               imgUrl={user.avatar} 
               styles={`w-10 h-10 rounded-full p-1 ring-2 ${open ? "ring-primary" : "ring-gray-300"}`}
-              name="Profile Img" 
+              name=" Img" 
             />
           ) : (
             <div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-primary-opacity rounded-full border border-1 ${open ? "border-primary" : "border-primary-opacity"}`}>

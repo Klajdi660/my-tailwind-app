@@ -5,19 +5,18 @@ import { classNames } from "../../utils";
 import { IconParams, IconsMap } from "../../types/general.type";
 // import { Tooltip } from "antd"; 
 
-import { AiFillEye, AiFillEyeInvisible, AiOutlineCloudUpload, AiOutlineSetting, AiOutlineUser } from "react-icons/ai";
-import { CgGames } from "react-icons/cg";
+import { AiFillEye, AiFillEyeInvisible, AiOutlineCloudUpload, AiOutlineSetting, AiOutlineEdit } from "react-icons/ai";
 import { BiGame, BiSearch, BiUser } from "react-icons/bi"; 
-import { FaGithub, FaApple, FaWpexplorer } from "react-icons/fa";
+import { FaGithub, FaWpexplorer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { FiEye, FiEyeOff } from "react-icons/fi";
-import { HiMenuAlt2, HiOutlineCamera } from "react-icons/hi"
+import { FiAlertTriangle, FiEye, FiEyeOff } from "react-icons/fi";
+import { HiMenuAlt2 } from "react-icons/hi"
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { MdHome, MdLogout, MdOutlineExplore, MdOutlineGames, MdStorefront, MdOutlineModeEdit } from "react-icons/md";
+import { MdHome, MdOutlineExplore, MdOutlineGames, MdStorefront } from "react-icons/md";
 import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox } from "react-icons/sl";
 import { LiaSignOutAltSolid } from "react-icons/lia";
-import { LuUpload } from "react-icons/lu";
+import { PiWarningCircleBold } from "react-icons/pi";
 
 // export const Icon: FunctionComponent<IconProps> = (props)  => {
 //   const { styles, imgUrl, disabled, handleClick, isActive, name, type, className } = props;
@@ -61,7 +60,12 @@ export const Icon: FunctionComponent<IconProps> = (props) => {
   const { imgUrl, name, width, styles } = props;
 
   return (
-    <img src={imgUrl} alt={name} width={width} className={styles} />
+    <img 
+      src={imgUrl} 
+      alt={name} 
+      width={width}
+      className={styles} 
+    />
   );
 };
 
@@ -70,23 +74,19 @@ const icons: IconsMap = {
   AiFillEyeInvisible,
   AiOutlineCloudUpload,
   AiOutlineSetting,
-  AiOutlineUser,
+  AiOutlineEdit,
   BiGame,
   BiSearch,
   BiUser,
-  CgGames,
-  FaApple,
   FaGithub,
   FaWpexplorer,
   FcGoogle,
+  FiAlertTriangle,
   FiEye,
   FiEyeOff,
   HiMenuAlt2,
-  HiOutlineCamera,
   IoMdNotificationsOutline,
   MdHome, 
-  MdOutlineModeEdit,
-  MdLogout,
   MdOutlineExplore,
   MdOutlineGames,
   MdStorefront,
@@ -94,7 +94,7 @@ const icons: IconsMap = {
   SlGameController,
   SlSocialDropbox,
   LiaSignOutAltSolid,
-  LuUpload,
+  PiWarningCircleBold,
 };
 
 export const Icons: FunctionComponent<IconParams> = ({

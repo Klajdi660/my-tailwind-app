@@ -40,7 +40,7 @@ export const Sidebar: FunctionComponent = () => {
   }, []); // user
 
   const hoverWidth = themeConfig.sidebars.full;
-  console.log('sidebar vkjdfnlkjnvlkdj:>> ', sidebar);
+
   return (
     <section
       className={classNames(
