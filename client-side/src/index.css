@@ -145,3 +145,14 @@ input:-webkit-autofill:focus {
 .notify a:hover {
   color: inherit;
 }
+
+.ant-picker {
+  padding: 0px 8px;
+}
+.ant-picker .ant-picker-input input::placeholder {
+  color: #737373;
+}
+
+.ant-picker .ant-picker-suffix {
+  color: #737373;  
+}
