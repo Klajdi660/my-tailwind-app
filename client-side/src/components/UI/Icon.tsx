@@ -20,12 +20,13 @@ import {
   MdHome,
   MdOutlineExplore,
   MdOutlineGames,
+  MdOutlineWbSunny,
   MdStorefront,
 } from "react-icons/md";
 import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox } from "react-icons/sl";
 import { LiaSignOutAltSolid } from "react-icons/lia";
-import { PiWarningCircleBold } from "react-icons/pi";
+import { PiWarningCircleBold, PiMoonStars } from "react-icons/pi";
 
 const icons: IconsMap = {
   AiFillEye,
@@ -50,12 +51,14 @@ const icons: IconsMap = {
   MdHome,
   MdOutlineExplore,
   MdOutlineGames,
+  MdOutlineWbSunny,
   MdStorefront,
   RiFirefoxLine,
   SlGameController,
   SlSocialDropbox,
   LiaSignOutAltSolid,
   PiWarningCircleBold,
+  PiMoonStars,
 };
 
 export const Icon: FunctionComponent<IconParams> = ({

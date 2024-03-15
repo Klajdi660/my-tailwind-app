@@ -189,6 +189,16 @@ const DesktopToggleButton = (props: any) => {
   );
 };
 
+const ThemeButton = () => {
+  return (
+    <div className="items-center hidden h-full lg:flex">
+      <button className="w-12 h-12 transition-colors duration-500 rounded flex_justify_center bg-primary-opacity hover:bg-primary group">
+        <Icon name="MdOutlineWbSunny" className="group-hover:!text-white" />
+      </button>
+    </div>
+  );
+};
+
 export const Navbar: FunctionComponent<NavbarProps> = () => {
   const { isAuthenticated } = useAuth();
   const [theme, updateTheme] = useTheme();
@@ -227,6 +237,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
               <>
                 <CartButton />
                 <NotificationButton />
+                <ThemeButton />
                 <ProfileDropdown />
               </>
             ) : (
