@@ -59,7 +59,11 @@ export const Footer: FunctionComponent<FooterProps> = () => {
             ))}
           </div>
           <div className="mt-2 footer_copyright">
-            <p className="text-xs text-secondary"> © Copyright 2023</p>
+            <p className="text-xs text-secondary">
+              Copyright © 2023{" "}
+              <span className="text-primary font-bold">GrooveIT</span>. All
+              rights reserved.
+            </p>
           </div>
         </div>
       </div>
