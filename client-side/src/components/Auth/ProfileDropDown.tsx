@@ -1,17 +1,15 @@
 import { FunctionComponent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Image, Icon, Button } from "../UI";
 import { useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
 import { classNames, getTimeOfDay } from "../../utils";
 import { Popover } from "antd";
-// import { avatar } from "../../assets/img";
 
 const UserMenu = (user: any, hidden: () => void) => {
   const { logout } = useAuthService();
   const navigate = useNavigate();
   const { email, username, avatar, extra } = user;
-  // const { firstName, lastName } = extra;
 
   const menuItems = [
     {
@@ -46,7 +44,10 @@ const UserMenu = (user: any, hidden: () => void) => {
   return (
     <div className="p-2 space-y-3 min-w-[300px]">
       {email && (
-        <div className="flex items-center gap-4 p-2 rounded text-sm cursor-pointer hover:bg-primary-opacity hover:text-primary">
+        <div
+          className="flex items-center gap-4 p-2 rounded text-sm cursor-pointer hover:bg-primary-opacity hover:text-primary"
+          onClick={menuItems[0].onClick}
+        >
           {avatar ? (
             <Image
               imgUrl={user.avatar}

@@ -37,7 +37,6 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
       <button
         className={classNames(
           variant === "outlined" && "border border-primary text-primary",
-          // variant === "upload" && "bg-primary-opacity hover:bg-primary hover:text-white",
           variant === "delete" &&
             "bg-primary-opacity text-red-500 hover:bg-red-500 hover:text-white",
           // variant === "delete" && "bg-red-500 text-white hover:brightness-110",

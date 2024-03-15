@@ -13,7 +13,7 @@ import { BiGame, BiSearch, BiUser } from "react-icons/bi";
 import { CgGames } from "react-icons/cg";
 import { FaGithub, FaOpencart, FaWpexplorer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { FiAlertTriangle, FiEye, FiEyeOff } from "react-icons/fi";
+import { FiAlertTriangle, FiEye, FiEyeOff, FiUpload } from "react-icons/fi";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import {
@@ -44,6 +44,7 @@ const icons: IconsMap = {
   FiAlertTriangle,
   FiEye,
   FiEyeOff,
+  FiUpload,
   HiMenuAlt2,
   IoMdNotificationsOutline,
   MdHome,

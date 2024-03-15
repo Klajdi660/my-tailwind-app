@@ -9,8 +9,8 @@ import {
   Button,
   IconButton,
   Icon,
-  Title,
-  SocialAuthButton,
+  // Title,
+  // SocialAuthButton,
   ImgUploader,
 } from "../UI";
 
@@ -39,17 +39,17 @@ export const Form: FunctionComponent<FormProps> = (props) => {
     onSubmit,
     schema,
     defaultValues,
-    files,
-    setFiles,
+    // files,
+    // setFiles,
     hasProvider,
     user,
   } = props;
   const [showPass, setShowPass] = useState(null);
-  const [code, setCode] = useState<string>("");
-  const [otpFilled, setOtpFilled] = useState(false);
+  // const [code, setCode] = useState<string>("");
+  // const [otpFilled, setOtpFilled] = useState(false);
   const imageRef = useRef(null);
-
-  const [{ formName, formTitle, footerTitle, footerLink, linkTo, btnTxt }] =
+  console.log("user Form:>> ", user);
+  const [{ /*formName, formTitle, footerTitle, footerLink, linkTo,*/ btnTxt }] =
     lists;
   // const pathname = formName.toLowerCase();
 
@@ -211,22 +211,12 @@ export const Form: FunctionComponent<FormProps> = (props) => {
                   imgUrl={defaultValues.image}
                   hasProvider={hasProvider}
                   name={`${user?.extra?.firstName} ${user?.extra?.lastName}`}
-                  bio={user?.extra?.bio}
+                  username={user?.username}
                   //   onImageDelete={() => {}}
                   // imageRef={imageRef}
                   // containerDims="h-36 w-36"
                   // borderType="rounded-full"
                 />
-                {/* {hasProvider && (
-                  <button className="w-36 h-8 mt-1 rounded flex_justify_center items-center bg-primary text-white hover:brightness-110">
-                    <Icon
-                      name="AiOutlineEdit"
-                      className="mr-1 text-white"
-                      size={18}
-                    />
-                    Change photo
-                  </button>
-                )} */}
                 <FormMessage />
               </fieldset>
             )}

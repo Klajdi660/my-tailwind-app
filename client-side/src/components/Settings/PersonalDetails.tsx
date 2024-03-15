@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { DatePicker, Select } from "antd";
 import { PatternBg } from "../UI";
 import { genderList, dateFormatList } from "../../constants";
@@ -136,12 +136,12 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
           </div>
           <div className="w-full md:w-1/2 px-2">
             <label className="block text-secondary text-xs font-semibold mb-2">
-              Bio
+              Address
             </label>
             <input
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
-              placeholder="Bio Details"
+              placeholder="Country, City, Street"
             />
           </div>
         </div>

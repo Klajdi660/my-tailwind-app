@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
-import { PatternBg, Title } from "../UI";
+import { PatternBg } from "../UI";
+
 interface UserInfoProps {}
 
 export const UserInfo: FunctionComponent<UserInfoProps> = () => {
