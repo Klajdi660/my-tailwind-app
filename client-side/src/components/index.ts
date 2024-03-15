@@ -15,6 +15,7 @@ export { ShowApp } from "./ShowApp";
 export { Template } from "./Auth/Template";
 export { Tab } from "./UI/Tab";
 export { Title } from "./UI/Title";
+export { TopPlay } from "./TopPlay";
 export { DeleteAccount } from "./Settings/DeleteAccount";
 export { EditProfile } from "./Settings/EditProfile";
 export { ChangePassword } from "./Settings/ChangePassword";

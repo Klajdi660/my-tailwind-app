@@ -1,4 +1,4 @@
-// auth 
+// auth
 export type TitleMap = {
   [key: string]: string;
 };
@@ -14,7 +14,7 @@ export interface TitleProps {
   divider?: boolean;
   className?: string;
   color?: string;
-};
+}
 
 export type FontSizesMap = {
   [key: string]: string;
@@ -34,14 +34,14 @@ export interface FormListItem {
   footerTitle: string;
   footerLink: string;
   linkTo: string;
-};
+}
 export interface TemplateProps {
   title: string;
   description: string;
   formType: string;
   btnText?: string | any;
-}; 
-// 
+}
+//
 
 // component UI
 export interface IconParams {
@@ -49,12 +49,11 @@ export interface IconParams {
   size?: number;
   className?: string;
   props?: any;
-};
+}
 
 export type IconsMap = {
   [key: string]: any;
 };
-
 
 // tab
 export interface TabProps {
@@ -68,15 +67,15 @@ export interface TabMap {
   tabName: string;
   type: string;
 }
-// 
+//
 
-export interface SearchParamOptions {};
+export interface SearchParamOptions {}
 
 export interface QueryOptions {
   language: string;
   page?: number;
   limit?: number;
-};
+}
 
 export interface PaginatorInfo<T> {
   current_page: number;
@@ -92,12 +91,12 @@ export interface PaginatorInfo<T> {
   prev_page_url: string | null;
   to: number;
   total: number;
-};
+}
 
 export interface Error {
   response: {
     data: {
       message: string;
-    }
+    };
   };
-};
+}

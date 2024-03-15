@@ -5,11 +5,11 @@
 //   children: React.ReactNode,
 // };
 
-// export const PrivateLayout = ({ 
-//   children, 
-//   ...restProps 
+// export const PrivateLayout = ({
+//   children,
+//   ...restProps
 // }: PrivateLayoutPropsType): JSX.Element => {
-  
+
 //   return (
 //     <Layout className="relative sm:-8 p-4 bg-richblack-20 min-h-screen flex flex-row">
 //       <div className="sm:flex hidden mr-10 relative">
@@ -24,9 +24,9 @@
 //   )
 // };
 
-import { Outlet } from "react-router-dom";
-import { Sidebar, Navbar } from "../components";
 import { FunctionComponent } from "react";
+import { Outlet } from "react-router-dom";
+import { Sidebar, Navbar, TopPlay } from "../components";
 
 export const PrivateLayout: FunctionComponent = () => {
   return (
@@ -52,7 +52,8 @@ export const PrivateLayout: FunctionComponent = () => {
             <Outlet />
           </div>
         </main>
+        <TopPlay />
       </div>
     </>
-  )
+  );
 };

@@ -1,42 +1,70 @@
 import { FunctionComponent } from "react";
-import { Image } from "./UI";
-import { logo } from "../assets/img";
+import { Link } from "react-router-dom";
+import { Title, Icon } from "./UI";
 
 interface FooterProps {}
 
+const downloadBtnList = [
+  {
+    name: "App Store",
+    desc: "Download on",
+    icon: "FaApple",
+  },
+  {
+    name: "Google Play",
+    desc: "Get it on",
+    icon: "IoLogoGooglePlaystore",
+  },
+];
+
+const pageLink = [
+  { name: "About", link: "/" },
+  { name: "Contact", link: "/" },
+  { name: "Legal", link: "/" },
+  { name: "Policy", link: "/" },
+];
+
 export const Footer: FunctionComponent<FooterProps> = () => {
   return (
-    <footer className="text-white">
-      <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
-        <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-          <Image
-            imgUrl={logo}
-            name="Footer Logo"
-            styles="w-[52px] h-[52px] bg-richblack-700"
-          />
-          <p className="text-center text-sm leading-loose md:text-left">
-            built_by{" "}
-            <a
-              href="/test"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              GrooveIT
-            </a>
-            . The source code is available on{" "}
-            <a
-              href="github"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              GitHub
-            </a>
-            .
-          </p>
+    <div className="footer">
+      <div className="py-4 border-t border-divider">
+        <Title name="Go mobile" divider={false} type="string" />
+        <div className="download_buttons">
+          <div className="grid grid-cols-1 gap-3 xs:grid-cols-2">
+            {downloadBtnList.map((item) => (
+              <div key={item.name} className="col-span-1">
+                <button className="w-full gap-2 p-2 text-left rounded bg-divider flex_justify_center hover:bg-main">
+                  <Icon name={item.icon} size={22} />
+                  <div className="flex flex-col">
+                    <span className="block -mb-1 text-xs text-secondary">
+                      {item.desc}
+                    </span>
+                    <p className="text-sm font-semibold">{item.name}</p>
+                  </div>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="footer_links">
+          <div className="flex gap-2 mt-4">
+            {pageLink.map((item) => (
+              <Link
+                key={item.name}
+                to={item.link}
+                className="text-sm hover:text-primary"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+          <div className="mt-2 footer_copyright">
+            <p className="text-xs text-secondary"> © Copyright 2023</p>
+          </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
+
+export default Footer;
