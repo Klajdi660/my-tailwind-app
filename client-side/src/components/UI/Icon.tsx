@@ -10,6 +10,7 @@ import {
   AiOutlineEdit,
 } from "react-icons/ai";
 import { BiGame, BiSearch, BiUser } from "react-icons/bi";
+import { BsMoonStars } from "react-icons/bs";
 import { CgGames } from "react-icons/cg";
 import { FaGithub, FaOpencart, FaWpexplorer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -26,7 +27,7 @@ import {
 import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox } from "react-icons/sl";
 import { LiaSignOutAltSolid } from "react-icons/lia";
-import { PiWarningCircleBold, PiMoonStars } from "react-icons/pi";
+import { PiWarningCircleBold } from "react-icons/pi";
 
 const icons: IconsMap = {
   AiFillEye,
@@ -37,6 +38,7 @@ const icons: IconsMap = {
   BiGame,
   BiSearch,
   BiUser,
+  BsMoonStars,
   CgGames,
   FaGithub,
   FaOpencart,
@@ -58,7 +60,6 @@ const icons: IconsMap = {
   SlSocialDropbox,
   LiaSignOutAltSolid,
   PiWarningCircleBold,
-  PiMoonStars,
 };
 
 export const Icon: FunctionComponent<IconParams> = ({
