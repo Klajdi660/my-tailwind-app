@@ -8,9 +8,10 @@ import { persistor } from "./store/redux";
 import { AuthProvider } from "./contexts";
 // import Routes from "./routes";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { router } from "./routes";
 import { StylesProvider } from "./providers";
+import "react-phone-input-2/lib/style.css";
+import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
 const themeConfig = {
@@ -25,7 +26,7 @@ const reactQueryClient = new QueryClient();
 const Application = () => {
   return (
     <HelmetProvider>
-      <PersistGate loading={<Loading/>} persistor={persistor}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
         <AuthProvider>
           <QueryClientProvider client={reactQueryClient}>
             <ConfigProvider theme={themeConfig}>
@@ -35,7 +36,7 @@ const Application = () => {
                 {/* <Router>
                   <Routes />
                 </Router> */}
-                <RouterProvider router={router}/>
+                <RouterProvider router={router} />
               </App>
             </ConfigProvider>
           </QueryClientProvider>

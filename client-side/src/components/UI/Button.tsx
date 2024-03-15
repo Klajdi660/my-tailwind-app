@@ -1,17 +1,23 @@
 import { forwardRef, FunctionComponent, Ref } from "react";
-import { classNames } from "../../utils"; 
-import { Icons } from "./Icon";
+import { classNames } from "../../utils";
+import { Icon } from "./Icon";
 
 interface ButtonProps {
   type?: "button" | "submit" | "reset";
   label: string;
   disabled?: boolean;
   className?: string;
-  variant: "outlined" | "contained" | "gradient" | "filled" | "delete" | "upload";
+  variant:
+    | "outlined"
+    | "contained"
+    | "gradient"
+    | "filled"
+    | "delete"
+    | "upload";
   labelIcon?: any;
   isSubmitting?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-};
+}
 
 export const Button: FunctionComponent<ButtonProps> = forwardRef(
   (
@@ -32,7 +38,8 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
         className={classNames(
           variant === "outlined" && "border border-primary text-primary",
           // variant === "upload" && "bg-primary-opacity hover:bg-primary hover:text-white",
-          variant === "delete" && "bg-primary-opacity text-red-500 hover:bg-red-500 hover:text-white",
+          variant === "delete" &&
+            "bg-primary-opacity text-red-500 hover:bg-red-500 hover:text-white",
           // variant === "delete" && "bg-red-500 text-white hover:brightness-110",
           variant === "contained" && "bg-primary text-white",
           variant === "gradient" &&
@@ -49,7 +56,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
           <div className="flex flex-row items-center">
             {labelIcon && (
               <div className="mr-1">
-                <Icons
+                <Icon
                   name={labelIcon}
                   className={classNames(
                     variant === "contained" && "text-primary",

@@ -9,14 +9,14 @@ export { Loading } from "./Loading";
 // export { ForgotPasswordForm } from "./Auth/ForgotPasswordForm";
 // export { ResetPasswordForm } from "./Auth/ResetPasswordForm";
 
-export { Navbar } from './NavBar';
+export { Navbar } from "./NavBar";
 export { Sidebar } from "./Sidebar/Sidebar";
 export { ShowApp } from "./ShowApp";
 export { Template } from "./Auth/Template";
-export { Tab } from "./UI/Tab"
+export { Tab } from "./UI/Tab";
 export { Title } from "./UI/Title";
-export * from "./UI/Icon";
 export { DeleteAccount } from "./Settings/DeleteAccount";
 export { EditProfile } from "./Settings/EditProfile";
 export { ChangePassword } from "./Settings/ChangePassword";
 export { PersonalDetails } from "./Settings/PersonalDetails";
+export { UserInfo } from "./Settings/UserInfo";

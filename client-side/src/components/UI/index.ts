@@ -1,7 +1,8 @@
 export { Button } from "./Button";
 export { CustomButton } from "./CustomButton";
-export { Icons, Icon } from "./Icon";
+export { Icon } from "./Icon";
 export { IconButton } from "./IconButton";
+export { Image } from "./Image";
 export { ImgUploader } from "./ImgUploader";
 export { PatternBg } from "./PatternBg";
 export { SocialAuthButton } from "./SocialAuthButtons";

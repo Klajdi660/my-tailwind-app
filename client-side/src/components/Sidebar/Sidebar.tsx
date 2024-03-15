@@ -1,7 +1,7 @@
 import { FunctionComponent, useMemo, Fragment, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth, useNotification, useTheme } from "../../hooks";
-import { Icons } from "../UI/Icon";
+import { Icon } from "../UI";
 import { classNames } from "../../utils";
 import { navlinks } from "../../constants";
 import { defaultThemeConfig, themeConfig } from "../../configs";
@@ -21,7 +21,8 @@ export const Sidebar: FunctionComponent = () => {
     if (!isAuthenticated && link.name !== "Discover") {
       const description = (
         <span>
-          Please login to access <span className="text-primary">{link.name}</span> page.
+          Please login to access{" "}
+          <span className="text-primary">{link.name}</span> page.
         </span>
       );
 
@@ -43,34 +44,27 @@ export const Sidebar: FunctionComponent = () => {
 
   return (
     <section
-      className={classNames(
-        "sidebar_section z-[1100] fixed top-0 h-full",
-      )}
+      className={classNames("sidebar_section z-[1100] fixed top-0 h-full")}
     >
       <div
-       {...(toggleNav &&{ style: { width: `${hoverWidth}px` } })}
+        {...(toggleNav && { style: { width: `${hoverWidth}px` } })}
         className={classNames(
-          "nav-list overflow-auto hide_scrollbar relative top-navbar sidebar_height w-sidebar duration-500 transition-all pb-[100px] bg-sidebar",
+          "nav-list overflow-auto hide_scrollbar relative top-navbar sidebar_height w-sidebar duration-500 transition-all pb-[100px] bg-sidebar"
         )}
       >
-        <div
-          className={classNames(
-            "relative text-white text-base",
-          )}
-        >
+        <div className={classNames("relative text-white text-base")}>
           <>
             {navLists.map((item) => (
-              <div
-                key={item.name}
-                className={classNames("mt-4")}
-              >
-                {(!isFolded || toggleNav) && <span
-                  className={classNames(
-                    "block p-3 mx-3 text-gray-400 text-sm uppercase"
-                  )}
-                >
-                  {item.name}
-                </span>}
+              <div key={item.name} className={classNames("mt-4")}>
+                {(!isFolded || toggleNav) && (
+                  <span
+                    className={classNames(
+                      "block p-3 mx-3 text-gray-400 text-sm uppercase"
+                    )}
+                  >
+                    {item.name}
+                  </span>
+                )}
                 <ul>
                   {item.subLinks.map((link) => (
                     <Fragment key={link.name}>
@@ -78,17 +72,18 @@ export const Sidebar: FunctionComponent = () => {
                         key={link.name}
                         className={classNames(
                           `dropdown_${link.id}`,
-                          "relative px-[10px] group",
+                          "relative px-[10px] group"
                         )}
                       >
                         <button
                           className={classNames(
                             "flex flex-row items-center gap-2 h-12 w-full outline-0 border-none pl-[20px]",
-                            pathname.includes(link.to) && "rounded bg-primary-opacity"
+                            pathname.includes(link.to) &&
+                              "rounded bg-primary-opacity"
                           )}
                           onClick={() => handleLinkClick(link)}
                         >
-                          <Icons
+                          <Icon
                             name={link.icon}
                             className={classNames(
                               "group-hover:!text-primary",
@@ -99,8 +94,12 @@ export const Sidebar: FunctionComponent = () => {
                           <div
                             className={classNames(
                               "group-hover:text-primary text-sm flex items-center gap-3 whitespace-nowrap",
-                              pathname.includes(link.to) ? "text-primary" : "text-onNeutralBg",
-                              !isFolded || toggleNav ? "opacity-100 transition-opacity duration-1000" : "invisible w-0 opacity-0",
+                              pathname.includes(link.to)
+                                ? "text-primary"
+                                : "text-onNeutralBg",
+                              !isFolded || toggleNav
+                                ? "opacity-100 transition-opacity duration-1000"
+                                : "invisible w-0 opacity-0"
                             )}
                           >
                             {link.name}
