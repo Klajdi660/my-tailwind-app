@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 
-interface DashBoardContainerProps {};
+interface DashBoardContainerProps {}
 
-export const DashBoardContainer: FunctionComponent<DashBoardContainerProps> = () => {
-    return (
-        <h1 style={{ color: "#fff"}}>dashboard_page</h1>
-    );
+export const DashBoardContainer: FunctionComponent<
+  DashBoardContainerProps
+> = () => {
+  return <h1 className="text-onNeutralBg">dashboard_page</h1>;
 };

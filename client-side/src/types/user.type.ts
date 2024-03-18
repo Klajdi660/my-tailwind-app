@@ -1,5 +1,3 @@
-import { PaginatorInfo, QueryOptions } from './general.type';
-
 export interface User {
   id: string;
   extra?: any;
@@ -50,19 +48,19 @@ export interface CustomButtonProps {
   title: string;
   handleClick: () => void;
   styles: string;
-};
+}
 
-export interface IconProps { 
+export interface IconProps {
   styles?: string;
-  imgUrl?: string; 
-  disabled?: boolean, 
+  imgUrl?: string;
+  disabled?: boolean;
   handleClick?: () => void;
   isActive?: string;
   name?: string | any;
   type?: string;
   className?: string;
-};
-// 
+}
+//
 
 export type SocialLoginInputType = {
   provider: string;
@@ -163,11 +161,3 @@ export interface CreateContactUsInput {
   subject: string;
   description: string;
 }
-
-export interface RegisterQueryOptions extends QueryOptions {
-  name: string;
-  orderBy: string;
-  'page-size': number;
-}
-
-export type RegisterPaginator = PaginatorInfo<User>;

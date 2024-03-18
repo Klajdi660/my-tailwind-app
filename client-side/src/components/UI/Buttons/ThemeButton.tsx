@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { updateThemeConfig } from "../../../store/redux/slices/theme";
+import { updateThemeConfig } from "../../../store/redux/slices/theme.slice";
 import { Icon } from "../Icon";
 
 interface ThemeButtonProps {

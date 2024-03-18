@@ -1,17 +1,7 @@
 import { Fragment, FunctionComponent, useRef, useState } from "react";
-import { FormListItem } from "../types/general.type";
+import { FormProps } from "../types/auth.type";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-interface FormProps {
-  lists: FormListItem[] | any;
-  onSubmit?: any;
-  schema?: any;
-  defaultValues?: any;
-  files?: any;
-  setFiles?: any;
-  hasProvider?: boolean;
-}
 
 const Form: FunctionComponent<FormProps> = (props) => {
   const { lists, schema, defaultValues } = props;

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 // import OtpInput from "react18-input-otp";
 // import { logo } from "../../constants";
-import { FormListItem } from "../../types/general.type";
+import { FormProps2 } from "../../types/auth.type";
 import {
   Button,
   IconButton,
@@ -14,17 +14,6 @@ import {
   ImgUploader,
 } from "../UI";
 
-interface FormProps {
-  lists: FormListItem[] | any;
-  onSubmit?: any;
-  schema?: any;
-  defaultValues?: any;
-  files?: any;
-  setFiles?: any;
-  hasProvider?: boolean;
-  user?: any;
-}
-
 const FormMessage = ({ errorMessage }: any) => {
   const message = errorMessage?.message || String(errorMessage || "");
 
@@ -33,7 +22,7 @@ const FormMessage = ({ errorMessage }: any) => {
   );
 };
 
-export const Form: FunctionComponent<FormProps> = (props) => {
+export const Form: FunctionComponent<FormProps2> = (props) => {
   const {
     lists,
     onSubmit,
