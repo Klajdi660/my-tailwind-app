@@ -138,7 +138,7 @@ const ProfileDropdown: FunctionComponent = () => {
             <div
               className={`relative inline-flex items-center justify-center w-12 h-12 overflow-hidden bg-primary-opacity rounded-full ${open ? "border border-1 border-primary" : ""}`}
             >
-              <span className="font-medium text-inherit">{user.name}</span>
+              <span className="font-medium text-onNeutralBg">{user.name}</span>
             </div>
           )}
         </div>

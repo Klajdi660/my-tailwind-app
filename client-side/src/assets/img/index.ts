@@ -18,6 +18,7 @@ import favorite from "./favorite.svg";
 import later from "./later.svg";
 import plus from "./plus.svg";
 import icon from "./icon.png";
+import icon2 from "./icon2.png";
 
 // social networks
 import facebookIcon from "./facebook-icon.svg";
@@ -55,4 +56,5 @@ export {
     genUsername,
     picon,
     icon,
+    icon2,
 };

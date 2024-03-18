@@ -2,11 +2,13 @@ import React, { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useTheme } from "../hooks";
 import { classNames } from "../utils";
-import { icon } from "../assets/img";
+import { icon, icon2 } from "../assets/img";
 import { Icon, Button, Image } from "./UI";
 import ProfileDropdown from "./Auth/ProfileDropDown";
 import { Popover } from "antd";
 import { defaultThemeConfig } from "../configs";
+import { useSelector, useDispatch } from "react-redux";
+import { updateThemeConfig } from "../store/redux/slices/theme";
 
 interface NavbarProps {}
 
@@ -76,7 +78,7 @@ const NotifyContainer = () => {
   return (
     <div className="p-2 space-y-2 w-[300px] notify">
       <div className="flex items-center gap-3 p-3 rounded bg-main">
-        <p className="text-base">All notifications</p>
+        <p className="text-base text-onNeutralBg">All notifications</p>
         <div className="flex items-center justify-center w-4 h-4 rounded-full bg-primary group-hover:bg-white">
           <span className="text-xs text-white group-hover:text-primary">
             {3}
@@ -169,10 +171,10 @@ const CartButton = () => {
 };
 
 const DesktopToggleButton = (props: any) => {
-  const { theme, setTheme } = props;
+  const { theme, dispatch } = props;
 
   const changeTheme = (value: any) => {
-    setTheme({ ...theme, ...value });
+    dispatch(updateThemeConfig({ ...theme, ...value }));
   };
 
   const sidebar = theme?.sidebar === "full" ? "folded" : "full";
@@ -189,19 +191,36 @@ const DesktopToggleButton = (props: any) => {
   );
 };
 
-const ThemeButton = () => {
+const ThemeButton = (props: any) => {
+  const { mode, dispatch } = props;
+  // const dispatch = useDispatch();
+  // const { mode } = useSelector((state: any) => state.theme);
+
+  const toggleMode = () => {
+    const newMode = mode === 'light' ? 'dark' : 'light';
+    dispatch(updateThemeConfig({ mode: newMode }));
+  };
+
   return (
     <div className="items-center hidden h-full lg:flex">
-      <button className="w-12 h-12 transition-colors duration-500 rounded flex_justify_center bg-primary-opacity hover:bg-primary group">
-        <Icon name="MdOutlineWbSunny" className="group-hover:!text-white" />
-      </button>
+      {mode === "light" ? (
+        <button onClick={toggleMode} className="w-12 h-12 transition-colors duration-500 rounded flex_justify_center bg-primary-opacity hover:bg-primary group">
+          <Icon name="MdOutlineWbSunny" className="group-hover:!text-white" />
+        </button>
+      ) : (
+        <button onClick={toggleMode} className="w-12 h-12 transition-colors duration-500 rounded flex_justify_center bg-primary-opacity hover:bg-primary group">
+          <Icon name="BsMoonStars" className="group-hover:!text-white" />
+        </button>
+      )}
     </div>
   );
 };
 
 export const Navbar: FunctionComponent<NavbarProps> = () => {
+  const dispatch = useDispatch();
   const { isAuthenticated } = useAuth();
-  const [theme, updateTheme] = useTheme();
+  // const [theme, updateTheme] = useTheme();
+  const theme = useSelector((state: any) => state.theme);
 
   const { sidebar } = theme || defaultThemeConfig;
   const isFolded = sidebar === "folded";
@@ -220,16 +239,16 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
           )}
         >
           <Link to="/" className="flex items-center h-full gap-2 logo">
-            {showFull ? (
+            {!showFull ? (
               <Image imgUrl={icon} name="App Logo" width={100} />
             ) : (
-              <div className="text-primary">Test</div>
+              <Image imgUrl={icon2} name="App Logo2" width={50} />
             )}
           </Link>
         </div>
         <div className="flex items-center gap-4 px-3 lg:flex-1">
           <div className="z-20 flex items-center flex-1 h-full gap-4">
-            <DesktopToggleButton theme={theme} setTheme={updateTheme} />
+            <DesktopToggleButton theme={theme} dispatch={dispatch} />
             <Searchbar />
           </div>
           <div className="flex items-center h-full gap-4 nav-icons">
@@ -237,7 +256,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
               <>
                 <CartButton />
                 <NotificationButton />
-                <ThemeButton />
+                <ThemeButton mode={theme.mode} dispatch={dispatch} />
                 <ProfileDropdown />
               </>
             ) : (

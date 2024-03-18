@@ -13,6 +13,8 @@ import { StylesProvider } from "./providers";
 import "react-phone-input-2/lib/style.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
+import { Provider } from "react-redux";
+import { store } from "./store/redux";
 
 const themeConfig = {
   algorithm: theme.defaultAlgorithm,
@@ -29,6 +31,7 @@ const Application = () => {
       <PersistGate loading={<Loading />} persistor={persistor}>
         <AuthProvider>
           <QueryClientProvider client={reactQueryClient}>
+            <Provider store={store}>
             <ConfigProvider theme={themeConfig}>
               <App>
                 <StylesProvider />
@@ -39,6 +42,7 @@ const Application = () => {
                 <RouterProvider router={router} />
               </App>
             </ConfigProvider>
+            </Provider>
           </QueryClientProvider>
         </AuthProvider>
       </PersistGate>

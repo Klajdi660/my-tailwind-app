@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { defaultThemeConfig } from '../configs';
+import { updateThemeConfig } from '../store/redux/slices/theme';
 
 export const useTheme = () => {
   const [theme, setTheme] = useState(() => {

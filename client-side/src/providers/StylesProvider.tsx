@@ -1,8 +1,10 @@
 import { startCase } from "lodash";
 import { useMediaQuery } from "react-responsive";
 import { themeConfig, defaultThemeConfig } from "../configs";
-
+import { useSelector } from "react-redux";
 export const StylesProvider = () => {
+  const themeStorage = useSelector((state: any) => state.theme);
+  console.log('themeStorage :>> ', themeStorage);
   const {
     mode,
     color,
@@ -12,9 +14,9 @@ export const StylesProvider = () => {
     fontFamily,
     isMobile,
     borderRadius,
-  } = defaultThemeConfig;
+  } = themeStorage || defaultThemeConfig;
   // const isHorizontal = orientation === "horizontal";
-
+console.log('sidebar style:>> ', sidebar);
   const { colors, themes, sidebars }: any = themeConfig || {};
 
   const isLargeScreen = useMediaQuery({

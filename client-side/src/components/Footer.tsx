@@ -6,14 +6,14 @@ interface FooterProps {}
 
 const downloadBtnList = [
   {
-    name: "App Store",
-    desc: "Download on",
+    name: "Instagram",
+    desc: "Contact on",
     icon: "FaApple",
   },
   {
-    name: "Google Play",
-    desc: "Get it on",
-    icon: "IoLogoGooglePlaystore",
+    name: "Google",
+    desc: "Contact on",
+    icon: "FcGoogle",
   },
 ];
 
@@ -39,7 +39,7 @@ export const Footer: FunctionComponent<FooterProps> = () => {
                     <span className="block -mb-1 text-xs text-secondary">
                       {item.desc}
                     </span>
-                    <p className="text-sm font-semibold">{item.name}</p>
+                    <p className="text-sm font-semibold text-onNeutralBg">{item.name}</p>
                   </div>
                 </button>
               </div>
@@ -52,7 +52,7 @@ export const Footer: FunctionComponent<FooterProps> = () => {
               <Link
                 key={item.name}
                 to={item.link}
-                className="text-sm hover:text-primary"
+                className="text-sm text-onNeutralBg hover:text-primary"
               >
                 {item.name}
               </Link>
