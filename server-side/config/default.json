@@ -14,7 +14,7 @@
     "host": "localhost",
     "user": "root",
     "port": 3306,
-    "password": "Klajdi1996",
+    "password": "",
     "database": "node-registration"
   },
   "redis_feed": {

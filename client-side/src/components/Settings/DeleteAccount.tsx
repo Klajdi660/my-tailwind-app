@@ -14,7 +14,9 @@ export const DeleteAccount: FunctionComponent<DeleteAccountProps> = () => {
           Once you delete account, there is no going back. Please be certain.
         </span>
       </div>
-      <Button type="submit" label="Delete Account" variant="delete" />
+      <div className="flex justify-end mt-20">
+        <Button type="submit" label="Delete Account" variant="delete" />
+      </div>
     </div>
   );
 };

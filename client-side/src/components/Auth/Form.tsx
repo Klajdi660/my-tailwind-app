@@ -225,7 +225,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                         </div>
                     </div>
                 )} */}
-        <div className="flex items-center justify-start w-full hover:brightness-110">
+        <div className="flex items-center justify-end w-full hover:brightness-110">
           <Button
             type="submit"
             label={btnTxt}
