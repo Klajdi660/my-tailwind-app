@@ -48,7 +48,7 @@ export const Form: FunctionComponent<FormProps> = (props) => {
   // const [code, setCode] = useState<string>("");
   // const [otpFilled, setOtpFilled] = useState(false);
   const imageRef = useRef(null);
-  console.log("user Form:>> ", user);
+
   const [{ /*formName, formTitle, footerTitle, footerLink, linkTo,*/ btnTxt }] =
     lists;
   // const pathname = formName.toLowerCase();

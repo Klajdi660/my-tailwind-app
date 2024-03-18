@@ -22,7 +22,6 @@ interface ThemeConfig {
       player: string;
     };
   };
-  layouts: string[];
   players: string[];
   fontFamilies: string[];
   sidebars: {
@@ -68,8 +67,6 @@ export const themeConfig: ThemeConfig = {
       player: "#ffffff",
     },
   },
-  layouts: ["ltr", "rtl"],
-  // orientations: ["vertical", "horizontal"],
   players: ["lined", "boxed"],
   fontFamilies: ["fira sans", "roboto", "lato", "inter", "poppins"],
   sidebars: {
@@ -77,17 +74,14 @@ export const themeConfig: ThemeConfig = {
     full: "200",
   },
 };
-  
+
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 export const defaultThemeConfig = {
   mode: themeConfig?.modes?.[prefersDark ? 1 : 0],
-  layout: themeConfig?.layouts?.[0],
   color: Object.keys(themeConfig?.colors)?.[0],
   sidebar: Object.keys(themeConfig?.sidebars)?.[1],
-  // orientation: themeConfig?.orientations?.[0],
   fontFamily: themeConfig?.fontFamilies?.[0],
   player: themeConfig?.players?.[1],
   borderRadius: 6,
-  isMobile: false,
 };

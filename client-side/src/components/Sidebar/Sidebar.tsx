@@ -48,6 +48,10 @@ export const Sidebar: FunctionComponent = () => {
       className={classNames("sidebar_section z-[1100] fixed top-0 h-full")}
     >
       <div
+        {...{
+          onMouseOver: () => setToggleNav(true),
+          onMouseOut: () => setToggleNav(false),
+        }}
         {...(toggleNav && { style: { width: `${hoverWidth}px` } })}
         className={classNames(
           "nav-list overflow-auto hide_scrollbar relative top-navbar sidebar_height w-sidebar duration-500 transition-all pb-[100px] bg-sidebar"

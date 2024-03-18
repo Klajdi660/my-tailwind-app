@@ -13,7 +13,7 @@ module.exports = {
         "max-height": "max-height",
         height: "height",
       },
-      
+
       boxShadow: {
         header:
           "0 0.46875rem 2.1875rem rgb(59 62 102 / 3%), 0 0.9375rem 1.40625rem rgb(59 62 102 / 3%), 0 0.25rem 0.53125rem rgb(59 62 102 / 5%), 0 0.125rem 0.1875rem rgb(59 62 102 / 3%)",

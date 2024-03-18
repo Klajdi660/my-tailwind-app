@@ -17,8 +17,6 @@ interface PersonalDetailsProps {}
 
 // const ContactNr = () => {
 //   const [value, setValue] = useState<CountryPhoneInputValue>({ short: "US" });
-//   console.log("value :>> ", value);
-//   console.log("en :>> ", en);
 //   return (
 //     <ConfigProvider locale={en}>
 //       <CountryPhoneInput
@@ -31,7 +29,6 @@ interface PersonalDetailsProps {}
 //     </ConfigProvider>
 //   );
 // };
-// console.log("en :>> ", en);
 
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   // const [isUpdatingPhoneNr, setIsUpdatingPhoneNr] = useState(false);

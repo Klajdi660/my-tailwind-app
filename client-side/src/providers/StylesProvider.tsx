@@ -2,21 +2,13 @@ import { startCase } from "lodash";
 import { useMediaQuery } from "react-responsive";
 import { themeConfig, defaultThemeConfig } from "../configs";
 import { useSelector } from "react-redux";
+
 export const StylesProvider = () => {
   const themeStorage = useSelector((state: any) => state.theme);
-  console.log('themeStorage :>> ', themeStorage);
-  const {
-    mode,
-    color,
-    sidebar,
-    layout,
-    // orientation,
-    fontFamily,
-    isMobile,
-    borderRadius,
-  } = themeStorage || defaultThemeConfig;
-  // const isHorizontal = orientation === "horizontal";
-console.log('sidebar style:>> ', sidebar);
+
+  const { mode, color, sidebar, layout, fontFamily, isMobile, borderRadius } =
+    themeStorage || defaultThemeConfig;
+
   const { colors, themes, sidebars }: any = themeConfig || {};
 
   const isLargeScreen = useMediaQuery({
@@ -38,7 +30,6 @@ console.log('sidebar style:>> ', sidebar);
   const navHeight = 80;
   const playerHeight = 70;
 
-  // const sidebarWidth = isLargeScreen ? (isHorizontal ? 0 : sT) : 0;
   const sidebarWidth = isLargeScreen ? sT : 0;
 
   const {

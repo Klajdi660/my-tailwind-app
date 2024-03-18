@@ -5,8 +5,6 @@ import { Footer } from "./Footer";
 interface TopPlayProps {}
 
 export const TopPlay: FunctionComponent<TopPlayProps> = (props) => {
-  console.log("props :>> ", props);
-
   return (
     <section
       className={classNames(

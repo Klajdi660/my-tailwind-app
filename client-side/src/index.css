@@ -137,10 +137,12 @@ input:-webkit-autofill:focus {
 .ant-picker {
   padding: 0px 8px;
 }
+
 .ant-picker .ant-picker-input input::placeholder,
 .ant-select-single.ant-select-open .ant-select-selection-item,
 .ant-select .ant-select-selection-placeholder {
-  color: rgb(156 163 175 /1);
+  /* color: rgb(156 163 175 /1); */
+  color: #9ca3af;
 }
 
 .ant-picker,
@@ -164,4 +166,13 @@ input:-webkit-autofill:focus {
 .ant-popover-inner {
   background-color: var(--neutralBgAlt) !important;
   /* color: var(--onNeutralBg) !important; */
+}
+
+.ant-form input {
+  background-color: transparent !important;
+  color: var(--onNeutralBg) !important;
+  border: 1px solid var(--onNeutralBgDivider);
+}
+
+.ant-form input::placeholder {
 }
