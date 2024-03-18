@@ -60,7 +60,10 @@ export const Sidebar: FunctionComponent = () => {
         <div className={classNames("relative text-white text-base")}>
           <>
             {navLists.map((item) => (
-              <div key={item.name} className={classNames("mt-4")}>
+              <div
+                key={item.name}
+                // className={classNames(!isFolded ? "mt-4" : "")}
+              >
                 {(!isFolded || toggleNav) && (
                   <span
                     className={classNames(
