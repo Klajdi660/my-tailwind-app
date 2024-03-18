@@ -1,6 +1,6 @@
 import { FunctionComponent, useMemo, Fragment, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth, useNotification, useTheme } from "../../hooks";
+import { useAuth, useNotification } from "../../hooks";
 import { Icon } from "../UI";
 import { classNames } from "../../utils";
 import { navlinks } from "../../constants";
@@ -12,14 +12,10 @@ export const Sidebar: FunctionComponent = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const [notify] = useNotification();
-  const [theme] = useTheme();
   const themeStorage = useSelector((state: any) => state.theme);
   const [toggleNav, setToggleNav] = useState(false);
 
-  // const { sidebar } = theme || defaultThemeConfig;
-  console.log('themeStorage 2222:>> ', themeStorage);
   const { sidebar } = themeStorage || defaultThemeConfig;
-  console.log('sidebar :>> ', sidebar);
   const isFolded = sidebar === "folded";
 
   const handleLinkClick = (link: any) => {

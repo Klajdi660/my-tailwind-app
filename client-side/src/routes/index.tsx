@@ -1,6 +1,6 @@
-import { lazy, /*FunctionComponent*/ } from "react";
+import { lazy /*FunctionComponent*/ } from "react";
 // import { useRoutes } from "react-router-dom";
-import { PrivateGuard } from "../guards";
+// import { PrivateGuard } from "../guards";
 // import { PublicLayout } from "../layouts";
 import { Loadable } from "../components";
 import { paths } from "../constants";
@@ -8,8 +8,8 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import { PrivateLayout, PublicLayout } from "../layouts";
 import { FormListProvider } from "../contexts/FormListContext";
 
-const { 
-  login, 
+const {
+  login,
   register,
   verifyEmail,
   forgotPassword,
@@ -127,21 +127,13 @@ const {
 //   // lazy(() => delayLoad(() => import("../pages/Dashboard"), 1000))
 // );
 
-const HomePage = Loadable(
-  lazy(() => import("../pages/Dashboard"))
-);
-const ErrorPage = Loadable(
-  lazy(() => import("../pages/Error"))
-);
-const LoginPage = Loadable(
-  lazy(() => import("../pages/Auth/Login"))
-);
+const HomePage = Loadable(lazy(() => import("../pages/Dashboard")));
+const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
+const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
 const SocialAuth = Loadable(
   lazy(() => import("../components/Auth/SocialAuth"))
 );
-const RegisterPage = Loadable(
-  lazy(() => import("../pages/Auth/SignUp"))
-);
+const RegisterPage = Loadable(lazy(() => import("../pages/Auth/SignUp")));
 const VerifyEmailPage = Loadable(
   lazy(() => import("../pages/Auth/VerifyEmail"))
 );
@@ -155,9 +147,7 @@ const ChangePasswordPage = Loadable(
   lazy(() => import("../pages/Auth/ChangePassword"))
 );
 
-const ProfilePage = Loadable(
-  lazy(() => import("../pages/Profile"))
-);
+const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
 
 // const ChooseUsernamePage = Loadable(
 //   lazy(() => import("../pages/Auth/ChooseUsername"))
@@ -168,25 +158,21 @@ export const router = createBrowserRouter([
     path: "/",
     children: [
       {
-        element: (
-          <PrivateGuard>
-            <PrivateLayout />
-          </PrivateGuard>
-        ),
+        element: <PrivateLayout />,
         errorElement: <ErrorPage />,
         children: [
           {
             index: true,
-            element: <Navigate to="/discover" replace/>
+            element: <Navigate to="/discover" replace />,
           },
           {
             path: "/discover",
-            element: <HomePage />
+            element: <HomePage />,
           },
           {
             path: "/profile",
-            element: <ProfilePage />
-          }
+            element: <ProfilePage />,
+          },
         ],
       },
       {
@@ -199,38 +185,38 @@ export const router = createBrowserRouter([
         children: [
           {
             path: login,
-            element: <LoginPage />
+            element: <LoginPage />,
           },
           {
             path: socialAuth,
-            element: <SocialAuth />
+            element: <SocialAuth />,
           },
           {
             path: register,
-            element: <RegisterPage />
+            element: <RegisterPage />,
           },
           {
             path: verifyEmail,
-            element: <VerifyEmailPage />
+            element: <VerifyEmailPage />,
           },
           {
             path: forgotPassword,
-            element: <ResetPasswordPage />
+            element: <ResetPasswordPage />,
           },
           {
             path: resetPassword,
-            element: <ChangePasswordPage />
+            element: <ChangePasswordPage />,
           },
           {
             path: passwordCode,
-            element: <PasswordConfirmCodePage />
-          }
-        ]
+            element: <PasswordConfirmCodePage />,
+          },
+        ],
       },
       {
         path: "*",
-        element: <ErrorPage />
+        element: <ErrorPage />,
       },
     ],
-  }
+  },
 ]);

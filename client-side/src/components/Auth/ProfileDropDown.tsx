@@ -60,17 +60,17 @@ const UserMenu = (user: any, hidden: () => void) => {
             </div>
           )}
           <div>
-            <div className="font-normal capitalize">
+            <div className="text-onNeutralBg font-normal capitalize">
               {extra?.firstName} {extra?.lastName}
             </div>
-            <div className="text-gray-600">@{username}</div>
+            <div className="text-secondary">@{username}</div>
           </div>
         </div>
       )}
 
       <hr className="w-full border-t border-divider" />
 
-      <div className="relative flex flex-col gap-3 p-4 overflow-hidden rounded bg-main">
+      <div className="text-onNeutralBg relative flex flex-col gap-3 p-4 overflow-hidden rounded bg-main">
         <h5 className="text-lg font-semibold">Upgrade your plan</h5>
         <p>70% discount for 1 years subscriptions.</p>
         <Button label="Go Premium" variant="contained" className="w-fit" />
@@ -83,7 +83,7 @@ const UserMenu = (user: any, hidden: () => void) => {
       <ul className="list-none divide divide-divider">
         {menuItems.map((item) => (
           <li
-            className="rounded cursor-pointer hover:text-primary hover:font-semibold group hover:bg-primary-opacity"
+            className="rounded cursor-pointer text-onNeutralBg hover:text-primary hover:font-semibold group hover:bg-primary-opacity"
             key={item.id}
           >
             <button className="w-full p-4 text-left" onClick={item.onClick}>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ConfigProvider, theme, App } from "antd";
 import { /*BrowserRouter as Router,*/ RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -32,16 +33,16 @@ const Application = () => {
         <AuthProvider>
           <QueryClientProvider client={reactQueryClient}>
             <Provider store={store}>
-            <ConfigProvider theme={themeConfig}>
-              <App>
-                <StylesProvider />
-                <ToastContainer />
-                {/* <Router>
+              <ConfigProvider theme={themeConfig}>
+                <App>
+                  <StylesProvider />
+                  <ToastContainer />
+                  {/* <Router>
                   <Routes />
                 </Router> */}
-                <RouterProvider router={router} />
-              </App>
-            </ConfigProvider>
+                  <RouterProvider router={router} />
+                </App>
+              </ConfigProvider>
             </Provider>
           </QueryClientProvider>
         </AuthProvider>

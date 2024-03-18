@@ -16,11 +16,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 
   return (
     <section className="account_page">
-      <Title
-        name="Account Settings"
-        // desc="Here you can edit public information about yourself. If you signed in with Google or Facebook, you can't change your email and password."
-        type="large"
-      />
+      <Title name="Account Settings" type="large" />
       <div className="flex flex-col gap-y-10 text-onNeutralBg">
         <UserInfo />
         <EditProfile

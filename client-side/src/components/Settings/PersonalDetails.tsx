@@ -141,7 +141,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <input
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
-              placeholder="Country City Street"
+              placeholder="Street City Country"
             />
           </div>
         </div>

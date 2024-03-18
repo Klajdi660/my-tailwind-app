@@ -12,7 +12,7 @@ html,
 body {
   font-family: var(--font-family), sans-serif;
   background-color: var(--neutralBg);
-  color: var(--onNeutralBg);
+  color: var(--onNeutralBg) !important;
 }
 
 @layer components {
@@ -143,7 +143,25 @@ input:-webkit-autofill:focus {
   color: rgb(156 163 175 /1);
 }
 
+.ant-picker,
+.ant-select-selector {
+  background-color: transparent !important;
+  border: 1px solid var(--onNeutralBgDivider);
+}
+
+:where(.css-dev-only-do-not-override-uh34j6).ant-select-outlined:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector {
+  border: 1px solid var(--onNeutralBgDivider);
+}
+
 .ant-picker .ant-picker-suffix,
 .ant-select .ant-select-arrow {
   color: var(--onNeutralBg);
+}
+
+.ant-popover-inner {
+  background-color: var(--neutralBgAlt) !important;
+  /* color: var(--onNeutralBg) !important; */
 }

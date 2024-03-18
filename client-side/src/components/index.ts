@@ -10,8 +10,10 @@ export { Loading } from "./Loading";
 // export { ResetPasswordForm } from "./Auth/ResetPasswordForm";
 
 export { Navbar } from "./NavBar";
+export { Searchbar } from "./SearchBar";
 export { Sidebar } from "./Sidebar/Sidebar";
 export { ShowApp } from "./ShowApp";
+export { Notification } from "./Notification";
 export { Template } from "./Auth/Template";
 export { Tab } from "./UI/Tab";
 export { Title } from "./UI/Title";
