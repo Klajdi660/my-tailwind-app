@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { ConfigProvider, theme, App } from "antd";
 import { /*BrowserRouter as Router,*/ RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -13,6 +12,7 @@ import { router } from "./routes";
 import { StylesProvider } from "./providers";
 import "react-phone-input-2/lib/style.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-phone-input-2/lib/style.css";
 import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./store/redux";

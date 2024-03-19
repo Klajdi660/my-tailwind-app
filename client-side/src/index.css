@@ -134,38 +134,58 @@ input:-webkit-autofill:focus {
   color: inherit;
 }
 
+/* Date Picker */
 .ant-picker {
   padding: 0px 8px;
 }
-
 .ant-picker .ant-picker-input input::placeholder,
 .ant-select-single.ant-select-open .ant-select-selection-item,
 .ant-select .ant-select-selection-placeholder {
-  /* color: rgb(156 163 175 /1); */
   color: #9ca3af;
 }
-
 .ant-picker,
 .ant-select-selector {
   background-color: transparent !important;
   border: 1px solid var(--onNeutralBgDivider);
 }
-
-:where(.css-dev-only-do-not-override-uh34j6).ant-select-outlined:not(
-    .ant-select-customize-input
-  )
-  .ant-select-selector {
-  border: 1px solid var(--onNeutralBgDivider);
-}
-
 .ant-picker .ant-picker-suffix,
+.ant-picker .ant-picker-clear,
+.ant-picker .ant-picker-suffix:hover,
+.ant-picker .ant-picker-clear:hover,
 .ant-select .ant-select-arrow {
   color: var(--onNeutralBg);
 }
+.ant-picker .ant-picker-input > input,
+.ant-select .ant-select-selection-item {
+  color: var(--onNeutralBg);
+}
+.ant-picker-dropdown .ant-picker-panel-container {
+  background-color: var(--neutralBgAlt);
+  /* display: flex;
+  justify-content: center;
+  width: 336px; */
+}
+.ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel-layout {
+  display: flex;
+  justify-content: center;
+  width: 336px;
+}
+.ant-picker-dropdown .ant-picker-cell {
+  color: #9ca3af;
+}
+.ant-picker-dropdown .ant-picker-header,
+.ant-picker-dropdown .ant-picker-header button,
+.ant-picker-dropdown .ant-picker-content th,
+.ant-picker-dropdown .ant-picker-cell-in-view {
+  color: var(--onNeutralBg) !important;
+}
+.ant-picker-dropdown .ant-picker-header button:hover {
+  color: var(--primary);
+}
+/*  */
 
 .ant-popover-inner {
   background-color: var(--neutralBgAlt) !important;
-  /* color: var(--onNeutralBg) !important; */
 }
 
 .ant-form input {
@@ -176,3 +196,56 @@ input:-webkit-autofill:focus {
 
 .ant-form input::placeholder {
 }
+
+/* Select */
+.ant-select-dropdown {
+  background-color: var(--neutralBgAlt);
+}
+.ant-select-dropdown .ant-select-item-option {
+  color: var(--onNeutralBg);
+}
+.ant-select-dropdown .ant-select-item-option:hover {
+  background-color: var(--primary-opacity);
+}
+.ant-select-dropdown .ant-select-item-option-selected {
+  background-color: var(--primary-opacity) !important;
+  color: var(--onNeutralBg) !important;
+}
+.ant-select-outlined .ant-select-selector {
+  border: 1px solid var(--onNeutralBgDivider) !important;
+}
+/* */
+
+/* Contact Number */
+.form-control {
+  background-color: transparent !important;
+  color: var(--onNeutralBg) !important;
+  border: 1px solid var(--onNeutralBgDivider) !important;
+  height: 40px !important;
+  width: 100% !important;
+}
+.form-control input::placeholder {
+  color: var(--onNeutralBg) !important;
+}
+
+.flag-dropdown {
+  background-color: transparent !important;
+  border: 1px solid var(--onNeutralBgDivider) !important;
+}
+
+.selected-flag {
+  background-color: transparent !important;
+}
+
+.country-list {
+  background-color: var(--neutralBgAlt) !important;
+  color: var(--onNeutralBg) !important;
+  width: 315px !important;
+}
+.country-list li:hover {
+  background-color: var(--primary-opacity) !important;
+}
+.country-list .country.highlight {
+  background-color: var(--primary-opacity) !important;
+}
+/* */
