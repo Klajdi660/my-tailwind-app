@@ -12,7 +12,7 @@ export const Searchbar: FunctionComponent<SearchbarProps> = () => {
       <div className={classNames("w-full h-full flex items-center")}>
         <div
           className={classNames(
-            "flex_justify_between h-full w-full border rounded border-divider focus-within:border-primary"
+            "flex_justify_between h-full w-full rounded border border-divider focus-within:border-primary"
           )}
         >
           <Icon name="BiSearch" className="ml-3" />

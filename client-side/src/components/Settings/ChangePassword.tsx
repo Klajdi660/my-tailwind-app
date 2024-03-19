@@ -1,6 +1,6 @@
 import { FunctionComponent, useMemo } from "react";
 import { Form } from "../Auth/Form";
-import { PatternBg, Icon } from "../UI";
+import { Icon } from "../UI";
 import { updatePasswordValidation } from "../../utils/validations";
 
 interface ChangePasswordProps {
@@ -46,7 +46,6 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
 
   return (
     <div className="relative p-4 overflow-hidden rounded xs:p-6 bg-card">
-      <PatternBg />
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">Change Password</h5>
         {!isPasswordEnabled && (

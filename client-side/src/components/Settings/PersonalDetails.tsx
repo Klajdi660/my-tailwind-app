@@ -38,7 +38,6 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
 
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card">
-      <PatternBg />
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">Personal Details</h5>
       </div>
@@ -112,11 +111,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             type="submit"
             label="Update Personal Details"
             variant="contained"
-            // className="w-full"
             className="w-fit"
-            // disabled={isButtonDisabled}
-            // disabled={!isValid}
-            // onClick={() => handleSubmit(onSubmit)}
           />
         </div>
       </form>

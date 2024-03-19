@@ -179,18 +179,31 @@ input:-webkit-autofill:focus {
 }
 /*  */
 
+/* Popover */
 .ant-popover-inner {
   background-color: var(--neutralBgAlt) !important;
 }
+/*  */
 
-.ant-form input {
+/* Form */
+.ant-form input,
+.ant-input-affix-wrapper,
+.ant-checkbox .ant-checkbox-inner  {
   background-color: transparent !important;
   color: var(--onNeutralBg) !important;
   border: 1px solid var(--onNeutralBgDivider);
 }
+.ant-btn-primary:disabled {
+  background-color: transparent !important;
+  color: var(--onNeutralBg) !important;
+  border: 1px solid var(--onNeutralBgDivider);
+
+}
 
 .ant-form input::placeholder {
+  color: #9ca3af;
 }
+
 
 /* Select */
 .ant-select-dropdown {

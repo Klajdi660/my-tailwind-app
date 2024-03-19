@@ -1,6 +1,5 @@
 import { FunctionComponent, useMemo, useState } from "react";
 import { Form } from "../Auth/Form";
-import { PatternBg } from "../UI";
 import { profileList } from "../../constants";
 import { editProfileValidation } from "../../utils/validations";
 // import Form from "../Form";
@@ -25,7 +24,6 @@ export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
 
   return (
     <div className="relative p-4 overflow-hidden rounded xs:p-6 bg-card">
-      <PatternBg />
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">Profile</h5>
       </div>

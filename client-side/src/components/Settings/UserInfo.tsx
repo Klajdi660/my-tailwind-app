@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
-import { PatternBg } from "../UI";
+// import { PatternBg } from "../UI";
 
 interface UserInfoProps {}
 
 export const UserInfo: FunctionComponent<UserInfoProps> = () => {
   return (
     <div className="relative p-4 overflow-hidden rounded xs:p-6 bg-card">
-      <PatternBg />
+      {/* <PatternBg /> */}
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">User Information</h5>
       </div>

@@ -66,7 +66,6 @@ export const OTPCodeForm: FunctionComponent<OTPCodeParams> = (props) => {
                         margin: "0 5px",
                         fontSize: "18px",
                         textAlign: "center",
-                        border: "1px solid #e5e5e5",
                         borderRadius: "5px",
                         outline: "none",
                     }}
@@ -82,12 +81,11 @@ export const OTPCodeForm: FunctionComponent<OTPCodeParams> = (props) => {
                 htmlType="submit"
                 disabled={!otpFilled}
             >
-                {/* Verify Email */}
                 {btnText}
             </Button>
             {secondsLeft > 0 ? (
                 <Progress
-                    // style={{ display: "flex", justifyContent: "center", marginRight: "-3px" }}
+                    style={{ display: "flex", justifyContent: "center", marginRight: "-3px" }}
                     percent={(secondsLeft / 60) * 100}
                     strokeColor={progressColor}
                     format={() => (
