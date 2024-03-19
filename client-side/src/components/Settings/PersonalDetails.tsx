@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { DatePicker, Select } from "antd";
-import { PatternBg } from "../UI";
+import { PatternBg, Button } from "../UI";
 import { genderList, dateFormatList } from "../../constants";
 import PhoneInput from "react-phone-input-2";
 
@@ -106,6 +106,18 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               placeholder="Street City Country"
             />
           </div>
+        </div>
+        <div className="flex items-center justify-end w-full hover:brightness-110">
+          <Button
+            type="submit"
+            label="Update Personal Details"
+            variant="contained"
+            // className="w-full"
+            className="w-fit"
+            // disabled={isButtonDisabled}
+            // disabled={!isValid}
+            // onClick={() => handleSubmit(onSubmit)}
+          />
         </div>
       </form>
     </div>
