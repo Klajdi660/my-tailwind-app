@@ -165,11 +165,6 @@ input:-webkit-autofill:focus {
   justify-content: center;
   width: 336px; */
 }
-.ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel-layout {
-  display: flex;
-  justify-content: center;
-  width: 336px;
-}
 .ant-picker-dropdown .ant-picker-cell {
   color: #9ca3af;
 }
@@ -240,7 +235,6 @@ input:-webkit-autofill:focus {
 .country-list {
   background-color: var(--neutralBgAlt) !important;
   color: var(--onNeutralBg) !important;
-  width: 315px !important;
 }
 .country-list li:hover {
   background-color: var(--primary-opacity) !important;
