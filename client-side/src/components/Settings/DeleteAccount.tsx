@@ -5,7 +5,7 @@ interface DeleteAccountProps {}
 
 export const DeleteAccount: FunctionComponent<DeleteAccountProps> = () => {
   return (
-    <div className="relative p-4 overflow-hidden rounded xs:p-6 bg-card">
+    <div className="relative p-4 rounded xs:p-6 bg-card">
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">Delete Account</h5>
         <span className="flex items-center gap-1 text-sm text-red-500 ">

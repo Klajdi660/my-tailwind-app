@@ -62,25 +62,16 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
   return (
     <>
       {/* <div className="flex flex-col items-center mb-6 lg:mb-6">
-                <Link
-                    to="/"
-                    className="flex flex-row items-center gap-1 m-0 logo"                
-                >
-                    <Icon
-                        name={logo.icon}
-                        className="!text-primary"
-                        size={20}
-                    />
-                    <h1 className="text-[20px] text-primary font-bold">
-                        {logo.name}
-                    </h1>
-                </Link>
-            </div>
-            <Title 
-                name={formTitle || ""}
-                desc="to continue to Groove"
-                type="medium"
-            /> */}
+        <Link to="/" className="flex flex-row items-center gap-1 m-0 logo">
+          <Icon name={logo.icon} className="!text-primary" size={20} />
+          <h1 className="text-[20px] text-primary font-bold">{logo.name}</h1>
+        </Link>
+      </div>
+      <Title
+        name={formTitle || ""}
+        desc="to continue to Groove"
+        type="medium"
+      /> */}
       {/* {["register", "login"]?.includes(pathname) && (
                 <>
                     <SocialAuthButton />

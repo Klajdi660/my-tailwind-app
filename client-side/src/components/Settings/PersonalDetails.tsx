@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { DatePicker, Select } from "antd";
-import { PatternBg, Button } from "../UI";
+import { Button } from "../UI";
 import { genderList, dateFormatList } from "../../constants";
 import PhoneInput from "react-phone-input-2";
 

@@ -1,19 +1,31 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { Title, Icon } from "./UI";
+import { Image } from "./UI";
+import {
+  facebookIcon,
+  instagramIcon,
+  tiktokIcon,
+  youtubeIcon,
+} from "../assets/img";
 
 interface FooterProps {}
 
 const downloadBtnList = [
   {
-    name: "Instagram",
-    desc: "Contact on",
-    icon: "FaApple",
+    name: "facebook",
+    icon: facebookIcon,
   },
   {
-    name: "Google",
-    desc: "Contact on",
-    icon: "FcGoogle",
+    name: "instagram",
+    icon: instagramIcon,
+  },
+  {
+    name: "tiktok",
+    icon: tiktokIcon,
+  },
+  {
+    name: "youtube",
+    icon: youtubeIcon,
   },
 ];
 
@@ -28,26 +40,16 @@ export const Footer: FunctionComponent<FooterProps> = () => {
   return (
     <div className="footer">
       <div className="py-4 border-t border-divider">
-        <Title name="Go mobile" divider={false} type="string" />
-        <div className="download_buttons">
-          <div className="grid grid-cols-1 gap-3 xs:grid-cols-2">
-            {downloadBtnList.map((item) => (
-              <div key={item.name} className="col-span-1">
-                <button className="w-full gap-2 p-2 text-left rounded bg-divider flex_justify_center hover:bg-main">
-                  <Icon name={item.icon} size={22} />
-                  <div className="flex flex-col">
-                    <span className="block -mb-1 text-xs text-secondary">
-                      {item.desc}
-                    </span>
-                    <p className="text-sm font-semibold text-onNeutralBg">{item.name}</p>
-                  </div>
-                </button>
-              </div>
-            ))}
-          </div>
+        <div className="flex flex-row justify-center gap-5 download_buttons">
+          {downloadBtnList.map((item) => (
+            <button className="w-12 h-12 rounded bg-divider flex_justify_center hover:bg-primary-opacity">
+              {/* <Icon name={item.icon} size={22} /> */}
+              <Image imgUrl={item.icon} name="social logo" styles="w-7 h-7" />
+            </button>
+          ))}
         </div>
         <div className="footer_links">
-          <div className="flex gap-2 mt-4">
+          <div className="flex justify-center gap-2 mt-4">
             {pageLink.map((item) => (
               <Link
                 key={item.name}
@@ -58,7 +60,7 @@ export const Footer: FunctionComponent<FooterProps> = () => {
               </Link>
             ))}
           </div>
-          <div className="mt-2 footer_copyright">
+          <div className="flex justify-center mt-2 footer_copyright">
             <p className="text-xs text-secondary">
               Copyright © 2023{" "}
               <span className="text-primary font-bold">GrooveIT</span>. All

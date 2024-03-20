@@ -188,22 +188,23 @@ input:-webkit-autofill:focus {
 /* Form */
 .ant-form input,
 .ant-input-affix-wrapper,
-.ant-checkbox .ant-checkbox-inner  {
+.ant-checkbox .ant-checkbox-inner {
   background-color: transparent !important;
   color: var(--onNeutralBg) !important;
   border: 1px solid var(--onNeutralBgDivider);
+}
+.ant-checkbox-checked:not(.ant-checkbox-disabled) .ant-checkbox-inner {
+  background-color: var(--primary) !important;
 }
 .ant-btn-primary:disabled {
   background-color: transparent !important;
   color: var(--onNeutralBg) !important;
   border: 1px solid var(--onNeutralBgDivider);
-
 }
 
 .ant-form input::placeholder {
   color: #9ca3af;
 }
-
 
 /* Select */
 .ant-select-dropdown {

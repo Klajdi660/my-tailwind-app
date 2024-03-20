@@ -45,7 +45,7 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
   }, [isPasswordEnabled]);
 
   return (
-    <div className="relative p-4 overflow-hidden rounded xs:p-6 bg-card">
+    <div className="relative p-4 rounded xs:p-6 bg-card">
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">Change Password</h5>
         {!isPasswordEnabled && (
