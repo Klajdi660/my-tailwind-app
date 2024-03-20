@@ -42,7 +42,10 @@ export const Footer: FunctionComponent<FooterProps> = () => {
       <div className="py-4 border-t border-divider">
         <div className="flex flex-row justify-center gap-5 download_buttons">
           {downloadBtnList.map((item) => (
-            <button className="w-12 h-12 rounded bg-divider flex_justify_center hover:bg-primary-opacity">
+            <button
+              key={item.name}
+              className="w-12 h-12 rounded bg-divider flex_justify_center hover:bg-primary-opacity"
+            >
               {/* <Icon name={item.icon} size={22} /> */}
               <Image imgUrl={item.icon} name="social logo" styles="w-7 h-7" />
             </button>

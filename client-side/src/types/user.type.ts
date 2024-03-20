@@ -21,25 +21,21 @@ export interface LoginUserInput {
 }
 
 export interface RegisterUserInput {
-  firstname: string;
-  lastname: string;
+  fullname: string;
   email: string;
   username: string;
   password: string;
   confirmPassword: string;
   agreedToTerms: boolean;
-  accountType?: string;
 }
 
 export interface RegisterUser {
-  firstname: string;
-  lastname: string;
+  fullname: string;
   email: string;
   username: string;
   password: string;
   confirmPassword: string;
   agreedToTerms: boolean;
-  accountType: string;
 }
 
 export interface CustomButtonProps {

@@ -2,7 +2,7 @@ import { Fragment, FunctionComponent, useState, useRef } from "react";
 // import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import OtpInput from "react18-input-otp";
+import OtpInput from "react18-input-otp";
 // import { logo } from "../../constants";
 import { FormProps2 } from "../../types/auth.type";
 import {
@@ -34,13 +34,13 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
     user,
   } = props;
   const [showPass, setShowPass] = useState(null);
-  // const [code, setCode] = useState<string>("");
+  const [code, setCode] = useState<string>("");
   // const [otpFilled, setOtpFilled] = useState(false);
   const imageRef = useRef(null);
 
-  const [{ /*formName, formTitle, footerTitle, footerLink, linkTo,*/ btnTxt }] =
+  const [{ formName, /*formTitle, footerTitle, footerLink, linkTo,*/ btnTxt }] =
     lists;
-  // const pathname = formName.toLowerCase();
+  const pathname = formName.toLowerCase();
 
   const {
     register: form,
@@ -52,10 +52,10 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
     defaultValues,
   });
 
-  // const handleOtpChange = async (code: string) => {
-  //     setCode(code);
-  //     setOtpFilled(code.length === 6);
-  // };
+  const handleOtpChange = async (code: string) => {
+    setCode(code);
+    // setOtpFilled(code.length === 6);
+  };
 
   // const isButtonDisabled = pathname === "verify-email" ? !otpFilled : !isValid;
 
@@ -73,45 +73,44 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
         type="medium"
       /> */}
       {/* {["register", "login"]?.includes(pathname) && (
-                <>
-                    <SocialAuthButton />
-                    <div className="flex items-center justify-center gap-4 my-6 divider">
-                        <div className="h-[1px] bg-divider flex-1" />
-                        <span className="text-sm text-onNeutralBg">or</span>
-                        <div className="h-[1px] bg-divider flex-1" />
-                    </div>
-                </>
-            )} */}
+        <>
+          <SocialAuthButton />
+          <div className="flex items-center justify-center gap-4 my-6 divider">
+            <div className="h-[1px] bg-divider flex-1" />
+            <span className="text-sm text-onNeutralBg">or</span>
+            <div className="h-[1px] bg-divider flex-1" />
+          </div>
+        </>
+      )} */}
       <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
-        {/* {pathname === "verify-email" && (
-                    <OtpInput
-                        value={code}
-                        onChange={handleOtpChange}
-                        numInputs={6}
-                        separator={false}
-                        shouldAutoFocus={true}
-                        containerStyle={{
-                            display: "flex",
-                            justifyContent: "center",
-                            marginTop: "4px",
-                        }}
-                        inputStyle={{
-                            width: "48px",
-                            height: "48px",
-                            margin: "0 5px",
-                            fontSize: "18px",
-                            textAlign: "center",
-                            border: "1px solid #e5e5e5",
-                            borderRadius: "5px",
-                            outline: "none",
-                        }}
-
-                        focusStyle={{
-                            border: "1px solid #0077B5",
-                            outline: "none"
-                        }}
-                    />
-                )} */}
+        {pathname === "verify-email" && (
+          <OtpInput
+            // {...form(code)}
+            value={code}
+            onChange={handleOtpChange}
+            numInputs={6}
+            separator={false}
+            shouldAutoFocus={true}
+            containerStyle={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "4px",
+            }}
+            inputStyle={{
+              width: "48px",
+              height: "48px",
+              margin: "0 5px",
+              fontSize: "18px",
+              textAlign: "center",
+              borderRadius: "5px",
+              outline: "none",
+            }}
+            focusStyle={{
+              border: "1px solid #0077B5",
+              outline: "none",
+            }}
+          />
+        )}
         {lists.map((list: any, index: any) => (
           <Fragment key={index}>
             {["input", "textarea"].includes(list.type) && (

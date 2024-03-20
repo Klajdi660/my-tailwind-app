@@ -15,24 +15,24 @@ export const socialAuthList = [
     icon: "FcGoogle",
     link: "http://localhost:8080/api/auth/google",
   },
-  {
-    id: 2,
-    name: "Github",
-    icon: "FaGithub",
-    link: "",
-  },
-  // {
-  //     id: 1,
-  //     name: "Google",
-  //     icon: "FcGoogle",
-  //     link: "",
-  // },
-  // {
+  //   {
   //     id: 2,
-  //     name: "Github",
-  //     icon: "FaGithub",
+  //     name: "Playstation",
+  //     icon: "FaPlaystation",
   //     link: "",
-  // }
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Xbox",
+  //     icon: "FaXbox",
+  //     link: "",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Nintendo",
+  //     icon: "BsNintendoSwitch",
+  //     link: "",
+  //   },
 ];
 
 export const formList: FormListMap = {

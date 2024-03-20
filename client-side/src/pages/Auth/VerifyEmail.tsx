@@ -11,5 +11,5 @@ const VerifyEmail: FunctionComponent = () => {
     />
   );
 };
-  
+
 export default VerifyEmail;

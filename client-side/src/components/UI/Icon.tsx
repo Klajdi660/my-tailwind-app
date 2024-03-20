@@ -10,9 +10,14 @@ import {
   AiOutlineEdit,
 } from "react-icons/ai";
 import { BiGame, BiSearch, BiUser } from "react-icons/bi";
-import { BsMoonStars } from "react-icons/bs";
+import { BsMoonStars, BsNintendoSwitch } from "react-icons/bs";
 import { CgGames } from "react-icons/cg";
-import { FaGithub, FaOpencart, FaWpexplorer } from "react-icons/fa";
+import {
+  FaPlaystation,
+  FaXbox,
+  FaOpencart,
+  FaWpexplorer,
+} from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiEye, FiEyeOff, FiUpload } from "react-icons/fi";
 import { HiMenuAlt2 } from "react-icons/hi";
@@ -39,8 +44,10 @@ const icons: IconsMap = {
   BiSearch,
   BiUser,
   BsMoonStars,
+  BsNintendoSwitch,
   CgGames,
-  FaGithub,
+  FaPlaystation,
+  FaXbox,
   FaOpencart,
   FaWpexplorer,
   FcGoogle,

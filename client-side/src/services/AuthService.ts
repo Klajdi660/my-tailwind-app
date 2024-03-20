@@ -7,25 +7,39 @@ import { useNotification } from "../hooks";
 import { AuthResponse, RegisterUserInput } from "../types/user.type";
 // import { toast } from "react-toastify";
 
-const { LOGIN_API, LOGOUT_API, SIGNUP_API, FORGOTPASSWORD_API, RESETPASSWORD_API } = endpoints;
+const {
+  LOGIN_API,
+  LOGOUT_API,
+  SIGNUP_API,
+  FORGOTPASSWORD_API,
+  RESETPASSWORD_API,
+} = endpoints;
 
 interface AuthService {
-  login: (username: string, password: string) => Promise<void>;
+  login: (
+    identifier: string,
+    password: string,
+    remember: boolean
+  ) => Promise<void>;
   socialAuth: (tokenParam: string) => Promise<void>;
-  signup: (values: RegisterUserInput, accountType: string) => Promise<void>;
+  signup: (values: RegisterUserInput) => Promise<void>;
   logout: () => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
   resetPassword: (data: any, token: string) => Promise<void>;
 }
 
 const useAuthService = (): AuthService => {
-  const { authenticateUser, unAuthenticateUser, /*setLToken*/ } = useAuth();
+  const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
   const [notify] = useNotification();
 
   const navigate = useNavigate();
 
-  const login = async (username: string, password: string): Promise<void> => {
-    let data = { identifier: username, password };
+  const login = async (
+    identifier: string,
+    password: string,
+    remember: boolean
+  ): Promise<void> => {
+    let data = { identifier, password, remember };
 
     try {
       const response = await HttpClient.post<AuthResponse>(LOGIN_API, data);
@@ -40,7 +54,7 @@ const useAuthService = (): AuthService => {
       }
 
       const user = JSON.parse(atob(response.atoken.split(".")[1]));
-    
+
       localStorage.atoken = response.atoken;
       localStorage.user = JSON.stringify(user);
       // setLToken(response.lToken);
@@ -54,11 +68,11 @@ const useAuthService = (): AuthService => {
   };
 
   const socialAuth = async (tokenParam: string) => {
-    try { 
+    try {
       const token = tokenParam
-        .slice(tokenParam.indexOf('=') + 1)
-        .replace('%20', ' ');
-      
+        .slice(tokenParam.indexOf("=") + 1)
+        .replace("%20", " ");
+
       const user = JSON.parse(atob(token.split(".")[1]));
 
       localStorage.atoken = token;
@@ -70,11 +84,11 @@ const useAuthService = (): AuthService => {
     }
   };
 
-  const signup = async (values: RegisterUserInput, accountType: string): Promise<void> => {
+  const signup = async (values: RegisterUserInput): Promise<void> => {
     try {
-      let data = { ...values, accountType };
+      let data = { ...values };
       const response = await HttpClient.post<AuthResponse>(SIGNUP_API, data);
-      console.log('response :>> ', response);
+      console.log("response :>> ", response);
       navigate(`/verify-email`);
     } catch (error) {
       console.error(`Signup failed: ${error}`);
@@ -98,7 +112,10 @@ const useAuthService = (): AuthService => {
 
   const forgotPassword = async (data: any): Promise<void> => {
     try {
-      const response = await HttpClient.post<AuthResponse>(FORGOTPASSWORD_API, data);
+      const response = await HttpClient.post<AuthResponse>(
+        FORGOTPASSWORD_API,
+        data
+      );
       if (response.error) {
         notify({
           title: "Error",
@@ -106,22 +123,25 @@ const useAuthService = (): AuthService => {
           description: response.message,
         });
         return;
-      }  
+      }
 
       notify({
         title: "Success",
         variant: "info",
         description: response.message,
       });
-      navigate("/password-code");   
+      navigate("/password-code");
     } catch (error) {
       console.error(`Forgot Pass Failed: ${error}`);
-    }    
+    }
   };
 
   const resetPassword = async (data: any, token: string): Promise<void> => {
     try {
-      const response = await HttpClient.put<AuthResponse>(`${RESETPASSWORD_API}/${token}`, data);
+      const response = await HttpClient.put<AuthResponse>(
+        `${RESETPASSWORD_API}/${token}`,
+        data
+      );
       if (response.error) {
         notify({
           title: "Error",
@@ -129,7 +149,7 @@ const useAuthService = (): AuthService => {
           description: response.message,
         });
         return;
-      }   
+      }
 
       notify({
         title: "Success",
@@ -137,7 +157,7 @@ const useAuthService = (): AuthService => {
         description: response.message,
       });
     } catch (error) {
-      console.error(`Reset Pass Failed: ${error}`); 
+      console.error(`Reset Pass Failed: ${error}`);
     }
   };
 

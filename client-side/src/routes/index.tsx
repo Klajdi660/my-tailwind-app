@@ -16,6 +16,8 @@ const {
   passwordCode,
   resetPassword,
   socialAuth,
+  discover,
+  profile,
 } = paths;
 
 // const Routes = () =>
@@ -127,7 +129,7 @@ const {
 //   // lazy(() => delayLoad(() => import("../pages/Dashboard"), 1000))
 // );
 
-const HomePage = Loadable(lazy(() => import("../pages/Dashboard")));
+const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
 const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
 const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
 const SocialAuth = Loadable(
@@ -149,10 +151,6 @@ const ChangePasswordPage = Loadable(
 
 const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
 
-// const ChooseUsernamePage = Loadable(
-//   lazy(() => import("../pages/Auth/ChooseUsername"))
-// );
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -166,11 +164,11 @@ export const router = createBrowserRouter([
             element: <Navigate to="/discover" replace />,
           },
           {
-            path: "/discover",
-            element: <HomePage />,
+            path: discover,
+            element: <DiscoverPage />,
           },
           {
-            path: "/profile",
+            path: profile,
             element: <ProfilePage />,
           },
         ],

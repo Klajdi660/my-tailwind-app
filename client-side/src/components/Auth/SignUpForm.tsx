@@ -1,29 +1,37 @@
 import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, Space, Input, Button, Checkbox } from "antd";
+import { Form, Space, Input, Checkbox } from "antd";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { accountTypes } from "../../constants";
 import useAuthService from "../../services/AuthService";
 import { RegisterUserInput } from "../../types/user.type";
 import { useAuth } from "../../hooks";
 import { toast } from "react-toastify";
+import { Button } from "../UI";
 
 export const SignUpForm: FunctionComponent = () => {
   // student or instructor
-  const [accountType, setAccountType] = useState(accountTypes[0].tabName);
   const { signup } = useAuthService();
   const { setSignUpData } = useAuth();
+  const [form] = Form.useForm();
+
+  const [isFormEmpty, setIsFormEmpty] = useState(true);
+
+  const handleFormChange = () => {
+    const values = form.getFieldsValue();
+    const isEmpty = Object.values(values).some((value) => !value);
+
+    setIsFormEmpty(isEmpty);
+  };
 
   const handleOnSubmit = async (values: RegisterUserInput) => {
     try {
       const signupValues = {
         ...values,
-        accountType,
       };
 
       setSignUpData(signupValues);
 
-      await signup(values, accountType);
+      await signup(values);
     } catch (error: any) {
       const { message } = error.response.data;
       toast.error(message);
@@ -34,54 +42,14 @@ export const SignUpForm: FunctionComponent = () => {
     <>
       <Form
         onFinish={handleOnSubmit}
+        form={form}
         layout="vertical"
         className="flex flex-col gap-5"
         initialValues={{
           remember: false,
         }}
+        onValuesChange={handleFormChange}
       >
-        <Space className="flex gap-x-4">
-          <Form.Item
-            name="firstName"
-            label={
-              <div className="text-xs font-semibold text-secondary">
-                First Name
-              </div>
-            }
-            rules={[
-              {
-                required: true,
-                message: "Please input your First Name!",
-              },
-            ]}
-          >
-            <Input
-              placeholder="First Name"
-              className="h-10"
-              autoComplete="off"
-            />
-          </Form.Item>
-          <Form.Item
-            name="lastName"
-            label={
-              <div className="text-xs font-semibold text-secondary">
-                Last Name
-              </div>
-            }
-            rules={[
-              {
-                required: true,
-                message: "Please input your Last Name!",
-              },
-            ]}
-          >
-            <Input
-              placeholder="Last Name"
-              className="h-10"
-              autoComplete="off"
-            />
-          </Form.Item>
-        </Space>
         <Form.Item
           name="email"
           label={
@@ -101,6 +69,22 @@ export const SignUpForm: FunctionComponent = () => {
             className="w-full h-10"
             autoComplete="off"
           />
+        </Form.Item>
+        <Form.Item
+          name="fullname"
+          label={
+            <div className="text-xs font-semibold text-secondary">
+              Full Name
+            </div>
+          }
+          rules={[
+            {
+              required: true,
+              message: "Please input your Full Name!",
+            },
+          ]}
+        >
+          <Input placeholder="Full Name" className="h-10" autoComplete="off" />
         </Form.Item>
         <Form.Item
           name="username"
@@ -176,7 +160,35 @@ export const SignUpForm: FunctionComponent = () => {
             />
           </Form.Item>
         </Space>
-        <Form.Item name="agreedToTerms" valuePropName="checked" noStyle>
+        <div className="flex justify-center text-center">
+          <p className="text-secondary">
+            By signing up, you agree to our{" "}
+            <span>
+              <Link
+                to="#"
+                className="text-primary hover:underline underline-offset-2"
+              >
+                Terms
+              </Link>
+              ,{" "}
+              <Link
+                to="#"
+                className="text-primary hover:underline underline-offset-2"
+              >
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link
+                to="#"
+                className="text-primary hover:underline underline-offset-2"
+              >
+                Cookies Policy
+              </Link>
+              .
+            </span>
+          </p>
+        </div>
+        {/* <Form.Item name="agreedToTerms" valuePropName="checked" noStyle>
           <Checkbox
             className="text-secondary"
             style={{ fontSize: "12px", lineHeight: "16px" }}
@@ -189,12 +201,15 @@ export const SignUpForm: FunctionComponent = () => {
               Terms and Conditions!
             </Link>
           </Checkbox>
-        </Form.Item>
-        <Button type="primary" htmlType="submit" className="h-10 bg-primary">
-          Register
-        </Button>
+        </Form.Item> */}
+        <Button
+          type="submit"
+          label="Sign up"
+          variant="contained"
+          disabled={isFormEmpty}
+        />
         <div className="flex justify-center text-sm text-onNeutralBg">
-          Already have an account? &nbsp;
+          Have an account? &nbsp;
           <Link to="/login">
             <p className="text-primary hover:underline underline-offset-2">
               Login!
