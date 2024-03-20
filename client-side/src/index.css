@@ -210,6 +210,7 @@ input:-webkit-autofill:focus {
 .ant-select-dropdown {
   background-color: var(--neutralBgAlt);
 }
+
 .ant-select-dropdown .ant-select-item-option {
   color: var(--onNeutralBg);
 }
@@ -223,6 +224,12 @@ input:-webkit-autofill:focus {
 .ant-select-outlined .ant-select-selector {
   border: 1px solid var(--onNeutralBgDivider) !important;
 }
+.ant-select-outlined .ant-select-selector:hover {
+  border: 1px solid var(--primary) !important;
+}
+.ant-select-outlined .ant-select-selector:focus-within {
+  outline: 1px solid var(--primary) !important;
+}
 /* */
 
 /* Contact Number */
@@ -232,6 +239,11 @@ input:-webkit-autofill:focus {
   border: 1px solid var(--onNeutralBgDivider) !important;
   height: 40px !important;
   width: 100% !important;
+}
+.form-control:focus,
+.form-control:hover,
+.flag-dropdown:focus-within {
+  outline: 1px solid var(--primary);
 }
 .form-control input::placeholder {
   color: var(--onNeutralBg) !important;
