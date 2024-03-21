@@ -180,6 +180,9 @@ input:-webkit-autofill:focus {
 /*  */
 
 /* Popover */
+.ant-popover {
+  position: fixed;
+}
 .ant-popover-inner {
   background-color: var(--neutralBgAlt) !important;
 }
