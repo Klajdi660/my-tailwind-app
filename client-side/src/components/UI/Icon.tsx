@@ -17,6 +17,7 @@ import {
   FaXbox,
   FaOpencart,
   FaWpexplorer,
+  FaRegUser,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiEye, FiEyeOff, FiUpload } from "react-icons/fi";
@@ -51,6 +52,7 @@ const icons: IconsMap = {
   FaXbox,
   FaOpencart,
   FaWpexplorer,
+  FaRegUser,
   FcGoogle,
   FiAlertTriangle,
   FiEye,

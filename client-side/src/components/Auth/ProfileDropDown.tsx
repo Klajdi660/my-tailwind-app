@@ -45,25 +45,26 @@ const UserMenu = (user: any, hidden: () => void) => {
     <div className="p-2 space-y-3 min-w-[300px]">
       {email && (
         <div
-          className="flex items-center gap-4 p-2 rounded text-sm cursor-pointer hover:bg-primary-opacity hover:text-primary"
+          className="gap-2 p-3 rounded flex_justify_between bg-main hover:bg-primary-opacity cursor-pointer"
           onClick={menuItems[0].onClick}
         >
-          {avatar ? (
-            <Image
-              imgUrl={user.avatar}
-              styles="w-10 h-10 rounded-full"
-              name="User Logo"
-            />
-          ) : (
-            <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-primary-opacity rounded-full">
-              <span className="font-medium text-inherit">{user.name}</span>
-            </div>
-          )}
-          <div>
-            <div className="text-onNeutralBg font-normal capitalize">
+          <div className="w-10 h-10 rounded-full flex_justify_center bg-sidebar">
+            {avatar ? (
+              <Image
+                imgUrl={avatar}
+                styles="w-full h-full rounded-full"
+                name="sidebar user"
+              />
+            ) : (
+              <Icon name="FaRegUser" size={16} />
+            )}
+          </div>
+
+          <div className="flex flex-col flex-1 text-sm text-secondary hover:text-primary">
+            <span className="break-all text-onNeutralBg">
               {extra?.firstName} {extra?.lastName}
-            </div>
-            <div className="text-secondary">@{username}</div>
+            </span>
+            <span className="text-secondary">@{username}</span>
           </div>
         </div>
       )}
@@ -136,10 +137,12 @@ const ProfileDropdown: FunctionComponent = () => {
             />
           ) : (
             <div
-              className={`relative inline-flex items-center justify-center w-12 h-12 overflow-hidden bg-primary-opacity rounded-full ${open ? "border border-1 border-primary" : ""}`}
+              className={`inline-flex items-center justify-center w-12 h-12 bg-primary-opacity rounded-full ${open ? "border border-1 border-primary" : ""}`}
             >
-              <span className="font-medium text-onNeutralBg">{user.name}</span>
+              {/* <span className="font-medium text-onNeutralBg">{user.name}</span> */}
+              <Icon name="FaRegUser" size={16} />
             </div>
+            // <Icon name="FaRegUser" size={16} />
           )}
         </div>
       </Popover>
