@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks";
 import { classNames } from "../utils";
@@ -11,12 +11,13 @@ import {
   NotificationButton,
   ThemeButton,
   MobileToggleButton,
+  Overlay,
 } from "./UI";
 import ProfileDropdown from "./Auth/ProfileDropDown";
 import { defaultThemeConfig } from "../configs";
 import { useSelector, useDispatch } from "react-redux";
 import { Searchbar } from "../components";
-import { useMobileResponsive } from "../utils";
+import { useMobileResponsive, useAppUtil } from "../utils";
 
 interface NavbarProps {}
 
@@ -26,6 +27,8 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
   const { isAuthenticated } = useAuth();
   const theme = useSelector((state: any) => state.theme);
   const isMobile = useMobileResponsive();
+  const { toggleSearch, setToggleSearch } = useAppUtil();
+  // const [toggleSearch, setToggleSearch] = useState(false);
 
   // const { sidebar } = theme || defaultThemeConfig;
   const { sidebar } = theme || defaultThemeConfig;
@@ -34,6 +37,11 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
 
   return (
     <nav className="fixed z-[1200] h-navbar top-0 bg-neutralBgOpacity backdrop-blur-[50px] sidebar_horizontal_width">
+      <Overlay
+        isOpen={toggleSearch}
+        handleIsOpen={setToggleSearch}
+        isMobile={isMobile}
+      />
       <div
         className={classNames(
           "relative flex h-full items-center justify-between"
@@ -56,7 +64,11 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
         <div className="flex items-center gap-4 px-3 lg:flex-1">
           <div className="z-20 flex items-center flex-1 h-full gap-4">
             <DesktopToggleButton theme={theme} dispatch={dispatch} />
-            <Searchbar isMobile={isMobile} />
+            <Searchbar
+              isMobile={isMobile}
+              toggleSearch={toggleSearch}
+              setToggleSearch={setToggleSearch}
+            />
             <MobileToggleButton />
           </div>
           {!isMobile && (

@@ -4,13 +4,14 @@ import { Icon } from "./UI";
 
 interface SearchbarProps {
   isMobile: boolean;
+  toggleSearch: boolean;
+  setToggleSearch: (value: boolean) => void;
 }
 
 export const Searchbar: FunctionComponent<SearchbarProps> = (props) => {
-  const { isMobile } = props;
+  const { isMobile, toggleSearch, setToggleSearch } = props;
 
   const [input, setInput] = useState("");
-  const [toggleSearch, setToggleSearch] = useState(false);
 
   return (
     <>
@@ -32,7 +33,6 @@ export const Searchbar: FunctionComponent<SearchbarProps> = (props) => {
               ? "border border-divider hover:border-primary rounded bg-main px-3 duration-500"
               : "rounded border border-divider focus-within:border-primary"
           )}
-          onClick={() => setToggleSearch(false)}
         >
           <Icon name="BiSearch" className={classNames(!isMobile && "ml-3")} />
           <input

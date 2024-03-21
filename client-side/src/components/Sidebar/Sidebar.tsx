@@ -7,8 +7,8 @@ import {
 } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth, useNotification } from "../../hooks";
-import { Icon } from "../UI";
-import { classNames, useAppUtil } from "../../utils";
+import { Icon, Overlay } from "../UI";
+import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
 import { navlinks } from "../../constants";
 import { defaultThemeConfig, themeConfig } from "../../configs";
 import { useSelector } from "react-redux";
@@ -21,6 +21,7 @@ export const Sidebar: FunctionComponent = () => {
   const themeStorage = useSelector((state: any) => state.theme);
   const [toggleNav, setToggleNav] = useState(false);
   const { toggleMenu, setToggleMenu } = useAppUtil();
+  const isMobile = useMobileResponsive();
 
   const { sidebar } = themeStorage || defaultThemeConfig;
   const isFolded = sidebar === "folded";
@@ -46,6 +47,7 @@ export const Sidebar: FunctionComponent = () => {
 
   useEffect(() => {
     setToggleMenu && setToggleMenu(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const navLists = useMemo(() => {
@@ -56,8 +58,20 @@ export const Sidebar: FunctionComponent = () => {
 
   return (
     <section
-      className={classNames("sidebar_section z-[1100] fixed top-0 h-full")}
+      className={classNames(
+        "sidebar_section z-[1100] fixed top-0 h-full",
+        isMobile &&
+          classNames(
+            "transition-all duration-500",
+            toggleMenu ? "left-0" : "-left-sidebar"
+          )
+      )}
     >
+      <Overlay
+        isOpen={toggleMenu}
+        handleIsOpen={setToggleMenu}
+        isMobile={isMobile}
+      />
       <div
         {...{
           onMouseOver: () => setToggleNav(true),

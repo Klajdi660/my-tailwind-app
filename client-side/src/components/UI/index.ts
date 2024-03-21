@@ -13,3 +13,4 @@ export { PatternBg } from "./PatternBg";
 export { SocialAuthButton } from "./SocialAuthButtons";
 export { Tab } from "./Tab";
 export { Title } from "./Title";
+export { Overlay } from "./Overlay";
