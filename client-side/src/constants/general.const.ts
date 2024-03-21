@@ -12,6 +12,7 @@ export const paths = {
   resetPassword: "reset-password/:token",
   profile: "profile",
   discover: "discover",
+  browse: "browse",
 };
 
 export const logo = {

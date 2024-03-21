@@ -1,8 +1,14 @@
-import { FunctionComponent, useMemo, Fragment, useState } from "react";
+import {
+  FunctionComponent,
+  useMemo,
+  Fragment,
+  useState,
+  useEffect,
+} from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth, useNotification } from "../../hooks";
 import { Icon } from "../UI";
-import { classNames } from "../../utils";
+import { classNames, useAppUtil } from "../../utils";
 import { navlinks } from "../../constants";
 import { defaultThemeConfig, themeConfig } from "../../configs";
 import { useSelector } from "react-redux";
@@ -14,6 +20,7 @@ export const Sidebar: FunctionComponent = () => {
   const [notify] = useNotification();
   const themeStorage = useSelector((state: any) => state.theme);
   const [toggleNav, setToggleNav] = useState(false);
+  const { toggleMenu, setToggleMenu } = useAppUtil();
 
   const { sidebar } = themeStorage || defaultThemeConfig;
   const isFolded = sidebar === "folded";
@@ -36,6 +43,10 @@ export const Sidebar: FunctionComponent = () => {
     navigate(link.link);
     localStorage.lastLocation = link.name.toLowerCase();
   };
+
+  useEffect(() => {
+    setToggleMenu && setToggleMenu(false);
+  }, [pathname]);
 
   const navLists = useMemo(() => {
     return navlinks;

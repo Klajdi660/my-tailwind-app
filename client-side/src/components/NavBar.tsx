@@ -10,11 +10,13 @@ import {
   DesktopToggleButton,
   NotificationButton,
   ThemeButton,
+  MobileToggleButton,
 } from "./UI";
 import ProfileDropdown from "./Auth/ProfileDropDown";
 import { defaultThemeConfig } from "../configs";
 import { useSelector, useDispatch } from "react-redux";
 import { Searchbar } from "../components";
+import { useMobileResponsive } from "../utils";
 
 interface NavbarProps {}
 
@@ -23,6 +25,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const theme = useSelector((state: any) => state.theme);
+  const isMobile = useMobileResponsive();
 
   // const { sidebar } = theme || defaultThemeConfig;
   const { sidebar } = theme || defaultThemeConfig;
@@ -38,7 +41,8 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
       >
         <div
           className={classNames(
-            "flex relative p-3 z-20 h-navbar duration-500 w-sidebar lg:bg-sidebar justify-center"
+            "flex relative p-3 z-20 w-sidebar h-navbar duration-500 lg:bg-sidebar justify-center"
+            // !isMobile && "w-sidebar"
           )}
         >
           <Link to="/" className="flex items-center h-full gap-2 logo">
@@ -52,26 +56,29 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
         <div className="flex items-center gap-4 px-3 lg:flex-1">
           <div className="z-20 flex items-center flex-1 h-full gap-4">
             <DesktopToggleButton theme={theme} dispatch={dispatch} />
-            <Searchbar />
+            <Searchbar isMobile={isMobile} />
+            <MobileToggleButton />
           </div>
-          <div className="flex items-center h-full gap-4 nav-icons">
-            {isAuthenticated ? (
-              <>
-                <CartButton />
-                <NotificationButton />
-                <ThemeButton mode={theme.mode} dispatch={dispatch} />
-                <ProfileDropdown />
-              </>
-            ) : (
-              <div className="flex items-center gap-0 px-4">
-                <Button
-                  variant="contained"
-                  label="Login"
-                  onClick={() => navigate("/login")}
-                />
-              </div>
-            )}
-          </div>
+          {!isMobile && (
+            <div className="flex items-center h-full gap-4 nav-icons">
+              {isAuthenticated ? (
+                <>
+                  <CartButton />
+                  <NotificationButton />
+                  <ThemeButton mode={theme.mode} dispatch={dispatch} />
+                  <ProfileDropdown />
+                </>
+              ) : (
+                <div className="flex items-center gap-0 px-4">
+                  <Button
+                    variant="contained"
+                    label="Login"
+                    onClick={() => navigate("/login")}
+                  />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </nav>

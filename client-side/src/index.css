@@ -269,3 +269,20 @@ input:-webkit-autofill:focus {
   background-color: var(--primary-opacity) !important;
 }
 /* */
+
+/* CUSTOM SCROLLBAR*/
+::-webkit-scrollbar {
+  @apply w-[10px];
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-button {
+  @apply hidden;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-opacity rounded-full hover:bg-primary transition duration-300;
+}

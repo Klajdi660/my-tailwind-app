@@ -1,14 +1,10 @@
 interface ThemeProviderProps {
-    children: React.ReactNode,
-};
+  children: React.ReactNode;
+}
 
 export const ThemeProvider = ({
-    children,
-    ...restProps
+  children,
+  ...restProps
 }: ThemeProviderProps): JSX.Element => {
-    return (
-        <div className="app_container">
-            {children}
-        </div>
-    );
+  return <div className="app_container">{children}</div>;
 };

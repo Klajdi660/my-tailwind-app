@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export const getToken = async (type = "l", authorise = 0) => {};
 
@@ -9,11 +10,11 @@ export const classNames = (...classes: any) => {
 
 export const getTimeOfDay = () => {
   const currentTime = dayjs();
-  const formattedTime = currentTime.format('HH:mm');
+  const formattedTime = currentTime.format("HH:mm");
 
-  if (formattedTime >= '05:00' && formattedTime < '12:00') {
+  if (formattedTime >= "05:00" && formattedTime < "12:00") {
     return "Good Morning";
-  } else if (formattedTime >= '12:00' && formattedTime < '18:00') {
+  } else if (formattedTime >= "12:00" && formattedTime < "18:00") {
     return "Good Afternoon";
   } else {
     return "Good Evening";
@@ -25,7 +26,7 @@ const getStorageValue = (key: string, defaultValue: any) => {
   const saved = localStorage.getItem(key) as any;
   const initial = JSON.parse(saved);
   return initial || defaultValue;
-}
+};
 
 export const useLocalStorage = (key: string, defaultValue: any) => {
   const [value, setValue] = useState(() => {
@@ -38,4 +39,11 @@ export const useLocalStorage = (key: string, defaultValue: any) => {
   }, [key, value]);
 
   return [value, setValue];
+};
+
+export const useMobileResponsive = () => {
+  const isMobile = useMediaQuery({
+    query: "(min-width: 1024px)",
+  });
+  return !isMobile;
 };

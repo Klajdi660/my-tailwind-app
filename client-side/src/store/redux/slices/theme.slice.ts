@@ -6,7 +6,10 @@ const persistedThemeConfig = persistedThemeConfigString
   ? JSON.parse(persistedThemeConfigString)
   : null;
 
-const initialState = { ...defaultThemeConfig, ...(persistedThemeConfig || {}) };
+const initialState = {
+  ...defaultThemeConfig,
+  ...(persistedThemeConfig || {}),
+};
 
 const themeSlice = createSlice({
   name: "theme",

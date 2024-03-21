@@ -2,11 +2,13 @@ import { startCase } from "lodash";
 import { useMediaQuery } from "react-responsive";
 import { themeConfig, defaultThemeConfig } from "../configs";
 import { useSelector } from "react-redux";
+import { useMobileResponsive } from "../utils";
 
 export const StylesProvider = () => {
   const themeStorage = useSelector((state: any) => state.theme);
+  const isMobile = useMobileResponsive();
 
-  const { mode, color, sidebar, layout, fontFamily, isMobile, borderRadius } =
+  const { mode, color, sidebar, layout, fontFamily, borderRadius } =
     themeStorage || defaultThemeConfig;
 
   const { colors, themes, sidebars }: any = themeConfig || {};
@@ -68,7 +70,7 @@ export const StylesProvider = () => {
       --aside-width: ${aside}px;
       --sidebar-horizontal-width: ${sidebarWidth}px;
       --nav-height: ${navHeight}px;
-      --nav-width: calc(100vw - ${asideMobile}px);
+      --nav-width: calc(100vw - ${asideMobile}px - ${isMobile ? "0" : "10"}px);
       --player-height: ${playerHeight}px;
       --logo-width: ${120}px;
       --main-width: calc(100% - ${sidebarWidth}px - ${asideMobile}px);

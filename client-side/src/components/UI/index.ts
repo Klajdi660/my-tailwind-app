@@ -4,6 +4,7 @@ export { CartButton } from "./Buttons/CartButton";
 export { DesktopToggleButton } from "./Buttons/DesktopToggleButton";
 export { NotificationButton } from "./Buttons/NotificationButton";
 export { ThemeButton } from "./Buttons/ThemeButton";
+export { MobileToggleButton } from "./Buttons/MobileToggleButton";
 export { Icon } from "./Icon";
 export { IconButton } from "./IconButton";
 export { Image } from "./Image";

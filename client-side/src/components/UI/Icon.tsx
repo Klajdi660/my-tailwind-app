@@ -28,6 +28,7 @@ import {
   MdOutlineGames,
   MdOutlineWbSunny,
   MdStorefront,
+  MdCancel,
 } from "react-icons/md";
 import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox } from "react-icons/sl";
@@ -62,6 +63,7 @@ const icons: IconsMap = {
   MdOutlineGames,
   MdOutlineWbSunny,
   MdStorefront,
+  MdCancel,
   RiFirefoxLine,
   SlGameController,
   SlSocialDropbox,
