@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Image, Icon, Button } from "../UI";
 import { useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
-import { classNames } from "../../utils";
+import { classNames } from "../../lib";
 import { Popover } from "antd";
 
 const UserMenu = (user: any, hidden: () => void) => {

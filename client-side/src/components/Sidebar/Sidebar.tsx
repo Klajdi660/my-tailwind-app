@@ -8,7 +8,7 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth, useNotification } from "../../hooks";
 import { Icon, Overlay } from "../UI";
-import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
+import { classNames, useAppUtil, useMobileResponsive } from "../../lib";
 import { navlinks } from "../../constants";
 import { defaultThemeConfig, themeConfig } from "../../configs";
 import { useSelector } from "react-redux";

@@ -2,7 +2,7 @@ import { startCase } from "lodash";
 import { useMediaQuery } from "react-responsive";
 import { themeConfig, defaultThemeConfig } from "../configs";
 import { useSelector } from "react-redux";
-import { useMobileResponsive } from "../utils";
+import { useMobileResponsive } from "../lib";
 
 export const StylesProvider = () => {
   const themeStorage = useSelector((state: any) => state.theme);

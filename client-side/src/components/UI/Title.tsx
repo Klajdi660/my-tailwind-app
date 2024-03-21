@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { classNames } from "../../utils";
+import { classNames } from "../../lib";
 import { fontSizes } from "../../constants";
 import { TitleProps } from "../../types/general.type";
 

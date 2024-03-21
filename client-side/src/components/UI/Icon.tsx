@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { IconContext } from "react-icons";
-import { classNames } from "../../utils";
+import { classNames } from "../../lib";
 import { IconParams, IconsMap } from "../../types/general.type";
 import {
   AiFillEye,

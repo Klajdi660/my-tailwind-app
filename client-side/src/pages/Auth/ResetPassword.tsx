@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useFormList } from "../../hooks";
 import { Form } from "../../components/Auth/Form";
-import { forgotPassValidation } from "../../utils";
+import { forgotPassValidation } from "../../lib";
 import { Template } from "../../components";
 
 const ResetPassword: FunctionComponent = () => {
@@ -10,7 +10,7 @@ const ResetPassword: FunctionComponent = () => {
   const handleOnSubmit = async (values: any) => {};
 
   return (
-    // <Form 
+    // <Form
     //   lists={lists}
     //   onSubmit={handleOnSubmit}
     //   schema={forgotPassValidation}

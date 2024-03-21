@@ -1,5 +1,5 @@
 import { forwardRef, FunctionComponent, Ref } from "react";
-import { classNames } from "../../utils";
+import { classNames } from "../../lib";
 import { Icon } from "./Icon";
 
 interface IconButtonProps {

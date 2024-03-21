@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import { classNames } from "../utils";
+import { classNames } from "../lib";
 import { Icon } from "./UI";
 
 interface SearchbarProps {

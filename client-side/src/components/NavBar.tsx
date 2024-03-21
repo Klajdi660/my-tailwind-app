@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks";
-import { classNames } from "../utils";
+import { classNames } from "../lib";
 import { icon, icon2 } from "../assets/img";
 import {
   Button,
@@ -17,7 +17,7 @@ import ProfileDropdown from "./Auth/ProfileDropDown";
 import { defaultThemeConfig } from "../configs";
 import { useSelector, useDispatch } from "react-redux";
 import { Searchbar } from "../components";
-import { useMobileResponsive, useAppUtil } from "../utils";
+import { useMobileResponsive, useAppUtil } from "../lib";
 
 interface NavbarProps {}
 

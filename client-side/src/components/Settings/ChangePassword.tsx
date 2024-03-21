@@ -1,7 +1,7 @@
 import { FunctionComponent, useMemo } from "react";
 import { Form } from "../Auth/Form";
 import { Icon } from "../UI";
-import { updatePasswordValidation } from "../../utils/validations";
+import { updatePasswordValidation } from "../../lib/validations";
 
 interface ChangePasswordProps {
   provider: string | any;

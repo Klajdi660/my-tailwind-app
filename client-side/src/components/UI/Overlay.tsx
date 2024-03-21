@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from "react";
-import { classNames } from "../../utils";
+import { classNames } from "../../lib";
 
 interface OverlayProps {
   isOpen: boolean;

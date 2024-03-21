@@ -1,4 +1,4 @@
 export { globalObject } from "./global-object";
-export * from "./helperFunctions";
+export * from "./utils";
 export * from "./validations/auth";
 export * from "./manageState";

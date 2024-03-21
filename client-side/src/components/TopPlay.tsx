@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { classNames } from "../utils";
+import { classNames } from "../lib";
 import { Footer } from "./Footer";
 
 interface TopPlayProps {}

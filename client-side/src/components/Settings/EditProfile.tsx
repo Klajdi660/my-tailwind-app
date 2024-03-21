@@ -1,7 +1,7 @@
 import { FunctionComponent, useMemo, useState } from "react";
 import { Form } from "../Auth/Form";
 import { profileList } from "../../constants";
-import { editProfileValidation } from "../../utils/validations";
+import { editProfileValidation } from "../../lib/validations";
 // import Form from "../Form";
 interface EditProfileProps {
   email: string | any;

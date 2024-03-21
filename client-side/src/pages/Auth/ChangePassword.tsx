@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useFormList } from "../../hooks";
 import { Form } from "../../components/Auth/Form";
-import { resetPassValidation} from "../../utils";
+import { resetPassValidation } from "../../lib";
 import { Template } from "../../components";
 
 const ChangePassword: FunctionComponent = () => {
