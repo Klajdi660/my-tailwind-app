@@ -16,11 +16,11 @@ body {
 }
 
 @layer components {
-  .theme_switch_section {
+  .cart_switch_section {
     @apply fixed z-[1000] top-0 h-screen duration-300 transition-all ease-linear;
   }
 
-  .theme_switch_button {
+  .cart_switch_button {
     @apply absolute z-[1045] rounded-tl-full rounded-tr-full rounded-bl-full rounded-br w-[40px] h-[40px] top-2 flex items-center justify-center;
   }
 

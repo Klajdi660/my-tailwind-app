@@ -36,6 +36,7 @@ import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox } from "react-icons/sl";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 import { PiWarningCircleBold } from "react-icons/pi";
+import { TiTimes } from "react-icons/ti";
 
 const icons: IconsMap = {
   AiFillEye,
@@ -73,6 +74,7 @@ const icons: IconsMap = {
   SlSocialDropbox,
   LiaSignOutAltSolid,
   PiWarningCircleBold,
+  TiTimes,
 };
 
 export const Icon: FunctionComponent<IconParams> = ({

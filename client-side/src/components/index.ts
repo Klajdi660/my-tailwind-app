@@ -23,3 +23,4 @@ export { EditProfile } from "./Settings/EditProfile";
 export { ChangePassword } from "./Settings/ChangePassword";
 export { PersonalDetails } from "./Settings/PersonalDetails";
 export { UserInfo } from "./Settings/UserInfo";
+export { CartSwitcher } from "./CartSwitcher";

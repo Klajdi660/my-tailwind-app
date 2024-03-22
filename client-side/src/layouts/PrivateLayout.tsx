@@ -26,7 +26,7 @@
 
 import { FunctionComponent } from "react";
 import { Outlet } from "react-router-dom";
-import { Sidebar, Navbar, TopPlay } from "../components";
+import { Sidebar, Navbar, TopPlay, CartSwitcher } from "../components";
 
 export const PrivateLayout: FunctionComponent = () => {
   return (
@@ -53,6 +53,7 @@ export const PrivateLayout: FunctionComponent = () => {
           </div>
         </main>
         <TopPlay />
+        <CartSwitcher />
       </div>
     </>
   );
