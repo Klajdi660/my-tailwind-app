@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
 import { classNames } from "../../lib";
 import { Popover } from "antd";
+import { userIcon } from "../../assets/img";
 
 const UserMenu = (user: any, hidden: () => void) => {
   const { logout } = useAuthService();
@@ -48,18 +49,19 @@ const UserMenu = (user: any, hidden: () => void) => {
           className="gap-2 p-3 rounded flex_justify_between bg-main hover:bg-primary-opacity cursor-pointer"
           onClick={menuItems[0].onClick}
         >
-          <div className="w-10 h-10 rounded-full flex_justify_center bg-sidebar">
-            {avatar ? (
-              <Image
-                imgUrl={avatar}
-                styles="w-full h-full rounded-full"
-                name="sidebar user"
-              />
-            ) : (
-              <Icon name="FaRegUser" size={16} />
-            )}
-          </div>
-
+          {avatar ? (
+            <Image
+              imgUrl={avatar}
+              styles="w-10 h-10 p-1 rounded-full bg-sidebar"
+              name="sidebar user"
+            />
+          ) : (
+            <Image
+              imgUrl={userIcon}
+              styles="w-10 h-10 p-1 rounded-full bg-sidebar"
+              name="sidebar user"
+            />
+          )}
           <div className="flex flex-col flex-1 text-sm text-secondary hover:text-primary">
             <span className="break-all text-onNeutralBg">
               {extra?.firstName} {extra?.lastName}
@@ -115,7 +117,7 @@ const ProfileDropdown: FunctionComponent = () => {
   if (!user) return null;
 
   return (
-    <div className="flex items-center h-full profile">
+    <div className="flex items-center h-full profile cursor-pointer">
       <Popover
         trigger="click"
         arrow={false}
@@ -124,27 +126,27 @@ const ProfileDropdown: FunctionComponent = () => {
         onOpenChange={handleOpenChange}
         placement="topRight"
       >
-        <div
-          className={classNames(
-            "rounded-full right-0 flex_justify_center transition-colors duration-500 gap-2 cursor-pointer p-1 h-full group"
-          )}
-        >
+        <>
           {user.avatar ? (
             <Image
               imgUrl={user.avatar}
-              styles={`w-10 h-10 rounded-full p-1 ring-2 ${open ? "ring-primary" : "ring-gray-300"}`}
+              styles={classNames(
+                "w-10 h-10 rounded-full p-1 ring-2",
+                open ? "ring-primary" : "ring-gray-300"
+              )}
               name="User Img"
             />
           ) : (
-            <div
-              className={`inline-flex items-center justify-center w-12 h-12 bg-primary-opacity rounded-full ${open ? "border border-1 border-primary" : ""}`}
-            >
-              {/* <span className="font-medium text-onNeutralBg">{user.name}</span> */}
-              <Icon name="FaRegUser" size={16} />
-            </div>
-            // <Icon name="FaRegUser" size={16} />
+            <Image
+              imgUrl={userIcon}
+              name="Profile Img"
+              styles={classNames(
+                "w-10 h-10 rounded-full p-1 ring-2 bg-main",
+                open ? "ring-primary" : "ring-gray-300"
+              )}
+            />
           )}
-        </div>
+        </>
       </Popover>
     </div>
   );

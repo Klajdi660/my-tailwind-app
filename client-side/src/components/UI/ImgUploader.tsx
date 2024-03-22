@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 import { Icon } from "./Icon";
 // import { classNames } from "../../utils";
 import { Image } from "./Image";
-import { avatar } from "../../assets/img";
+import { userIcon } from "../../assets/img";
 
 interface ImgUploaderParams {
   imgUrl: string;
@@ -36,7 +36,7 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = (props) => {
         />
       ) : (
         <Image
-          imgUrl={avatar}
+          imgUrl={userIcon}
           name="Profile Img"
           styles="w-40 h-40 rounded-full p-1 ring-2 ring-gray-300 bg-main"
         />

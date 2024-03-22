@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks";
 import { classNames } from "../lib";
-import { icon, icon2 } from "../assets/img";
+import { icon, iconName } from "../assets/img";
 import {
   Button,
   Image,
@@ -36,7 +36,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
   const showFull = Boolean(isFolded);
 
   return (
-    <nav className="fixed z-[1200] h-navbar top-0 bg-neutralBgOpacity backdrop-blur-[50px] sidebar_horizontal_width">
+    <nav className="fixed z-[10] h-navbar top-0 bg-neutralBgOpacity backdrop-blur-[50px] sidebar_horizontal_width">
       <Overlay
         isOpen={toggleSearch}
         handleIsOpen={setToggleSearch}
@@ -55,9 +55,9 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
         >
           <Link to="/" className="flex items-center h-full gap-2 logo">
             {!showFull ? (
-              <Image imgUrl={icon} name="App Logo" width={100} />
+              <Image imgUrl={iconName} name="App Logo" width={100} />
             ) : (
-              <Image imgUrl={icon2} name="App Logo2" width={50} />
+              <Image imgUrl={icon} name="App Logo2" width={50} />
             )}
           </Link>
         </div>

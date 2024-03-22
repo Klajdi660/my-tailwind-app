@@ -183,6 +183,9 @@ input:-webkit-autofill:focus {
 .ant-popover {
   position: fixed;
 }
+.ant-popover .ant-popover-content {
+  margin-top: 10px;
+}
 .ant-popover-inner {
   background-color: var(--neutralBgAlt) !important;
 }
@@ -208,6 +211,8 @@ input:-webkit-autofill:focus {
 .ant-form input::placeholder {
   color: #9ca3af;
 }
+
+/*  */
 
 /* Select */
 .ant-select-dropdown {

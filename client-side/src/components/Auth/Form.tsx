@@ -56,7 +56,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
     setCode(code);
     // setOtpFilled(code.length === 6);
   };
-
+  console.log("user :>> ", user);
   // const isButtonDisabled = pathname === "verify-email" ? !otpFilled : !isValid;
 
   return (

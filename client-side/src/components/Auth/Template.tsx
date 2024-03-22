@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { authFormData } from "../../constants";
 import { TemplateProps } from "../../types/general.type";
 import { SocialAuthButton, Title, Image } from "../UI";
-import { icon } from "../../assets/img";
+import { iconName } from "../../assets/img";
 
 export const Template: FunctionComponent<TemplateProps> = (props) => {
   const { title, description, formType, btnText } = props;
@@ -25,7 +25,7 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
       <div className="w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 bg-card rounded">
         <div className="flex flex-col items-center mb-6 lg:mb-6">
           <Link to="/" className="flex flex-row items-center gap-1 m-0 logo">
-            <Image imgUrl={icon} name="Template Logo" width={100} />
+            <Image imgUrl={iconName} name="Template Logo" width={100} />
           </Link>
         </div>
         <Title name={title || ""} desc={description} type="medium" />
