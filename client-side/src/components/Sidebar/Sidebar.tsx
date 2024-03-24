@@ -75,7 +75,8 @@ export const Sidebar: FunctionComponent = () => {
       });
     }
 
-    navigate(link.link);
+    navigate(link.to);
+    console.log('link :>> ', link);
     localStorage.lastLocation = link.name.toLowerCase();
   };
 

@@ -48,7 +48,7 @@ export const PrivateLayout: FunctionComponent = () => {
         <Sidebar />
         <main className="relative w-full mx-auto overflow-hidden main_section">
           <Navbar />
-          <div className="relative mb-6 xl:mb-[100px] overflow-y-scroll hide_scrollbar p-3 sm:p-6 max-w-7xl main_width page_content mt-main-top">
+          <div className="relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 main_width page_content mt-main-top">
             <Outlet />
           </div>
         </main>
@@ -58,3 +58,5 @@ export const PrivateLayout: FunctionComponent = () => {
     </>
   );
 };
+
+// xl:mb-[100px] max-w-7xl

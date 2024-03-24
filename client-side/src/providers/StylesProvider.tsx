@@ -70,7 +70,7 @@ export const StylesProvider = () => {
       --aside-width: ${aside}px;
       --sidebar-horizontal-width: ${sidebarWidth}px;
       --nav-height: ${navHeight}px;
-      --nav-width: calc(100vw - ${asideMobile}px - ${isMobile ? "0" : "10"}px);
+      --nav-width: calc(100vw - ${asideMobile}px - ${isMobile ? "0" : "5"}px);
       --player-height: ${playerHeight}px;
       --logo-width: ${120}px;
       --main-width: calc(100% - ${sidebarWidth}px - ${asideMobile}px);

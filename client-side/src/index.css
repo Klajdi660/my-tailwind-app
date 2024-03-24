@@ -280,7 +280,7 @@ input:-webkit-autofill:focus {
 
 /* CUSTOM SCROLLBAR*/
 ::-webkit-scrollbar {
-  @apply w-[10px];
+  @apply w-[5px];
 }
 
 ::-webkit-scrollbar-track {
@@ -292,5 +292,5 @@ input:-webkit-autofill:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary-opacity rounded-full hover:bg-primary transition duration-300;
+  @apply bg-primary rounded-full hover:bg-primary-opacity transition duration-300;
 }
