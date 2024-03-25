@@ -120,6 +120,10 @@ input:-webkit-autofill:focus {
   -webkit-text-fill-color: var(--onNeutralBg) !important;
 }
 
+/* input[type="checkbox"] {
+  accent-color: var(--primary);
+} */
+
 .Toastify__toast {
   background-color: var(--neutralBgAlt) !important;
   color: var(--onNeutralBg) !important;
