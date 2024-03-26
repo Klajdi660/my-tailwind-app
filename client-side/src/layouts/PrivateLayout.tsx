@@ -26,7 +26,7 @@
 
 import { FunctionComponent } from "react";
 import { Outlet } from "react-router-dom";
-import { Sidebar, Navbar, TopPlay, CartSwitcher } from "../components";
+import { CartSwitcher, Modal, Navbar, Sidebar, TopPlay } from "../components";
 
 export const PrivateLayout: FunctionComponent = () => {
   return (
@@ -51,6 +51,7 @@ export const PrivateLayout: FunctionComponent = () => {
           <div className="relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 main_width page_content mt-main-top">
             <Outlet />
           </div>
+          <Modal />
         </main>
         <TopPlay />
         <CartSwitcher />

@@ -123,12 +123,12 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                     {list?.label}
                   </label>
                 </div>
-                <div className="relative px-2 border rounded border-divider focus-within:border-primary">
+                <div className="relative border rounded border-divider focus-within:border-primary">
                   {list.type === "input" && (
                     <div className="flex items-center justify-between">
                       <input
                         {...form(list.name)}
-                        className="w-full h-10 text-sm bg-transparent text-onNeutralBg no-focus border-divider outline-0 disabled:text-secondary"
+                        className="w-full h-10 px-2 rounded text-sm bg-transparent text-onNeutralBg no-focus border-divider outline-0 disabled:text-secondary"
                         {...list.props}
                         placeholder={list.props.placeholder || list.label}
                         disabled={list.props.disabled}
@@ -150,10 +150,10 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                             <IconButton
                               name={
                                 !showPass?.[list.name]
-                                  ? "AiFillEyeInvisible"
-                                  : "AiFillEye"
+                                  ? "AiOutlineEyeInvisible"
+                                  : "AiOutlineEye"
                               }
-                              iconClassName="text-onNeutralBg"
+                              iconClassName="text-secondary hover:text-onNeutralBg"
                               onClick={() =>
                                 setShowPass((prevS: any) => ({
                                   ...prevS,

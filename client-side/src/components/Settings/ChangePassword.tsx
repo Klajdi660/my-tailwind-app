@@ -23,6 +23,16 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
       },
       {
         type: "input",
+        name: "currentPassword",
+        label: "Current Password",
+        props: {
+          disabled: !isPasswordEnabled,
+          type: "password",
+          placeholder: "",
+        },
+      },
+      {
+        type: "input",
         name: "newPassword",
         label: "New Password",
         props: {
@@ -63,6 +73,7 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
         lists={list}
         schema={updatePasswordValidation}
         defaultValues={{
+          currentPassword: !isPasswordEnabled ? "**********" : "",
           newPassword: !isPasswordEnabled ? "**********" : "",
           confirmNewPassword: !isPasswordEnabled ? "**********" : "",
         }}

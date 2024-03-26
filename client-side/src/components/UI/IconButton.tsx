@@ -29,7 +29,7 @@ export const IconButton: FunctionComponent<IconButtonProps> = forwardRef(
       <button
         type={type}
         className={classNames(
-          "h-10 w-10 rounded-full flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 duration-300 ease-linear outline-none hover:scale-[1.1] transition-all ",
+          "rounded-full flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 duration-300 ease-linear outline-none hover:scale-[1.1] transition-all ",
           className
         )}
         disabled={disabled}
@@ -43,3 +43,4 @@ export const IconButton: FunctionComponent<IconButtonProps> = forwardRef(
 );
 
 IconButton.displayName = "IconButton";
+// w-10 h-10

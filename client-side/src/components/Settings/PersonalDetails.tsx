@@ -43,14 +43,16 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
       </div>
       <form className="w-full">
         <div className="flex flex-wrap pb-[20px]">
-          <div className="w-full md:w-1/2 px-2">
+          <div className="w-full md:w-1/2">
             <label className="block text-secondary text-xs font-semibold mb-2">
               First Name
             </label>
             <input
+              name="firstName"
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
               placeholder="First Name"
+              autoComplete="firstName"
             />
           </div>
           <div className="w-full md:w-1/2 px-2">

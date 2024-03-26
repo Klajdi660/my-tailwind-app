@@ -3,11 +3,11 @@ import { IconContext } from "react-icons";
 import { classNames } from "../../lib";
 import { IconParams, IconsMap } from "../../types/general.type";
 import {
-  AiFillEye,
-  AiFillEyeInvisible,
   AiOutlineCloudUpload,
   AiOutlineSetting,
   AiOutlineEdit,
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
 } from "react-icons/ai";
 import { BiGame, BiSearch, BiUser } from "react-icons/bi";
 import { BsMoonStars, BsNintendoSwitch } from "react-icons/bs";
@@ -21,7 +21,7 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { FiAlertTriangle, FiEye, FiEyeOff, FiUpload } from "react-icons/fi";
+import { FiAlertTriangle, FiUpload } from "react-icons/fi";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import {
@@ -39,11 +39,11 @@ import { PiWarningCircleBold } from "react-icons/pi";
 import { TiTimes } from "react-icons/ti";
 
 const icons: IconsMap = {
-  AiFillEye,
-  AiFillEyeInvisible,
   AiOutlineCloudUpload,
   AiOutlineSetting,
   AiOutlineEdit,
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
   BiGame,
   BiSearch,
   BiUser,
@@ -58,8 +58,6 @@ const icons: IconsMap = {
   FaUser,
   FcGoogle,
   FiAlertTriangle,
-  FiEye,
-  FiEyeOff,
   FiUpload,
   HiMenuAlt2,
   IoMdNotificationsOutline,

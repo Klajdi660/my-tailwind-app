@@ -43,23 +43,25 @@ export const ResetPasswordForm: FunctionComponent = () => {
       <Form.Item
         name="password"
         label={
-          <div className="text-xs font-semibold text-secondary">Password</div>
+          <div className="text-xs font-semibold text-secondary">
+            New Password
+          </div>
         }
         rules={[
           {
             required: true,
-            message: "Please input your Password!",
+            message: "Please input your New Password!",
           },
         ]}
       >
         <Input.Password
-          placeholder="Password"
+          placeholder="New Password"
           autoComplete="password"
           className="w-full h-10"
           iconRender={(visible) => (
             <IconButton
-              name={visible ? "AiFillEye" : "AiFillEyeInvisible"}
-              iconClassName="text-onNeutralBg"
+              name={visible ? "AiOutlineEye" : "AiOutlineEyeInvisible"}
+              iconClassName="text-secondary hover:text-onNeutralBg"
             />
           )}
         />
@@ -68,24 +70,24 @@ export const ResetPasswordForm: FunctionComponent = () => {
         name="confirmPassword"
         label={
           <div className="text-xs font-semibold text-secondary">
-            Confirm Password
+            Confirm New Password
           </div>
         }
         rules={[
           {
             required: true,
-            message: "Please input again Password!",
+            message: "Please input New Password again!",
           },
         ]}
       >
         <Input.Password
-          placeholder="Confirm Password"
+          placeholder="Confirm New Password"
           className="w-full h-10"
           autoComplete="confirmPassword"
           iconRender={(visible) => (
             <IconButton
-              name={visible ? "AiFillEye" : "AiFillEyeInvisible"}
-              iconClassName="text-onNeutralBg"
+              name={visible ? "AiOutlineEye" : "AiOutlineEyeInvisible"}
+              iconClassName="text-secondary hover:text-onNeutralBg"
             />
           )}
         />

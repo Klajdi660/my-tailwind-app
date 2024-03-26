@@ -5,6 +5,7 @@ import useAuthService from "../../services/AuthService";
 import { useAuth } from "../../hooks";
 import { LoginUserInput } from "../../types/user.type";
 import { IconButton, Button } from "../UI";
+
 // import { loginValidation } from "../../utils";
 // import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -49,9 +50,13 @@ export const LoginForm: FunctionComponent = () => {
       form={form}
       layout="vertical"
       className="flex flex-col gap-5"
-      initialValues={{
-        remember: false,
-      }}
+      initialValues={
+        {
+          // remember: false,
+          // username: "klajdi96",
+          // password: "Klajdi96@",
+        }
+      }
       onValuesChange={handleFormChange}
     >
       <Form.Item
@@ -92,8 +97,8 @@ export const LoginForm: FunctionComponent = () => {
           className="mb-0 w-full h-10"
           iconRender={(visible) => (
             <IconButton
-              name={visible ? "AiFillEye" : "AiFillEyeInvisible"}
-              iconClassName="text-onNeutralBg"
+              name={visible ? "AiOutlineEye" : "AiOutlineEyeInvisible"}
+              iconClassName="text-secondary hover:text-onNeutralBg"
             />
           )}
         />

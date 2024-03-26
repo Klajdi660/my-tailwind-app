@@ -1,12 +1,11 @@
 import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, Space, Input, Checkbox } from "antd";
-import { FiEye, FiEyeOff } from "react-icons/fi";
+import { Form, Space, Input } from "antd";
 import useAuthService from "../../services/AuthService";
 import { RegisterUserInput } from "../../types/user.type";
 import { useAuth } from "../../hooks";
 import { toast } from "react-toastify";
-import { Button } from "../UI";
+import { Button, IconButton } from "../UI";
 
 export const SignUpForm: FunctionComponent = () => {
   // student or instructor
@@ -50,6 +49,48 @@ export const SignUpForm: FunctionComponent = () => {
         }}
         onValuesChange={handleFormChange}
       >
+        <Space className="flex gap-x-4">
+          <Form.Item
+            name="firstName"
+            label={
+              <div className="text-xs font-semibold text-secondary">
+                First Name
+              </div>
+            }
+            rules={[
+              {
+                required: true,
+                message: "Please input your First Name!",
+              },
+            ]}
+          >
+            <Input
+              placeholder="First Name"
+              className="h-10"
+              autoComplete="off"
+            />
+          </Form.Item>
+          <Form.Item
+            name="lastName"
+            label={
+              <div className="text-xs font-semibold text-secondary">
+                Last Name
+              </div>
+            }
+            rules={[
+              {
+                required: true,
+                message: "Please input again Last Name!",
+              },
+            ]}
+          >
+            <Input
+              placeholder="Last Name"
+              className="h-10"
+              autoComplete="off"
+            />
+          </Form.Item>
+        </Space>
         <Form.Item
           name="email"
           label={
@@ -69,22 +110,6 @@ export const SignUpForm: FunctionComponent = () => {
             className="w-full h-10"
             autoComplete="off"
           />
-        </Form.Item>
-        <Form.Item
-          name="fullname"
-          label={
-            <div className="text-xs font-semibold text-secondary">
-              Full Name
-            </div>
-          }
-          rules={[
-            {
-              required: true,
-              message: "Please input your Full Name!",
-            },
-          ]}
-        >
-          <Input placeholder="Full Name" className="h-10" autoComplete="off" />
         </Form.Item>
         <Form.Item
           name="username"
@@ -123,13 +148,12 @@ export const SignUpForm: FunctionComponent = () => {
               placeholder="Password"
               className="h-10"
               autoComplete="password"
-              iconRender={(visible) =>
-                visible ? (
-                  <FiEye style={{ color: "#AFB2BF", cursor: "pointer" }} />
-                ) : (
-                  <FiEyeOff style={{ color: "#6E727F", cursor: "pointer" }} />
-                )
-              }
+              iconRender={(visible) => (
+                <IconButton
+                  name={visible ? "AiOutlineEye" : "AiOutlineEyeInvisible"}
+                  iconClassName="text-secondary hover:text-onNeutralBg"
+                />
+              )}
             />
           </Form.Item>
           <Form.Item
@@ -150,18 +174,17 @@ export const SignUpForm: FunctionComponent = () => {
               placeholder="Confirm Password"
               className="h-10"
               autoComplete="passwordConfirm"
-              iconRender={(visible) =>
-                visible ? (
-                  <FiEye style={{ color: "#6E727F", cursor: "pointer" }} />
-                ) : (
-                  <FiEyeOff style={{ color: "#6E727F", cursor: "pointer" }} />
-                )
-              }
+              iconRender={(visible) => (
+                <IconButton
+                  name={visible ? "AiOutlineEye" : "AiOutlineEyeInvisible"}
+                  iconClassName="text-secondary hover:text-onNeutralBg"
+                />
+              )}
             />
           </Form.Item>
         </Space>
         <div className="flex justify-center text-center">
-          <p className="text-secondary">
+          <p className="text-secondary text-xs">
             By signing up, you agree to our{" "}
             <span>
               <Link
