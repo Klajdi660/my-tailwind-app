@@ -29,6 +29,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
       variant,
       labelIcon,
       isSubmitting,
+      // onClick,
       ...props
     },
     ref: Ref<HTMLButtonElement>
@@ -49,27 +50,28 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
         disabled={disabled || isSubmitting}
         type={type}
         ref={ref}
+        // onClick={onClick}
         {...props}
       >
-        {!isSubmitting ? (
-          <div className="flex flex-row items-center">
-            {labelIcon && (
-              <div className="mr-1">
-                <Icon
-                  name={labelIcon}
-                  className={classNames(
-                    variant === "contained" && "text-primary",
-                    variant === "filled" && "text-white",
-                    variant === "gradient" && "text-white"
-                  )}
-                />
-              </div>
-            )}
-            <div className="w-full text-center whitespace-nowrap">{label}</div>
-          </div>
-        ) : (
-          <div>Loading..</div>
-        )}
+        {/* {!isSubmitting ? ( */}
+        <div className="flex flex-row items-center">
+          {labelIcon && (
+            <div className="mr-1">
+              <Icon
+                name={labelIcon}
+                className={classNames(
+                  variant === "contained" && "text-primary",
+                  variant === "filled" && "text-white",
+                  variant === "gradient" && "text-white"
+                )}
+              />
+            </div>
+          )}
+          <div className="w-full text-center whitespace-nowrap">{label}</div>
+        </div>
+        {/* ) : (
+           <div>Loading..</div>
+       )} */}
       </button>
     );
   }

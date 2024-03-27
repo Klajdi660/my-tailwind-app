@@ -2,6 +2,7 @@ import { FunctionComponent, useMemo, useState } from "react";
 import { Form } from "../Auth/Form";
 import { profileList } from "../../constants";
 import { editProfileValidation } from "../../lib/validations";
+
 // import Form from "../Form";
 interface EditProfileProps {
   email: string | any;
@@ -13,7 +14,6 @@ interface EditProfileProps {
 
 export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
   const { email, username, imgUrl, provider, user } = props;
-
   const [files, setFiles] = useState(null);
 
   const hasProvider = provider !== "Email";

@@ -32,9 +32,7 @@ const PhoneNumberValidation = () => {
 };
 
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
-  const handleMenuClick = (value: string) => {
-    console.log("value :>> ", value);
-  };
+  const handleMenuClick = (value: string) => {};
 
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card">

@@ -76,7 +76,6 @@ export const Sidebar: FunctionComponent = () => {
     }
 
     navigate(link.to);
-    console.log('link :>> ', link);
     localStorage.lastLocation = link.name.toLowerCase();
   };
 
@@ -94,7 +93,7 @@ export const Sidebar: FunctionComponent = () => {
   return (
     <section
       className={classNames(
-        "sidebar_section z-[1100] fixed top-0 h-full",
+        "sidebar_section z-[10] fixed top-0 h-full",
         isMobile &&
           classNames(
             "transition-all duration-500",

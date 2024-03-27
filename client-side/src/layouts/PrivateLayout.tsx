@@ -26,9 +26,13 @@
 
 import { FunctionComponent } from "react";
 import { Outlet } from "react-router-dom";
-import { CartSwitcher, Modal, Navbar, Sidebar, TopPlay } from "../components";
+import { CartSwitcher, Navbar, Sidebar, TopPlay } from "../components";
+// import { DeleteModal } from "../components/Settings/DeleteAccount";
+// import { useAppModal } from "../lib";
 
 export const PrivateLayout: FunctionComponent = () => {
+  // const { modalOpen } = useAppModal();
+
   return (
     <>
       {/* <div className="relative sm:-8 p-4 bg-richblack-20 min-h-screen flex flex-row">
@@ -51,7 +55,7 @@ export const PrivateLayout: FunctionComponent = () => {
           <div className="relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 main_width page_content mt-main-top">
             <Outlet />
           </div>
-          <Modal />
+          {/* {modalOpen && <DeleteModal />} */}
         </main>
         <TopPlay />
         <CartSwitcher />

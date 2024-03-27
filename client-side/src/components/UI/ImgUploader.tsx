@@ -4,6 +4,8 @@ import { Icon } from "./Icon";
 // import { classNames } from "../../utils";
 import { Image } from "./Image";
 import { userIcon } from "../../assets/img";
+import { useAppModal } from "../../lib";
+import { Button } from "./Button";
 
 interface ImgUploaderParams {
   imgUrl: string;
@@ -57,7 +59,13 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = (props) => {
               Change photo
             </button>
           ) : (
-            <button className="flex_justify_center items-center bg-primary text-white rounded font-semibold text-sm py-2 px-4 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none w-fit hover:brightness-110">
+            <button
+              className="flex_justify_center items-center bg-primary text-white rounded font-semibold text-sm py-2 px-4 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none w-fit hover:brightness-110"
+              // onClick={() => {
+              //   openModal();
+              //   getModalContent(<PhotoUploadModal />);
+              // }}
+            >
               <Icon name="FiUpload" className="mr-1 text-white" size={18} />
               Upload photo
             </button>

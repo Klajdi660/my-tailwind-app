@@ -44,7 +44,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
 
   const {
     register: form,
-    handleSubmit,
+    // handleSubmit,
     formState: { errors, isValid },
   } = useForm({
     mode: "onTouched",
@@ -56,7 +56,6 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
     setCode(code);
     // setOtpFilled(code.length === 6);
   };
-  console.log("user :>> ", user);
   // const isButtonDisabled = pathname === "verify-email" ? !otpFilled : !isValid;
 
   return (
@@ -82,7 +81,9 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
           </div>
         </>
       )} */}
-      <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="flex flex-col gap-5" /*onSubmit={handleSubmit(onSubmit)}*/
+      >
         {pathname === "verify-email" && (
           <OtpInput
             // {...form(code)}
@@ -223,18 +224,9 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
             // className="w-full"
             className="w-fit"
             // disabled={isButtonDisabled}
-            disabled={!isValid}
-            onClick={() => handleSubmit(onSubmit)}
+            // disabled={!isValid}
+            // onClick={() => handleSubmit(onSubmit)}
           />
-          {/* <Button 
-                        className="w-full h-10 bg-primary" 
-                        type="primary" 
-                        htmlType="submit"
-                        disabled={isButtonDisabled}
-                        onClick={() => handleSubmit(onSubmit)}
-                    >
-                        {btnTxt}
-                    </Button> */}
         </div>
       </form>
       {/* <div className="flex flex-col items-center justify-center gap-2 mt-4 text-sm text-onNeutralBg"> */}

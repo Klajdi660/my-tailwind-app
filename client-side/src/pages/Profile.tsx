@@ -8,11 +8,14 @@ import {
   PersonalDetails,
   UserInfo,
 } from "../components";
+import { useAppModal } from "../lib";
+import { DeleteModal } from "../components/Settings/DeleteAccount";
 
 interface ProfileProps {}
 
 const Profile: FunctionComponent<ProfileProps> = () => {
   const { user } = useAuth();
+  const { modalOpen } = useAppModal();
 
   return (
     <section className="account_page">
@@ -30,6 +33,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
         <ChangePassword provider={user?.provider} />
         <DeleteAccount />
       </div>
+      {modalOpen && <DeleteModal />}
     </section>
   );
 };

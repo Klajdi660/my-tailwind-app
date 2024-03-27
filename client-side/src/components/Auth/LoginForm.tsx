@@ -15,7 +15,19 @@ export const LoginForm: FunctionComponent = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
 
-  const [isFormEmpty, setIsFormEmpty] = useState(true);
+  // const [isFormEmpty, setIsFormEmpty] = useState(true);
+  const [submittable, setSubmittable] = useState(false);
+
+  const values = Form.useWatch([], form);
+
+  useEffect(() => {
+    form
+      .validateFields({
+        validateOnly: true,
+      })
+      .then(() => setSubmittable(true))
+      .catch(() => setSubmittable(false));
+  }, [form, values]);
 
   useEffect(() => {
     if (isAuthenticated)
@@ -35,14 +47,14 @@ export const LoginForm: FunctionComponent = () => {
     }
   };
 
-  const handleFormChange = () => {
-    const values = form.getFieldsValue();
-    // delete values.remember;
-    // const isEmpty = Object.values(values).some((value) => !value);
-    const { username, password } = values;
-    const isEmpty = !username || !password;
-    setIsFormEmpty(isEmpty);
-  };
+  // const handleFormChange = () => {
+  //   const values = form.getFieldsValue();
+  //   // delete values.remember;
+  //   // const isEmpty = Object.values(values).some((value) => !value);
+  //   const { username, password } = values;
+  //   const isEmpty = !username || !password;
+  //   setIsFormEmpty(isEmpty);
+  // };
 
   return (
     <Form
@@ -50,14 +62,12 @@ export const LoginForm: FunctionComponent = () => {
       form={form}
       layout="vertical"
       className="flex flex-col gap-5"
-      initialValues={
-        {
-          // remember: false,
-          // username: "klajdi96",
-          // password: "Klajdi96@",
-        }
-      }
-      onValuesChange={handleFormChange}
+      initialValues={{
+        remember: false,
+        username: "klajdi96",
+        password: "Klajdi96@",
+      }}
+      // onValuesChange={handleFormChange}
     >
       <Form.Item
         name="username"
@@ -125,7 +135,8 @@ export const LoginForm: FunctionComponent = () => {
         type="submit"
         label="Log in"
         variant="contained"
-        disabled={isFormEmpty}
+        // disabled={isFormEmpty}
+        disabled={!submittable}
       />
       <div className="flex justify-center text-sm text-onNeutralBg">
         Don't have an Account? &nbsp;

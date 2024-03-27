@@ -15,11 +15,8 @@ interface NavScrollTriggerState {
 }
 
 interface AppModalState {
-  isOpen: boolean;
-  modalContent: any;
-  open: () => void;
-  close: () => void;
-  setModalContent: (value: any) => void;
+  modalOpen: boolean;
+  setModalOpen: (value: boolean) => void;
 }
 
 export const useNavScrollTrigger = create<NavScrollTriggerState>((set) => ({
@@ -38,9 +35,6 @@ export const useAppUtil = create<AppUtilState>((set) => ({
 }));
 
 export const useAppModal = create<AppModalState>((set) => ({
-  isOpen: false,
-  modalContent: null,
-  open: () => ({ isOpen: true }),
-  close: () => ({ isOpen: false, modalContent: null }),
-  setModalContent: (value: any) => set(() => ({ modalContent: value })),
+  modalOpen: false,
+  setModalOpen: (value: boolean) => set(() => ({ modalOpen: value })),
 }));

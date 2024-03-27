@@ -1,9 +1,25 @@
 import { FunctionComponent } from "react";
+import { useAppModal } from "../../lib";
 import { Button, Icon } from "../UI";
+import { SmallModal } from "../UI";
 
 interface DeleteAccountProps {}
 
+export const DeleteModal = () => {
+  const { modalOpen, setModalOpen } = useAppModal();
+
+  return (
+    <SmallModal open={modalOpen} onCancel={() => setModalOpen(false)}>
+      <div className="w-[500] bg-main mt-6 text-sm border-separate text-onNeutralBg border-spacing-y-4">
+        <div className="text-bold text-primary">TEST</div>
+      </div>
+    </SmallModal>
+  );
+};
+
 export const DeleteAccount: FunctionComponent<DeleteAccountProps> = () => {
+  const { setModalOpen } = useAppModal();
+
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card">
       <div className="mb-4 header">
@@ -14,7 +30,14 @@ export const DeleteAccount: FunctionComponent<DeleteAccountProps> = () => {
         </span>
       </div>
       <div className="flex justify-end">
-        <Button type="submit" label="Delete Account" variant="delete" />
+        <Button
+          type="submit"
+          label="Delete Account"
+          variant="delete"
+          onClick={() => {
+            setModalOpen(true);
+          }}
+        />
       </div>
     </div>
   );
