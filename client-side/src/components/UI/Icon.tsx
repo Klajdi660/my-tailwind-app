@@ -8,6 +8,9 @@ import {
   AiOutlineEdit,
   AiOutlineEye,
   AiOutlineEyeInvisible,
+  AiOutlineMail,
+  AiOutlineLock,
+  AiOutlineUser,
 } from "react-icons/ai";
 import { BiGame, BiSearch, BiUser } from "react-icons/bi";
 import { BsMoonStars, BsNintendoSwitch } from "react-icons/bs";
@@ -44,6 +47,9 @@ const icons: IconsMap = {
   AiOutlineEdit,
   AiOutlineEye,
   AiOutlineEyeInvisible,
+  AiOutlineMail,
+  AiOutlineLock,
+  AiOutlineUser,
   BiGame,
   BiSearch,
   BiUser,

@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Input } from "antd";
-import { Button } from "../UI";
+import { Button, Icon } from "../UI";
 import useAuthService from "../../services/AuthService";
 
 export const ForgotPasswordForm: FunctionComponent = () => {
@@ -50,6 +50,7 @@ export const ForgotPasswordForm: FunctionComponent = () => {
         ]}
       >
         <Input
+          prefix={<Icon name="AiOutlineLock" />}
           placeholder="Email Address"
           className="w-full h-10"
           autoComplete="email"

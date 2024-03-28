@@ -64,18 +64,18 @@ export const LoginForm: FunctionComponent = () => {
       className="flex flex-col gap-5"
       initialValues={{
         remember: false,
-        username: "klajdi96",
-        password: "Klajdi96@",
+        // username: "klajdi96",
+        // password: "Klajdi96@",
       }}
       // onValuesChange={handleFormChange}
     >
       <Form.Item
         name="username"
-        label={
-          <div className="text-xs font-semibold text-secondary">
-            Email or Username
-          </div>
-        }
+        // label={
+        //   <div className="text-xs font-semibold text-secondary">
+        //     Email or Username
+        //   </div>
+        // }
         rules={[
           {
             required: true,
@@ -91,9 +91,9 @@ export const LoginForm: FunctionComponent = () => {
       </Form.Item>
       <Form.Item
         name="password"
-        label={
-          <div className="text-xs font-semibold text-secondary">Password</div>
-        }
+        // label={
+        //   <div className="text-xs font-semibold text-secondary">Password</div>
+        // }
         rules={[
           {
             required: true,

@@ -16,10 +16,14 @@ export type FontSizesMap = {
 /* */
 
 export interface TemplateProps {
-  title: string;
-  description: string;
-  formType: string;
-  btnText?: string | any;
+  // title: string;
+  // description: string;
+  // formType: string;
+  // btnText?: string | any;
+  lists: any;
+  schema: any;
+  onSubmit: any;
+  defaultValues?: any;
 }
 //
 

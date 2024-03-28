@@ -4,11 +4,16 @@ import OtpInput from "react18-input-otp";
 import { Form, Progress } from "antd";
 import { Button } from "../UI";
 import { classNames } from "../../lib";
-interface OTPCodeParams {
+interface OTPCodeFormParams {
   btnText: string;
+  footerTitle: string;
+  footerLink: string;
+  linkTo: string;
 }
 
-export const OTPCodeForm: FunctionComponent<OTPCodeParams> = (props) => {
+export const OTPCodeForm: FunctionComponent<OTPCodeFormParams> = (props) => {
+  const { btnText, footerLink, footerTitle, linkTo } = props;
+  console.log("props ):>> ", props);
   const [code, setCode] = useState<string>("");
   const [secondsLeft, setSecondsLeft] = useState<number>(60);
   const [progressColor, setProgressColor] = useState<string>("#0077B5");
@@ -75,24 +80,34 @@ export const OTPCodeForm: FunctionComponent<OTPCodeParams> = (props) => {
       </Form.Item>
       <Button
         type="submit"
-        label="Verify Email"
+        label={btnText}
         variant="contained"
         className={classNames(otpFilled && "hover:brightness-125")}
         disabled={!otpFilled}
       />
       {secondsLeft > 0 ? (
-        <Progress
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginRight: "-3px",
-          }}
-          percent={(secondsLeft / 60) * 100}
-          strokeColor={progressColor}
-          format={() => (
-            <span style={{ color: progressColor }}>{`${secondsLeft}s`}</span>
-          )}
-        />
+        <>
+          <Progress
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginRight: "-3px",
+            }}
+            percent={(secondsLeft / 60) * 100}
+            strokeColor={progressColor}
+            format={() => (
+              <span style={{ color: progressColor }}>{`${secondsLeft}s`}</span>
+            )}
+          />
+          <div className="flex justify-center text-sm text-onNeutralBg">
+            {footerTitle}
+            <Link to={linkTo}>
+              <p className="ml-1 text-primary hover:underline underline-offset-2">
+                {footerLink}
+              </p>
+            </Link>
+          </div>
+        </>
       ) : (
         <div className="flex justify-center text-sm text-onNeutralBg">
           Didn't recieve code? &nbsp;

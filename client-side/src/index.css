@@ -120,9 +120,9 @@ input:-webkit-autofill:focus {
   -webkit-text-fill-color: #404040 !important;
 }
 
-/* input[type="checkbox"] {
+input[type="checkbox"] {
   accent-color: var(--primary);
-} */
+}
 
 .Toastify__toast {
   background-color: var(--neutralBgAlt) !important;

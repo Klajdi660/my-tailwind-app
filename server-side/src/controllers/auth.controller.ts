@@ -107,14 +107,7 @@ export const loginHandler = async (req: Request, res: Response) => {
 };
 
 export const registerHandler = async (req: Request, res: Response) => {
-  const { agreedToTerms, email, username, password } = req.body;
-
-  if (!agreedToTerms) {
-    return res.json({
-      error: true,
-      message: "You must agree to the terms and conditions to register.",
-    });
-  }
+  const { email, username, password } = req.body;
 
   const existingUser = await getUserByEmailOrUsername(email, username);
   if (existingUser) {

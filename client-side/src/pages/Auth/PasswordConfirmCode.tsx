@@ -1,15 +1,18 @@
 import { FunctionComponent } from "react";
 import { Template } from "../../components";
-
+// import { useFormList } from "../../hooks";
+import { formList } from "../../constants";
 const PasswordConfirmCode: FunctionComponent = () => {
+  // const { lists } = useFormList();
+  const handleOnSubmit = async (values: any) => {};
+
   return (
     <Template
-      title="Enter code to reset password"
-      description="to continue to Groove"
-      formType="password-code"
-      btnText="Reset Password"
+      lists={formList?.["password-code"]}
+      schema={""}
+      onSubmit={handleOnSubmit}
     />
   );
 };
-  
+
 export default PasswordConfirmCode;

@@ -40,14 +40,16 @@ export const formList: FormListMap = {
     {
       formName: "login",
       formTitle: "Login",
+      description: "to continue to Groove",
       btnTxt: "Login",
-      footerTitle: "No account?",
+      footerTitle: "Don't have an Account?",
       footerLink: "Sign up",
       linkTo: "/register",
     },
     {
       type: "input",
       name: "username",
+      iconName: "AiOutlineMail",
       label: "Email address or Username",
       props: { type: "username", placeholder: "" },
     },
@@ -68,8 +70,9 @@ export const formList: FormListMap = {
     {
       formName: "register",
       formTitle: "Create your account",
+      description: "to continue to Groove",
       btnTxt: "Register",
-      footerTitle: "Have an account?",
+      footerTitle: "Already have an account?",
       footerLink: "Sign in",
       linkTo: "/login",
     },
@@ -88,6 +91,7 @@ export const formList: FormListMap = {
     {
       type: "input",
       name: "username",
+      iconName: "AiOutlineUser",
       label: "Username",
       props: { type: "text", placeholder: "" },
     },
@@ -102,9 +106,10 @@ export const formList: FormListMap = {
     {
       formName: "verify-email",
       formTitle: "Verify your account",
-      btnTxt: "Verify",
-      footerTitle: "Didn't recieve code?",
-      footerLink: "Resend",
+      description: "to continue to Groove",
+      btnTxt: "Verify Email",
+      footerTitle: "Remember Password?",
+      footerLink: "Go back",
       linkTo: "/login",
     },
     {
@@ -132,6 +137,7 @@ export const formList: FormListMap = {
     {
       formName: "forgot-password",
       formTitle: "Reset Password",
+      description: "to continue to Groove",
       btnTxt: "Send Email",
       footerTitle: "Remember Password?",
       footerLink: "Go back",
@@ -148,7 +154,8 @@ export const formList: FormListMap = {
     {
       formName: "reset-password",
       formTitle: "Change Password",
-      btnTxt: "Reset Password",
+      description: "to continue to Groove",
+      btnTxt: "Change Password",
       footerTitle: "Remember Password?",
       footerLink: "Go back",
       linkTo: "/login",
@@ -164,6 +171,17 @@ export const formList: FormListMap = {
       name: "confirmPassword",
       label: "Confirm Password",
       props: { type: "confirmPassword", placeholder: "" },
+    },
+  ],
+  "password-code": [
+    {
+      formName: "password-code",
+      formTitle: "Enter Code to Reset Password",
+      description: "to continue to Groove",
+      btnTxt: "Reset Password",
+      footerTitle: "Remember Password?",
+      footerLink: "Go back",
+      linkTo: "/login",
     },
   ],
   profile: [
