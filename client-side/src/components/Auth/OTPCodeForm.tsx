@@ -13,7 +13,7 @@ interface OTPCodeFormParams {
 
 export const OTPCodeForm: FunctionComponent<OTPCodeFormParams> = (props) => {
   const { btnText, footerLink, footerTitle, linkTo } = props;
-  console.log("props ):>> ", props);
+
   const [code, setCode] = useState<string>("");
   const [secondsLeft, setSecondsLeft] = useState<number>(60);
   const [progressColor, setProgressColor] = useState<string>("#0077B5");
