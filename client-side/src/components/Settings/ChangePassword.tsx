@@ -7,6 +7,12 @@ interface ChangePasswordProps {
   provider: string | any;
 }
 
+interface ChangePasswordSave {
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}
+
 export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
   props
 ) => {
@@ -54,6 +60,10 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
     ];
   }, [isPasswordEnabled]);
 
+  const handleOnSubmit = (values: ChangePasswordSave) => {
+    console.log("values ChangePassw:>> ", values);
+  };
+
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card">
       <div className="mb-4 header">
@@ -72,6 +82,7 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
       <Form
         lists={list}
         schema={updatePasswordValidation}
+        onSubmit={handleOnSubmit}
         defaultValues={{
           currentPassword: !isPasswordEnabled ? "**********" : "",
           newPassword: !isPasswordEnabled ? "**********" : "",

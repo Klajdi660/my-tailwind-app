@@ -298,3 +298,10 @@ input[type="checkbox"] {
 ::-webkit-scrollbar-thumb {
   @apply bg-primary rounded-full hover:bg-primary-opacity transition duration-300;
 }
+
+/*  OTP*/
+.otp-code input {
+  background: transparent;
+  color: var(--onNeutralBg);
+  border: 0.5px solid var(--onNeutralBgDivider);
+}

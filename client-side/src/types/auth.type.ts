@@ -14,6 +14,7 @@ export interface FormListItem {
     type: string;
     placeholder: string;
   };
+  formType: string;
   formName: string;
   formTitle: string;
   btnTxt: string;

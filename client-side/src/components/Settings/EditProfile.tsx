@@ -3,13 +3,18 @@ import { Form } from "../Auth/Form";
 import { profileList } from "../../constants";
 import { editProfileValidation } from "../../lib/validations";
 
-// import Form from "../Form";
 interface EditProfileProps {
   email: string | any;
   username: string | any;
   imgUrl: string | any;
   provider: string | any;
   user: any;
+}
+
+interface EditProfileSave {
+  username: string;
+  email: string;
+  image: string;
 }
 
 export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
@@ -21,6 +26,10 @@ export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
   const lists = useMemo(() => {
     return profileList;
   }, []);
+
+  const handleOnSubmit = async (values: EditProfileSave) => {
+    console.log("values Edit Profile :>> ", values);
+  };
 
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card">
@@ -34,6 +43,7 @@ export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
         setFiles={setFiles}
         hasProvider={hasProvider}
         user={user}
+        onSubmit={handleOnSubmit}
         defaultValues={{
           username,
           email,

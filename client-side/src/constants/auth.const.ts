@@ -38,6 +38,7 @@ export const socialAuthList = [
 export const formList: FormListMap = {
   login: [
     {
+      formType: "auth",
       formName: "login",
       formTitle: "Login",
       description: "to continue to Groove",
@@ -68,6 +69,7 @@ export const formList: FormListMap = {
   ],
   register: [
     {
+      formType: "auth",
       formName: "register",
       formTitle: "Create your account",
       description: "to continue to Groove",
@@ -104,6 +106,7 @@ export const formList: FormListMap = {
   ],
   "verify-email": [
     {
+      formType: "auth",
       formName: "verify-email",
       formTitle: "Verify your account",
       description: "to continue to Groove",
@@ -118,23 +121,24 @@ export const formList: FormListMap = {
       props: { type: "number", placeholder: "" },
     },
     // {
-    //     type: "code",
-    //     name: "code2",
-    //     props: { type: "number", placeholder: "" },
+    //   type: "code",
+    //   name: "code2",
+    //   props: { type: "number", placeholder: "" },
     // },
     // {
-    //     type: "code",
-    //     name: "code3",
-    //     props: { type: "number", placeholder: "" },
+    //   type: "code",
+    //   name: "code3",
+    //   props: { type: "number", placeholder: "" },
     // },
     // {
-    //     type: "code",
-    //     name: "code4",
-    //     props: { type: "number", placeholder: "" },
+    //   type: "code",
+    //   name: "code4",
+    //   props: { type: "number", placeholder: "" },
     // },
   ],
   "forgot-password": [
     {
+      formType: "auth",
       formName: "forgot-password",
       formTitle: "Reset Password",
       description: "to continue to Groove",
@@ -152,6 +156,7 @@ export const formList: FormListMap = {
   ],
   "reset-password": [
     {
+      formType: "auth",
       formName: "reset-password",
       formTitle: "Change Password",
       description: "to continue to Groove",
@@ -175,6 +180,7 @@ export const formList: FormListMap = {
   ],
   "password-code": [
     {
+      formType: "auth",
       formName: "password-code",
       formTitle: "Enter Code to Reset Password",
       description: "to continue to Groove",
