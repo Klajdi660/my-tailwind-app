@@ -39,9 +39,9 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">Personal Details</h5>
       </div>
-      <form className="flex flex-col gap-5">
+      <form className="flex flex-col">
         <div className="flex flex-wrap">
-          <div className="w-full md:w-1/2 md:pr-5">
+          <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               First Name
             </label>
@@ -53,7 +53,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               autoComplete="firstName"
             />
           </div>
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-1/2 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Last Name
             </label>
@@ -65,7 +65,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
           </div>
         </div>
         <div className="flex flex-wrap">
-          <div className="w-full md:w-1/2 md:pr-5">
+          <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Birthday
             </label>
@@ -76,7 +76,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               className="w-full h-10"
             />
           </div>
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-1/2 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Gender
             </label>
@@ -89,13 +89,13 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
           </div>
         </div>
         <div className="flex flex-wrap">
-          <div className="w-full md:w-1/2 md:pr-5">
+          <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Contact number
             </label>
             <PhoneNumberValidation />
           </div>
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-1/2 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Address
             </label>

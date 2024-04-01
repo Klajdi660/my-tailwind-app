@@ -24,4 +24,5 @@ export { ChangePassword } from "./Settings/ChangePassword";
 export { PersonalDetails } from "./Settings/PersonalDetails";
 export { UserInfo } from "./Settings/UserInfo";
 export { CartSwitcher } from "./CartSwitcher";
+export { Language } from "./Language";
 export * from "./UI/Modal";

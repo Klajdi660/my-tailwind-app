@@ -11,6 +11,7 @@ import {
   NotificationButton,
   ThemeButton,
   MobileToggleButton,
+  LanguageButton,
   Overlay,
 } from "./UI";
 import ProfileDropdown from "./Auth/ProfileDropDown";
@@ -77,6 +78,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
                 <>
                   <CartButton />
                   <NotificationButton />
+                  <LanguageButton />
                   <ThemeButton mode={theme.mode} dispatch={dispatch} />
                   <ProfileDropdown />
                 </>

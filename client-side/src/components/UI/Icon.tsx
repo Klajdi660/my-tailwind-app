@@ -12,7 +12,7 @@ import {
   AiOutlineLock,
   AiOutlineUser,
 } from "react-icons/ai";
-import { BiGame, BiSearch, BiUser } from "react-icons/bi";
+import { BiGame, BiSearch, BiUser, BiWorld } from "react-icons/bi";
 import { BsMoonStars, BsNintendoSwitch } from "react-icons/bs";
 import { CgGames } from "react-icons/cg";
 import {
@@ -53,6 +53,7 @@ const icons: IconsMap = {
   BiGame,
   BiSearch,
   BiUser,
+  BiWorld,
   BsMoonStars,
   BsNintendoSwitch,
   CgGames,

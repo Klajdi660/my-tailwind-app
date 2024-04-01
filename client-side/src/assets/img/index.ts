@@ -11,6 +11,9 @@ import linkedinIcon from "./linkedin-icon.svg";
 import tiktokIcon from "./tiktok.svg";
 import youtubeIcon from "./youtube.svg";
 
+import alFlag from "./al.svg";
+import shFlag from "./sh.svg";
+
 export {
   icon,
   iconName,
@@ -22,4 +25,6 @@ export {
   linkedinIcon,
   tiktokIcon,
   youtubeIcon,
+  alFlag,
+  shFlag,
 };
