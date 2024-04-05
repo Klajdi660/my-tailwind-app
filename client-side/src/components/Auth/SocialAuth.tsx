@@ -4,26 +4,27 @@ import useAuthService from "../../services/AuthService";
 import { useAuth } from "../../hooks";
 
 const SocialAuth: FunctionComponent = () => {
-    const { socialAuth } = useAuthService();
-    const { isAuthenticated } = useAuth();
+  const { socialAuth } = useAuthService();
+  const { isAuthenticated } = useAuth();
 
-    const location = useLocation();
+  const location = useLocation();
 
-    const tokenParam = location.search;
+  const tokenParam = location.search;
 
-    useEffect(() => {
-        const fetchData = async () => {
-            await socialAuth(tokenParam);
-        };
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [tokenParam]);
-
-    return (
-        <>
-            {isAuthenticated ? <Navigate to="/discover" /> : <Navigate to="/login" />}
-        </>
-    );
+  useEffect(() => {
+    const fetchData = async () => {
+      await socialAuth(tokenParam);
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tokenParam]);
+  console.log("isAuthenticated :>> ", isAuthenticated);
+  return (
+    <>
+      {/* {isAuthenticated ? <Navigate to="/discover" /> : <Navigate to="/login" />} */}
+      <Navigate to="/discover" />
+    </>
+  );
 };
 
 export default SocialAuth;

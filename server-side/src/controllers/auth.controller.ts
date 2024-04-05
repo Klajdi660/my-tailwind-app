@@ -131,7 +131,7 @@ export const registerHandler = async (req: Request, res: Response) => {
   const user_registration: UserParams = {
     ...req.body,
     password: hash,
-    passwordConfirm: hash,
+    // passwordConfirm: hash,
   };
 
   // create random code to sent in email
@@ -150,7 +150,7 @@ export const registerHandler = async (req: Request, res: Response) => {
     return res.json({ error: true, message: "Email already registered." });
   }
 
-  await redisCLI.expire(`verify_email_pending_${email}`, 300); // 5 min
+  await redisCLI.expire(`verify_email_pending_${email}`, 300); // 3 min
 
   // send otp code in user email
   const { fullName } = user_registration;

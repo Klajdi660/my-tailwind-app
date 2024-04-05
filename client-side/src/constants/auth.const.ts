@@ -50,21 +50,29 @@ export const formList: FormListMap = {
     {
       type: "input",
       name: "username",
-      iconName: "AiOutlineMail",
       label: "Email address or Username",
-      props: { type: "username", placeholder: "" },
+      props: {
+        type: "username",
+        placeholder: "",
+      },
     },
     {
       type: "input",
       name: "password",
       label: "Password",
-      props: { type: "password", placeholder: "" },
+      props: {
+        type: "password",
+        placeholder: "",
+      },
     },
     {
       type: "checkbox",
       name: "remember",
       label: "Remember Me",
-      props: { type: "checkbox", placeholder: "" },
+      props: {
+        type: "checkbox",
+        placeholder: "",
+      },
     },
   ],
   register: [
@@ -82,27 +90,47 @@ export const formList: FormListMap = {
       type: "input",
       name: "email",
       label: "Email Address",
-      props: { type: "email", placeholder: "" },
+      props: {
+        type: "email",
+        placeholder: "",
+      },
     },
     {
       type: "input",
       name: "fullName",
       label: "Full Name",
-      props: { type: "fullName", placeholder: "" },
+      props: {
+        type: "text",
+        placeholder: "",
+      },
     },
     {
       type: "input",
       name: "username",
-      iconName: "AiOutlineUser",
       label: "Username",
-      props: { type: "text", placeholder: "" },
+      props: {
+        type: "text",
+        placeholder: "",
+      },
     },
     {
       type: "input",
       name: "password",
       label: "Password",
-      props: { type: "password", placeholder: "" },
+      props: {
+        type: "password",
+        placeholder: "",
+      },
     },
+    // {
+    //   type: "input",
+    //   name: "passwordConfirm",
+    //   label: "Confirm Password",
+    //   props: {
+    //     type: "password",
+    //     placeholder: "",
+    //   },
+    // },
   ],
   "verify-email": [
     {
@@ -118,22 +146,34 @@ export const formList: FormListMap = {
     {
       type: "code",
       name: "code1",
-      props: { type: "number", placeholder: "" },
+      props: {
+        type: "number",
+        placeholder: "",
+      },
     },
     // {
     //   type: "code",
     //   name: "code2",
-    //   props: { type: "number", placeholder: "" },
+    //   props: {
+    //     type: "number",
+    //     placeholder: "",
+    //   },
     // },
     // {
     //   type: "code",
     //   name: "code3",
-    //   props: { type: "number", placeholder: "" },
+    //   props: {
+    //     type: "number",
+    //     placeholder: "",
+    //   },
     // },
     // {
     //   type: "code",
     //   name: "code4",
-    //   props: { type: "number", placeholder: "" },
+    //   props: {
+    //     type: "number",
+    //     placeholder: "",
+    //   },
     // },
   ],
   "forgot-password": [
@@ -151,7 +191,10 @@ export const formList: FormListMap = {
       type: "input",
       name: "email",
       label: "Email Address",
-      props: { type: "email", placeholder: "" },
+      props: {
+        type: "email",
+        placeholder: "",
+      },
     },
   ],
   "reset-password": [
@@ -169,13 +212,19 @@ export const formList: FormListMap = {
       type: "input",
       name: "password",
       label: "Password",
-      props: { type: "password", placeholder: "" },
+      props: {
+        type: "password",
+        placeholder: "",
+      },
     },
     {
       type: "input",
       name: "confirmPassword",
       label: "Confirm Password",
-      props: { type: "confirmPassword", placeholder: "" },
+      props: {
+        type: "confirmPassword",
+        placeholder: "",
+      },
     },
   ],
   "password-code": [

@@ -6,6 +6,16 @@ export const registerValidation = yup
       .string()
       .email({ message: "Please enter a valid email." })
       .required({ message: "Please input your Email address." }),
+    fullName: yup
+      .string()
+      .required({ message: "Please input your Full Name." }),
+    username: yup
+      .string()
+      .required({ message: "Please input your Username!" })
+      .trim()
+      .min(6, { message: "Your username must contain minimum 6 characters." })
+      .max(60, { message: "Your username must contain maximum 60 caracters." })
+      .matches(/^[^@]+$/, "Username should not contain symbols."),
     password: yup
       .string()
       .required({
@@ -19,13 +29,14 @@ export const registerValidation = yup
       .matches(/[!@#$%^&*(),.?":{}|<>]/, {
         message: "Your password must contain at least one symbol.",
       }),
-    username: yup
-      .string()
-      .required({ message: "Please input your Username!" })
-      .trim()
-      .min(8, { message: "Your username must contain minimum 8 characters." })
-      .max(60, { message: "Your username must contain maximum 60 caracters." })
-      .matches(/^[^@]+$/, "Username should not contain symbols."),
+    // passwordConfirm: yup
+    //   .string()
+    //   .required({
+    //     message: "Your password must contain between 8 and 60 characters.",
+    //   })
+    //   .test("passwords-match", "Passwords does not match", function (value) {
+    //     return value === this.parent.password;
+    //   }),
   })
   .required();
 

@@ -4,51 +4,52 @@ import { classNames } from "../../lib";
 import { IconParams, IconsMap } from "../../types/general.type";
 import {
   AiOutlineCloudUpload,
-  AiOutlineSetting,
   AiOutlineEdit,
   AiOutlineEye,
   AiOutlineEyeInvisible,
   AiOutlineMail,
   AiOutlineLock,
+  AiOutlineSetting,
   AiOutlineUser,
 } from "react-icons/ai";
 import { BiGame, BiSearch, BiUser, BiWorld } from "react-icons/bi";
 import { BsMoonStars, BsNintendoSwitch } from "react-icons/bs";
 import { CgGames } from "react-icons/cg";
 import {
-  FaPlaystation,
-  FaXbox,
   FaOpencart,
-  FaWpexplorer,
+  FaPlaystation,
   FaRegUser,
   FaUser,
+  FaWpexplorer,
+  FaXbox,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiUpload } from "react-icons/fi";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { LiaSignOutAltSolid } from "react-icons/lia";
 import {
+  MdCancel,
+  MdCurrencyBitcoin,
   MdHome,
   MdOutlineExplore,
   MdOutlineGames,
   MdOutlineWbSunny,
   MdStorefront,
-  MdCancel,
 } from "react-icons/md";
+import { PiWarningCircleBold } from "react-icons/pi";
 import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox } from "react-icons/sl";
-import { LiaSignOutAltSolid } from "react-icons/lia";
-import { PiWarningCircleBold } from "react-icons/pi";
 import { TiTimes } from "react-icons/ti";
 
 const icons: IconsMap = {
   AiOutlineCloudUpload,
-  AiOutlineSetting,
   AiOutlineEdit,
   AiOutlineEye,
   AiOutlineEyeInvisible,
   AiOutlineMail,
   AiOutlineLock,
+  AiOutlineSetting,
   AiOutlineUser,
   BiGame,
   BiSearch,
@@ -57,28 +58,29 @@ const icons: IconsMap = {
   BsMoonStars,
   BsNintendoSwitch,
   CgGames,
-  FaPlaystation,
-  FaXbox,
   FaOpencart,
-  FaWpexplorer,
+  FaPlaystation,
   FaRegUser,
   FaUser,
+  FaWpexplorer,
+  FaXbox,
   FcGoogle,
   FiAlertTriangle,
   FiUpload,
   HiMenuAlt2,
   IoMdNotificationsOutline,
+  LiaSignOutAltSolid,
+  MdCancel,
+  MdCurrencyBitcoin,
   MdHome,
   MdOutlineExplore,
   MdOutlineGames,
   MdOutlineWbSunny,
   MdStorefront,
-  MdCancel,
+  PiWarningCircleBold,
   RiFirefoxLine,
   SlGameController,
   SlSocialDropbox,
-  LiaSignOutAltSolid,
-  PiWarningCircleBold,
   TiTimes,
 };
 

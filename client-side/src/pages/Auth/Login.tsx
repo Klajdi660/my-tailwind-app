@@ -11,7 +11,7 @@ const Login: FunctionComponent = () => {
 
   const handleOnSubmit = async (values: LoginUserInput) => {
     const { username, password, remember } = values;
-
+    console.log("values :>> ", values);
     try {
       await login(username, password, remember);
     } catch (error) {
@@ -20,8 +20,8 @@ const Login: FunctionComponent = () => {
   };
 
   const defaultValues = {
-    username: "klajdi96",
-    password: "Klajdi96@",
+    // username: "klajdi96",
+    // password: "Klajdi96@",
   };
 
   return (

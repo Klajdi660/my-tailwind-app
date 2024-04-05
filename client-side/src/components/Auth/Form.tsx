@@ -6,6 +6,7 @@ import OtpInput from "react18-input-otp";
 import { FormProps2 } from "../../types/auth.type";
 import { Button, Icon, IconButton, ImgUploader } from "../UI";
 import { classNames } from "../../lib";
+import { Checkbox } from "antd";
 
 const FormMessage = ({ errorMessage }: any) => {
   const message = errorMessage?.message || String(errorMessage || "");
@@ -193,9 +194,10 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
         <div className="flex flex-1 items-center">
           <input
             type="checkbox"
-            id="remember"
+            // id="remember"
+            {...form("remember")}
             name="remember"
-            value="remember"
+            // value="remember"
           />
           <label className="ml-2 text-xs text-secondary">Remember Me</label>
           <Link
