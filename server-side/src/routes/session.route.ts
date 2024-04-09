@@ -9,21 +9,21 @@ const { client_url } = config.get<AppParams>("app");
 const sessionRoutes = Router();
 
 sessionRoutes.get(
-    "/google", 
-    passport.authenticate("google", {
-        scope: ["profile", "email"],
-    })
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  })
 );
 
 sessionRoutes.get(
-    "/google/callback",
-    passport.authenticate("google", {
-        failureRedirect: `${client_url}/login`,
-        session: false,
-    }),
-    googleOauthHandler
+  "/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: `${client_url}/login`,
+    session: false,
+  }),
+  googleOauthHandler
 );
 
-// sessionRoutes.get('/github', githubOauthHandler);
+sessionRoutes.get("/google", googleOauthHandler);
 
 export default sessionRoutes;

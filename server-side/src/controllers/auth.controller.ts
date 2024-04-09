@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import crypto from "crypto";
 import config from "config";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import { redisCLI } from "../clients";
 import {
   getUserByEmail,
@@ -136,10 +137,11 @@ export const registerHandler = async (req: Request, res: Response) => {
 
   // create random code to sent in email
   const code = createVerificationCode();
+  const codeExpire = dayjs().add(180, "s");
 
   // put code and expiredCodeAt in user_registration
   user_registration["otpCode"] = code;
-  // user_registration["expiredCodeAt"] = dayjs().add(60, 's');
+  user_registration["expiredCodeAt"] = codeExpire; // 3 min
 
   // put user in redis
   const addedToRedis = await redisCLI.setnx(
@@ -150,7 +152,7 @@ export const registerHandler = async (req: Request, res: Response) => {
     return res.json({ error: true, message: "Email already registered." });
   }
 
-  await redisCLI.expire(`verify_email_pending_${email}`, 300); // 3 min
+  await redisCLI.expire(`verify_email_pending_${email}`, 180); // 3 min
 
   // send otp code in user email
   const { fullName } = user_registration;
@@ -193,13 +195,16 @@ export const verifyEmailHandler = async (req: Request, res: Response) => {
   }
 
   // check if otp code is expired
-  // const currentDateTime = dayjs();
-  // const expiresAtDateTime = dayjs(expiredCodeAt);
-  // const isExpired = currentDateTime.isAfter(expiresAtDateTime);
-  // if (isExpired) {
-  //     log.error(`${JSON.stringify({ action: "expired User", data: redisObj })}`);
-  //     res.json({ error: true, message: "Your OTP code has expired. Please request a new OTP code" });
-  // } // nuk duhet
+  const currentDateTime = dayjs();
+  const expiresAtDateTime = dayjs(expiredCodeAt);
+  const isExpired = currentDateTime.isAfter(expiresAtDateTime);
+  if (isExpired) {
+    log.error(`${JSON.stringify({ action: "expired User", data: redisObj })}`);
+    res.json({
+      error: true,
+      message: "Your OTP code has expired. Please request a new OTP code",
+    });
+  } // nuk duhet
 
   const existingUser = await getUserByEmail(email);
   let user;
@@ -228,6 +233,7 @@ export const verifyEmailHandler = async (req: Request, res: Response) => {
   return res.json({
     error: false,
     message: "Congratulation! Your account has been created.",
+    data: { code: otpCode, codeExpire: expiredCodeAt },
   });
 };
 

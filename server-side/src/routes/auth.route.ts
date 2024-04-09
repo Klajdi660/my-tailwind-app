@@ -25,37 +25,30 @@ const { client_url } = config.get<AppParams>("app");
 
 const authRouter = Router();
 
-// Register User Route
 authRouter.post(
   "/register",
   validateResource(createUserSchema),
   registerHandler
 );
 
-// Verify Email Route
 authRouter.post(
   "/verify-email",
   validateResource(verifyEmailSchema),
   verifyEmailHandler
 );
 
-// Login User Route
 authRouter.post("/login", validateResource(loginUserSchema), loginHandler);
 
-// Logout User Route
 authRouter.get("/logout", /*authenticate, requireUser,*/ logoutHandler);
 
-// Refresh Access Token Route
 authRouter.get("/refresh", refreshAccessTokenHandler);
 
-// Forgot Password Route
 authRouter.post(
   "/forgot-password",
   validateResource(forgotPasswordSchema),
   forgotPasswordHandler
 );
 
-// Reset Password Route
 authRouter.post(
   "/reset-password",
   validateResource(resetPasswordSchema),

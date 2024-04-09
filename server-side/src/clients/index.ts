@@ -1,3 +1,3 @@
-export * from "./db/database";
-export * from "./redis/redisCLI";
-export * from "./http/httpClient";
+export { sequelizeConnection } from "./db/database";
+export { redisCLI } from "./redis/redisCLI";
+export { HttpClient } from "./http/httpClient";

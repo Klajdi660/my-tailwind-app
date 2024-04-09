@@ -6,7 +6,6 @@ import OtpInput from "react18-input-otp";
 import { FormProps2 } from "../../types/auth.type";
 import { Button, Icon, IconButton, ImgUploader } from "../UI";
 import { classNames } from "../../lib";
-import { Checkbox } from "antd";
 
 const FormMessage = ({ errorMessage }: any) => {
   const message = errorMessage?.message || String(errorMessage || "");

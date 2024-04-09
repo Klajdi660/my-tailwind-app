@@ -23,30 +23,28 @@ const app: Express = express();
 // const SequelizeSessionStore = SequelizeStore(session.Store);
 // const sessionStore = new SequelizeSessionStore({
 //     db: sequelizeConnection,
-//     expiration: 24 * 60 * 60 * 1000, 
+//     expiration: 24 * 60 * 60 * 1000,
 // });
 
-app.use(express.json({ limit: "10mb" })); 
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
-    helmet({
-        contentSecurityPolicy: false,
-        frameguard: true,
-    })
+  helmet({
+    contentSecurityPolicy: false,
+    frameguard: true,
+  })
 );
 
 app.use(cookieParser());
 
 const corsOptions = {
-    origin: client_url,
-    credentials: true,
-    optionSuccessStatus: 200
+  origin: client_url,
+  credentials: true,
+  optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 app.options("*", cors());
-
-// less hackers know about our stack
 app.disable("x-powered-by");
 
 // app.use(
@@ -59,61 +57,72 @@ app.disable("x-powered-by");
 // );
 
 app.use(
-	fileUpload({
-		useTempFiles:true,
-		tempFileDir:"/tmp",
-	})
-)
-//cloudinary connection
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp",
+  })
+);
+
 cloudinaryConnect();
 
 app.get(
-    "/api/healthChecker",
-    (req: Request, res: Response, next: NextFunction) => {
-      res.json({
-        error: false,
-        message: "Welcome to GrooveIT😂😂👈👈",
-      });
-    }
+  "/api/healthChecker",
+  (req: Request, res: Response, next: NextFunction) => {
+    res.json({
+      error: false,
+      message: "Welcome to GrooveIT😂😂👈👈",
+    });
+  }
 );
 
 app.use(routes);
 
-// UnKnown Routes
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
-    const err = new Error(`Route ${req.originalUrl} not found`) as any;
-    err.statusCode = 404;
-    next(err);
-});
-  
-// Global Error Handler
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    err.status = err.status || "error";
-    err.statusCode = err.statusCode || 500;
-  
-    res.status(err.statusCode).json({
-      status: err.status,
-      message: err.message,
-    });
+  const err = new Error(`Route ${req.originalUrl} not found`) as any;
+  err.statusCode = 404;
+  next(err);
 });
 
-// passport config
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  err.status = err.status || "error";
+  err.statusCode = err.statusCode || 500;
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
+});
+
 passportConfig(passport);
 
-// Passport middleware
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-// Start server only when we have valid connection
 sequelizeConnection
-    .authenticate()
-    .then(() => {
-        log.info(`${JSON.stringify({ action: "Database Run", message: "Database connection has been established successfully." })}`);
+  .authenticate()
+  .then(() => {
+    log.info(
+      `${JSON.stringify({
+        action: "Database Run",
+        message: "Database connection has been established successfully.",
+      })}`
+    );
 
-        app.listen(port, () => {
-            log.info(`${JSON.stringify({ action: "Server Run", messsage: `Server is running at http://localhost:${port}` })}`);
-        });
-    }).catch((error) => {
-        log.error(`${JSON.stringify({ action: "Server Catch", messsage: "Cannot connect to the server", data: error })}`);
+    app.listen(port, () => {
+      log.info(
+        `${JSON.stringify({
+          action: "Server Run",
+          messsage: `Server is running at http://localhost:${port}`,
+        })}`
+      );
     });
-
+  })
+  .catch((error) => {
+    log.error(
+      `${JSON.stringify({
+        action: "Server Catch",
+        messsage: "Cannot connect to the server",
+        data: error,
+      })}`
+    );
+  });

@@ -21,7 +21,6 @@ export const createUserSchema = object({
     password: string({
       required_error: "Password is required",
     })
-      // .refine(value => value.length >= 8, { message: "Password must be at least 8 characters long" })
       .min(8, { message: "Password must be at least 8 characters long" })
       .refine((value) => uppercaseRegex.test(value), {
         message: "Password must contain at least one capital letter",
