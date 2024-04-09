@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import crypto from "crypto";
 import config from "config";
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
+// import utc from "dayjs/plugin/utc";
 import { redisCLI } from "../clients";
 import {
   getUserByEmail,
@@ -99,7 +99,6 @@ export const loginHandler = async (req: Request, res: Response) => {
   const { access_token, refresh_token } = await signToken(user);
   const expiredCodeAt = dayjs().add(60, "s");
 
-  // Send Access & Refresh Tokens in Cookie
   res.cookie("access_token", access_token, accessTokenCookieOptions);
   res.cookie("refresh_token", refresh_token, refreshTokenCookieOptions);
   res.cookie("logged_in", true, loginTokenCookieOptions);
@@ -135,26 +134,23 @@ export const registerHandler = async (req: Request, res: Response) => {
     // passwordConfirm: hash,
   };
 
-  // create random code to sent in email
   const code = createVerificationCode();
   const codeExpire = dayjs().add(180, "s");
 
-  // put code and expiredCodeAt in user_registration
   user_registration["otpCode"] = code;
-  user_registration["expiredCodeAt"] = codeExpire; // 3 min
+  user_registration["expiredCodeAt"] = codeExpire;
 
-  // put user in redis
   const addedToRedis = await redisCLI.setnx(
     `verify_email_pending_${email}`,
     JSON.stringify(user_registration)
   );
+
   if (!addedToRedis) {
     return res.json({ error: true, message: "Email already registered." });
   }
 
   await redisCLI.expire(`verify_email_pending_${email}`, 180); // 3 min
 
-  // send otp code in user email
   const { fullName } = user_registration;
   let subject = "OTP Verification Email";
   let templatePath = "OTP";
@@ -172,7 +168,7 @@ export const registerHandler = async (req: Request, res: Response) => {
     });
   }
 
-  return res.json({
+  res.json({
     error: false,
     message:
       "An email with a verification code has been sent to your email. Please enter this code to proceed",
@@ -194,13 +190,13 @@ export const verifyEmailHandler = async (req: Request, res: Response) => {
     return res.json({ error: true, message: "Confirmation code incorrect!" });
   }
 
-  // check if otp code is expired
   const currentDateTime = dayjs();
   const expiresAtDateTime = dayjs(expiredCodeAt);
   const isExpired = currentDateTime.isAfter(expiresAtDateTime);
+
   if (isExpired) {
     log.error(`${JSON.stringify({ action: "expired User", data: redisObj })}`);
-    res.json({
+    return res.json({
       error: true,
       message: "Your OTP code has expired. Please request a new OTP code",
     });
@@ -230,7 +226,7 @@ export const verifyEmailHandler = async (req: Request, res: Response) => {
 
   await redisCLI.del(`verify_email_pending_${email}`);
 
-  return res.json({
+  res.json({
     error: false,
     message: "Congratulation! Your account has been created.",
     data: { code: otpCode, codeExpire: expiredCodeAt },
@@ -249,7 +245,7 @@ export const logoutHandler = async (req: Request, res: Response) => {
   res.cookie("refresh_token", "", { maxAge: 1 });
   res.cookie("logged_in", "", { maxAge: 1 });
 
-  return res.json({ error: false, message: "Logout success" });
+  res.json({ error: false, message: "Logout success" });
 };
 
 export const refreshAccessTokenHandler = async (
@@ -257,6 +253,8 @@ export const refreshAccessTokenHandler = async (
   res: Response
 ) => {
   const refresh_token = req.cookies.refresh_token as string;
+
+  res.json({ error: true, data: { rToken: refresh_token } });
 };
 
 export const forgotPasswordHandler = async (req: Request, res: Response) => {
@@ -310,7 +308,7 @@ export const forgotPasswordHandler = async (req: Request, res: Response) => {
     });
   }
 
-  return res.json({
+  res.json({
     error: false,
     message:
       "Email Sent Successfully, Please Check Your Email to Continue Further.",
@@ -369,7 +367,7 @@ export const resetPasswordHandler = async (req: Request, res: Response) => {
     });
   }
 
-  return res.json({
+  res.json({
     error: false,
     message:
       "Password data successfully updated, please login with your new credentials",
@@ -381,5 +379,5 @@ export const googleOauthHandler = async (req: Request, res: Response) => {
   const { access_token } = await signToken(user);
   // const jwToken = `Bearer ${access_token}`
 
-  return res.redirect(`${client_url}/social-auth?token=${access_token}`);
+  res.redirect(`${client_url}/social-auth?token=${access_token}`);
 };

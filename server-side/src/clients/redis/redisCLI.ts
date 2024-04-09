@@ -22,7 +22,7 @@ export const redisCLI = new Redis(redisPath);
 // const redisConnection = async () => {
 //     try {
 //         await redisCLI.connect();
-//         log.info("Redi client connected...");
+//         log.info("Redis client connected...");
 //     } catch{(e: any) => {
 //         log.error(e.message);
 //         setTimeout(redisConnection, 5000);

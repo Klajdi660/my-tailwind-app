@@ -31,7 +31,7 @@ export const gameListHandler = async (req: Request, res: Response) => {
     });
   console.log("games :>> ", games.length);
 
-  return res.json(games.length);
+  res.json(games.length);
   // const { rwgType } = req.params;
   // const { page, pageSize } = req.query;
 

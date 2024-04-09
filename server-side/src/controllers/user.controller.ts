@@ -7,8 +7,8 @@ import {
   getUserById,
   deleteUser,
   getAndUpdateUser,
-  getContactByEmail,
-  createContact,
+  //   getContactByEmail,
+  //   createContact,
 } from "../services/user.service";
 
 export const getAllUsersHandler = async (req: Request, res: Response) => {
@@ -43,7 +43,10 @@ export const getUserByIdHandler = async (req: Request, res: Response) => {
 
   const user = await getUserById(+id);
   if (!user) {
-    res.json({ error: true, message: "User does not exist in our database!" });
+    return res.json({
+      error: true,
+      message: "User does not exist in our database!",
+    });
   }
 
   res.json({ error: false, data: user });
@@ -113,6 +116,7 @@ export const changeUserPasswordHandler = async (
   const updatedUserPassword = await getAndUpdateUser(user.id, {
     password: hash,
   });
+
   if (!updatedUserPassword) {
     return res.json({
       error: true,
@@ -175,6 +179,7 @@ export const contactUsHandler = async (req: Request, res: Response) => {
     `contact_us_${email}`,
     JSON.stringify(user_contact)
   );
+
   if (!contactDoc) {
     return res.json({
       error: true,
