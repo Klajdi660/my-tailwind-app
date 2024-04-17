@@ -1,4 +1,4 @@
-import icon from "./Img/icon.png";
+import icon from "./Img/icon.png"
 import iconName from "./Img/iconName.png";
 import userIcon from "./Img/user.png";
 

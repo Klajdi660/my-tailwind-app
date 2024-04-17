@@ -12,7 +12,7 @@ const Home: FunctionComponent<HomeProps> = () => {
   return (
     <>
       <div className="flex h-navbar items-center justify-center bg-neutralBgOpacity backdrop-blur-[50px]">
-        <div className="flex w-11/12 max-w-[1260px] items-center justify-between my-4">
+        <div className="flex w-11/12 max-w-full items-center justify-between my-4">
           <Link to="/">
             <Image imgUrl={iconName} name="App Logo" width={100} />
           </Link>

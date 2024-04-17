@@ -144,7 +144,7 @@ export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
         </div>
       </div>
       <div className="flex flex-col justify-between items-left w-11/12 max-w-full mx-auto text-xs text-secondary pb-10">
-        <p className="w-[100%] lg:w-[50%]">
+        <p className="w-[100%] lg:w-[50%] text-justify">
           © 2024, Epic Games, Inc. All rights reserved. Epic, Epic Games, the
           Epic Games logo, Fortnite, the Fortnite logo, Unreal, Unreal Engine,
           the Unreal Engine logo, Unreal Tournament, and the Unreal Tournament
