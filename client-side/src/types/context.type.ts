@@ -1,26 +1,25 @@
 import { ReactNode } from "react";
 import { User } from "../types/user.type";
-import { RegisterUser } from "../types/user.type";
+import { RegisterUserInput } from "../types/user.type";
 
 // Auth context
 export interface AuthProviderProps {
-    children: ReactNode;
-};
-  
+  children: ReactNode;
+}
+
 export interface AuthContextType {
-    isAuthenticated: boolean;
-    user?: User | null;
-    lToken: string | undefined;
-    setLToken: (lToken: string) => void;
-    authenticateUser: (user: User) => void;
-    unAuthenticateUser: () => void;
-    updateUser: () => void;
-    signupData?: RegisterUser | any;
-    // setSignUpData?: any;
-    setSignUpData: (signupData: RegisterUser | any) => void;
-};
+  authenticateUser: (user: User) => void;
+  isAuthenticated: boolean;
+  lToken: string | undefined;
+  setLToken: (lToken: string) => void;
+  setSignUpData: (signupData: RegisterUserInput | any) => void;
+  signupData?: RegisterUserInput | any;
+  unAuthenticateUser: () => void;
+  updateUser: () => void;
+  user?: User | null;
+}
 
 // Store context
 export interface ProviderProps {
-    children: ReactNode;
-};
+  children: ReactNode;
+}

@@ -11,6 +11,8 @@ import {
   AiOutlineLock,
   AiOutlineSetting,
   AiOutlineUser,
+  AiOutlineYoutube,
+  AiOutlineInstagram,
 } from "react-icons/ai";
 import { BiGame, BiSearch, BiUser, BiWorld } from "react-icons/bi";
 import { BsMoonStars, BsNintendoSwitch } from "react-icons/bs";
@@ -39,7 +41,7 @@ import {
 } from "react-icons/md";
 import { PiWarningCircleBold } from "react-icons/pi";
 import { RiFirefoxLine } from "react-icons/ri";
-import { SlGameController, SlSocialDropbox } from "react-icons/sl";
+import { SlGameController, SlSocialDropbox, SlArrowUp } from "react-icons/sl";
 import { TiTimes } from "react-icons/ti";
 
 const icons: IconsMap = {
@@ -51,6 +53,8 @@ const icons: IconsMap = {
   AiOutlineLock,
   AiOutlineSetting,
   AiOutlineUser,
+  AiOutlineYoutube,
+  AiOutlineInstagram,
   BiGame,
   BiSearch,
   BiUser,
@@ -81,6 +85,7 @@ const icons: IconsMap = {
   RiFirefoxLine,
   SlGameController,
   SlSocialDropbox,
+  SlArrowUp,
   TiTimes,
 };
 

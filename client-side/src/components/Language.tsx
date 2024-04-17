@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 import { Image } from "./UI";
-import { alFlag, shFlag } from "../assets/img";
+import { alFlag, shFlag } from "../assets";
 
 interface LanguageProps {
   onSelectLanguage: (language: string) => void;
@@ -42,7 +42,7 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
           >
             <button className="w-full p-4 text-left" onClick={item.onClick}>
               <div className="flex gap-3 items-center">
-                <Image imgUrl={item.icon} name="flag_icon" styles="w-5 h-5"/>
+                <Image imgUrl={item.icon} name="flag_icon" styles="w-5 h-5" />
                 <p className="text-sm whitespace-nowrap">{item.name}</p>
               </div>
             </button>

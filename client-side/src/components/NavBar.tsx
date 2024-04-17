@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks";
 import { classNames } from "../lib";
-import { icon, iconName } from "../assets/img";
+import { icon, iconName } from "../assets";
 import {
   Button,
   Image,

@@ -7,39 +7,39 @@ export type FormListMap = {
 };
 
 export interface FormListItem {
-  type: string;
-  name: string;
-  label: string;
-  props: {
-    type: string;
-    placeholder: string;
-  };
-  formType: string;
+  btnTxt: string;
+  footerLink: string;
+  footerTitle: string;
   formName: string;
   formTitle: string;
-  btnTxt: string;
-  footerTitle: string;
-  footerLink: string;
+  formType: string;
+  label: string;
   linkTo: string;
+  name: string;
+  props: {
+    placeholder: string;
+    type: string;
+  };
+  type: string;
 }
 
 export interface FormProps {
+  defaultValues?: any;
+  files?: any;
+  hasProvider?: boolean;
   lists: FormListItem[] | any;
   onSubmit?: any;
   schema?: any;
-  defaultValues?: any;
-  files?: any;
   setFiles?: any;
-  hasProvider?: boolean;
 }
 
 export interface FormProps2 {
+  defaultValues?: any;
+  files?: any;
+  hasProvider?: boolean;
   lists: FormListItem[] | any;
   onSubmit?: any;
   schema?: any;
-  defaultValues?: any;
-  files?: any;
   setFiles?: any;
-  hasProvider?: boolean;
   user?: any;
 }

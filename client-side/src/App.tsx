@@ -1,14 +1,14 @@
 import { ConfigProvider, theme, App } from "antd";
-import { /*BrowserRouter as Router,*/ RouterProvider } from "react-router-dom";
+import { BrowserRouter as Router, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Loading } from "./components";
 import { persistor } from "./store/redux";
 import { AuthProvider } from "./contexts";
-// import Routes from "./routes";
+import Routes from "./routes";
 import { ToastContainer } from "react-toastify";
-import { router } from "./routes";
+// import { router } from "./routes";
 import { StylesProvider } from "./providers";
 import "react-phone-input-2/lib/style.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -37,10 +37,10 @@ const Application = () => {
                 <App>
                   <StylesProvider />
                   <ToastContainer />
-                  {/* <Router>
-                  <Routes />
-                </Router> */}
-                  <RouterProvider router={router} />
+                  <Router>
+                    <Routes />
+                  </Router>
+                  {/* <RouterProvider router={router} /> */}
                 </App>
               </ConfigProvider>
             </Provider>

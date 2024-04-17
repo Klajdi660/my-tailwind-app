@@ -1,15 +1,22 @@
 import { FunctionComponent } from "react";
 import { Template } from "../../components";
 import { useFormList } from "../../hooks";
-// import useAuthService from "../../services/AuthService";
+import useAuthService from "../../services/AuthService";
 import { RegisterUserInput } from "../../types/user.type";
 import { registerValidation } from "../../lib";
 
 const SignUp: FunctionComponent = () => {
   const { lists } = useFormList();
-  // const { signup } = useAuthService();
+  const { signup } = useAuthService();
 
-  const handleOnSubmit = async (values: RegisterUserInput) => {};
+  const handleOnSubmit = async (values: RegisterUserInput) => {
+    console.log("values Reg:>> ", values);
+    try {
+      await signup(values);
+    } catch (error) {
+      console.error(`Failed to register! ${error}`);
+    }
+  };
 
   return (
     <Template

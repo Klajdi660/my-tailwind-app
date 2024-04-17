@@ -5,7 +5,7 @@ import { useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
 import { classNames } from "../../lib";
 import { Popover } from "antd";
-import { userIcon } from "../../assets/img";
+import { userIcon } from "../../assets";
 
 const UserMenu = (user: any, hidden: () => void) => {
   const { logout } = useAuthService();

@@ -1,10 +1,4 @@
-import {
-  FunctionComponent,
-  useMemo,
-  Fragment,
-  useState,
-  useEffect,
-} from "react";
+import { FunctionComponent, useMemo, useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth, useNotification } from "../../hooks";
 import { Icon, Overlay, Image } from "../UI";
@@ -107,10 +101,10 @@ export const Sidebar: FunctionComponent = () => {
         isMobile={isMobile}
       />
       <div
-        {...{
-          onMouseOver: () => setToggleNav(true),
-          onMouseOut: () => setToggleNav(false),
-        }}
+        // {...{
+        //   onMouseOver: () => setToggleNav(true),
+        //   onMouseOut: () => setToggleNav(false),
+        // }}
         {...(toggleNav && { style: { width: `${hoverWidth}px` } })}
         className={classNames(
           "nav-list overflow-auto hide_scrollbar relative top-navbar sidebar_height w-sidebar duration-500 transition-all pb-[100px] bg-sidebar"
@@ -133,13 +127,12 @@ export const Sidebar: FunctionComponent = () => {
               )}
               <ul>
                 {item.subLinks.map((link) => (
-                  // <Fragment key={link.name}>
                   <li
                     key={link.name}
                     className={classNames(
                       `dropdown_${link.id}`,
-                      "relative px-[10px] group",
-                      (!isFolded || toggleNav) && "pb-2"
+                      "relative px-[10px] group pb-1"
+                      // (!isFolded || toggleNav) && "pb-2"
                     )}
                   >
                     <button
@@ -173,7 +166,6 @@ export const Sidebar: FunctionComponent = () => {
                       </div>
                     </button>
                   </li>
-                  // </Fragment>
                 ))}
               </ul>
             </div>

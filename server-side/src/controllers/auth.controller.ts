@@ -152,8 +152,8 @@ export const registerHandler = async (req: Request, res: Response) => {
   await redisCLI.expire(`verify_email_pending_${email}`, 180); // 3 min
 
   const { fullName } = user_registration;
-  let subject = "OTP Verification Email";
-  let templatePath = "OTP";
+  const subject = "OTP Verification Email";
+  const templatePath = "OTP";
   const templateData = {
     title: subject,
     name: fullName,

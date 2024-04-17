@@ -1,11 +1,11 @@
 /* components/UI */
 export interface TitleProps {
-  name: string;
   desc?: string;
-  type: string;
   divider?: boolean;
   className?: string;
   color?: string;
+  name: string;
+  type: string;
 }
 /* */
 
@@ -20,19 +20,19 @@ export interface TemplateProps {
   // description: string;
   // formType: string;
   // btnText?: string | any;
-  lists: any;
-  schema: any;
-  onSubmit: any;
   defaultValues?: any;
+  lists: any;
+  onSubmit: any;
+  schema: any;
 }
 //
 
 // component UI
 export interface IconParams {
-  name: string;
-  size?: number;
   className?: string;
+  name: string;
   props?: any;
+  size?: number;
 }
 
 export type IconsMap = {
@@ -41,9 +41,9 @@ export type IconsMap = {
 
 // tab
 export interface TabProps {
-  tabData: any;
   field: string;
   setField: (tab: any) => void;
+  tabData: any;
 }
 
 export interface TabMap {

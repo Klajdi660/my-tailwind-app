@@ -6,7 +6,7 @@ import {
   instagramIcon,
   tiktokIcon,
   youtubeIcon,
-} from "../assets/img";
+} from "../assets";
 
 interface FooterProps {}
 

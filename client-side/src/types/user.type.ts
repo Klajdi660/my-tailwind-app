@@ -1,12 +1,12 @@
 export interface User {
-  id: string;
-  extra?: any;
   // auths?: string;
-  email?: string;
-  username?: string;
   avatar?: string;
+  email?: string;
+  extra?: any;
+  id: string;
   name?: string;
   provider?: string;
+  username?: string;
 }
 
 export interface UpdateUserInput extends Partial<User> {
@@ -15,68 +15,58 @@ export interface UpdateUserInput extends Partial<User> {
 
 // components
 export interface LoginUserInput {
-  username: string;
   password: string;
   remember: boolean;
+  username: string;
 }
 
 export interface RegisterUserInput {
-  fullname: string;
   email: string;
-  username: string;
-  password: string;
-  confirmPassword: string;
-  agreedToTerms: boolean;
-}
-
-export interface RegisterUser {
   fullname: string;
-  email: string;
-  username: string;
   password: string;
-  confirmPassword: string;
-  agreedToTerms: boolean;
+  // passwordConfirm: string;
+  username: string;
 }
 
 export interface CustomButtonProps {
+  username: string;
   htmlType: string;
-  type: string;
-  title: string;
-  handleClick: () => void;
   styles: string;
+  title: string;
+  type: string;
 }
 
 export interface IconProps {
-  styles?: string;
-  imgUrl?: string;
+  className?: string;
   disabled?: boolean;
   handleClick?: () => void;
+  imgUrl?: string;
   isActive?: string;
   name?: string | any;
+  styles?: string;
   type?: string;
-  className?: string;
 }
 //
 
 export type SocialLoginInputType = {
-  provider: string;
   access_token: string;
+  provider: string;
 };
 
 export interface ResetPasswordUserInput {
   email: string;
-  token: string;
   password: string;
+  token: string;
 }
 
 export interface ChangePasswordUserInput {
-  oldPassword: string;
   newPassword: string;
+  oldPassword: string;
 }
 
 export interface PasswordChangeResponse {
-  success: boolean;
   message: string;
+  success: boolean;
 }
 
 export interface AuthResponse {
@@ -90,70 +80,70 @@ export interface AuthResponse {
   // message: string;
   // meta: [];
 }
-export interface UsersDataType {
-  key: number;
-  id: number;
-  user_id: string;
-  createdAt: string;
-  updatedAt: string;
-  username: string;
-  first_name: string;
-  last_name: string;
-  phone_nr: string;
-  gender: string;
-  birthday: string;
-  newsletter: number;
-  offers_mail: number;
-  street: string;
-  city: string;
-  postal_code: string;
-  country: string;
-  user_confirmed: number;
-  extra: any;
-}
-export interface UsersResponse {
-  error: boolean;
-  msg: string;
-  meta: any;
-  data: Array<UsersDataType>;
-}
-export interface UserDetailsResponse {
-  error: boolean;
-  data: UsersDataType;
-  msg: string;
-}
+// export interface UsersDataType {
+//   birthday: string;
+//   city: string;
+//   country: string;
+//   createdAt: string;
+//   extra: any;
+//   first_name: string;
+//   gender: string;
+//   id: number;
+//   key: number;
+//   last_name: string;
+//   newsletter: number;
+//   offers_mail: number;
+//   phone_nr: string;
+//   postal_code: string;
+//   street: string;
+//   updatedAt: string;
+//   username: string;
+//   user_confirmed: number;
+//   user_id: string;
+// }
+// export interface UsersResponse {
+//   data: Array<UsersDataType>;
+//   error: boolean;
+//   meta: any;
+//   msg: string;
+// }
+// export interface UserDetailsResponse {
+//   data: UsersDataType;
+//   error: boolean;
+//   msg: string;
+// }
 
 export interface OTPResponse {
-  message: string;
-  success: boolean;
-  provider: string;
   id: string;
-  phone_number: string;
   is_contact_exist: boolean;
+  message: string;
+  phone_number: string;
+  provider: string;
+  success: boolean;
 }
 
 export interface VerifyOtpInputType {
-  phone_number: string;
   code: string;
   otp_id: string;
+  phone_number: string;
 }
 
 export interface OtpLoginInputType {
-  phone_number: string;
   code: string;
-  otp_id: string;
-  name?: string;
   email?: string;
+  name?: string;
+  otp_id: string;
+  phone_number: string;
 }
 
 export interface OTPVerifyResponse {
-  success: string;
   message: string;
+  success: string;
 }
 
 export interface CreateContactUsInput {
-  name: string;
-  email: string;
-  subject: string;
   description: string;
+  email: string;
+  name: string;
+  subject: string;
 }

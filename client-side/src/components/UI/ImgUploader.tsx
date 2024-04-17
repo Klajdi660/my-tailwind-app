@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 import { Icon } from "./Icon";
 // import { classNames } from "../../utils";
 import { Image } from "./Image";
-import { userIcon } from "../../assets/img";
+import { userIcon } from "../../assets";
 // import { useAppModal } from "../../lib";
 // import { Button } from "./Button";
 import { Modal } from "antd";
