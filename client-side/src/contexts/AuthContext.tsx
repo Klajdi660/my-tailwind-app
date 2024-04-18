@@ -26,7 +26,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   const [signupData, setSignUpData] = useState();
 
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
-
+  console.log("isAuthenticated 333:>> ", isAuthenticated);
   useEffect(() => {
     if (localStorage.atoken) {
       const extraParse = JSON.parse(JSON.parse(localStorage.user).extra);
