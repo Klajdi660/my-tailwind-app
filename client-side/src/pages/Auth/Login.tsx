@@ -12,12 +12,20 @@ const Login: FunctionComponent = () => {
   const { lists } = useFormList();
   const { login } = useAuthService();
 
-  // const { isAuthenticated } = useAuth();
-  // const inputRef = useRef<InputRef>(null);
-  // const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  const inputRef = useRef<InputRef>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated)
+      localStorage.lastLocation
+        ? navigate(`/${localStorage.lastLocation}`)
+        : navigate(`/discover`);
+    // inputRef.current!.focus();
+  }, []);
 
   // useEffect(() => {
-  //   if (!isAuthenticated) {
+  //   if (isAuthenticated) {
   //     if (localStorage.lastLocation) {
   //       console.log("HYRI 111");
   //       console.log(
@@ -31,7 +39,7 @@ const Login: FunctionComponent = () => {
   //     }
   //   }
 
-  //   inputRef.current?.focus();
+  //   // inputRef.current?.focus();
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 
@@ -45,13 +53,14 @@ const Login: FunctionComponent = () => {
   };
 
   const defaultValues = {
-    // username: "klajdi96",
-    // password: "Klajdi96@",
+    username: "klajdi96",
+    password: "Klajdi96@",
   };
 
   return (
     <Template
-      lists={lists}
+      // lists={lists}
+      lists={formList["login"]}
       schema={loginValidation}
       onSubmit={handleOnSubmit}
       defaultValues={defaultValues}

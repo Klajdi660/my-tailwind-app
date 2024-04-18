@@ -7,6 +7,8 @@ import { useNotification } from "../hooks";
 import { AuthResponse, RegisterUserInput } from "../types/user.type";
 // import { toast } from "react-toastify";
 
+import { paths } from "../constants";
+
 const {
   LOGIN_API,
   LOGOUT_API,
@@ -29,9 +31,10 @@ interface AuthService {
 }
 
 const useAuthService = (): AuthService => {
+  const { discover } = paths;
+
   const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
   const [notify] = useNotification();
-
   const navigate = useNavigate();
 
   const login = async (
@@ -44,14 +47,14 @@ const useAuthService = (): AuthService => {
     try {
       const response = await HttpClient.post<AuthResponse>(LOGIN_API, data);
 
-      if (response.error) {
-        notify({
-          title: "Error",
-          variant: "error",
-          description: response.message,
-        });
-        return;
-      }
+      // if (response.error) {
+      //   notify({
+      //     title: "Error",
+      //     variant: "error",
+      //     description: response.message,
+      //   });
+      //   return;
+      // }
 
       const user = JSON.parse(atob(response.atoken.split(".")[1]));
 
@@ -60,10 +63,14 @@ const useAuthService = (): AuthService => {
       // setLToken(response.lToken);
       // globalObject.lToken = response.lToken;
       authenticateUser({ id: user.id });
-      navigate("/");
+      navigate(`/${discover}`);
     } catch (error) {
+      notify({
+        title: "Error",
+        variant: "error",
+        description: "Login failed. Incorrect email/username or password",
+      });
       console.error(`Login failed: ${error}`);
-      throw error;
     }
   };
 
@@ -87,8 +94,7 @@ const useAuthService = (): AuthService => {
   const signup = async (values: RegisterUserInput): Promise<void> => {
     try {
       let data = { ...values };
-      const response = await HttpClient.post<AuthResponse>(SIGNUP_API, data);
-      console.log("response :>> ", response);
+      await HttpClient.post<AuthResponse>(SIGNUP_API, data);
       navigate(`/verify-email`);
     } catch (error) {
       console.error(`Signup failed: ${error}`);
@@ -105,8 +111,12 @@ const useAuthService = (): AuthService => {
       delete localStorage.lastLocation;
       navigate("/");
     } catch (error) {
+      notify({
+        title: "Error",
+        variant: "error",
+        description: "Logout failed.",
+      });
       console.error(`Logout failed: ${error}`);
-      throw error;
     }
   };
 

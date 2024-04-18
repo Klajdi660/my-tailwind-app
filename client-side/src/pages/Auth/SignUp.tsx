@@ -10,7 +10,6 @@ const SignUp: FunctionComponent = () => {
   const { signup } = useAuthService();
 
   const handleOnSubmit = async (values: RegisterUserInput) => {
-    console.log("values Reg:>> ", values);
     try {
       await signup(values);
     } catch (error) {

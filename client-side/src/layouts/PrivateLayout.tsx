@@ -24,43 +24,34 @@
 //   )
 // };
 
-import { FunctionComponent } from "react";
-import { Outlet } from "react-router-dom";
+// import { FunctionComponent } from "react";
+// import { Outlet } from "react-router-dom";
 import { CartSwitcher, Navbar, Sidebar, TopPlay } from "../components";
-// import { DeleteModal } from "../components/Settings/DeleteAccount";
-// import { useAppModal } from "../lib";
 
-export const PrivateLayout: FunctionComponent = () => {
-  // const { modalOpen } = useAppModal();
+interface PrivateLayoutPropsType {
+  children: React.ReactNode;
+}
 
+export const PrivateLayout = ({
+  children,
+  ...restProps
+}: PrivateLayoutPropsType) => {
   return (
-    <>
-      {/* <div className="relative sm:-8 p-4 bg-richblack-20 min-h-screen flex flex-row">
-        <div className="sm:flex hidden mr-10 relative">
-          <Sidebar />
+    <div
+      className="flex flex-col max-w-full m-auto xl:flex-row app bg-main"
+      id="main_app"
+    >
+      <Sidebar />
+      <main className="relative w-full mx-auto overflow-hidden main_section">
+        <Navbar />
+        <div className="relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 main_width page_content mt-main-top">
+          {/* <Outlet /> */}
+          {children}
         </div>
-        <div className="flex-1 max-sm:w-full max-w-[1280px] mx-auto sm:pr-5 flex flex-col">
-          <Navbar />
-          <Outlet />
-          <Footer/>
-        </div>
-      </div> */}
-      <div
-        className="flex flex-col max-w-full m-auto xl:flex-row app bg-main"
-        id="main_app"
-      >
-        <Sidebar />
-        <main className="relative w-full mx-auto overflow-hidden main_section">
-          <Navbar />
-          <div className="relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 main_width page_content mt-main-top">
-            <Outlet />
-          </div>
-          {/* {modalOpen && <DeleteModal />} */}
-        </main>
-        <TopPlay />
-        <CartSwitcher />
-      </div>
-    </>
+      </main>
+      <TopPlay />
+      <CartSwitcher />
+    </div>
   );
 };
 

@@ -1,23 +1,24 @@
 import { lazy /*FunctionComponent*/ } from "react";
 import { useRoutes } from "react-router-dom";
-import { PrivateGuard, PublicGuard } from "../guards";
+import PrivateGuard from "../guards/PrivateGuard";
+import PublicGuard from "../guards/PublicGuard";
 import { Loadable } from "../components";
 import { paths } from "../constants";
-import { Navigate, createBrowserRouter } from "react-router-dom";
+// import { Navigate, createBrowserRouter } from "react-router-dom";
 import { PrivateLayout, PublicLayout } from "../layouts";
-import { FormListProvider } from "../contexts/FormListContext";
+// import { FormListProvider } from "../contexts/FormListContext";
 
 const {
   login,
-  register,
-  verifyEmail,
-  forgotPassword,
-  passwordCode,
-  resetPassword,
-  socialAuth,
+  // register,
+  // verifyEmail,
+  // forgotPassword,
+  // passwordCode,
+  // resetPassword,
+  // socialAuth,
   discover,
-  profile,
-  browse,
+  // profile,
+  // browse,
   home,
 } = paths;
 
@@ -28,22 +29,23 @@ const Routes = () =>
       element: (
         <PublicGuard>
           <PublicLayout>
-            <HomePage />
+            {/* <HomePage /> */}
+            <LoginPage />
           </PublicLayout>
         </PublicGuard>
       ),
       index: true,
     },
-    // {
-    //   path: myCourses,
-    //   element: (
-    //     <PublicGuard>
-    //       <PublicLayout>
-    //         <DashboardPage />
-    //       </PublicLayout>
-    //     </PublicGuard>
-    //   ),
-    // },
+    {
+      path: discover,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <DiscoverPage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
     {
       path: login,
       element: (
@@ -53,6 +55,11 @@ const Routes = () =>
           </PublicLayout>
         </PublicGuard>
       ),
+      index: true,
+    },
+    {
+      path: "*",
+      element: <ComingSoonPage />,
     },
     // {
     //   path: signup,
@@ -123,28 +130,28 @@ export default Routes;
 
 const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
 const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
-const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
-const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
+// const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
+// const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
 const ComingSoonPage = Loadable(lazy(() => import("../pages/ComingSoon")));
 const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
-const SocialAuth = Loadable(
-  lazy(() => import("../components/Auth/SocialAuth"))
-);
-const RegisterPage = Loadable(lazy(() => import("../pages/Auth/SignUp")));
-const VerifyEmailPage = Loadable(
-  lazy(() => import("../pages/Auth/VerifyEmail"))
-);
-const ResetPasswordPage = Loadable(
-  lazy(() => import("../pages/Auth/ResetPassword"))
-);
-const PasswordConfirmCodePage = Loadable(
-  lazy(() => import("../pages/Auth/PasswordConfirmCode"))
-);
-const ChangePasswordPage = Loadable(
-  lazy(() => import("../pages/Auth/ChangePassword"))
-);
+// const SocialAuth = Loadable(
+//   lazy(() => import("../components/Auth/SocialAuth"))
+// );
+// const RegisterPage = Loadable(lazy(() => import("../pages/Auth/SignUp")));
+// const VerifyEmailPage = Loadable(
+//   lazy(() => import("../pages/Auth/VerifyEmail"))
+// );
+// const ResetPasswordPage = Loadable(
+//   lazy(() => import("../pages/Auth/ResetPassword"))
+// );
+// const PasswordConfirmCodePage = Loadable(
+//   lazy(() => import("../pages/Auth/PasswordConfirmCode"))
+// );
+// const ChangePasswordPage = Loadable(
+//   lazy(() => import("../pages/Auth/ChangePassword"))
+// );
 
-const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
+// const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
 
 // export const router = createBrowserRouter([
 //   {

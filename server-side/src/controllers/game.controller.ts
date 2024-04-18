@@ -27,9 +27,8 @@ export const gameListHandler = async (req: Request, res: Response) => {
   })
     .then((res) => res.data)
     .catch((e) => {
-      console.log("e.response.data :>> ", e.response.data);
+      console.error("e.response.data :>> ", e.response.data);
     });
-  console.log("games :>> ", games.length);
 
   res.json(games.length);
   // const { rwgType } = req.params;
@@ -45,11 +44,9 @@ export const gameListHandler = async (req: Request, res: Response) => {
 
   // const startIndex = (pageNumber - 1) * page_size;
   // const endIndex = startIndex + page_size;
-  // console.log('startIndex :>> ', startIndex);
-  // console.log('endIndex :>> ', endIndex);
+
   // const response = await rwgApi.gameList(rwgType, params) as any;
   // const paginatedData = response.results.slice(startIndex, endIndex);
 
-  // console.log('response.result.length :>> ', paginatedData.length);
   // res.json({ error: false, data: paginatedData });
 };

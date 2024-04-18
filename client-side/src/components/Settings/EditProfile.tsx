@@ -27,9 +27,7 @@ export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
     return profileList;
   }, []);
 
-  const handleOnSubmit = async (values: EditProfileSave) => {
-    console.log("values Edit Profile :>> ", values);
-  };
+  const handleOnSubmit = async (values: EditProfileSave) => {};
 
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card">

@@ -60,9 +60,7 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
     ];
   }, [isPasswordEnabled]);
 
-  const handleOnSubmit = (values: ChangePasswordSave) => {
-    console.log("values ChangePassw:>> ", values);
-  };
+  const handleOnSubmit = (values: ChangePasswordSave) => {};
 
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card">

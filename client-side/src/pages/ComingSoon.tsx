@@ -5,7 +5,7 @@ import { paths } from "../constants";
 interface ComingSoonProps {}
 
 const ComingSoon: FunctionComponent<ComingSoonProps> = () => {
-  const { home } = paths;
+  const { discover } = paths;
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -15,7 +15,7 @@ const ComingSoon: FunctionComponent<ComingSoonProps> = () => {
           The page you are looking for might be coming soon.
         </p>
         <div className="mt-6">
-          <Link to={home} className="text-primary hover:underline">
+          <Link to={discover} className="text-primary hover:underline">
             Go back home
           </Link>
         </div>

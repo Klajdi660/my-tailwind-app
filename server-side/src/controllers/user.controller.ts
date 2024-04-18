@@ -151,7 +151,6 @@ export const updatedUserPhotoHandler = async (req: Request, res: Response) => {
     1000,
     1000
   )) as any;
-  console.log("image :>> ", image);
   // const updatedProfileImg = await getAndUpdateUser(user.id, { extra: image.source_url });
 };
 

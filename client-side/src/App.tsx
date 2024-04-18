@@ -5,7 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Loading } from "./components";
 import { persistor } from "./store/redux";
-import { AuthProvider } from "./contexts";
+import { AuthProvider, StoreProvider } from "./contexts";
 import Routes from "./routes";
 import { ToastContainer } from "react-toastify";
 // import { router } from "./routes";
@@ -33,16 +33,18 @@ const Application = () => {
         <AuthProvider>
           <QueryClientProvider client={reactQueryClient}>
             <Provider store={store}>
-              <ConfigProvider theme={themeConfig}>
-                <App>
-                  <StylesProvider />
-                  <ToastContainer />
-                  <Router>
-                    <Routes />
-                  </Router>
-                  {/* <RouterProvider router={router} /> */}
-                </App>
-              </ConfigProvider>
+              <StoreProvider>
+                <ConfigProvider theme={themeConfig}>
+                  <App>
+                    <StylesProvider />
+                    <ToastContainer />
+                    <Router>
+                      <Routes />
+                    </Router>
+                    {/* <RouterProvider router={router} /> */}
+                  </App>
+                </ConfigProvider>
+              </StoreProvider>
             </Provider>
           </QueryClientProvider>
         </AuthProvider>

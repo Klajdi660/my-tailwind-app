@@ -1,10 +1,11 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from "react";
 
 interface PublicGuardProps {
-  children: ReactNode,
-};
+  children: ReactNode;
+}
 
-export const PublicGuard: FunctionComponent<PublicGuardProps> = ({ children }) => {
+const PublicGuard: FunctionComponent<PublicGuardProps> = ({ children }) => {
   return <>{children}</>;
 };
 
+export default PublicGuard;

@@ -1,6 +1,19 @@
 import dayjs from "dayjs";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
+
+export const convertTZ = (rawDate: string, selectedTimeZone: string) => {
+  const dateFormat = "DD-MM-YYYY HH:mm:ss";
+  let [date, time] = moment
+    .tz(rawDate, selectedTimeZone)
+    .format(dateFormat)
+    .split(" ");
+  return { date, time };
+};
 
 export const classNames = (...classes: any) => {
   return classes.filter(Boolean).join(" ");
