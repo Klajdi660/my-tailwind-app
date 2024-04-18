@@ -41,7 +41,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
     }
     // if (localStorage.atoken) setUser({ id: JSON.parse(localStorage.user).id });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [localStorage.atoken]);
 
   const authenticateUser = (user: User) => {
     setUser(user);

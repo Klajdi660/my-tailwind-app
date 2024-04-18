@@ -1,4 +1,4 @@
-import { lazy /*FunctionComponent*/ } from "react";
+import { lazy, FunctionComponent } from "react";
 import { useRoutes } from "react-router-dom";
 import PrivateGuard from "../guards/PrivateGuard";
 import PublicGuard from "../guards/PublicGuard";
@@ -115,25 +115,25 @@ const Routes = () =>
 
 export default Routes;
 
-// const delayLoad = (component: () => Promise<{ default: FunctionComponent<any> }>, delay: number) => {
-//   return new Promise<{ default: FunctionComponent<any> }>((resolve) => {
-//     setTimeout(() => {
-//       resolve(component());
-//     }, delay);
-//   });
-// };
+const delayLoad = (component: () => Promise<{ default: FunctionComponent<any> }>, delay: number) => {
+  return new Promise<{ default: FunctionComponent<any> }>((resolve) => {
+    setTimeout(() => {
+      resolve(component());
+    }, delay);
+  });
+};
 
 // const DashboardPage = Loadable(
 //   lazy(() => import("../pages/Dashboard"))
 //   // lazy(() => delayLoad(() => import("../pages/Dashboard"), 1000))
 // );
 
-const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
-const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
+// const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
+const DiscoverPage = Loadable(lazy(() => delayLoad(() => import("../pages/Root/Discover"), 5000)));
 // const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
 // const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
 const ComingSoonPage = Loadable(lazy(() => import("../pages/ComingSoon")));
-const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
+const LoginPage = Loadable(lazy(() => delayLoad(() => import("../pages/Auth/Login"), 5000)));
 // const SocialAuth = Loadable(
 //   lazy(() => import("../components/Auth/SocialAuth"))
 // );

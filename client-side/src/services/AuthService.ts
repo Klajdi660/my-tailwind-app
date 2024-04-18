@@ -57,7 +57,7 @@ const useAuthService = (): AuthService => {
       // }
 
       const user = JSON.parse(atob(response.atoken.split(".")[1]));
-
+      console.log('user :>> ', JSON.parse(atob(response.rtoken.split(".")[1])));
       localStorage.atoken = response.atoken;
       localStorage.user = JSON.stringify(user);
       // setLToken(response.lToken);
