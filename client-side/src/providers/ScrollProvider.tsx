@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useNavScrollTrigger } from "../lib";
+import { useNavScrollTrigger } from "../utils";
 
 interface ScrollProviderProps {
   children: React.ReactNode;

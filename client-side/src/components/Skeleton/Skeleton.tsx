@@ -14,7 +14,7 @@
 // };
 
 import { FunctionComponent, ReactNode } from "react";
-import { classNames } from "../../lib";
+import { classNames } from "../../utils";
 
 interface SkeletonProps {
   className: string;

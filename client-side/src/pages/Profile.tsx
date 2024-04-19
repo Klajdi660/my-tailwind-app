@@ -8,7 +8,7 @@ import {
   PersonalDetails,
   UserInfo,
 } from "../components";
-import { useAppModal } from "../lib";
+import { useAppModal } from "../utils";
 import { DeleteModal } from "../components/Settings/DeleteAccount";
 
 interface ProfileProps {}

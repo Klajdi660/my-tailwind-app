@@ -4,7 +4,7 @@ import { Template } from "../../components";
 import { useFormList, useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
 import { LoginUserInput } from "../../types/user.type";
-import { loginValidation } from "../../lib";
+import { loginValidation } from "../../utils";
 import { InputRef } from "antd";
 import { formList } from "../../constants";
 

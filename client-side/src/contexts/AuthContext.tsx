@@ -7,6 +7,7 @@ import {
 } from "react";
 import { User } from "../types/user.type";
 import { AuthContextType, AuthProviderProps } from "../types/context.type";
+import { Loading } from "../components";
 
 const initialState: AuthContextType = {
   isAuthenticated: false,
@@ -24,21 +25,29 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [lToken, setLToken] = useState("");
   const [signupData, setSignUpData] = useState();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
   console.log("isAuthenticated 333:>> ", isAuthenticated);
+  console.log("user 333:>> ", user);
+
   useEffect(() => {
-    if (localStorage.atoken) {
-      const extraParse = JSON.parse(JSON.parse(localStorage.user).extra);
-      const userParse = JSON.parse(localStorage.user);
-      const firstNameInitial = extraParse?.firstName?.charAt(0) || "";
-      const lastNameInitial = extraParse?.lastName?.charAt(0) || "";
-      const name = `${firstNameInitial}${lastNameInitial}`;
-      const userAvatar = extraParse.photos;
-      // ? extraParse.photos
-      // : `https://place-hold.it/52x52/F3F4F6/4B5563&text=${firstNameInitial}${lastNameInitial}&fontsize=20`;
-      setUser({ ...userParse, avatar: userAvatar, extra: extraParse, name });
-    }
+    const fetchDataFromLocalStorage = () => {
+      // if (localStorage.atoken) {
+      //   const extraParse = JSON.parse(JSON.parse(localStorage.user).extra);
+      //   const userParse = JSON.parse(localStorage.user);
+      //   const firstNameInitial = extraParse?.firstName?.charAt(0) || "";
+      //   const lastNameInitial = extraParse?.lastName?.charAt(0) || "";
+      //   const name = `${firstNameInitial}${lastNameInitial}`;
+      //   const userAvatar = extraParse.photos;
+      //   // ? extraParse.photos
+      //   // : `https://place-hold.it/52x52/F3F4F6/4B5563&text=${firstNameInitial}${lastNameInitial}&fontsize=20`;
+      //   setUser({ ...userParse, avatar: userAvatar, extra: extraParse, name });
+      // }
+      setIsLoading(false);
+    };
+
+    fetchDataFromLocalStorage();
     // if (localStorage.atoken) setUser({ id: JSON.parse(localStorage.user).id });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localStorage.atoken]);
@@ -71,7 +80,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
         setSignUpData,
       }}
     >
-      {children}
+      {isLoading ? <Loading /> : children}
     </AuthContext.Provider>
   );
 };

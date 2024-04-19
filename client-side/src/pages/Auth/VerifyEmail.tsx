@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Template } from "../../components";
 import { useFormList } from "../../hooks";
-import { verifyValidation } from "../../lib";
+import { verifyValidation } from "../../utils";
 
 const VerifyEmail: FunctionComponent = () => {
   const { lists } = useFormList();

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { classNames } from "../../lib";
+import { classNames } from "../../utils";
 import { Skeleton } from "./Skeleton";
 
 type ImageDimsOptions = {

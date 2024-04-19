@@ -2,7 +2,7 @@ import { FunctionComponent, useMemo, useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth, useNotification } from "../../hooks";
 import { Icon, Overlay, Image } from "../UI";
-import { classNames, useAppUtil, useMobileResponsive } from "../../lib";
+import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
 import { navlinks } from "../../constants";
 import { defaultThemeConfig, themeConfig } from "../../configs";
 import { useSelector } from "react-redux";

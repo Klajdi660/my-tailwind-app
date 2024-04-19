@@ -50,7 +50,6 @@
 
 // export default PrivateGuard;
 
-
 import { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks";
@@ -62,15 +61,17 @@ interface PrivateGuardProps {
 
 const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+
+  console.log("user 222:>> ", user);
   const token = localStorage.atoken;
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) {
+    if (!isAuthenticated) {
       setShowModal(true);
     }
-  }, []); 
+  }, []);
 
   const handleOk = () => {
     setShowModal(false);
@@ -83,7 +84,6 @@ const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({ children }) => {
       <Modal
         title="Session Expired!"
         open={showModal}
-        
         onOk={handleOk}
         okButtonProps={{
           style: {

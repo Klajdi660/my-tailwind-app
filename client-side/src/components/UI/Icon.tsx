@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { IconContext } from "react-icons";
-import { classNames } from "../../lib";
+import { classNames } from "../../utils";
 import { IconParams, IconsMap } from "../../types/general.type";
 import {
   AiOutlineCloudUpload,

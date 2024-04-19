@@ -3,7 +3,7 @@ import { Template } from "../../components";
 import { useFormList } from "../../hooks";
 import useAuthService from "../../services/AuthService";
 import { RegisterUserInput } from "../../types/user.type";
-import { registerValidation } from "../../lib";
+import { registerValidation } from "../../utils";
 
 const SignUp: FunctionComponent = () => {
   const { lists } = useFormList();

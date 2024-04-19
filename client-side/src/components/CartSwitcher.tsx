@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { classNames, useAppUtil, useMobileResponsive } from "../lib";
+import { classNames, useAppUtil, useMobileResponsive } from "../utils";
 import { Icon, Overlay } from "./UI";
 
 interface CartSwitcherProps {}

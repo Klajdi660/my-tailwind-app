@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import OtpInput from "react18-input-otp";
 import { Form, Progress } from "antd";
 import { Button } from "../UI";
-import { classNames } from "../../lib";
+import { classNames } from "../../utils";
 
 interface OTPCodeFormParams {
   btnText: string;

@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 // import { useFormList } from "../../hooks";
-import { resetPassValidation } from "../../lib";
+import { resetPassValidation } from "../../utils";
 import { Template } from "../../components";
 import { formList } from "../../constants";
 
