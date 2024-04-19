@@ -11,7 +11,8 @@ export const authenticate = async (
   try {
     const { authorization } = req.headers;
     const { access_token } = req.cookies;
-
+    const tokenType = req.method;
+    console.log("tokenType :>> ", tokenType);
     let accessToken;
     if (authorization && authorization.startsWith("Bearer")) {
       accessToken = authorization.split(" ")[1];

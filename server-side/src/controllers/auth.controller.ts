@@ -103,7 +103,12 @@ export const loginHandler = async (req: Request, res: Response) => {
   res.cookie("refresh_token", refresh_token, refreshTokenCookieOptions);
   res.cookie("logged_in", true, loginTokenCookieOptions);
 
-  res.json({ error: false, atoken: access_token, rtoken: refresh_token, exp: expiredCodeAt });
+  res.json({
+    error: false,
+    atoken: access_token,
+    rtoken: refresh_token,
+    exp: expiredCodeAt,
+  });
 };
 
 export const registerHandler = async (req: Request, res: Response) => {
