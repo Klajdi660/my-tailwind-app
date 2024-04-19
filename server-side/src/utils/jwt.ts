@@ -7,7 +7,7 @@ import { JWTParams } from "../types";
 const { access_token_expires, refresh_token_expires } =
   config.get<JWTParams>("token");
 
-const signJWT = (
+export const signJWT = (
   payload: object,
   key: string,
   // key: "accessTokenPrivateKey" | "refreshTokenPrivateKey",

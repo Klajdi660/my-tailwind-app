@@ -24,7 +24,10 @@ export const authenticate = async (
       return next({ error: true, message: "You are not logged in" });
     }
 
-    const decoded: any = verifyJWT(accessToken, "accessTokenPrivateKey");
+    const decoded = verifyJWT<{ id: string }>(
+      accessToken,
+      "accessTokenPrivateKey"
+    );
     // const decoded: any = verifyJWT(accessToken, "accessTokenPublicKey");
     if (!decoded) {
       return next({

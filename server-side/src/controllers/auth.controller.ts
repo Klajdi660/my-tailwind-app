@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import crypto from "crypto";
 import config from "config";
 import dayjs from "dayjs";
@@ -10,6 +10,7 @@ import {
   createUser,
   createVerificationCode,
   getAndUpdateUser,
+  getUserById,
 } from "../services/user.service";
 import {
   signToken,
@@ -18,9 +19,13 @@ import {
   accessTokenCookieOptions,
   refreshTokenCookieOptions,
   loginTokenCookieOptions,
+  verifyJWT,
+  signJWT,
 } from "../utils";
-import { AppParams, UserParams } from "../types";
+import { AppParams, UserParams, JWTParams } from "../types";
 import { EMAIL_PROVIDER } from "../constants";
+
+const { access_token_expires } = config.get<JWTParams>("token");
 
 const { client_url } = config.get<AppParams>("app");
 
@@ -255,11 +260,47 @@ export const logoutHandler = async (req: Request, res: Response) => {
 
 export const refreshAccessTokenHandler = async (
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   const refresh_token = req.cookies.refresh_token as string;
 
-  res.json({ error: true, data: { rToken: refresh_token } });
+  const msg = "Could not refresh access token";
+
+  // Validate the Refresh token
+  const decoded = verifyJWT<{ id: string }>(
+    refresh_token,
+    "refreshTokenPublicKey"
+  );
+  if (!decoded) {
+    return next({ error: true, message: msg });
+  }
+
+  // Check if the user has a valid session
+  const session = await redisCLI.get(decoded.id);
+  if (!session) {
+    return next({ error: true, message: msg });
+  }
+
+  // Check if the user exist
+  const user = await getUserById(JSON.parse(session).id);
+  if (!user) {
+    return next({ error: true, message: msg });
+  }
+
+  // Sign new access token
+  const atoken = signJWT({ id: user.id }, "accessTokenPrivateKey", {
+    expiresIn: access_token_expires,
+  });
+
+  // Send the access token as cookie
+  res.cookie("atoken", atoken, accessTokenCookieOptions);
+  res.cookie("logged_in", true, {
+    ...accessTokenCookieOptions,
+    httpOnly: false,
+  });
+
+  res.json({ error: true, data: { atoken } });
 };
 
 export const forgotPasswordHandler = async (req: Request, res: Response) => {
