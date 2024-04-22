@@ -64,7 +64,7 @@ const UserMenu = (user: any, hidden: () => void) => {
           )}
           <div className="flex flex-col flex-1 text-sm text-secondary hover:text-primary">
             <span className="break-all text-onNeutralBg">
-              {extra?.firstName} {extra?.lastName}
+              {extra?.name}
             </span>
             <span className="text-secondary">@{username}</span>
           </div>

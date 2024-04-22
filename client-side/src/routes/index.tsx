@@ -1,4 +1,4 @@
-import { lazy, FunctionComponent } from "react";
+import { lazy, /*FunctionComponent*/ } from "react";
 import { useRoutes } from "react-router-dom";
 import PrivateGuard from "../guards/PrivateGuard";
 import PublicGuard from "../guards/PublicGuard";
@@ -9,17 +9,17 @@ import { PrivateLayout, PublicLayout } from "../layouts";
 // import { FormListProvider } from "../contexts/FormListContext";
 
 const {
-  login,
-  // register,
-  // verifyEmail,
-  // forgotPassword,
-  // passwordCode,
-  // resetPassword,
-  // socialAuth,
+  browse,
   discover,
-  // profile,
-  // browse,
+  forgotPassword,
   home,
+  login,
+  passwordCode,
+  profile,
+  register,
+  resetPassword,
+  socialAuth,
+  verifyEmail,
 } = paths;
 
 const Routes = () =>
@@ -55,6 +55,26 @@ const Routes = () =>
         </PublicGuard>
       ),
       index: true,
+    },
+    {
+      path: register,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <RegisterPage />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
+    {
+      path: verifyEmail,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <VerifyEmailPage />
+          </PublicLayout>
+        </PublicGuard>
+      )
     },
     {
       path: "*",
@@ -131,18 +151,22 @@ export default Routes;
 // );
 
 const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
-const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
 // const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
+const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
+
+const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
+const RegisterPage = Loadable(lazy(() => import("../pages/Auth/SignUp")));
+const VerifyEmailPage = Loadable(
+  lazy(() => import("../pages/Auth/VerifyEmail"))
+);
+
 // const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
 const ComingSoonPage = Loadable(lazy(() => import("../pages/ComingSoon")));
-const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
+
 // const SocialAuth = Loadable(
 //   lazy(() => import("../components/Auth/SocialAuth"))
 // );
-// const RegisterPage = Loadable(lazy(() => import("../pages/Auth/SignUp")));
-// const VerifyEmailPage = Loadable(
-//   lazy(() => import("../pages/Auth/VerifyEmail"))
-// );
+
 // const ResetPasswordPage = Loadable(
 //   lazy(() => import("../pages/Auth/ResetPassword"))
 // );

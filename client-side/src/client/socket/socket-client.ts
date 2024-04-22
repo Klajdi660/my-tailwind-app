@@ -1,4 +1,4 @@
-import { io, Socket } from "socket.io-client";
+import { io, /*Socket*/ } from "socket.io-client";
 import { store } from "../../store/redux";
 import { SOCKET_URL } from "../../configs";
 
@@ -24,4 +24,4 @@ export class SocketClient {
   }
 }
 
-export default new SocketClient();
+// export default new SocketClient();

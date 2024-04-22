@@ -1,19 +1,19 @@
-import { FunctionComponent, useEffect, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { FunctionComponent, useEffect, /*useRef*/ } from "react";
+import { useNavigate, /*useLocation*/ } from "react-router-dom";
 import { Template } from "../../components";
-import { useFormList, useAuth } from "../../hooks";
+import { /*useFormList,*/ useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
 import { LoginUserInput } from "../../types/user.type";
 import { loginValidation } from "../../utils";
-import { InputRef } from "antd";
+// import { InputRef } from "antd";
 import { formList } from "../../constants";
 
 const Login: FunctionComponent = () => {
-  const { lists } = useFormList();
+  // const { lists } = useFormList();
   const { login } = useAuthService();
 
   const { isAuthenticated } = useAuth();
-  const inputRef = useRef<InputRef>(null);
+  // const inputRef = useRef<InputRef>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const Login: FunctionComponent = () => {
         ? navigate(`/${localStorage.lastLocation}`)
         : navigate(`/discover`);
     // inputRef.current!.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // useEffect(() => {

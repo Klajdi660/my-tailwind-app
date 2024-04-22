@@ -16,7 +16,7 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
       footerLink,
       linkTo,
       description,
-      btnTxt,
+      // btnTxt,
     },
   ] = lists;
 

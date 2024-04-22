@@ -1,14 +1,14 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";
+// import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";
 import { icon } from "../assets";
 import {
-  footerLink2,
+  // footerLink2,
   topFooter,
   bottomFooter,
-  resources,
-  plans,
-  community,
+  // resources,
+  // plans,
+  // community,
 } from "../constants";
 import { Image, Icon } from "./UI";
 
