@@ -65,6 +65,7 @@ const useAuthService = (): AuthService => {
       console.log("user 11 :>> ", user);
       localStorage.atoken = atoken;
       localStorage.user = JSON.stringify(user);
+      localStorage.exp = user.exp;
       // setLToken(response.lToken);
       // globalObject.lToken = response.lToken;
       authenticateUser({ id: user.id });

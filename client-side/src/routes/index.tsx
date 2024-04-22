@@ -30,6 +30,7 @@ const Routes = () =>
         <PublicGuard>
           <PublicLayout>
             <HomePage />
+            {/* <LoginPage /> */}
           </PublicLayout>
         </PublicGuard>
       ),

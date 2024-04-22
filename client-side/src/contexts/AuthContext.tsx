@@ -56,8 +56,8 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
         id: JSON.parse(localStorage.user).id,
       });
     }
-    // setIsLoading(false);
-  }, []);
+    setIsLoading(false);
+  }, [localStorage.atoken]);
 
   const authenticateUser = (user: User) => {
     setUser(user);
@@ -87,8 +87,8 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
         setSignUpData,
       }}
     >
-      {/* {isLoading ? <Loading /> : children} */}
-      {children}
+      {isLoading ? <Loading /> : children}
+      {/* {children} */}
     </AuthContext.Provider>
   );
 };

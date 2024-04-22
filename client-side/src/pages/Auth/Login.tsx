@@ -16,14 +16,14 @@ const Login: FunctionComponent = () => {
   // const inputRef = useRef<InputRef>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isAuthenticated)
-      localStorage.lastLocation
-        ? navigate(`/${localStorage.lastLocation}`)
-        : navigate(`/discover`);
-    // inputRef.current!.focus();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if (isAuthenticated)
+  //     localStorage.lastLocation
+  //       ? navigate(`/${localStorage.lastLocation}`)
+  //       : navigate(`/discover`);
+  //   // inputRef.current!.focus();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   // useEffect(() => {
   //   if (isAuthenticated) {

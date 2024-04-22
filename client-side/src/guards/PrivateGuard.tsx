@@ -53,6 +53,7 @@ import { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import { /*Navigate,*/ useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks";
 import { Modal } from "antd";
+import dayjs from "dayjs";
 
 interface PrivateGuardProps {
   children: ReactNode;
@@ -64,16 +65,32 @@ const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({ children }) => {
 
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   const currentTime = dayjs().unix();
+  //   const tokenExpirationTime = localStorage.exp;
+  
+  //   if (currentTime > tokenExpirationTime) {
+  //     setShowModal(true);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
   useEffect(() => {
-    if (!isAuthenticated) {
+    const currentTime = dayjs().unix();
+    const tokenExpirationTime = localStorage.exp;
+  
+    if (currentTime > tokenExpirationTime) {
       setShowModal(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
 
   const handleOk = () => {
     setShowModal(false);
-    navigate("/login");
+    delete localStorage.atoken;
+    delete localStorage.user;
+    delete localStorage.exp;
+    navigate("/");
   };
 
   return (

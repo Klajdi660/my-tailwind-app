@@ -134,7 +134,7 @@ export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
           {topFooter.map((ele, i) => (
             <div key={i}>
               <Link to="#">
-                <Icon name={ele} />
+                <Icon name={ele} className="text-secondary"/>
               </Link>
             </div>
           ))}
