@@ -69,6 +69,14 @@ export interface PasswordChangeResponse {
   success: boolean;
 }
 
+export interface AuthResponse2 {
+  data: {
+    [lToken: string]: string;
+    rToken: string;
+    sToken: string;
+    // user: User;
+  };
+}
 export interface AuthResponse {
   // data: {
   [lToken: string]: string;

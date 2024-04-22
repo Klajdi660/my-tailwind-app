@@ -1,5 +1,5 @@
-import { FunctionComponent, useEffect, /*useRef*/ } from "react";
-import { useNavigate, /*useLocation*/ } from "react-router-dom";
+import { FunctionComponent, useEffect /*useRef*/ } from "react";
+import { useNavigate /*useLocation*/ } from "react-router-dom";
 import { Template } from "../../components";
 import { /*useFormList,*/ useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
@@ -28,14 +28,8 @@ const Login: FunctionComponent = () => {
   // useEffect(() => {
   //   if (isAuthenticated) {
   //     if (localStorage.lastLocation) {
-  //       console.log("HYRI 111");
-  //       console.log(
-  //         "localStoreage.lastLocation :>> ",
-  //         localStorage.lastLocation
-  //       );
   //       navigate(`/${localStorage.lastLocation}`);
   //     } else {
-  //       console.log("HYRI 222");
   //       navigate("/discover");
   //     }
   //   }

@@ -28,7 +28,7 @@ export const authenticate = async (
       accessToken,
       "accessTokenPrivateKey"
     );
-    // const decoded: any = verifyJWT(accessToken, "accessTokenPublicKey");
+    console.log("decoded :>> ", decoded);
     if (!decoded) {
       return next({
         error: true,

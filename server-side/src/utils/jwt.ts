@@ -3,6 +3,7 @@ import jwt, { SignOptions } from "jsonwebtoken";
 import { redisCLI } from "../clients";
 import { log } from "./logger";
 import { JWTParams } from "../types";
+import dayjs from "dayjs";
 
 const { access_token_expires, refresh_token_expires } =
   config.get<JWTParams>("token");
@@ -29,8 +30,10 @@ export const signToken = async (user: any) => {
   // const access_token = signJWT({ id: user.id }, "accessTokenPrivateKey", {
   //     expiresIn: `${access_token_expires}m`,
   // });
-  const access_token = signJWT(user, "accessTokenPrivateKey", {
+  // const aTokenExpire = dayjs().add(access_token_expires, "m");
+  const access_token = signJWT({ id: user.id }, "accessTokenPrivateKey", {
     expiresIn: `${access_token_expires}m`,
+    // expiresIn: aTokenExpire,
   });
 
   // Sign the refresh token

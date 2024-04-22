@@ -110,9 +110,8 @@ export const loginHandler = async (req: Request, res: Response) => {
 
   res.json({
     error: false,
-    atoken: access_token,
-    rtoken: refresh_token,
-    exp: expiredCodeAt,
+    message: "Login successful",
+    data: { atoken: access_token, rtoken: refresh_token, exp: expiredCodeAt },
   });
 };
 
@@ -277,7 +276,7 @@ export const refreshAccessTokenHandler = async (
   }
 
   // Check if the user has a valid session
-  const session = await redisCLI.get(decoded.id);
+  const session = await redisCLI.get(`session_${decoded.id}`);
   if (!session) {
     return next({ error: true, message: msg });
   }

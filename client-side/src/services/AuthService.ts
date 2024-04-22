@@ -4,7 +4,11 @@ import { HttpClient } from "../client";
 // import { globalObject } from "../utils";
 import { endpoints } from "./Api";
 import { useNotification } from "../hooks";
-import { AuthResponse, RegisterUserInput } from "../types/user.type";
+import {
+  AuthResponse,
+  AuthResponse2,
+  RegisterUserInput,
+} from "../types/user.type";
 // import { toast } from "react-toastify";
 
 import { paths } from "../constants";
@@ -45,7 +49,7 @@ const useAuthService = (): AuthService => {
     let data = { identifier, password, remember };
 
     try {
-      const response = await HttpClient.post<AuthResponse>(LOGIN_API, data);
+      const response = await HttpClient.post<AuthResponse2>(LOGIN_API, data);
 
       // if (response.error) {
       //   notify({
@@ -56,9 +60,10 @@ const useAuthService = (): AuthService => {
       //   return;
       // }
 
-      const user = JSON.parse(atob(response.atoken.split(".")[1]));
-      console.log("user 111:>> ", user);
-      localStorage.atoken = response.atoken;
+      const { atoken } = response.data;
+      const user = JSON.parse(atob(atoken.split(".")[1]));
+      console.log("user 11 :>> ", user);
+      localStorage.atoken = atoken;
       localStorage.user = JSON.stringify(user);
       // setLToken(response.lToken);
       // globalObject.lToken = response.lToken;

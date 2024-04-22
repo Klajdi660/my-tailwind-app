@@ -34,9 +34,8 @@
 // const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({ children }) => {
 //   const location = useLocation();
 //   const { isAuthenticated } = useAuth();
-//   console.log("isAuthenticated 1111:>> ", isAuthenticated);
 //   const token = localStorage.atoken;
-//   console.log('token :>> ', token);
+
 //   if (!isAuthenticated) {
 //      return <Navigate to="/login" state={{ from: location }} />;
 //      InfoModal();
@@ -61,10 +60,8 @@ interface PrivateGuardProps {
 
 const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  console.log("user 222:>> ", user);
-  // const token = localStorage.atoken;
   const navigate = useNavigate();
 
   useEffect(() => {

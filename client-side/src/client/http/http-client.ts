@@ -86,9 +86,25 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response: AxiosResponse) => response,
-  (error: AxiosError) => {
+  async (error: AxiosError) => {
+    const originalRequest: any = error.config;
+    console.log("originalRequest :>> ", originalRequest);
     if (error.response && error.response.status === 401) {
-      store.dispatch(deleteUser());
+      console.log("HYRI 111 :>> ");
+      try {
+        store.dispatch(deleteUser());
+        const rToken = localStorage.rtoken;
+        const response = await instance.post("/refresh", { rToken });
+        console.log("response :>> ", response);
+        const { atoken } = response.data;
+
+        localStorage.atoken = atoken;
+
+        originalRequest.headers["Authorization"] = `Bearer ${atoken}`;
+        return axios(originalRequest);
+      } catch (error) {
+        console.error(`Axios Response Error: ${error}`);
+      }
     }
 
     return Promise.reject(error);
