@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { classNames } from "../../utils";
-import { fontSizes } from "../../constants";
+import { fontSizes } from "../../data";
 import { TitleProps } from "../../types/general.type";
 
 export const Title: FunctionComponent<TitleProps> = (props) => {

@@ -18,7 +18,7 @@ const UserMenu = (user: any, hidden: () => void) => {
       name: "Profile",
       icon: "BiUser",
       onClick: () => {
-        navigate("profile");
+        navigate("/profile");
         hidden();
       },
     },
@@ -27,7 +27,7 @@ const UserMenu = (user: any, hidden: () => void) => {
       name: "Settings",
       icon: "AiOutlineSetting",
       onClick: () => {
-        navigate("settings");
+        navigate("/settings");
         hidden();
       },
     },
@@ -63,9 +63,7 @@ const UserMenu = (user: any, hidden: () => void) => {
             />
           )}
           <div className="flex flex-col flex-1 text-sm text-secondary hover:text-primary">
-            <span className="break-all text-onNeutralBg">
-              {extra?.name}
-            </span>
+            <span className="break-all text-onNeutralBg">{extra?.name}</span>
             <span className="text-secondary">@{username}</span>
           </div>
         </div>

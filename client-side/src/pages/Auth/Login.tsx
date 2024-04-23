@@ -1,20 +1,20 @@
-import { FunctionComponent, useEffect /*useRef*/ } from "react";
-import { useNavigate /*useLocation*/ } from "react-router-dom";
+import { FunctionComponent, useEffect, useRef } from "react";
+// import { useNavigate, useLocation } from "react-router-dom";
 import { Template } from "../../components";
-import { /*useFormList,*/ useAuth } from "../../hooks";
+// import { useFormList, useAuth } from "../../hooks";
 import useAuthService from "../../services/AuthService";
 import { LoginUserInput } from "../../types/user.type";
 import { loginValidation } from "../../utils";
 // import { InputRef } from "antd";
-import { formList } from "../../constants";
+import { formList } from "../../data";
 
 const Login: FunctionComponent = () => {
   // const { lists } = useFormList();
   const { login } = useAuthService();
 
-  const { isAuthenticated } = useAuth();
+  // const { isAuthenticated } = useAuth();
   // const inputRef = useRef<InputRef>(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // useEffect(() => {
   //   if (isAuthenticated)
@@ -22,19 +22,6 @@ const Login: FunctionComponent = () => {
   //       ? navigate(`/${localStorage.lastLocation}`)
   //       : navigate(`/discover`);
   //   // inputRef.current!.focus();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     if (localStorage.lastLocation) {
-  //       navigate(`/${localStorage.lastLocation}`);
-  //     } else {
-  //       navigate("/discover");
-  //     }
-  //   }
-
-  //   // inputRef.current?.focus();
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 

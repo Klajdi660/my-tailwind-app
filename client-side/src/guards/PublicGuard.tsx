@@ -4,8 +4,8 @@ interface PublicGuardProps {
   children: ReactNode;
 }
 
-const PublicGuard: FunctionComponent<PublicGuardProps> = ({ children }) => {
+export const PublicGuard: FunctionComponent<PublicGuardProps> = ({
+  children,
+}) => {
   return <>{children}</>;
 };
-
-export default PublicGuard;

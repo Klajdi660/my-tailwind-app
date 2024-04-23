@@ -1,7 +1,7 @@
 export { BackgroundImage } from "./BackgroundImage";
 export { Footer } from "./Footer";
 export { FormField } from "./FormField";
-export { Loadable } from "./Loadable";
+export { Loadable } from "../routes/Loadable";
 export { Loading } from "./Loading";
 // export { LoginForm } from "./Auth/LoginForm";
 // export { SignUpForm } from "./Auth/SignUpForm";

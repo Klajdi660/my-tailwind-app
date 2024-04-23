@@ -56,6 +56,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
         id: JSON.parse(localStorage.user).id,
       });
     }
+
     setIsLoading(false);
   }, [localStorage.atoken]);
 

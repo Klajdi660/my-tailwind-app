@@ -9,7 +9,7 @@ import {
   // resources,
   // plans,
   // community,
-} from "../constants";
+} from "../data";
 import { Image, Icon } from "./UI";
 
 interface HomeFooterProps {}
@@ -134,7 +134,7 @@ export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
           {topFooter.map((ele, i) => (
             <div key={i}>
               <Link to="#">
-                <Icon name={ele} className="text-secondary"/>
+                <Icon name={ele} className="text-secondary" />
               </Link>
             </div>
           ))}

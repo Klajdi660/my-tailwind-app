@@ -1,6 +1,6 @@
 import { createContext, FunctionComponent, ReactNode, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { formList } from "../constants";
+import { formList } from "../data";
 import { FormListItem } from "../types/auth.type";
 
 interface FormListProviderProps {

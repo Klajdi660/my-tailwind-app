@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { paths } from "../constants";
+import { paths } from "../data";
 
 interface ComingSoonProps {}
 

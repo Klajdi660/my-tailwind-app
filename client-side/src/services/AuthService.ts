@@ -11,7 +11,7 @@ import {
 } from "../types/user.type";
 // import { toast } from "react-toastify";
 
-import { paths } from "../constants";
+import { paths } from "../data";
 
 const {
   LOGIN_API,
@@ -177,7 +177,14 @@ const useAuthService = (): AuthService => {
     }
   };
 
-  return { login, socialAuth, signup, logout, forgotPassword, resetPassword };
+  return {
+    login,
+    socialAuth,
+    signup,
+    logout,
+    forgotPassword,
+    resetPassword,
+  };
 };
 
 export default useAuthService;

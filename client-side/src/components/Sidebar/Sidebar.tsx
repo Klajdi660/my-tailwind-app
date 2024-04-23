@@ -3,7 +3,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth, useNotification } from "../../hooks";
 import { Icon, Overlay, Image } from "../UI";
 import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
-import { navlinks } from "../../constants";
+import { navlinks } from "../../data";
 import { defaultThemeConfig, themeConfig } from "../../configs";
 import { useSelector } from "react-redux";
 
