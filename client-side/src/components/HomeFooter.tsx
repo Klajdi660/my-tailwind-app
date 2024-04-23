@@ -139,9 +139,11 @@ export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
             </div>
           ))}
         </div>
-        <div className="border border-2 border-onNeutralBg rounded-md p-1 hover:border-primary hover:border-2">
-          <Icon name="SlArrowUp" />
-        </div>
+        {/* <div className="items-center hidden h-full lg:flex"> */}
+          <button className="w-10 h-10 transition-colors duration-500 rounded-full flex_justify_center bg-primary-opacity hover:bg-primary group">
+            <Icon name="SlArrowUp" size={16} className="group-hover:!text-white" />
+          </button>
+        {/* </div> */}
       </div>
       <div className="flex flex-col justify-between items-left w-11/12 max-w-full mx-auto text-xs text-secondary pb-10">
         <p className="w-[100%] lg:w-[50%] text-justify">
