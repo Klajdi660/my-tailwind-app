@@ -19,7 +19,7 @@ export const registerValidation = yup
     password: yup
       .string()
       .required({
-        message: "Your password must contain between 8 and 60 characters.",
+        message: "Your password must contain between 8 - 60 characters.",
       })
       .min(8, { message: "Your password must contain minimum 8 characters." })
       .max(60, { message: "Your password must contain maximum 60 characters." })
@@ -50,7 +50,7 @@ export const loginValidation = yup
     password: yup
       .string()
       .required({
-        message: "Your password must contain between 8 and 60 characters.",
+        message: "Your password must contain between 8 - 60 characters.",
       })
       .min(8, { message: "Your password must contain minimum 8 characters." })
       .max(60, {
@@ -94,7 +94,7 @@ export const resetPassValidation = yup
     password: yup
       .string()
       .required({
-        message: "Your password must contain between 8 and 60 characters.",
+        message: "Your password must contain between 8 - 60 characters.",
       })
       .min(8, { message: "Your password must contain minimum 8 characters." })
       .max(60, { message: "Your password must contain maximum 8 characters." })

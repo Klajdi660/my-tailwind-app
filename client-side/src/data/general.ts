@@ -31,16 +31,11 @@ export const fontSizes: FontSizesMap = {
 export const accountTypes = [
   {
     id: 1,
-    tabName: "Student",
-    type: "Student",
+    tabName: "User",
+    type: "User",
   },
   {
     id: 2,
-    tabName: "Instructor",
-    type: "Instructor",
-  },
-  {
-    id: 3,
     tabName: "Admin",
     type: "Admin",
   },

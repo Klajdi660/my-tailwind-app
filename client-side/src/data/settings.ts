@@ -38,10 +38,6 @@ export const profileList = [
 
 export const genderList = [
   {
-    value: "Prefer not to say",
-    label: "Prefer not to say",
-  },
-  {
     value: "Male",
     label: "Male",
   },
@@ -52,6 +48,10 @@ export const genderList = [
   {
     value: "Non-Binary",
     label: "Non-Binary",
+  },
+  {
+    value: "Prefer not to say",
+    label: "Prefer not to say",
   },
   {
     value: "Other",
