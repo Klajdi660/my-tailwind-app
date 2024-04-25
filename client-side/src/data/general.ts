@@ -2,7 +2,7 @@ import { FontSizesMap } from "../types/general.type";
 
 export const paths = {
   home: "/",
-  login: "login",
+  login: "/login",
   socialAuth: "social-auth",
   register: "register",
   verifyEmail: "verify-email",
@@ -11,7 +11,7 @@ export const paths = {
   // changePassword: "update-password/:email/:username/:h/:exp",
   resetPassword: "reset-password/:token",
   profile: "profile",
-  discover: "discover",
+  discover: "/discover",
   browse: "browse",
 };
 

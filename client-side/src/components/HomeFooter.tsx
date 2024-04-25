@@ -134,7 +134,9 @@ export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
           {topFooter.map((ele, i) => (
             <div key={i}>
               <Link to="#">
-                <Icon name={ele} className="text-secondary" />
+                <Icon 
+                name={ele} 
+                className="text-secondary" />
               </Link>
             </div>
           ))}
@@ -167,7 +169,7 @@ export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
             <div key={i}>
               <Link to={ele.split(" ").join("-").toLocaleLowerCase()}>
                 {ele}
-              </Link>
+                </Link>
             </div>
           ))}
         </div>

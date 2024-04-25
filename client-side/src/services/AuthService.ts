@@ -49,7 +49,10 @@ const useAuthService = (): AuthService => {
     let data = { identifier, password, remember };
 
     try {
-      const response = await HttpClient.post<AuthResponse2>(LOGIN_API, data);
+      const loginResponse = await HttpClient.post<AuthResponse2>(
+        LOGIN_API,
+        data
+      );
 
       // if (response.error) {
       //   notify({
@@ -60,7 +63,7 @@ const useAuthService = (): AuthService => {
       //   return;
       // }
 
-      const { atoken } = response.data;
+      const { atoken } = loginResponse.data;
       const user = JSON.parse(atob(atoken.split(".")[1]));
       console.log("user 11 :>> ", user);
       localStorage.atoken = atoken;
@@ -69,7 +72,7 @@ const useAuthService = (): AuthService => {
       // setLToken(response.lToken);
       // globalObject.lToken = response.lToken;
       authenticateUser({ id: user.id });
-      navigate(`/${discover}`);
+      navigate(`${discover}`);
     } catch (error) {
       notify({
         title: "Error",
@@ -100,8 +103,19 @@ const useAuthService = (): AuthService => {
   const signup = async (values: RegisterUserInput): Promise<void> => {
     try {
       let data = { ...values };
-      await HttpClient.post<AuthResponse>(SIGNUP_API, data);
-      navigate(`/verify-email`);
+
+      const signupResponse = await HttpClient.post<AuthResponse>(
+        SIGNUP_API,
+        data
+      );
+
+      notify({
+        title: "Success",
+        variant: "success",
+        description: `${signupResponse.message}`,
+      });
+
+      navigate("/verify-email");
     } catch (error) {
       console.error(`Signup failed: ${error}`);
       throw error;

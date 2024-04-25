@@ -14,7 +14,7 @@ export const createUserSchema = object({
       required_error: "Username is required",
     })
       .regex(usernameRegex, "Username should only contain letters and numbers")
-      .min(8, { message: "Username must be at least 8 characters long" }),
+      .min(6, { message: "Username must be at least 8 characters long" }),
     fullName: string({
       required_error: "Full Name is required",
     }),
