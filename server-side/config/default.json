@@ -15,7 +15,7 @@
     "user": "root",
     "port": 3306,
     "password": "",
-    "database": "node-registration"
+    "database": "groove"
   },
   "redis_feed": {
     "host": "127.0.01",
