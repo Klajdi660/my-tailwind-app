@@ -27,7 +27,7 @@ export const signJWT = (
 
 export const signToken = async (user: any) => {
   const userToSend = {
-    id: user.username,
+    id: user.id,
     role: user.role,
   };
 
