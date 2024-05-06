@@ -26,12 +26,7 @@ export const signJWT = (
 };
 
 export const signToken = async (user: any) => {
-  const userToSend = {
-    id: user.id,
-    role: user.role,
-  };
-
-  const access_token = signJWT({ ...userToSend }, "accessTokenPrivateKey", {
+  const access_token = signJWT({ id: user.id }, "accessTokenPrivateKey", {
     expiresIn: `${access_token_expires}m`,
   });
 
