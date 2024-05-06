@@ -61,8 +61,6 @@ axiosRetry(instance, {
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    console.log("config :>> ", config);
-
     if (config.url?.includes("auth/logout")) {
       config.headers.Authorization = `Bearer ${localStorage.atoken}`;
       return config;
@@ -88,14 +86,11 @@ instance.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error: AxiosError) => {
     const originalRequest: any = error.config;
-    console.log("originalRequest :>> ", originalRequest);
     if (error.response && error.response.status === 401) {
-      console.log("HYRI 111 :>> ");
       try {
         store.dispatch(deleteUser());
         const rToken = localStorage.rtoken;
         const response = await instance.post("/refresh", { rToken });
-        console.log("response :>> ", response);
         const { atoken } = response.data;
 
         localStorage.atoken = atoken;

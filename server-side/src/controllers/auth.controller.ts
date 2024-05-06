@@ -102,7 +102,6 @@ export const loginHandler = async (req: Request, res: Response) => {
   }
 
   const { access_token, refresh_token } = await signToken(user);
-  const expiredCodeAt = dayjs().add(60, "s");
 
   res.cookie("access_token", access_token, accessTokenCookieOptions);
   res.cookie("refresh_token", refresh_token, refreshTokenCookieOptions);
@@ -111,7 +110,7 @@ export const loginHandler = async (req: Request, res: Response) => {
   res.json({
     error: false,
     message: "Login successful",
-    data: { atoken: access_token, rtoken: refresh_token, exp: expiredCodeAt },
+    data: { atoken: access_token, rtoken: refresh_token },
   });
 };
 

@@ -12,7 +12,6 @@ export const authenticate = async (
     const { authorization } = req.headers;
     const { access_token } = req.cookies;
     const tokenType = req.method;
-    console.log("tokenType :>> ", tokenType);
     let accessToken;
     if (authorization && authorization.startsWith("Bearer")) {
       accessToken = authorization.split(" ")[1];
@@ -28,7 +27,6 @@ export const authenticate = async (
       accessToken,
       "accessTokenPrivateKey"
     );
-    console.log("decoded :>> ", decoded);
     if (!decoded) {
       return next({
         error: true,

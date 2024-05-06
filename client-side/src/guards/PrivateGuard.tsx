@@ -13,7 +13,6 @@ export const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const { isAuthenticated } = useAuth();
-  console.log('isAuthenticated :>> ', isAuthenticated);
 
   const navigate = useNavigate();
 

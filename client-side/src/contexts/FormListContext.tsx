@@ -17,7 +17,6 @@ const FormListProvider: FunctionComponent<FormListProviderProps> = ({
   children,
 }) => {
   let { pathname } = useLocation();
-  console.log("pathname :>> ", pathname);
   pathname = pathname.replace(/\//, "");
 
   const lists = useMemo(() => {

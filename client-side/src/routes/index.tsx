@@ -141,16 +141,16 @@ export const Routes = () =>
     },
   ]);
 
-// const delayLoad = (
-//   component: () => Promise<{ default: FunctionComponent<any> }>,
-//   delay: number
-// ) => {
-//   return new Promise<{ default: FunctionComponent<any> }>((resolve) => {
-//     setTimeout(() => {
-//       resolve(component());
-//     }, delay);
-//   });
-// };
+const delayLoad = (
+  component: () => Promise<{ default: FunctionComponent<any> }>,
+  delay: number
+) => {
+  return new Promise<{ default: FunctionComponent<any> }>((resolve) => {
+    setTimeout(() => {
+      resolve(component());
+    }, delay);
+  });
+};
 
 // const DashboardPage = Loadable(
 //   lazy(() => import("../pages/Dashboard"))
@@ -163,7 +163,10 @@ const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
 const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
 const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
 
-const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
+// const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
+const LoginPage = Loadable(
+  lazy(() => delayLoad(() => import("../pages/Auth/Login"), 2000))
+);
 const RegisterPage = Loadable(lazy(() => import("../pages/Auth/SignUp")));
 const VerifyEmailPage = Loadable(
   lazy(() => import("../pages/Auth/VerifyEmail"))
