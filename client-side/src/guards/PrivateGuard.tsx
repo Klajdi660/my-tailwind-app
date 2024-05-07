@@ -28,7 +28,7 @@ export const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({
   useEffect(() => {
     const checkTokenExpiration = () => {
       const currentTime = dayjs().unix();
-      const tokenExpirationTime = localStorage.exp;
+      const tokenExpirationTime = JSON.parse(localStorage.user).exp;
 
       if (tokenExpirationTime && currentTime > parseInt(tokenExpirationTime)) {
         setShowModal(true);
