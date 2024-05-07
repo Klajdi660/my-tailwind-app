@@ -65,7 +65,6 @@ const useAuthService = (): AuthService => {
 
       const { atoken } = loginResponse.data;
       const user = JSON.parse(atob(atoken.split(".")[1]));
-      console.log("user :>> ", user);
       localStorage.atoken = atoken;
       localStorage.user = JSON.stringify(user);
       localStorage.exp = user.exp;

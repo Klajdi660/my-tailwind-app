@@ -268,7 +268,8 @@ export const refreshAccessTokenHandler = async (
   // Validate the Refresh token
   const decoded = verifyJWT<{ id: string }>(
     refresh_token,
-    "refreshTokenPublicKey"
+    // "refreshTokenPublicKey"
+    "refreshTokenPrivateKey"
   );
   if (!decoded) {
     return next({ error: true, message: msg });

@@ -11,7 +11,6 @@ const { access_token_expires, refresh_token_expires } =
 export const signJWT = (
   payload: object,
   key: string,
-  // key: "accessTokenPrivateKey" | "refreshTokenPrivateKey",
   options: SignOptions = {}
 ) => {
   const privateKey = Buffer.from(config.get<string>(key), "base64").toString(
@@ -41,17 +40,14 @@ export const signToken = async (user: any) => {
   return { access_token, refresh_token };
 };
 
-export const verifyJWT = <T>(
-  token: string,
-  key: string
-  // key: "accessTokenPublicKey" | "refreshTokenPublicKey"
-): T | null => {
+export const verifyJWT = <T>(token: string, key: string): T | null => {
   try {
     const publicKey = Buffer.from(config.get<string>(key), "base64").toString(
       "ascii"
     );
 
     const decoded = jwt.verify(token, publicKey) as T;
+
     return decoded;
   } catch (error) {
     log.error(`${JSON.stringify({ action: "verifyJWT catch", data: error })}`);

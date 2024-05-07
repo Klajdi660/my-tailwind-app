@@ -6,7 +6,9 @@ const useUserService = () => {
 
   const getUsers = async () => {};
 
-  const getUserDetails = async () => {};
+  const getUserDetails = async () => {
+    const user = localStorage.user;
+  };
 
   const confirmUser = async () => {};
 

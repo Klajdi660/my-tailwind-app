@@ -16,13 +16,31 @@ export const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const currentTime = dayjs().unix();
-    const tokenExpirationTime = localStorage.exp;
+  // useEffect(() => {
+  //   const currentTime = dayjs().unix();
+  //   const tokenExpirationTime = localStorage.user.exp;
 
-    if (currentTime > tokenExpirationTime) {
-      setShowModal(true);
-    }
+  //   if (currentTime > tokenExpirationTime) {
+  //     setShowModal(true);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    const checkTokenExpiration = () => {
+      const currentTime = dayjs().unix();
+      const tokenExpirationTime = localStorage.exp;
+
+      if (tokenExpirationTime && currentTime > parseInt(tokenExpirationTime)) {
+        setShowModal(true);
+      }
+    };
+
+    checkTokenExpiration();
+
+    // Check token expiration every time localStorage.exp changes
+    const interval = setInterval(checkTokenExpiration, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleOk = () => {

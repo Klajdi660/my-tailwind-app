@@ -19,6 +19,7 @@ import {
 const userRoutes = Router();
 
 // userRoutes.use(authenticate, requireUser);
+userRoutes.use(authenticate);
 
 userRoutes.get("/:id", getUserByIdHandler);
 
