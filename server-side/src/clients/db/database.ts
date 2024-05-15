@@ -8,7 +8,7 @@ const {
   password: dbPassword,
   database: dbName,
 } = config.get<MysqlParams>("mysql");
-
+console.log("dbPassword :>> ", dbPassword);
 const dbDriver = "mysql";
 
 export const sequelizeConnection = new Sequelize(dbName, dbUser, dbPassword, {

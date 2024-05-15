@@ -39,9 +39,9 @@ authRouter.post(
 
 authRouter.post("/login", validateResource(loginUserSchema), loginHandler);
 
-authRouter.get("/logout", /*authenticate, requireUser,*/ logoutHandler);
+authRouter.get("/logout", authenticate, requireUser, logoutHandler);
 
-authRouter.get("/refresh", refreshAccessTokenHandler);
+// authRouter.get("/refresh", refreshAccessTokenHandler);
 
 authRouter.post(
   "/forgot-password",

@@ -1,32 +1,39 @@
-import { Redis } from "ioredis";
-import config from "config";
-import { RedisParams } from "../../types";
-
-const redisPath = config.get<RedisParams>("redis_feed");
-
-export const redisCLI = new Redis(redisPath);
-
+// import { Redis } from "ioredis";
 // import config from "config";
-// import { createClient } from "redis";
-// import { log } from "../../utils";
 // import { RedisParams } from "../../types";
 
-// const { host, port } = config.get<RedisParams>("redis_feed");
+// const redisPath = config.get<RedisParams>("redis_feed");
 
-// const redisUrl = `redis://${host}:${port}`;
+// export const redisCLI = new Redis(redisPath);
 
-// export const redisCLI = createClient({
-//     url: redisUrl
-// });
+import config from "config";
+import { createClient } from "redis";
+import { log } from "../../utils";
+import { RedisParams } from "../../types";
 
-// const redisConnection = async () => {
-//     try {
-//         await redisCLI.connect();
-//         log.info("Redis client connected...");
-//     } catch{(e: any) => {
-//         log.error(e.message);
-//         setTimeout(redisConnection, 5000);
-//     }};
-// };
+const { host, port } = config.get<RedisParams>("redis_feed");
 
-// redisConnection();
+const redisUrl = `redis://${host}:${port}`;
+
+export const redisCLI = createClient({
+  url: redisUrl,
+});
+
+const redisConnection = async () => {
+  try {
+    await redisCLI.connect();
+    log.info(
+      `${JSON.stringify({
+        action: "Redis Run",
+        message: "Redis connection has been established successfully.",
+      })}`
+    );
+  } catch {
+    (e: any) => {
+      log.error(e.message);
+      setTimeout(redisConnection, 5000);
+    };
+  }
+};
+
+redisConnection();

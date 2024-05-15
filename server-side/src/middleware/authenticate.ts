@@ -25,8 +25,8 @@ export const authenticate = async (
 
     const decoded = verifyJWT<{ id: string }>(
       accessToken,
-      "accessTokenPrivateKey"
-      // "accessTokenPublicKey"
+      // "accessTokenPrivateKey"
+      "accessTokenPublicKey"
     );
 
     if (!decoded) {

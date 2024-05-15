@@ -29,8 +29,6 @@ const { access_token_expires } = config.get<JWTParams>("token");
 
 const { client_url } = config.get<AppParams>("app");
 
-export const otpSendHandler = async (req: Request, res: Response) => {};
-
 export const loginHandler = async (req: Request, res: Response) => {
   const { identifier, password, remember } = req.body;
 
@@ -68,7 +66,11 @@ export const loginHandler = async (req: Request, res: Response) => {
       expiredCodeAt: dayjs().add(60, "s"),
     };
 
-    const addedToRedis = await redisCLI.setnx(
+    // const addedToRedis = await redisCLI.setnx(
+    //   `verify_email_pending_${user.email}`,
+    //   JSON.stringify(user_registration)
+    // );
+    const addedToRedis = await redisCLI.set(
       `verify_email_pending_${user.email}`,
       JSON.stringify(user_registration)
     );
@@ -148,7 +150,11 @@ export const registerHandler = async (req: Request, res: Response) => {
   user_registration["otpCode"] = code;
   user_registration["expiredCodeAt"] = codeExpire;
 
-  const addedToRedis = await redisCLI.setnx(
+  // const addedToRedis = await redisCLI.setnx(
+  //   `verify_email_pending_${email}`,
+  //   JSON.stringify(user_registration)
+  // );
+  const addedToRedis = await redisCLI.set(
     `verify_email_pending_${email}`,
     JSON.stringify(user_registration)
   );
@@ -268,8 +274,8 @@ export const refreshAccessTokenHandler = async (
   // Validate the Refresh token
   const decoded = verifyJWT<{ id: string }>(
     refresh_token,
-    // "refreshTokenPublicKey"
-    "refreshTokenPrivateKey"
+    "refreshTokenPublicKey"
+    // "refreshTokenPrivateKey"
   );
   if (!decoded) {
     return next({ error: true, message: msg });
@@ -324,7 +330,11 @@ export const forgotPasswordHandler = async (req: Request, res: Response) => {
     conf_code: code,
   };
 
-  const addedToRedis = await redisCLI.setnx(
+  // const addedToRedis = await redisCLI.setnx(
+  //   `reset_password_pending_${user.email}`,
+  //   JSON.stringify(user_reset)
+  // );
+  const addedToRedis = await redisCLI.set(
     `reset_password_pending_${user.email}`,
     JSON.stringify(user_reset)
   );

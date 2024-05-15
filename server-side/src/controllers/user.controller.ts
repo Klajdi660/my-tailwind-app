@@ -174,7 +174,11 @@ export const contactUsHandler = async (req: Request, res: Response) => {
   };
 
   // const contactDoc = await createContact(req.body);
-  const contactDoc = await redisCLI.setnx(
+  // const contactDoc = await redisCLI.setnx(
+  //   `contact_us_${email}`,
+  //   JSON.stringify(user_contact)
+  // );
+  const contactDoc = await redisCLI.set(
     `contact_us_${email}`,
     JSON.stringify(user_contact)
   );

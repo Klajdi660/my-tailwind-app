@@ -28,22 +28,20 @@ const app: Express = express();
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
-
 app.use(
   helmet({
     contentSecurityPolicy: false,
     frameguard: true,
   })
 );
-
 app.use(cookieParser());
-
-const corsOptions = {
-  origin: client_url,
-  credentials: true,
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: client_url,
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 app.options("*", cors());
 app.disable("x-powered-by");
 

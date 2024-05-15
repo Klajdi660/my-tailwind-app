@@ -10,7 +10,8 @@ const { access_token_expires, refresh_token_expires } =
 
 export const signJWT = (
   payload: object,
-  key: string,
+  // key: string,
+  key: "accessTokenPrivateKey" | "refreshTokenPrivateKey",
   options: SignOptions = {}
 ) => {
   const privateKey = Buffer.from(config.get<string>(key), "base64").toString(
@@ -19,8 +20,7 @@ export const signJWT = (
 
   return jwt.sign(payload, privateKey, {
     ...(options && options),
-    algorithm: "HS256",
-    // algorithm: "RS256",
+    algorithm: "RS256",
   });
 };
 
@@ -34,13 +34,20 @@ export const signToken = async (user: any) => {
   });
 
   // Create a Session
-  await redisCLI.setnx(`session_${user.id}`, JSON.stringify(user));
+  // await redisCLI.setnx(`session_${user.id}`, JSON.stringify(user)); for ioredis
+  await redisCLI.set(`session_${user.id}`, JSON.stringify(user), {
+    EX: 60 * 60,
+  });
   await redisCLI.expire(`session_${user.id}`, 3600);
 
   return { access_token, refresh_token };
 };
 
-export const verifyJWT = <T>(token: string, key: string): T | null => {
+export const verifyJWT = <T>(
+  token: string,
+  // key: string,
+  key: "accessTokenPublicKey" | "refreshTokenPublicKey"
+): T | null => {
   try {
     const publicKey = Buffer.from(config.get<string>(key), "base64").toString(
       "ascii"
