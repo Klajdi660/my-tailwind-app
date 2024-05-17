@@ -38,13 +38,12 @@ export const LoginForm: FunctionComponent = () => {
   }, []);
 
   const handleOnSubmit = async (values: LoginUserInput) => {
-    const { username, password, remember } = values;
-
-    try {
-      await login(username, password, remember);
-    } catch (error) {
-      console.error("Failed to login!", error);
-    }
+    // const { username, password, remember } = values;
+    // try {
+    //   await login(username, password, remember);
+    // } catch (error) {
+    //   console.error("Failed to login!", error);
+    // }
   };
 
   // const handleFormChange = () => {

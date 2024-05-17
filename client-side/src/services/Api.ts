@@ -6,6 +6,7 @@ export const endpoints = {
   LOGOUT_API: "/auth/logout",
   FORGOTPASSWORD_API: "/auth/forgot-password",
   RESETPASSWORD_API: "/auth/reset-password",
+  OAUTH_GOOGLE_API: "/auth/google",
 };
 
 // USER ENDPOINTS

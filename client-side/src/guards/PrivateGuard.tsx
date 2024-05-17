@@ -1,8 +1,8 @@
 import { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
-import { useAuth } from "../hooks";
 import { Modal } from "antd";
+// import { useAuth } from "../hooks";
 
 interface PrivateGuardProps {
   children: ReactNode;
@@ -12,7 +12,7 @@ export const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({
   children,
 }) => {
   const [showModal, setShowModal] = useState(false);
-  const { isAuthenticated } = useAuth();
+  // const { isAuthenticated } = useAuth();
 
   const navigate = useNavigate();
 

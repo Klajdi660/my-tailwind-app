@@ -17,7 +17,7 @@ export interface UpdateUserInput extends Partial<User> {
 export interface LoginUserInput {
   password: string;
   remember: boolean;
-  username: string;
+  identifier: string;
 }
 
 export interface RegisterUserInput {

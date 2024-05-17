@@ -42,7 +42,7 @@ export const registerValidation = yup
 
 export const loginValidation = yup
   .object({
-    username: yup
+    identifier: yup
       .string()
       .trim()
       .matches(/^(?!@)[^\s]+(?<!@)$/, "Please enter a valid email or username.")

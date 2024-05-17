@@ -5,6 +5,7 @@ import { verifyValidation } from "../../utils";
 
 const VerifyEmail: FunctionComponent = () => {
   const { lists } = useFormList();
+
   const handleOnSubmit = async (values: any) => {};
 
   return (

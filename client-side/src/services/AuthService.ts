@@ -7,6 +7,7 @@ import { useNotification } from "../hooks";
 import {
   AuthResponse,
   AuthResponse2,
+  LoginUserInput,
   RegisterUserInput,
 } from "../types/user.type";
 // import { toast } from "react-toastify";
@@ -22,13 +23,9 @@ const {
 } = endpoints;
 
 interface AuthService {
-  login: (
-    identifier: string,
-    password: string,
-    remember: boolean
-  ) => Promise<void>;
+  login: (data: LoginUserInput) => Promise<void>;
   socialAuth: (tokenParam: string) => Promise<void>;
-  signup: (values: RegisterUserInput) => Promise<void>;
+  signup: (data: RegisterUserInput) => Promise<void>;
   logout: () => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
   resetPassword: (data: any, token: string) => Promise<void>;
@@ -41,13 +38,7 @@ const useAuthService = (): AuthService => {
   const [notify] = useNotification();
   const navigate = useNavigate();
 
-  const login = async (
-    identifier: string,
-    password: string,
-    remember: boolean
-  ): Promise<void> => {
-    let data = { identifier, password, remember };
-
+  const login = async (data: LoginUserInput): Promise<void> => {
     try {
       const loginResponse = await HttpClient.post<AuthResponse2>(
         LOGIN_API,
@@ -97,10 +88,8 @@ const useAuthService = (): AuthService => {
     }
   };
 
-  const signup = async (values: RegisterUserInput): Promise<void> => {
+  const signup = async (data: RegisterUserInput): Promise<void> => {
     try {
-      let data = { ...values };
-
       const signupResponse = await HttpClient.post<AuthResponse>(
         SIGNUP_API,
         data

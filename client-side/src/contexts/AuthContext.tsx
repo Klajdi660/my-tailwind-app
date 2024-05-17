@@ -27,6 +27,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   const [signupData, setSignUpData] = useState();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  console.log("user auth:>> ", user);
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
   // useEffect(() => {
@@ -52,12 +53,17 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
 
   useEffect(() => {
     if (localStorage.atoken) {
+      console.log(
+        "JSON.parse(localStorage.user) :>> ",
+        JSON.parse(localStorage.user)
+      );
       setUser({
         id: JSON.parse(localStorage.user).id,
       });
     }
 
     setIsLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localStorage.atoken]);
 
   const authenticateUser = (user: User) => {

@@ -167,12 +167,12 @@ const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
 const LoginPage = Loadable(
   lazy(() => delayLoad(() => import("../pages/Auth/Login"), 2000))
 );
-const RegisterPage = Loadable(lazy(() => import("../pages/Auth/SignUp")));
+const RegisterPage = Loadable(lazy(() => import("../pages/Auth/Register")));
 const VerifyEmailPage = Loadable(
   lazy(() => import("../pages/Auth/VerifyEmail"))
 );
 const ForgotPasswordPage = Loadable(
-  lazy(() => import("../pages/Auth/ResetPassword"))
+  lazy(() => import("../pages/Auth/ForgotPassword"))
 );
 const ResetPasswordPage = Loadable(
   lazy(() => import("../pages/Auth/ChangePassword"))

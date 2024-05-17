@@ -49,10 +49,10 @@ export const formList: FormListMap = {
     },
     {
       type: "input",
-      name: "username",
+      name: "identifier",
       label: "Email address or Username",
       props: {
-        type: "username",
+        type: "text",
         placeholder: "",
       },
     },

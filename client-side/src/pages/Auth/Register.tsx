@@ -5,7 +5,7 @@ import useAuthService from "../../services/AuthService";
 import { RegisterUserInput } from "../../types/user.type";
 import { registerValidation } from "../../utils";
 
-const SignUp: FunctionComponent = () => {
+const Register: FunctionComponent = () => {
   const { lists } = useFormList();
   const { signup } = useAuthService();
 
@@ -26,4 +26,4 @@ const SignUp: FunctionComponent = () => {
   );
 };
 
-export default SignUp;
+export default Register;

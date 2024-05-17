@@ -3,9 +3,9 @@ import { useFormList } from "../../hooks";
 import { forgotPassValidation } from "../../utils";
 import { Template } from "../../components";
 
-const ResetPassword: FunctionComponent = () => {
+const ForgotPassword: FunctionComponent = () => {
   const { lists } = useFormList();
-
+  console.log("lists  res:>> ", lists);
   const handleOnSubmit = async (values: any) => {};
 
   return (
@@ -17,4 +17,4 @@ const ResetPassword: FunctionComponent = () => {
   );
 };
 
-export default ResetPassword;
+export default ForgotPassword;
