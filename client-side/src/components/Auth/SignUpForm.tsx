@@ -9,7 +9,7 @@ import { Button, IconButton } from "../UI";
 
 export const SignUpForm: FunctionComponent = () => {
   // student or instructor
-  const { signup } = useAuthService();
+  const { register } = useAuthService();
   const { setSignUpData } = useAuth();
   const [form] = Form.useForm();
 
@@ -30,7 +30,7 @@ export const SignUpForm: FunctionComponent = () => {
 
       setSignUpData(signupValues);
 
-      await signup(values);
+      await register(values);
     } catch (error: any) {
       const { message } = error.response.data;
       toast.error(message);

@@ -7,11 +7,11 @@ import { registerValidation } from "../../utils";
 
 const Register: FunctionComponent = () => {
   const { lists } = useFormList();
-  const { signup } = useAuthService();
+  const { register } = useAuthService();
 
   const handleOnSubmit = async (values: RegisterUserInput) => {
     try {
-      await signup(values);
+      await register(values);
     } catch (error) {
       console.error(`Failed to register! ${error}`);
     }

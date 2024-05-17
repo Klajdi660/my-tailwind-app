@@ -28,6 +28,10 @@ export interface RegisterUserInput {
   username: string;
 }
 
+export interface ForgotPasswordInput {
+  email: string;
+}
+
 export interface CustomButtonProps {
   username: string;
   htmlType: string;

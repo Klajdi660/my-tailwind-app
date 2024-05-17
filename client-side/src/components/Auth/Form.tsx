@@ -123,7 +123,9 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                         placeholder={list.props.placeholder || list.label}
                         disabled={list.props.disabled}
                         type={
-                          ["password"]?.includes(list.props.type)
+                          ["password", "confirmPassword"]?.includes(
+                            list.props.type
+                          )
                             ? showPass?.[list.name]
                               ? "text"
                               : "password"

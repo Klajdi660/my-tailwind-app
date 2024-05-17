@@ -9,6 +9,7 @@ import {
   AuthResponse2,
   LoginUserInput,
   RegisterUserInput,
+  ForgotPasswordInput,
 } from "../types/user.type";
 // import { toast } from "react-toastify";
 
@@ -25,9 +26,10 @@ const {
 interface AuthService {
   login: (data: LoginUserInput) => Promise<void>;
   socialAuth: (tokenParam: string) => Promise<void>;
-  signup: (data: RegisterUserInput) => Promise<void>;
+  register: (data: RegisterUserInput) => Promise<void>;
+  verifyEmail: (data: any) => Promise<void>;
   logout: () => Promise<void>;
-  forgotPassword: (email: string) => Promise<void>;
+  forgotPassword: (data: ForgotPasswordInput) => Promise<void>;
   resetPassword: (data: any, token: string) => Promise<void>;
 }
 
@@ -88,7 +90,7 @@ const useAuthService = (): AuthService => {
     }
   };
 
-  const signup = async (data: RegisterUserInput): Promise<void> => {
+  const register = async (data: RegisterUserInput): Promise<void> => {
     try {
       const signupResponse = await HttpClient.post<AuthResponse>(
         SIGNUP_API,
@@ -108,6 +110,8 @@ const useAuthService = (): AuthService => {
     }
   };
 
+  const verifyEmail = async (): Promise<void> => {};
+
   const logout = async (): Promise<void> => {
     try {
       await HttpClient.get<AuthResponse>(LOGOUT_API);
@@ -126,7 +130,7 @@ const useAuthService = (): AuthService => {
     }
   };
 
-  const forgotPassword = async (data: any): Promise<void> => {
+  const forgotPassword = async (data: ForgotPasswordInput): Promise<void> => {
     try {
       const response = await HttpClient.post<AuthResponse>(
         FORGOTPASSWORD_API,
@@ -180,7 +184,8 @@ const useAuthService = (): AuthService => {
   return {
     login,
     socialAuth,
-    signup,
+    register,
+    verifyEmail,
     logout,
     forgotPassword,
     resetPassword,
