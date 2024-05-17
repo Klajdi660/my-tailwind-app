@@ -131,7 +131,9 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                         }
                         autoComplete={formName !== "login" ? "off" : "on"}
                       />
-                      {["password"]?.includes(list.props.type) && (
+                      {["password", "confirmPassword"]?.includes(
+                        list.props.type
+                      ) && (
                         <span className="absolute right-2 top-[50%] translate-y-[-50%]">
                           {!list.props.disabled && (
                             <IconButton

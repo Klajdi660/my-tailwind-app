@@ -181,8 +181,9 @@ export const formList: FormListMap = {
       formType: "auth",
       formName: "forgot-password",
       formTitle: "Reset Password",
-      description: "to continue to Groove",
-      btnTxt: "Send Email",
+      description:
+        "Enter your email address, and we'll send a code to continue to Groove",
+      btnTxt: "Send Code",
       footerTitle: "Remember Password?",
       footerLink: "Go back",
       linkTo: "/login",
@@ -231,8 +232,9 @@ export const formList: FormListMap = {
     {
       formType: "auth",
       formName: "password-code",
-      formTitle: "Enter Code to Reset Password",
-      description: "to continue to Groove",
+      formTitle: "Continue Reset Password",
+      // description: "Enter code to get back into your account",
+      description: "Enter code to continue to Groove",
       btnTxt: "Reset Password",
       footerTitle: "Remember Password?",
       footerLink: "Go back",
