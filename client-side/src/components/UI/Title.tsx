@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { classNames } from "../../utils";
 import { fontSizes } from "../../data";
-import { TitleProps } from "../../types/general.type";
+import { TitleProps } from "../../types";
 
 export const Title: FunctionComponent<TitleProps> = (props) => {
   const { name, desc, type, divider = true, className, color } = props;

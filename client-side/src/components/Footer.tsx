@@ -7,8 +7,7 @@ import {
   tiktokIcon,
   youtubeIcon,
 } from "../assets";
-
-interface FooterProps {}
+import { FooterProps } from "../types";
 
 const downloadBtnList = [
   {

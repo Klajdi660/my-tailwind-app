@@ -3,28 +3,9 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import OtpInput from "react18-input-otp";
-import { FormProps2 } from "../../types/auth.type";
-import { Button, Icon, IconButton, ImgUploader } from "../UI";
+import { Button, IconButton, ImgUploader } from "../UI";
 import { classNames } from "../../utils";
-
-const FormMessage = ({ errorMessage }: any) => {
-  const message = errorMessage?.message || String(errorMessage || "");
-
-  return (
-    <>
-      {message && (
-        <p className="text-xs text-red-500 flex flex-row items-center mt-2">
-          <Icon
-            name="PiWarningCircleBold"
-            size={18}
-            className="mr-1 text-red-500"
-          />
-          {message}
-        </p>
-      )}
-    </>
-  );
-};
+import { FormProps2 } from "../../types";
 
 export const Form: FunctionComponent<FormProps2> = (props) => {
   const {
@@ -158,7 +139,6 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                     </div>
                   )}
                 </div>
-                <FormMessage errorMessage={errors?.[list.name]?.message} />
               </fieldset>
             )}
             {["image_dropzone"].includes(list.type) && (
@@ -187,7 +167,6 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                   // containerDims="h-36 w-36"
                   // borderType="rounded-full"
                 />
-                <FormMessage />
               </fieldset>
             )}
           </Fragment>

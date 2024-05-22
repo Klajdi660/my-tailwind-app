@@ -1,9 +1,7 @@
 import { FunctionComponent } from "react";
+import { Button, Icon, SmallModal } from "../UI";
 import { useAppModal } from "../../utils";
-import { Button, Icon } from "../UI";
-import { SmallModal } from "../UI";
-
-interface DeleteAccountProps {}
+import { DeleteAccountProps } from "../../types";
 
 export const DeleteModal = () => {
   const { modalOpen, setModalOpen } = useAppModal();

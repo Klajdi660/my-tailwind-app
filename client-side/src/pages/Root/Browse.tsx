@@ -1,8 +1,7 @@
 import { FunctionComponent } from "react";
+import { BrowsePageProps } from "../../types";
 
-interface BrowseProps {}
-
-const Browse: FunctionComponent<BrowseProps> = () => {
+const Browse: FunctionComponent<BrowsePageProps> = () => {
   return (
     <section className="browse_page">
       <div className="relative gap-6">

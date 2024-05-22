@@ -1,17 +1,8 @@
 import { FunctionComponent, useMemo } from "react";
-import { Form } from "../Auth/Form";
+import { Form } from "../Auth";
 import { Icon } from "../UI";
-import { updatePasswordValidation } from "../../utils/validations";
-
-interface ChangePasswordProps {
-  provider: string | any;
-}
-
-interface ChangePasswordSave {
-  currentPassword: string;
-  newPassword: string;
-  confirmNewPassword: string;
-}
+import { updatePasswordValidation } from "../../utils";
+import { ChangePasswordProps, ChangePasswordSave } from "../../types";
 
 export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
   props

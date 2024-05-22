@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react";
-import { Outlet } from "react-router-dom";
-import { GlobalLoading } from "../components/UI";
-import { Navbar } from "../components";
-import { FormListProvider } from "../contexts/FormListContext";
+// import { FunctionComponent } from "react";
+// import { Outlet } from "react-router-dom";
+// import { GlobalLoading, Navbar } from "../components";
+import { FormListProvider } from "../contexts";
+import { ProviderProps } from "../types";
 
 // export const PublicLayout: FunctionComponent = () => {
 //   return (
@@ -18,14 +18,10 @@ import { FormListProvider } from "../contexts/FormListContext";
 //   );
 // };
 
-interface PublicLayoutProps {
-  children?: React.ReactNode;
-}
-
 export const PublicLayout = ({
   children,
   ...restProps
-}: PublicLayoutProps): JSX.Element => {
+}: ProviderProps): JSX.Element => {
   return (
     <div className="public_layout">
       <FormListProvider>

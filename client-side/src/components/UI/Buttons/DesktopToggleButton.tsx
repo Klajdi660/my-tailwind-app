@@ -1,11 +1,7 @@
 import { FunctionComponent } from "react";
 import { updateThemeConfig } from "../../../store/redux/slices/theme.slice";
 import { Icon } from "../Icon";
-
-interface DesktopToggleButtonProps {
-  theme: any;
-  dispatch: any;
-}
+import { DesktopToggleButtonProps } from "../../../types";
 
 export const DesktopToggleButton: FunctionComponent<
   DesktopToggleButtonProps

@@ -1,14 +1,11 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavScrollTrigger } from "../utils";
-
-interface ScrollProviderProps {
-  children: React.ReactNode;
-}
+import { ProviderProps } from "../types";
 
 const triggerPoint = 50;
 
-export const ScrollProvider = ({ children }: ScrollProviderProps) => {
+export const ScrollProvider = ({ children }: ProviderProps) => {
   const { pathname } = useLocation();
   const { setNavScrollTrigger } = useNavScrollTrigger();
 

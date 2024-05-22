@@ -2,8 +2,7 @@ import { FunctionComponent, useState } from "react";
 import { Popover } from "antd";
 import { Notification } from "../../Notification";
 import { Icon } from "../Icon";
-
-interface NotificationProps {}
+import { NotificationButtonProps } from "../../../types";
 
 const notificationList = [
   {
@@ -24,7 +23,9 @@ const notificationList = [
   },
 ];
 
-export const NotificationButton: FunctionComponent<NotificationProps> = () => {
+export const NotificationButton: FunctionComponent<
+  NotificationButtonProps
+> = () => {
   const [open, setOpen] = useState(false);
 
   // const hide = () => {

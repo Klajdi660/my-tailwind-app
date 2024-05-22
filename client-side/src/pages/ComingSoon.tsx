@@ -1,10 +1,9 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { paths } from "../data";
+import { ComingSoonPageProps } from "../types";
 
-interface ComingSoonProps {}
-
-const ComingSoon: FunctionComponent<ComingSoonProps> = () => {
+const ComingSoon: FunctionComponent<ComingSoonPageProps> = () => {
   const { discover } = paths;
 
   return (

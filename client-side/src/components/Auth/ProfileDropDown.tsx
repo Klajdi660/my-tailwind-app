@@ -1,16 +1,19 @@
 import { FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Popover } from "antd";
 import { Image, Icon, Button } from "../UI";
 import { useAuth } from "../../hooks";
-import useAuthService from "../../services/AuthService";
+import { useAuthService } from "../../services";
 import { classNames } from "../../utils";
-import { Popover } from "antd";
 import { userIcon } from "../../assets";
+import { UserMenuProps, ProfileDropdownProps } from "../../types";
 
-const UserMenu = (user: any, hidden: () => void) => {
+const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
+  const { user, hidden } = props;
+  const { email, username, avatar, extra } = user;
+
   const { logout } = useAuthService();
   const navigate = useNavigate();
-  const { email, username, avatar, extra } = user;
 
   const menuItems = [
     {
@@ -100,11 +103,11 @@ const UserMenu = (user: any, hidden: () => void) => {
   );
 };
 
-const ProfileDropdown: FunctionComponent = () => {
+const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
 
-  const hide = () => {
+  const hidden = () => {
     setOpen(false);
   };
 
@@ -119,7 +122,8 @@ const ProfileDropdown: FunctionComponent = () => {
       <Popover
         trigger="click"
         arrow={false}
-        content={UserMenu(user, hide)}
+        // content={UserMenu(user, hide)}
+        content={<UserMenu user={user} hidden={hidden} />}
         open={open}
         onOpenChange={handleOpenChange}
         placement="topRight"

@@ -1,23 +1,5 @@
 import { create } from "zustand";
-
-interface AppUtilState {
-  openSwitch: boolean;
-  toggleMenu: boolean;
-  toggleSearch: boolean;
-  setOpenSwitch: (value: boolean) => void;
-  setToggleMenu: (value: boolean) => void;
-  setToggleSearch: (value: boolean) => void;
-}
-
-interface NavScrollTriggerState {
-  navScrollTrigger: boolean;
-  setNavScrollTrigger: (value: boolean) => void;
-}
-
-interface AppModalState {
-  modalOpen: boolean;
-  setModalOpen: (value: boolean) => void;
-}
+import { AppUtilState, AppModalState, NavScrollTriggerState } from "../types";
 
 export const useNavScrollTrigger = create<NavScrollTriggerState>((set) => ({
   navScrollTrigger: false,

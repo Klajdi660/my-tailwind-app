@@ -7,13 +7,12 @@ import {
   Title,
   PersonalDetails,
   UserInfo,
+  DeleteModal,
 } from "../components";
 import { useAppModal } from "../utils";
-import { DeleteModal } from "../components/Settings/DeleteAccount";
+import { ProfilePageProps } from "../types";
 
-interface ProfileProps {}
-
-const Profile: FunctionComponent<ProfileProps> = () => {
+const Profile: FunctionComponent<ProfilePageProps> = () => {
   const { user } = useAuth();
   const { modalOpen } = useAppModal();
 

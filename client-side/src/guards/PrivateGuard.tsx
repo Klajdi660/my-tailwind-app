@@ -1,14 +1,11 @@
-import { FunctionComponent, ReactNode, useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import { Modal } from "antd";
 // import { useAuth } from "../hooks";
+import { ProviderProps } from "../types";
 
-interface PrivateGuardProps {
-  children: ReactNode;
-}
-
-export const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({
+export const PrivateGuard: FunctionComponent<ProviderProps> = ({
   children,
 }) => {
   const [showModal, setShowModal] = useState(false);

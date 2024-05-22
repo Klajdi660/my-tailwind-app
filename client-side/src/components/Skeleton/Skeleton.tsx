@@ -1,10 +1,6 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent } from "react";
 import { classNames } from "../../utils";
-
-interface SkeletonProps {
-  className: string;
-  children?: ReactNode;
-}
+import { SkeletonProps } from "../../types";
 
 export const Skeleton: FunctionComponent<SkeletonProps> = ({
   className,

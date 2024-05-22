@@ -1,11 +1,12 @@
 import { FunctionComponent, useMemo, useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useAuth, useNotification } from "../../hooks";
 import { Icon, Overlay, Image } from "../UI";
 import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
 import { navlinks } from "../../data";
 import { defaultThemeConfig, themeConfig } from "../../configs";
-import { useSelector } from "react-redux";
+import { SidebarPorps } from "../../types";
 
 const User = () => {
   const { user } = useAuth();
@@ -41,7 +42,7 @@ const User = () => {
   );
 };
 
-export const Sidebar: FunctionComponent = () => {
+export const Sidebar: FunctionComponent<SidebarPorps> = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();

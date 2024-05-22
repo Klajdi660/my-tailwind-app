@@ -4,13 +4,7 @@ import OtpInput from "react18-input-otp";
 import { Form, Progress } from "antd";
 import { Button } from "../UI";
 import { classNames } from "../../utils";
-
-interface OTPCodeFormParams {
-  btnText: string;
-  footerTitle: string;
-  footerLink: string;
-  linkTo: string;
-}
+import { OTPCodeFormParams } from "../../types";
 
 export const OTPCodeForm: FunctionComponent<OTPCodeFormParams> = (props) => {
   const { btnText, footerLink, footerTitle, linkTo } = props;

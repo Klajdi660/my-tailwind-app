@@ -10,7 +10,8 @@ import {
   LoginUserInput,
   RegisterUserInput,
   ForgotPasswordInput,
-} from "../types/user.type";
+  AuthService,
+} from "../types";
 // import { toast } from "react-toastify";
 
 import { paths } from "../data";
@@ -23,17 +24,7 @@ const {
   RESETPASSWORD_API,
 } = endpoints;
 
-interface AuthService {
-  login: (data: LoginUserInput) => Promise<void>;
-  socialAuth: (tokenParam: string) => Promise<void>;
-  register: (data: RegisterUserInput) => Promise<void>;
-  verifyEmail: (data: any) => Promise<void>;
-  logout: () => Promise<void>;
-  forgotPassword: (data: ForgotPasswordInput) => Promise<void>;
-  resetPassword: (data: any, token: string) => Promise<void>;
-}
-
-const useAuthService = (): AuthService => {
+export const useAuthService = (): AuthService => {
   const { discover } = paths;
 
   const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
@@ -192,4 +183,4 @@ const useAuthService = (): AuthService => {
   };
 };
 
-export default useAuthService;
+// export default useAuthService;

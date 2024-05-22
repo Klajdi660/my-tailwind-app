@@ -27,15 +27,9 @@
 // import { FunctionComponent } from "react";
 // import { Outlet } from "react-router-dom";
 import { CartSwitcher, Navbar, Sidebar, TopPlay } from "../components";
+import { ProviderProps } from "../types";
 
-interface PrivateLayoutPropsType {
-  children: React.ReactNode;
-}
-
-export const PrivateLayout = ({
-  children,
-  ...restProps
-}: PrivateLayoutPropsType) => {
+export const PrivateLayout = ({ children, ...restProps }: ProviderProps) => {
   return (
     <div
       className="flex flex-col max-w-full m-auto xl:flex-row app bg-main"

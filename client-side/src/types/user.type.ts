@@ -32,13 +32,13 @@ export interface ForgotPasswordInput {
   email: string;
 }
 
-export interface CustomButtonProps {
-  username: string;
-  htmlType: string;
-  styles: string;
-  title: string;
-  type: string;
-}
+// export interface CustomButtonProps {
+//   username: string;
+//   htmlType: string;
+//   styles: string;
+//   title: string;
+//   type: string;
+// }
 
 export interface IconProps {
   className?: string;

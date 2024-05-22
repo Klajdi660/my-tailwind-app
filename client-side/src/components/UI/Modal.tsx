@@ -1,22 +1,6 @@
 import { FunctionComponent } from "react";
 import { Modal } from "antd";
-
-interface SmallModalProps {
-  open: boolean;
-  children?: any;
-  footer?: any;
-  title?: string;
-  closable?: boolean;
-  isMobile?: boolean;
-  destroyOnClose?: boolean;
-  onOk?: any;
-  okText?: string;
-  okButtonProps?: any;
-  onCancel?: any;
-  cancelText?: string;
-  width?: any;
-  bodyStyle?: any;
-}
+import { SmallModalProps } from "../../types";
 
 export const SmallModal: FunctionComponent<SmallModalProps> = (props) => {
   const {

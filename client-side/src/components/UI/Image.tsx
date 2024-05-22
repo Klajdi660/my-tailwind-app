@@ -1,12 +1,5 @@
 import { FunctionComponent } from "react";
-
-interface ImageProps {
-  imgUrl: string;
-  name?: string;
-  width?: number;
-  height?: number;
-  styles?: string;
-}
+import { ImageProps } from "../../types";
 
 export const Image: FunctionComponent<ImageProps> = (props) => {
   const { imgUrl, name, width, height, styles } = props;

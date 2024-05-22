@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Searchbar } from "../components";
 import { useAuth } from "../hooks";
-import { classNames } from "../utils";
-import { icon, iconName } from "../assets";
 import {
   Button,
   Image,
@@ -16,11 +16,9 @@ import {
 } from "./UI";
 import ProfileDropdown from "./Auth/ProfileDropDown";
 import { defaultThemeConfig } from "../configs";
-import { useSelector, useDispatch } from "react-redux";
-import { Searchbar } from "../components";
-import { useMobileResponsive, useAppUtil } from "../utils";
-
-interface NavbarProps {}
+import { icon, iconName } from "../assets";
+import { useMobileResponsive, useAppUtil, classNames } from "../utils";
+import { NavbarProps } from "../types";
 
 export const Navbar: FunctionComponent<NavbarProps> = () => {
   const dispatch = useDispatch();

@@ -1,8 +1,7 @@
 import { FunctionComponent } from "react";
+import { CollectionPageProps } from "../../types";
 
-interface CollectionProps {}
-
-const Collection: FunctionComponent<CollectionProps> = () => {
+const Collection: FunctionComponent<CollectionPageProps> = () => {
   return (
     <>
       <h1 className="text-onNeutralBg">Collection Page</h1>;

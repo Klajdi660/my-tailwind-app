@@ -11,8 +11,7 @@ import {
   // community,
 } from "../data";
 import { Image, Icon } from "./UI";
-
-interface HomeFooterProps {}
+import { HomeFooterProps } from "../types";
 
 export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
   return (
@@ -134,17 +133,19 @@ export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
           {topFooter.map((ele, i) => (
             <div key={i}>
               <Link to="#">
-                <Icon 
-                name={ele} 
-                className="text-secondary" />
+                <Icon name={ele} className="text-secondary" />
               </Link>
             </div>
           ))}
         </div>
         {/* <div className="items-center hidden h-full lg:flex"> */}
-          <button className="w-10 h-10 transition-colors duration-500 rounded-full flex_justify_center bg-primary-opacity hover:bg-primary group">
-            <Icon name="SlArrowUp" size={16} className="group-hover:!text-white" />
-          </button>
+        <button className="w-10 h-10 transition-colors duration-500 rounded-full flex_justify_center bg-primary-opacity hover:bg-primary group">
+          <Icon
+            name="SlArrowUp"
+            size={16}
+            className="group-hover:!text-white"
+          />
+        </button>
         {/* </div> */}
       </div>
       <div className="flex flex-col justify-between items-left w-11/12 max-w-full mx-auto text-xs text-secondary pb-10">
@@ -169,7 +170,7 @@ export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
             <div key={i}>
               <Link to={ele.split(" ").join("-").toLocaleLowerCase()}>
                 {ele}
-                </Link>
+              </Link>
             </div>
           ))}
         </div>

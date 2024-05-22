@@ -1,34 +1,4 @@
-interface ThemeConfig {
-  modes: string[];
-  colors: {
-    [key: string]: {
-      primary: string;
-      primaryLightGray: string;
-      primaryOpacity: string;
-    };
-  };
-  themes: {
-    [key: string]: {
-      neutralBg: string;
-      neutralBgOpacity: string;
-      neutralBgAlt: string;
-      onNeutralBg: string;
-      onNeutralBgSecondary: string;
-      onNeutralBgDivider: string;
-      switchBg: string;
-      cardBg: string;
-      cardSkeletonBg: string;
-      cardBgHover: string;
-      player: string;
-    };
-  };
-  players: string[];
-  fontFamilies: string[];
-  sidebars: {
-    folded: string;
-    full: string;
-  };
-}
+import { ThemeConfig } from "../types";
 
 export const themeConfig: ThemeConfig = {
   modes: ["light", "dark"],

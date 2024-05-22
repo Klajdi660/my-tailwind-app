@@ -1,11 +1,7 @@
 import { FunctionComponent } from "react";
 import { updateThemeConfig } from "../../../store/redux/slices/theme.slice";
 import { Icon } from "../Icon";
-
-interface ThemeButtonProps {
-  mode: string;
-  dispatch: any;
-}
+import { ThemeButtonProps } from "../../../types";
 
 export const ThemeButton: FunctionComponent<ThemeButtonProps> = (props) => {
   const { mode, dispatch } = props;

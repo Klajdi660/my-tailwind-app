@@ -1,11 +1,7 @@
 import { FunctionComponent } from "react";
-import { classNames } from "../../utils";
 import { Skeleton } from "./Skeleton";
-
-interface MediaCardSkeletonProps {
-  type: string;
-  number: any[];
-}
+import { classNames } from "../../utils";
+import { MediaCardSkeletonProps } from "../../types";
 
 export const MediaCardSkeleton: FunctionComponent<MediaCardSkeletonProps> = (
   props

@@ -1,15 +1,15 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Checkbox } from "antd";
-import useAuthService from "../../services/AuthService";
+import { useAuthService } from "../../services";
 import { useAuth } from "../../hooks";
-import { LoginUserInput } from "../../types/user.type";
 import { IconButton, Button } from "../UI";
+import { LoginUserInput, LoginFormProps } from "../../types";
 
 // import { loginValidation } from "../../utils";
 // import { yupResolver } from "@hookform/resolvers/yup";
 
-export const LoginForm: FunctionComponent = () => {
+export const LoginForm: FunctionComponent<LoginFormProps> = () => {
   const { login } = useAuthService();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();

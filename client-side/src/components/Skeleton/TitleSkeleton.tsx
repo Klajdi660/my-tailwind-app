@@ -1,10 +1,7 @@
 import { FunctionComponent } from "react";
-import { classNames } from "../../utils";
 import { Skeleton } from "./Skeleton";
-
-interface TitleSkeletonProps {
-  type: string;
-}
+import { classNames } from "../../utils";
+import { TitleSkeletonProps } from "../../types";
 
 export const TitleSkeleton: FunctionComponent<TitleSkeletonProps> = (props) => {
   const { type } = props;

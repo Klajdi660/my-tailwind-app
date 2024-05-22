@@ -1,4 +1,4 @@
-import { TitleMap, FormListMap } from "../types/auth.type";
+import { TitleMap, FormListMap } from "../types";
 
 export const titles: TitleMap = {
   login: "Sign In",

@@ -1,24 +1,19 @@
 import { FunctionComponent } from "react";
-
-interface FormFieldPorps {
-  labelName: string;
-  placeholder: string;
-  inputType: string;
-  isTextArea: boolean;
-  value: string;
-  handleChange: any;
-};
+import { FormFieldPorps } from "../types";
 
 export const FormField: FunctionComponent<FormFieldPorps> = (props) => {
-  const { labelName, placeholder, inputType, isTextArea, value, handleChange } = props;
-  
+  const { labelName, placeholder, inputType, isTextArea, value, handleChange } =
+    props;
+
   return (
     <label className="flex-1 w-full flex flex-col">
       {labelName && (
-        <span className="font-epilogue font-medium text-[14px] leading-[22px] text-[#808191] mb-[10px]">{labelName}</span>
+        <span className="font-epilogue font-medium text-[14px] leading-[22px] text-[#808191] mb-[10px]">
+          {labelName}
+        </span>
       )}
       {isTextArea ? (
-        <textarea 
+        <textarea
           required
           value={value}
           onChange={handleChange}
@@ -27,7 +22,7 @@ export const FormField: FunctionComponent<FormFieldPorps> = (props) => {
           className="py-2 sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[14px] placeholder:text-[#4b5264] rounded-xl sm:min-w-[300px]"
         />
       ) : (
-        <input 
+        <input
           required
           value={value}
           onChange={handleChange}

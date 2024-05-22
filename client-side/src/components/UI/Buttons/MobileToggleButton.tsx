@@ -1,8 +1,7 @@
 import { FunctionComponent } from "react";
 import { Icon } from "../Icon";
 import { useAppUtil } from "../../../utils";
-
-interface MobileToggleButtonProps {}
+import { MobileToggleButtonProps } from "../../../types";
 
 export const MobileToggleButton: FunctionComponent<
   MobileToggleButtonProps

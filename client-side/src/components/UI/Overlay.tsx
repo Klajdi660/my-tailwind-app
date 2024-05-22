@@ -1,13 +1,6 @@
 import { FunctionComponent, useEffect } from "react";
 import { classNames } from "../../utils";
-
-interface OverlayProps {
-  isOpen: boolean;
-  handleIsOpen: (value: boolean) => void;
-  transparent?: boolean;
-  className?: string;
-  isMobile?: boolean;
-}
+import { OverlayProps } from "../../types";
 
 export const Overlay: FunctionComponent<OverlayProps> = (props) => {
   const { isMobile, isOpen, handleIsOpen, className } = props;

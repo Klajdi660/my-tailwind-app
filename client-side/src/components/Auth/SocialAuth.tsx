@@ -1,8 +1,9 @@
 import { FunctionComponent, useEffect } from "react";
 import { useLocation, Navigate } from "react-router-dom";
-import useAuthService from "../../services/AuthService";
+import { useAuthService } from "../../services";
+import { SocialAuthProps } from "../../types";
 
-const SocialAuth: FunctionComponent = () => {
+const SocialAuth: FunctionComponent<SocialAuthProps> = () => {
   const { socialAuth } = useAuthService();
   const location = useLocation();
 

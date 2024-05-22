@@ -2,12 +2,12 @@ import { FunctionComponent, useEffect, useRef } from "react";
 // import { useNavigate, useLocation } from "react-router-dom";
 import { Template } from "../../components";
 import { useFormList, useAuth } from "../../hooks";
-import useAuthService from "../../services/AuthService";
-import { LoginUserInput } from "../../types/user.type";
+import { useAuthService } from "../../services";
+import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation } from "../../utils";
 // import { InputRef } from "antd";
 
-const Login: FunctionComponent = () => {
+const Login: FunctionComponent<LoginPageProps> = () => {
   const { lists } = useFormList();
   const { login } = useAuthService();
 

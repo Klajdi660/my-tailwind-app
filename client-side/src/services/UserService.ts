@@ -1,7 +1,6 @@
-import { HttpClient } from "../client";
 import { useStore } from "../hooks";
 
-const useUserService = () => {
+export const useUserService = () => {
   const { setLoading, selectedTimeZone } = useStore();
 
   const getUsers = async () => {};
@@ -27,5 +26,3 @@ const useUserService = () => {
     dowbloadFile,
   };
 };
-
-export default useUserService;

@@ -1,12 +1,7 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "./UI";
-
-interface NotificationProps {
-  id: number;
-  content: string;
-  time: string;
-}
+import { NotificationProps } from "../types";
 
 export const Notification: FunctionComponent<NotificationProps[]> = (
   notificationList

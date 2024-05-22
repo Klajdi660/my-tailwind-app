@@ -1,8 +1,7 @@
 import { FunctionComponent } from "react";
+import { WishlistPageProps } from "../../types";
 
-interface WishlistProps {}
-
-const Wishlist: FunctionComponent<WishlistProps> = () => {
+const Wishlist: FunctionComponent<WishlistPageProps> = () => {
   return (
     <>
       <h1 className="text-onNeutralBg">Wishlist Page</h1>;

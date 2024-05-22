@@ -2,10 +2,10 @@ import { FunctionComponent } from "react";
 import { useFormList } from "../../hooks";
 import { forgotPassValidation } from "../../utils";
 import { Template } from "../../components";
-import useAuthService from "../../services/AuthService";
-import { ForgotPasswordInput } from "../../types/user.type";
+import { useAuthService } from "../../services";
+import { ForgotPasswordInput, ForgotPasswordPagePropes } from "../../types";
 
-const ForgotPassword: FunctionComponent = () => {
+const ForgotPassword: FunctionComponent<ForgotPasswordPagePropes> = () => {
   const { lists } = useFormList();
   const { verifyEmail } = useAuthService();
 

@@ -1,9 +1,8 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
+import { ErrorPageProps } from "../types";
 
-interface ErrorProps {};
-
-const Error: FunctionComponent<ErrorProps> = () => {
+const Error: FunctionComponent<ErrorPageProps> = () => {
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="text-center">

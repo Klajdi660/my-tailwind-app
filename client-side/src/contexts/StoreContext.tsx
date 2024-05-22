@@ -1,28 +1,7 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState } from "react";
 import moment from "moment-timezone";
-import { User } from "../types/user.type";
-import { Translations } from "../types/language.type";
+import { ProviderProps, StoreContextType, Translations } from "../types";
 import { useAuth } from "../hooks/useAuth";
-
-interface ProviderProps {
-  children: ReactNode;
-}
-
-interface StoreContextType {
-  user?: User | null;
-  userStore: object;
-  setUserStore: (userStore: object) => void;
-  loading: boolean;
-  setLoading: (loading: boolean) => void;
-  selectedTimeZone: string;
-  setSelectedTimeZone: (selectedTImeZone: string) => void;
-  timeZones: string[];
-  usersTimeZone: string;
-  lang: string;
-  setLang: (lang: string) => void;
-  translations: Translations;
-  setTranslations: (translations: Translations) => void;
-}
 
 const initialState: StoreContextType = {
   userStore: {},
@@ -40,6 +19,7 @@ const initialState: StoreContextType = {
 };
 
 const StoreContext = createContext(initialState);
+
 const StoreProvider: React.FC<ProviderProps> = ({ children }) => {
   const { user } = useAuth();
   const [lang, setLang] = useState<string>("en");
@@ -50,6 +30,7 @@ const StoreProvider: React.FC<ProviderProps> = ({ children }) => {
 
   let timeZones = moment.tz.names();
   let usersTimeZone = moment.tz.guess();
+
   return (
     <StoreContext.Provider
       value={{

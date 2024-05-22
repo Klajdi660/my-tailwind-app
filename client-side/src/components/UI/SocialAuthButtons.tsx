@@ -2,8 +2,7 @@ import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "./Icon";
 import { socialAuthList } from "../../data";
-
-interface SocialAuthButtonProps {}
+import { SocialAuthButtonProps } from "../../types";
 
 export const SocialAuthButton: FunctionComponent<
   SocialAuthButtonProps

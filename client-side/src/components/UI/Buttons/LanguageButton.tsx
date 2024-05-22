@@ -1,11 +1,10 @@
 import { FunctionComponent, useState } from "react";
-import { Icon } from "../Icon";
 import { Popover } from "antd";
 import { Language } from "../../Language";
 import { Image } from "../Image";
+import { Icon } from "../Icon";
 import { alFlag, shFlag } from "../../../assets";
-
-interface LanguageButtonProps {}
+import { LanguageButtonProps } from "../../../types";
 
 export const LanguageButton: FunctionComponent<LanguageButtonProps> = (
   props

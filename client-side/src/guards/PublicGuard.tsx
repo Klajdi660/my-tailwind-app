@@ -1,11 +1,6 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent } from "react";
+import { ProviderProps } from "../types";
 
-interface PublicGuardProps {
-  children: ReactNode;
-}
-
-export const PublicGuard: FunctionComponent<PublicGuardProps> = ({
-  children,
-}) => {
+export const PublicGuard: FunctionComponent<ProviderProps> = ({ children }) => {
   return <>{children}</>;
 };

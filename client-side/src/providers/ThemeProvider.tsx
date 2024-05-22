@@ -3,15 +3,12 @@
 // import { useMediaQuery } from "react-responsive";
 // import { defaultThemeConfig } from "../configs";
 // import { useTheme } from "../hooks";
-
-interface ThemeProviderProps {
-  children: React.ReactNode;
-}
+import { ProviderProps } from "../types";
 
 export const ThemeProvider = ({
   children,
   ...restProps
-}: ThemeProviderProps): JSX.Element => {
+}: ProviderProps): JSX.Element => {
   // const [theme, setTheme] = useTheme();
 
   // const [themeLS] = useLocalStorage("groove-theme-config", defaultThemeConfig);

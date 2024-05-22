@@ -1,12 +1,10 @@
 import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Image, Button } from "../../components/UI";
+import { Image, Button, HomeFooter } from "../../components";
 import { iconName } from "../../assets";
-import { HomeFooter } from "../../components";
+import { HomePageProps } from "../../types";
 
-interface HomeProps {}
-
-const Home: FunctionComponent<HomeProps> = () => {
+const Home: FunctionComponent<HomePageProps> = () => {
   const navigate = useNavigate();
 
   return (

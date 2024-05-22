@@ -1,9 +1,11 @@
+import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { Paper, Box, LinearProgress } from "@mui/material";
 // import { useEffect, useState } from "react";
 import { iconName } from "../../assets";
+import { GlobalLoadingProps } from "../../types";
 
-export const GlobalLoading = () => {
+export const GlobalLoading: FunctionComponent<GlobalLoadingProps> = () => {
   // const { globalLoading } = useSelector((state: any) => state.globalLoading);
   // const [isLoading, setIsLoading] = useState(false);
   // useEffect(() => {

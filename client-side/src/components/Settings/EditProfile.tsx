@@ -1,21 +1,8 @@
 import { FunctionComponent, useMemo, useState } from "react";
-import { Form } from "../Auth/Form";
+import { Form } from "../Auth";
 import { profileList } from "../../data";
-import { editProfileValidation } from "../../utils/validations";
-
-interface EditProfileProps {
-  email: string | any;
-  username: string | any;
-  imgUrl: string | any;
-  provider: string | any;
-  user: any;
-}
-
-interface EditProfileSave {
-  username: string;
-  email: string;
-  image: string;
-}
+import { editProfileValidation } from "../../utils";
+import { EditProfileProps, EditProfileSave } from "../../types";
 
 export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
   const { email, username, imgUrl, provider, user } = props;

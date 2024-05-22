@@ -1,12 +1,8 @@
-import { ReactNode } from "react";
 import { User } from "../types/user.type";
 import { RegisterUserInput } from "../types/user.type";
+import { Translations } from "./language.type";
 
 // Auth context
-export interface AuthProviderProps {
-  children: ReactNode;
-}
-
 export interface AuthContextType {
   authenticateUser: (user: User) => void;
   isAuthenticated: boolean;
@@ -20,6 +16,18 @@ export interface AuthContextType {
 }
 
 // Store context
-export interface ProviderProps {
-  children: ReactNode;
+export interface StoreContextType {
+  user?: User | null;
+  userStore: object;
+  setUserStore: (userStore: object) => void;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+  selectedTimeZone: string;
+  setSelectedTimeZone: (selectedTImeZone: string) => void;
+  timeZones: string[];
+  usersTimeZone: string;
+  lang: string;
+  setLang: (lang: string) => void;
+  translations: Translations;
+  setTranslations: (translations: Translations) => void;
 }

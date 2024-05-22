@@ -6,17 +6,8 @@ import { Image } from "./Image";
 import { userIcon } from "../../assets";
 // import { useAppModal } from "../../lib";
 // import { Button } from "./Button";
-import { Modal } from "antd";
-
-interface ImgUploaderParams {
-  imgUrl: string;
-  hasProvider?: boolean;
-  imageRef?: any;
-  containerDims?: string;
-  borderType?: string;
-  name?: string;
-  username?: string;
-}
+// import { Modal } from "antd";
+import { ImgUploaderParams } from "../../types";
 
 export const ImgUploader: FunctionComponent<ImgUploaderParams> = (props) => {
   const {

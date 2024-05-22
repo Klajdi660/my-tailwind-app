@@ -3,8 +3,9 @@ import { FunctionComponent } from "react";
 import { resetPassValidation } from "../../utils";
 import { Template } from "../../components";
 import { formList } from "../../data";
+import { ChangePasswordPageProps } from "../../types";
 
-const ChangePassword: FunctionComponent = () => {
+const ChangePassword: FunctionComponent<ChangePasswordPageProps> = () => {
   // const { lists } = useFormList();
 
   const handleOnSubmit = async (values: any) => {};

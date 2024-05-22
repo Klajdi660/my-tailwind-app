@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
 import { Template } from "../../components";
 import { useFormList } from "../../hooks";
-import useAuthService from "../../services/AuthService";
-import { RegisterUserInput } from "../../types/user.type";
+import { useAuthService } from "../../services";
+import { RegisterUserInput, RegisterPageProps } from "../../types";
 import { registerValidation } from "../../utils";
 
-const Register: FunctionComponent = () => {
+const Register: FunctionComponent<RegisterPageProps> = () => {
   const { lists } = useFormList();
   const { register } = useAuthService();
 

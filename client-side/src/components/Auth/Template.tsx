@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { TemplateProps } from "../../types/general.type";
+import { TemplateProps } from "../../types";
 import { SocialAuthButton, Title, Image } from "../UI";
 import { iconName } from "../../assets";
 import { Form } from "./Form";

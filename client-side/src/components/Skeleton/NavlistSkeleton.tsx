@@ -1,8 +1,9 @@
 import { FunctionComponent } from "react";
-import { classNames } from "../../utils";
 import { Skeleton } from "./Skeleton";
+import { classNames } from "../../utils";
+import { NavlistSkeletonProps } from "../../types";
 
-export const NavlistSkeleton: FunctionComponent = () => {
+export const NavlistSkeleton: FunctionComponent<NavlistSkeletonProps> = () => {
   const gradientClass = "bg-gradient-to-l from-main to-card";
 
   return (

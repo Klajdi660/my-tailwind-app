@@ -1,8 +1,7 @@
 import { FunctionComponent } from "react";
+import { DiscoverPageProps } from "../../types";
 
-interface DiscoverProps {}
-
-const Discover: FunctionComponent<DiscoverProps> = () => {
+const Discover: FunctionComponent<DiscoverPageProps> = () => {
   return (
     <section className="discover_page">
       <div className="flex flex-col gap-y-16">

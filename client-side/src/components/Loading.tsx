@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react";
-
-interface LoadingPorps {}
+import { LoadingPorps } from "../types";
 
 export const Loading: FunctionComponent<LoadingPorps> = () => {
   return (

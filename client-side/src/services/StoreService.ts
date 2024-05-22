@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { HttpClient } from "../client";
 import { useStore, useNotification } from "../hooks";
 import { StoreContext } from "../contexts";
-import { Translations } from "../types/language.type";
+import { Translations } from "../types";
 
-const useStoreService = () => {
+export const useStoreService = () => {
   const { userStore } = useStore();
   const [notify] = useNotification();
   const { translations, setTranslations } = useContext(StoreContext);
@@ -28,5 +28,3 @@ const useStoreService = () => {
 
   return { userStore, _, getTranslationsFile };
 };
-
-export default useStoreService;

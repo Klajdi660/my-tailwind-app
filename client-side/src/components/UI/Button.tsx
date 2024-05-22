@@ -1,23 +1,7 @@
 import { forwardRef, FunctionComponent, Ref } from "react";
-import { classNames } from "../../utils";
 import { Icon } from "./Icon";
-
-interface ButtonProps {
-  type?: "button" | "submit" | "reset";
-  label: string;
-  disabled?: boolean;
-  className?: string;
-  variant:
-    | "outlined"
-    | "contained"
-    | "gradient"
-    | "filled"
-    | "delete"
-    | "upload";
-  labelIcon?: any;
-  isSubmitting?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-}
+import { classNames } from "../../utils";
+import { ButtonProps } from "../../types";
 
 export const Button: FunctionComponent<ButtonProps> = forwardRef(
   (

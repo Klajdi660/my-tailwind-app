@@ -5,8 +5,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { User } from "../types/user.type";
-import { AuthContextType, AuthProviderProps } from "../types/context.type";
+import { AuthContextType, ProviderProps, User } from "../types";
 import { Loading } from "../components";
 
 const initialState: AuthContextType = {
@@ -21,13 +20,12 @@ const initialState: AuthContextType = {
 
 const AuthContext = createContext(initialState);
 
-const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
+const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [lToken, setLToken] = useState("");
   const [signupData, setSignUpData] = useState();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  console.log("user auth:>> ", user);
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
   // useEffect(() => {
@@ -53,10 +51,6 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
 
   useEffect(() => {
     if (localStorage.atoken) {
-      console.log(
-        "JSON.parse(localStorage.user) :>> ",
-        JSON.parse(localStorage.user)
-      );
       setUser({
         id: JSON.parse(localStorage.user).id,
       });
