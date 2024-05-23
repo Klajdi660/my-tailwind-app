@@ -7,6 +7,7 @@ export type FormListMap = {
 };
 
 export interface FormListItem {
+  item: string | undefined;
   btnTxt: string;
   footerLink: string;
   footerTitle: string;
@@ -17,6 +18,7 @@ export interface FormListItem {
   linkTo: string;
   name: string;
   props: {
+    disabled: boolean | undefined;
     placeholder: string;
     type: string;
   };
@@ -42,4 +44,12 @@ export interface FormProps2 {
   schema?: any;
   setFiles?: any;
   user?: any;
+}
+
+interface ErrorMessageParams {
+  message: string;
+}
+
+export interface ErrorMessageProps {
+  errorMessage?: ErrorMessageParams | any;
 }

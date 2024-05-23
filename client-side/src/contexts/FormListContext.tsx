@@ -1,10 +1,10 @@
 import { createContext, FunctionComponent, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { formList } from "../data";
-import { FormListItem, ProviderProps } from "../types";
+import { FormListContextType, ProviderProps } from "../types";
 
-const initialState = {
-  lists: [] as FormListItem[],
+const initialState: FormListContextType = {
+  lists: [],
 };
 
 const FormListContext = createContext(initialState);

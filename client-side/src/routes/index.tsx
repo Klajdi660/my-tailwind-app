@@ -142,13 +142,12 @@ export const Routes = () =>
   ]);
 
 const delayLoad = (
-  component: () => Promise<{ default: FunctionComponent<any> }>,
-  delay: number
+  component: () => Promise<{ default: FunctionComponent<any> }>
 ) => {
   return new Promise<{ default: FunctionComponent<any> }>((resolve) => {
     setTimeout(() => {
       resolve(component());
-    }, delay);
+    }, 1000);
   });
 };
 
@@ -165,9 +164,13 @@ const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
 
 // const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
 const LoginPage = Loadable(
-  lazy(() => delayLoad(() => import("../pages/Auth/Login"), 2000))
+  lazy(() => delayLoad(() => import("../pages/Auth/Login")))
 );
-const RegisterPage = Loadable(lazy(() => import("../pages/Auth/Register")));
+
+const RegisterPage = Loadable(
+  lazy(() => delayLoad(() => import("../pages/Auth/Register")))
+);
+
 const VerifyEmailPage = Loadable(
   lazy(() => import("../pages/Auth/VerifyEmail"))
 );

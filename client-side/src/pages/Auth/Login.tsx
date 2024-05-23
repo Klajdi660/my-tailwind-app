@@ -27,9 +27,7 @@ const Login: FunctionComponent<LoginPageProps> = () => {
   const handleOnSubmit = async (values: LoginUserInput) => {
     try {
       await login(values);
-    } catch (error) {
-      console.error(`Failed to login! ${error}`);
-    }
+    } catch (error) {}
   };
 
   const defaultValues = {

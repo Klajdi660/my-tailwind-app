@@ -7,11 +7,11 @@ import { ForgotPasswordInput, ForgotPasswordPagePropes } from "../../types";
 
 const ForgotPassword: FunctionComponent<ForgotPasswordPagePropes> = () => {
   const { lists } = useFormList();
-  const { verifyEmail } = useAuthService();
+  const { forgotPassword } = useAuthService();
 
   const handleOnSubmit = async (values: ForgotPasswordInput) => {
     try {
-      await verifyEmail(values);
+      await forgotPassword(values);
     } catch (error) {
       console.error(`Failed to verify email! ${error}`);
     }

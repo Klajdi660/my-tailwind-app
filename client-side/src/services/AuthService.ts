@@ -13,7 +13,6 @@ import {
   AuthService,
 } from "../types";
 // import { toast } from "react-toastify";
-
 import { paths } from "../data";
 
 const {
@@ -46,7 +45,7 @@ export const useAuthService = (): AuthService => {
       //   });
       //   return;
       // }
-
+      // dispatch(setGlobalLoading(false));
       const { atoken } = loginResponse.data;
       const user = JSON.parse(atob(atoken.split(".")[1]));
       localStorage.atoken = atoken;
@@ -127,14 +126,14 @@ export const useAuthService = (): AuthService => {
         FORGOTPASSWORD_API,
         data
       );
-      if (response.error) {
-        notify({
-          title: "Error",
-          variant: "error",
-          description: response.message,
-        });
-        return;
-      }
+      // if (response.error) {
+      //   notify({
+      //     title: "Error",
+      //     variant: "error",
+      //     description: response.message,
+      //   });
+      //   return;
+      // }
 
       notify({
         title: "Success",

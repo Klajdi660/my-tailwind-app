@@ -1,6 +1,4 @@
-import { User } from "../types/user.type";
-import { RegisterUserInput } from "../types/user.type";
-import { Translations } from "./language.type";
+import { User, RegisterUserInput, Translations, FormListItem } from "../types";
 
 // Auth context
 export interface AuthContextType {
@@ -30,4 +28,8 @@ export interface StoreContextType {
   setLang: (lang: string) => void;
   translations: Translations;
   setTranslations: (translations: Translations) => void;
+}
+
+export interface FormListContextType {
+  lists: FormListItem[];
 }

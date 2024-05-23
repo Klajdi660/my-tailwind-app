@@ -3,7 +3,7 @@
 // import { GlobalLoading, Navbar } from "../components";
 import { FormListProvider } from "../contexts";
 import { ProviderProps } from "../types";
-
+import { Loading } from "../components";
 // export const PublicLayout: FunctionComponent = () => {
 //   return (
 //     <div className="auth_page">

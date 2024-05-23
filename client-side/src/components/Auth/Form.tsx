@@ -3,9 +3,28 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import OtpInput from "react18-input-otp";
-import { Button, IconButton, ImgUploader } from "../UI";
+import { Button, IconButton, ImgUploader, Icon } from "../UI";
 import { classNames } from "../../utils";
-import { FormProps2 } from "../../types";
+import { FormProps2, ErrorMessageProps, FormListItem } from "../../types";
+
+const ErrorMessage = ({ errorMessage }: ErrorMessageProps) => {
+  const message = errorMessage?.message || String(errorMessage || "");
+
+  return (
+    <>
+      {message && (
+        <p className="text-xs text-red-500 flex flex-row items-center mt-2">
+          <Icon
+            name="PiWarningCircleBold"
+            size={18}
+            className="mr-1 text-red-500"
+          />
+          {message}
+        </p>
+      )}
+    </>
+  );
+};
 
 export const Form: FunctionComponent<FormProps2> = (props) => {
   const {
@@ -72,7 +91,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
           }}
         />
       )}
-      {lists.map((list: any, index: any) => {
+      {lists.map((list: FormListItem, index: number) => {
         return (
           <Fragment key={index}>
             {["input", "textarea"].includes(list.type) && (
@@ -139,6 +158,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                     </div>
                   )}
                 </div>
+                <ErrorMessage errorMessage={errors?.[list.name]?.message} />
               </fieldset>
             )}
             {["image_dropzone"].includes(list.type) && (
@@ -167,6 +187,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                   // containerDims="h-36 w-36"
                   // borderType="rounded-full"
                 />
+                <ErrorMessage />
               </fieldset>
             )}
           </Fragment>
