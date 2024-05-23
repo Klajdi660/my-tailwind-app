@@ -327,3 +327,7 @@ input[type="checkbox"] {
   }
 }
 /* End Loading */
+/* .loading-class {
+  background: rgba(89, 131, 83, 0.09);
+  backdrop-filter: blur(2px);
+} */

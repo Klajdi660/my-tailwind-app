@@ -18,7 +18,7 @@ export const Overlay: FunctionComponent<OverlayProps> = (props) => {
           className={classNames(
             "fixed top-0 left-0 h-screen w-screen",
             // !isOpen ? "bg-transparent" : "bg-glassmorphism",
-            // !isMobile ? "bg-transparent" : "bg-glassmorphism",
+            !isMobile ? "bg-transparent" : "bg-glassmorphism",
             className
           )}
           onClick={() => handleIsOpen(false)}
