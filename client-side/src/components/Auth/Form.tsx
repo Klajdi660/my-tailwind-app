@@ -2,7 +2,7 @@ import { Fragment, FunctionComponent, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import OtpInput from "react18-input-otp";
+// import OtpInput from "react18-input-otp";
 import { Button, IconButton, ImgUploader, Icon } from "../UI";
 import { classNames } from "../../utils";
 import { FormProps2, ErrorMessageProps, FormListItem } from "../../types";
@@ -38,8 +38,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
     user,
   } = props;
   const [showPass, setShowPass] = useState(null);
-  const [code, setCode] = useState<string>("");
-  const [otpFilled, setOtpFilled] = useState(false);
+  // const [otpFilled, setOtpFilled] = useState(false);
   const imageRef = useRef(null);
 
   const [{ formType, formName, btnTxt }] = lists;
@@ -48,22 +47,28 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
     register: form,
     handleSubmit,
     formState: { errors, isValid },
+    reset,
   } = useForm({
     mode: "onTouched",
     resolver: yupResolver(schema),
     defaultValues,
   });
 
-  const isButtonDisabled = formName === "verify-email" ? !otpFilled : !isValid;
+  // const isButtonDisabled = formName === "verify-email" ? !otpFilled : !isValid;
 
-  const handleOtpChange = async (code: string) => {
-    setCode(code);
-    setOtpFilled(code.length === 6);
+  const onSubmitHandler = async (data: any) => {
+    await onSubmit(data);
+    reset();
   };
 
   return (
-    <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
-      {formName === "verify-email" && (
+    <form
+      className="flex flex-col gap-5"
+      /*onSubmit={handleSubmit(onSubmit)}*/ onSubmit={handleSubmit(
+        onSubmitHandler
+      )}
+    >
+      {/* {formName === "verify-email" && (
         <OtpInput
           className="otp-code"
           value={code}
@@ -90,7 +95,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
             outline: "none",
           }}
         />
-      )}
+      )} */}
       {lists.map((list: FormListItem, index: number) => {
         return (
           <Fragment key={index}>
@@ -219,8 +224,8 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
           label={btnTxt}
           variant="contained"
           className={classNames(formType === "auth" ? "w-full" : "w-fit")}
-          disabled={isButtonDisabled}
-          // disabled={!isValid}
+          // disabled={isButtonDisabled}
+          disabled={!isValid}
         />
       </div>
     </form>

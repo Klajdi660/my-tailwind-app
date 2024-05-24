@@ -1,43 +1,81 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import OtpInput from "react18-input-otp";
+import dayjs from "dayjs";
 import { Form, Progress } from "antd";
+import { useAuthService } from "../../services";
+import { useNotification, useAuth } from "../../hooks";
 import { Button } from "../UI";
 import { classNames } from "../../utils";
-import { OTPCodeFormParams } from "../../types";
+import { OtpCodeFormProps } from "../../types";
 
-export const OTPCodeForm: FunctionComponent<OTPCodeFormParams> = (props) => {
+export const OTPCodeForm: FunctionComponent<OtpCodeFormProps> = (props) => {
   const { btnText, footerLink, footerTitle, linkTo } = props;
 
+  // const { signupData } = useAuth();
+  const signupData = localStorage.registerData;
+  const { verifyEmail } = useAuthService();
+  const [notify] = useNotification();
   const [code, setCode] = useState<string>("");
-  const [secondsLeft, setSecondsLeft] = useState<number>(60);
-  const [progressColor, setProgressColor] = useState<string>("#0077B5");
+  // const [secondsLeft, setSecondsLeft] = useState<number>(0);
+  const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
+  // const [progressColor, setProgressColor] = useState<string>("#0077B5");
   const [otpFilled, setOtpFilled] = useState(false);
 
   const handleOtpChange = async (code: string) => {
     setCode(code);
     setOtpFilled(code.length === 6);
   };
+  console.log("signupData :>> ", signupData);
 
-  const handleOnSubmit = async () => {};
+  const { email, codeExpire } = JSON.parse(signupData).data;
+
+  const handleOnSubmit = async () => {
+    try {
+      await verifyEmail({
+        code,
+        email,
+      });
+      setCode("");
+    } catch (error) {
+      console.error(`Failed sending code! ${error}`);
+    }
+  };
+
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setSecondsLeft((prevSeconds) => {
+  //       if (prevSeconds > 0) {
+  //         if (prevSeconds <= 15) {
+  //           setProgressColor("#cf1322");
+  //         }
+  //         return prevSeconds - 1;
+  //       } else {
+  //         clearInterval(timer);
+  //         return 0;
+  //       }
+  //     });
+  //   }, 1000);
+
+  //   return () => clearInterval(timer);
+  // }, []);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setSecondsLeft((prevSeconds) => {
-        if (prevSeconds > 0) {
-          if (prevSeconds <= 15) {
-            setProgressColor("#cf1322");
-          }
-          return prevSeconds - 1;
-        } else {
-          clearInterval(timer);
-          return 0;
-        }
-      });
-    }, 1000);
+    const calculateSecondsRemaining = () => {
+      const timeNow = dayjs();
+      const timeExp = dayjs(codeExpire);
+      const diffInSeconds = timeExp.diff(timeNow, "second");
+      setSecondsRemaining(diffInSeconds);
+    };
 
-    return () => clearInterval(timer);
-  }, []);
+    calculateSecondsRemaining();
+
+    const intervalId = setInterval(calculateSecondsRemaining, 1000);
+    return () => clearInterval(intervalId);
+  }, [codeExpire]);
+
+  const progressPercent = (secondsRemaining / 60) * 100;
+  const progressColor = secondsRemaining <= 15 ? "#cf1322" : "#0077B5";
 
   return (
     <Form
@@ -80,7 +118,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormParams> = (props) => {
         className={classNames(otpFilled && "hover:brightness-125")}
         disabled={!otpFilled}
       />
-      {secondsLeft > 0 ? (
+      {secondsRemaining > 0 ? (
         <>
           <Progress
             style={{
@@ -88,11 +126,18 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormParams> = (props) => {
               justifyContent: "center",
               marginRight: "-3px",
             }}
-            percent={(secondsLeft / 60) * 100}
+            percent={progressPercent}
             strokeColor={progressColor}
             format={() => (
-              <span style={{ color: progressColor }}>{`${secondsLeft}s`}</span>
+              <span
+                style={{ color: progressColor }}
+              >{`${secondsRemaining}s`}</span>
             )}
+            // percent={(secondsLeft / 60) * 100}
+            // strokeColor={progressColor}
+            // format={() => (
+            //   <span style={{ color: progressColor }}>{`${secondsLeft}s`}</span>
+            // )}
           />
           <div className="flex justify-center text-sm text-onNeutralBg">
             {footerTitle}

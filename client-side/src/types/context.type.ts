@@ -6,8 +6,10 @@ export interface AuthContextType {
   isAuthenticated: boolean;
   lToken: string | undefined;
   setLToken: (lToken: string) => void;
-  setSignUpData: (signupData: RegisterUserInput | any) => void;
-  signupData?: RegisterUserInput | any;
+  // setSignUpData: (signupData: RegisterUserInput | any) => void;
+  setSignUpData: (signupData: any) => void;
+  // signupData?: RegisterUserInput | any;
+  signupData?: any;
   unAuthenticateUser: () => void;
   updateUser: () => void;
   user?: User | null;

@@ -7,7 +7,7 @@ import {
 } from "react";
 import { AuthContextType, ProviderProps, User } from "../types";
 import { Loading } from "../components";
-
+import { useAuthService } from "../services";
 const initialState: AuthContextType = {
   isAuthenticated: false,
   lToken: "",
@@ -16,14 +16,19 @@ const initialState: AuthContextType = {
   unAuthenticateUser: () => {},
   updateUser: () => {},
   setSignUpData: () => {},
+  signupData: { data: { email: "", codeExpire: "" } },
 };
 
 const AuthContext = createContext(initialState);
 
 const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
+  const { register } = useAuthService();
   const [user, setUser] = useState<User | null>(null);
   const [lToken, setLToken] = useState("");
-  const [signupData, setSignUpData] = useState();
+  // const [signupData, setSignUpData] = useState();
+  const [signupData, setSignUpData] = useState({
+    data: { email: "", codeExpire: "" }, // Initialize signupData with default values
+  });
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);

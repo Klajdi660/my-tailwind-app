@@ -48,11 +48,19 @@ export interface LoginFormProps {}
 export interface ProfileDropdownProps {}
 export interface SocialAuthProps {}
 
-export interface OTPCodeFormParams {
+export interface OtpCodeFormProps {
   btnText: string;
   footerTitle: string;
   footerLink: string;
   linkTo: string;
+}
+export interface OtpCodeInput {
+  code: string;
+}
+export interface VerifyEmailResp {
+  error: boolean;
+  message: string;
+  data?: any;
 }
 
 interface Extra {

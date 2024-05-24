@@ -4,7 +4,7 @@ import { TemplateProps } from "../../types";
 import { SocialAuthButton, Title, Image } from "../UI";
 import { iconName } from "../../assets";
 import { Form } from "./Form";
-// import { OTPCodeForm } from "./OTPCodeForm";
+import { OTPCodeForm } from "./OTPCodeForm";
 
 export const Template: FunctionComponent<TemplateProps> = (props) => {
   const { lists, schema, onSubmit, defaultValues } = props;
@@ -16,7 +16,7 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
       footerLink,
       linkTo,
       description,
-      // btnTxt,
+      btnTxt,
     },
   ] = lists;
 
@@ -40,31 +40,31 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
               </div>
             </>
           )}
-          {/* {["verify-email", "password-code"]?.includes(formName) ? (
+          {["verify-email", "password-code"]?.includes(formName) ? (
             <OTPCodeForm
               btnText={btnTxt}
               footerTitle={footerTitle}
               footerLink={footerLink}
               linkTo={linkTo}
             />
-          ) : ( */}
-          <>
-            <Form
-              lists={lists}
-              schema={schema}
-              onSubmit={onSubmit}
-              defaultValues={defaultValues}
-            />
-            <div className="flex justify-center mt-4 text-sm text-onNeutralBg">
-              {footerTitle}
-              <Link to={linkTo}>
-                <p className="ml-1 text-primary hover:underline underline-offset-2">
-                  {footerLink}
-                </p>
-              </Link>
-            </div>
-          </>
-          {/* )} */}
+          ) : (
+            <>
+              <Form
+                lists={lists}
+                schema={schema}
+                onSubmit={onSubmit}
+                defaultValues={defaultValues}
+              />
+              <div className="flex justify-center mt-4 text-sm text-onNeutralBg">
+                {footerTitle}
+                <Link to={linkTo}>
+                  <p className="ml-1 text-primary hover:underline underline-offset-2">
+                    {footerLink}
+                  </p>
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
