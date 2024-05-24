@@ -4,40 +4,57 @@ import OtpInput from "react18-input-otp";
 import { Form, Progress } from "antd";
 import { Button } from "../UI";
 import { classNames } from "../../utils";
-import { OTPCodeFormParams } from "../../types";
-
-export const OTPCodeForm: FunctionComponent<OTPCodeFormParams> = (props) => {
+import { OTPCodeFormProps } from "../../types";
+import dayjs from "dayjs";
+import { useAuthService } from "../../services";
+export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   const { btnText, footerLink, footerTitle, linkTo } = props;
 
+  const { verifyEmail } = useAuthService();
   const [code, setCode] = useState<string>("");
-  const [secondsLeft, setSecondsLeft] = useState<number>(60);
-  const [progressColor, setProgressColor] = useState<string>("#0077B5");
+  const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
   const [otpFilled, setOtpFilled] = useState(false);
+
+  const registerData = JSON.parse(localStorage.registerData).data;
+  const { email, codeExpire } = registerData;
 
   const handleOtpChange = async (code: string) => {
     setCode(code);
     setOtpFilled(code.length === 6);
   };
 
-  const handleOnSubmit = async () => {};
+  const handleOnSubmit = async () => {
+    try {
+      await verifyEmail({
+        code,
+        email,
+      });
+      setCode("");
+      delete localStorage.registerData;
+    } catch (error) {
+      console.error(`Failed sending code! ${error}`);
+    }
+  };
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setSecondsLeft((prevSeconds) => {
-        if (prevSeconds > 0) {
-          if (prevSeconds <= 15) {
-            setProgressColor("#cf1322");
-          }
-          return prevSeconds - 1;
-        } else {
-          clearInterval(timer);
-          return 0;
-        }
-      });
-    }, 1000);
+    const calculateSecondsRemaining = () => {
+      const timeNow = dayjs();
+      const timeExp = dayjs(codeExpire);
+      const diffInSeconds = timeExp.diff(timeNow, "second");
+      setSecondsRemaining(diffInSeconds);
+    };
 
-    return () => clearInterval(timer);
-  }, []);
+    calculateSecondsRemaining();
+
+    const intervalId = setInterval(calculateSecondsRemaining, 1000);
+    return () => {
+      clearInterval(intervalId);
+      delete localStorage.registerData;
+    };
+  }, [codeExpire]);
+
+  const progressPercent = (secondsRemaining / 60) * 100;
+  const progressColor = secondsRemaining <= 15 ? "#cf1322" : "#0077B5";
 
   return (
     <Form
@@ -80,7 +97,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormParams> = (props) => {
         className={classNames(otpFilled && "hover:brightness-125")}
         disabled={!otpFilled}
       />
-      {secondsLeft > 0 ? (
+      {secondsRemaining > 0 ? (
         <>
           <Progress
             style={{
@@ -88,10 +105,12 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormParams> = (props) => {
               justifyContent: "center",
               marginRight: "-3px",
             }}
-            percent={(secondsLeft / 60) * 100}
+            percent={progressPercent}
             strokeColor={progressColor}
             format={() => (
-              <span style={{ color: progressColor }}>{`${secondsLeft}s`}</span>
+              <span
+                style={{ color: progressColor }}
+              >{`${secondsRemaining}s`}</span>
             )}
           />
           <div className="flex justify-center text-sm text-onNeutralBg">

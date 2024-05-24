@@ -48,7 +48,7 @@ export interface LoginFormProps {}
 export interface ProfileDropdownProps {}
 export interface SocialAuthProps {}
 
-export interface OTPCodeFormParams {
+export interface OTPCodeFormProps {
   btnText: string;
   footerTitle: string;
   footerLink: string;
