@@ -47,10 +47,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
     calculateSecondsRemaining();
 
     const intervalId = setInterval(calculateSecondsRemaining, 1000);
-    return () => {
-      clearInterval(intervalId);
-      delete localStorage.registerData;
-    };
+    return () => clearInterval(intervalId);
   }, [codeExpire]);
 
   const progressPercent = (secondsRemaining / 60) * 100;
