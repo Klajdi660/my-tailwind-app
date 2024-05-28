@@ -27,7 +27,7 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
-
+  console.log("user auth:>> ", user);
   // useEffect(() => {
   //   const fetchDataFromLocalStorage = () => {
   //     if (localStorage.atoken) {

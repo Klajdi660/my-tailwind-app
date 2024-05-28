@@ -10,12 +10,13 @@ const initialState: FormListContextType = {
 const FormListContext = createContext(initialState);
 
 const FormListProvider: FunctionComponent<ProviderProps> = ({ children }) => {
-  let { pathname } = useLocation();
-  pathname = pathname.replace(/\//, "");
+  const { pathname } = useLocation();
+
+  const key = pathname.split("/")[1];
 
   const lists = useMemo(() => {
-    return formList[pathname];
-  }, [pathname]);
+    return formList[key];
+  }, [key]);
 
   return (
     <FormListContext.Provider

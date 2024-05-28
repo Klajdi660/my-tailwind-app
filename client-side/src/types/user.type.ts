@@ -73,25 +73,27 @@ export interface PasswordChangeResponse {
   success: boolean;
 }
 
-export interface AuthResponse2 {
+export interface AuthResponse {
+  lToken(lToken: any): unknown;
+  error: boolean;
+  message: string;
   data: {
-    [lToken: string]: string;
+    aToken: string;
     rToken: string;
-    sToken: string;
-    // user: User;
+    // lToken: string;
   };
 }
-export interface AuthResponse {
-  // data: {
-  [lToken: string]: string;
-  rToken: string;
-  sToken: string;
-  // user: User;
-  // };
-  // error: boolean,
-  // message: string;
-  // meta: [];
+
+export interface RegisterResponse {
+  lToken(lToken: any): unknown;
+  error: boolean;
+  message: string;
+  data: {
+    username: string;
+    codeExpire: string;
+  };
 }
+
 // export interface UsersDataType {
 //   birthday: string;
 //   city: string;

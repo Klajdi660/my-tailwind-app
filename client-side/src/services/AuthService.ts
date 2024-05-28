@@ -6,11 +6,11 @@ import { endpoints } from "./Api";
 import { useNotification } from "../hooks";
 import {
   AuthResponse,
-  AuthResponse2,
   LoginUserInput,
   RegisterUserInput,
   ForgotPasswordInput,
   AuthService,
+  RegisterResponse,
 } from "../types";
 // import { toast } from "react-toastify";
 import { paths } from "../data";
@@ -27,14 +27,13 @@ const {
 export const useAuthService = (): AuthService => {
   const { discover } = paths;
 
-  const { authenticateUser, unAuthenticateUser, setSignUpData /*setLToken*/ } =
-    useAuth();
+  const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
 
   const login = async (data: LoginUserInput): Promise<void> => {
     try {
-      const loginResp = await HttpClient.post<AuthResponse2>(LOGIN_API, data);
+      const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, data);
 
       // if (response.error) {
       //   notify({
@@ -44,13 +43,12 @@ export const useAuthService = (): AuthService => {
       //   });
       //   return;
       // }
-      // dispatch(setGlobalLoading(false));
-      const { atoken } = loginResp.data;
-      const user = JSON.parse(atob(atoken.split(".")[1]));
-      localStorage.atoken = atoken;
+      const { aToken } = loginResp.data;
+      const user = JSON.parse(atob(aToken.split(".")[1]));
+      localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
-      // setLToken(response.lToken);
-      // globalObject.lToken = response.lToken;
+      // setLToken(loginResp.lToken);
+      // globalObject.lToken = loginResp.lToken;
       authenticateUser({ id: user.id });
       navigate(`${discover}`);
     } catch (error) {
@@ -82,7 +80,7 @@ export const useAuthService = (): AuthService => {
 
   const register = async (data: RegisterUserInput): Promise<void> => {
     try {
-      const registerResp = await HttpClient.post<AuthResponse>(
+      const registerResp = await HttpClient.post<RegisterResponse>(
         REGISTER_API,
         data
       );
@@ -101,9 +99,9 @@ export const useAuthService = (): AuthService => {
         variant: "success",
         description: `${registerResp.message}`,
       });
-
+      const { username, codeExpire } = registerResp.data;
       localStorage.registerData = JSON.stringify(registerResp);
-      navigate("/verify-email");
+      navigate(`/verify-email/${username}/${codeExpire}`);
     } catch (error) {
       console.error(`Signup failed: ${error}`);
       throw error;

@@ -110,11 +110,13 @@ export class HttpClient {
   static instance = instance;
 
   static async get<T>(url: string, params?: unknown, options?: any) {
+    console.log("url :>> ", url);
     const response = await this.instance.get<T>(url, { params });
     return response.data;
   }
 
   static async post<T>(url: string, data?: unknown, options?: any) {
+    console.log("url :>> ", url);
     const response = await this.instance.post<T>(url, data, options);
     return response.data;
   }

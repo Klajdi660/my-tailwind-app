@@ -1,5 +1,5 @@
 import { FunctionComponent, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import OtpInput from "react18-input-otp";
 import { Form, Progress } from "antd";
 import { Button } from "../UI";
@@ -7,16 +7,18 @@ import { classNames } from "../../utils";
 import { OTPCodeFormProps } from "../../types";
 import dayjs from "dayjs";
 import { useAuthService } from "../../services";
+
 export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   const { btnText, footerLink, footerTitle, linkTo } = props;
 
+  const { username, codeExp } = useParams();
   const { verifyEmail } = useAuthService();
   const [code, setCode] = useState<string>("");
   const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
   const [otpFilled, setOtpFilled] = useState(false);
 
-  const registerData = JSON.parse(localStorage.registerData).data;
-  const { email, codeExpire } = registerData;
+  // const registerData = JSON.parse(localStorage.registerData).data;
+  // const { username, codeExpire } = registerData;
 
   const handleOtpChange = async (code: string) => {
     setCode(code);
@@ -27,7 +29,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
     try {
       await verifyEmail({
         code,
-        email,
+        username,
       });
       setCode("");
       delete localStorage.registerData;
@@ -39,7 +41,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   useEffect(() => {
     const calculateSecondsRemaining = () => {
       const timeNow = dayjs();
-      const timeExp = dayjs(codeExpire);
+      const timeExp = dayjs(codeExp);
       const diffInSeconds = timeExp.diff(timeNow, "second");
       setSecondsRemaining(diffInSeconds);
     };
@@ -48,7 +50,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
 
     const intervalId = setInterval(calculateSecondsRemaining, 1000);
     return () => clearInterval(intervalId);
-  }, [codeExpire]);
+  }, [codeExp]);
 
   const progressPercent = (secondsRemaining / 60) * 100;
   const progressColor = secondsRemaining <= 15 ? "#cf1322" : "#0077B5";

@@ -1,12 +1,14 @@
-import { useStore } from "../hooks";
+import { useAuth, useStore } from "../hooks";
 
 export const useUserService = () => {
+  const { user } = useAuth();
   const { setLoading, selectedTimeZone } = useStore();
 
   const getUsers = async () => {};
 
   const getUserDetails = async () => {
-    const user = localStorage.user;
+    // const user = localStorage.user;
+    console.log("user :>> ", user);
   };
 
   const confirmUser = async () => {};
