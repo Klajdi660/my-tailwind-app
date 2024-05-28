@@ -23,7 +23,7 @@ import { NavbarProps } from "../types";
 export const Navbar: FunctionComponent<NavbarProps> = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const theme = useSelector((state: any) => state.theme);
   const isMobile = useMobileResponsive();
   const { toggleSearch, setToggleSearch } = useAppUtil();
@@ -33,7 +33,8 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
   const { sidebar } = theme || defaultThemeConfig;
   const isFolded = sidebar === "folded";
   const showFull = Boolean(isFolded);
-
+  console.log("isAuthenticated 1111:>> ", isAuthenticated);
+  console.log("user 1111:>> ", user);
   return (
     <nav className="fixed z-[10] h-navbar top-0 bg-neutralBgOpacity backdrop-blur-[50px] sidebar_horizontal_width">
       <Overlay
@@ -72,7 +73,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
           </div>
           {!isMobile && (
             <div className="flex items-center h-full gap-4 nav-icons">
-              {isAuthenticated ? (
+              {user ? (
                 <>
                   <CartButton />
                   <NotificationButton />
