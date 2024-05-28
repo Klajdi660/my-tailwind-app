@@ -21,12 +21,14 @@ const {
   VERIFY_EMAIL_API,
   FORGOTPASSWORD_API,
   RESETPASSWORD_API,
+  RESEND_OTPCODE_API,
 } = endpoints;
 
 export const useAuthService = (): AuthService => {
   const { discover } = paths;
 
-  const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
+  const { authenticateUser, unAuthenticateUser, setSignUpData /*setLToken*/ } =
+    useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
 
@@ -98,9 +100,11 @@ export const useAuthService = (): AuthService => {
         variant: "success",
         description: `${registerResp.message}`,
       });
-      const { username, codeExpire } = registerResp.data;
+      const { email, name, codeExpire } = registerResp.data;
+      console.log("name :>> ", name);
+      setSignUpData(registerResp.data);
       // localStorage.registerData = JSON.stringify(registerResp);
-      const verifyUrl = `/verify-email/${username}/${codeExpire}`;
+      const verifyUrl = `/verify-email/${email}/${name}/${codeExpire}`;
       navigate(verifyUrl);
     } catch (error) {
       console.error(`Signup failed: ${error}`);
@@ -120,6 +124,7 @@ export const useAuthService = (): AuthService => {
           variant: "error",
           description: verifyEmailResp.message,
         });
+        return;
       }
 
       notify({
@@ -131,6 +136,37 @@ export const useAuthService = (): AuthService => {
       navigate("/login");
     } catch (error) {
       console.error(`Verify email failed: ${error}`);
+      throw error;
+    }
+  };
+
+  const resendOtpCode = async (data: any): Promise<void> => {
+    try {
+      const resendOtpCodeResp = await HttpClient.post<any>(
+        RESEND_OTPCODE_API,
+        data
+      );
+
+      if (resendOtpCodeResp.error) {
+        notify({
+          title: "Error",
+          variant: "error",
+          description: resendOtpCodeResp.message,
+        });
+        return;
+      }
+
+      notify({
+        title: "Success",
+        variant: "success",
+        description: `${resendOtpCodeResp.message}`,
+      });
+      const { email, name, codeExpire } = resendOtpCodeResp.data;
+      console.log("name :>> ", name);
+      const verifyUrl = `/verify-email/${email}/${name}/${codeExpire}`;
+      navigate(verifyUrl);
+    } catch (error) {
+      console.error(`Resend otp code failed. ${error}`);
       throw error;
     }
   };
@@ -216,6 +252,7 @@ export const useAuthService = (): AuthService => {
     logout,
     forgotPassword,
     resetPassword,
+    resendOtpCode,
   };
 };
 

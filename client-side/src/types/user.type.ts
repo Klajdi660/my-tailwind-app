@@ -89,7 +89,8 @@ export interface RegisterResponse {
   error: boolean;
   message: string;
   data: {
-    username: string;
+    email: string;
+    name: string;
     codeExpire: string;
   };
 }

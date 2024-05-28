@@ -11,8 +11,8 @@ import { useAuthService } from "../../services";
 export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   const { btnText, footerLink, footerTitle, linkTo } = props;
 
-  const { username, codeExp } = useParams();
-  const { verifyEmail } = useAuthService();
+  const { email, name, codeExp } = useParams();
+  const { verifyEmail, resendOtpCode } = useAuthService();
   const [code, setCode] = useState<string>("");
   const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
   const [otpFilled, setOtpFilled] = useState(false);
@@ -29,12 +29,20 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
     try {
       await verifyEmail({
         code,
-        username,
+        email,
       });
       setCode("");
       // delete localStorage.registerData;
     } catch (error) {
       console.error(`Failed sending code! ${error}`);
+    }
+  };
+
+  const handleResendCode = async () => {
+    try {
+      await resendOtpCode({ email, fullName: name });
+    } catch (error) {
+      console.error(`Failed to resend code! ${error}`);
     }
   };
 
@@ -124,11 +132,11 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
       ) : (
         <div className="flex justify-center text-sm text-onNeutralBg">
           Didn't recieve code? &nbsp;
-          <Link to="#">
+          <div onClick={handleResendCode}>
             <p className="text-primary hover:underline underline-offset-2">
               Resend
             </p>
-          </Link>
+          </div>
         </div>
       )}
     </Form>
