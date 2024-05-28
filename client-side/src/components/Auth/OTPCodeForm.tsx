@@ -32,7 +32,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
         username,
       });
       setCode("");
-      delete localStorage.registerData;
+      // delete localStorage.registerData;
     } catch (error) {
       console.error(`Failed sending code! ${error}`);
     }

@@ -1,7 +1,7 @@
 // AUTH ENDPOINTS
 export const endpoints = {
   REGISTER_API: "/auth/register",
-  VERIFY_EMAIL_API: "/auth/register-confirm",
+  VERIFY_EMAIL_API: "/auth/verify-email",
   LOGIN_API: "/auth/login",
   LOGOUT_API: "/auth/logout",
   FORGOTPASSWORD_API: "/auth/forgot-password",

@@ -12,7 +12,6 @@ import {
   AuthService,
   RegisterResponse,
 } from "../types";
-// import { toast } from "react-toastify";
 import { paths } from "../data";
 
 const {
@@ -100,8 +99,9 @@ export const useAuthService = (): AuthService => {
         description: `${registerResp.message}`,
       });
       const { username, codeExpire } = registerResp.data;
-      localStorage.registerData = JSON.stringify(registerResp);
-      navigate(`/verify-email/${username}/${codeExpire}`);
+      // localStorage.registerData = JSON.stringify(registerResp);
+      const verifyUrl = `/verify-email/${username}/${codeExpire}`;
+      navigate(verifyUrl);
     } catch (error) {
       console.error(`Signup failed: ${error}`);
       throw error;
