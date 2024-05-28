@@ -27,7 +27,7 @@ const StoreProvider: React.FC<ProviderProps> = ({ children }) => {
   const [selectedTimeZone, setSelectedTimeZone] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [translations, setTranslations] = useState<Translations>({});
-  console.log("user store:>> ", user);
+
   let timeZones = moment.tz.names();
   let usersTimeZone = moment.tz.guess();
 

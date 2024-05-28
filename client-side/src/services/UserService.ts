@@ -8,7 +8,6 @@ export const useUserService = () => {
 
   const getUserDetails = async () => {
     // const user = localStorage.user;
-    console.log("user :>> ", user);
   };
 
   const confirmUser = async () => {};
