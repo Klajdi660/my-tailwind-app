@@ -7,16 +7,16 @@ import { classNames } from "../../utils";
 import { OTPCodeFormProps } from "../../types";
 import dayjs from "dayjs";
 import { useAuthService } from "../../services";
+// import { useSelector } from "react-redux";
 
 export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   const { btnText, footerLink, footerTitle, linkTo } = props;
-
   const { email, name, codeExp } = useParams();
   const { verifyEmail, resendOtpCode } = useAuthService();
   const [code, setCode] = useState<string>("");
   const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
   const [otpFilled, setOtpFilled] = useState(false);
-
+  // const { registerData } = useSelector((state: any) => state.auth);
   // const registerData = JSON.parse(localStorage.registerData).data;
   // const { username, codeExpire } = registerData;
 

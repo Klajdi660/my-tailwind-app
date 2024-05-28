@@ -13,6 +13,8 @@ import {
   RegisterResponse,
 } from "../types";
 import { paths } from "../data";
+import { useDispatch } from "react-redux";
+import { setRegisterData } from "../store/redux/slices/auth.slice";
 
 const {
   LOGIN_API,
@@ -27,6 +29,7 @@ const {
 export const useAuthService = (): AuthService => {
   const { discover } = paths;
 
+  const dispatch = useDispatch();
   const { authenticateUser, unAuthenticateUser, setSignUpData /*setLToken*/ } =
     useAuth();
   const [notify] = useNotification();
@@ -103,6 +106,7 @@ export const useAuthService = (): AuthService => {
       const { email, name, codeExpire } = registerResp.data;
       console.log("name :>> ", name);
       setSignUpData(registerResp.data);
+      dispatch(setRegisterData(registerResp.data));
       // localStorage.registerData = JSON.stringify(registerResp);
       const verifyUrl = `/verify-email/${email}/${name}/${codeExpire}`;
       navigate(verifyUrl);
