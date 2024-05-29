@@ -1,24 +1,24 @@
 import { FunctionComponent, useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import dayjs from "dayjs";
 import OtpInput from "react18-input-otp";
 import { Form, Progress } from "antd";
 import { Button } from "../UI";
 import { classNames } from "../../utils";
 import { OTPCodeFormProps } from "../../types";
-import dayjs from "dayjs";
 import { useAuthService } from "../../services";
-// import { useSelector } from "react-redux";
 
 export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   const { btnText, footerLink, footerTitle, linkTo } = props;
-  const { email, name, codeExp } = useParams();
+
   const { verifyEmail, resendOtpCode } = useAuthService();
   const [code, setCode] = useState<string>("");
   const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
   const [otpFilled, setOtpFilled] = useState(false);
-  // const { registerData } = useSelector((state: any) => state.auth);
-  // const registerData = JSON.parse(localStorage.registerData).data;
-  // const { username, codeExpire } = registerData;
+
+  const location = useLocation();
+  const { dataReg } = location.state || {};
+  const { email, codeExpire } = dataReg;
 
   const handleOtpChange = async (code: string) => {
     setCode(code);
@@ -32,7 +32,6 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
         email,
       });
       setCode("");
-      // delete localStorage.registerData;
     } catch (error) {
       console.error(`Failed sending code! ${error}`);
     }
@@ -40,7 +39,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
 
   const handleResendCode = async () => {
     try {
-      await resendOtpCode({ email, fullName: name });
+      await resendOtpCode(dataReg);
     } catch (error) {
       console.error(`Failed to resend code! ${error}`);
     }
@@ -49,7 +48,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   useEffect(() => {
     const calculateSecondsRemaining = () => {
       const timeNow = dayjs();
-      const timeExp = dayjs(codeExp);
+      const timeExp = dayjs(codeExpire);
       const diffInSeconds = timeExp.diff(timeNow, "second");
       setSecondsRemaining(diffInSeconds);
     };
@@ -58,7 +57,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
 
     const intervalId = setInterval(calculateSecondsRemaining, 1000);
     return () => clearInterval(intervalId);
-  }, [codeExp]);
+  }, [codeExpire]);
 
   const progressPercent = (secondsRemaining / 60) * 100;
   const progressColor = secondsRemaining <= 15 ? "#cf1322" : "#0077B5";
@@ -132,7 +131,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
       ) : (
         <div className="flex justify-center text-sm text-onNeutralBg">
           Didn't recieve code? &nbsp;
-          <div onClick={handleResendCode}>
+          <div className="cursor-pointer" onClick={handleResendCode}>
             <p className="text-primary hover:underline underline-offset-2">
               Resend
             </p>

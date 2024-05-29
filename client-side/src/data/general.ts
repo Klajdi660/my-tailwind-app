@@ -5,7 +5,7 @@ export const paths = {
   login: "/login",
   socialAuth: "social-auth",
   register: "register",
-  verifyEmail: "verify-email/:email/:name/:codeExp",
+  verifyEmail: "verify-email",
   forgotPassword: "forgot-password",
   passwordCode: "password-code",
   // changePassword: "update-password/:email/:username/:h/:exp",

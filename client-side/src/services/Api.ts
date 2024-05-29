@@ -2,7 +2,6 @@
 export const endpoints = {
   REGISTER_API: "/auth/register",
   VERIFY_EMAIL_API: "/auth/verify-email",
-  RESEND_OTPCODE_API: "/auth/resend-code",
   LOGIN_API: "/auth/login",
   LOGOUT_API: "/auth/logout",
   FORGOTPASSWORD_API: "/auth/forgot-password",

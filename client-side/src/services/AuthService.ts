@@ -13,8 +13,6 @@ import {
   RegisterResponse,
 } from "../types";
 import { paths } from "../data";
-import { useDispatch } from "react-redux";
-import { setRegisterData } from "../store/redux/slices/auth.slice";
 
 const {
   LOGIN_API,
@@ -23,21 +21,18 @@ const {
   VERIFY_EMAIL_API,
   FORGOTPASSWORD_API,
   RESETPASSWORD_API,
-  RESEND_OTPCODE_API,
 } = endpoints;
 
 export const useAuthService = (): AuthService => {
   const { discover } = paths;
 
-  const dispatch = useDispatch();
-  const { authenticateUser, unAuthenticateUser, setSignUpData /*setLToken*/ } =
-    useAuth();
+  const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
 
-  const login = async (data: LoginUserInput): Promise<void> => {
+  const login = async (values: LoginUserInput): Promise<void> => {
     try {
-      const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, data);
+      const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, values);
 
       // if (response.error) {
       //   notify({
@@ -82,18 +77,20 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const register = async (data: RegisterUserInput): Promise<void> => {
+  const register = async (values: RegisterUserInput): Promise<void> => {
     try {
       const registerResp = await HttpClient.post<RegisterResponse>(
         REGISTER_API,
-        data
+        values
       );
 
-      if (registerResp.error) {
+      const { error, message, data } = registerResp;
+
+      if (error) {
         notify({
           title: "Error",
           variant: "error",
-          description: registerResp.message,
+          description: message,
         });
         return;
       }
@@ -101,32 +98,31 @@ export const useAuthService = (): AuthService => {
       notify({
         title: "Success",
         variant: "success",
-        description: `${registerResp.message}`,
+        description: `${message}`,
       });
-      const { email, name, codeExpire } = registerResp.data;
-      console.log("name :>> ", name);
-      setSignUpData(registerResp.data);
-      dispatch(setRegisterData(registerResp.data));
-      // localStorage.registerData = JSON.stringify(registerResp);
-      const verifyUrl = `/verify-email/${email}/${name}/${codeExpire}`;
-      navigate(verifyUrl);
+
+      const dataReg = { ...values, codeExpire: data.codeExpire };
+      navigate("/verify-email", { state: { dataReg } });
     } catch (error) {
       console.error(`Signup failed: ${error}`);
       throw error;
     }
   };
 
-  const verifyEmail = async (data: any): Promise<void> => {
+  const verifyEmail = async (values: any): Promise<void> => {
     try {
       const verifyEmailResp = await HttpClient.post<AuthResponse>(
         VERIFY_EMAIL_API,
-        data
+        values
       );
-      if (verifyEmailResp.error) {
+
+      const { error, message } = verifyEmailResp;
+
+      if (error) {
         notify({
           title: "Error",
           variant: "error",
-          description: verifyEmailResp.message,
+          description: message,
         });
         return;
       }
@@ -134,7 +130,7 @@ export const useAuthService = (): AuthService => {
       notify({
         title: "Success",
         variant: "success",
-        description: verifyEmailResp.message,
+        description: message,
       });
 
       navigate("/login");
@@ -144,18 +140,20 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const resendOtpCode = async (data: any): Promise<void> => {
+  const resendOtpCode = async (values: any): Promise<void> => {
     try {
       const resendOtpCodeResp = await HttpClient.post<any>(
-        RESEND_OTPCODE_API,
-        data
+        REGISTER_API,
+        values
       );
 
-      if (resendOtpCodeResp.error) {
+      const { error, message, data } = resendOtpCodeResp;
+
+      if (error) {
         notify({
           title: "Error",
           variant: "error",
-          description: resendOtpCodeResp.message,
+          description: message,
         });
         return;
       }
@@ -163,12 +161,10 @@ export const useAuthService = (): AuthService => {
       notify({
         title: "Success",
         variant: "success",
-        description: `${resendOtpCodeResp.message}`,
+        description: `${message}`,
       });
-      const { email, name, codeExpire } = resendOtpCodeResp.data;
-      console.log("name :>> ", name);
-      const verifyUrl = `/verify-email/${email}/${name}/${codeExpire}`;
-      navigate(verifyUrl);
+
+      navigate("/verify-email", { state: { dataReg: data } });
     } catch (error) {
       console.error(`Resend otp code failed. ${error}`);
       throw error;
@@ -178,11 +174,11 @@ export const useAuthService = (): AuthService => {
   const logout = async (): Promise<void> => {
     try {
       await HttpClient.get<AuthResponse>(LOGOUT_API);
+
       unAuthenticateUser();
       delete localStorage.atoken;
       delete localStorage.user;
       delete localStorage.lastLocation;
-      // delete localStorage.registerData;
       navigate("/");
     } catch (error) {
       notify({
@@ -195,25 +191,28 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const forgotPassword = async (data: ForgotPasswordInput): Promise<void> => {
+  const forgotPassword = async (values: ForgotPasswordInput): Promise<void> => {
     try {
       const forgotPasswordResp = await HttpClient.post<AuthResponse>(
         FORGOTPASSWORD_API,
-        data
+        values
       );
-      // if (response.error) {
-      //   notify({
-      //     title: "Error",
-      //     variant: "error",
-      //     description: response.message,
-      //   });
-      //   return;
-      // }
+
+      const { error, message } = forgotPasswordResp;
+
+      if (error) {
+        notify({
+          title: "Error",
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
 
       notify({
         title: "Success",
         variant: "info",
-        description: forgotPasswordResp.message,
+        description: message,
       });
       navigate("/password-code");
     } catch (error) {
@@ -222,17 +221,20 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const resetPassword = async (data: any, token: string): Promise<void> => {
+  const resetPassword = async (values: any, token: string): Promise<void> => {
     try {
       const resetPasswordResp = await HttpClient.put<AuthResponse>(
         `${RESETPASSWORD_API}/${token}`,
-        data
+        values
       );
-      if (resetPasswordResp.error) {
+
+      const { error, message } = resetPasswordResp;
+
+      if (error) {
         notify({
           title: "Error",
           variant: "error",
-          description: resetPasswordResp.message,
+          description: message,
         });
         return;
       }
@@ -240,10 +242,10 @@ export const useAuthService = (): AuthService => {
       notify({
         title: "Success",
         variant: "info",
-        description: resetPasswordResp.message,
+        description: message,
       });
     } catch (error) {
-      console.error(`Reset Pass Failed: ${error}`);
+      console.error(`Reset password failed: ${error}`);
       throw error;
     }
   };
