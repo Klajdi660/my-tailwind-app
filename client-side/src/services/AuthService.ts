@@ -13,6 +13,8 @@ import {
   RegisterResponse,
 } from "../types";
 import { paths } from "../data";
+import { useDispatch } from "react-redux";
+import { setRegisterData } from "../store/redux/slices/auth.slice";
 
 const {
   LOGIN_API,
@@ -25,7 +27,7 @@ const {
 
 export const useAuthService = (): AuthService => {
   const { discover } = paths;
-
+  const dispatch = useDispatch();
   const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
@@ -100,7 +102,7 @@ export const useAuthService = (): AuthService => {
         variant: "success",
         description: `${message}`,
       });
-
+      dispatch(setRegisterData(values));
       const dataReg = { ...values, codeExpire: data.codeExpire };
       navigate("/verify-email", { state: { dataReg } });
     } catch (error) {

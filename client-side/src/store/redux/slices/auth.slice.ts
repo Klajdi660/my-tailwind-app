@@ -10,9 +10,9 @@ const slice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    // setRegisterData(state, value) {
-    //   state.registerData = value.payload;
-    // },
+    setRegisterData(state, value) {
+      state.registerData = value.payload;
+    },
     saveUser(state, action) {
       state.user = action.payload.user;
       state.accessToken = action.payload.accessToken;
@@ -37,5 +37,5 @@ export const {
   updateUser,
   updateToken,
   deleteUser,
-  // setRegisterData,
+  setRegisterData,
 } = slice.actions;
