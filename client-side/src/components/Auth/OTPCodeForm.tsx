@@ -119,25 +119,35 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
               >{`${secondsRemaining}s`}</span>
             )}
           />
-          <div className="flex justify-center text-sm text-onNeutralBg">
+          {/* <div className="flex justify-center text-sm text-onNeutralBg">
             {footerTitle}
             <Link to={linkTo}>
               <p className="ml-1 text-primary hover:underline underline-offset-2">
                 {footerLink}
               </p>
             </Link>
-          </div>
+          </div> */}
         </>
       ) : (
-        <div className="flex justify-center text-sm text-onNeutralBg">
-          Didn't recieve code? &nbsp;
-          <div className="cursor-pointer" onClick={handleResendCode}>
-            <p className="text-primary hover:underline underline-offset-2">
-              Resend
-            </p>
+        <>
+          <div className="flex justify-center text-sm text-onNeutralBg">
+            Didn't recieve code? &nbsp;
+            <div className="cursor-pointer" onClick={handleResendCode}>
+              <p className="text-primary hover:underline underline-offset-2">
+                Resend
+              </p>
+            </div>
           </div>
-        </div>
+        </>
       )}
+      <div className="flex justify-center text-sm text-onNeutralBg">
+        {footerTitle}
+        <Link to={linkTo}>
+          <p className="ml-1 text-primary hover:underline underline-offset-2">
+            {footerLink}
+          </p>
+        </Link>
+      </div>
     </Form>
   );
 };

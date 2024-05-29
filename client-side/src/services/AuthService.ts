@@ -261,5 +261,3 @@ export const useAuthService = (): AuthService => {
     resendOtpCode,
   };
 };
-
-// export default useAuthService;
