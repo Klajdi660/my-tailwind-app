@@ -9,7 +9,7 @@ export const paths = {
   forgotPassword: "forgot-password",
   passwordCode: "password-code",
   // changePassword: "update-password/:email/:username/:h/:exp",
-  // resetPassword: "reset-password/:token",
+  // resetPassword: "reset-password/:username/:hash",
   resetPassword: "reset-password",
   profile: "profile",
   discover: "/discover",
