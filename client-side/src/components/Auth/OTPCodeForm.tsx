@@ -7,12 +7,12 @@ import { Button } from "../UI";
 import { classNames } from "../../utils";
 import { OTPCodeFormProps } from "../../types";
 import { useAuthService } from "../../services";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   const { btnText, footerLink, footerTitle, linkTo } = props;
-  const { registerData } = useSelector((state: any) => state.auth);
-  const { verifyEmail, resendOtpCode } = useAuthService();
+  // const { registerData } = useSelector((state: any) => state.auth);
+  const { verifyEmail, register } = useAuthService();
   const [code, setCode] = useState<string>("");
   const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
   const [otpFilled, setOtpFilled] = useState(false);
@@ -20,7 +20,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   const location = useLocation();
   const { dataReg } = location.state || {};
   const { email, codeExpire } = dataReg;
-  console.log("registerData :>> ", registerData);
+
   const handleOtpChange = async (code: string) => {
     setCode(code);
     setOtpFilled(code.length === 6);
@@ -40,7 +40,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
 
   const handleResendCode = async () => {
     try {
-      await resendOtpCode(dataReg);
+      await register(dataReg);
     } catch (error) {
       console.error(`Failed to resend code! ${error}`);
     }

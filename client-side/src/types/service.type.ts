@@ -10,7 +10,6 @@ export interface AuthService {
   socialAuth: (tokenParam: string) => Promise<void>;
   register: (data: RegisterUserInput) => Promise<void>;
   verifyEmail: (data: any) => Promise<void>;
-  resendOtpCode: (data: any) => Promise<void>;
   logout: () => Promise<void>;
   forgotPassword: (data: ForgotPasswordInput) => Promise<void>;
   resetPassword: (data: any, token: string) => Promise<void>;
