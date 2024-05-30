@@ -102,9 +102,9 @@ export const useAuthService = (): AuthService => {
         variant: "success",
         description: `${message}`,
       });
-      const dataReg = { ...values, codeExpire: data.codeExpire };
+      const registerData = { ...values, codeExpire: data.codeExpire };
       // dispatch(setRegisterData(values));
-      navigate("/verify-email", { state: { dataReg } });
+      navigate("/verify-email", { state: { registerData } });
     } catch (error) {
       console.error(`Signup failed: ${error}`);
       throw error;
@@ -185,7 +185,8 @@ export const useAuthService = (): AuthService => {
         variant: "info",
         description: message,
       });
-      navigate("/password-code");
+
+      navigate("/password-code", { state: { passData: values } });
     } catch (error) {
       console.error(`Forgot Pass Failed: ${error}`);
       throw error;

@@ -1,55 +1,34 @@
 import { FunctionComponent, useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import OtpInput from "react18-input-otp";
 import { Form, Progress } from "antd";
 import { Button } from "../UI";
 import { classNames } from "../../utils";
 import { OTPCodeFormProps } from "../../types";
-import { useAuthService } from "../../services";
-// import { useSelector } from "react-redux";
 
 export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
-  const { btnText, footerLink, footerTitle, linkTo } = props;
-  // const { registerData } = useSelector((state: any) => state.auth);
-  const { verifyEmail, register } = useAuthService();
-  const [code, setCode] = useState<string>("");
-  const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
-  const [otpFilled, setOtpFilled] = useState(false);
+  const {
+    btnText,
+    footerLink,
+    footerTitle,
+    linkTo,
+    onSubmit,
+    handleResendCode,
+    data,
+  } = props;
 
-  const location = useLocation();
-  const { dataReg } = location.state || {};
-  const { email, codeExpire } = dataReg;
+  const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
+  const [otpFilled, setOtpFilled] = useState<boolean>(false);
 
   const handleOtpChange = async (code: string) => {
-    setCode(code);
     setOtpFilled(code.length === 6);
-  };
-
-  const handleOnSubmit = async () => {
-    try {
-      await verifyEmail({
-        code,
-        email,
-      });
-      setCode("");
-    } catch (error) {
-      console.error(`Failed sending code! ${error}`);
-    }
-  };
-
-  const handleResendCode = async () => {
-    try {
-      await register(dataReg);
-    } catch (error) {
-      console.error(`Failed to resend code! ${error}`);
-    }
   };
 
   useEffect(() => {
     const calculateSecondsRemaining = () => {
       const timeNow = dayjs();
-      const timeExp = dayjs(codeExpire);
+      const timeExp = dayjs(data?.codeExpire);
       const diffInSeconds = timeExp.diff(timeNow, "second");
       setSecondsRemaining(diffInSeconds);
     };
@@ -58,20 +37,15 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
 
     const intervalId = setInterval(calculateSecondsRemaining, 1000);
     return () => clearInterval(intervalId);
-  }, [codeExpire]);
+  }, [data?.codeExpire]);
 
   const progressPercent = (secondsRemaining / 60) * 100;
   const progressColor = secondsRemaining <= 15 ? "#cf1322" : "#0077B5";
 
   return (
-    <Form
-      className="flex flex-col gap-5"
-      layout="vertical"
-      onFinish={handleOnSubmit}
-    >
-      <Form.Item>
+    <Form className="flex flex-col gap-5" layout="vertical" onFinish={onSubmit}>
+      <Form.Item name="code">
         <OtpInput
-          value={code}
           onChange={handleOtpChange}
           numInputs={6}
           separator={false}
@@ -120,14 +94,6 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
               >{`${secondsRemaining}s`}</span>
             )}
           />
-          {/* <div className="flex justify-center text-sm text-onNeutralBg">
-            {footerTitle}
-            <Link to={linkTo}>
-              <p className="ml-1 text-primary hover:underline underline-offset-2">
-                {footerLink}
-              </p>
-            </Link>
-          </div> */}
         </>
       ) : (
         <>

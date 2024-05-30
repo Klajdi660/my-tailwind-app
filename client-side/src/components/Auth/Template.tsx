@@ -7,7 +7,8 @@ import { Form } from "./Form";
 import { OTPCodeForm } from "./OTPCodeForm";
 
 export const Template: FunctionComponent<TemplateProps> = (props) => {
-  const { lists, schema, onSubmit, defaultValues } = props;
+  const { lists, schema, onSubmit, defaultValues, handleResendCode, data } =
+    props;
   const [
     {
       formName,
@@ -46,6 +47,9 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
               footerTitle={footerTitle}
               footerLink={footerLink}
               linkTo={linkTo}
+              onSubmit={onSubmit}
+              handleResendCode={handleResendCode}
+              data={data}
             />
           ) : (
             <>
