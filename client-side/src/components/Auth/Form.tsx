@@ -35,6 +35,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
     // setFiles,
     hasProvider,
     user,
+    data,
   } = props;
   const [showPass, setShowPass] = useState(null);
   const imageRef = useRef(null);
@@ -51,110 +52,121 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
     defaultValues,
   });
 
+  const btnTitle = !data?.resetPassEmailSent ? btnTxt : "Resend Email";
+
   return (
     <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
-      {lists.map((list: FormListItem, index: number) => {
-        return (
-          <Fragment key={index}>
-            {["input", "textarea"].includes(list.type) && (
-              <fieldset>
-                <div className="flex items-baseline justify-between">
-                  <label
-                    className="mb-2 text-xs font-semibold text-secondary"
-                    htmlFor={list?.name}
-                  >
-                    {list?.label}
-                  </label>
-                </div>
-                <div
-                  className={classNames(
-                    "relative",
-                    !errors[list.name] &&
-                      "border rounded border-divider focus-within:border-primary"
-                  )}
-                >
-                  {list.type === "input" && (
-                    <div className="flex items-center justify-between">
-                      <input
-                        {...form(list.name)}
-                        className={classNames(
-                          "w-full h-10 px-2 rounded text-sm bg-transparent text-onNeutralBg no-focus border-divider outline-0 disabled:text-secondary",
-                          errors[list.name] && "border border-red-500"
-                        )}
-                        {...list.props}
-                        placeholder={list.props.placeholder || list.label}
-                        disabled={list.props.disabled}
-                        type={
-                          ["password", "confirmPassword"]?.includes(
+      {!data?.resetPassEmailSent ? (
+        <>
+          {lists.map((list: FormListItem, index: number) => {
+            return (
+              <Fragment key={index}>
+                {["input", "textarea"].includes(list.type) && (
+                  <fieldset>
+                    <div className="flex items-baseline justify-between">
+                      <label
+                        className="mb-2 text-xs font-semibold text-secondary"
+                        htmlFor={list?.name}
+                      >
+                        {list?.label}
+                      </label>
+                    </div>
+                    <div
+                      className={classNames(
+                        "relative",
+                        !errors[list.name] &&
+                          "border rounded border-divider focus-within:border-primary"
+                      )}
+                    >
+                      {list.type === "input" && (
+                        <div className="flex items-center justify-between">
+                          <input
+                            {...form(list.name)}
+                            className={classNames(
+                              "w-full h-10 px-2 rounded text-sm bg-transparent text-onNeutralBg no-focus border-divider outline-0 disabled:text-secondary",
+                              errors[list.name] && "border border-red-500"
+                            )}
+                            {...list.props}
+                            placeholder={list.props.placeholder || list.label}
+                            disabled={list.props.disabled}
+                            type={
+                              ["password", "confirmPassword"]?.includes(
+                                list.props.type
+                              )
+                                ? showPass?.[list.name]
+                                  ? "text"
+                                  : "password"
+                                : list.props.type
+                            }
+                            autoComplete={formName !== "login" ? "off" : "on"}
+                          />
+                          {["password", "confirmPassword"]?.includes(
                             list.props.type
-                          )
-                            ? showPass?.[list.name]
-                              ? "text"
-                              : "password"
-                            : list.props.type
-                        }
-                        autoComplete={formName !== "login" ? "off" : "on"}
-                      />
-                      {["password", "confirmPassword"]?.includes(
-                        list.props.type
-                      ) && (
-                        <span className="absolute right-2 top-[50%] translate-y-[-50%]">
-                          {!list.props.disabled && (
-                            <IconButton
-                              name={
-                                !showPass?.[list.name]
-                                  ? "AiOutlineEyeInvisible"
-                                  : "AiOutlineEye"
-                              }
-                              iconClassName="text-secondary hover:text-onNeutralBg"
-                              onClick={() =>
-                                setShowPass((prevS: any) => ({
-                                  ...prevS,
-                                  [list.name]: !prevS?.[list.name],
-                                }))
-                              }
-                            />
+                          ) && (
+                            <span className="absolute right-2 top-[50%] translate-y-[-50%]">
+                              {!list.props.disabled && (
+                                <IconButton
+                                  name={
+                                    !showPass?.[list.name]
+                                      ? "AiOutlineEyeInvisible"
+                                      : "AiOutlineEye"
+                                  }
+                                  iconClassName="text-secondary hover:text-onNeutralBg"
+                                  onClick={() =>
+                                    setShowPass((prevS: any) => ({
+                                      ...prevS,
+                                      [list.name]: !prevS?.[list.name],
+                                    }))
+                                  }
+                                />
+                              )}
+                            </span>
                           )}
-                        </span>
+                        </div>
                       )}
                     </div>
-                  )}
-                </div>
-                <ErrorMessage errorMessage={errors?.[list.name]?.message} />
-              </fieldset>
-            )}
-            {["image_dropzone"].includes(list.type) && (
-              <fieldset className="flex flex-col">
-                {list.label && (
-                  <label
-                    className="mb-2 text-sm font-semibold text-secondary"
-                    htmlFor={list.item}
-                  >
-                    {list.label || "Upload Image"}
-                  </label>
+                    <ErrorMessage errorMessage={errors?.[list.name]?.message} />
+                  </fieldset>
                 )}
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  ref={imageRef}
-                />
-                <ImgUploader
-                  imgUrl={defaultValues.image}
-                  hasProvider={hasProvider}
-                  name={`${user?.extra?.firstName} ${user?.extra?.lastName}`}
-                  username={user?.username}
-                  //   onImageDelete={() => {}}
-                  // imageRef={imageRef}
-                  // containerDims="h-36 w-36"
-                  // borderType="rounded-full"
-                />
-                <ErrorMessage />
-              </fieldset>
-            )}
-          </Fragment>
-        );
-      })}
+                {["image_dropzone"].includes(list.type) && (
+                  <fieldset className="flex flex-col">
+                    {list.label && (
+                      <label
+                        className="mb-2 text-sm font-semibold text-secondary"
+                        htmlFor={list.item}
+                      >
+                        {list.label || "Upload Image"}
+                      </label>
+                    )}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      ref={imageRef}
+                    />
+                    <ImgUploader
+                      imgUrl={defaultValues.image}
+                      hasProvider={hasProvider}
+                      name={`${user?.extra?.firstName} ${user?.extra?.lastName}`}
+                      username={user?.username}
+                      //   onImageDelete={() => {}}
+                      // imageRef={imageRef}
+                      // containerDims="h-36 w-36"
+                      // borderType="rounded-full"
+                    />
+                    <ErrorMessage />
+                  </fieldset>
+                )}
+              </Fragment>
+            );
+          })}
+        </>
+      ) : (
+        <p className="text-base font-normal tracking-wider text-secondary">
+          We have sent the reset email to your email {data?.resetPassEmail} to
+          reset password.
+        </p>
+      )}
       {formName === "login" && (
         <div className="flex flex-1 items-center">
           <input
@@ -178,7 +190,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
       <div className="flex items-center justify-end w-full hover:brightness-110">
         <Button
           type="submit"
-          label={btnTxt}
+          label={btnTitle}
           variant="contained"
           className={classNames(formType === "auth" ? "w-full" : "w-fit")}
           disabled={!isValid}

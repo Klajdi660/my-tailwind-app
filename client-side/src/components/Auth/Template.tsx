@@ -30,7 +30,15 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
               <Image imgUrl={iconName} name="template_logo" width={100} />
             </Link>
           </div>
-          <Title name={formTitle || ""} desc={description} type="medium" />
+          {!data?.resetPassEmailSent ? (
+            <Title name={formTitle || ""} desc={description} type="medium" />
+          ) : (
+            <Title
+              name="Check Email"
+              desc="to reset password to continue to Groove"
+              type="medium"
+            />
+          )}
           {["login", "register"]?.includes(formName) && (
             <>
               <SocialAuthButton />
@@ -58,6 +66,7 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
                 schema={schema}
                 onSubmit={onSubmit}
                 defaultValues={defaultValues}
+                data={data}
               />
               <div className="flex justify-center mt-4 text-sm text-onNeutralBg">
                 {footerTitle}

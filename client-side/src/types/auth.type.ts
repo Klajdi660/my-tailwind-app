@@ -44,6 +44,7 @@ export interface FormProps2 {
   schema?: any;
   setFiles?: any;
   user?: any;
+  data?: any;
 }
 
 interface ErrorMessageParams {

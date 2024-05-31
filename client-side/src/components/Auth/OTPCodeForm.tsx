@@ -30,12 +30,13 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
       const timeNow = dayjs();
       const timeExp = dayjs(data?.codeExpire);
       const diffInSeconds = timeExp.diff(timeNow, "second");
-      setSecondsRemaining(diffInSeconds);
+      setSecondsRemaining(diffInSeconds > 0 ? diffInSeconds : 0);
     };
 
     calculateSecondsRemaining();
 
     const intervalId = setInterval(calculateSecondsRemaining, 1000);
+
     return () => clearInterval(intervalId);
   }, [data?.codeExpire]);
 
@@ -78,7 +79,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
         className={classNames(otpFilled && "hover:brightness-125")}
         disabled={!otpFilled}
       />
-      {secondsRemaining > 0 ? (
+      {secondsRemaining > 0 && (
         <>
           <Progress
             style={{
@@ -95,17 +96,6 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
             )}
           />
         </>
-      ) : (
-        <>
-          <div className="flex justify-center text-sm text-onNeutralBg">
-            Didn't recieve code? &nbsp;
-            <div className="cursor-pointer" onClick={handleResendCode}>
-              <p className="text-primary hover:underline underline-offset-2">
-                Resend
-              </p>
-            </div>
-          </div>
-        </>
       )}
       <div className="flex justify-center text-sm text-onNeutralBg">
         {footerTitle}
@@ -114,6 +104,14 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
             {footerLink}
           </p>
         </Link>
+      </div>
+      <div className="flex justify-center text-sm text-onNeutralBg">
+        Didn't recieve code? &nbsp;
+        <div className="cursor-pointer" onClick={handleResendCode}>
+          <p className="text-primary hover:underline underline-offset-2">
+            Resend
+          </p>
+        </div>
       </div>
     </Form>
   );

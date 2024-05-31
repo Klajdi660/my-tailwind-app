@@ -12,5 +12,9 @@ export interface AuthService {
   verifyEmail: (data: any) => Promise<void>;
   logout: () => Promise<void>;
   forgotPassword: (data: ForgotPasswordInput) => Promise<void>;
-  resetPassword: (data: any, token: string) => Promise<void>;
+  resetPassword: (
+    data: any,
+    email: string | any,
+    hash: string | any
+  ) => Promise<void>;
 }

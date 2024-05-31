@@ -186,17 +186,21 @@ export const useAuthService = (): AuthService => {
         description: message,
       });
 
-      navigate("/password-code", { state: { passData: values } });
+      // navigate("/password-code", { state: { passData: values } });
     } catch (error) {
       console.error(`Forgot Pass Failed: ${error}`);
       throw error;
     }
   };
 
-  const resetPassword = async (values: any, token: string): Promise<void> => {
+  const resetPassword = async (
+    values: any,
+    email: string,
+    hash: string
+  ): Promise<void> => {
     try {
-      const resetPasswordResp = await HttpClient.put<AuthResponse>(
-        `${RESETPASSWORD_API}/${token}`,
+      const resetPasswordResp = await HttpClient.post<AuthResponse>(
+        `${RESETPASSWORD_API}/${email}/${hash}`,
         values
       );
 
@@ -216,6 +220,8 @@ export const useAuthService = (): AuthService => {
         variant: "info",
         description: message,
       });
+
+      navigate("/login");
     } catch (error) {
       console.error(`Reset password failed: ${error}`);
       throw error;

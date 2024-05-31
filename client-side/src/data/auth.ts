@@ -15,24 +15,6 @@ export const socialAuthList = [
     icon: "FcGoogle",
     link: "http://localhost:8080/api/auth/google",
   },
-  //   {
-  //     id: 2,
-  //     name: "Playstation",
-  //     icon: "FaPlaystation",
-  //     link: "",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Xbox",
-  //     icon: "FaXbox",
-  //     link: "",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Nintendo",
-  //     icon: "BsNintendoSwitch",
-  //     link: "",
-  //   },
 ];
 
 export const formList: FormListMap = {
@@ -143,38 +125,6 @@ export const formList: FormListMap = {
       footerLink: "Go back",
       linkTo: "/login",
     },
-    {
-      type: "code",
-      name: "code1",
-      props: {
-        type: "number",
-        placeholder: "",
-      },
-    },
-    // {
-    //   type: "code",
-    //   name: "code2",
-    //   props: {
-    //     type: "number",
-    //     placeholder: "",
-    //   },
-    // },
-    // {
-    //   type: "code",
-    //   name: "code3",
-    //   props: {
-    //     type: "number",
-    //     placeholder: "",
-    //   },
-    // },
-    // {
-    //   type: "code",
-    //   name: "code4",
-    //   props: {
-    //     type: "number",
-    //     placeholder: "",
-    //   },
-    // },
   ],
   "forgot-password": [
     {
@@ -182,8 +132,8 @@ export const formList: FormListMap = {
       formName: "forgot-password",
       formTitle: "Reset Password",
       description:
-        "Enter your email address, and we'll send a code to continue to Groove",
-      btnTxt: "Send Code",
+        "Enter your email address, and we'll send a link to reset password to continue to Groove",
+      btnTxt: "Reset Password",
       footerTitle: "Remember Password?",
       footerLink: "Go back",
       linkTo: "/login",
@@ -202,9 +152,9 @@ export const formList: FormListMap = {
     {
       formType: "auth",
       formName: "reset-password",
-      formTitle: "Change Password",
+      formTitle: "Choose New Password",
       description: "to continue to Groove",
-      btnTxt: "Change Password",
+      btnTxt: "Reset Password",
       footerTitle: "Remember Password?",
       footerLink: "Go back",
       linkTo: "/login",
@@ -212,7 +162,7 @@ export const formList: FormListMap = {
     {
       type: "input",
       name: "password",
-      label: "Password",
+      label: "New Password",
       props: {
         type: "password",
         placeholder: "",
@@ -221,7 +171,7 @@ export const formList: FormListMap = {
     {
       type: "input",
       name: "confirmPassword",
-      label: "Confirm Password",
+      label: "Confirm New Password",
       props: {
         type: "confirmPassword",
         placeholder: "",
@@ -233,7 +183,6 @@ export const formList: FormListMap = {
       formType: "auth",
       formName: "password-code",
       formTitle: "Continue Reset Password",
-      // description: "Enter code to get back into your account",
       description: "Enter code to continue to Groove",
       btnTxt: "Reset Password",
       footerTitle: "Remember Password?",
