@@ -13,8 +13,6 @@ import {
   RegisterResponse,
 } from "../types";
 import { paths } from "../data";
-// import { useDispatch } from "react-redux";
-// import { setRegisterData } from "../store/redux/slices/auth.slice";
 
 const {
   LOGIN_API,
@@ -27,7 +25,7 @@ const {
 
 export const useAuthService = (): AuthService => {
   const { discover } = paths;
-  // const dispatch = useDispatch();
+
   const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
@@ -36,15 +34,18 @@ export const useAuthService = (): AuthService => {
     try {
       const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, values);
 
-      // if (response.error) {
-      //   notify({
-      //     title: "Error",
-      //     variant: "error",
-      //     description: response.message,
-      //   });
-      //   return;
-      // }
-      const { aToken } = loginResp.data;
+      const { error, message, data } = loginResp;
+
+      if (error) {
+        notify({
+          title: "Error",
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      const { aToken } = data;
       const user = JSON.parse(atob(aToken.split(".")[1]));
       localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
@@ -102,8 +103,9 @@ export const useAuthService = (): AuthService => {
         variant: "success",
         description: `${message}`,
       });
+
       const registerData = { ...values, codeExpire: data.codeExpire };
-      // dispatch(setRegisterData(values));
+
       navigate("/verify-email", { state: { registerData } });
     } catch (error) {
       console.error(`Signup failed: ${error}`);
