@@ -201,8 +201,11 @@ export const useAuthService = (): AuthService => {
     hash: string
   ): Promise<void> => {
     try {
+      const params = new URLSearchParams({ email, hash }).toString();
+      const url = `${RESETPASSWORD_API}?${params}`;
+
       const resetPasswordResp = await HttpClient.post<AuthResponse>(
-        `${RESETPASSWORD_API}/${email}/${hash}`,
+        url,
         values
       );
 
