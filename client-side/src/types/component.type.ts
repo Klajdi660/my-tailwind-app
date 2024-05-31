@@ -53,6 +53,9 @@ export interface OTPCodeFormProps {
   footerTitle: string;
   footerLink: string;
   linkTo: string;
+  onSubmit: any;
+  handleResendCode: any;
+  data: any;
 }
 
 interface Extra {
@@ -81,6 +84,8 @@ export interface TemplateProps {
   lists: any;
   onSubmit: any;
   schema: any;
+  handleResendCode?: any;
+  data?: any;
 }
 
 // Settings
