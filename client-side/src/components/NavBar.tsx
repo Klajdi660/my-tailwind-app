@@ -23,7 +23,7 @@ import { NavbarProps } from "../types";
 export const Navbar: FunctionComponent<NavbarProps> = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated, user } = useAuth();
+  const { user } = useAuth();
   const theme = useSelector((state: any) => state.theme);
   const isMobile = useMobileResponsive();
   const { toggleSearch, setToggleSearch } = useAppUtil();

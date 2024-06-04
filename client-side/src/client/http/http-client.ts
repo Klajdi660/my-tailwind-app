@@ -3,11 +3,11 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-import axiosRetry from "axios-retry";
+// import axiosRetry from "axios-retry";
 import { store } from "../../store/redux";
 import { deleteUser } from "../../store/redux/slices/auth.slice";
 import { APP_URL, AXIOS_TIMEOUT_DURATION } from "../../configs";
-import { globalObject } from "../../utils";
+// import { globalObject } from "../../utils";
 
 const instance = axios.create({
   baseURL: APP_URL,

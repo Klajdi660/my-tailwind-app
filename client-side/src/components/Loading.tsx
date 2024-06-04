@@ -1,23 +1,9 @@
-import { FunctionComponent, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { FunctionComponent } from "react";
 import { iconName } from "../assets";
 import { Image } from "./UI";
 import { LoadingPorps } from "../types";
 
 export const Loading: FunctionComponent<LoadingPorps> = () => {
-  // const { globalLoading } = useSelector((state: any) => state.globalLoading);
-  // const [isLoading, setIsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   if (globalLoading) {
-  //     setIsLoading(true);
-  //   } else {
-  //     setTimeout(() => {
-  //       setIsLoading(false);
-  //     }, 1000);
-  //   }
-  // }, [globalLoading]);
-
   return (
     <div className="fixed z-[999] w-[100vw] h-[100vh] bg-glassmorphism">
       <div className="w-full">

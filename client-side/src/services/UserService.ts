@@ -1,8 +1,8 @@
 import { HttpClient } from "../client";
 import { useAuth, useNotification } from "../hooks";
 import { userEndpoints } from "./Api";
-import { useDispatch } from "react-redux";
-import { setUser2 } from "../store/redux/slices/user.slice";
+// import { useDispatch } from "react-redux";
+// import { setUser2 } from "../store/redux/slices/user.slice";
 
 const { GET_USER_DETAILS_API } = userEndpoints;
 
@@ -13,10 +13,10 @@ interface UserDetailsResponse {
 }
 
 export const useUserService = () => {
-  const { user, setUser } = useAuth();
+  const { user } = useAuth();
   // const { setLoading, selectedTimeZone } = useStore();
   const [notify] = useNotification();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const getUsers = async () => {};
 

@@ -26,7 +26,7 @@ const {
 export const useAuthService = (): AuthService => {
   const { discover } = paths;
 
-  const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
+  const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
 
@@ -49,7 +49,7 @@ export const useAuthService = (): AuthService => {
       const user = JSON.parse(atob(aToken.split(".")[1]));
       localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
-      // setLToken(loginResp.lToken);
+      // setLToken(lToken);
       // globalObject.lToken = loginResp.lToken;
       authenticateUser({ id: user.id });
       navigate(`${discover}`);
