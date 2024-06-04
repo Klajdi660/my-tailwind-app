@@ -17,47 +17,20 @@ const instance = axios.create({
   },
 });
 
-export const getToken = async (type = "l", authorise = 1) => {
-  const headers = {
-    "Content-Type": "application/json",
-    "x-access-token": localStorage.rToken,
-  };
-
-  try {
-    if (!localStorage.rToken) throw new Error("Error Auth!");
-    let response = await instance.post(
-      `${APP_URL}/auth/token_${type}`,
-      { authorise: 1 },
-      { headers }
-    );
-    if (response.status === 200) {
-      let { data } = response;
-      return data[`${type}Token`];
-    } else {
-      throw new Error("Error Auth!");
-    }
-  } catch {
-    delete localStorage.rToken;
-    delete localStorage.user;
-    delete localStorage.lastLocation;
-    window.location.reload();
-  }
-};
-
-axiosRetry(instance, {
-  retries: 1,
-  async retryCondition(error) {
-    switch (error.response?.status) {
-      case 401:
-        if (error.config?.method === "get") {
-          globalObject.lToken = await getToken("l");
-        }
-        return true;
-      default:
-        return false;
-    }
-  },
-});
+// axiosRetry(instance, {
+//   retries: 1,
+//   async retryCondition(error) {
+//     switch (error.response?.status) {
+//       case 401:
+//         if (error.config?.method === "get") {
+//           globalObject.lToken = await getToken("l");
+//         }
+//         return true;
+//       default:
+//         return false;
+//     }
+//   },
+// });
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
@@ -69,9 +42,9 @@ instance.interceptors.request.use(
     if (config.url?.includes("auth")) return config;
 
     if (config.method === "get") {
-      globalObject.lToken = globalObject.lToken || localStorage.lToken; //(await getToken("l"));
+      // globalObject.lToken = globalObject.lToken || localStorage.lToken; //(await getToken("l"));
       // config.headers["x-access-token"] = globalObject.lToken;
-      config.headers.Authorization = `Bearer ${localStorage.ltoken}`;
+      config.headers.Authorization = `Bearer ${localStorage.atoken}`;
       return config;
     }
 

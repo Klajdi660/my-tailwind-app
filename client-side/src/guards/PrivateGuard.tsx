@@ -10,17 +10,7 @@ export const PrivateGuard: FunctionComponent<ProviderProps> = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   // const { isAuthenticated } = useAuth();
-
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const currentTime = dayjs().unix();
-  //   const tokenExpirationTime = localStorage.user.exp;
-
-  //   if (currentTime > tokenExpirationTime) {
-  //     setShowModal(true);
-  //   }
-  // }, []);
 
   useEffect(() => {
     const checkTokenExpiration = () => {

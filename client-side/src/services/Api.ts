@@ -11,7 +11,7 @@ export const endpoints = {
 
 // USER ENDPOINTS
 export const userEndpoints = {
-  GET_USER_DETAILS_API: "",
+  GET_USER_DETAILS_API: "/user",
   GET_ALL_USER_API: "",
   DELETE_USER_API: "",
   UPDATE_USER_API: "",

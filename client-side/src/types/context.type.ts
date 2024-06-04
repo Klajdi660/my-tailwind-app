@@ -11,6 +11,7 @@ export interface AuthContextType {
   unAuthenticateUser: () => void;
   updateUser: () => void;
   user?: User | null;
+  setUser?: any;
 }
 
 // Store context

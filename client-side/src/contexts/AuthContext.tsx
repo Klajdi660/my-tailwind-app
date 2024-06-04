@@ -58,6 +58,7 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
       value={{
         ...initialState,
         user,
+        setUser,
         isAuthenticated,
         authenticateUser,
         unAuthenticateUser,

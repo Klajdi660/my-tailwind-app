@@ -1,13 +1,52 @@
-import { useAuth, useStore } from "../hooks";
+import { HttpClient } from "../client";
+import { useAuth, useNotification } from "../hooks";
+import { userEndpoints } from "./Api";
+import { useDispatch } from "react-redux";
+import { setUser2 } from "../store/redux/slices/user.slice";
+
+const { GET_USER_DETAILS_API } = userEndpoints;
+
+interface UserDetailsResponse {
+  error: boolean;
+  messsage: string;
+  data: any;
+}
 
 export const useUserService = () => {
-  const { user } = useAuth();
-  const { setLoading, selectedTimeZone } = useStore();
+  const { user, setUser } = useAuth();
+  // const { setLoading, selectedTimeZone } = useStore();
+  const [notify] = useNotification();
+  const dispatch = useDispatch();
 
   const getUsers = async () => {};
 
   const getUserDetails = async () => {
-    // const user = localStorage.user;
+    try {
+      const url = `${GET_USER_DETAILS_API}/${user?.id}`;
+      const userDetailsResp = await HttpClient.get<UserDetailsResponse>(url);
+
+      const { error, messsage, data } = userDetailsResp;
+
+      if (error) {
+        notify({
+          title: "Error",
+          variant: "error",
+          description: messsage,
+        });
+      }
+
+      data.extraObj = {
+        ...JSON.parse(data.extra),
+      };
+
+      // setUser(data);
+      console.log("data :>> ", data);
+      // dispatch(setUser2(data));
+      return data;
+    } catch (error) {
+      console.error(`Get user details failed: ${error} `);
+      throw error;
+    }
   };
 
   const confirmUser = async () => {};

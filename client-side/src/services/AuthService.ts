@@ -26,7 +26,7 @@ const {
 export const useAuthService = (): AuthService => {
   const { discover } = paths;
 
-  const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
+  const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
 

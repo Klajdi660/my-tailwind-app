@@ -33,8 +33,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
   const { sidebar } = theme || defaultThemeConfig;
   const isFolded = sidebar === "folded";
   const showFull = Boolean(isFolded);
-  console.log("isAuthenticated 1111:>> ", isAuthenticated);
-  console.log("user 1111:>> ", user);
+
   return (
     <nav className="fixed z-[10] h-navbar top-0 bg-neutralBgOpacity backdrop-blur-[50px] sidebar_horizontal_width">
       <Overlay

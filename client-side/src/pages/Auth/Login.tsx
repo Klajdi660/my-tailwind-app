@@ -34,7 +34,7 @@ const Login: FunctionComponent<LoginPageProps> = () => {
 
   const defaultValues = {
     identifier: "klajdi96",
-    password: "Klajdi96@",
+    password: "Pass123.",
   };
 
   return (

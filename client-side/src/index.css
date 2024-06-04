@@ -186,6 +186,7 @@ input[type="checkbox"] {
 /* Popover */
 .ant-popover {
   position: fixed;
+  z-index: 999;
 }
 .ant-popover .ant-popover-content {
   margin-top: 10px;
