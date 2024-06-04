@@ -44,6 +44,8 @@ export const PrivateGuard: FunctionComponent<ProviderProps> = ({
       <Modal
         title="Session Expired!"
         open={showModal}
+        cancelButtonProps={{ style: { display: "none" } }} // hide cancel button
+        closable={false} // hide x button
         onOk={handleOk}
         okButtonProps={{
           style: {
