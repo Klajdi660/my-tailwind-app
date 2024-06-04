@@ -35,7 +35,7 @@ export const useUserService = () => {
         });
       }
 
-      data.extraObj = {
+      data.extra = {
         ...JSON.parse(data.extra),
       };
 
