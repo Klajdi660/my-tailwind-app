@@ -45,9 +45,11 @@ export const useAuthService = (): AuthService => {
         return;
       }
 
-      const { aToken } = data;
+      const { aToken, rToken } = data;
       const user = JSON.parse(atob(aToken.split(".")[1]));
+      const rtoken = JSON.parse(atob(rToken.split(".")[1]));
       localStorage.atoken = aToken;
+      localStorage.rtoken = JSON.stringify(rtoken);
       localStorage.user = JSON.stringify(user);
       // setLToken(lToken);
       // globalObject.lToken = loginResp.lToken;

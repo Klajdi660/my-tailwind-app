@@ -6,11 +6,12 @@ import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation } from "../../utils";
 // import { InputRef } from "antd";
-
+import { useDispatch } from "react-redux";
+import { setRememberData } from "../../store/redux/slices/auth.slice";
 const Login: FunctionComponent<LoginPageProps> = () => {
   const { lists } = useFormList();
   const { login } = useAuthService();
-
+  const dispatch = useDispatch();
   // const { isAuthenticated } = useAuth();
   // const inputRef = useRef<InputRef>(null);
   // const navigate = useNavigate();
@@ -27,6 +28,9 @@ const Login: FunctionComponent<LoginPageProps> = () => {
   const handleOnSubmit = async (values: LoginUserInput) => {
     try {
       await login(values);
+      if (values.remember) {
+        dispatch(setRememberData(values));
+      }
     } catch (error) {
       console.error(`Failed to login! ${error}`);
     }

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   registerData: null,
+  rememberData: null,
   accessToken: "",
 };
 
@@ -12,6 +13,9 @@ const slice = createSlice({
   reducers: {
     setRegisterData(state, value) {
       state.registerData = value.payload;
+    },
+    setRememberData(state, value) {
+      state.rememberData = value.payload;
     },
     saveUser(state, action) {
       state.user = action.payload.user;
@@ -38,4 +42,5 @@ export const {
   updateToken,
   deleteUser,
   setRegisterData,
+  setRememberData,
 } = slice.actions;
