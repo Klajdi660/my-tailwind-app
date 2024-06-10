@@ -13,7 +13,7 @@ export const PrivateGuard: FunctionComponent<ProviderProps> = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkTokenExpiration = () => {
+    const checkTokenExpiration = async () => {
       const currentTime = dayjs().unix();
       const tokenExpirationTime = JSON.parse(localStorage.user).exp;
 

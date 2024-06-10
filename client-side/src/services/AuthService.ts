@@ -52,6 +52,7 @@ export const useAuthService = (): AuthService => {
       localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
       localStorage.rtoken = JSON.stringify(rtoken);
+
       if (values.remember) {
         dispatch(
           saveCredentials({
@@ -61,6 +62,7 @@ export const useAuthService = (): AuthService => {
       } else {
         dispatch(clearCredentials());
       }
+
       // setLToken(lToken);
       // globalObject.lToken = loginResp.lToken;
       authenticateUser({ id: user.id });

@@ -147,7 +147,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                     <ImgUploader
                       imgUrl={defaultValues.image}
                       hasProvider={hasProvider}
-                      name={`${user?.extra?.firstName} ${user?.extra?.lastName}`}
+                      name={user?.extra?.name}
                       username={user?.username}
                       //   onImageDelete={() => {}}
                       // imageRef={imageRef}

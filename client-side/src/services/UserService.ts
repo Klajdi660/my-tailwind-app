@@ -1,4 +1,3 @@
-// import { useDispatch } from "react-redux";
 import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { useAuth, useNotification } from "../hooks";
@@ -12,16 +11,16 @@ interface UserDetailsResponse {
 }
 
 export const useUserService = () => {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   // const { setLoading, selectedTimeZone } = useStore();
   const [notify] = useNotification();
-  // const dispatch = useDispatch();
 
   const getUsers = async () => {};
 
   const getUserDetails = async () => {
     try {
       const url = `${GET_USER_DETAILS_API}/${user?.id}`;
+
       const userDetailsResp = await HttpClient.get<UserDetailsResponse>(url);
 
       const { error, messsage, data } = userDetailsResp;
@@ -36,6 +35,8 @@ export const useUserService = () => {
       data.extra = {
         ...JSON.parse(data.extra),
       };
+
+      setUser(data);
     } catch (error) {
       console.error(`Get user details failed: ${error} `);
       throw error;

@@ -1,18 +1,16 @@
 import { FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Popover } from "antd";
 import { userIcon } from "../../assets";
 import { Image, Icon, Button } from "../UI";
 import { useAuth } from "../../hooks";
-import { useAuthService, useUserService } from "../../services";
+import { useAuthService } from "../../services";
 import { UserMenuProps, ProfileDropdownProps } from "../../types";
 import { classNames } from "../../utils";
 
 const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
   const { user, hidden } = props;
 
-  const { getUserDetails } = useUserService();
   const { logout } = useAuthService();
   const navigate = useNavigate();
 
@@ -24,7 +22,6 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
       name: "Profile",
       icon: "BiUser",
       onClick: () => {
-        getUserDetails();
         navigate("/profile");
         hidden();
       },
@@ -110,8 +107,6 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
 const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
-  const { user2 } = useSelector((state: any) => state.profile);
-  console.log("user2 :>> ", user2);
 
   const hidden = () => {
     setOpen(false);
