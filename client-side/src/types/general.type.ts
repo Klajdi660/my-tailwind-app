@@ -39,7 +39,6 @@ export interface ThemeConfig {
 
 // Hooks
 export interface NotifyParams {
-  title?: string;
   description: string | any;
   variant: string;
 }

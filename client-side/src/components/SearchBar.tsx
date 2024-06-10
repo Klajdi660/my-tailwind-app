@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
-import { classNames } from "../utils";
 import { Icon } from "./UI";
 import { SearchbarProps } from "../types";
+import { classNames } from "../utils";
 
 export const Searchbar: FunctionComponent<SearchbarProps> = (props) => {
   const { isMobile, toggleSearch, setToggleSearch } = props;

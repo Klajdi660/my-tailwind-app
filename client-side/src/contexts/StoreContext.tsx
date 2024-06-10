@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import moment from "moment-timezone";
+import { useAuth } from "../hooks";
 import { ProviderProps, StoreContextType, Translations } from "../types";
-import { useAuth } from "../hooks/useAuth";
 
 const initialState: StoreContextType = {
   userStore: {},

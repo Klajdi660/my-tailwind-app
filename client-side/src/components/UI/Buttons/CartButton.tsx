@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Icon } from "../Icon";
-import { useAppUtil } from "../../../utils";
 import { CartButtonProps } from "../../../types";
+import { useAppUtil } from "../../../utils";
 
 export const CartButton: FunctionComponent<CartButtonProps> = () => {
   const { setOpenSwitch } = useAppUtil();

@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
-import { classNames } from "../utils";
 import { Footer } from "./Footer";
 import { TopPlayProps } from "../types";
+import { classNames } from "../utils";
 
 export const TopPlay: FunctionComponent<TopPlayProps> = (props) => {
   return (

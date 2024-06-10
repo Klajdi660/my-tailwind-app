@@ -1,133 +1,13 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-// import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";
 import { icon } from "../assets";
-import {
-  // footerLink2,
-  topFooter,
-  bottomFooter,
-  // resources,
-  // plans,
-  // community,
-} from "../data";
 import { Image, Icon } from "./UI";
+import { topFooter, bottomFooter } from "../data";
 import { HomeFooterProps } from "../types";
 
 export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
   return (
     <div className="bg-neutralBgOpacity backdrop-blur-[50px]">
-      {/* <div className="flex lg:flex-row gap-8 items-center justify-between w-11/12 max-w-[1260px] text-onNeutalBg leading-6 mx-auto relative py-10">
-        <div className="flex flex-row lg:flex-row w-full pb-5 border-b border-divider">
-          <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-divider pl-3 lg:pr-5 gap-3">
-            <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-onNeutalBg font-semibold text-base">
-                Company
-              </h1>
-              <div className="flex flex-col gap-2">
-                {["About", "Careers", "Affiliates"].map((ele, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className="text-secondary text-sm cursor-pointer hover:text-onNeutalBg transition-all duration-200"
-                    >
-                      <Link to={ele.toLowerCase()}>{ele}</Link>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="flex gap-3 text-lg">
-                <FaFacebook />
-                <FaGoogle />
-                <FaTwitter />
-                <FaYoutube />
-              </div>
-              <div></div>
-            </div>
-            <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-onNeutalBg font-semibold text-base">
-                Resources
-              </h1>
-              <div className="flex flex-col gap-2 mt-2">
-                {resources.map((ele, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-secondary text-sm cursor-pointer hover:text-onNeutalBg transition-all duration-200"
-                    >
-                      <Link to={ele.split(" ").join("-").toLowerCase()}>
-                        {ele}
-                      </Link>
-                    </div>
-                  );
-                })}
-              </div>
-              <h1 className="text-onNeutalBg font-semibold text-base mt-7">
-                Support
-              </h1>
-              <div className="text-secondary text-sm cursor-pointer hover:text-onNeutalBg transition-all duration-200 mt-2">
-                <Link to={"/help-center"}>Help Center</Link>
-              </div>
-            </div>
-            <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-onNeutalBg font-semibold text-base">Plans</h1>
-              <div className="flex flex-col gap-2 mt-2">
-                {plans.map((ele, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-secondary text-sm cursor-pointer hover:text-onNeutalBg transition-all duration-200"
-                    >
-                      <Link to={ele.split(" ").join("-").toLowerCase()}>
-                        {ele}
-                      </Link>
-                    </div>
-                  );
-                })}
-              </div>
-              <h1 className="text-onNeutalBg font-semibold text-base mt-7">
-                Community
-              </h1>
-              <div className="flex flex-col gap-2 mt-2">
-                {community.map((ele, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-secondary text-sm cursor-pointer hover:text-onNeutalBg transition-all duration-200"
-                    >
-                      <Link to={ele.split(" ").join("-").toLowerCase()}>
-                        {ele}
-                      </Link>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          <div className="lg:w-[50%] flex flex-wrap flex-row justify-between pl-3 lg:pl-5 gap-3">
-            {footerLink2.map((ele, i) => {
-              return (
-                <div key={i} className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-                  <h1 className="text-onNeutalBg font-semibold text-base">
-                    {ele.title}
-                  </h1>
-                  <div className="flex flex-col gap-2 mt-2">
-                    {ele.links.map((link, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="text-secondary text-sm cursor-pointer hover:text-onNeutalBg transition-all duration-200"
-                        >
-                          <Link to={link.link}>{link.title}</Link>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div> */}
       <div className="flex flex-col lg:flex-row justify-between items-center gap-3 w-11/12 max-w-full mx-auto text-sm py-10 cursor-pointer">
         <div className="flex flex-col lg:flex-row text-secondary gap-3">
           {topFooter.map((ele, i) => (
@@ -138,7 +18,6 @@ export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
             </div>
           ))}
         </div>
-        {/* <div className="items-center hidden h-full lg:flex"> */}
         <button className="w-10 h-10 transition-colors duration-500 rounded-full flex_justify_center bg-primary-opacity hover:bg-primary group">
           <Icon
             name="SlArrowUp"
@@ -146,7 +25,6 @@ export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
             className="group-hover:!text-white"
           />
         </button>
-        {/* </div> */}
       </div>
       <div className="flex flex-col justify-between items-left w-11/12 max-w-full mx-auto text-xs text-secondary pb-10">
         <p className="w-[100%] lg:w-[50%] text-justify">

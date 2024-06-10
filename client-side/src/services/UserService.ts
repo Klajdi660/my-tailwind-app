@@ -1,7 +1,7 @@
+// import { useDispatch } from "react-redux";
+import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { useAuth, useNotification } from "../hooks";
-import { userEndpoints } from "./Api";
-// import { useDispatch } from "react-redux";
 
 const { GET_USER_DETAILS_API } = userEndpoints;
 
@@ -28,7 +28,6 @@ export const useUserService = () => {
 
       if (error) {
         notify({
-          title: "Error",
           variant: "error",
           description: messsage,
         });

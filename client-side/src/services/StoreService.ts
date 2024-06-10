@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { HttpClient } from "../client";
-import { useStore, useNotification } from "../hooks";
 import { StoreContext } from "../contexts";
+import { useStore, useNotification } from "../hooks";
 import { Translations } from "../types";
 
 export const useStoreService = () => {
+  const { translations, setTranslations } = useContext(StoreContext);
   const { userStore } = useStore();
   const [notify] = useNotification();
-  const { translations, setTranslations } = useContext(StoreContext);
 
   const getTranslationsFile = async (lang: any) => {
     let url = `http://localhost/boot/front/face/langs/current/lang_${lang}.json`;
@@ -16,7 +16,6 @@ export const useStoreService = () => {
       setTranslations(response);
     } catch (error) {
       notify({
-        title: "Error",
         variant: "error",
         description: "url not found or file has error",
       });

@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { Image } from "./UI";
 import {
   facebookIcon,
   instagramIcon,
   tiktokIcon,
   youtubeIcon,
 } from "../assets";
+import { Image } from "./UI";
 import { FooterProps } from "../types";
 
 const downloadBtnList = [

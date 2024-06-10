@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useNavScrollTrigger } from "../utils";
 import { ProviderProps } from "../types";
+import { useNavScrollTrigger } from "../utils";
 
 const triggerPoint = 50;
 

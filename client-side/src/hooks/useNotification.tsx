@@ -11,16 +11,11 @@ export const useNotification = () => {
     default: toast,
   };
 
-  const notify = ({
-    title,
-    description,
-    variant = "success",
-  }: NotifyParams) => {
+  const notify = ({ description, variant = "success" }: NotifyParams) => {
     const toastFunc = toastFuncMap[variant] || toastFuncMap.default;
 
     toastFunc(
       <div className="flex flex-col gap-2 text-sm ">
-        {/* <span className="text-onNeurtralBg">{title}</span> */}
         <span className="text-onNeurtralBg">{description}</span>
       </div>,
       {

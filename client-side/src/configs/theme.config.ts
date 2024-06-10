@@ -1,13 +1,19 @@
 import { ThemeConfig } from "../types";
 
 export const themeConfig: ThemeConfig = {
-  modes: ["light", "dark"],
   colors: {
     cyan: {
       primary: "#0077B5",
       primaryLightGray: "#107490",
       primaryOpacity: "rgba(16, 116, 144, 0.1)",
     },
+  },
+  fontFamilies: ["fira sans", "roboto", "lato", "inter", "poppins"],
+  modes: ["light", "dark"],
+  players: ["lined", "boxed"],
+  sidebars: {
+    folded: "80",
+    full: "200",
   },
   themes: {
     theme_light: {
@@ -39,12 +45,6 @@ export const themeConfig: ThemeConfig = {
       cardBgHover: "#374152",
       player: "#ffffff",
     },
-  },
-  players: ["lined", "boxed"],
-  fontFamilies: ["fira sans", "roboto", "lato", "inter", "poppins"],
-  sidebars: {
-    folded: "80",
-    full: "200",
   },
 };
 

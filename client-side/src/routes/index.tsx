@@ -1,11 +1,10 @@
 import { lazy, FunctionComponent } from "react";
-import { useRoutes } from "react-router-dom";
+import { useRoutes /*Navigate, createBrowserRouter*/ } from "react-router-dom";
 import { PrivateGuard, PublicGuard } from "../guards";
 import { Loadable } from "./Loadable";
+// import { FormListProvider } from "../contexts";
 import { paths } from "../data";
-// import { Navigate, createBrowserRouter } from "react-router-dom";
 import { PrivateLayout, PublicLayout } from "../layouts";
-// import { FormListProvider } from "../contexts/FormListContext";
 
 const {
   browse,
@@ -24,15 +23,14 @@ const {
 export const Routes = () =>
   useRoutes([
     {
-      path: home,
+      path: browse,
       element: (
-        <PublicGuard>
-          <PublicLayout>
-            <HomePage />
-          </PublicLayout>
-        </PublicGuard>
+        <PrivateGuard>
+          <PrivateLayout>
+            <BrowsePage />
+          </PrivateLayout>
+        </PrivateGuard>
       ),
-      index: true,
     },
     {
       path: discover,
@@ -45,24 +43,25 @@ export const Routes = () =>
       ),
     },
     {
-      path: browse,
+      path: forgotPassword,
       element: (
-        <PrivateGuard>
-          <PrivateLayout>
-            <BrowsePage />
-          </PrivateLayout>
-        </PrivateGuard>
+        <PublicGuard>
+          <PublicLayout>
+            <ForgotPasswordPage />
+          </PublicLayout>
+        </PublicGuard>
       ),
     },
     {
-      path: profile,
+      path: home,
       element: (
-        <PrivateGuard>
-          <PrivateLayout>
-            <ProfilePage />
-          </PrivateLayout>
-        </PrivateGuard>
+        <PublicGuard>
+          <PublicLayout>
+            <HomePage />
+          </PublicLayout>
+        </PublicGuard>
       ),
+      index: true,
     },
     {
       path: login,
@@ -76,31 +75,31 @@ export const Routes = () =>
       index: true,
     },
     {
+      path: passwordCode,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <PasswordConfirmCodePage />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
+    {
+      path: profile,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <ProfilePage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
+    {
       path: register,
       element: (
         <PublicGuard>
           <PublicLayout>
             <RegisterPage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
-      path: verifyEmail,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <VerifyEmailPage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
-      path: forgotPassword,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <ForgotPasswordPage />
           </PublicLayout>
         </PublicGuard>
       ),
@@ -116,21 +115,21 @@ export const Routes = () =>
       ),
     },
     {
-      path: passwordCode,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <PasswordConfirmCodePage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
       path: socialAuth,
       element: (
         <PublicGuard>
           <PublicLayout>
             <SocialAuth />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
+    {
+      path: verifyEmail,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <VerifyEmailPage />
           </PublicLayout>
         </PublicGuard>
       ),
@@ -151,42 +150,32 @@ const delayLoad = (
   });
 };
 
-// const DashboardPage = Loadable(
-//   lazy(() => import("../pages/Dashboard"))
-//   // lazy(() => delayLoad(() => import("../pages/Dashboard"), 1000))
-// );
-
-const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
-
 const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
 const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
-const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
-
+const ForgotPasswordPage = Loadable(
+  lazy(() => import("../pages/Auth/ForgotPassword"))
+);
+const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
 // const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
 const LoginPage = Loadable(
   lazy(() => delayLoad(() => import("../pages/Auth/Login")))
 );
-
+const PasswordConfirmCodePage = Loadable(
+  lazy(() => import("../pages/Auth/PasswordConfirmCode"))
+);
+const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
 const RegisterPage = Loadable(
   lazy(() => delayLoad(() => import("../pages/Auth/Register")))
-);
-
-const VerifyEmailPage = Loadable(
-  lazy(() => import("../pages/Auth/VerifyEmail"))
-);
-const ForgotPasswordPage = Loadable(
-  lazy(() => import("../pages/Auth/ForgotPassword"))
 );
 const ResetPasswordPage = Loadable(
   lazy(() => import("../pages/Auth/ChangePassword"))
 );
-const PasswordConfirmCodePage = Loadable(
-  lazy(() => import("../pages/Auth/PasswordConfirmCode"))
-);
 const SocialAuth = Loadable(
   lazy(() => import("../components/Auth/SocialAuth"))
 );
-
+const VerifyEmailPage = Loadable(
+  lazy(() => import("../pages/Auth/VerifyEmail"))
+);
 // const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
 const ComingSoonPage = Loadable(lazy(() => import("../pages/ComingSoon")));
 

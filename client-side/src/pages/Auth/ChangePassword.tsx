@@ -1,11 +1,10 @@
 import { FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
-import { useFormList } from "../../hooks";
-import { resetPassValidation } from "../../utils";
 import { Template } from "../../components";
-// import { formList } from "../../data";
-import { ChangePasswordPageProps } from "../../types";
+import { useFormList } from "../../hooks";
 import { useAuthService } from "../../services";
+import { ChangePasswordPageProps } from "../../types";
+import { resetPassValidation } from "../../utils";
 
 const ChangePassword: FunctionComponent<ChangePasswordPageProps> = () => {
   const { lists } = useFormList();

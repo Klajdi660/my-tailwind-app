@@ -32,9 +32,7 @@ export const Notification: FunctionComponent<NotificationProps[]> = (
           </li>
         ))}
       </ul>
-
       <hr className="w-full border-t border-divider" />
-
       <Link
         className="inline-block w-full p-3 text-sm text-center text-onNeutralBg hover:text-primary hover:bg-primary-opacity"
         to={"/notifications"}

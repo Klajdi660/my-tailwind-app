@@ -1,11 +1,12 @@
 import { FunctionComponent, useMemo, useState } from "react";
 import { Form } from "../Auth";
 import { profileList } from "../../data";
-import { editProfileValidation } from "../../utils";
 import { EditProfileProps, EditProfileSave } from "../../types";
+import { editProfileValidation } from "../../utils";
 
 export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
   const { email, username, imgUrl, provider, user } = props;
+
   const [files, setFiles] = useState(null);
 
   const hasProvider = provider !== "Email";

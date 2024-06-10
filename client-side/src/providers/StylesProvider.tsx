@@ -1,7 +1,7 @@
 import { startCase } from "lodash";
 import { useMediaQuery } from "react-responsive";
-import { themeConfig, defaultThemeConfig } from "../configs";
 import { useSelector } from "react-redux";
+import { themeConfig, defaultThemeConfig } from "../configs";
 import { useMobileResponsive } from "../utils";
 
 export const StylesProvider = () => {

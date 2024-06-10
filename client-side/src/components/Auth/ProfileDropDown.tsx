@@ -1,21 +1,22 @@
 import { FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Popover } from "antd";
+import { userIcon } from "../../assets";
 import { Image, Icon, Button } from "../UI";
 import { useAuth } from "../../hooks";
 import { useAuthService, useUserService } from "../../services";
-import { classNames } from "../../utils";
-import { userIcon } from "../../assets";
 import { UserMenuProps, ProfileDropdownProps } from "../../types";
-import { useSelector } from "react-redux";
+import { classNames } from "../../utils";
 
 const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
   const { user, hidden } = props;
-  const { email, username, avatar, extra } = user;
+
   const { getUserDetails } = useUserService();
   const { logout } = useAuthService();
-
   const navigate = useNavigate();
+
+  const { email, username, avatar, extra } = user;
 
   const menuItems = [
     {

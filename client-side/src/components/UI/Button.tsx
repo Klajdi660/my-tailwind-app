@@ -1,7 +1,7 @@
 import { forwardRef, FunctionComponent, Ref } from "react";
 import { Icon } from "./Icon";
-import { classNames } from "../../utils";
 import { ButtonProps } from "../../types";
+import { classNames } from "../../utils";
 
 export const Button: FunctionComponent<ButtonProps> = forwardRef(
   (

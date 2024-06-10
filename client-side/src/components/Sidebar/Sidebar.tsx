@@ -1,12 +1,12 @@
 import { FunctionComponent, useMemo, useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useAuth, useNotification } from "../../hooks";
 import { Icon, Overlay, Image } from "../UI";
-import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
-import { navlinks } from "../../data";
 import { defaultThemeConfig, themeConfig } from "../../configs";
+import { navlinks } from "../../data";
+import { useAuth, useNotification } from "../../hooks";
 import { SidebarPorps } from "../../types";
+import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
 
 const User = () => {
   const { user } = useAuth();

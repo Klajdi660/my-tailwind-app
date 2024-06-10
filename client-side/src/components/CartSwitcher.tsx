@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
-import { classNames, useAppUtil, useMobileResponsive } from "../utils";
 import { Icon, Overlay } from "./UI";
 import { CartSwitcherProps } from "../types";
+import { classNames, useAppUtil, useMobileResponsive } from "../utils";
 
 export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   const { openSwitch, setOpenSwitch } = useAppUtil();

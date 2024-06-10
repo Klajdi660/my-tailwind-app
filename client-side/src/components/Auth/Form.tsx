@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, IconButton, ImgUploader, Icon } from "../UI";
-import { classNames } from "../../utils";
 import { FormProps2, ErrorMessageProps, FormListItem } from "../../types";
+import { classNames } from "../../utils";
 
 const ErrorMessage = ({ errorMessage }: ErrorMessageProps) => {
   const message = errorMessage?.message || String(errorMessage || "");

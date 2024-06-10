@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Image, Button, HomeFooter } from "../../components";
 import { iconName } from "../../assets";
+import { Image, Button, HomeFooter } from "../../components";
 import { HomePageProps } from "../../types";
 
 const Home: FunctionComponent<HomePageProps> = () => {

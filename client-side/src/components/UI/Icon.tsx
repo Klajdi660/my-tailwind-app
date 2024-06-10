@@ -1,7 +1,5 @@
 import { FunctionComponent } from "react";
 import { IconContext } from "react-icons";
-import { classNames } from "../../utils";
-import { IconParams, IconsMap } from "../../types";
 import {
   AiOutlineCloudUpload,
   AiOutlineEdit,
@@ -43,6 +41,8 @@ import { PiWarningCircleBold } from "react-icons/pi";
 import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox, SlArrowUp } from "react-icons/sl";
 import { TiTimes } from "react-icons/ti";
+import { IconParams, IconsMap } from "../../types";
+import { classNames } from "../../utils";
 
 const icons: IconsMap = {
   AiOutlineCloudUpload,

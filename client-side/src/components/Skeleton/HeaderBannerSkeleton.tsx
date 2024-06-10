@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Skeleton } from "./Skeleton";
-import { classNames } from "../../utils";
 import { HeaderBannerSkeletonProps } from "../../types";
+import { classNames } from "../../utils";
 
 export const HeaderBannerSkeleton: FunctionComponent<
   HeaderBannerSkeletonProps

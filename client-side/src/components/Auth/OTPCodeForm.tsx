@@ -4,8 +4,8 @@ import dayjs from "dayjs";
 import OtpInput from "react18-input-otp";
 import { Form, Progress } from "antd";
 import { Button } from "../UI";
-import { classNames } from "../../utils";
 import { OTPCodeFormProps } from "../../types";
+import { classNames } from "../../utils";
 
 export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   const {

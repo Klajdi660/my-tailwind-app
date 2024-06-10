@@ -1,6 +1,6 @@
 // import { useQuery } from "react-query";
-// import { User } from "../../types/user.type";
 // import AuthService from "../../services/AuthService";
+// import { User } from "../../types";
 
 // export const useAuthenticateQuery = () =>
 //   useQuery<User, Error>("auth", AuthService.authenticatedUser);

@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Skeleton } from "./Skeleton";
-import { classNames } from "../../utils";
 import { ImageDimsOptions, TrackCardSkeletonProps } from "../../types";
+import { classNames } from "../../utils";
 
 const imageDimsOpt: ImageDimsOptions = {
   11: "h-11 w-11",

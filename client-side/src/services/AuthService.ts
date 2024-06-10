@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useAuth } from "../hooks";
-import { HttpClient } from "../client";
-// import { globalObject } from "../utils";
 import { endpoints } from "./Api";
-import { useNotification } from "../hooks";
+import { HttpClient } from "../client";
+import { paths } from "../data";
+import { useAuth, useNotification } from "../hooks";
+import { clearCredentials, saveCredentials } from "../store";
 import {
   AuthResponse,
   LoginUserInput,
@@ -13,11 +13,7 @@ import {
   AuthService,
   RegisterResponse,
 } from "../types";
-import { paths } from "../data";
-import {
-  saveCredentials,
-  clearCredentials,
-} from "../store/redux/slices/remember.slice";
+// import { globalObject } from "../utils";
 
 const {
   LOGIN_API,
@@ -44,7 +40,6 @@ export const useAuthService = (): AuthService => {
 
       if (error) {
         notify({
-          title: "Error",
           variant: "error",
           description: message,
         });
@@ -72,7 +67,6 @@ export const useAuthService = (): AuthService => {
       navigate(`${discover}`);
     } catch (error) {
       notify({
-        title: "Error",
         variant: "error",
         description: "Login failed. Incorrect email/username or password",
       });
@@ -108,7 +102,6 @@ export const useAuthService = (): AuthService => {
 
       if (error) {
         notify({
-          title: "Error",
           variant: "error",
           description: message,
         });
@@ -116,7 +109,6 @@ export const useAuthService = (): AuthService => {
       }
 
       notify({
-        title: "Success",
         variant: "success",
         description: `${message}`,
       });
@@ -141,7 +133,6 @@ export const useAuthService = (): AuthService => {
 
       if (error) {
         notify({
-          title: "Error",
           variant: "error",
           description: message,
         });
@@ -149,7 +140,6 @@ export const useAuthService = (): AuthService => {
       }
 
       notify({
-        title: "Success",
         variant: "success",
         description: message,
       });
@@ -172,7 +162,6 @@ export const useAuthService = (): AuthService => {
       navigate("/");
     } catch (error) {
       notify({
-        title: "Error",
         variant: "error",
         description: "Logout failed.",
       });
@@ -192,7 +181,6 @@ export const useAuthService = (): AuthService => {
 
       if (error) {
         notify({
-          title: "Error",
           variant: "error",
           description: message,
         });
@@ -200,7 +188,6 @@ export const useAuthService = (): AuthService => {
       }
 
       notify({
-        title: "Success",
         variant: "info",
         description: message,
       });
@@ -230,7 +217,6 @@ export const useAuthService = (): AuthService => {
 
       if (error) {
         notify({
-          title: "Error",
           variant: "error",
           description: message,
         });
@@ -238,7 +224,6 @@ export const useAuthService = (): AuthService => {
       }
 
       notify({
-        title: "Success",
         variant: "info",
         description: message,
       });

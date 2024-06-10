@@ -1,24 +1,11 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import { FunctionComponent } from "react";
-import { Icon } from "./Icon";
-// import { classNames } from "../../utils";
-import { Image } from "./Image";
 import { userIcon } from "../../assets";
-// import { useAppModal } from "../../lib";
-// import { Button } from "./Button";
-// import { Modal } from "antd";
+import { Icon } from "./Icon";
+import { Image } from "./Image";
 import { ImgUploaderParams } from "../../types";
 
 export const ImgUploader: FunctionComponent<ImgUploaderParams> = (props) => {
-  const {
-    imgUrl,
-    hasProvider,
-    name,
-    username,
-    // imageRef,
-    // containerDims = "h-32 w-full",
-    // borderType = "rounded",
-  } = props;
+  const { imgUrl, hasProvider, name, username } = props;
 
   return (
     <div className="flex items-center gap-10">

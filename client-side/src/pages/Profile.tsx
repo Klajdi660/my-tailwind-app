@@ -1,5 +1,4 @@
 import { FunctionComponent } from "react";
-import { useAuth } from "../hooks";
 import {
   DeleteAccount,
   EditProfile,
@@ -9,8 +8,9 @@ import {
   UserInfo,
   DeleteModal,
 } from "../components";
-import { useAppModal } from "../utils";
+import { useAuth } from "../hooks";
 import { ProfilePageProps } from "../types";
+import { useAppModal } from "../utils";
 
 const Profile: FunctionComponent<ProfilePageProps> = () => {
   const { user } = useAuth();

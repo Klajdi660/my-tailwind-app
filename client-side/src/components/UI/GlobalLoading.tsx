@@ -6,8 +6,11 @@ import { iconName } from "../../assets";
 import { GlobalLoadingProps } from "../../types";
 
 export const GlobalLoading: FunctionComponent<GlobalLoadingProps> = () => {
-  // const { globalLoading } = useSelector((state: any) => state.globalLoading);
   // const [isLoading, setIsLoading] = useState(false);
+
+  const { loading } = useSelector((state: any) => state.auth);
+  // const { globalLoading } = useSelector((state: any) => state.globalLoading);
+
   // useEffect(() => {
   //   if (globalLoading) {
   //     setIsLoading(true);
@@ -17,7 +20,6 @@ export const GlobalLoading: FunctionComponent<GlobalLoadingProps> = () => {
   //     // }, 1000);
   //   }
   // }, [globalLoading]);
-  const { loading } = useSelector((state: any) => state.auth);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
-import { Image } from "./UI";
 import { alFlag, shFlag } from "../assets";
+import { Image } from "./UI";
 import { LanguageProps } from "../types";
 
 export const Language: FunctionComponent<LanguageProps> = (props) => {

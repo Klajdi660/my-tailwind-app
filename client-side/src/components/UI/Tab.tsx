@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import { Space, Button } from "antd";
 import { TabProps, TabMap } from "../../types";
+import { classNames } from "../../utils";
 
 export const Tab: FunctionComponent<TabProps> = (props) => {
   const { tabData, field, setField } = props;
@@ -22,7 +23,9 @@ export const Tab: FunctionComponent<TabProps> = (props) => {
             backgroundColor: field === tab.type ? "#2C333F" : "transparent",
             color: field === tab.type ? "#EB6536" : "#999DAA",
           }}
-          className={`${field === tab.type ? "active-button" : "inactive-button"}`}
+          className={classNames(
+            `${field === tab.type ? "active-button" : "inactive-button"}`
+          )}
         >
           {tab.tabName}
         </Button>

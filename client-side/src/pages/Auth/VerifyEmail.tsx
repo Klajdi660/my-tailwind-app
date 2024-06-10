@@ -2,9 +2,9 @@ import { FunctionComponent } from "react";
 import { useLocation } from "react-router-dom";
 import { Template } from "../../components";
 import { useFormList } from "../../hooks";
-import { verifyValidation } from "../../utils";
-import { VerifyEmailPagePorps } from "../../types";
 import { useAuthService } from "../../services";
+import { VerifyEmailPagePorps } from "../../types";
+import { verifyValidation } from "../../utils";
 
 const VerifyEmail: FunctionComponent<VerifyEmailPagePorps> = () => {
   const location = useLocation();

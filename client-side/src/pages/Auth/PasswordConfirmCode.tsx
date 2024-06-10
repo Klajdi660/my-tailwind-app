@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react";
 import { Template } from "../../components";
 import { useFormList } from "../../hooks";
-import { verifyValidation } from "../../utils";
 import { PasswordConfirmCodePageProps } from "../../types";
+import { verifyValidation } from "../../utils";
 
 const PasswordConfirmCode: FunctionComponent<
   PasswordConfirmCodePageProps
