@@ -1,28 +1,17 @@
-import { FunctionComponent /*useEffect, useRef*/ } from "react";
-// import { useNavigate, useLocation } from "react-router-dom";
+import { FunctionComponent } from "react";
+import { useSelector } from "react-redux";
+import dayjs from "dayjs";
 import { Template } from "../../components";
-import { useFormList /*useAuth*/ } from "../../hooks";
+import { useFormList } from "../../hooks";
 import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation } from "../../utils";
-// import { InputRef } from "antd";
 
 const Login: FunctionComponent<LoginPageProps> = () => {
   const { lists } = useFormList();
   const { login } = useAuthService();
+  const rememberMe = useSelector((state: any) => state.rememberMe);
 
-  // const { isAuthenticated } = useAuth();
-  // const inputRef = useRef<InputRef>(null);
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   if (isAuthenticated)
-  //     localStorage.lastLocation
-  //       ? navigate(`/${localStorage.lastLocation}`)
-  //       : navigate(`/discover`);
-  //   // inputRef.current!.focus();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
   const handleOnSubmit = async (values: LoginUserInput) => {
     try {
       await login(values);
@@ -31,17 +20,30 @@ const Login: FunctionComponent<LoginPageProps> = () => {
     }
   };
 
-  // const defaultValues = {
-  //   identifier: "klajdi96",
-  //   password: "Pass123.",
-  // };
+  const checkRTokenExpiry = () => {
+    if (localStorage.rtoken) {
+      const currentTime = dayjs().unix();
+      const tokenExpirationTime = JSON.parse(localStorage.rtoken).exp;
+      return parseInt(tokenExpirationTime) > currentTime;
+    }
+    return false;
+  };
+
+  const defaultValues = (() => {
+    if (rememberMe.remember && checkRTokenExpiry()) {
+      return { ...rememberMe };
+    } else {
+      delete localStorage.rtoken;
+      return {};
+    }
+  })();
 
   return (
     <Template
       lists={lists}
       schema={loginValidation}
       onSubmit={handleOnSubmit}
-      // defaultValues={defaultValues}
+      defaultValues={defaultValues}
     />
   );
 };

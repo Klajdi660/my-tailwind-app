@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useAuth } from "../hooks";
 import { HttpClient } from "../client";
 // import { globalObject } from "../utils";
@@ -13,6 +14,10 @@ import {
   RegisterResponse,
 } from "../types";
 import { paths } from "../data";
+import {
+  saveCredentials,
+  clearCredentials,
+} from "../store/redux/slices/remember.slice";
 
 const {
   LOGIN_API,
@@ -29,6 +34,7 @@ export const useAuthService = (): AuthService => {
   const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const login = async (values: LoginUserInput): Promise<void> => {
     try {
@@ -49,8 +55,17 @@ export const useAuthService = (): AuthService => {
       const user = JSON.parse(atob(aToken.split(".")[1]));
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));
       localStorage.atoken = aToken;
-      localStorage.rtoken = JSON.stringify(rtoken);
       localStorage.user = JSON.stringify(user);
+      localStorage.rtoken = JSON.stringify(rtoken);
+      if (values.remember) {
+        dispatch(
+          saveCredentials({
+            ...values,
+          })
+        );
+      } else {
+        dispatch(clearCredentials());
+      }
       // setLToken(lToken);
       // globalObject.lToken = loginResp.lToken;
       authenticateUser({ id: user.id });

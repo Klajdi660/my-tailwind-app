@@ -4,6 +4,7 @@ import authReducer from "./auth.slice";
 import themeReducer from "./theme.slice";
 import userReducer from "./user.slice";
 import globalLoadingReducer from "./globalLoading.slice";
+import rememberMeReducer from "./remember.slice";
 
 const rootPersistConfig = {
   key: "root",
@@ -14,6 +15,7 @@ const rootPersistConfig = {
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  rememberMe: rememberMeReducer,
   theme: themeReducer,
   profile: userReducer,
   globalLoading: globalLoadingReducer,

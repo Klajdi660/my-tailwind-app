@@ -2,7 +2,6 @@ import { HttpClient } from "../client";
 import { useAuth, useNotification } from "../hooks";
 import { userEndpoints } from "./Api";
 // import { useDispatch } from "react-redux";
-// import { setUser2 } from "../store/redux/slices/user.slice";
 
 const { GET_USER_DETAILS_API } = userEndpoints;
 
@@ -38,11 +37,6 @@ export const useUserService = () => {
       data.extra = {
         ...JSON.parse(data.extra),
       };
-
-      // setUser(data);
-      console.log("data :>> ", data);
-      // dispatch(setUser2(data));
-      return data;
     } catch (error) {
       console.error(`Get user details failed: ${error} `);
       throw error;
