@@ -20,8 +20,7 @@ const initialState: AuthContextType = {
 const AuthContext = createContext(initialState);
 
 const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | any>(JSON.parse(localStorage.user));
-  // const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [lToken, setLToken] = useState("");
   const [signupData, setSignUpData] = useState();
 
@@ -36,7 +35,7 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   };
 
   const unAuthenticateUser = () => {
-    setUser({});
+    setUser(null);
   };
 
   const updateUser = () => {};
