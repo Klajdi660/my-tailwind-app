@@ -140,15 +140,15 @@ export const Routes = () =>
     },
   ]);
 
-const delayLoad = (
-  component: () => Promise<{ default: FunctionComponent<any> }>
-) => {
-  return new Promise<{ default: FunctionComponent<any> }>((resolve) => {
-    setTimeout(() => {
-      resolve(component());
-    }, 1000);
-  });
-};
+// const delayLoad = (
+//   component: () => Promise<{ default: FunctionComponent<any> }>
+// ) => {
+//   return new Promise<{ default: FunctionComponent<any> }>((resolve) => {
+//     setTimeout(() => {
+//       resolve(component());
+//     }, 1000);
+//   });
+// };
 
 const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
 const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
@@ -156,17 +156,15 @@ const ForgotPasswordPage = Loadable(
   lazy(() => import("../pages/Auth/ForgotPassword"))
 );
 const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
-// const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
-const LoginPage = Loadable(
-  lazy(() => delayLoad(() => import("../pages/Auth/Login")))
-);
+const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
+// const LoginPage = Loadable(
+//   lazy(() => delayLoad(() => import("../pages/Auth/Login")))
+// );
 const PasswordConfirmCodePage = Loadable(
   lazy(() => import("../pages/Auth/PasswordConfirmCode"))
 );
 const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
-const RegisterPage = Loadable(
-  lazy(() => delayLoad(() => import("../pages/Auth/Register")))
-);
+const RegisterPage = Loadable(lazy(() => import("../pages/Auth/Register")));
 const ResetPasswordPage = Loadable(
   lazy(() => import("../pages/Auth/ChangePassword"))
 );

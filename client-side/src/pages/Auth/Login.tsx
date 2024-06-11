@@ -43,8 +43,10 @@ const Login: FunctionComponent<LoginPageProps> = () => {
 
   const defaultValues = (() => {
     if (rememberMe.remember && checkRTokenExpiry()) {
+      console.log("HYRI 111");
       return { ...rememberMe };
     } else {
+      console.log("HYRI 222");
       delete localStorage.rtoken;
       return {};
     }

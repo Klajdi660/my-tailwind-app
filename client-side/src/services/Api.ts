@@ -20,5 +20,12 @@ export const userEndpoints = {
   CONTACT_API: "",
 };
 
+// PROFILE ENDPOINTS
+export const profileEndpoints = {
+  UPDATE_PROFILE: "/profile/update-profile",
+  UPDATE_PROFILE_PICTURE: "/profile/update-display-picture",
+  DELETE_PROFILE: "/profile",
+};
+
 // GAMES ENDPOINTS
 export const gameEndpoints = {};

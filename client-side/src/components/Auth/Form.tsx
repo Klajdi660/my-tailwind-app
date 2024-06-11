@@ -145,7 +145,8 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                       ref={imageRef}
                     />
                     <ImgUploader
-                      imgUrl={defaultValues.image}
+                      // imgUrl={defaultValues.image}
+                      imgUrl=""
                       hasProvider={hasProvider}
                       name={user?.extra?.name}
                       username={user?.username}
@@ -169,13 +170,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
       )}
       {formName === "login" && (
         <div className="flex flex-1 items-center">
-          <input
-            type="checkbox"
-            // id="remember"
-            {...form("remember")}
-            name="remember"
-            // value="remember"
-          />
+          <input type="checkbox" {...form("remember")} name="remember" />
           <label className="ml-2 text-xs text-secondary">Remember Me</label>
           <Link
             to="/forgot-password"

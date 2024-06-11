@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { AuthContextType, ProviderProps, User } from "../types";
+// import { Loading } from "../components";
 
 const initialState: AuthContextType = {
   isAuthenticated: false,
@@ -23,11 +24,13 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [lToken, setLToken] = useState("");
   const [signupData, setSignUpData] = useState();
+  // const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
   useEffect(() => {
     if (localStorage.atoken) setUser({ id: JSON.parse(localStorage.user).id });
+    // setIsLoading(false);
   }, []);
 
   const authenticateUser = (user: User) => {
@@ -59,6 +62,7 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
         setSignUpData,
       }}
     >
+      {/* {isLoading ? <Loading /> : children} */}
       {children}
     </AuthContext.Provider>
   );

@@ -52,7 +52,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
             // !isMobile && "w-sidebar"
           )}
         >
-          <Link to="/" className="flex items-center h-full gap-2 logo">
+          <Link to="/discover" className="flex items-center h-full gap-2 logo">
             {!showFull ? (
               <Image imgUrl={iconName} name="App Logo" width={100} />
             ) : (
