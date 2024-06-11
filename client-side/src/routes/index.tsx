@@ -1,9 +1,21 @@
-import { lazy } from "react";
+// import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
 import { PrivateGuard, PublicGuard } from "../guards";
-import { Loadable } from "./Loadable";
+// import { Loadable } from "./Loadable";
 import { paths } from "../data";
 import { PrivateLayout, PublicLayout } from "../layouts";
+import BrowsePage from "../pages/Root/Browse";
+import DiscoverPage from "../pages/Root/Discover";
+import ForgotPasswordPage from "../pages/Auth/ForgotPassword";
+import HomePage from "../pages/Root/Home";
+import LoginPage from "../pages/Auth/Login";
+import PasswordConfirmCodePage from "../pages/Auth/PasswordConfirmCode";
+import ProfilePage from "../pages/Profile";
+import RegisterPage from "../pages/Auth/Register";
+import ResetPasswordPage from "../pages/Auth/ChangePassword";
+import SocialAuth from "../components/Auth/SocialAuth";
+import VerifyEmailPage from "../pages/Auth/VerifyEmail";
+import ComingSoonPage from "../pages/ComingSoon";
 
 const {
   browse,
@@ -139,26 +151,26 @@ export const Routes = () =>
     },
   ]);
 
-const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
-const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
-const ForgotPasswordPage = Loadable(
-  lazy(() => import("../pages/Auth/ForgotPassword"))
-);
-const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
-const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
-const PasswordConfirmCodePage = Loadable(
-  lazy(() => import("../pages/Auth/PasswordConfirmCode"))
-);
-const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
-const RegisterPage = Loadable(lazy(() => import("../pages/Auth/Register")));
-const ResetPasswordPage = Loadable(
-  lazy(() => import("../pages/Auth/ChangePassword"))
-);
-const SocialAuth = Loadable(
-  lazy(() => import("../components/Auth/SocialAuth"))
-);
-const VerifyEmailPage = Loadable(
-  lazy(() => import("../pages/Auth/VerifyEmail"))
-);
-// const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
-const ComingSoonPage = Loadable(lazy(() => import("../pages/ComingSoon")));
+// const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
+// // const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
+// const ForgotPasswordPage = Loadable(
+//   lazy(() => import("../pages/Auth/ForgotPassword"))
+// );
+// const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
+// const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
+// const PasswordConfirmCodePage = Loadable(
+//   lazy(() => import("../pages/Auth/PasswordConfirmCode"))
+// );
+// const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
+// const RegisterPage = Loadable(lazy(() => import("../pages/Auth/Register")));
+// const ResetPasswordPage = Loadable(
+//   lazy(() => import("../pages/Auth/ChangePassword"))
+// );
+// const SocialAuth = Loadable(
+//   lazy(() => import("../components/Auth/SocialAuth"))
+// );
+// const VerifyEmailPage = Loadable(
+//   lazy(() => import("../pages/Auth/VerifyEmail"))
+// );
+// // const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
+// const ComingSoonPage = Loadable(lazy(() => import("../pages/ComingSoon")));

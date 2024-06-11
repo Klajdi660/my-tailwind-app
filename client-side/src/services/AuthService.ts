@@ -4,7 +4,7 @@ import { endpoints } from "./Api";
 import { HttpClient } from "../client";
 import { paths } from "../data";
 import { useAuth, useNotification } from "../hooks";
-import { clearCredentials, saveCredentials } from "../store";
+import { clearCredentials, saveCredentials, setGlobalLoading } from "../store";
 import {
   AuthResponse,
   LoginUserInput,
@@ -34,8 +34,8 @@ export const useAuthService = (): AuthService => {
 
   const login = async (values: LoginUserInput): Promise<void> => {
     try {
+      dispatch(setGlobalLoading(true));
       const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, values);
-
       const { error, message, data } = loginResp;
 
       if (error) {
@@ -45,6 +45,7 @@ export const useAuthService = (): AuthService => {
         });
         return;
       }
+      dispatch(setGlobalLoading(false));
 
       const { aToken, rToken } = data;
       const user = JSON.parse(atob(aToken.split(".")[1]));
@@ -74,6 +75,7 @@ export const useAuthService = (): AuthService => {
         variant: "error",
         description: "Login failed. Incorrect email/username or password",
       });
+      dispatch(setGlobalLoading(false));
       console.error(`Login failed: ${error}`);
       throw error;
     }

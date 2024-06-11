@@ -1,4 +1,4 @@
-import { CartSwitcher, Navbar, Sidebar, TopPlay } from "../components";
+import { CartSwitcher, Loading, Navbar, Sidebar, TopPlay } from "../components";
 import { ProviderProps } from "../types";
 import { useUserService } from "../services";
 import { useEffect } from "react";
@@ -24,6 +24,7 @@ export const PrivateLayout = ({ children, ...restProps }: ProviderProps) => {
       className="flex flex-col max-w-full m-auto xl:flex-row app bg-main"
       id="main_app"
     >
+      <Loading />
       <Sidebar />
       <main className="relative w-full mx-auto overflow-hidden main_section">
         <Navbar />

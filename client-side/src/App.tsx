@@ -29,26 +29,26 @@ const Application = () => {
   return (
     <HelmetProvider>
       <Provider store={store}>
-        <PersistGate loading={<Loading />} persistor={persistor}>
-          <AuthProvider>
-            <QueryClientProvider client={reactQueryClient}>
-              {/* <Provider store={store}> */}
-              <StoreProvider>
-                <ConfigProvider theme={themeConfig}>
-                  <App>
-                    <StylesProvider />
-                    <ToastContainer />
-                    <Router>
-                      <Routes />
-                    </Router>
-                    {/* <RouterProvider router={router} /> */}
-                  </App>
-                </ConfigProvider>
-              </StoreProvider>
-              {/* </Provider> */}
-            </QueryClientProvider>
-          </AuthProvider>
-        </PersistGate>
+        {/* <PersistGate loading={<Loading />} persistor={persistor}> */}
+        <AuthProvider>
+          <QueryClientProvider client={reactQueryClient}>
+            {/* <Provider store={store}> */}
+            <StoreProvider>
+              <ConfigProvider theme={themeConfig}>
+                <App>
+                  <StylesProvider />
+                  <ToastContainer />
+                  <Router>
+                    <Routes />
+                  </Router>
+                  {/* <RouterProvider router={router} /> */}
+                </App>
+              </ConfigProvider>
+            </StoreProvider>
+            {/* </Provider> */}
+          </QueryClientProvider>
+        </AuthProvider>
+        {/* </PersistGate> */}
       </Provider>
     </HelmetProvider>
   );

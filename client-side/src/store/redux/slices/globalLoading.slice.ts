@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const globaLoadingSlice = createSlice({
-  name: "loading",
+  name: "globalLoading",
   initialState: {
     globalLoading: false,
   },
