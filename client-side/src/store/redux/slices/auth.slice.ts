@@ -10,8 +10,8 @@ const slice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setRegisterData(state, value) {
-      state.registerData = value.payload;
+    setRegisterData(state, action) {
+      state.registerData = action.payload;
     },
     saveUser(state, action) {
       state.user = action.payload.user;

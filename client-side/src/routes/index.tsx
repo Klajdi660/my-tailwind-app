@@ -1,8 +1,7 @@
-import { lazy, FunctionComponent } from "react";
-import { useRoutes /*Navigate, createBrowserRouter*/ } from "react-router-dom";
+import { lazy } from "react";
+import { useRoutes } from "react-router-dom";
 import { PrivateGuard, PublicGuard } from "../guards";
 import { Loadable } from "./Loadable";
-// import { FormListProvider } from "../contexts";
 import { paths } from "../data";
 import { PrivateLayout, PublicLayout } from "../layouts";
 
@@ -140,16 +139,6 @@ export const Routes = () =>
     },
   ]);
 
-// const delayLoad = (
-//   component: () => Promise<{ default: FunctionComponent<any> }>
-// ) => {
-//   return new Promise<{ default: FunctionComponent<any> }>((resolve) => {
-//     setTimeout(() => {
-//       resolve(component());
-//     }, 1000);
-//   });
-// };
-
 const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
 const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
 const ForgotPasswordPage = Loadable(
@@ -157,9 +146,6 @@ const ForgotPasswordPage = Loadable(
 );
 const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
 const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
-// const LoginPage = Loadable(
-//   lazy(() => delayLoad(() => import("../pages/Auth/Login")))
-// );
 const PasswordConfirmCodePage = Loadable(
   lazy(() => import("../pages/Auth/PasswordConfirmCode"))
 );
@@ -176,75 +162,3 @@ const VerifyEmailPage = Loadable(
 );
 // const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
 const ComingSoonPage = Loadable(lazy(() => import("../pages/ComingSoon")));
-
-// export const router = createBrowserRouter([
-//   {
-//     path: home,
-//     children: [
-//       {
-//         element: <PrivateLayout />,
-//         errorElement: <ErrorPage />,
-//         children: [
-//           {
-//             index: true,
-//             element: <Navigate to="/discover" replace />,
-//           },
-//           {
-//             path: `/${discover}`,
-//             element: <DiscoverPage />,
-//           },
-//           {
-//             path: `/${browse}`,
-//             element: <BrowsePage />,
-//           },
-//           {
-//             path: profile,
-//             element: <ProfilePage />,
-//           },
-//         ],
-//       },
-//       {
-//         element: (
-//           <FormListProvider>
-//             <PublicLayout />
-//           </FormListProvider>
-//         ),
-//         errorElement: <ErrorPage />,
-//         children: [
-//           {
-//             path: login,
-//             element: <LoginPage />,
-//           },
-//           {
-//             path: socialAuth,
-//             element: <SocialAuth />,
-//           },
-//           {
-//             path: register,
-//             element: <RegisterPage />,
-//           },
-//           {
-//             path: verifyEmail,
-//             element: <VerifyEmailPage />,
-//           },
-//           {
-//             path: forgotPassword,
-//             element: <ResetPasswordPage />,
-//           },
-//           {
-//             path: resetPassword,
-//             element: <ChangePasswordPage />,
-//           },
-//           {
-//             path: passwordCode,
-//             element: <PasswordConfirmCodePage />,
-//           },
-//         ],
-//       },
-//       {
-//         path: "*",
-//         element: <ComingSoonPage />,
-//       },
-//     ],
-//   },
-// ]);
