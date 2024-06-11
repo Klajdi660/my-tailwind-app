@@ -13,7 +13,7 @@ import {
   AuthService,
   RegisterResponse,
 } from "../types";
-// import { globalObject } from "../utils";
+import { globalObject } from "../utils";
 
 const {
   LOGIN_API,
@@ -27,7 +27,7 @@ const {
 export const useAuthService = (): AuthService => {
   const { discover } = paths;
 
-  const { authenticateUser, unAuthenticateUser /*setLToken*/ } = useAuth();
+  const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -63,8 +63,8 @@ export const useAuthService = (): AuthService => {
         dispatch(clearCredentials());
       }
 
-      // setLToken(lToken);
-      // globalObject.lToken = loginResp.lToken;
+      setLToken(aToken);
+      globalObject.lToken = data.aToken;
       authenticateUser({ id: user.id });
       navigate(`${discover}`);
     } catch (error) {

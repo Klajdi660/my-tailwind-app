@@ -27,14 +27,8 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
   useEffect(() => {
-    if (localStorage.atoken) {
-      setUser({
-        id: JSON.parse(localStorage.user).id,
-      });
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [localStorage.atoken]); // localStorage.atoken
+    if (localStorage.atoken) setUser({ id: JSON.parse(localStorage.user).id });
+  }, []);
 
   const authenticateUser = (user: User) => {
     setUser(user);

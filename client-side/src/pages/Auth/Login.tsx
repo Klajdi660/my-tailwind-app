@@ -1,16 +1,28 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { Template } from "../../components";
-import { useFormList } from "../../hooks";
+import { useFormList, useAuth } from "../../hooks";
 import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation } from "../../utils";
 
 const Login: FunctionComponent<LoginPageProps> = () => {
   const { lists } = useFormList();
+  const { isAuthenticated } = useAuth();
   const { login } = useAuthService();
+  const navigate = useNavigate();
+
   const rememberMe = useSelector((state: any) => state.rememberMe);
+
+  // useEffect(() => {
+  //   if (isAuthenticated)
+  //     localStorage.lastLocation
+  //       ? navigate(`/${localStorage.lastLocation}`)
+  //       : navigate(`/discover`);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const handleOnSubmit = async (values: LoginUserInput) => {
     try {

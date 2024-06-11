@@ -19,7 +19,10 @@ export const useUserService = () => {
 
   const getUserDetails = async () => {
     try {
-      const url = `${GET_USER_DETAILS_API}/${user?.id}`;
+      const userId = user?.id || JSON.parse(localStorage.user)?.id;
+      if (!userId) throw new Error("User ID is not available");
+
+      const url = `${GET_USER_DETAILS_API}/${userId}`;
 
       const userDetailsResp = await HttpClient.get<UserDetailsResponse>(url);
 
@@ -31,7 +34,7 @@ export const useUserService = () => {
           description: messsage,
         });
       }
-
+      console.log("data :>> ", data);
       data.extra = {
         ...JSON.parse(data.extra),
       };

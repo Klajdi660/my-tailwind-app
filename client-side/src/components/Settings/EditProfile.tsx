@@ -6,7 +6,7 @@ import { editProfileValidation } from "../../utils";
 
 export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
   const { email, username, imgUrl, provider, user } = props;
-  console.log("props :>> ", props);
+
   const [files, setFiles] = useState(null);
 
   const hasProvider = provider !== "Email";
