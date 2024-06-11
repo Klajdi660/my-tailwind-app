@@ -28,10 +28,11 @@ const reactQueryClient = new QueryClient();
 const Application = () => {
   return (
     <HelmetProvider>
-      <PersistGate loading={<Loading />} persistor={persistor}>
-        <AuthProvider>
-          <QueryClientProvider client={reactQueryClient}>
-            <Provider store={store}>
+      <Provider store={store}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <AuthProvider>
+            <QueryClientProvider client={reactQueryClient}>
+              {/* <Provider store={store}> */}
               <StoreProvider>
                 <ConfigProvider theme={themeConfig}>
                   <App>
@@ -44,10 +45,11 @@ const Application = () => {
                   </App>
                 </ConfigProvider>
               </StoreProvider>
-            </Provider>
-          </QueryClientProvider>
-        </AuthProvider>
-      </PersistGate>
+              {/* </Provider> */}
+            </QueryClientProvider>
+          </AuthProvider>
+        </PersistGate>
+      </Provider>
     </HelmetProvider>
   );
 };
