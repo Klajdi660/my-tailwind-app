@@ -5,7 +5,9 @@ import { useAuthService } from "../../services";
 import { ForgotPasswordInput, ForgotPasswordPagePropes } from "../../types";
 import { forgotPassValidation } from "../../utils";
 
-const ForgotPassword: FunctionComponent<ForgotPasswordPagePropes> = () => {
+export const ForgotPasswordPage: FunctionComponent<
+  ForgotPasswordPagePropes
+> = () => {
   const { lists } = useFormList();
   const { forgotPassword } = useAuthService();
   const [resetPassEmail, setResetEmail] = useState<string>("");
@@ -31,4 +33,4 @@ const ForgotPassword: FunctionComponent<ForgotPasswordPagePropes> = () => {
   );
 };
 
-export default ForgotPassword;
+export default ForgotPasswordPage;

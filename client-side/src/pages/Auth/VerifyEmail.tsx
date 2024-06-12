@@ -6,7 +6,7 @@ import { useAuthService } from "../../services";
 import { VerifyEmailPagePorps } from "../../types";
 import { verifyValidation } from "../../utils";
 
-const VerifyEmail: FunctionComponent<VerifyEmailPagePorps> = () => {
+export const VerifyEmailPage: FunctionComponent<VerifyEmailPagePorps> = () => {
   const location = useLocation();
   const { lists } = useFormList();
   const { verifyEmail, register } = useAuthService();
@@ -44,4 +44,4 @@ const VerifyEmail: FunctionComponent<VerifyEmailPagePorps> = () => {
   );
 };
 
-export default VerifyEmail;
+export default VerifyEmailPage;

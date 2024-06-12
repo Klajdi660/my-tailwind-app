@@ -8,7 +8,7 @@ import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation } from "../../utils";
 
-const Login: FunctionComponent<LoginPageProps> = () => {
+export const LoginPage: FunctionComponent<LoginPageProps> = () => {
   const { lists } = useFormList();
   const { isAuthenticated } = useAuth();
   const { login } = useAuthService();
@@ -62,4 +62,4 @@ const Login: FunctionComponent<LoginPageProps> = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

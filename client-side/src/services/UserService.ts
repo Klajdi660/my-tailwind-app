@@ -1,8 +1,6 @@
 import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
-import { useAuth, useNotification } from "../hooks";
-import { useDispatch } from "react-redux";
-import { setGlobalLoading } from "../store";
+import { useAuth, useNotification, useStore } from "../hooks";
 
 const { GET_USER_DETAILS_API } = userEndpoints;
 
@@ -14,9 +12,8 @@ interface UserDetailsResponse {
 
 export const useUserService = () => {
   const { user, setUser } = useAuth();
-  // const { setLoading, selectedTimeZone } = useStore();
+  const { setLoading } = useStore();
   const [notify] = useNotification();
-  const dispatch = useDispatch();
 
   const getUsers = async () => {};
 
@@ -26,9 +23,13 @@ export const useUserService = () => {
       if (!userId) throw new Error("User ID is not available");
 
       const url = `${GET_USER_DETAILS_API}/${userId}`;
-      dispatch(setGlobalLoading(true));
+
+      setLoading(true);
+
       const userDetailsResp = await HttpClient.get<UserDetailsResponse>(url);
-      dispatch(setGlobalLoading(false));
+
+      setLoading(false);
+
       const { error, messsage, data } = userDetailsResp;
 
       if (error) {
@@ -37,14 +38,14 @@ export const useUserService = () => {
           description: messsage,
         });
       }
-      console.log("data :>> ", data);
+
       data.extra = {
         ...JSON.parse(data.extra),
       };
 
       setUser(data);
     } catch (error) {
-      dispatch(setGlobalLoading(false));
+      setLoading(false);
       console.error(`Get user details failed: ${error} `);
       throw error;
     }

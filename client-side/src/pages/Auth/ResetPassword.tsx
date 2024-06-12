@@ -6,7 +6,9 @@ import { useAuthService } from "../../services";
 import { ChangePasswordPageProps } from "../../types";
 import { resetPassValidation } from "../../utils";
 
-const ChangePassword: FunctionComponent<ChangePasswordPageProps> = () => {
+export const ResetPasswordPage: FunctionComponent<
+  ChangePasswordPageProps
+> = () => {
   const { lists } = useFormList();
   const { email, hash } = useParams();
   const { resetPassword } = useAuthService();
@@ -28,4 +30,4 @@ const ChangePassword: FunctionComponent<ChangePasswordPageProps> = () => {
   );
 };
 
-export default ChangePassword;
+export default ResetPasswordPage;

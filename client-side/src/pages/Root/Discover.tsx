@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { DiscoverPageProps } from "../../types";
 
-const Discover: FunctionComponent<DiscoverPageProps> = () => {
+export const DiscoverPage: FunctionComponent<DiscoverPageProps> = () => {
   return (
     <section className="discover_page">
       <div className="flex flex-col gap-y-16">
@@ -11,4 +11,4 @@ const Discover: FunctionComponent<DiscoverPageProps> = () => {
   );
 };
 
-export default Discover;
+export default DiscoverPage;

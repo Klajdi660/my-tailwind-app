@@ -2,21 +2,21 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { iconName } from "../assets";
 import { Image } from "./UI";
 import { LoadingPorps } from "../types";
-import { useSelector } from "react-redux";
+import { useStore } from "../hooks";
 
 export const Loading: FunctionComponent<LoadingPorps> = () => {
-  const { globalLoading } = useSelector((state: any) => state.globalLoading);
+  const { loading } = useStore();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (globalLoading) {
+    if (loading) {
       setIsLoading(true);
     } else {
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
     }
-  }, [globalLoading]);
+  }, [loading]);
 
   if (!isLoading) return null;
 

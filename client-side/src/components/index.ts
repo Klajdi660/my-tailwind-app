@@ -1,5 +1,6 @@
 // export { LoginForm } from "./Auth/LoginForm";
 // export { OTPCodeForm } from "./Auth/OTPCodeForm";
+export { SocialAuth } from "./Auth/SocialAuth";
 export { Template } from "./Auth/Template";
 export { ChangePassword } from "./Settings/ChangePassword";
 export * from "./Settings/DeleteAccount";

@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { StorePageProps } from "../../types";
 
-const Store: FunctionComponent<StorePageProps> = () => {
+export const StorePage: FunctionComponent<StorePageProps> = () => {
   return (
     <>
       <h1 className="text-onNeutralBg">Store Page</h1>;
@@ -9,4 +9,4 @@ const Store: FunctionComponent<StorePageProps> = () => {
   );
 };
 
-export default Store;
+export default StorePage;

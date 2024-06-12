@@ -5,7 +5,7 @@ import { useAuthService } from "../../services";
 import { RegisterUserInput, RegisterPageProps } from "../../types";
 import { registerValidation } from "../../utils";
 
-const Register: FunctionComponent<RegisterPageProps> = () => {
+export const RegisterPage: FunctionComponent<RegisterPageProps> = () => {
   const { lists } = useFormList();
   const { register } = useAuthService();
 
@@ -26,4 +26,4 @@ const Register: FunctionComponent<RegisterPageProps> = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

@@ -4,7 +4,7 @@ import { iconName } from "../../assets";
 import { Image, Button, HomeFooter } from "../../components";
 import { HomePageProps } from "../../types";
 
-const Home: FunctionComponent<HomePageProps> = () => {
+export const HomePage: FunctionComponent<HomePageProps> = () => {
   const navigate = useNavigate();
 
   return (
@@ -29,4 +29,4 @@ const Home: FunctionComponent<HomePageProps> = () => {
   );
 };
 
-export default Home;
+export default HomePage;

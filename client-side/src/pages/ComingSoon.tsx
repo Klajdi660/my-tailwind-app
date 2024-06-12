@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { paths } from "../data";
 import { ComingSoonPageProps } from "../types";
 
-const ComingSoon: FunctionComponent<ComingSoonPageProps> = () => {
+export const ComingSoonPage: FunctionComponent<ComingSoonPageProps> = () => {
   const { discover } = paths;
 
   return (
@@ -23,4 +23,4 @@ const ComingSoon: FunctionComponent<ComingSoonPageProps> = () => {
   );
 };
 
-export default ComingSoon;
+export default ComingSoonPage;

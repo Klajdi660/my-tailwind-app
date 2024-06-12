@@ -3,19 +3,26 @@ import { useRoutes } from "react-router-dom";
 import { PrivateGuard, PublicGuard } from "../guards";
 // import { Loadable } from "./Loadable";
 import { paths } from "../data";
+import { SocialAuth } from "../components";
 import { PrivateLayout, PublicLayout } from "../layouts";
-import BrowsePage from "../pages/Root/Browse";
-import DiscoverPage from "../pages/Root/Discover";
-import ForgotPasswordPage from "../pages/Auth/ForgotPassword";
-import HomePage from "../pages/Root/Home";
-import LoginPage from "../pages/Auth/Login";
-import PasswordConfirmCodePage from "../pages/Auth/PasswordConfirmCode";
-import ProfilePage from "../pages/Profile";
-import RegisterPage from "../pages/Auth/Register";
-import ResetPasswordPage from "../pages/Auth/ChangePassword";
-import SocialAuth from "../components/Auth/SocialAuth";
-import VerifyEmailPage from "../pages/Auth/VerifyEmail";
-import ComingSoonPage from "../pages/ComingSoon";
+import {
+  ForgotPasswordPage,
+  LoginPage,
+  PasswordConfirmCodePage,
+  RegisterPage,
+  ResetPasswordPage,
+  VerifyEmailPage,
+  BrowsePage,
+  // CollectionPage,
+  DiscoverPage,
+  HomePage,
+  // MyGamesPage,
+  // StorePage,
+  // WishlistPage,
+  ComingSoonPage,
+  // ErrorPage,
+  ProfilePage,
+} from "../pages";
 
 const {
   browse,

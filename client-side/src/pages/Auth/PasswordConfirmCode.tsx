@@ -4,7 +4,7 @@ import { useFormList } from "../../hooks";
 import { PasswordConfirmCodePageProps } from "../../types";
 import { verifyValidation } from "../../utils";
 
-const PasswordConfirmCode: FunctionComponent<
+export const PasswordConfirmCodePage: FunctionComponent<
   PasswordConfirmCodePageProps
 > = () => {
   const { lists } = useFormList();
@@ -19,4 +19,4 @@ const PasswordConfirmCode: FunctionComponent<
   );
 };
 
-export default PasswordConfirmCode;
+export default PasswordConfirmCodePage;

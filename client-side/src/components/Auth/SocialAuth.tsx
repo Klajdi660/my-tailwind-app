@@ -3,7 +3,7 @@ import { useLocation, Navigate } from "react-router-dom";
 import { useAuthService } from "../../services";
 import { SocialAuthProps } from "../../types";
 
-const SocialAuth: FunctionComponent<SocialAuthProps> = () => {
+export const SocialAuth: FunctionComponent<SocialAuthProps> = () => {
   const { socialAuth } = useAuthService();
   const location = useLocation();
 

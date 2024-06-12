@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { endpoints } from "./Api";
 import { HttpClient } from "../client";
 import { paths } from "../data";
-import { useAuth, useNotification } from "../hooks";
+import { useAuth, useNotification, useStore } from "../hooks";
 import { clearCredentials, saveCredentials } from "../store";
 import {
   AuthResponse,
@@ -14,7 +14,6 @@ import {
   RegisterResponse,
 } from "../types";
 import { globalObject } from "../utils";
-import { setGlobalLoading } from "../store";
 
 const {
   LOGIN_API,
@@ -29,16 +28,20 @@ export const useAuthService = (): AuthService => {
   const { discover } = paths;
 
   const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
+  const { setLoading } = useStore();
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const login = async (values: LoginUserInput): Promise<void> => {
     try {
-      dispatch(setGlobalLoading(true));
+      setLoading(true);
+
       const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, values);
+
+      setLoading(false);
+
       const { error, message, data } = loginResp;
-      dispatch(setGlobalLoading(false));
       if (error) {
         notify({
           variant: "error",
@@ -72,7 +75,7 @@ export const useAuthService = (): AuthService => {
       authenticateUser({ id: user.id });
       navigate(`${discover}`);
     } catch (error) {
-      dispatch(setGlobalLoading(false));
+      setLoading(false);
       notify({
         variant: "error",
         description: "Login failed. Incorrect email/username or password",
