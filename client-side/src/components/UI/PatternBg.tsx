@@ -7,11 +7,12 @@ export const PatternBg: FunctionComponent<PatternBgProps> = () => {
   return (
     <>
       <div
-        className={`absolute z-20 w-[210px] h-[210px] rounded-full top-[-125px] right-[-15px] opacity-20 ${gradientClass}`}
+        className={`absolute z-1 w-[210px] h-[210px] rounded-full top-[-125px] right-[-15px] opacity-20 ${gradientClass}`}
       />
       <div
-        className={`absolute z-20 w-[210px] h-[210px] rounded-full top-[-85px] right-[-95px] opacity-30 ${gradientClass}`}
+        className={`absolute z-1 w-[210px] h-[210px] rounded-full top-[-85px] right-[-95px] opacity-30 ${gradientClass}`}
       />
     </>
   );
 };
+// z-20
