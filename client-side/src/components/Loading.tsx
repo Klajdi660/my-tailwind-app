@@ -18,6 +18,8 @@ export const Loading: FunctionComponent<LoadingPorps> = () => {
     }
   }, [globalLoading]);
 
+  if (!isLoading) return null;
+
   return (
     <div className="fixed z-[999] w-[100vw] h-[100vh] bg-glassmorphism">
       <div className="w-full">

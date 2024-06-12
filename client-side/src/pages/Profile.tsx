@@ -7,14 +7,23 @@ import {
   PersonalDetails,
   UserInfo,
   DeleteModal,
+  Loading,
 } from "../components";
 import { useAuth } from "../hooks";
 import { ProfilePageProps } from "../types";
 import { useAppModal } from "../utils";
+import { useSelector } from "react-redux";
 
 const Profile: FunctionComponent<ProfilePageProps> = () => {
   const { user } = useAuth();
   const { modalOpen } = useAppModal();
+  const globalLoading = useSelector(
+    (state: any) => state.globalLoading.globalLoading
+  );
+
+  if (globalLoading) {
+    return <Loading />;
+  }
 
   return (
     <section className="account_page">

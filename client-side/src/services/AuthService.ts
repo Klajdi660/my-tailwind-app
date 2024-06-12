@@ -4,7 +4,7 @@ import { endpoints } from "./Api";
 import { HttpClient } from "../client";
 import { paths } from "../data";
 import { useAuth, useNotification } from "../hooks";
-import { clearCredentials, saveCredentials, setGlobalLoading } from "../store";
+import { clearCredentials, saveCredentials } from "../store";
 import {
   AuthResponse,
   LoginUserInput,
@@ -14,6 +14,7 @@ import {
   RegisterResponse,
 } from "../types";
 import { globalObject } from "../utils";
+import { setGlobalLoading } from "../store";
 
 const {
   LOGIN_API,
@@ -37,7 +38,7 @@ export const useAuthService = (): AuthService => {
       dispatch(setGlobalLoading(true));
       const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, values);
       const { error, message, data } = loginResp;
-
+      dispatch(setGlobalLoading(false));
       if (error) {
         notify({
           variant: "error",
@@ -45,11 +46,11 @@ export const useAuthService = (): AuthService => {
         });
         return;
       }
-      dispatch(setGlobalLoading(false));
 
       const { aToken, rToken } = data;
       const user = JSON.parse(atob(aToken.split(".")[1]));
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));
+
       localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
       localStorage.rtoken = JSON.stringify(rtoken);
@@ -71,11 +72,11 @@ export const useAuthService = (): AuthService => {
       authenticateUser({ id: user.id });
       navigate(`${discover}`);
     } catch (error) {
+      dispatch(setGlobalLoading(false));
       notify({
         variant: "error",
         description: "Login failed. Incorrect email/username or password",
       });
-      dispatch(setGlobalLoading(false));
       console.error(`Login failed: ${error}`);
       throw error;
     }
