@@ -1,5 +1,6 @@
 import { FunctionComponent, useMemo, useState } from "react";
 import { Form } from "../Auth";
+import { PatternBg } from "../UI";
 import { profileList } from "../../data";
 import { EditProfileProps, EditProfileSave } from "../../types";
 import { editProfileValidation } from "../../utils";

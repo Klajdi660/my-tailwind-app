@@ -16,11 +16,13 @@ export const SmallModal: FunctionComponent<SmallModalProps> = (props) => {
     okButtonProps = { type: "primary" },
     onCancel,
     cancelText = "btn_cancel",
+    cancelButtonProps = { style: { display: "none" } },
     width,
     bodyStyle,
   } = props;
+
   const defaultBodyStyle = {
-    height: "40vh",
+    height: "30vh", // 40vh
     display: "flex",
     flexDirection: "column",
   };
@@ -42,6 +44,8 @@ export const SmallModal: FunctionComponent<SmallModalProps> = (props) => {
       okButtonProps={okButtonProps}
       footer={footer}
       destroyOnClose={destroyOnClose}
+      // cancelButtonProps={}
+      cancelButtonProps={cancelButtonProps}
     >
       {children}
     </Modal>

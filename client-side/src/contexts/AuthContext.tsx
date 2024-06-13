@@ -21,8 +21,8 @@ const AuthContext = createContext(initialState);
 
 const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [lToken, setLToken] = useState("");
-  const [signupData, setSignUpData] = useState();
+  // const [lToken, setLToken] = useState("");
+  // const [signupData, setSignUpData] = useState();
 
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
@@ -30,19 +30,19 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
     if (localStorage.atoken) setUser({ id: JSON.parse(localStorage.user).id });
   }, []);
 
-  const authenticateUser = (user: User) => {
-    setUser(user);
-  };
+  // const authenticateUser = (user: User) => {
+  //   setUser(user);
+  // };
 
-  const unAuthenticateUser = () => {
-    setUser(null);
-  };
+  // const unAuthenticateUser = () => {
+  //   setUser(null);
+  // };
 
-  const updateUser = () => {};
+  // const updateUser = () => {};
 
-  useEffect(() => {
-    updateUser();
-  }, []);
+  // useEffect(() => {
+  //   updateUser();
+  // }, []);
 
   return (
     <AuthContext.Provider
@@ -50,13 +50,13 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
         ...initialState,
         user,
         setUser,
-        isAuthenticated,
-        authenticateUser,
-        unAuthenticateUser,
-        lToken,
-        setLToken,
-        signupData,
-        setSignUpData,
+        // isAuthenticated,
+        // authenticateUser,
+        // unAuthenticateUser,
+        // lToken,
+        // setLToken,
+        // signupData,
+        // setSignUpData,
       }}
     >
       {children}

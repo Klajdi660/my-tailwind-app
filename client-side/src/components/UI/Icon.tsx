@@ -37,7 +37,7 @@ import {
   MdOutlineWbSunny,
   MdStorefront,
 } from "react-icons/md";
-import { PiWarningCircleBold } from "react-icons/pi";
+import { PiWarningCircle, PiWarningCircleBold } from "react-icons/pi";
 import { RiFirefoxLine } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox, SlArrowUp } from "react-icons/sl";
 import { TiTimes } from "react-icons/ti";
@@ -81,6 +81,7 @@ const icons: IconsMap = {
   MdOutlineGames,
   MdOutlineWbSunny,
   MdStorefront,
+  PiWarningCircle,
   PiWarningCircleBold,
   RiFirefoxLine,
   SlGameController,

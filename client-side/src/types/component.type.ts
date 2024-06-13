@@ -247,6 +247,7 @@ export interface SmallModalProps {
   cancelText?: string;
   width?: any;
   bodyStyle?: any;
+  cancelButtonProps?: any;
 }
 
 export interface OverlayProps {

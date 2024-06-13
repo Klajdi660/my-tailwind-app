@@ -59,6 +59,24 @@ export const genderList = [
   },
 ];
 
+export const deleteProfileList = [
+  {
+    formName: "deleteAccount",
+    formTitle: "Delete Account",
+    btnTxt: "Delete Account",
+  },
+  {
+    type: "input",
+    name: "deleteAccount",
+    label: "",
+    props: {
+      disabled: "",
+      type: "text",
+      placeholder: "Type delete to confirm",
+    },
+  },
+];
+
 export const changePasswordList = [
   {
     formName: "password",
