@@ -1,6 +1,6 @@
 import { FunctionComponent, useMemo } from "react";
 import { Form } from "../Auth";
-import { Icon } from "../UI";
+import { Icon, PatternBg } from "../UI";
 import { ChangePasswordProps, ChangePasswordSave } from "../../types";
 import { updatePasswordValidation } from "../../utils";
 
@@ -54,7 +54,8 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
   const handleOnSubmit = (values: ChangePasswordSave) => {};
 
   return (
-    <div className="relative p-4 rounded xs:p-6 bg-card">
+    <div className="relative p-4 rounded xs:p-6 bg-card overflow-hidden">
+      <PatternBg />
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">Change Password</h5>
         {!isPasswordEnabled && (

@@ -1,28 +1,17 @@
-import { FunctionComponent, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { Template } from "../../components";
-import { useFormList, useAuth } from "../../hooks";
+import { useFormList } from "../../hooks";
 import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation } from "../../utils";
 
 export const LoginPage: FunctionComponent<LoginPageProps> = () => {
   const { lists } = useFormList();
-  const { isAuthenticated } = useAuth();
   const { login } = useAuthService();
-  const navigate = useNavigate();
 
   const rememberMe = useSelector((state: any) => state.rememberMe);
-
-  // useEffect(() => {
-  //   if (isAuthenticated)
-  //     localStorage.lastLocation
-  //       ? navigate(`/${localStorage.lastLocation}`)
-  //       : navigate(`/discover`);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   const handleOnSubmit = async (values: LoginUserInput) => {
     try {
@@ -43,10 +32,8 @@ export const LoginPage: FunctionComponent<LoginPageProps> = () => {
 
   const defaultValues = (() => {
     if (rememberMe.remember && checkRTokenExpiry()) {
-      console.log("HYRI 111");
       return { ...rememberMe };
     } else {
-      console.log("HYRI 222");
       delete localStorage.rtoken;
       return {};
     }

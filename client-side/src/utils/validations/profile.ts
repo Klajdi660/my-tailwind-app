@@ -14,6 +14,19 @@ export const editProfileValidation = yup
   })
   .required();
 
+export const personalDetailsValidation = yup
+  .object({
+    firstName: yup
+      .string()
+      .required({ message: "Please input your First Name." })
+      .optional(),
+    lastName: yup
+      .string()
+      .required({ message: "Please input your Last Name." })
+      .optional(),
+  })
+  .required();
+
 export const updatePasswordValidation = yup
   .object({
     newPassword: yup

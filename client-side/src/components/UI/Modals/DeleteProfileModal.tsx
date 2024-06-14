@@ -25,7 +25,9 @@ export const DeleteProfileModal: FunctionComponent<
     resolver: yupResolver(deleteProfileValidation),
   });
 
-  const onSubmit = () => {};
+  const onSubmit = (values: any) => {
+    console.log("values :>> ", values);
+  };
 
   return (
     <SmallModal

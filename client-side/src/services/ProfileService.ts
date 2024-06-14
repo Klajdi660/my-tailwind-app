@@ -33,7 +33,7 @@ export const useProfileService = () => {
           description: messsage,
         });
       }
-      console.log("data :>> ", data);
+
       data.extra = {
         ...JSON.parse(data.extra),
       };

@@ -59,14 +59,12 @@ export const useAuthService = (): AuthService => {
       localStorage.rtoken = JSON.stringify(rtoken);
 
       if (values.remember) {
-        console.log("HYRI 333");
         dispatch(
           saveCredentials({
             ...values,
           })
         );
       } else {
-        console.log("HYRI 444");
         dispatch(clearCredentials());
       }
 
