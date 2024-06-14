@@ -1,13 +1,13 @@
 import { FunctionComponent, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import dayjs, { Dayjs } from "dayjs";
+// import { yupResolver } from "@hookform/resolvers/yup";
+import { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
 import { Button, PatternBg } from "../UI";
 import { genderList, dateFormatList } from "../../data";
 import { PersonalDetailsProps } from "../../types";
-import { personalDetailsValidation } from "../../utils";
+// import { personalDetailsValidation } from "../../utils";
 
 const PhoneNumberValidation = ({ value, onChange }: any) => {
   const [phoneNumber, setPhoneNumber] = useState(value);
