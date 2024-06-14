@@ -13,7 +13,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
       variant,
       labelIcon,
       isSubmitting,
-      // onClick,
+      onClick,
       ...props
     },
     ref: Ref<HTMLButtonElement>
@@ -21,10 +21,11 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
     return (
       <button
         className={classNames(
-          variant === "outlined" && "border border-primary text-primary",
-          variant === "delete" &&
-            "bg-primary-opacity text-red-500 hover:bg-red-500 hover:text-white",
-          // variant === "delete" && "bg-red-500 text-white hover:brightness-110",
+          variant === "outlined" &&
+            "border border-primary text-primary hover:bg-primary-opacity",
+          // variant === "delete" &&
+          //   "bg-primary-opacity text-red-500 hover:bg-red-500 hover:text-white",
+          variant === "delete" && "bg-red-500 text-white hover:brightness-110",
           variant === "contained" && "bg-primary text-white",
           variant === "gradient" &&
             "bg-gradient-to-r from-button_gradient_from to-button_gradient_to text-white",
@@ -34,7 +35,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
         disabled={disabled || isSubmitting}
         type={type}
         ref={ref}
-        // onClick={onClick}
+        onClick={onClick}
         {...props}
       >
         {/* {!isSubmitting ? ( */}

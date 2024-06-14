@@ -2,28 +2,10 @@ import { Fragment, FunctionComponent, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, IconButton, ImgUploader, Icon } from "../UI";
-import { FormProps2, ErrorMessageProps, FormListItem } from "../../types";
+import { ErrorMessage } from "../Common";
+import { Button, IconButton, ImgUploader } from "../UI";
+import { FormProps2, FormListItem } from "../../types";
 import { classNames } from "../../utils";
-
-const ErrorMessage = ({ errorMessage }: ErrorMessageProps) => {
-  const message = errorMessage?.message || String(errorMessage || "");
-
-  return (
-    <>
-      {message && (
-        <p className="text-xs text-red-500 flex flex-row items-center mt-2">
-          <Icon
-            name="PiWarningCircleBold"
-            size={18}
-            className="mr-1 text-red-500"
-          />
-          {message}
-        </p>
-      )}
-    </>
-  );
-};
 
 export const Form: FunctionComponent<FormProps2> = (props) => {
   const {

@@ -6,7 +6,7 @@ import {
   Title,
   PersonalDetails,
   UserInfo,
-  DeleteModal,
+  DeleteProfileModal,
 } from "../components";
 import { useAuth } from "../hooks";
 import { ProfilePageProps } from "../types";
@@ -32,7 +32,7 @@ export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
         <ChangePassword provider={user?.provider} />
         <DeleteAccount />
       </div>
-      {modalOpen && <DeleteModal />}
+      {modalOpen && <DeleteProfileModal />}
     </section>
   );
 };

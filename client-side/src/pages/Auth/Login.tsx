@@ -16,13 +16,13 @@ export const LoginPage: FunctionComponent<LoginPageProps> = () => {
 
   const rememberMe = useSelector((state: any) => state.rememberMe);
 
-  useEffect(() => {
-    if (isAuthenticated)
-      localStorage.lastLocation
-        ? navigate(`/${localStorage.lastLocation}`)
-        : navigate(`/discover`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if (isAuthenticated)
+  //     localStorage.lastLocation
+  //       ? navigate(`/${localStorage.lastLocation}`)
+  //       : navigate(`/discover`);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const handleOnSubmit = async (values: LoginUserInput) => {
     try {

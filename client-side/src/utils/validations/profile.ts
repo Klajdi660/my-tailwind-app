@@ -11,8 +11,8 @@ export const editProfileValidation = yup
       .matches(/^[^@]+$/, "Input should not contain symbols.")
       .required(),
     imageUrl: yup.string().trim().nullable(),
-})
-.required();
+  })
+  .required();
 
 export const updatePasswordValidation = yup
   .object({
@@ -20,16 +20,32 @@ export const updatePasswordValidation = yup
       .string()
       .min(8, { message: "Minimum 8 characters." })
       .max(250, { message: "Maximum 250 caracters." })
-      .matches(/[A-Z]/, { message: "Must contain at least one capital letter." })
-      .matches(/[!@#$%^&*(),.?":{}|<>]/, { message: "Must contain at least one symbol." })
+      .matches(/[A-Z]/, {
+        message: "Must contain at least one capital letter.",
+      })
+      .matches(/[!@#$%^&*(),.?":{}|<>]/, {
+        message: "Must contain at least one symbol.",
+      })
       .required("New Password is required"),
     confirmNewPassword: yup
       .string()
       .min(8, { message: "Minimum 8 characters." })
       .max(250, { message: "Maximum 250 caracters." })
-      .matches(/[A-Z]/, { message: "Must contain at least one capital letter." })
-      .matches(/[!@#$%^&*(),.?":{}|<>]/, { message: "Must contain at least one symbol." })
+      .matches(/[A-Z]/, {
+        message: "Must contain at least one capital letter.",
+      })
+      .matches(/[!@#$%^&*(),.?":{}|<>]/, {
+        message: "Must contain at least one symbol.",
+      })
       .oneOf([yup.ref("newPassword")], "Passwords do not match")
       .required("Confirm Password is required"),
-})
-.required();
+  })
+  .required();
+
+export const deleteProfileValidation = yup
+  .object({
+    delete: yup
+      .string()
+      .required({ message: "Type delete in the field below to confirm!" }),
+  })
+  .required();
