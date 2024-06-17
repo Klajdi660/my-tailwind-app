@@ -2,15 +2,16 @@ import { FunctionComponent, useMemo, useState } from "react";
 import { Form } from "../Auth";
 import { PatternBg } from "../UI";
 import { profileList } from "../../data";
+import { useAuth } from "../../hooks";
 import { EditProfileProps, EditProfileSave } from "../../types";
 import { editProfileValidation } from "../../utils";
 
-export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
-  const { email, username, imgUrl, provider, user } = props;
+export const EditProfile: FunctionComponent<EditProfileProps> = () => {
+  const { user } = useAuth();
 
   const [files, setFiles] = useState(null);
 
-  const hasProvider = provider !== "Email";
+  const hasProvider = user?.provider !== "Email";
 
   const lists = useMemo(() => {
     return profileList;
@@ -30,12 +31,11 @@ export const EditProfile: FunctionComponent<EditProfileProps> = (props) => {
         files={files}
         setFiles={setFiles}
         hasProvider={hasProvider}
-        user={user}
         onSubmit={handleOnSubmit}
         defaultValues={{
-          username,
-          email,
-          image: imgUrl,
+          username: user?.username,
+          email: user?.email,
+          // image: imgUrl,
         }}
       />
     </div>

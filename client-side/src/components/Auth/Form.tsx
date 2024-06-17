@@ -4,21 +4,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "../Common";
 import { Button, IconButton, ImgUploader } from "../UI";
+import { useAuth } from "../../hooks";
 import { FormProps2, FormListItem } from "../../types";
 import { classNames } from "../../utils";
 
 export const Form: FunctionComponent<FormProps2> = (props) => {
-  const {
-    lists,
-    onSubmit,
-    schema,
-    defaultValues,
-    // files,
-    // setFiles,
-    hasProvider,
-    user,
-    data,
-  } = props;
+  const { lists, onSubmit, schema, defaultValues, hasProvider, data } = props;
+  const { user } = useAuth();
   const [showPass, setShowPass] = useState(null);
   const imageRef = useRef(null);
 
@@ -127,7 +119,6 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                       ref={imageRef}
                     />
                     <ImgUploader
-                      // imgUrl={defaultValues.image}
                       imgUrl=""
                       hasProvider={hasProvider}
                       name={user?.extra?.name}

@@ -21,13 +21,7 @@ export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
       <Title name="Account Settings" type="large" />
       <div className="flex flex-col gap-y-10 text-onNeutralBg">
         <UserInfo />
-        <EditProfile
-          email={user?.email}
-          username={user?.username}
-          imgUrl={user?.avatar}
-          provider={user?.provider}
-          user={user}
-        />
+        <EditProfile />
         <PersonalDetails />
         <ChangePassword provider={user?.provider} />
         <DeleteAccount />

@@ -3,10 +3,8 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-// import axiosRetry from "axios-retry";
 import { APP_URL, AXIOS_TIMEOUT_DURATION } from "../../configs";
 import { deleteUser, store } from "../../store";
-// import { globalObject } from "../../utils";
 
 const instance = axios.create({
   baseURL: APP_URL,
@@ -15,21 +13,6 @@ const instance = axios.create({
     "Content-Type": "application/json",
   },
 });
-
-// axiosRetry(instance, {
-//   retries: 1,
-//   async retryCondition(error) {
-//     switch (error.response?.status) {
-//       case 401:
-//         if (error.config?.method === "get") {
-//           globalObject.lToken = await getToken("l");
-//         }
-//         return true;
-//       default:
-//         return false;
-//     }
-//   },
-// });
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
@@ -41,13 +24,12 @@ instance.interceptors.request.use(
     if (config.url?.includes("auth")) return config;
 
     if (config.method === "get") {
-      // globalObject.lToken = globalObject.lToken || localStorage.lToken; //(await getToken("l"));
-      // config.headers["x-access-token"] = globalObject.lToken;
+      // globalObject.lToken = globalObject.lToken || localStorage.lToken;
+      // config.headers.Authorization = globalObject.lToken;
       config.headers.Authorization = `Bearer ${localStorage.atoken}`;
       return config;
     }
 
-    // config.headers["x-access-token"] = await getToken("s");
     config.headers.Authorization = localStorage.atoken;
     return config;
   },

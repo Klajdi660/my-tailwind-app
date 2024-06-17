@@ -2,10 +2,12 @@ import { FunctionComponent } from "react";
 import { userIcon } from "../../assets";
 import { Icon } from "./Icon";
 import { Image } from "./Image";
+import { useAuth } from "../../hooks";
 import { ImgUploaderParams } from "../../types";
 
 export const ImgUploader: FunctionComponent<ImgUploaderParams> = (props) => {
-  const { imgUrl, hasProvider, name, username } = props;
+  const { imgUrl, hasProvider } = props;
+  const { user } = useAuth();
 
   return (
     <div className="flex items-center gap-10">
@@ -23,9 +25,11 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = (props) => {
         />
       )}
       <div>
-        <div className="font-normal capitalize text-base">{name}</div>
+        <div className="font-normal capitalize text-base">
+          {user?.extra?.name}
+        </div>
         <div className="text-sm font-normal tracking-wider text-secondary">
-          @{username}
+          @{user?.username}
         </div>
         <div className="mt-4">
           {hasProvider ? (

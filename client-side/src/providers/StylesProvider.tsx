@@ -4,14 +4,30 @@ import { useSelector } from "react-redux";
 import { themeConfig, defaultThemeConfig } from "../configs";
 import { useMobileResponsive } from "../utils";
 
+interface ThemeState {
+  mode: string;
+  color: string;
+  sidebar: "folded" | "full";
+  layout: string;
+  fontFamily: string;
+  borderRadius: number;
+}
+
+interface RootState {
+  theme: ThemeState;
+}
+
 export const StylesProvider = () => {
-  const themeStorage = useSelector((state: any) => state.theme);
+  const themeStorage = useSelector((state: RootState) => state.theme);
   const isMobile = useMobileResponsive();
+
+  const scrollPosition = window.scrollY;
+  const triggerPoint = 50;
 
   const { mode, color, sidebar, layout, fontFamily, borderRadius } =
     themeStorage || defaultThemeConfig;
 
-  const { colors, themes, sidebars }: any = themeConfig || {};
+  const { colors, themes, sidebars } = themeConfig || {};
 
   const isLargeScreen = useMediaQuery({
     query: "(min-width: 1024px)",
@@ -21,7 +37,7 @@ export const StylesProvider = () => {
     query: "(min-width: 1280px)",
   });
 
-  const theme = mode === "light" ? "theme_light" : `theme_dark_${color}`;
+  const theme = mode === "light" ? "theme_light" : "theme_dark";
 
   const themeObj = themes?.[theme];
   const colorObj = colors?.[color];
@@ -70,7 +86,7 @@ export const StylesProvider = () => {
       --aside-width: ${aside}px;
       --sidebar-horizontal-width: ${sidebarWidth}px;
       --nav-height: ${navHeight}px;
-      --nav-width: calc(100vw - ${asideMobile}px - ${isMobile ? "0" : "5"}px);
+      --nav-width: calc(100vw - ${asideMobile}px);
       --player-height: ${playerHeight}px;
       --logo-width: ${120}px;
       --main-width: calc(100% - ${sidebarWidth}px - ${asideMobile}px);
@@ -86,3 +102,5 @@ export const StylesProvider = () => {
 
   return <style>{styles}</style>;
 };
+
+// --nav-width: calc(100vw - ${asideMobile}px - ${isMobile ? "0" : "5"}px);

@@ -23,14 +23,6 @@ export const getTimeOfDay = () => {
   const currentTime = dayjs();
   const hour = currentTime.hour();
 
-  // if (hour >= 5 && hour < 12) {
-  //   return "Good Morning";
-  // } else if (hour >= 12 && hour < 18) {
-  //   return "Good Afternoon";
-  // } else {
-  //   return "Good Evening";
-  // }
-
   switch (true) {
     case hour >= 5 && hour < 12:
       return "Good Morning";
@@ -63,5 +55,6 @@ export const useMobileResponsive = () => {
   const isMobile = useMediaQuery({
     query: "(min-width: 1024px)",
   });
+
   return !isMobile;
 };

@@ -1,7 +1,7 @@
-import { CartSwitcher, Loading, Navbar, Sidebar, TopPlay } from "../components";
-import { ProviderProps } from "../types";
-import { useUserService } from "../services";
 import { useEffect } from "react";
+import { CartSwitcher, Loading, Navbar, Sidebar, TopPlay } from "../components";
+import { useUserService } from "../services";
+import { ProviderProps } from "../types";
 
 export const PrivateLayout = ({ children, ...restProps }: ProviderProps) => {
   const { getUserDetails } = useUserService();
@@ -37,5 +37,3 @@ export const PrivateLayout = ({ children, ...restProps }: ProviderProps) => {
     </div>
   );
 };
-
-// xl:mb-[100px] max-w-7xl

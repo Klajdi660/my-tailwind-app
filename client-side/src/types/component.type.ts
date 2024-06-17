@@ -102,11 +102,11 @@ export interface ChangePasswordSave {
 export interface DeleteAccountProps {}
 
 export interface EditProfileProps {
-  email: string | any;
-  username: string | any;
-  imgUrl: string | any;
-  provider: string | any;
-  user: any;
+  // email: string | any;
+  // username: string | any;
+  // imgUrl: string | any;
+  // provider: string | any;
+  // user: any;
 }
 
 export interface EditProfileSave {

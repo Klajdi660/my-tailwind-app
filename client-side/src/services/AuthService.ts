@@ -50,8 +50,8 @@ export const useAuthService = (): AuthService => {
         return;
       }
 
-      const { aToken, rToken } = data;
-      const user = JSON.parse(atob(aToken.split(".")[1]));
+      const { aToken, rToken, user } = data;
+      // const user = JSON.parse(atob(aToken.split(".")[1]));
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));
 
       localStorage.atoken = aToken;

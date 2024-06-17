@@ -80,6 +80,7 @@ export interface AuthResponse {
   data: {
     aToken: string;
     rToken: string;
+    user: any;
     // lToken: string;
   };
 }

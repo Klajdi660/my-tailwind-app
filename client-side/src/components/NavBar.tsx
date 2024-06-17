@@ -29,7 +29,6 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
   const { toggleSearch, setToggleSearch } = useAppUtil();
   // const [toggleSearch, setToggleSearch] = useState(false);
 
-  // const { sidebar } = theme || defaultThemeConfig;
   const { sidebar } = theme || defaultThemeConfig;
   const isFolded = sidebar === "folded";
   const showFull = Boolean(isFolded);
