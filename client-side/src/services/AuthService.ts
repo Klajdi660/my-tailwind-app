@@ -51,9 +51,13 @@ export const useAuthService = (): AuthService => {
       }
 
       const { aToken, rToken, user } = data;
+      user.extra = {
+        ...JSON.parse(user.extra),
+      };
       // const user = JSON.parse(atob(aToken.split(".")[1]));
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));
-
+      console.log("user :>> ", user);
+      console.log("user.extra :>> ", typeof user.extra);
       localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
       localStorage.rtoken = JSON.stringify(rtoken);

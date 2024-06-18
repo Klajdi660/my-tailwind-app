@@ -5,7 +5,6 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useUserService } from "../services";
 import { AuthContextType, ProviderProps, User } from "../types";
 
 const initialState: AuthContextType = {
@@ -38,21 +37,14 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   const [lToken, setLToken] = useState("");
   const [signupData, setSignUpData] = useState();
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
-  // const { getUserDetails } = useUserService();
 
   // useEffect(() => {
-  //   const fetchUserDetails = async () => {
-  //     if (localStorage.atoken) {
-  //       const data = await getUserDetails();
-  //       if (data) {
-  //         setUser(data);
-  //       }
-  //     }
-  //   };
-
-  //   fetchUserDetails();
+  //   const storedUser = getUserFromLocalStorage();
+  //   if (storedUser) {
+  //     setUser(storedUser);
+  //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [localStorage.atoken]);
+  // }, [localStorage.user]);
 
   const authenticateUser = (user: User) => {
     setUser(user);

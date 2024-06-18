@@ -42,7 +42,7 @@ export const useUserService = () => {
       data.extra = {
         ...JSON.parse(data.extra),
       };
-      // return data;
+
       setUser(data);
     } catch (error) {
       setLoading(false);
