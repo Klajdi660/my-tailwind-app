@@ -1,15 +1,32 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch as useAppDispatch, useSelector as useAppSelector } from "react-redux";
-import { persistStore, persistReducer } from "redux-persist";
+import {
+  useDispatch as useAppDispatch,
+  useSelector as useAppSelector,
+} from "react-redux";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from "redux-persist";
 import { rootPersistConfig, rootReducer } from "./slices";
 
+const persistedReducers = persistReducer(rootPersistConfig, rootReducer);
+
 const store = configureStore({
-    reducer: persistReducer(rootPersistConfig, rootReducer),
-    middleware: getDefaultMiddleware => 
-        getDefaultMiddleware({
-            serializableCheck: false,
-            immutableCheck: false,
-        }),
+  reducer: persistedReducers,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE],
+      },
+      //   serializableCheck: false,
+      immutableCheck: false,
+    }),
 });
 
 const persistor = persistStore(store);

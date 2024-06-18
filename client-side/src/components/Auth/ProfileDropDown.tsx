@@ -7,6 +7,7 @@ import { useAuth } from "../../hooks";
 import { useAuthService } from "../../services";
 import { UserMenuProps, ProfileDropdownProps } from "../../types";
 import { classNames } from "../../utils";
+import { useSelector } from "react-redux";
 
 const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
   const { user, hidden } = props;
@@ -107,7 +108,8 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
 const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
-
+  const user2 = useSelector((state: any) => state.user2);
+  console.log("user2 :>> ", user2);
   const hidden = () => {
     setOpen(false);
   };

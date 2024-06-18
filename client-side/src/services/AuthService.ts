@@ -14,6 +14,7 @@ import {
   RegisterResponse,
 } from "../types";
 import { globalObject } from "../utils";
+import { setUser2 } from "../store/redux/slices/user.slice";
 
 const {
   LOGIN_API,
@@ -55,13 +56,13 @@ export const useAuthService = (): AuthService => {
         ...JSON.parse(user.extra),
       };
       // const user = JSON.parse(atob(aToken.split(".")[1]));
+      dispatch(setUser2(user));
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));
       console.log("user :>> ", user);
       console.log("user.extra :>> ", typeof user.extra);
       localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
       localStorage.rtoken = JSON.stringify(rtoken);
-
       if (values.remember) {
         dispatch(
           saveCredentials({
