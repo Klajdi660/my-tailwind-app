@@ -1,6 +1,10 @@
-import { User, RegisterUserInput, Translations, FormListItem } from "../types";
+import {
+  User,
+  RegisterUserInput,
+  TranslationsResponse,
+  FormItem,
+} from "../types";
 
-// Auth context
 export interface AuthContextType {
   authenticateUser: (user: User) => void;
   isAuthenticated: boolean;
@@ -14,7 +18,10 @@ export interface AuthContextType {
   setUser?: any;
 }
 
-// Store context
+export interface FormContextType {
+  listForm: FormItem[];
+}
+
 export interface StoreContextType {
   user?: User | null;
   userStore: object;
@@ -27,10 +34,6 @@ export interface StoreContextType {
   usersTimeZone: string;
   lang: string;
   setLang: (lang: string) => void;
-  translations: Translations;
-  setTranslations: (translations: Translations) => void;
-}
-
-export interface FormListContextType {
-  lists: FormListItem[];
+  translations: TranslationsResponse;
+  setTranslations: (translations: TranslationsResponse) => void;
 }

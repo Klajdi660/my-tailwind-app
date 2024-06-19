@@ -6,10 +6,13 @@ import { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
 import { Button, PatternBg } from "../UI";
 import { genderList, dateFormatList } from "../../data";
-import { PersonalDetailsProps } from "../../types";
+import { PersonalDetailsProps, PhoneNumberValidationProps } from "../../types";
 // import { personalDetailsValidation } from "../../utils";
 
-const PhoneNumberValidation = ({ value, onChange }: any) => {
+const PhoneNumberValidation: FunctionComponent<PhoneNumberValidationProps> = ({
+  value,
+  onChange,
+}) => {
   const [phoneNumber, setPhoneNumber] = useState(value);
   const [valid, setValid] = useState(true);
 

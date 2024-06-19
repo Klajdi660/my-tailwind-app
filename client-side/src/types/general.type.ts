@@ -42,10 +42,27 @@ export interface NotifyParams {
   description: string | any;
   variant: string;
 }
-//  Constants
-export type FontSizesMap = {
-  [key: string]: string;
-};
+
+// Provider
+interface ThemeState {
+  mode: string;
+  color: string;
+  sidebar: "folded" | "full";
+  layout: string;
+  fontFamily: string;
+  borderRadius: number;
+}
+
+export interface RootState {
+  theme: ThemeState;
+}
+
+// Store
+export interface RememberMeState {
+  identifier: string;
+  password: string;
+  remember: boolean;
+}
 
 // Utils
 export interface AppUtilState {
@@ -67,18 +84,18 @@ export interface AppModalState {
   setModalOpen: (value: boolean) => void;
 }
 
-export interface Paginator {
-  current_page: number;
-  first_page_url: string;
-  from: number;
-  last_page: number;
-  last_page_url: string;
-  links: any[];
-  next_page_url: string | null;
-  path: string;
-  per_page: number;
-  prev_page_url: string | null;
-  to: number;
-  total: number;
-  data?: any[];
+// Component
+export interface NotificationItemList {
+  id: number;
+  content: string;
+  time: string;
+}
+
+export interface PageLinkItem {
+  name: string;
+  link: string;
+}
+
+export interface LangMenuItem {
+  onSelectLanguage: (language: string) => void;
 }

@@ -1,6 +1,16 @@
-import { FontSizesMap } from "../types/general.type";
+import { alFlag, shFlag } from "../assets";
+import {
+  PathProperties,
+  LogoProperties,
+  FontSizesProperties,
+  AccountTypeList,
+  NavLinkList,
+  NotificationItemList,
+  PageLinkItem,
+  LangMenuItem,
+} from "../types";
 
-export const paths = {
+export const paths: PathProperties = {
   home: "/",
   login: "/login",
   socialAuth: "social-auth",
@@ -16,12 +26,12 @@ export const paths = {
   browse: "browse",
 };
 
-export const logo = {
+export const logo: LogoProperties = {
   name: "GrooveIT",
   icon: "SlGameController",
 };
 
-export const fontSizes: FontSizesMap = {
+export const fontSizes: FontSizesProperties = {
   "extra-large": "text-3xl",
   large: "text-2xl",
   medium: "text-xl",
@@ -29,7 +39,7 @@ export const fontSizes: FontSizesMap = {
   "extra-small": "text-sm",
 };
 
-export const accountTypes = [
+export const accountTypes: AccountTypeList[] = [
   {
     id: 1,
     tabName: "User",
@@ -42,7 +52,7 @@ export const accountTypes = [
   },
 ];
 
-export const navlinks = [
+export const navlinks: NavLinkList[] = [
   {
     name: "Home",
     subLinks: [
@@ -113,5 +123,51 @@ export const navlinks = [
         tooltip: "hover",
       },
     ],
+  },
+];
+
+// Component
+export const notificationList: NotificationItemList[] = [
+  {
+    id: 1,
+    content:
+      "Mark Smith reacted to your recent added playlist - My first playlist",
+    time: "1 minute ago",
+  },
+  {
+    id: 2,
+    content: "Sarah Johnson created a new playlist - Downtown Music",
+    time: "1 day ago",
+  },
+  {
+    id: 3,
+    content: "Bob Manuel sent you a private message",
+    time: "1 week ago",
+  },
+];
+
+export const pageLink: PageLinkItem[] = [
+  { name: "About", link: "/" },
+  { name: "Contact", link: "/" },
+  { name: "Legal", link: "/" },
+  { name: "Policy", link: "/" },
+];
+
+export const langMenuItem = ({ onSelectLanguage }: LangMenuItem) => [
+  {
+    id: "al",
+    name: "Albanian",
+    icon: alFlag,
+    onClick: () => {
+      onSelectLanguage("al");
+    },
+  },
+  {
+    id: "sh",
+    name: "English",
+    icon: shFlag,
+    onClick: () => {
+      onSelectLanguage("sh");
+    },
   },
 ];

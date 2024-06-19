@@ -1,7 +1,11 @@
 import { createContext, useState } from "react";
 import moment from "moment-timezone";
 import { useAuth } from "../hooks";
-import { ProviderProps, StoreContextType, Translations } from "../types";
+import {
+  ProviderProps,
+  StoreContextType,
+  TranslationsResponse,
+} from "../types";
 
 const initialState: StoreContextType = {
   userStore: {},
@@ -26,7 +30,7 @@ const StoreProvider: React.FC<ProviderProps> = ({ children }) => {
   const [userStore, setUserStore] = useState<Object>({});
   const [selectedTimeZone, setSelectedTimeZone] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [translations, setTranslations] = useState<Translations>({});
+  const [translations, setTranslations] = useState<TranslationsResponse>({});
 
   let timeZones = moment.tz.names();
   let usersTimeZone = moment.tz.guess();

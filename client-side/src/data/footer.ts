@@ -1,4 +1,6 @@
-export const footerLink2 = [
+import { FooterLink2 } from "../types";
+
+export const footerLink2: FooterLink2[] = [
   {
     title: "Subjects",
     links: [
@@ -57,10 +59,15 @@ export const footerLink2 = [
   },
 ];
 
-export const topFooter = ["AiOutlineYoutube", "AiOutlineInstagram"];
-export const bottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
+export const topFooter: string[] = ["AiOutlineYoutube", "AiOutlineInstagram"];
 
-export const resources = [
+export const bottomFooter: string[] = [
+  "Privacy Policy",
+  "Cookie Policy",
+  "Terms",
+];
+
+export const resources: string[] = [
   "Articles",
   "Blog",
   "Chart Sheet",
@@ -71,6 +78,10 @@ export const resources = [
   "Workspaces",
 ];
 
-export const plans = ["Paid memberships", "For students", "Business solutions"];
+export const plans: string[] = [
+  "Paid memberships",
+  "For students",
+  "Business solutions",
+];
 
-export const community = ["Forums", "Chapters", "Events"];
+export const community: string[] = ["Forums", "Chapters", "Events"];

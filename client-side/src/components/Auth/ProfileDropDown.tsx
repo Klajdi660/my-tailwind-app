@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Popover } from "antd";
 import { userIcon } from "../../assets";
 import { Image, Icon, Button } from "../UI";
+import { profileMenuItems } from "../../data";
 import { useAuth } from "../../hooks";
 import { useAuthService } from "../../services";
 import { UserMenuProps, ProfileDropdownProps } from "../../types";
@@ -17,35 +18,7 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
 
   const { email, username, avatar, extra } = user;
 
-  const menuItems = [
-    {
-      id: "profile",
-      name: "Profile",
-      icon: "BiUser",
-      onClick: () => {
-        navigate("/profile");
-        hidden();
-      },
-    },
-    {
-      id: "settings",
-      name: "Settings",
-      icon: "AiOutlineSetting",
-      onClick: () => {
-        navigate("/settings");
-        hidden();
-      },
-    },
-    {
-      id: "logout",
-      name: "Sign out",
-      icon: "LiaSignOutAltSolid",
-      onClick: () => {
-        logout();
-        hidden();
-      },
-    },
-  ];
+  const menuItems = profileMenuItems({ navigate, hidden, logout });
 
   return (
     <div className="p-2 space-y-3 min-w-[300px]">

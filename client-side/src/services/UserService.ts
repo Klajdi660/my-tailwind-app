@@ -1,14 +1,9 @@
 import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { useAuth, useNotification, useStore } from "../hooks";
+import { UserDetailsResponse } from "../types";
 
 const { GET_USER_DETAILS_API } = userEndpoints;
-
-interface UserDetailsResponse {
-  error: boolean;
-  messsage: string;
-  data: any;
-}
 
 export const useUserService = () => {
   const { user, setUser } = useAuth();

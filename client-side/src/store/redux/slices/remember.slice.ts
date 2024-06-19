@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface RememberMeState {
-  identifier: string;
-  password: string;
-  remember: boolean;
-}
+import { RememberMeState } from "../../../types";
 
 const initialState: RememberMeState = {
   identifier: "",

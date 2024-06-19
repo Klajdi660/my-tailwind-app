@@ -1,52 +1,46 @@
 import { ReactNode } from "react";
 
-// Component
-export interface BackgroundImageProps {
-  img: string;
-}
-
-export type BgImage = {
-  [key: string]: string;
-};
-
-export interface FormFieldPorps {
-  labelName: string;
-  placeholder: string;
-  inputType: string;
-  isTextArea: boolean;
-  value: string;
-  handleChange: any;
-}
-
-export interface LanguageProps {
-  onSelectLanguage: (language: string) => void;
-}
-
-export interface NotificationProps {
-  id: number;
-  content: string;
-  time: string;
-}
-
-export interface SearchbarProps {
-  isMobile: boolean;
-  toggleSearch: boolean;
-  setToggleSearch: (value: boolean) => void;
-}
-
-export interface CartSwitcherProps {}
-export interface FooterProps {}
-export interface HomeFooterProps {}
-export interface LoadingPorps {}
-export interface NavbarProps {}
-export interface ShowAppProps {}
-export interface TopPlayProps {}
-
 // Auth
-// export interface FormProps2 {}
-export interface LoginFormProps {}
-export interface ProfileDropdownProps {}
-export interface SocialAuthProps {}
+export interface FormListItem {
+  item: string | undefined;
+  btnTxt: string;
+  footerLink: string;
+  footerTitle: string;
+  formName: string;
+  formTitle: string;
+  formType: string;
+  label: string;
+  linkTo: string;
+  name: string;
+  props: {
+    disabled: boolean | undefined;
+    placeholder: string;
+    type: string;
+  };
+  type: string;
+}
+
+export interface FormProps {
+  defaultValues?: any;
+  files?: any;
+  hasProvider?: boolean;
+  lists: FormListItem[] | any;
+  onSubmit?: any;
+  schema?: any;
+  setFiles?: any;
+}
+
+export interface FormProps2 {
+  defaultValues?: any;
+  files?: any;
+  hasProvider?: boolean;
+  listForm: FormListItem[] | any;
+  onSubmit?: any;
+  schema?: any;
+  setFiles?: any;
+  user?: any;
+  data?: any;
+}
 
 export interface OTPCodeFormProps {
   btnText: string;
@@ -58,22 +52,7 @@ export interface OTPCodeFormProps {
   data: any;
 }
 
-interface Extra {
-  name: string;
-}
-
-interface User {
-  id: string;
-  email?: string;
-  username?: string;
-  avatar?: string;
-  extra?: Extra;
-}
-
-export interface UserMenuProps {
-  user: User;
-  hidden: () => void;
-}
+export interface SocialAuthProps {}
 
 export interface TemplateProps {
   // title: string;
@@ -81,14 +60,23 @@ export interface TemplateProps {
   // formType: string;
   // btnText?: string | any;
   defaultValues?: any;
-  lists: any;
+  listForm: any;
   onSubmit: any;
   schema: any;
   handleResendCode?: any;
   data?: any;
 }
 
-// Settings
+// Common
+interface ErrorMessageParams {
+  message: string;
+}
+
+export interface ErrorMessageProps {
+  errorMessage?: ErrorMessageParams | any;
+}
+
+// Profile
 export interface ChangePasswordProps {
   provider: string | any;
 }
@@ -101,13 +89,7 @@ export interface ChangePasswordSave {
 
 export interface DeleteAccountProps {}
 
-export interface EditProfileProps {
-  // email: string | any;
-  // username: string | any;
-  // imgUrl: string | any;
-  // provider: string | any;
-  // user: any;
-}
+export interface EditProfileProps {}
 
 export interface EditProfileSave {
   username: string;
@@ -116,6 +98,11 @@ export interface EditProfileSave {
 }
 
 export interface PersonalDetailsProps {}
+
+export interface PhoneNumberValidationProps {
+  value: string;
+  onChange: any;
+}
 
 export interface UserInfoProps {}
 
@@ -160,14 +147,42 @@ export interface TrackCardSkeletonProps {
 }
 
 // UI
+export interface CartButtonProps {}
+
 export interface DesktopToggleButtonProps {
   theme: any;
   dispatch: any;
 }
 
+export interface LanguageButtonProps {}
+
+export interface MobileToggleButtonProps {}
+
+export interface NotificationButtonProps {}
+
 export interface ThemeButtonProps {
   mode: string;
   dispatch: any;
+}
+
+export interface DeleteProfileModalProps {}
+
+export interface SmallModalProps {
+  open: boolean;
+  children?: any;
+  footer?: any;
+  title?: string;
+  closable?: boolean;
+  isMobile?: boolean;
+  destroyOnClose?: boolean;
+  onOk?: any;
+  okText?: string;
+  okButtonProps?: any;
+  onCancel?: any;
+  cancelText?: string;
+  width?: any;
+  bodyStyle?: any;
+  cancelButtonProps?: any;
 }
 
 export interface ButtonProps {
@@ -192,6 +207,8 @@ export interface CustomButtonProps {
   activeLink: any;
   handleLinkClick: any;
 }
+
+export interface GlobalLoadingProps {}
 
 export interface IconParams {
   className?: string;
@@ -232,24 +249,6 @@ export interface ImgUploaderParams {
   username?: string;
 }
 
-export interface SmallModalProps {
-  open: boolean;
-  children?: any;
-  footer?: any;
-  title?: string;
-  closable?: boolean;
-  isMobile?: boolean;
-  destroyOnClose?: boolean;
-  onOk?: any;
-  okText?: string;
-  okButtonProps?: any;
-  onCancel?: any;
-  cancelText?: string;
-  width?: any;
-  bodyStyle?: any;
-  cancelButtonProps?: any;
-}
-
 export interface OverlayProps {
   isOpen: boolean;
   handleIsOpen: (value: boolean) => void;
@@ -257,6 +256,10 @@ export interface OverlayProps {
   className?: string;
   isMobile?: boolean;
 }
+
+export interface PatternBgProps {}
+
+export interface SocialAuthButtonProps {}
 
 export interface TabProps {
   field: string;
@@ -279,10 +282,62 @@ export interface TitleProps {
   type: string;
 }
 
-export interface CartButtonProps {}
-export interface LanguageButtonProps {}
-export interface MobileToggleButtonProps {}
-export interface NotificationButtonProps {}
-export interface GlobalLoadingProps {}
-export interface PatternBgProps {}
-export interface SocialAuthButtonProps {}
+// Other Component
+export interface CartSwitcherProps {}
+
+export interface FooterProps {}
+
+export interface FormFieldPorps {
+  labelName: string;
+  placeholder: string;
+  inputType: string;
+  isTextArea: boolean;
+  value: string;
+  handleChange: any;
+}
+
+export interface HomeFooterProps {}
+
+export interface LanguageProps {
+  onSelectLanguage: (language: string) => void;
+}
+
+export interface LoadingPorps {}
+
+export interface NavbarProps {}
+
+export interface NotificationProps {
+  id: number;
+  content: string;
+  time: string;
+}
+
+export interface SearchbarProps {
+  isMobile: boolean;
+  toggleSearch: boolean;
+  setToggleSearch: (value: boolean) => void;
+}
+
+export interface ShowAppProps {}
+
+export interface TopPlayProps {}
+
+// page profile
+export interface ProfileDropdownProps {}
+
+interface Extra {
+  name: string;
+}
+
+interface User {
+  id: string;
+  email?: string;
+  username?: string;
+  avatar?: string;
+  extra?: Extra;
+}
+
+export interface UserMenuProps {
+  user: User;
+  hidden: () => void;
+}

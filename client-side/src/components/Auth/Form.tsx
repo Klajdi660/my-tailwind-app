@@ -9,12 +9,13 @@ import { FormProps2, FormListItem } from "../../types";
 import { classNames } from "../../utils";
 
 export const Form: FunctionComponent<FormProps2> = (props) => {
-  const { lists, onSubmit, schema, defaultValues, hasProvider, data } = props;
+  const { listForm, onSubmit, schema, defaultValues, hasProvider, data } =
+    props;
   const { user } = useAuth();
   const [showPass, setShowPass] = useState(null);
   const imageRef = useRef(null);
 
-  const [{ formType, formName, btnTxt }] = lists;
+  const [{ formType, formName, btnTxt }] = listForm;
 
   const {
     register: form,
@@ -32,7 +33,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
     <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
       {!data?.resetPassEmailSent ? (
         <>
-          {lists.map((list: FormListItem, index: number) => {
+          {listForm.map((list: FormListItem, index: number) => {
             return (
               <Fragment key={index}>
                 {["input", "textarea"].includes(list.type) && (

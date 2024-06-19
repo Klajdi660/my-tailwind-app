@@ -6,9 +6,8 @@ import { SmallModal } from "./Modal";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { useAuth } from "../../../hooks";
+import { DeleteProfileModalProps } from "../../../types";
 import { useAppModal, deleteProfileValidation } from "../../../utils";
-
-interface DeleteProfileModalProps {}
 
 export const DeleteProfileModal: FunctionComponent<
   DeleteProfileModalProps

@@ -3,36 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { alFlag, shFlag } from "../assets";
 import { Image } from "./UI";
 import { LanguageProps } from "../types";
+import { langMenuItem } from "../data";
 
 export const Language: FunctionComponent<LanguageProps> = (props) => {
   const { onSelectLanguage } = props;
   const navigate = useNavigate();
 
-  const menuItems = [
-    {
-      id: "al",
-      name: "Albanian",
-      icon: alFlag,
-      onClick: () => {
-        navigate("");
-        onSelectLanguage("al");
-      },
-    },
-    {
-      id: "sh",
-      name: "English",
-      icon: shFlag,
-      onClick: () => {
-        navigate("");
-        onSelectLanguage("sh");
-      },
-    },
-  ];
+  const langItems = langMenuItem({ onSelectLanguage });
 
   return (
     <div className="p-2 space-y-3 min-w-[300px]">
       <ul className="list-none divide divide-divider">
-        {menuItems.map((item) => (
+        {langItems.map((item) => (
           <li
             className="rounded cursor-pointer text-onNeutralBg hover:text-primary hover:font-semibold group hover:bg-primary-opacity"
             key={item.id}

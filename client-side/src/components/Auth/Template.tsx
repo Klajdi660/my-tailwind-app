@@ -7,7 +7,7 @@ import { SocialAuthButton, Title, Image } from "../UI";
 import { TemplateProps } from "../../types";
 
 export const Template: FunctionComponent<TemplateProps> = (props) => {
-  const { lists, schema, onSubmit, defaultValues, handleResendCode, data } =
+  const { listForm, schema, onSubmit, defaultValues, handleResendCode, data } =
     props;
 
   const [
@@ -20,7 +20,7 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
       description,
       btnTxt,
     },
-  ] = lists;
+  ] = listForm;
 
   return (
     <section className={`${formName}_section`}>
@@ -63,7 +63,7 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
           ) : (
             <>
               <Form
-                lists={lists}
+                listForm={listForm}
                 schema={schema}
                 onSubmit={onSubmit}
                 defaultValues={defaultValues}

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { HttpClient } from "../client";
 import { StoreContext } from "../contexts";
 import { useStore, useNotification } from "../hooks";
-import { Translations } from "../types";
+import { TranslationsResponse } from "../types";
 
 export const useStoreService = () => {
   const { translations, setTranslations } = useContext(StoreContext);
@@ -12,7 +12,7 @@ export const useStoreService = () => {
   const getTranslationsFile = async (lang: any) => {
     let url = `http://localhost/boot/front/face/langs/current/lang_${lang}.json`;
     try {
-      const response = await HttpClient.get<Translations>(url);
+      const response = await HttpClient.get<TranslationsResponse>(url);
       setTranslations(response);
     } catch (error) {
       notify({

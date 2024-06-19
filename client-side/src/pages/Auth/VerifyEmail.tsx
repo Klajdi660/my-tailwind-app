@@ -1,19 +1,19 @@
 import { FunctionComponent } from "react";
 import { useLocation } from "react-router-dom";
 import { Template } from "../../components";
-import { useFormList } from "../../hooks";
+import { useForm } from "../../hooks";
 import { useAuthService } from "../../services";
-import { VerifyEmailPagePorps } from "../../types";
+import { VerifyEmailPagePorps, VerifyEmailInput } from "../../types";
 import { verifyValidation } from "../../utils";
 
 export const VerifyEmailPage: FunctionComponent<VerifyEmailPagePorps> = () => {
   const location = useLocation();
-  const { lists } = useFormList();
+  const { listForm } = useForm();
   const { verifyEmail, register } = useAuthService();
 
   const { registerData } = location.state || {};
 
-  const handleOnSubmit = async (values: any) => {
+  const handleOnSubmit = async (values: VerifyEmailInput) => {
     try {
       const { code } = values;
       await verifyEmail({
@@ -35,7 +35,7 @@ export const VerifyEmailPage: FunctionComponent<VerifyEmailPagePorps> = () => {
 
   return (
     <Template
-      lists={lists}
+      listForm={listForm}
       schema={verifyValidation}
       onSubmit={handleOnSubmit}
       handleResendCode={handleResendCode}

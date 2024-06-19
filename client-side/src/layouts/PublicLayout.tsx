@@ -1,4 +1,4 @@
-import { FormListProvider } from "../contexts";
+import { FormProvider } from "../contexts";
 import { ProviderProps } from "../types";
 
 export const PublicLayout = ({
@@ -7,7 +7,7 @@ export const PublicLayout = ({
 }: ProviderProps): JSX.Element => {
   return (
     <div className="public_layout">
-      <FormListProvider>{children}</FormListProvider>
+      <FormProvider>{children}</FormProvider>
     </div>
   );
 };

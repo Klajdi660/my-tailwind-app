@@ -4,10 +4,11 @@ import { Form, Input, Checkbox } from "antd";
 // import { useAuthService } from "../../services";
 import { useAuth } from "../../hooks";
 import { IconButton, Button } from "../UI";
-import { LoginUserInput, LoginFormProps } from "../../types";
-
+import { LoginUserInput } from "../../types";
 // import { loginValidation } from "../../utils";
 // import { yupResolver } from "@hookform/resolvers/yup";
+
+interface LoginFormProps {}
 
 export const LoginForm: FunctionComponent<LoginFormProps> = () => {
   // const { login } = useAuthService();

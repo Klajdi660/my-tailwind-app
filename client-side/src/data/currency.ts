@@ -1,8 +1,6 @@
-type idToIsoOptions = {
-  [key: number]: string;
-};
+import { CurrencyProperties } from "../types";
 
-export const idToISO: idToIsoOptions = {
+export const currencyList: CurrencyProperties = {
   1: "ALL",
   2: "EUR",
   3: "USD",

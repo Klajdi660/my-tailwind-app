@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { FormListContext } from "../contexts";
+import { FormContext } from "../contexts";
 
-export const useFormList = () => {
-  const context = useContext(FormListContext);
+export const useForm = () => {
+  const context = useContext(FormContext);
   if (!context)
     throw new Error("useFormList must be used iniside FormListProvider");
   return context;

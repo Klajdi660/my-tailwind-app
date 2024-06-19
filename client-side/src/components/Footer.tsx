@@ -7,6 +7,7 @@ import {
   youtubeIcon,
 } from "../assets";
 import { Image } from "./UI";
+import { pageLink } from "../data";
 import { FooterProps } from "../types";
 
 const downloadBtnList = [
@@ -26,13 +27,6 @@ const downloadBtnList = [
     name: "youtube",
     icon: youtubeIcon,
   },
-];
-
-const pageLink = [
-  { name: "About", link: "/" },
-  { name: "Contact", link: "/" },
-  { name: "Legal", link: "/" },
-  { name: "Policy", link: "/" },
 ];
 
 export const Footer: FunctionComponent<FooterProps> = () => {

@@ -2,13 +2,13 @@ import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { Template } from "../../components";
-import { useFormList } from "../../hooks";
+import { useForm } from "../../hooks";
 import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation } from "../../utils";
 
 export const LoginPage: FunctionComponent<LoginPageProps> = () => {
-  const { lists } = useFormList();
+  const { listForm } = useForm();
   const { login } = useAuthService();
 
   const rememberMe = useSelector((state: any) => state.rememberMe);
@@ -41,7 +41,7 @@ export const LoginPage: FunctionComponent<LoginPageProps> = () => {
 
   return (
     <Template
-      lists={lists}
+      listForm={listForm}
       schema={loginValidation}
       onSubmit={handleOnSubmit}
       defaultValues={defaultValues}

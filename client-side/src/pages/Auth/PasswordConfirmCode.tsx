@@ -1,18 +1,21 @@
 import { FunctionComponent } from "react";
 import { Template } from "../../components";
-import { useFormList } from "../../hooks";
-import { PasswordConfirmCodePageProps } from "../../types";
+import { useForm } from "../../hooks";
+import {
+  PasswordConfirmCodePageProps,
+  PasswordConfirmCodeInput,
+} from "../../types";
 import { verifyValidation } from "../../utils";
 
 export const PasswordConfirmCodePage: FunctionComponent<
   PasswordConfirmCodePageProps
 > = () => {
-  const { lists } = useFormList();
-  const handleOnSubmit = async (values: any) => {};
+  const { listForm } = useForm();
+  const handleOnSubmit = async (values: PasswordConfirmCodeInput) => {};
 
   return (
     <Template
-      lists={lists}
+      listForm={listForm}
       schema={verifyValidation}
       onSubmit={handleOnSubmit}
     />

@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
 import { Template } from "../../components";
-import { useFormList } from "../../hooks";
+import { useForm } from "../../hooks";
 import { useAuthService } from "../../services";
 import { RegisterUserInput, RegisterPageProps } from "../../types";
 import { registerValidation } from "../../utils";
 
 export const RegisterPage: FunctionComponent<RegisterPageProps> = () => {
-  const { lists } = useFormList();
+  const { listForm } = useForm();
   const { register } = useAuthService();
 
   const handleOnSubmit = async (values: RegisterUserInput) => {
@@ -19,7 +19,7 @@ export const RegisterPage: FunctionComponent<RegisterPageProps> = () => {
 
   return (
     <Template
-      lists={lists}
+      listForm={listForm}
       schema={registerValidation}
       onSubmit={handleOnSubmit}
     />

@@ -2,20 +2,8 @@ import { startCase } from "lodash";
 import { useMediaQuery } from "react-responsive";
 import { useSelector } from "react-redux";
 import { themeConfig, defaultThemeConfig } from "../configs";
+import { RootState } from "../types";
 import { useMobileResponsive } from "../utils";
-
-interface ThemeState {
-  mode: string;
-  color: string;
-  sidebar: "folded" | "full";
-  layout: string;
-  fontFamily: string;
-  borderRadius: number;
-}
-
-interface RootState {
-  theme: ThemeState;
-}
 
 export const StylesProvider = () => {
   const themeStorage = useSelector((state: RootState) => state.theme);

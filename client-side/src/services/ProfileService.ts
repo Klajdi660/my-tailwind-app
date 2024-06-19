@@ -1,15 +1,9 @@
 import { profileEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { useAuth, useNotification } from "../hooks";
-
+import { UserDetailsResponse } from "../types";
 const { UPDATE_PROFILE, UPDATE_PROFILE_PICTURE, DELETE_PROFILE } =
   profileEndpoints;
-
-interface UserDetailsResponse {
-  error: boolean;
-  messsage: string;
-  data: any;
-}
 
 export const useProfileService = () => {
   const { user, setUser } = useAuth();

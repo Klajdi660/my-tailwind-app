@@ -1,6 +1,6 @@
-import { TitleMap, FormListMap } from "../types";
+import { FormTitleList, SocialAuthList, FormItemList } from "../types";
 
-export const titles: TitleMap = {
+export const titles: FormTitleList = {
   login: "Sign In",
   register: "Create your account",
   "/verify-email": "Verify Email",
@@ -8,7 +8,7 @@ export const titles: TitleMap = {
   "/verify-reset-password": "Complete Reset Password",
 };
 
-export const socialAuthList = [
+export const socialAuthList: SocialAuthList[] = [
   {
     id: 1,
     name: "Google",
@@ -17,7 +17,7 @@ export const socialAuthList = [
   },
 ];
 
-export const formList: FormListMap = {
+export const formList: FormItemList = {
   login: [
     {
       formType: "auth",

@@ -1,6 +1,7 @@
 import { FunctionComponent, useMemo } from "react";
 import { Form } from "../Auth";
 import { Icon, PatternBg } from "../UI";
+import { changePasswordList } from "../../data";
 import { ChangePasswordProps, ChangePasswordSave } from "../../types";
 import { updatePasswordValidation } from "../../utils";
 
@@ -11,44 +12,8 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
 
   let isPasswordEnabled = provider === "Email";
 
-  const list = useMemo(() => {
-    return [
-      {
-        formName: "password",
-        formTitle: "Change Password",
-        btnTxt: "Update Password",
-      },
-      {
-        type: "input",
-        name: "currentPassword",
-        label: "Current Password",
-        props: {
-          disabled: !isPasswordEnabled,
-          type: "password",
-          placeholder: "",
-        },
-      },
-      {
-        type: "input",
-        name: "newPassword",
-        label: "New Password",
-        props: {
-          disabled: !isPasswordEnabled,
-          type: "password",
-          placeholder: "",
-        },
-      },
-      {
-        type: "input",
-        name: "confirmNewPassword",
-        label: "Confirm New Password",
-        props: {
-          disabled: !isPasswordEnabled,
-          type: "password",
-          placeholder: "",
-        },
-      },
-    ];
+  const listForm = useMemo(() => {
+    return changePasswordList(isPasswordEnabled);
   }, [isPasswordEnabled]);
 
   const handleOnSubmit = (values: ChangePasswordSave) => {};
@@ -70,7 +35,7 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
         )}
       </div>
       <Form
-        lists={list}
+        listForm={listForm}
         schema={updatePasswordValidation}
         onSubmit={handleOnSubmit}
         defaultValues={{

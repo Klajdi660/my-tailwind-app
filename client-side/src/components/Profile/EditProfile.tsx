@@ -13,7 +13,7 @@ export const EditProfile: FunctionComponent<EditProfileProps> = () => {
 
   const hasProvider = user?.provider !== "Email";
 
-  const lists = useMemo(() => {
+  const listForm = useMemo(() => {
     return profileList;
   }, []);
 
@@ -26,7 +26,7 @@ export const EditProfile: FunctionComponent<EditProfileProps> = () => {
         <h5 className="text-lg font-semibold">Profile</h5>
       </div>
       <Form
-        lists={lists}
+        listForm={listForm}
         schema={editProfileValidation}
         files={files}
         setFiles={setFiles}

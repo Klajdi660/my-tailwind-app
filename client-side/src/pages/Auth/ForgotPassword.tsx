@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { Template } from "../../components";
-import { useFormList } from "../../hooks";
+import { useForm } from "../../hooks";
 import { useAuthService } from "../../services";
 import { ForgotPasswordInput, ForgotPasswordPagePropes } from "../../types";
 import { forgotPassValidation } from "../../utils";
@@ -8,7 +8,7 @@ import { forgotPassValidation } from "../../utils";
 export const ForgotPasswordPage: FunctionComponent<
   ForgotPasswordPagePropes
 > = () => {
-  const { lists } = useFormList();
+  const { listForm } = useForm();
   const { forgotPassword } = useAuthService();
   const [resetPassEmail, setResetEmail] = useState<string>("");
   const [resetPassEmailSent, setResetPassEmailSent] = useState<boolean>(false);
@@ -25,7 +25,7 @@ export const ForgotPasswordPage: FunctionComponent<
 
   return (
     <Template
-      lists={lists}
+      listForm={listForm}
       onSubmit={handleOnSubmit}
       schema={forgotPassValidation}
       data={{ resetPassEmailSent, resetPassEmail }}

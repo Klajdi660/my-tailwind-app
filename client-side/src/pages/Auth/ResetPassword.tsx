@@ -1,19 +1,19 @@
 import { FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
 import { Template } from "../../components";
-import { useFormList } from "../../hooks";
+import { useForm } from "../../hooks";
 import { useAuthService } from "../../services";
-import { ChangePasswordPageProps } from "../../types";
+import { ResetPasswordPageProps, ResetPasswordInput } from "../../types";
 import { resetPassValidation } from "../../utils";
 
 export const ResetPasswordPage: FunctionComponent<
-  ChangePasswordPageProps
+  ResetPasswordPageProps
 > = () => {
-  const { lists } = useFormList();
+  const { listForm } = useForm();
   const { email, hash } = useParams();
   const { resetPassword } = useAuthService();
 
-  const handleOnSubmit = async (values: any) => {
+  const handleOnSubmit = async (values: ResetPasswordInput) => {
     try {
       await resetPassword(values, email, hash);
     } catch (error) {
@@ -23,7 +23,7 @@ export const ResetPasswordPage: FunctionComponent<
 
   return (
     <Template
-      lists={lists}
+      listForm={listForm}
       onSubmit={handleOnSubmit}
       schema={resetPassValidation}
     />
