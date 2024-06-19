@@ -99,3 +99,9 @@ export interface PageLinkItem {
 export interface LangMenuItem {
   onSelectLanguage: (language: string) => void;
 }
+
+export interface DownloadBtnList {
+  id: number;
+  name: string;
+  icon: string;
+}

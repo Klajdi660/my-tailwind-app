@@ -1,4 +1,11 @@
-import { alFlag, shFlag } from "../assets";
+import {
+  alFlag,
+  shFlag,
+  facebookIcon,
+  instagramIcon,
+  tiktokIcon,
+  youtubeIcon,
+} from "../assets";
 import {
   PathProperties,
   LogoProperties,
@@ -8,6 +15,7 @@ import {
   NotificationItemList,
   PageLinkItem,
   LangMenuItem,
+  DownloadBtnList,
 } from "../types";
 
 export const paths: PathProperties = {
@@ -40,16 +48,8 @@ export const fontSizes: FontSizesProperties = {
 };
 
 export const accountTypes: AccountTypeList[] = [
-  {
-    id: 1,
-    tabName: "User",
-    type: "User",
-  },
-  {
-    id: 2,
-    tabName: "Admin",
-    type: "Admin",
-  },
+  { id: 1, tabName: "User", type: "User" },
+  { id: 2, tabName: "Admin", type: "Admin" },
 ];
 
 export const navlinks: NavLinkList[] = [
@@ -170,4 +170,11 @@ export const langMenuItem = ({ onSelectLanguage }: LangMenuItem) => [
       onSelectLanguage("sh");
     },
   },
+];
+
+export const downloadBtnList: DownloadBtnList[] = [
+  { id: 1, name: "facebook", icon: facebookIcon },
+  { id: 2, name: "instagram", icon: instagramIcon },
+  { id: 3, name: "tiktok", icon: tiktokIcon },
+  { id: 4, name: "youtube", icon: youtubeIcon },
 ];

@@ -1,33 +1,8 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import {
-  facebookIcon,
-  instagramIcon,
-  tiktokIcon,
-  youtubeIcon,
-} from "../assets";
 import { Image } from "./UI";
-import { pageLink } from "../data";
+import { pageLink, downloadBtnList } from "../data";
 import { FooterProps } from "../types";
-
-const downloadBtnList = [
-  {
-    name: "facebook",
-    icon: facebookIcon,
-  },
-  {
-    name: "instagram",
-    icon: instagramIcon,
-  },
-  {
-    name: "tiktok",
-    icon: tiktokIcon,
-  },
-  {
-    name: "youtube",
-    icon: youtubeIcon,
-  },
-];
 
 export const Footer: FunctionComponent<FooterProps> = () => {
   return (

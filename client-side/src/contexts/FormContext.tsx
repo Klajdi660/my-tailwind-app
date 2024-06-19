@@ -13,11 +13,11 @@ const FormProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   const { pathname } = useLocation();
 
   const key = pathname.split("/")[1];
-  console.log("key :>> ", key);
+
   const listForm = useMemo(() => {
     return formList[key];
   }, [key]);
-  console.log("listForm :>> ", listForm);
+
   return (
     <FormContext.Provider
       value={{

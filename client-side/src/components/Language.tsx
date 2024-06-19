@@ -1,13 +1,10 @@
 import { FunctionComponent } from "react";
-import { useNavigate } from "react-router-dom";
-import { alFlag, shFlag } from "../assets";
 import { Image } from "./UI";
 import { LanguageProps } from "../types";
 import { langMenuItem } from "../data";
 
 export const Language: FunctionComponent<LanguageProps> = (props) => {
   const { onSelectLanguage } = props;
-  const navigate = useNavigate();
 
   const langItems = langMenuItem({ onSelectLanguage });
 
