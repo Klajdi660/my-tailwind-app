@@ -341,3 +341,8 @@ export interface UserMenuProps {
   user: User;
   hidden: () => void;
 }
+
+// Card
+export interface MediaCardProps {}
+
+export interface MediaCardDetailsProps {}

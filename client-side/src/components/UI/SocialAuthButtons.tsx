@@ -19,7 +19,7 @@ export const SocialAuthButton: FunctionComponent<
             {/* <Icon name={item.icon} size={30} /> */}
             <Icon name={item.icon} size={25} />
             <span className="text-sm text-onNeutralBg">
-              Continue with {item.name}
+              Log in with {item.name}
             </span>
           </button>
         </Link>

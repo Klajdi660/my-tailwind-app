@@ -16,6 +16,7 @@ import {
   PageLinkItem,
   LangMenuItem,
   DownloadBtnList,
+  GridList,
 } from "../types";
 
 export const paths: PathProperties = {
@@ -178,3 +179,10 @@ export const downloadBtnList: DownloadBtnList[] = [
   { id: 3, name: "tiktok", icon: tiktokIcon },
   { id: 4, name: "youtube", icon: youtubeIcon },
 ];
+
+export const grid: GridList = {
+  2: "grid-cols-2",
+  3: "grid-cols-2 xs:grid-cols-3",
+  4: "grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4",
+  5: "grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5",
+};

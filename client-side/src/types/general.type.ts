@@ -105,3 +105,7 @@ export interface DownloadBtnList {
   name: string;
   icon: string;
 }
+
+export type GridList = {
+  [key: number]: string;
+};
