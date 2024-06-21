@@ -5,7 +5,7 @@ import { Template } from "../../components";
 import { useForm } from "../../hooks";
 import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
-import { loginValidation } from "../../utils";
+import { loginValidation, isRTokenExpired } from "../../utils";
 
 export const LoginPage: FunctionComponent<LoginPageProps> = () => {
   const { listForm } = useForm();
@@ -21,18 +21,9 @@ export const LoginPage: FunctionComponent<LoginPageProps> = () => {
     }
   };
 
-  const checkRTokenExpiry = () => {
-    if (localStorage.rtoken) {
-      const currentTime = dayjs().unix();
-      const tokenExpirationTime = JSON.parse(localStorage.rtoken).exp;
-      return parseInt(tokenExpirationTime) > currentTime;
-    }
-    return false;
-  };
-
   const defaultValues = (() => {
-    if (rememberMe.remember && checkRTokenExpiry()) {
-      return { ...rememberMe };
+    if (rememberMe.remember && isRTokenExpired()) {
+      return rememberMe;
     } else {
       delete localStorage.rtoken;
       return {};

@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { Modal } from "antd";
 // import { useAuth } from "../hooks";
 import { ProviderProps } from "../types";
+import { isATokenExpired } from "../utils";
 
 export const PrivateGuard: FunctionComponent<ProviderProps> = ({
   children,
@@ -13,19 +14,16 @@ export const PrivateGuard: FunctionComponent<ProviderProps> = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkTokenExpiration = async () => {
-      const currentTime = dayjs().unix();
-      const tokenExpirationTime = JSON.parse(localStorage.user).exp;
-
-      if (tokenExpirationTime && currentTime > parseInt(tokenExpirationTime)) {
+    const checkATokenExpiry = () => {
+      if (isATokenExpired()) {
         setShowModal(true);
       }
     };
 
-    checkTokenExpiration();
+    checkATokenExpiry();
 
     // Check token expiration every time localStorage.exp changes
-    const interval = setInterval(checkTokenExpiration, 1000);
+    const interval = setInterval(checkATokenExpiry, 1000);
 
     return () => clearInterval(interval);
   }, []);

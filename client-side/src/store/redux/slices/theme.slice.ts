@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { defaultThemeConfig } from "../../../configs";
 
-const persistedThemeConfigString = localStorage.getItem("themeConfig");
-const persistedThemeConfig = persistedThemeConfigString
-  ? JSON.parse(persistedThemeConfigString)
-  : null;
+// const persistedThemeConfigString = localStorage.getItem("themeConfig");
+// const persistedThemeConfig = persistedThemeConfigString
+//   ? JSON.parse(persistedThemeConfigString)
+//   : null;
 
 const initialState = {
   ...defaultThemeConfig,
-  ...(persistedThemeConfig || {}),
+  // ...(persistedThemeConfig || {}),
 };
 
 const themeSlice = createSlice({
@@ -18,7 +18,7 @@ const themeSlice = createSlice({
     updateThemeConfig(state, action) {
       const updatedConfig = { ...state, ...action.payload };
 
-      localStorage.setItem("themeConfig", JSON.stringify(updatedConfig));
+      // localStorage.setItem("themeConfig", JSON.stringify(updatedConfig));
       return updatedConfig;
     },
   },

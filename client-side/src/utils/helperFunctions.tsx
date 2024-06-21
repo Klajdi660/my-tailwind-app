@@ -58,3 +58,24 @@ export const useMobileResponsive = () => {
 
   return !isMobile;
 };
+
+export const isRTokenExpired = () => {
+  if (localStorage.rtoken) {
+    const currentTime = dayjs().unix();
+    const rTokenExpTime = JSON.parse(localStorage.rtoken).exp;
+    return parseInt(rTokenExpTime) > currentTime;
+  }
+  return false;
+};
+
+export const isATokenExpired = () => {
+  const atoken = atob(localStorage.atoken.split(".")[1]);
+
+  if (atoken) {
+    const currentTime = dayjs().unix();
+    const tokenExpirationTime = JSON.parse(atoken).exp;
+    return currentTime > parseInt(tokenExpirationTime);
+  }
+
+  return false;
+};

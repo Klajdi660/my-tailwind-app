@@ -9,6 +9,8 @@ export const DesktopToggleButton: FunctionComponent<
   const { theme, dispatch } = props;
 
   const changeTheme = (value: any) => {
+    console.log("value :>> ", value);
+    console.log("theme :>> ", theme);
     dispatch(updateThemeConfig({ ...theme, ...value }));
   };
 
