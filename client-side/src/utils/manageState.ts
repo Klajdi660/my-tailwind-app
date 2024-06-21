@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { AppUtilState, AppModalState, NavScrollTriggerState } from "../types";
+import { AppModalState, AppUtilState, NavScrollTriggerState } from "../types";
 
 export const useNavScrollTrigger = create<NavScrollTriggerState>((set) => ({
   navScrollTrigger: false,

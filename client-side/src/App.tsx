@@ -6,7 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 // import { Loading } from "./components";
-import { AuthProvider, StoreProvider, FormProvider } from "./contexts";
+import { AuthProvider, FormProvider, StoreProvider } from "./contexts";
 import { StylesProvider } from "./providers";
 import { Routes } from "./routes";
 // import { router } from "./routes";

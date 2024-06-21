@@ -1,9 +1,9 @@
 import {
+  ForgotPasswordInput,
   LoginUserInput,
   RegisterUserInput,
-  VerifyEmailInput,
-  ForgotPasswordInput,
   ResetPasswordInput,
+  VerifyEmailInput,
 } from "./page.type";
 
 export interface AuthService {

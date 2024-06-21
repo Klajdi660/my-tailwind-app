@@ -1,8 +1,8 @@
 import {
-  User,
+  FormItem,
   RegisterUserInput,
   TranslationsResponse,
-  FormItem,
+  User,
 } from "../types";
 
 export interface AuthContextType {
