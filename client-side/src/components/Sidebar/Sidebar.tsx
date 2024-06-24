@@ -7,6 +7,7 @@ import { navlinks } from "../../data";
 import { useAuth, useNotification } from "../../hooks";
 import { SidebarPorps } from "../../types";
 import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
+import { Tooltip } from "antd";
 
 const User = () => {
   const { user } = useAuth();
@@ -111,23 +112,25 @@ export const Sidebar: FunctionComponent<SidebarPorps> = () => {
           "nav-list overflow-auto hide_scrollbar relative top-navbar sidebar_height w-sidebar duration-500 transition-all pb-[100px] bg-sidebar"
         )}
       >
-        <div className={classNames("relative text-white text-base")}>
-          {navLists.map((item) => (
-            <div
-              key={item.name}
-              // className={classNames(!isFolded ? "mt-4" : "")}
-            >
+        <div
+          className={classNames(
+            "relative text-white text-base",
+            isFolded ? "mt-4" : "mt-0"
+          )}
+        >
+          {navLists.map((navList) => (
+            <div key={navList.name}>
               {(!isFolded || toggleNav) && (
                 <span
                   className={classNames(
                     "block p-3 mx-3 text-gray-400 text-sm uppercase"
                   )}
                 >
-                  {item.name}
+                  {navList.name}
                 </span>
               )}
               <ul>
-                {item.subLinks.map((link) => (
+                {navList.subLinks.map((link) => (
                   <li
                     key={link.name}
                     className={classNames(
@@ -136,36 +139,51 @@ export const Sidebar: FunctionComponent<SidebarPorps> = () => {
                       // (!isFolded || toggleNav) && "pb-2"
                     )}
                   >
-                    <button
-                      className={classNames(
-                        "flex flex-row items-center gap-2 h-12 w-full outline-0 border-none pl-[20px] hover:bg-primary-opacity rounded",
-                        pathname.includes(link.to) &&
-                          "rounded bg-primary-opacity"
-                      )}
-                      onClick={() => handleLinkClick(link)}
+                    <Tooltip
+                      placement="right"
+                      title={isFolded && link.name}
+                      arrow={true}
+                      color="var(--switchBg)"
+                      trigger={["hover"]}
                     >
-                      <Icon
-                        name={link.icon}
+                      <button
                         className={classNames(
-                          "group-hover:!text-primary",
-                          pathname.includes(link.to) && "!text-primary"
+                          "flex flex-row items-center gap-2 h-12 w-full outline-0 border-none pl-[20px] hover:bg-primary-opacity rounded",
+                          pathname.includes(link.to) &&
+                            "rounded bg-primary-opacity"
                         )}
-                        size={20}
-                      />
-                      <div
-                        className={classNames(
-                          "group-hover:text-primary text-sm flex items-center gap-3 whitespace-nowrap",
-                          pathname.includes(link.to)
-                            ? "text-primary"
-                            : "text-onNeutralBg",
-                          !isFolded || toggleNav
-                            ? "opacity-100 transition-opacity duration-1000"
-                            : "invisible w-0 opacity-0"
-                        )}
+                        onClick={() => handleLinkClick(link)}
                       >
-                        {link.name}
-                      </div>
-                    </button>
+                        <Icon
+                          name={link.icon}
+                          className={classNames(
+                            "group-hover:!text-primary",
+                            pathname.includes(link.to) && "!text-primary"
+                          )}
+                          size={20}
+                        />
+                        <div
+                          className={classNames(
+                            "group-hover:text-primary text-sm flex items-center gap-3 whitespace-nowrap",
+                            pathname.includes(link.to)
+                              ? "text-primary"
+                              : "text-onNeutralBg",
+                            !(isFolded && !isMobile) || toggleNav
+                              ? "opacity-100 transition-opacity duration-1000"
+                              : "invisible w-0 opacity-0"
+                          )}
+                        >
+                          {link.name}
+                        </div>
+                        {/* <div
+                          className={classNames(
+                            pathname.includes(link.to) &&
+                              isFolded &&
+                              "w-1 h-1 absolute left-3 top-2/2 bg-primary rounded-sm"
+                          )}
+                        /> // for dot */}
+                      </button>
+                    </Tooltip>
                   </li>
                 ))}
               </ul>

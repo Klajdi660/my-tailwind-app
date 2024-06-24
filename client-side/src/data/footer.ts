@@ -64,7 +64,7 @@ export const topFooter: string[] = ["AiOutlineYoutube", "AiOutlineInstagram"];
 export const bottomFooter: string[] = [
   "Privacy Policy",
   "Cookie Policy",
-  "Terms",
+  "Terms & Conditions",
 ];
 
 export const resources: string[] = [

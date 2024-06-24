@@ -59,7 +59,6 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
       gender,
       phoneNumber,
     };
-    console.log("values :>> ", values);
   };
 
   return (

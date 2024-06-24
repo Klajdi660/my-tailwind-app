@@ -327,6 +327,9 @@ export interface ProfileDropdownProps {}
 
 interface Extra {
   name: string;
+  gender: string;
+  avatar: string;
+  dateOfBirth: string;
 }
 
 interface User {

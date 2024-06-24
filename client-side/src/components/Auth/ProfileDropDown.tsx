@@ -15,7 +15,7 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
   const { logout } = useAuthService();
   const navigate = useNavigate();
 
-  const { email, username, avatar, extra } = user;
+  const { email, username, extra } = user;
 
   const menuItems = profileMenuItems({ navigate, hidden, logout });
 
@@ -26,9 +26,9 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
           className="gap-2 p-3 rounded flex_justify_between bg-main hover:bg-primary-opacity cursor-pointer"
           onClick={menuItems[0].onClick}
         >
-          {avatar ? (
+          {extra?.avatar ? (
             <Image
-              imgUrl={avatar}
+              imgUrl={extra.avatar}
               styles="w-10 h-10 p-1 rounded-full bg-sidebar"
               name="sidebar user"
             />
@@ -103,9 +103,9 @@ const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
         placement="topRight"
       >
         <>
-          {user.avatar ? (
+          {user?.extra?.avatar ? (
             <Image
-              imgUrl={user.avatar}
+              imgUrl={user.extra.avatar}
               styles={classNames(
                 "w-10 h-10 rounded-full p-1 ring-2",
                 open ? "ring-primary" : "ring-gray-300"

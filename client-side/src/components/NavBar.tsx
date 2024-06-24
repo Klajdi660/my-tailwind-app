@@ -31,7 +31,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
 
   const { sidebar } = theme || defaultThemeConfig;
   const isFolded = sidebar === "folded";
-  const showFull = Boolean(isFolded);
+  const showFull = Boolean(isFolded && !isMobile);
 
   return (
     <nav className="fixed z-[10] h-navbar top-0 bg-neutralBgOpacity backdrop-blur-[50px] sidebar_horizontal_width">
@@ -47,7 +47,9 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
       >
         <div
           className={classNames(
-            "flex relative p-3 z-20 w-sidebar h-navbar duration-500 lg:bg-sidebar justify-center"
+            "flex relative p-3 z-20 w-sidebar h-navbar duration-500",
+            isMobile ? "justify-left" : "justify-center",
+            showFull ? "bg-primary-opacity" : "lg:bg-sidebar"
             // !isMobile && "w-sidebar"
           )}
         >

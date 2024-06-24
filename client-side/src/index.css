@@ -332,3 +332,21 @@ input[type="checkbox"] {
   background: rgba(89, 131, 83, 0.09);
   backdrop-filter: blur(2px);
 } */
+
+.ant-tooltip-inner {
+  color: var(--onNeutralBg) !important;
+  /*background: var(--onNeutralBgDivider) !important;
+  border: 1px solid var(--primary-opacity) !important;
+  margin-left: 6px; */
+}
+
+.red-dot {
+  position: absolute;
+  left: -10px; /* Adjust this value as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+}
