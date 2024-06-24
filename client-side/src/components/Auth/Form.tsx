@@ -120,7 +120,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                       ref={imageRef}
                     />
                     <ImgUploader
-                      imgUrl=""
+                      imgUrl={user?.extra?.avatar}
                       hasProvider={hasProvider}
                       name={user?.extra?.name}
                       username={user?.username}
