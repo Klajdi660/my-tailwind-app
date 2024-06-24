@@ -23,7 +23,7 @@ export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
         <UserInfo />
         <EditProfile />
         <PersonalDetails />
-        <ChangePassword provider={user?.provider} />
+        <ChangePassword />
         <DeleteAccount />
       </div>
       {modalOpen && <DeleteProfileModal />}

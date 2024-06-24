@@ -78,7 +78,7 @@ export interface ErrorMessageProps {
 
 // Profile
 export interface ChangePasswordProps {
-  provider: string | any;
+  // provider: string | any;
 }
 
 export interface ChangePasswordSave {

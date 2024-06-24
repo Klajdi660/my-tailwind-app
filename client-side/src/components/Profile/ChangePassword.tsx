@@ -2,15 +2,14 @@ import { FunctionComponent, useMemo } from "react";
 import { Form } from "../Auth";
 import { Icon, PatternBg } from "../UI";
 import { changePasswordList } from "../../data";
+import { useAuth } from "../../hooks";
 import { ChangePasswordProps, ChangePasswordSave } from "../../types";
 import { updatePasswordValidation } from "../../utils";
 
-export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
-  props
-) => {
-  const { provider } = props;
+export const ChangePassword: FunctionComponent<ChangePasswordProps> = () => {
+  const { user } = useAuth();
 
-  let isPasswordEnabled = provider === "Email";
+  let isPasswordEnabled = user?.provider === "Email";
 
   const listForm = useMemo(() => {
     return changePasswordList(isPasswordEnabled);
@@ -30,7 +29,8 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = (
               className="!text-yellow-500"
               size={16}
             />
-            Accounts authenticated with {provider} Oauth cannot update password!
+            Accounts authenticated with {user?.provider} Oauth cannot update
+            password!
           </span>
         )}
       </div>
