@@ -3,11 +3,13 @@ import { Form } from "../Auth";
 import { PatternBg } from "../UI";
 import { profileList } from "../../data";
 import { useAuth } from "../../hooks";
-import { EditProfileProps, EditProfileSave } from "../../types";
+import { useProfileService } from "../../services";
+import { EditProfileProps, EditProfileInput } from "../../types";
 import { editProfileValidation } from "../../utils";
 
 export const EditProfile: FunctionComponent<EditProfileProps> = () => {
   const { user } = useAuth();
+  const { updateProfile } = useProfileService();
 
   const [files, setFiles] = useState(null);
 
@@ -17,7 +19,13 @@ export const EditProfile: FunctionComponent<EditProfileProps> = () => {
     return profileList;
   }, []);
 
-  const handleOnSubmit = async (values: EditProfileSave) => {};
+  const handleOnSubmit = async (values: EditProfileInput) => {
+    await updateProfile(values);
+    try {
+    } catch (error) {
+      console.error(`Failed to login! ${error}`);
+    }
+  };
 
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card overflow-hidden">

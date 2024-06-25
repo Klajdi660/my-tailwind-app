@@ -91,10 +91,8 @@ export interface DeleteAccountProps {}
 
 export interface EditProfileProps {}
 
-export interface EditProfileSave {
+export interface EditProfileInput {
   username: string;
-  email: string;
-  image: string;
 }
 
 export interface PersonalDetailsProps {}

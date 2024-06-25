@@ -16,21 +16,27 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    if (config.url?.includes("auth/logout")) {
-      config.headers.Authorization = `Bearer ${localStorage.atoken}`;
-      return config;
-    }
+    // if (config.url?.includes("auth/logout")) {
+    //   config.headers.Authorization = `Bearer ${localStorage.atoken}`;
+    //   return config;
+    // }
 
-    if (config.url?.includes("auth")) return config;
+    // if (config.url?.includes("auth")) return config;
 
-    if (config.method === "get") {
-      // globalObject.lToken = globalObject.lToken || localStorage.lToken;
-      // config.headers.Authorization = globalObject.lToken;
-      config.headers.Authorization = `Bearer ${localStorage.atoken}`;
-      return config;
-    }
+    // if (config.method === "get") {
+    //   console.log("Hyriii");
+    //   // globalObject.lToken = globalObject.lToken || localStorage.lToken;
+    //   // config.headers.Authorization = globalObject.lToken;
+    //   config.headers.Authorization = `Bearer ${localStorage.atoken}`;
+    //   return config;
+    // }
 
-    config.headers.Authorization = localStorage.atoken;
+    // config.headers.Authorization = localStorage.atoken;
+    const token =
+      config.method === "get" ? localStorage.atoken : localStorage.atoken;
+
+    config.headers.Authorization = `Bearer ${token}`;
+
     return config;
   },
   (error: AxiosError) => Promise.reject(error)

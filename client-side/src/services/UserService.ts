@@ -26,12 +26,12 @@ export const useUserService = () => {
 
       setLoading(false);
 
-      const { error, messsage, data } = userDetailsResp;
+      const { error, message, data } = userDetailsResp;
 
       if (error) {
         notify({
           variant: "error",
-          description: messsage,
+          description: message,
         });
       }
 

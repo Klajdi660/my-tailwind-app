@@ -1,39 +1,44 @@
 import { profileEndpoints } from "./Api";
 import { HttpClient } from "../client";
-import { useAuth, useNotification } from "../hooks";
-import { UserDetailsResponse } from "../types";
+import { useAuth, useNotification, useStore } from "../hooks";
+import { EditProfileInput, UserDetailsResponse } from "../types";
+
 const { UPDATE_PROFILE, UPDATE_PROFILE_PICTURE, DELETE_PROFILE } =
   profileEndpoints;
 
 export const useProfileService = () => {
-  const { user, setUser } = useAuth();
-
+  const { setUser } = useAuth();
+  const { setLoading } = useStore();
   const [notify] = useNotification();
 
-  const updateProfile = async () => {
+  const updateProfile = async (values: EditProfileInput): Promise<void> => {
     try {
-      const userId = user?.id || JSON.parse(localStorage.user)?.id;
-      if (!userId) throw new Error("User ID is not available");
+      setLoading(true);
 
-      const url = `${UPDATE_PROFILE}/${userId}`;
+      const profileDetailsResp = await HttpClient.put<UserDetailsResponse>(
+        UPDATE_PROFILE,
+        values
+      );
 
-      const userDetailsResp = await HttpClient.get<UserDetailsResponse>(url);
+      setLoading(false);
 
-      const { error, messsage, data } = userDetailsResp;
-
+      const { error, message, data } = profileDetailsResp;
       if (error) {
         notify({
           variant: "error",
-          description: messsage,
+          description: message,
         });
       }
-
       data.extra = {
         ...JSON.parse(data.extra),
       };
-
       setUser(data);
+      notify({
+        variant: "success",
+        description: message,
+      });
     } catch (error) {
+      setLoading(false);
       console.error(`Get user details failed: ${error} `);
       throw error;
     }
