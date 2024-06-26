@@ -7,22 +7,29 @@ const initialState: RememberMeState = {
   remember: false,
 };
 
-const rememberMeSlice = createSlice({
+const slice = createSlice({
   name: "rememberMe",
   initialState,
   reducers: {
-    saveCredentials: (state, action: PayloadAction<RememberMeState>) => {
+    saveRememberMeData: (state, action: PayloadAction<RememberMeState>) => {
       state.identifier = action.payload.identifier;
       state.password = action.payload.password;
       state.remember = action.payload.remember;
     },
-    clearCredentials: (state) => {
+    clearRememberMeData: (state) => {
       state.identifier = "";
       state.password = "";
       state.remember = false;
     },
+    updateRememberMeData: (state, action: PayloadAction<RememberMeState>) => {
+      if (state.remember) {
+        state.identifier = action.payload.identifier;
+        state.password = action.payload.password;
+      }
+    },
   },
 });
 
-export const { saveCredentials, clearCredentials } = rememberMeSlice.actions;
-export default rememberMeSlice.reducer;
+export const { saveRememberMeData, clearRememberMeData, updateRememberMeData } =
+  slice.actions;
+export default slice.reducer;

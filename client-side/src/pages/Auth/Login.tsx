@@ -1,8 +1,7 @@
 import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
-import dayjs from "dayjs";
 import { Template } from "../../components";
-import { useForm } from "../../hooks";
+import { useForm, useAuth } from "../../hooks";
 import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation, isRTokenExpired } from "../../utils";

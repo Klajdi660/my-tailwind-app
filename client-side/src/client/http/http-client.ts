@@ -24,7 +24,6 @@ instance.interceptors.request.use(
     // if (config.url?.includes("auth")) return config;
 
     // if (config.method === "get") {
-    //   console.log("Hyriii");
     //   // globalObject.lToken = globalObject.lToken || localStorage.lToken;
     //   // config.headers.Authorization = globalObject.lToken;
     //   config.headers.Authorization = `Bearer ${localStorage.atoken}`;

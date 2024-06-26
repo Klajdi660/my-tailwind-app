@@ -20,8 +20,8 @@ export const EditProfile: FunctionComponent<EditProfileProps> = () => {
   }, []);
 
   const handleOnSubmit = async (values: EditProfileInput) => {
-    await updateProfile(values);
     try {
+      await updateProfile(values);
     } catch (error) {
       console.error(`Failed to login! ${error}`);
     }

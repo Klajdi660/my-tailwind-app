@@ -1,7 +1,13 @@
+import { useDispatch, useSelector } from "react-redux";
 import { profileEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { useAuth, useNotification, useStore } from "../hooks";
-import { EditProfileInput, UserDetailsResponse } from "../types";
+import { updateRememberMeData } from "../store";
+import {
+  ChangePasswordProps,
+  EditProfileInput,
+  UserDetailsResponse,
+} from "../types";
 
 const { UPDATE_PROFILE, UPDATE_PROFILE_PICTURE, DELETE_PROFILE } =
   profileEndpoints;
@@ -10,6 +16,9 @@ export const useProfileService = () => {
   const { setUser } = useAuth();
   const { setLoading } = useStore();
   const [notify] = useNotification();
+  const dispatch = useDispatch();
+
+  const rememberMe = useSelector((state: any) => state.rememberMe);
 
   const updateProfile = async (values: EditProfileInput): Promise<void> => {
     try {
@@ -33,6 +42,14 @@ export const useProfileService = () => {
         ...JSON.parse(data.extra),
       };
       setUser(data);
+      if (data.username) {
+        dispatch(
+          updateRememberMeData({
+            identifier: data.username,
+            password: rememberMe.password,
+          })
+        );
+      }
       notify({
         variant: "success",
         description: message,
@@ -48,7 +65,9 @@ export const useProfileService = () => {
 
   const deleteProfile = async () => {};
 
-  const changePassword = async () => {};
+  const changePassword = async (
+    values: ChangePasswordProps
+  ): Promise<void> => {};
 
   return {
     updateProfile,

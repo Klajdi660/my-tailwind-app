@@ -21,7 +21,7 @@ export const Loading: FunctionComponent<LoadingPorps> = () => {
   if (!isLoading) return null;
 
   return (
-    <div className="fixed z-[999] w-[100vw] h-[100vh] bg-glassmorphism">
+    <div className="fixed z-[999] w-[100vw] h-[100vh] bg-gray-400 backdrop-filter backdrop-blur-md bg-opacity-10">
       <div className="w-full">
         <div className="h-1.5 w-full bg-primary-opacity overflow-hidden">
           <div className="progress w-full h-full bg-primary left-right"></div>
@@ -33,3 +33,5 @@ export const Loading: FunctionComponent<LoadingPorps> = () => {
     </div>
   );
 };
+
+// bg-glassmorphism

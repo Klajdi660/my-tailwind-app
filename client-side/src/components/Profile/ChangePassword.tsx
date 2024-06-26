@@ -3,11 +3,13 @@ import { Form } from "../Auth";
 import { Icon, PatternBg } from "../UI";
 import { changePasswordList } from "../../data";
 import { useAuth } from "../../hooks";
-import { ChangePasswordProps, ChangePasswordSave } from "../../types";
+import { useProfileService } from "../../services";
+import { ChangePasswordProps, ChangePasswordInput } from "../../types";
 import { updatePasswordValidation } from "../../utils";
 
 export const ChangePassword: FunctionComponent<ChangePasswordProps> = () => {
   const { user } = useAuth();
+  const { changePassword } = useProfileService();
 
   let isPasswordEnabled = user?.provider === "Email";
 
@@ -15,7 +17,13 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = () => {
     return changePasswordList(isPasswordEnabled);
   }, [isPasswordEnabled]);
 
-  const handleOnSubmit = (values: ChangePasswordSave) => {};
+  const handleOnSubmit = (values: ChangePasswordInput) => {
+    console.log("values :>> ", values);
+    try {
+    } catch (error) {
+      console.error(`Failed to change password! ${error}`);
+    }
+  };
 
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card overflow-hidden">

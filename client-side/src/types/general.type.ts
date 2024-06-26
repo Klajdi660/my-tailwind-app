@@ -61,7 +61,7 @@ export interface RootState {
 export interface RememberMeState {
   identifier: string;
   password: string;
-  remember: boolean;
+  remember?: boolean;
 }
 
 // Utils

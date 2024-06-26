@@ -4,7 +4,7 @@ import { endpoints } from "./Api";
 import { HttpClient } from "../client";
 import { paths } from "../data";
 import { useAuth, useNotification, useStore } from "../hooks";
-import { clearCredentials, saveCredentials } from "../store";
+import { clearRememberMeData, saveRememberMeData } from "../store";
 import {
   AuthResponse,
   LoginUserInput,
@@ -64,12 +64,12 @@ export const useAuthService = (): AuthService => {
 
       if (values.remember) {
         dispatch(
-          saveCredentials({
+          saveRememberMeData({
             ...values,
           })
         );
       } else {
-        dispatch(clearCredentials());
+        dispatch(clearRememberMeData());
       }
 
       setLToken(aToken);

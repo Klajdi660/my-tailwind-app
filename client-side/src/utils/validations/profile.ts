@@ -57,7 +57,7 @@ export const updatePasswordValidation = yup
 
 export const deleteProfileValidation = yup
   .object({
-    delete: yup
+    confirmDelete: yup
       .string()
       .required({ message: "Type delete in the field below to confirm!" }),
   })

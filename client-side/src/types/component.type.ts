@@ -81,7 +81,7 @@ export interface ChangePasswordProps {
   // provider: string | any;
 }
 
-export interface ChangePasswordSave {
+export interface ChangePasswordInput {
   currentPassword: string;
   newPassword: string;
   confirmNewPassword: string;
