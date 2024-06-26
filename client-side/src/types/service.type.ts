@@ -46,7 +46,7 @@ export interface RegisterResponse {
 export interface UserDetailsResponse {
   error: boolean;
   message: string;
-  data: any;
+  data?: any;
 }
 
 export interface TranslationsResponse {

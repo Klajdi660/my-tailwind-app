@@ -73,7 +73,7 @@ export const useProfileService = () => {
     try {
       setLoading(true);
 
-      const deleteProfileResp = await HttpClient.delete<any>(
+      const deleteProfileResp = await HttpClient.delete<UserDetailsResponse>(
         DELETE_PROFILE_API,
         values
       );
@@ -104,7 +104,7 @@ export const useProfileService = () => {
     try {
       setLoading(true);
 
-      const changePasswordResp = await HttpClient.post<any>(
+      const changePasswordResp = await HttpClient.post<UserDetailsResponse>(
         CHANGE_PASSWORD_API,
         values
       );
