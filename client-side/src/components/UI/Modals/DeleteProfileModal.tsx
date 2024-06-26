@@ -6,13 +6,13 @@ import { SmallModal } from "./Modal";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { useAuth } from "../../../hooks";
-import { DeleteProfileModalProps } from "../../../types";
+import { useProfileService } from "../../../services";
+import { DeleteProfileProps, DeleteProfileInput } from "../../../types";
 import { useAppModal, deleteProfileValidation } from "../../../utils";
 
-export const DeleteProfileModal: FunctionComponent<
-  DeleteProfileModalProps
-> = () => {
+export const DeleteProfileModal: FunctionComponent<DeleteProfileProps> = () => {
   const { user } = useAuth();
+  const { deleteProfile } = useProfileService();
   const { modalOpen, setModalOpen } = useAppModal();
 
   const {
@@ -24,7 +24,13 @@ export const DeleteProfileModal: FunctionComponent<
     resolver: yupResolver(deleteProfileValidation),
   });
 
-  const onSubmit = (values: any) => {};
+  const handleOnSubmit = async (values: DeleteProfileInput) => {
+    try {
+      await deleteProfile(values);
+    } catch (error) {
+      console.error(`Failed to change password! ${error}`);
+    }
+  };
 
   return (
     <SmallModal
@@ -57,7 +63,7 @@ export const DeleteProfileModal: FunctionComponent<
           Your profile will be deleted in 14 days. If you change your mind,
           please contact support.
         </p>
-        <form className="w-full mt-5" onSubmit={handleSubmit(onSubmit)}>
+        <form className="w-full mt-5" onSubmit={handleSubmit(handleOnSubmit)}>
           <label className="block text-secondary text-sm mb-4">
             Type <span className="font-semibold italic">delete</span> in the
             field below to confirm.

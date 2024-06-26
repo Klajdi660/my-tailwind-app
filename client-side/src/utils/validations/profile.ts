@@ -29,6 +29,7 @@ export const personalDetailsValidation = yup
 
 export const updatePasswordValidation = yup
   .object({
+    currentPassword: yup.string().required("New Password is required"),
     newPassword: yup
       .string()
       .min(8, { message: "Minimum 8 characters." })

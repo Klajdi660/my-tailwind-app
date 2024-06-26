@@ -22,9 +22,11 @@ export const userEndpoints = {
 
 // PROFILE ENDPOINTS
 export const profileEndpoints = {
-  UPDATE_PROFILE: "/profile/update-profile",
-  UPDATE_PROFILE_PICTURE: "/profile/update-display-picture",
-  DELETE_PROFILE: "/profile",
+  CHANGE_PASSWORD_API: "/profile/change-password",
+  UPDATE_PROFILE_API: "/profile/update-profile",
+  UPDATE_PROFILE_PICTURE_API: "/profile/update-display-picture",
+  DELETE_PROFILE_API: "/profile/delete-account",
+  CANCEL_DELETION_ACCOUNT_API: "/profile/cancel-deletion",
 };
 
 // GAMES ENDPOINTS

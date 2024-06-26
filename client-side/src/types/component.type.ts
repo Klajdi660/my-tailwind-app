@@ -163,7 +163,11 @@ export interface ThemeButtonProps {
   dispatch: any;
 }
 
-export interface DeleteProfileModalProps {}
+export interface DeleteProfileProps {}
+
+export interface DeleteProfileInput {
+  confirmDelete: string;
+}
 
 export interface SmallModalProps {
   open: boolean;

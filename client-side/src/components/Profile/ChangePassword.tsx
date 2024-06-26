@@ -17,9 +17,9 @@ export const ChangePassword: FunctionComponent<ChangePasswordProps> = () => {
     return changePasswordList(isPasswordEnabled);
   }, [isPasswordEnabled]);
 
-  const handleOnSubmit = (values: ChangePasswordInput) => {
-    console.log("values :>> ", values);
+  const handleOnSubmit = async (values: ChangePasswordInput) => {
     try {
+      await changePassword(values);
     } catch (error) {
       console.error(`Failed to change password! ${error}`);
     }

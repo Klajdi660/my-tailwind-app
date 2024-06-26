@@ -88,8 +88,8 @@ export class HttpClient {
     return response.data;
   }
 
-  static async delete<T>(url: string) {
-    const response = await this.instance.delete<T>(url);
+  static async delete<T>(url: string, data: any) {
+    const response = await this.instance.delete<T>(url, data);
     return response.data;
   }
 }
