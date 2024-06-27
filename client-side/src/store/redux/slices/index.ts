@@ -4,6 +4,7 @@ import authReducer from "./auth.slice";
 import themeReducer from "./theme.slice";
 import rememberMeReducer from "./remember.slice";
 import userReducer from "./user.slice";
+import cancelDeleteAccountReducer from "./cancelDeleteAccount.slice";
 
 // const rootPersistConfig = {
 //   key: "root",
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   user2: userReducer,
   rememberMe: rememberMeReducer,
   theme: themeReducer,
+  cancelDeleteAccount: cancelDeleteAccountReducer,
 });
 
 export { rootPersistConfig, rootReducer };

@@ -1,8 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
+import dayjs from "dayjs";
 import { profileEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { useAuth, useNotification, useStore } from "../hooks";
-import { updateRememberMeData } from "../store";
+import {
+  updateRememberMeData,
+  setIsAccountDelete,
+  setAccountDeleteDaysDifference,
+} from "../store";
 import {
   ChangePasswordInput,
   DeleteProfileInput,
@@ -10,15 +15,18 @@ import {
   UserDetailsResponse,
 } from "../types";
 
-const { UPDATE_PROFILE_API, CHANGE_PASSWORD_API, DELETE_PROFILE_API } =
-  profileEndpoints;
+const {
+  UPDATE_PROFILE_API,
+  CHANGE_PASSWORD_API,
+  DELETE_PROFILE_API,
+  CANCEL_DELETION_ACCOUNT_API,
+} = profileEndpoints;
 
 export const useProfileService = () => {
   const { setUser } = useAuth();
   const { setLoading } = useStore();
   const [notify] = useNotification();
   const dispatch = useDispatch();
-
   const rememberMe = useSelector((state: any) => state.rememberMe);
 
   const updateProfile = async (values: EditProfileInput): Promise<void> => {
@@ -73,7 +81,7 @@ export const useProfileService = () => {
     try {
       setLoading(true);
 
-      const deleteProfileResp = await HttpClient.delete<UserDetailsResponse>(
+      const deleteProfileResp = await HttpClient.post<UserDetailsResponse>(
         DELETE_PROFILE_API,
         values
       );
@@ -89,13 +97,50 @@ export const useProfileService = () => {
         return;
       }
 
+      dispatch(setIsAccountDelete({ isAccountDelete: true }));
+      dispatch(
+        setAccountDeleteDaysDifference({
+          accoundDeleteDaysDifference: data.daysDifference,
+        })
+      );
       notify({
         variant: "success",
         description: message,
       });
     } catch (error) {
       setLoading(false);
-      console.error(`Get user details failed: ${error} `);
+      console.error(`Delete user failed: ${error} `);
+      throw error;
+    }
+  };
+
+  const cancelDeleteProfile = async () => {
+    try {
+      setLoading(true);
+
+      const cancelDeleteProfileResp =
+        await HttpClient.post<UserDetailsResponse>(CANCEL_DELETION_ACCOUNT_API);
+
+      setLoading(false);
+
+      const { error, message, data } = cancelDeleteProfileResp;
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      dispatch(setIsAccountDelete({ isAccountDelete: false }));
+
+      notify({
+        variant: "success",
+        description: message,
+      });
+    } catch (error) {
+      setLoading(false);
+      console.error(`Cancel delete user failed: ${error}`);
       throw error;
     }
   };
@@ -111,7 +156,7 @@ export const useProfileService = () => {
 
       setLoading(false);
 
-      const { error, message, data } = changePasswordResp;
+      const { error, message } = changePasswordResp;
       if (error) {
         notify({
           variant: "error",
@@ -120,14 +165,9 @@ export const useProfileService = () => {
         return;
       }
 
-      data.extra = {
-        ...JSON.parse(data.extra),
-      };
-
-      setUser(data);
       dispatch(
         updateRememberMeData({
-          identifier: rememberMe.username,
+          identifier: rememberMe.identifier,
           password: values.newPassword,
         })
       );
@@ -146,6 +186,7 @@ export const useProfileService = () => {
     updateProfile,
     updateDisplayPicture,
     deleteProfile,
+    cancelDeleteProfile,
     changePassword,
   };
 };

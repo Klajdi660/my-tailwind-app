@@ -27,6 +27,7 @@ export const DeleteProfileModal: FunctionComponent<DeleteProfileProps> = () => {
   const handleOnSubmit = async (values: DeleteProfileInput) => {
     try {
       await deleteProfile(values);
+      setModalOpen(false);
     } catch (error) {
       console.error(`Failed to change password! ${error}`);
     }
