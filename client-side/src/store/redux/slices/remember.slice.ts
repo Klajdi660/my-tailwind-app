@@ -5,6 +5,7 @@ const initialState: RememberMeState = {
   identifier: "",
   password: "",
   remember: false,
+  rememberType: "",
 };
 
 const slice = createSlice({
@@ -15,17 +16,17 @@ const slice = createSlice({
       state.identifier = action.payload.identifier;
       state.password = action.payload.password;
       state.remember = action.payload.remember;
+      state.rememberType = action.payload.rememberType;
     },
     clearRememberMeData: (state) => {
       state.identifier = "";
       state.password = "";
       state.remember = false;
+      state.rememberType = "";
     },
     updateRememberMeData: (state, action: PayloadAction<RememberMeState>) => {
-      if (state.remember) {
-        state.identifier = action.payload.identifier;
-        state.password = action.payload.password;
-      }
+      state.identifier = action.payload.identifier;
+      state.password = action.payload.password;
     },
   },
 });

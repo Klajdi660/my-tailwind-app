@@ -1,7 +1,6 @@
 import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { Button, Icon, PatternBg } from "../UI";
-import { useStore } from "../../hooks";
 import { useProfileService } from "../../services";
 import { DeleteAccountProps } from "../../types";
 import { useAppModal } from "../../utils";

@@ -16,6 +16,7 @@ import {
 } from "../types";
 
 const {
+  CHANGE_USERNAME_API,
   UPDATE_PROFILE_API,
   CHANGE_PASSWORD_API,
   DELETE_PROFILE_API,
@@ -23,24 +24,24 @@ const {
 } = profileEndpoints;
 
 export const useProfileService = () => {
-  const { setUser } = useAuth();
   const { setLoading } = useStore();
   const [notify] = useNotification();
   const dispatch = useDispatch();
+
   const rememberMe = useSelector((state: any) => state.rememberMe);
 
-  const updateProfile = async (values: EditProfileInput): Promise<void> => {
+  const changeUsername = async (values: EditProfileInput): Promise<void> => {
     try {
       setLoading(true);
 
-      const profileDetailsResp = await HttpClient.put<UserDetailsResponse>(
-        UPDATE_PROFILE_API,
+      const profileDetailsResp = await HttpClient.post<UserDetailsResponse>(
+        CHANGE_USERNAME_API,
         values
       );
 
       setLoading(false);
 
-      const { error, message, data } = profileDetailsResp;
+      const { error, message } = profileDetailsResp;
       if (error) {
         notify({
           variant: "error",
@@ -49,16 +50,10 @@ export const useProfileService = () => {
         return;
       }
 
-      data.extra = {
-        ...JSON.parse(data.extra),
-      };
-
-      setUser(data);
-
-      if (data.username) {
+      if (values.username && rememberMe.rememberType === "username") {
         dispatch(
           updateRememberMeData({
-            identifier: data.username,
+            identifier: values.username,
             password: rememberMe.password,
           })
         );
@@ -70,6 +65,14 @@ export const useProfileService = () => {
       });
     } catch (error) {
       setLoading(false);
+      console.error(`Get user details failed: ${error} `);
+      throw error;
+    }
+  };
+
+  const updateProfile = async (values: EditProfileInput): Promise<void> => {
+    try {
+    } catch (error) {
       console.error(`Get user details failed: ${error} `);
       throw error;
     }
@@ -183,6 +186,7 @@ export const useProfileService = () => {
   };
 
   return {
+    changeUsername,
     updateProfile,
     updateDisplayPicture,
     deleteProfile,

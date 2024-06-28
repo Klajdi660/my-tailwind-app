@@ -62,6 +62,7 @@ export interface RememberMeState {
   identifier: string;
   password: string;
   remember?: boolean;
+  rememberType?: string;
 }
 
 // Utils

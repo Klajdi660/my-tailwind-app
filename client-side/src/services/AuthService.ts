@@ -63,9 +63,14 @@ export const useAuthService = (): AuthService => {
       localStorage.rtoken = JSON.stringify(rtoken);
 
       if (values.remember) {
+        const rememberType = values.identifier.includes("@")
+          ? "email"
+          : "username";
+
         dispatch(
           saveRememberMeData({
             ...values,
+            rememberType,
           })
         );
       } else {

@@ -8,12 +8,10 @@ import {
   UserInfo,
   DeleteProfileModal,
 } from "../components";
-import { useAuth } from "../hooks";
 import { ProfilePageProps } from "../types";
 import { useAppModal } from "../utils";
 
 export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
-  const { user } = useAuth();
   const { modalOpen } = useAppModal();
 
   return (

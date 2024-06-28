@@ -22,6 +22,7 @@ export const userEndpoints = {
 
 // PROFILE ENDPOINTS
 export const profileEndpoints = {
+  CHANGE_USERNAME_API: "/profile/change-username",
   CHANGE_PASSWORD_API: "/profile/change-password",
   UPDATE_PROFILE_API: "/profile/update-profile",
   UPDATE_PROFILE_PICTURE_API: "/profile/update-display-picture",

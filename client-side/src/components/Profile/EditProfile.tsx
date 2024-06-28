@@ -9,7 +9,7 @@ import { editProfileValidation } from "../../utils";
 
 export const EditProfile: FunctionComponent<EditProfileProps> = () => {
   const { user } = useAuth();
-  const { updateProfile } = useProfileService();
+  const { changeUsername } = useProfileService();
 
   const [files, setFiles] = useState(null);
 
@@ -21,7 +21,7 @@ export const EditProfile: FunctionComponent<EditProfileProps> = () => {
 
   const handleOnSubmit = async (values: EditProfileInput) => {
     try {
-      await updateProfile(values);
+      await changeUsername(values);
     } catch (error) {
       console.error(`Failed to login! ${error}`);
     }
