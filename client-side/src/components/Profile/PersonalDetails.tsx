@@ -6,7 +6,13 @@ import { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
 import { Button, PatternBg } from "../UI";
 import { genderList, dateFormatList } from "../../data";
-import { PersonalDetailsProps, PhoneNumberValidationProps } from "../../types";
+import { useAuth } from "../../hooks";
+import { useProfileService } from "../../services";
+import {
+  PersonalDetailsProps,
+  PhoneNumberValidationProps,
+  PersonalDetailsInput,
+} from "../../types";
 // import { personalDetailsValidation } from "../../utils";
 
 const PhoneNumberValidation: FunctionComponent<PhoneNumberValidationProps> = ({
@@ -39,26 +45,35 @@ const PhoneNumberValidation: FunctionComponent<PhoneNumberValidationProps> = ({
 };
 
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
+  const { user } = useAuth();
+  const { updateProfile } = useProfileService();
   const [gender, setGender] = useState("");
   const [birthday, setBirthday] = useState<Dayjs | null>(null);
   const [phoneNumber, setPhoneNumber] = useState("");
-
+  console.log("user :>> ", user);
   const {
     register: form,
     handleSubmit,
     // formState: { isValid },
   } = useForm({
     mode: "onTouched",
+    defaultValues: { name: user?.extra.name, address: "" },
     // resolver: yupResolver(personalDetailsValidation),
   });
 
-  const handleMenuClick = (data: any) => {
-    const values = {
-      ...data,
-      birthday: birthday ? birthday.format(dateFormatList[2]) : "",
-      gender,
-      phoneNumber,
-    };
+  const handleMenuClick = async (data: PersonalDetailsInput) => {
+    try {
+      const values = {
+        ...data,
+        birthday: birthday ? birthday.format(dateFormatList[2]) : "",
+        gender,
+        phoneNumber,
+      };
+      console.log("values :>> ", values);
+      await updateProfile(values);
+    } catch (error) {
+      console.error(`Failed to update personal details! ${error}`);
+    }
   };
 
   return (
@@ -71,27 +86,15 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
         <div className="flex flex-wrap">
           <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
-              First Name
+              Full Name
             </label>
             <input
-              {...form("firstName")}
-              name="firstName"
+              {...form("name")}
+              name="name"
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
-              placeholder="First Name"
-              autoComplete="firstName"
-            />
-          </div>
-          <div className="w-full md:w-1/2 pb-5">
-            <label className="block text-secondary text-xs font-semibold mb-2">
-              Last Name
-            </label>
-            <input
-              {...form("lastName")}
-              name="lastName"
-              className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
-              type="text"
-              placeholder="Last Name"
+              placeholder="Full Name"
+              autoComplete="off"
             />
           </div>
         </div>
@@ -140,6 +143,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
               placeholder="Street City Country"
+              autoComplete="off"
             />
           </div>
         </div>

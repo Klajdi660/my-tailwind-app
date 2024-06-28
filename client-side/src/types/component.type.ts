@@ -97,6 +97,14 @@ export interface EditProfileInput {
 
 export interface PersonalDetailsProps {}
 
+export interface PersonalDetailsInput {
+  name?: string;
+  birthday?: string;
+  gender?: string;
+  address?: string;
+  phoneNumber?: string;
+}
+
 export interface PhoneNumberValidationProps {
   value: string;
   onChange: any;

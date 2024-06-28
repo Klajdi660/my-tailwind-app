@@ -13,6 +13,7 @@ import {
   DeleteProfileInput,
   EditProfileInput,
   UserDetailsResponse,
+  PersonalDetailsInput,
 } from "../types";
 
 const {
@@ -80,9 +81,38 @@ export const useProfileService = () => {
     }
   };
 
-  const updateProfile = async (values: EditProfileInput): Promise<void> => {
+  const updateProfile = async (values: PersonalDetailsInput): Promise<void> => {
     try {
+      setLoading(true);
+
+      const profileDetailsResp = await HttpClient.put<UserDetailsResponse>(
+        UPDATE_PROFILE_API,
+        values
+      );
+
+      setLoading(false);
+
+      const { error, message, data } = profileDetailsResp;
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      data.extra = {
+        ...JSON.parse(data.extra),
+      };
+
+      setUser(data);
+
+      notify({
+        variant: "success",
+        description: message,
+      });
     } catch (error) {
+      setLoading(false);
       console.error(`Get user details failed: ${error} `);
       throw error;
     }
