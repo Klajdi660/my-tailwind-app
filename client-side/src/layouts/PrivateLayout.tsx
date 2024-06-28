@@ -1,10 +1,14 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartSwitcher, Loading, Navbar, Sidebar, TopPlay } from "../components";
+import { useAuth } from "../hooks";
 import { useUserService } from "../services";
 import { ProviderProps } from "../types";
 
 export const PrivateLayout = ({ children, ...restProps }: ProviderProps) => {
   const { getUserDetails } = useUserService();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -18,6 +22,12 @@ export const PrivateLayout = ({ children, ...restProps }: ProviderProps) => {
     fetchUserDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/discover");
+    }
+  }, [user]);
 
   return (
     <div
