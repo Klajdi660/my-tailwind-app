@@ -1,4 +1,5 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Template } from "../../components";
 import { useForm, useAuth } from "../../hooks";
@@ -7,10 +8,19 @@ import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation, isRTokenExpired } from "../../utils";
 
 export const LoginPage: FunctionComponent<LoginPageProps> = () => {
+  const { isAuthenticated } = useAuth();
   const { listForm } = useForm();
   const { login } = useAuthService();
+  const navigate = useNavigate();
 
   const rememberMe = useSelector((state: any) => state.rememberMe);
+
+  useEffect(() => {
+    if (isAuthenticated)
+      localStorage.lastLocation
+        ? navigate(`/${localStorage.lastLocation}`)
+        : navigate("/discover");
+  }, []);
 
   const handleOnSubmit = async (values: LoginUserInput) => {
     try {

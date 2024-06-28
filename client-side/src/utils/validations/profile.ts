@@ -29,9 +29,10 @@ export const personalDetailsValidation = yup
 
 export const updatePasswordValidation = yup
   .object({
-    currentPassword: yup.string().required("New Password is required"),
+    currentPassword: yup.string().required("Current Password is required!"),
     newPassword: yup
       .string()
+      .required("New Password is required!")
       .min(8, { message: "Minimum 8 characters." })
       .max(250, { message: "Maximum 250 caracters." })
       .matches(/[A-Z]/, {
@@ -39,10 +40,10 @@ export const updatePasswordValidation = yup
       })
       .matches(/[!@#$%^&*(),.?":{}|<>]/, {
         message: "Must contain at least one symbol.",
-      })
-      .required("New Password is required"),
+      }),
     confirmNewPassword: yup
       .string()
+      .required("Confirm Password is required")
       .min(8, { message: "Minimum 8 characters." })
       .max(250, { message: "Maximum 250 caracters." })
       .matches(/[A-Z]/, {
@@ -51,8 +52,7 @@ export const updatePasswordValidation = yup
       .matches(/[!@#$%^&*(),.?":{}|<>]/, {
         message: "Must contain at least one symbol.",
       })
-      .oneOf([yup.ref("newPassword")], "Passwords do not match")
-      .required("Confirm Password is required"),
+      .oneOf([yup.ref("newPassword")], "Passwords do not match"),
   })
   .required();
 

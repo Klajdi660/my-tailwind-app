@@ -82,7 +82,7 @@ export const changePasswordList = (isPasswordEnabled: boolean) => [
     name: "newPassword",
     label: "New Password",
     props: {
-      disabled: "",
+      disabled: !isPasswordEnabled,
       type: "password",
       placeholder: "",
     },
@@ -92,7 +92,7 @@ export const changePasswordList = (isPasswordEnabled: boolean) => [
     name: "confirmNewPassword",
     label: "Confirm New Password",
     props: {
-      disabled: "",
+      disabled: !isPasswordEnabled,
       type: "password",
       placeholder: "",
     },

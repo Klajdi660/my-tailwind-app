@@ -102,6 +102,7 @@ export const useAuthService = (): AuthService => {
       localStorage.atoken = token;
       localStorage.user = JSON.stringify(user);
       authenticateUser({ id: user.id });
+      dispatch(clearRememberMeData());
     } catch (error) {
       console.error(`SocialAuth login failed: ${error}`);
       throw error;
