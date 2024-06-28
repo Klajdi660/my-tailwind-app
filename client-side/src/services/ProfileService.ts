@@ -24,6 +24,7 @@ const {
 } = profileEndpoints;
 
 export const useProfileService = () => {
+  const { setUser } = useAuth();
   const { setLoading } = useStore();
   const [notify] = useNotification();
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ export const useProfileService = () => {
 
       setLoading(false);
 
-      const { error, message } = profileDetailsResp;
+      const { error, message, data } = profileDetailsResp;
       if (error) {
         notify({
           variant: "error",
@@ -50,10 +51,16 @@ export const useProfileService = () => {
         return;
       }
 
+      data.extra = {
+        ...JSON.parse(data.extra),
+      };
+
+      setUser(data);
+
       if (values.username && rememberMe.rememberType === "username") {
         dispatch(
           updateRememberMeData({
-            identifier: values.username,
+            identifier: data.username,
             password: rememberMe.password,
           })
         );
