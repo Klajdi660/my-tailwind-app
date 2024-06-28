@@ -47,19 +47,23 @@ const PhoneNumberValidation: FunctionComponent<PhoneNumberValidationProps> = ({
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const { user } = useAuth();
   const { updateProfile } = useProfileService();
-  const [gender, setGender] = useState("");
+  // const [gender, setGender] = useState("");
   const [birthday, setBirthday] = useState<Dayjs | null>(null);
   const [phoneNumber, setPhoneNumber] = useState("");
-  console.log("user :>> ", user);
+
   const {
     register: form,
+    setValue,
+    watch,
     handleSubmit,
     // formState: { isValid },
   } = useForm({
     mode: "onTouched",
-    defaultValues: { name: user?.extra.name, address: "" },
+    defaultValues: { name: user?.extra.name, address: "", gender: "" },
     // resolver: yupResolver(personalDetailsValidation),
   });
+
+  const gender = watch("gender");
 
   const handleMenuClick = async (data: PersonalDetailsInput) => {
     try {
@@ -70,7 +74,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
         phoneNumber,
       };
       console.log("values :>> ", values);
-      await updateProfile(values);
+      console.log("data :>> ", data);
+      // await updateProfile(values);
     } catch (error) {
       console.error(`Failed to update personal details! ${error}`);
     }
@@ -116,9 +121,11 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               Gender
             </label>
             <Select
+              // value={gender}
+              onChange={(value) => setValue("gender", value)}
               placeholder="Select Gender"
               options={genderList}
-              onChange={(value) => setGender(value)}
+              // onChange={(value) => setGender(value)}
               className="w-full h-10 text-sm border-red-500"
             />
           </div>
