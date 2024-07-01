@@ -84,6 +84,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
       const values = {
         ...data,
         extra: {
+          firstName: data.firstName,
+          lastName: data.lastName,
           dateOfBirth: birthday ? birthday.format(dateFormatList[2]) : "",
           gender,
         },
