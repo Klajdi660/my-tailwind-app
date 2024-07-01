@@ -24,6 +24,10 @@ export const personalDetailsValidation = yup
       .string()
       .required({ message: "Please input your Last Name." })
       .optional(),
+    // address: yup
+    //   .string()
+    //   .required({ message: "Please input your address." })
+    //   .optional(),
   })
   .required();
 

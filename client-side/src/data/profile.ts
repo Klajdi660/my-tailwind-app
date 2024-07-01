@@ -48,16 +48,8 @@ export const genderList: GenderProperties[] = [
     label: "Female",
   },
   {
-    value: "nonBinary",
-    label: "Non-Binary",
-  },
-  {
-    value: "preferNotToSay",
+    value: "prefernottosay",
     label: "Prefer not to say",
-  },
-  {
-    value: "other",
-    label: "Other",
   },
 ];
 

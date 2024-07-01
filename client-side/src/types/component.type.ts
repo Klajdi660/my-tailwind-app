@@ -336,7 +336,8 @@ export interface TopPlayProps {}
 export interface ProfileDropdownProps {}
 
 interface Extra {
-  name: string;
+  firstName: string;
+  lastName: string;
   gender: string;
   avatar: string;
   dateOfBirth: string;

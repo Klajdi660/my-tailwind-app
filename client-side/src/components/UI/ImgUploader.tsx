@@ -26,7 +26,7 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = (props) => {
       )}
       <div>
         <div className="font-normal capitalize text-base">
-          {user?.extra?.name}
+          {user?.extra?.firstName} {user?.extra?.lastName}
         </div>
         <div className="text-sm font-normal tracking-wider text-secondary">
           @{user?.username}

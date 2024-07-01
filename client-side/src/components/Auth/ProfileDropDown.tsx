@@ -40,7 +40,9 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
             />
           )}
           <div className="flex flex-col flex-1 text-sm text-secondary hover:text-primary">
-            <span className="break-all text-onNeutralBg">{extra?.name}</span>
+            <span className="break-all text-onNeutralBg">
+              {extra?.firstName} {extra?.lastName}
+            </span>
             <span className="text-secondary">@{username}</span>
           </div>
         </div>

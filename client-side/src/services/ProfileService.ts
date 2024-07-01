@@ -101,8 +101,10 @@ export const useProfileService = () => {
         return;
       }
 
+      const extra = JSON.parse(data.extra);
+
       data.extra = {
-        ...JSON.parse(data.extra),
+        ...extra,
       };
 
       setUser(data);

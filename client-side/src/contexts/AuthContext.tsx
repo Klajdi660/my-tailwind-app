@@ -36,6 +36,7 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(getUserFromLocalStorage());
   const [lToken, setLToken] = useState("");
   const [signupData, setSignUpData] = useState();
+
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
   // useEffect(() => {
@@ -45,6 +46,8 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [localStorage.user]);
+
+  console.log("isAuthenticated context :>> ", isAuthenticated);
 
   const authenticateUser = (user: User) => {
     setUser(user);

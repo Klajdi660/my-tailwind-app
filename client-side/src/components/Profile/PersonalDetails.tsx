@@ -1,9 +1,10 @@
 import { FunctionComponent, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import { useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-import { Dayjs } from "dayjs";
+import { yupResolver } from "@hookform/resolvers/yup";
+import dayjs, { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
+import { ErrorMessage } from "../Common";
 import { Button, PatternBg } from "../UI";
 import { genderList, dateFormatList } from "../../data";
 import { useAuth } from "../../hooks";
@@ -13,7 +14,7 @@ import {
   PhoneNumberValidationProps,
   PersonalDetailsInput,
 } from "../../types";
-// import { personalDetailsValidation } from "../../utils";
+import { personalDetailsValidation } from "../../utils";
 
 const PhoneNumberValidation: FunctionComponent<PhoneNumberValidationProps> = ({
   value,
@@ -47,35 +48,47 @@ const PhoneNumberValidation: FunctionComponent<PhoneNumberValidationProps> = ({
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const { user } = useAuth();
   const { updateProfile } = useProfileService();
-  // const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("");
   const [birthday, setBirthday] = useState<Dayjs | null>(null);
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  const defaultValues = {
+    ...user?.extra,
+    gender: user?.extra?.gender.toLowerCase() || "Select Gender",
+    dateOfBirth: user?.extra?.dateOfBirth
+      ? dayjs(user.extra.dateOfBirth, dateFormatList[2])
+      : null,
+  };
+
   const {
     register: form,
-    setValue,
-    watch,
+    // setValue,
+    // watch,
     handleSubmit,
-    // formState: { isValid },
+    // formState: { errors, isValid },
   } = useForm({
     mode: "onTouched",
-    defaultValues: { name: user?.extra.name, address: "", gender: "" },
+    defaultValues: {
+      // firstName: user?.extra.firstName,
+      // lastName: user?.extra.lastName,
+      // birthday: user?.extra.
+      ...user?.extra,
+    },
     // resolver: yupResolver(personalDetailsValidation),
   });
 
-  const gender = watch("gender");
+  // const gender = watch("gender");
 
-  const handleMenuClick = async (data: PersonalDetailsInput) => {
+  const handleMenuClick = async (data: any) => {
     try {
       const values = {
         ...data,
-        birthday: birthday ? birthday.format(dateFormatList[2]) : "",
-        gender,
-        phoneNumber,
+        extra: {
+          dateOfBirth: birthday ? birthday.format(dateFormatList[2]) : "",
+          gender,
+        },
       };
-      console.log("values :>> ", values);
-      console.log("data :>> ", data);
-      // await updateProfile(values);
+      await updateProfile(values);
     } catch (error) {
       console.error(`Failed to update personal details! ${error}`);
     }
@@ -91,15 +104,28 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
         <div className="flex flex-wrap">
           <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
-              Full Name
+              First Name
             </label>
             <input
-              {...form("name")}
-              name="name"
+              {...form("firstName")}
+              name="firstName"
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
-              placeholder="Full Name"
-              autoComplete="off"
+              placeholder="First Name"
+              autoComplete="firstName"
+            />
+          </div>
+          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+            <label className="block text-secondary text-xs font-semibold mb-2">
+              Last Name
+            </label>
+            <input
+              {...form("lastName")}
+              name="lastName"
+              className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+              type="text"
+              placeholder="Last Name"
+              autoComplete="lastName"
             />
           </div>
         </div>
@@ -110,8 +136,9 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             </label>
             <DatePicker
               format={dateFormatList[2]}
+              defaultValue={defaultValues.dateOfBirth}
               showToday={false}
-              placeholder="DD-MM-YYYY"
+              placeholder={dateFormatList[2]}
               className="w-full h-10"
               onChange={(date: any) => setBirthday(date)}
             />
@@ -122,16 +149,17 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             </label>
             <Select
               // value={gender}
-              onChange={(value) => setValue("gender", value)}
+              defaultValue={defaultValues.gender}
+              // onChange={(value) => setValue("gender", value)}
               placeholder="Select Gender"
               options={genderList}
-              // onChange={(value) => setGender(value)}
+              onChange={(value) => setGender(value)}
               className="w-full h-10 text-sm border-red-500"
             />
           </div>
         </div>
         <div className="flex flex-wrap">
-          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+          {/* <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Contact number
             </label>
@@ -139,8 +167,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               value={phoneNumber}
               onChange={setPhoneNumber}
             />
-          </div>
-          <div className="w-full md:w-1/2 pb-5">
+          </div> */}
+          {/* <div className="w-full md:w-1/2 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Address
             </label>
@@ -152,8 +180,9 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               placeholder="Street City Country"
               autoComplete="off"
             />
-          </div>
+          </div> */}
         </div>
+        <ErrorMessage />
         <div className="flex items-center justify-end w-full hover:brightness-110">
           <Button
             type="submit"

@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Modal } from "antd";
-// import { useAuth } from "../hooks";
+import { useAuth } from "../hooks";
 import { ProviderProps } from "../types";
 import { isATokenExpired } from "../utils";
 
@@ -9,11 +9,14 @@ export const PrivateGuard: FunctionComponent<ProviderProps> = ({
   children,
 }) => {
   const [showModal, setShowModal] = useState(false);
-  // const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
+
+  console.log("isAuthenticated 33:>> ", isAuthenticated);
 
   useEffect(() => {
     const checkATokenExpiry = () => {
+      const atoken = localStorage.getItem("atoken");
       if (isATokenExpired()) {
         setShowModal(true);
       }
@@ -31,7 +34,7 @@ export const PrivateGuard: FunctionComponent<ProviderProps> = ({
     setShowModal(false);
     delete localStorage.atoken;
     delete localStorage.user;
-    delete localStorage.exp;
+    // delete localStorage.lastLocation;
     navigate("/");
   };
 

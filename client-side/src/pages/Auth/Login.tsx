@@ -8,18 +8,20 @@ import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation, isRTokenExpired } from "../../utils";
 
 export const LoginPage: FunctionComponent<LoginPageProps> = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { listForm } = useForm();
   const { login } = useAuthService();
   const navigate = useNavigate();
 
   const rememberMe = useSelector((state: any) => state.rememberMe);
-
+  console.log("user login :>> ", user);
   useEffect(() => {
-    if (isAuthenticated)
-      localStorage.lastLocation
-        ? navigate(`/${localStorage.lastLocation}`)
-        : navigate("/discover");
+    if (localStorage.user) {
+      // localStorage.lastLocation
+      //   ? navigate(`/${localStorage.lastLocation}`)
+      //   : navigate("/discover");
+      navigate("/discover");
+    }
   }, []);
 
   const handleOnSubmit = async (values: LoginUserInput) => {
