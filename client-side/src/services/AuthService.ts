@@ -111,10 +111,14 @@ export const useAuthService = (): AuthService => {
 
   const register = async (values: RegisterUserInput): Promise<void> => {
     try {
+      setLoading(true);
+
       const registerResp = await HttpClient.post<RegisterResponse>(
         REGISTER_API,
         values
       );
+
+      setLoading(false);
 
       const { error, message, data } = registerResp;
 
@@ -135,6 +139,7 @@ export const useAuthService = (): AuthService => {
 
       navigate("/verify-email", { state: { registerData } });
     } catch (error) {
+      setLoading(false);
       console.error(`Signup failed: ${error}`);
       throw error;
     }
@@ -142,10 +147,14 @@ export const useAuthService = (): AuthService => {
 
   const verifyEmail = async (values: any): Promise<void> => {
     try {
+      setLoading(true);
+
       const verifyEmailResp = await HttpClient.post<AuthResponse>(
         VERIFY_EMAIL_API,
         values
       );
+
+      setLoading(false);
 
       const { error, message } = verifyEmailResp;
 
@@ -164,6 +173,7 @@ export const useAuthService = (): AuthService => {
 
       navigate("/login");
     } catch (error) {
+      setLoading(false);
       console.error(`Verify email failed: ${error}`);
       throw error;
     }

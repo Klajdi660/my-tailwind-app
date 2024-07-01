@@ -12,9 +12,9 @@ export const Loading: FunctionComponent<LoadingPorps> = () => {
     if (loading) {
       setIsLoading(true);
     } else {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
+      // setTimeout(() => {
+      setIsLoading(false);
+      // }, 1000);
     }
   }, [loading]);
 
