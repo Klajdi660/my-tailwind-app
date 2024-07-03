@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ErrorMessage } from "../../Common/ErrorMessage";
+import { ErrorFormMessage } from "../../Common";
 import { SmallModal } from "./Modal";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -13,7 +13,7 @@ import { useAppModal, deleteProfileValidation } from "../../../utils";
 export const DeleteProfileModal: FunctionComponent<DeleteProfileProps> = () => {
   const { user } = useAuth();
   const { deleteProfile } = useProfileService();
-  const { modalOpen, setModalOpen } = useAppModal();
+  const { modals, setModalOpen } = useAppModal();
 
   const {
     register: form,
@@ -24,10 +24,18 @@ export const DeleteProfileModal: FunctionComponent<DeleteProfileProps> = () => {
     resolver: yupResolver(deleteProfileValidation),
   });
 
+  const handleModalOpen = () => {
+    setModalOpen("deleteProfileModal", false);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen("deleteProfileModal", false);
+  };
+
   const handleOnSubmit = async (values: DeleteProfileInput) => {
     try {
       await deleteProfile(values);
-      setModalOpen(false);
+      handleModalOpen();
     } catch (error) {
       console.error(`Failed to change password! ${error}`);
     }
@@ -35,8 +43,8 @@ export const DeleteProfileModal: FunctionComponent<DeleteProfileProps> = () => {
 
   return (
     <SmallModal
-      open={modalOpen}
-      onCancel={() => setModalOpen(false)}
+      open={modals["deleteProfileModal"]}
+      onCancel={handleModalClose}
       closable={true}
       width={600}
     >
@@ -76,14 +84,14 @@ export const DeleteProfileModal: FunctionComponent<DeleteProfileProps> = () => {
             type="text"
             placeholder="Type delete to confirm"
           />
-          <ErrorMessage errorMessage={errors?.["confirmDelete"]?.message} />
+          <ErrorFormMessage errorMessage={errors?.["confirmDelete"]?.message} />
           <div className="flex items-center justify-end w-full mt-7">
             <Button
               type="submit"
               label="Keep Account"
               variant="outlined"
               className="mr-4"
-              onClick={() => setModalOpen(false)}
+              onClick={handleModalClose}
             />
             <Button
               type="submit"

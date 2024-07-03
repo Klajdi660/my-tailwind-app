@@ -9,14 +9,14 @@ export const Loading: FunctionComponent<LoadingPorps> = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // if (loading) {
-    //   setIsLoading(true);
-    // } else {
-    //   setTimeout(() => {
-    //     setIsLoading(false);
-    //   }, 1000);
-    // }
-    loading ? setIsLoading(true) : setIsLoading(false);
+    if (loading) {
+      setIsLoading(true);
+    } else {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
+    // loading ? setIsLoading(true) : setIsLoading(false);
   }, [loading]);
 
   if (!isLoading) return null;

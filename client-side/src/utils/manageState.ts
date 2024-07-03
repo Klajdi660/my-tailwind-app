@@ -17,6 +17,9 @@ export const useAppUtil = create<AppUtilState>((set) => ({
 }));
 
 export const useAppModal = create<AppModalState>((set) => ({
-  modalOpen: false,
-  setModalOpen: (value: boolean) => set(() => ({ modalOpen: value })),
+  modals: {},
+  setModalOpen: (key: string, value: boolean) =>
+    set((state) => ({
+      modals: { ...state.modals, [key]: value },
+    })),
 }));

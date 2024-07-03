@@ -18,7 +18,7 @@ export { SocialAuth } from "./Auth/SocialAuth";
 export { Template } from "./Auth/Template";
 
 // Common
-export { ErrorMessage } from "./Common/ErrorMessage";
+export { ErrorFormMessage } from "./Common/ErrorFormMessage";
 
 // Profile
 export { ChangePassword } from "./Profile/ChangePassword";

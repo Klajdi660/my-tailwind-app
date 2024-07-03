@@ -12,8 +12,6 @@ export const PrivateGuard: FunctionComponent<ProviderProps> = ({
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  console.log("isAuthenticated 33:>> ", isAuthenticated);
-
   useEffect(() => {
     const checkATokenExpiry = () => {
       const atoken = localStorage.getItem("atoken");

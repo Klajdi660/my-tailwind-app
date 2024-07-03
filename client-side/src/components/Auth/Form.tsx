@@ -1,16 +1,24 @@
-import { Fragment, FunctionComponent, useState, useRef } from "react";
+import { Fragment, FunctionComponent, useState, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ErrorMessage } from "../Common";
+import { ErrorFormMessage } from "../Common";
 import { Button, IconButton, ImgUploader } from "../UI";
 import { useAuth } from "../../hooks";
 import { FormProps2, FormListItem } from "../../types";
 import { classNames } from "../../utils";
 
 export const Form: FunctionComponent<FormProps2> = (props) => {
-  const { listForm, onSubmit, schema, defaultValues, hasProvider, data } =
-    props;
+  const {
+    listForm,
+    onSubmit,
+    schema,
+    defaultValues,
+    hasProvider,
+    data,
+    files,
+    setFiles,
+  } = props;
   const { user } = useAuth();
   const [showPass, setShowPass] = useState(null);
   const imageRef = useRef(null);
@@ -100,10 +108,12 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                         </div>
                       )}
                     </div>
-                    <ErrorMessage errorMessage={errors?.[list.name]?.message} />
+                    <ErrorFormMessage
+                      errorMessage={errors?.[list.name]?.message}
+                    />
                   </fieldset>
                 )}
-                {["image_dropzone"].includes(list.type) && (
+                {/* {["image_dropzone"].includes(list.type) && (
                   <fieldset className="flex flex-col">
                     {list.label && (
                       <label
@@ -120,18 +130,18 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                       ref={imageRef}
                     />
                     <ImgUploader
-                      imgUrl={user?.extra?.avatar}
+                      // imgUrl={user?.extra?.avatar}
                       hasProvider={hasProvider}
-                      name={user?.extra?.name}
-                      username={user?.username}
+                      // name={user?.extra?.name}
+                      // username={user?.username}
                       //   onImageDelete={() => {}}
                       // imageRef={imageRef}
                       // containerDims="h-36 w-36"
                       // borderType="rounded-full"
                     />
-                    <ErrorMessage />
+                    <ErrorFormMessage />
                   </fieldset>
-                )}
+                )} */}
               </Fragment>
             );
           })}

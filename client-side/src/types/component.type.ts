@@ -68,12 +68,12 @@ export interface TemplateProps {
 }
 
 // Common
-interface ErrorMessageParams {
+interface ErrorFormMessageParams {
   message: string;
 }
 
-export interface ErrorMessageProps {
-  errorMessage?: ErrorMessageParams | any;
+export interface ErrorFormMessageProps {
+  errorMessage?: ErrorFormMessageParams | any;
 }
 
 // Profile
@@ -249,15 +249,7 @@ export interface ImageProps {
   styles?: string;
 }
 
-export interface ImgUploaderParams {
-  imgUrl: string;
-  hasProvider?: boolean;
-  imageRef?: any;
-  containerDims?: string;
-  borderType?: string;
-  name?: string;
-  username?: string;
-}
+export interface ImgUploaderParams {}
 
 export interface OverlayProps {
   isOpen: boolean;

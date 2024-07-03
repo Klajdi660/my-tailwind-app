@@ -63,9 +63,7 @@ export const DeleteAccount: FunctionComponent<DeleteAccountProps> = () => {
               type="submit"
               label="Delete Account"
               variant="delete"
-              onClick={() => {
-                setModalOpen(true);
-              }}
+              onClick={() => setModalOpen("deleteProfileModal", true)}
             />
           </div>
         </>

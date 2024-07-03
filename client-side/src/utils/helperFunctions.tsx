@@ -79,3 +79,14 @@ export const isATokenExpired = () => {
 
   return false;
 };
+
+export const fileBlob = (files: File[] | null) => {
+  if (files?.[0]) {
+    return {
+      blobName: files[0]?.name,
+      blobUrl: URL.createObjectURL(files[0]),
+    };
+  } else {
+    return {};
+  }
+};

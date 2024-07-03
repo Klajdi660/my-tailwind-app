@@ -81,8 +81,8 @@ export interface NavScrollTriggerState {
 }
 
 export interface AppModalState {
-  modalOpen: boolean;
-  setModalOpen: (value: boolean) => void;
+  modals: { [key: string]: boolean };
+  setModalOpen: (key: string, value: boolean) => void;
 }
 
 // Component

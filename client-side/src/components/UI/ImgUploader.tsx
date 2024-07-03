@@ -1,16 +1,50 @@
-import { FunctionComponent } from "react";
+import {
+  FunctionComponent,
+  useRef,
+  useState,
+  useMemo,
+  ChangeEvent,
+} from "react";
 import { userIcon } from "../../assets";
-import { Icon } from "./Icon";
+// import { Icon } from "./Icon";
 import { Image } from "./Image";
 import { useAuth } from "../../hooks";
 import { ImgUploaderParams } from "../../types";
+import { fileBlob, useAppModal } from "../../utils";
 
-export const ImgUploader: FunctionComponent<ImgUploaderParams> = (props) => {
-  const { imgUrl, hasProvider } = props;
+export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {
   const { user } = useAuth();
+  const { setModalOpen } = useAppModal();
+  const [files, setFiles] = useState<File[] | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const imgUrl = user?.extra?.avatar;
+
+  const handleModalOpen = () => {
+    setModalOpen("changeProfilePhotoModal", true);
+  };
+
+  const blob = useMemo(() => {
+    return fileBlob(files);
+  }, [files]);
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setFiles(Array.from(e.target.files));
+
+      if (!file.type.includes("image")) return;
+    }
+  };
+
+  const handleFileClick = () => {
+    fileInputRef?.current?.click();
+  };
 
   return (
-    <div className="flex items-center gap-10">
+    <div className="flex items-center gap-10 mb-5">
       {imgUrl ? (
         <Image
           imgUrl={imgUrl}
@@ -32,21 +66,22 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = (props) => {
           @{user?.username}
         </div>
         <div className="mt-4">
-          {hasProvider ? (
-            <button className="flex_justify_center items-center bg-primary text-white rounded font-semibold text-sm py-2 px-4 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none w-fit hover:brightness-110">
-              <Icon
-                name="AiOutlineEdit"
-                className="mr-1 text-white"
-                size={18}
-              />
-              Change photo
-            </button>
-          ) : (
-            <button className="flex_justify_center items-center bg-primary text-white rounded font-semibold text-sm py-2 px-4 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none w-fit hover:brightness-110">
-              <Icon name="FiUpload" className="mr-1 text-white" size={18} />
-              Upload photo
-            </button>
-          )}
+          <input
+            className="hidden"
+            type="file"
+            ref={fileInputRef}
+            // accept="image.png, image/gif image/jpeg"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+          <button
+            className="flex_justify_center items-center bg-primary text-white rounded font-semibold text-sm py-2 px-4 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none w-fit hover:brightness-110"
+            // onClick={handleFileClick}
+            onClick={handleModalOpen}
+          >
+            {/* <Icon name="AiOutlineEdit" className="mr-1 text-white" size={18} /> */}
+            Change photo
+          </button>
         </div>
       </div>
     </div>

@@ -47,8 +47,6 @@ const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [localStorage.user]);
 
-  console.log("isAuthenticated context :>> ", isAuthenticated);
-
   const authenticateUser = (user: User) => {
     setUser(user);
   };

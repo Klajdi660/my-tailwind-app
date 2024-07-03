@@ -1,6 +1,6 @@
 import { FunctionComponent, useMemo, useState } from "react";
 import { Form } from "../Auth";
-import { PatternBg } from "../UI";
+import { PatternBg, ImgUploader } from "../UI";
 import { profileList } from "../../data";
 import { useAuth } from "../../hooks";
 import { useProfileService } from "../../services";
@@ -33,6 +33,7 @@ export const EditProfile: FunctionComponent<EditProfileProps> = () => {
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">Profile</h5>
       </div>
+      <ImgUploader />
       <Form
         listForm={listForm}
         schema={editProfileValidation}
@@ -43,7 +44,7 @@ export const EditProfile: FunctionComponent<EditProfileProps> = () => {
         defaultValues={{
           username: user?.username,
           email: user?.email,
-          // image: imgUrl,
+          image: user?.extra?.avatar,
         }}
       />
     </div>

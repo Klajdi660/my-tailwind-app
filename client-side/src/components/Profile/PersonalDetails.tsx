@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs, { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
-import { ErrorMessage } from "../Common";
+import { ErrorFormMessage } from "../Common";
 import { Button, PatternBg } from "../UI";
 import { genderList, dateFormatList } from "../../data";
 import { useAuth } from "../../hooks";
@@ -184,7 +184,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             />
           </div> */}
         </div>
-        <ErrorMessage />
+        <ErrorFormMessage />
         <div className="flex items-center justify-end w-full hover:brightness-110">
           <Button
             type="submit"

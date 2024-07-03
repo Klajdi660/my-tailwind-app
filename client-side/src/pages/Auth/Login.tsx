@@ -14,7 +14,7 @@ export const LoginPage: FunctionComponent<LoginPageProps> = () => {
   const navigate = useNavigate();
 
   const rememberMe = useSelector((state: any) => state.rememberMe);
-  console.log("user login :>> ", user);
+
   useEffect(() => {
     if (localStorage.user) {
       // localStorage.lastLocation

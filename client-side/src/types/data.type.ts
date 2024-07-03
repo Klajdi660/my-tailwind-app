@@ -38,6 +38,11 @@ export type CurrencyProperties = {
   [key: number]: string;
 };
 
+// Modal
+export type ModalProperties = {
+  [key: number]: string;
+};
+
 // Footer
 export interface FooterLink2 {
   title: string;

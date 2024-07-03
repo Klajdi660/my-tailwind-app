@@ -10,9 +10,10 @@ import {
 } from "../components";
 import { ProfilePageProps } from "../types";
 import { useAppModal } from "../utils";
+import { ChangeProfilePhotoModal } from "../components/UI/Modals/ChangeProfilePhotoModal";
 
 export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
-  const { modalOpen } = useAppModal();
+  const { modals } = useAppModal();
 
   return (
     <section className="account_page">
@@ -24,7 +25,8 @@ export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
         <ChangePassword />
         <DeleteAccount />
       </div>
-      {modalOpen && <DeleteProfileModal />}
+      {modals["deleteProfileModal"] && <DeleteProfileModal />}
+      {modals["changeProfilePhotoModal"] && <ChangeProfilePhotoModal />}
     </section>
   );
 };
