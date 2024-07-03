@@ -23,12 +23,14 @@ export const ChangeProfilePhotoModal: FunctionComponent<any> = () => {
           label="Upload Photo"
           variant="contained"
           className="w-[48%]"
+          labelIcon="AiOutlinePlus"
         />
         <Button
           type="submit"
           label="Remove Current Photo"
           variant="delete"
           className="w-[48%]"
+          labelIcon="MdOutlineDeleteOutline"
         />
       </div>
     </SmallModal>

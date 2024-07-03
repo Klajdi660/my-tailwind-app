@@ -37,20 +37,22 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
         {...props}
       >
         {/* {!isSubmitting ? ( */}
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center justify-center">
           {labelIcon && (
             <div className="mr-1">
               <Icon
                 name={labelIcon}
                 className={classNames(
-                  variant === "contained" && "text-primary",
+                  // variant === "contained" && "text-primary",
+                  variant === "contained" && "text-white",
+                  variant === "delete" && "text-white",
                   variant === "filled" && "text-white",
                   variant === "gradient" && "text-white"
                 )}
               />
             </div>
           )}
-          <div className="w-full text-center whitespace-nowrap">{label}</div>
+          <div className=" text-center whitespace-nowrap">{label}</div>
         </div>
         {/* ) : (
            <div>Loading..</div>
@@ -60,4 +62,5 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
   }
 );
 
+// label - w-full
 Button.displayName = "Button";
