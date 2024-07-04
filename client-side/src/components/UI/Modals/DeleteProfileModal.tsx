@@ -48,7 +48,7 @@ export const DeleteProfileModal: FunctionComponent<DeleteProfileProps> = () => {
       closable={true}
       width={600}
     >
-      <div className="modal-header w-full text-xl font-semibold">
+      <div className="modal-header w-full text-xl text-onNeutralBg font-semibold">
         Delete Account
       </div>
       <div className="modal-body mt-5">

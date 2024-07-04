@@ -33,6 +33,8 @@ export { Sidebar } from "./Sidebar/Sidebar";
 // UI
 export { Button } from "./UI/Button";
 export { DeleteProfileModal } from "./UI/Modals/DeleteProfileModal";
+export { ChangeProfilePhotoModal } from "./UI/Modals/ChangeProfilePhotoModal";
+export { SessionExpiredModal } from "./UI/Modals/SessionExpiredModal";
 export { Image } from "./UI/Image";
 export * from "./UI/Modals/Modal";
 export { Tab } from "./UI/Tab";

@@ -1,6 +1,6 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, CSSProperties } from "react";
 import { Modal } from "antd";
-import { SmallModalProps } from "../../../types";
+import { SmallModalProps, ModalDefaultStyles } from "../../../types";
 
 export const SmallModal: FunctionComponent<SmallModalProps> = (props) => {
   const {
@@ -18,22 +18,25 @@ export const SmallModal: FunctionComponent<SmallModalProps> = (props) => {
     cancelText = "btn_cancel",
     cancelButtonProps = { style: { display: "none" } },
     width,
-    // bodyStyle,
+    height,
+    styles,
   } = props;
 
-  // const defaultBodyStyle = {
-  //   height: "40vh",
-  //   display: "flex",
-  //   flexDirection: "column",
-  // };
+  const defaultBodyStyle: CSSProperties = {
+    // height: "40vh",
+    // display: "flex",
+    // flexDirection: "column",
+  };
+
+  const stylesObj: ModalDefaultStyles = styles
+    ? { body: defaultBodyStyle, ...styles }
+    : { body: defaultBodyStyle };
 
   return (
     <Modal
       open={open}
       title={title}
-      // bodyStyle={
-      //   bodyStyle ? { ...defaultBodyStyle, ...bodyStyle } : defaultBodyStyle
-      // }
+      styles={stylesObj}
       width={isMobile ? "50vw" : width || "60vw"}
       centered
       closable={closable}

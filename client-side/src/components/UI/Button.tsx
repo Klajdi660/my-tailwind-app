@@ -24,7 +24,8 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
           variant === "outlined" &&
             "border border-primary text-primary hover:bg-primary-opacity",
           variant === "delete" && "bg-red-500 text-white hover:brightness-110",
-          variant === "contained" && "bg-primary text-white",
+          variant === "contained" &&
+            "bg-primary text-white hover:brightness-110",
           variant === "gradient" &&
             "bg-gradient-to-r from-button_gradient_from to-button_gradient_to text-white",
           "rounded font-semibold text-sm py-2 px-4 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none",

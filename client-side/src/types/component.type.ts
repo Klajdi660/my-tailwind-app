@@ -171,6 +171,8 @@ export interface ThemeButtonProps {
   dispatch: any;
 }
 
+export interface SessionExpiredProps {}
+
 export interface DeleteProfileProps {}
 
 export interface DeleteProfileInput {
@@ -191,9 +193,17 @@ export interface SmallModalProps {
   onCancel?: any;
   cancelText?: string;
   width?: any;
-  bodyStyle?: any;
+  height?: any;
+  styles?: any;
   cancelButtonProps?: any;
 }
+
+export type ModalDefaultStyles = {
+  header?: object;
+  body?: object;
+  footer?: object;
+  mask?: object;
+};
 
 export interface ButtonProps {
   type?: "button" | "submit" | "reset";

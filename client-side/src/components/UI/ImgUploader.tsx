@@ -11,6 +11,7 @@ import { Image } from "./Image";
 import { useAuth } from "../../hooks";
 import { ImgUploaderParams } from "../../types";
 import { fileBlob, useAppModal } from "../../utils";
+import { Button } from "./Button";
 
 export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {
   const { user } = useAuth();
@@ -43,6 +44,17 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {
     fileInputRef?.current?.click();
   };
 
+  const changeProfileImage = async (e: ChangeEvent<HTMLInputElement>) => {
+    // try {
+    const form = new FormData();
+    // @ts-ignore
+    form.append("image", e.target.files[0]);
+    console.log("form :>> ", form);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
+
   return (
     <div className="flex items-center gap-10 mb-5">
       {imgUrl ? (
@@ -66,22 +78,26 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {
           @{user?.username}
         </div>
         <div className="mt-4">
+          {/* <label
+            htmlFor="upload-img"
+            className="flex_justify_center items-center bg-primary text-white rounded font-semibold text-sm py-2 px-4 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none w-fit hover:brightness-110"
+          >
+            Change photo
+          </label>
           <input
             className="hidden"
             type="file"
-            ref={fileInputRef}
-            // accept="image.png, image/gif image/jpeg"
+            // ref={fileInputRef}
             accept="image/*"
-            onChange={handleFileChange}
-          />
-          <button
-            className="flex_justify_center items-center bg-primary text-white rounded font-semibold text-sm py-2 px-4 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none w-fit hover:brightness-110"
-            // onClick={handleFileClick}
+            onChange={changeProfileImage}
+            id="upload-img"
+          /> */}
+          <Button
+            type="submit"
+            label="Change photo"
+            variant="contained"
             onClick={handleModalOpen}
-          >
-            {/* <Icon name="AiOutlineEdit" className="mr-1 text-white" size={18} /> */}
-            Change photo
-          </button>
+          />
         </div>
       </div>
     </div>

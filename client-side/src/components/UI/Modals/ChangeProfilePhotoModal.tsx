@@ -6,15 +6,18 @@ import { useAppModal } from "../../../utils";
 export const ChangeProfilePhotoModal: FunctionComponent<any> = () => {
   const { modals, setModalOpen } = useAppModal();
 
+  const handleModalClose = () => {
+    setModalOpen("changeProfilePhotoModal", false);
+  };
+
   return (
     <SmallModal
-      // open={modalOpen}
       open={modals["changeProfilePhotoModal"]}
-      onCancel={() => setModalOpen("changeProfilePhotoModal", false)}
+      onCancel={handleModalClose}
       closable={true}
       width={600}
     >
-      <div className="modal-header w-full text-xl font-semibold">
+      <div className="modal-header w-full text-xl text-onNeutralBg font-semibold">
         Choose profile picture
       </div>
       <div className="modal-body mt-5 flex justify-between">
@@ -22,15 +25,22 @@ export const ChangeProfilePhotoModal: FunctionComponent<any> = () => {
           type="submit"
           label="Upload Photo"
           variant="contained"
-          className="w-[48%]"
+          className="w-2/5"
           labelIcon="AiOutlinePlus"
         />
         <Button
           type="submit"
           label="Remove Current Photo"
           variant="delete"
-          className="w-[48%]"
+          className="w-2/5"
           labelIcon="MdOutlineDeleteOutline"
+        />
+        <Button
+          type="submit"
+          label="Cancel"
+          variant="outlined"
+          className=""
+          onClick={handleModalClose}
         />
       </div>
     </SmallModal>

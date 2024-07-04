@@ -183,6 +183,23 @@ input[type="checkbox"] {
 }
 /*  */
 
+/* Ant Modal */
+.ant-modal .ant-modal-content {
+  background-color: var(--cardBg);
+}
+
+.ant-modal .ant-modal-footer {
+  margin-top: 0;
+}
+
+.ant-modal .ant-modal-close {
+  color: var(--onNeutralBgSecondary);
+}
+.ant-modal .ant-modal-close:hover {
+  color: var(--onNeutralBg);
+}
+/* */
+
 /* Popover */
 .ant-popover {
   position: fixed;

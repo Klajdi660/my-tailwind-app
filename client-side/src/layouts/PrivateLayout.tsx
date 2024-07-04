@@ -1,5 +1,14 @@
 import { useEffect } from "react";
-import { CartSwitcher, Loading, Navbar, Sidebar, TopPlay } from "../components";
+import {
+  CartSwitcher,
+  Loading,
+  Navbar,
+  Sidebar,
+  TopPlay,
+  SessionExpiredModal,
+  ChangeProfilePhotoModal,
+  DeleteProfileModal,
+} from "../components";
 import { useUserService } from "../services";
 import { ProviderProps } from "../types";
 
@@ -34,6 +43,9 @@ export const PrivateLayout = ({ children, ...restProps }: ProviderProps) => {
       </main>
       <TopPlay />
       <CartSwitcher />
+      <SessionExpiredModal />
+      <ChangeProfilePhotoModal />
+      <DeleteProfileModal />
     </div>
   );
 };
