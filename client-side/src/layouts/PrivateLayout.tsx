@@ -5,9 +5,7 @@ import {
   Navbar,
   Sidebar,
   TopPlay,
-  SessionExpiredModal,
-  ChangeProfilePhotoModal,
-  DeleteProfileModal,
+  Modal,
 } from "../components";
 import { useUserService } from "../services";
 import { ProviderProps } from "../types";
@@ -43,9 +41,7 @@ export const PrivateLayout = ({ children, ...restProps }: ProviderProps) => {
       </main>
       <TopPlay />
       <CartSwitcher />
-      <SessionExpiredModal />
-      <ChangeProfilePhotoModal />
-      <DeleteProfileModal />
+      <Modal />
     </div>
   );
 };

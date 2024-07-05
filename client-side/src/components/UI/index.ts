@@ -11,7 +11,7 @@ export { Icon } from "./Icon";
 export { IconButton } from "./IconButton";
 export { Image } from "./Image";
 export { ImgUploader } from "./ImgUploader";
-export * from "./Modals/Modal";
+export * from "./Modals/ModalContent";
 export { DeleteProfileModal } from "./Modals/DeleteProfileModal";
 export { Overlay } from "./Overlay";
 export { PatternBg } from "./PatternBg";

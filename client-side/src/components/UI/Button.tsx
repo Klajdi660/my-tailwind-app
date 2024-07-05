@@ -12,7 +12,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
       className,
       variant,
       labelIcon,
-      isSubmitting,
+      // isSubmitting,
       onClick,
       ...props
     },
@@ -31,7 +31,8 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
           "rounded font-semibold text-sm py-2 px-4 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none",
           className
         )}
-        disabled={disabled || isSubmitting}
+        // disabled={disabled || isSubmitting}
+        disabled={disabled}
         type={type}
         ref={ref}
         onClick={onClick}

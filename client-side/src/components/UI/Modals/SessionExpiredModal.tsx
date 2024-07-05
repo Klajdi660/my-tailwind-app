@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
-import { SmallModal } from "./Modal";
+import { SmallModal } from "./ModalContent";
 import { SessionExpiredProps } from "../../../types";
 import { useAppModal } from "../../../utils";
 import { Button } from "../Button";

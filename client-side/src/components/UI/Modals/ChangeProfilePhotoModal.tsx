@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { SmallModal } from "./Modal";
+import { SmallModal } from "./ModalContent";
 import { Button } from "../Button";
 import { useAppModal } from "../../../utils";
 

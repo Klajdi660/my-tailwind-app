@@ -218,7 +218,7 @@ export interface ButtonProps {
     | "delete"
     | "upload";
   labelIcon?: any;
-  isSubmitting?: boolean;
+  // isSubmitting?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 

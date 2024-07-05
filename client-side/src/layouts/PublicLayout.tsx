@@ -8,7 +8,7 @@ export const PublicLayout = ({
 }: ProviderProps): JSX.Element => {
   return (
     <div className="public_layout">
-      <Loading />
+      {/* <Loading /> */}
       {children}
       {/* <FormProvider>{children}</FormProvider> */}
     </div>
