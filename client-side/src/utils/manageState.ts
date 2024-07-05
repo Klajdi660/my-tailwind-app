@@ -1,5 +1,10 @@
 import { create } from "zustand";
-import { AppModalState, AppUtilState, NavScrollTriggerState } from "../types";
+import {
+  AppModalState,
+  AppUtilState,
+  NavScrollTriggerState,
+  ProfilePhotoState,
+} from "../types";
 
 export const useNavScrollTrigger = create<NavScrollTriggerState>((set) => ({
   navScrollTrigger: false,
@@ -22,4 +27,9 @@ export const useAppModal = create<AppModalState>((set) => ({
     set((state) => ({
       modals: { ...state.modals, [key]: value },
     })),
+}));
+
+export const useProfilePhoto = create<ProfilePhotoState>((set) => ({
+  files: null,
+  setFiles: (value: any) => set(() => ({ files: value })),
 }));

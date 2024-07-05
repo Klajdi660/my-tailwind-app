@@ -10,14 +10,13 @@ import { userIcon } from "../../assets";
 import { Image } from "./Image";
 import { useAuth } from "../../hooks";
 import { ImgUploaderParams } from "../../types";
-import { fileBlob, useAppModal } from "../../utils";
+import { fileBlob, useAppModal, useProfilePhoto } from "../../utils";
 import { Button } from "./Button";
 
 export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {
   const { user } = useAuth();
   const { setModalOpen } = useAppModal();
-  const [files, setFiles] = useState<File[] | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { files } = useProfilePhoto();
 
   const imgUrl = user?.extra?.avatar;
 
@@ -28,32 +27,6 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {
   const blob = useMemo(() => {
     return fileBlob(files);
   }, [files]);
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      setFiles(Array.from(e.target.files));
-
-      if (!file.type.includes("image")) return;
-    }
-  };
-
-  const handleFileClick = () => {
-    fileInputRef?.current?.click();
-  };
-
-  const changeProfileImage = async (e: ChangeEvent<HTMLInputElement>) => {
-    // try {
-    const form = new FormData();
-    // @ts-ignore
-    form.append("image", e.target.files[0]);
-    console.log("form :>> ", form);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  };
 
   return (
     <div className="flex items-center gap-10 mb-5">
@@ -78,20 +51,6 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {
           @{user?.username}
         </div>
         <div className="mt-4">
-          {/* <label
-            htmlFor="upload-img"
-            className="flex_justify_center items-center bg-primary text-white rounded font-semibold text-sm py-2 px-4 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none w-fit hover:brightness-110"
-          >
-            Change photo
-          </label>
-          <input
-            className="hidden"
-            type="file"
-            // ref={fileInputRef}
-            accept="image/*"
-            onChange={changeProfileImage}
-            id="upload-img"
-          /> */}
           <Button
             type="submit"
             label="Change photo"

@@ -85,6 +85,11 @@ export interface AppModalState {
   setModalOpen: (key: string, value: boolean) => void;
 }
 
+export interface ProfilePhotoState {
+  files: any;
+  setFiles: (value: any) => void;
+}
+
 // Component
 export interface NotificationItemList {
   id: number;

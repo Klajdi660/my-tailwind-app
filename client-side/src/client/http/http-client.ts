@@ -10,7 +10,8 @@ const instance = axios.create({
   baseURL: APP_URL,
   timeout: AXIOS_TIMEOUT_DURATION,
   headers: {
-    "Content-Type": "application/json",
+    //   // "Content-Type": "application/json",
+    //   "Content-Type": "multipart/form-data",
   },
 });
 
@@ -35,7 +36,9 @@ instance.interceptors.request.use(
       config.method === "get" ? localStorage.atoken : localStorage.atoken;
 
     config.headers.Authorization = `Bearer ${token}`;
-
+    config.headers["Content-Type"] =
+      config.method === "put" ? "multipart/form-data" : "application/json";
+    console.log("config :>> ", config.headers);
     return config;
   },
   (error: AxiosError) => Promise.reject(error)

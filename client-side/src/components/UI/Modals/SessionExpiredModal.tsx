@@ -1,23 +1,26 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 import { SmallModal } from "./ModalContent";
-import { SessionExpiredProps } from "../../../types";
-import { useAppModal } from "../../../utils";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
+import { paths } from "../../../data";
+import { SessionExpiredProps } from "../../../types";
+import { useAppModal } from "../../../utils";
 
 export const SessionExpiredModal: FunctionComponent<
   SessionExpiredProps
 > = () => {
+  const { home } = paths;
   const { modals, setModalOpen } = useAppModal();
   const navigate = useNavigate();
 
   const handleModalClose = () => {
     setModalOpen("sessionExpiredModal", false);
-    navigate("/login");
+    navigate(home);
+
     delete localStorage.atoken;
     delete localStorage.user;
-    // delete localStorage.lastLocation;
+    delete localStorage.lastLocation;
   };
 
   return (
