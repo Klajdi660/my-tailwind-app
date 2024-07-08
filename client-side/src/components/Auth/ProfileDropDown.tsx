@@ -109,7 +109,7 @@ const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
             <Image
               imgUrl={user.extra.avatar}
               styles={classNames(
-                "w-10 h-10 rounded-full p-1 ring-2",
+                "w-10 h-10 rounded-full p-0.5 ring-2 object-cover",
                 open ? "ring-primary" : "ring-gray-300"
               )}
               name="User Img"
@@ -119,7 +119,7 @@ const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
               imgUrl={userIcon}
               name="Profile Img"
               styles={classNames(
-                "w-10 h-10 rounded-full p-1 ring-2 bg-main",
+                "w-10 h-10 rounded-full p-0.5 ring-2 bg-main",
                 open ? "ring-primary" : "ring-gray-300"
               )}
             />
