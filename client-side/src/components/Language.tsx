@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Image } from "./UI";
-import { LanguageProps } from "../types";
 import { langMenuItem } from "../data";
+import { LanguageProps } from "../types";
 
 export const Language: FunctionComponent<LanguageProps> = (props) => {
   const { onSelectLanguage } = props;

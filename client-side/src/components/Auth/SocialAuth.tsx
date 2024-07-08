@@ -14,7 +14,6 @@ export const SocialAuth: FunctionComponent<SocialAuthProps> = () => {
       await socialAuth(tokenParam);
     };
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tokenParam]);
 
   return (

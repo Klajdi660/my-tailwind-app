@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./auth.slice";
-import themeReducer from "./theme.slice";
-import rememberMeReducer from "./remember.slice";
-import userReducer from "./user.slice";
 import cancelDeleteAccountReducer from "./cancelDeleteAccount.slice";
+import rememberMeReducer from "./remember.slice";
+import themeReducer from "./theme.slice";
+import userReducer from "./user.slice";
 
 // const rootPersistConfig = {
 //   key: "root",

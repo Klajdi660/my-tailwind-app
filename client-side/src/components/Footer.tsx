@@ -14,7 +14,6 @@ export const Footer: FunctionComponent<FooterProps> = () => {
               key={item.name}
               className="w-12 h-12 rounded bg-divider flex_justify_center hover:bg-primary-opacity"
             >
-              {/* <Icon name={item.icon} size={22} /> */}
               <Image imgUrl={item.icon} name="social logo" styles="w-7 h-7" />
             </button>
           ))}

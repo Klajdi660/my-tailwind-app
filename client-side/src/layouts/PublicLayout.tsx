@@ -1,16 +1,11 @@
-// import { FormProvider } from "../contexts";
 import { ProviderProps } from "../types";
-import { Loading } from "../components";
+// import { Loading } from "../components";
 
-export const PublicLayout = ({
-  children,
-  ...restProps
-}: ProviderProps): JSX.Element => {
+export const PublicLayout = ({ children }: ProviderProps) => {
   return (
     <div className="public_layout">
       {/* <Loading /> */}
       {children}
-      {/* <FormProvider>{children}</FormProvider> */}
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { iconName } from "../../assets";
 import { Form } from "./Form";
 import { OTPCodeForm } from "./OTPCodeForm";
 import { SocialAuthButton, Title, Image } from "../UI";
+import { iconName } from "../../assets";
 import { TemplateProps } from "../../types";
 
 export const Template: FunctionComponent<TemplateProps> = (props) => {

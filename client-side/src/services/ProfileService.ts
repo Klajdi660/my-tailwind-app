@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import dayjs from "dayjs";
 import { profileEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { useAuth, useNotification, useStore } from "../hooks";

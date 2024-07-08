@@ -12,7 +12,6 @@ export const Tab: FunctionComponent<TabProps> = (props) => {
         boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.5)",
       }}
       className="flex p-1 gap-x-1 my-3 rounded-xl max-w-max"
-      // bg-richblack-700
     >
       {tabData.map((tab: TabMap) => (
         <Button

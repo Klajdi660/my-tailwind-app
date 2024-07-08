@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { icon } from "../assets";
 import { Image, Icon } from "./UI";
+import { icon } from "../assets";
 import { topFooter, bottomFooter } from "../data";
 import { HomeFooterProps } from "../types";
 

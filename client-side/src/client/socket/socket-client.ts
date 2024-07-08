@@ -1,6 +1,6 @@
-import { io, /*Socket*/ } from "socket.io-client";
-import { store } from "../../store/redux";
+import { io /*Socket*/ } from "socket.io-client";
 import { SOCKET_URL } from "../../configs";
+import { store } from "../../store";
 
 const instance = io(SOCKET_URL, {
   query: {

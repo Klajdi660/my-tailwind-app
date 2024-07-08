@@ -1,8 +1,8 @@
 import { FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Popover } from "antd";
-import { userIcon } from "../../assets";
 import { Image, Icon, Button } from "../UI";
+import { userIcon } from "../../assets";
 import { profileMenuItems } from "../../data";
 import { useAuth } from "../../hooks";
 import { useAuthService } from "../../services";

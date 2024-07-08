@@ -3,11 +3,11 @@ import { useLocation } from "react-router-dom";
 import { ProviderProps } from "../types";
 import { useNavScrollTrigger } from "../utils";
 
-const triggerPoint = 50;
-
 export const ScrollProvider = ({ children }: ProviderProps) => {
   const { pathname } = useLocation();
   const { setNavScrollTrigger } = useNavScrollTrigger();
+
+  const triggerPoint = 50;
 
   useEffect(() => {
     window.scrollTo(0, 0);

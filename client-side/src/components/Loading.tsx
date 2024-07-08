@@ -1,8 +1,8 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { iconName } from "../assets";
 import { Image } from "./UI";
-import { LoadingPorps } from "../types";
+import { iconName } from "../assets";
 import { useStore } from "../hooks";
+import { LoadingPorps } from "../types";
 
 export const Loading: FunctionComponent<LoadingPorps> = () => {
   const { loading } = useStore();

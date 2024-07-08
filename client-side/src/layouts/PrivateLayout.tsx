@@ -10,7 +10,7 @@ import {
 import { useUserService } from "../services";
 import { ProviderProps } from "../types";
 
-export const PrivateLayout = ({ children, ...restProps }: ProviderProps) => {
+export const PrivateLayout = ({ children }: ProviderProps) => {
   const { getUserDetails } = useUserService();
 
   useEffect(() => {
@@ -23,7 +23,6 @@ export const PrivateLayout = ({ children, ...restProps }: ProviderProps) => {
     };
 
     fetchUserDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

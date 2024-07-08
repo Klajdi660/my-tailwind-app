@@ -10,6 +10,7 @@ export const ForgotPasswordPage: FunctionComponent<
 > = () => {
   const { listForm } = useForm();
   const { forgotPassword } = useAuthService();
+
   const [resetPassEmail, setResetEmail] = useState<string>("");
   const [resetPassEmailSent, setResetPassEmailSent] = useState<boolean>(false);
 

@@ -1,27 +1,16 @@
-import { Fragment, FunctionComponent, useState, useRef, useMemo } from "react";
+import { Fragment, FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorFormMessage } from "../Common";
-import { Button, IconButton, ImgUploader } from "../UI";
-import { useAuth } from "../../hooks";
+import { Button, IconButton } from "../UI";
 import { FormProps2, FormListItem } from "../../types";
 import { classNames } from "../../utils";
 
 export const Form: FunctionComponent<FormProps2> = (props) => {
-  const {
-    listForm,
-    onSubmit,
-    schema,
-    defaultValues,
-    hasProvider,
-    data,
-    files,
-    setFiles,
-  } = props;
-  const { user } = useAuth();
+  const { listForm, onSubmit, schema, defaultValues, data } = props;
+
   const [showPass, setShowPass] = useState(null);
-  const imageRef = useRef(null);
 
   const [{ formType, formName, btnTxt }] = listForm;
 
@@ -113,35 +102,6 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                     />
                   </fieldset>
                 )}
-                {/* {["image_dropzone"].includes(list.type) && (
-                  <fieldset className="flex flex-col">
-                    {list.label && (
-                      <label
-                        className="mb-2 text-sm font-semibold text-secondary"
-                        htmlFor={list.item}
-                      >
-                        {list.label || "Upload Image"}
-                      </label>
-                    )}
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      ref={imageRef}
-                    />
-                    <ImgUploader
-                      // imgUrl={user?.extra?.avatar}
-                      hasProvider={hasProvider}
-                      // name={user?.extra?.name}
-                      // username={user?.username}
-                      //   onImageDelete={() => {}}
-                      // imageRef={imageRef}
-                      // containerDims="h-36 w-36"
-                      // borderType="rounded-full"
-                    />
-                    <ErrorFormMessage />
-                  </fieldset>
-                )} */}
               </Fragment>
             );
           })}

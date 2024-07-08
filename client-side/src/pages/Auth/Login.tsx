@@ -2,13 +2,12 @@ import { FunctionComponent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Template } from "../../components";
-import { useForm, useAuth } from "../../hooks";
+import { useForm } from "../../hooks";
 import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation, isRTokenExpired } from "../../utils";
 
 export const LoginPage: FunctionComponent<LoginPageProps> = () => {
-  const { isAuthenticated, user } = useAuth();
   const { listForm } = useForm();
   const { login } = useAuthService();
   const navigate = useNavigate();

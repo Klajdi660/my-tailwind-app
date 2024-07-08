@@ -1,8 +1,6 @@
 import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { icon, iconName } from "../assets";
-import { Searchbar } from "../components";
 import ProfileDropdown from "./Auth/ProfileDropDown";
 import {
   Button,
@@ -15,19 +13,22 @@ import {
   // LanguageButton,
   Overlay,
 } from "./UI";
+import { icon, iconName } from "../assets";
+import { Searchbar } from "../components";
 import { defaultThemeConfig } from "../configs";
 import { useAuth } from "../hooks";
 import { NavbarProps } from "../types";
 import { useMobileResponsive, useAppUtil, classNames } from "../utils";
 
 export const Navbar: FunctionComponent<NavbarProps> = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { user } = useAuth();
-  const theme = useSelector((state: any) => state.theme);
   const isMobile = useMobileResponsive();
   const { toggleSearch, setToggleSearch } = useAppUtil();
-  // const [toggleSearch, setToggleSearch] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const theme = useSelector((state: any) => state.theme);
 
   const { sidebar } = theme || defaultThemeConfig;
   const isFolded = sidebar === "folded";

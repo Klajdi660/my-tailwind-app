@@ -1,32 +1,20 @@
-import {
-  FunctionComponent,
-  useRef,
-  useState,
-  useMemo,
-  ChangeEvent,
-} from "react";
-import { userIcon } from "../../assets";
-// import { Icon } from "./Icon";
+import { FunctionComponent } from "react";
+import { Button } from "./Button";
 import { Image } from "./Image";
+import { userIcon } from "../../assets";
 import { useAuth } from "../../hooks";
 import { ImgUploaderParams } from "../../types";
-import { fileBlob, useAppModal, useProfilePhoto } from "../../utils";
-import { Button } from "./Button";
+import { useAppModal } from "../../utils";
 
 export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {
   const { user } = useAuth();
   const { setModalOpen } = useAppModal();
-  const { files } = useProfilePhoto();
 
   const imgUrl = user?.extra?.avatar;
 
   const handleModalOpen = () => {
     setModalOpen("changeProfilePhotoModal", true);
   };
-
-  const blob = useMemo(() => {
-    return fileBlob(files);
-  }, [files]);
 
   return (
     <div className="flex items-center gap-10 mb-5">

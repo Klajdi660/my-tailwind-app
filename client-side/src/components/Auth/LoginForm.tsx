@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Checkbox } from "antd";
-// import { useAuthService } from "../../services";
+import { useAuthService } from "../../services";
 import { useAuth } from "../../hooks";
 import { IconButton, Button } from "../UI";
 import { LoginUserInput } from "../../types";
@@ -11,7 +11,7 @@ import { LoginUserInput } from "../../types";
 interface LoginFormProps {}
 
 export const LoginForm: FunctionComponent<LoginFormProps> = () => {
-  // const { login } = useAuthService();
+  const { login } = useAuthService();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [form] = Form.useForm();
@@ -39,12 +39,11 @@ export const LoginForm: FunctionComponent<LoginFormProps> = () => {
   }, []);
 
   const handleOnSubmit = async (values: LoginUserInput) => {
-    // const { username, password, remember } = values;
-    // try {
-    //   await login(username, password, remember);
-    // } catch (error) {
-    //   console.error("Failed to login!", error);
-    // }
+    try {
+      await login(values);
+    } catch (error) {
+      console.error("Failed to login!", error);
+    }
   };
 
   // const handleFormChange = () => {

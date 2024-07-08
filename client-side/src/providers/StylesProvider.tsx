@@ -6,11 +6,9 @@ import { RootState } from "../types";
 import { useMobileResponsive } from "../utils";
 
 export const StylesProvider = () => {
-  const themeStorage = useSelector((state: RootState) => state.theme);
   const isMobile = useMobileResponsive();
 
-  const scrollPosition = window.scrollY;
-  const triggerPoint = 50;
+  const themeStorage = useSelector((state: RootState) => state.theme);
 
   const { mode, color, sidebar, layout, fontFamily, borderRadius } =
     themeStorage || defaultThemeConfig;

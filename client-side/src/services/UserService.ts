@@ -14,7 +14,6 @@ export const useUserService = () => {
 
   const getUserDetails = async () => {
     try {
-      // const userId = user?.id || JSON.parse(localStorage.atoken)?.id;
       const userId = user?.id;
       if (!userId) throw new Error("User ID is not available");
 

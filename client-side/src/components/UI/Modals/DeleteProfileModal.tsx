@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ErrorFormMessage } from "../../Common";
 import { SmallModal } from "./ModalContent";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
+import { ErrorFormMessage } from "../../Common";
 import { useAuth } from "../../../hooks";
 import { useProfileService } from "../../../services";
 import { DeleteProfileProps, DeleteProfileInput } from "../../../types";

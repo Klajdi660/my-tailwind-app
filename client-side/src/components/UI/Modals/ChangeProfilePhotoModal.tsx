@@ -33,8 +33,9 @@ export const ChangeProfilePhotoModal: FunctionComponent<any> = () => {
     try {
       const formData = new FormData();
       formData.append("displayPicture", files);
-      console.log("files :>> ", files);
+
       await updateDisplayPicture(formData);
+
       setModalOpen("changeProfilePhotoModal", false);
       setTest(false);
     } catch (error) {
