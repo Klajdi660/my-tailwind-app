@@ -87,7 +87,9 @@ export interface AppModalState {
 
 export interface ProfilePhotoState {
   files: any;
+  isUpdatingProfileImg: boolean;
   setFiles: (value: any) => void;
+  setIsUpdatingProfileImg: (value: boolean) => void;
 }
 
 // Component

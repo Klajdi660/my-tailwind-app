@@ -5,41 +5,47 @@ import { useProfileService } from "../../../services";
 import { useAppModal, useProfilePhoto } from "../../../utils";
 
 export const ChangeProfilePhotoModal: FunctionComponent<any> = () => {
-  const { updateDisplayPicture } = useProfileService();
+  const { updateDisplayPicture, removeDisplayPicture } = useProfileService();
   const { modals, setModalOpen } = useAppModal();
-  const { files, setFiles } = useProfilePhoto();
-  const [test, setTest] = useState(false);
+  const { setIsUpdatingProfileImg } = useProfilePhoto();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-  const handleFileClick = () => {
-    fileInputRef?.current?.click();
-  };
 
   const handleModalClose = () => {
     setModalOpen("changeProfilePhotoModal", false);
   };
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleFileClick = () => {
+    fileInputRef?.current?.click();
+    handleModalClose();
+  };
 
-    if (file) {
-      setFiles(file);
-      setTest(true);
+  const changeProfileImg = async (e: ChangeEvent<HTMLInputElement>) => {
+    try {
+      const file = e.target.files?.[0];
+
+      if (file) {
+        setIsUpdatingProfileImg(true);
+
+        const formData = new FormData();
+        formData.append("displayPicture", file);
+
+        await updateDisplayPicture(formData);
+
+        setIsUpdatingProfileImg(false);
+      }
+    } catch (error) {
+      console.error(`Failed to upload display picture! ${error}`);
     }
   };
 
-  const handleFileUpload = async () => {
+  const removeProfileImg = async () => {
     try {
-      const formData = new FormData();
-      formData.append("displayPicture", files);
+      await removeDisplayPicture();
 
-      await updateDisplayPicture(formData);
-
-      setModalOpen("changeProfilePhotoModal", false);
-      setTest(false);
+      handleModalClose();
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error);
+      console.error(`Failed to remove profile photo! ${error}`);
     }
   };
 
@@ -53,49 +59,39 @@ export const ChangeProfilePhotoModal: FunctionComponent<any> = () => {
       <div className="modal-header w-full text-xl text-onNeutralBg font-semibold">
         Choose profile picture
       </div>
-      {!test && (
-        <div className="modal-body mt-5 flex justify-between">
-          <input
-            className="hidden"
-            type="file"
-            ref={fileInputRef}
-            // accept="image/*"
-            accept="image/png, image/gif, image/jpeg"
-            onChange={handleFileChange}
-          />
-          <Button
-            type="submit"
-            label="Upload Photo"
-            variant="contained"
-            className="w-2/5"
-            labelIcon="AiOutlinePlus"
-            onClick={handleFileClick}
-          />
-          <Button
-            type="submit"
-            label="Remove Current Photo"
-            variant="delete"
-            className="w-2/5"
-            labelIcon="MdOutlineDeleteOutline"
-          />
-          <Button
-            type="submit"
-            label="Cancel"
-            variant="outlined"
-            className=""
-            onClick={handleModalClose}
-          />
-        </div>
-      )}
-      {test && (
+
+      <div className="modal-body mt-5 flex justify-between">
+        <input
+          className="hidden"
+          type="file"
+          ref={fileInputRef}
+          accept="image/*"
+          onChange={changeProfileImg}
+        />
         <Button
           type="submit"
-          label="OK"
+          label="Upload Photo"
+          variant="contained"
+          className="w-2/5"
+          labelIcon="AiOutlinePlus"
+          onClick={handleFileClick}
+        />
+        <Button
+          type="submit"
+          label="Remove Current Photo"
+          variant="delete"
+          className="w-2/5"
+          labelIcon="MdOutlineDeleteOutline"
+          onClick={removeProfileImg}
+        />
+        <Button
+          type="submit"
+          label="Cancel"
           variant="outlined"
           className=""
-          onClick={handleFileUpload}
+          onClick={handleModalClose}
         />
-      )}
+      </div>
     </SmallModal>
   );
 };

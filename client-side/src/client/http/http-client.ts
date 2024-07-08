@@ -38,7 +38,7 @@ instance.interceptors.request.use(
     config.headers.Authorization = `Bearer ${token}`;
     config.headers["Content-Type"] =
       config.method === "put" ? "multipart/form-data" : "application/json";
-    console.log("config :>> ", config.headers);
+
     return config;
   },
   (error: AxiosError) => Promise.reject(error)

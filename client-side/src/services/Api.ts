@@ -26,6 +26,7 @@ export const profileEndpoints = {
   CHANGE_PASSWORD_API: "/profile/change-password",
   UPDATE_PROFILE_API: "/profile/update-profile",
   UPDATE_PROFILE_PICTURE_API: "/profile/update-display-picture",
+  DELETE_PROFILE_PICTURE_API: "/profile/remove-display-picture",
   DELETE_PROFILE_API: "/profile/delete-account",
   CANCEL_DELETION_ACCOUNT_API: "/profile/cancel-deletion",
 };

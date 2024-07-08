@@ -22,6 +22,7 @@ const {
   DELETE_PROFILE_API,
   CANCEL_DELETION_ACCOUNT_API,
   UPDATE_PROFILE_PICTURE_API,
+  DELETE_PROFILE_PICTURE_API,
 } = profileEndpoints;
 
 export const useProfileService = () => {
@@ -122,15 +123,10 @@ export const useProfileService = () => {
 
   const updateDisplayPicture = async (values: any) => {
     try {
-      console.log("values :>> ", values);
-      setLoading(true);
-
       const profilePhotoResp = await HttpClient.put<UserDetailsResponse>(
         UPDATE_PROFILE_PICTURE_API,
         values
       );
-
-      setLoading(false);
 
       const { error, message, data } = profilePhotoResp;
       if (error) {
@@ -154,8 +150,40 @@ export const useProfileService = () => {
         description: message,
       });
     } catch (error) {
-      setLoading(false);
       console.error(`Failed to upload profile photo: ${error}`);
+    }
+  };
+
+  const removeDisplayPicture = async () => {
+    try {
+      const removeProfilePhotoResp =
+        await HttpClient.delete<UserDetailsResponse>(
+          DELETE_PROFILE_PICTURE_API
+        );
+
+      const { error, message, data } = removeProfilePhotoResp;
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      const extra = JSON.parse(data.extra);
+
+      data.extra = {
+        ...extra,
+      };
+
+      setUser(data);
+
+      notify({
+        variant: "success",
+        description: message,
+      });
+    } catch (error) {
+      console.error(`Failed to remove profile photo: ${error}`);
     }
   };
 
@@ -230,7 +258,7 @@ export const useProfileService = () => {
   const changePassword = async (values: ChangePasswordInput): Promise<void> => {
     try {
       setLoading(true);
-      console.log("values :>> ", values);
+
       const changePasswordResp = await HttpClient.post<UserDetailsResponse>(
         CHANGE_PASSWORD_API,
         values
@@ -268,6 +296,7 @@ export const useProfileService = () => {
     changeUsername,
     updateProfile,
     updateDisplayPicture,
+    removeDisplayPicture,
     deleteProfile,
     cancelDeleteProfile,
     changePassword,
