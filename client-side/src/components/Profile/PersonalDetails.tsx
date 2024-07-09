@@ -26,6 +26,13 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
     label: country.name,
   }));
 
+  const phoneCode = Country.getAllCountries().map((item) => ({
+    // value: item.flag,
+    value: item.phonecode,
+    label: `${item.flag} ${item.name} ${item.phonecode}`,
+  })) as any;
+  console.log("data :>> ", phoneCode);
+
   const onSearch = (value: string) => {
     console.log("search:", value);
   };
@@ -143,12 +150,19 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               Contact number
             </label>
-            <PhoneInput
+            <Select
+              labelInValue
+              options={phoneCode}
+              className="w-full"
+              // onChange={(value) => setPhoneNumber(value.value)}
+              optionLabelProp="value"
+            />
+            {/* <PhoneInput
               country={"al"}
               value={phoneNumber}
               onChange={(value) => setPhoneNumber(value)}
               // placeholder="Select Contact Number"
-            />
+            /> */}
           </div>
           <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
