@@ -63,7 +63,7 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
       <ul className="list-none divide divide-divider">
         {menuItems.map((item) => (
           <li
-            className="rounded cursor-pointer text-onNeutralBg hover:text-primary hover:font-semibold group hover:bg-primary-opacity"
+            className="rounded cursor-pointer text-onNeutralBg hover:text-primary group hover:bg-primary-opacity"
             key={item.id}
           >
             <button className="w-full p-4 text-left" onClick={item.onClick}>

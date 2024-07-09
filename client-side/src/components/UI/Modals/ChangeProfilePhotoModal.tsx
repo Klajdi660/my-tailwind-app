@@ -1,4 +1,4 @@
-import { FunctionComponent, ChangeEvent, useRef, useState } from "react";
+import { FunctionComponent, ChangeEvent, useRef } from "react";
 import { SmallModal } from "./ModalContent";
 import { Button } from "../Button";
 import { useProfileService } from "../../../services";
@@ -53,14 +53,16 @@ export const ChangeProfilePhotoModal: FunctionComponent<any> = () => {
     <SmallModal
       open={modals["changeProfilePhotoModal"]}
       onCancel={handleModalClose}
-      closable={true}
-      width={600}
+      closable={false}
+      width={400}
     >
-      <div className="modal-header w-full text-xl text-onNeutralBg font-semibold">
+      <div className="modal-header w-full text-center text-xl text-onNeutralBg font-semibold">
         Choose profile picture
       </div>
 
-      <div className="modal-body mt-5 flex justify-between">
+      <div className="modal-body mt-5 flex flex-col gap-1">
+        <hr className="w-full border-t border-divider" />
+
         <input
           className="hidden"
           type="file"
@@ -71,23 +73,26 @@ export const ChangeProfilePhotoModal: FunctionComponent<any> = () => {
         <Button
           type="submit"
           label="Upload Photo"
-          variant="contained"
-          className="w-2/5"
-          labelIcon="AiOutlinePlus"
+          variant="none"
           onClick={handleFileClick}
         />
+
+        <hr className="w-full border-t border-divider" />
+
         <Button
           type="submit"
           label="Remove Current Photo"
-          variant="delete"
-          className="w-2/5"
-          labelIcon="MdOutlineDeleteOutline"
+          variant="none"
+          className="text-red-500"
           onClick={removeProfileImg}
         />
+
+        <hr className="w-full border-t border-divider" />
+
         <Button
           type="submit"
           label="Cancel"
-          variant="outlined"
+          variant="none"
           className=""
           onClick={handleModalClose}
         />

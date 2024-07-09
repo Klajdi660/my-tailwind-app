@@ -212,6 +212,7 @@ export interface ButtonProps {
   className?: string;
   variant:
     | "outlined"
+    | "none"
     | "contained"
     | "gradient"
     | "filled"

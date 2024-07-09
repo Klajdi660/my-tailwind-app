@@ -21,6 +21,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
     return (
       <button
         className={classNames(
+          variant === "none" && "text-primary hover:bg-primary-opacity",
           variant === "outlined" &&
             "border border-primary text-primary hover:bg-primary-opacity",
           variant === "delete" && "bg-red-500 text-white hover:brightness-110",
@@ -45,7 +46,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
               <Icon
                 name={labelIcon}
                 className={classNames(
-                  // variant === "contained" && "text-primary",
+                  variant === "none" && "text-primary",
                   variant === "contained" && "text-white",
                   variant === "delete" && "text-white",
                   variant === "filled" && "text-white",
@@ -54,7 +55,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
               />
             </div>
           )}
-          <div className=" text-center whitespace-nowrap">{label}</div>
+          <div className="text-center whitespace-nowrap">{label}</div>
         </div>
         {/* ) : (
            <div>Loading..</div>
