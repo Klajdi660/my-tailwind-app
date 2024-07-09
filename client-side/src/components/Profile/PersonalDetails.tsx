@@ -92,7 +92,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
               placeholder="First Name"
-              autoComplete="off"
+              autoComplete="firstName"
             />
           </div>
           <div className="w-full md:w-1/2 md:pr-5 pb-5">
@@ -105,7 +105,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
               placeholder="Last Name"
-              autoComplete="off"
+              autoComplete="lastName"
             />
           </div>
         </div>
@@ -175,7 +175,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
               placeholder="City"
-              autoComplete="off"
+              autoComplete="city"
             />
           </div>
           <div className="w-full md:w-1/2 md:pr-5 pb-5">
@@ -188,7 +188,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
               placeholder="Address"
-              autoComplete="off"
+              autoComplete="address"
             />
           </div>
         </div>
