@@ -233,7 +233,6 @@ input[type="checkbox"] {
 .ant-form input::placeholder {
   color: #9ca3af;
 }
-
 /*  */
 
 /* Select */
@@ -267,6 +266,7 @@ input[type="checkbox"] {
   background-color: transparent !important;
   color: var(--onNeutralBg) !important;
   border: 1px solid var(--onNeutralBgDivider) !important;
+  border-radius: 5px !important;
   height: 40px !important;
   width: 100% !important;
 }
@@ -291,12 +291,18 @@ input[type="checkbox"] {
 .country-list {
   background-color: var(--neutralBgAlt) !important;
   color: var(--onNeutralBg) !important;
+  padding: 5px !important;
+}
+.country-list li {
+  margin-bottom: 5px !important;
 }
 .country-list li:hover {
   background-color: var(--primary-opacity) !important;
+  border-radius: 5px !important;
 }
 .country-list .country.highlight {
   background-color: var(--primary-opacity) !important;
+  border-radius: 5px !important;
 }
 /* */
 

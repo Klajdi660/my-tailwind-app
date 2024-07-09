@@ -105,11 +105,6 @@ export interface PersonalDetailsInput {
   phoneNumber?: string;
 }
 
-export interface PhoneNumberValidationProps {
-  value: string;
-  onChange: any;
-}
-
 export interface UserInfoProps {}
 
 // Sidebar

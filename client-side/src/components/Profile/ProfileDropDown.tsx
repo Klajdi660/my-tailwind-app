@@ -20,22 +20,22 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
   const menuItems = profileMenuItems({ navigate, hidden, logout });
 
   return (
-    <div className="p-2 space-y-3 min-w-[300px]">
+    <div className="p-2 space-y-2 min-w-[300px]">
       {email && (
         <div
-          className="gap-2 p-3 rounded flex_justify_between bg-main hover:bg-primary-opacity cursor-pointer"
+          className="gap-2 p-3 rounded flex_justify_between hover:bg-primary-opacity cursor-pointer"
           onClick={menuItems[0].onClick}
         >
           {extra?.avatar ? (
             <Image
               imgUrl={extra.avatar}
-              styles="w-10 h-10 p-1 rounded-full bg-sidebar"
+              styles="w-12 h-12 p-1 rounded-full object-cover"
               name="sidebar user"
             />
           ) : (
             <Image
               imgUrl={userIcon}
-              styles="w-10 h-10 p-1 rounded-full bg-sidebar"
+              styles="w-11 h-11 p-1 rounded-full bg-sidebar"
               name="sidebar user"
             />
           )}
@@ -79,7 +79,7 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
   );
 };
 
-const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
+export const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
 
@@ -98,7 +98,6 @@ const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
       <Popover
         trigger="click"
         arrow={false}
-        // content={UserMenu(user, hide)}
         content={<UserMenu user={user} hidden={hidden} />}
         open={open}
         onOpenChange={handleOpenChange}
@@ -129,5 +128,3 @@ const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
     </div>
   );
 };
-
-export default ProfileDropdown;

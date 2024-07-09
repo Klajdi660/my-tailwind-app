@@ -1,7 +1,6 @@
 import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import ProfileDropdown from "./Auth/ProfileDropDown";
 import {
   Button,
   Image,
@@ -14,7 +13,7 @@ import {
   Overlay,
 } from "./UI";
 import { icon, iconName } from "../assets";
-import { Searchbar } from "../components";
+import { Searchbar, ProfileDropdown } from "../components";
 import { defaultThemeConfig } from "../configs";
 import { useAuth } from "../hooks";
 import { NavbarProps } from "../types";

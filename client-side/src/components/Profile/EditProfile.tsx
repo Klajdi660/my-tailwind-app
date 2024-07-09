@@ -1,6 +1,6 @@
 import { FunctionComponent, useMemo, useState } from "react";
 import { Form } from "../Auth";
-import { PatternBg, ImgUploader } from "../UI";
+import { ImgUploader } from "../UI";
 import { profileList } from "../../data";
 import { useAuth } from "../../hooks";
 import { useProfileService } from "../../services";
@@ -28,8 +28,7 @@ export const EditProfile: FunctionComponent<EditProfileProps> = () => {
   };
 
   return (
-    <div className="relative p-4 rounded xs:p-6 bg-card overflow-hidden">
-      <PatternBg />
+    <div className="relative p-4 rounded xs:p-6 bg-card">
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">Profile</h5>
       </div>

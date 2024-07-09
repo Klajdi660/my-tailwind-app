@@ -5,52 +5,30 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs, { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
 import { ErrorFormMessage } from "../Common";
-import { Button, PatternBg } from "../UI";
+import { Button } from "../UI";
 import { genderList, dateFormatList } from "../../data";
 import { useAuth } from "../../hooks";
 import { useProfileService } from "../../services";
-import {
-  PersonalDetailsProps,
-  PhoneNumberValidationProps,
-  PersonalDetailsInput,
-} from "../../types";
+import { PersonalDetailsProps, PersonalDetailsInput } from "../../types";
 import { personalDetailsValidation } from "../../utils";
-
-const PhoneNumberValidation: FunctionComponent<PhoneNumberValidationProps> = ({
-  value,
-  onChange,
-}) => {
-  const [phoneNumber, setPhoneNumber] = useState(value);
-  const [valid, setValid] = useState(true);
-
-  const handleChange = (value: any) => {
-    setPhoneNumber(value);
-    setValid(validatePhoneNumber(value));
-    onChange(value);
-  };
-
-  const validatePhoneNumber = (phoneNumber: any) => {
-    const phoneNumberPattern = /^\+?[1-9]\d{1,14}$/;
-
-    return phoneNumberPattern.test(phoneNumber);
-  };
-
-  return (
-    <PhoneInput
-      country={"al"}
-      value={phoneNumber}
-      onChange={handleChange}
-      placeholder="Select Contact Number"
-    />
-  );
-};
+import { Country, City, State } from "country-state-city";
 
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const { user } = useAuth();
   const { updateProfile } = useProfileService();
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState<string>("");
   const [birthday, setBirthday] = useState<Dayjs | null>(null);
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
+
+  const countryData = Country.getAllCountries().map((country) => ({
+    value: country.isoCode,
+    label: country.name,
+  }));
+
+  const onSearch = (value: string) => {
+    console.log("search:", value);
+  };
 
   const defaultValues = {
     ...user?.extra,
@@ -81,6 +59,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
 
   const handleMenuClick = async (data: any) => {
     try {
+      console.log("phoneNumber :>> ", phoneNumber);
       const values = {
         ...data,
         extra: {
@@ -97,8 +76,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   };
 
   return (
-    <div className="relative p-4 rounded xs:p-6 bg-card overflow-hidden">
-      <PatternBg />
+    <div className="relative p-4 rounded xs:p-6 bg-card">
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">Personal Details</h5>
       </div>
@@ -114,7 +92,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
               placeholder="First Name"
-              autoComplete="firstName"
+              autoComplete="off"
             />
           </div>
           <div className="w-full md:w-1/2 md:pr-5 pb-5">
@@ -127,7 +105,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
               placeholder="Last Name"
-              autoComplete="lastName"
+              autoComplete="off"
             />
           </div>
         </div>
@@ -142,10 +120,10 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               showToday={false}
               placeholder={dateFormatList[2]}
               className="w-full h-10"
-              onChange={(date: any) => setBirthday(date)}
+              onChange={(date) => setBirthday(date)}
             />
           </div>
-          <div className="w-full md:w-1/2 pb-5">
+          <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Gender
             </label>
@@ -156,21 +134,51 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               placeholder="Select Gender"
               options={genderList}
               onChange={(value) => setGender(value)}
-              className="w-full h-10 text-sm border-red-500"
+              className="w-full h-10 text-sm"
             />
           </div>
         </div>
         <div className="flex flex-wrap">
-          {/* <div className="w-full md:w-1/2 md:pr-5 pb-5">
+          <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Contact number
             </label>
-            <PhoneNumberValidation
+            <PhoneInput
+              country={"al"}
               value={phoneNumber}
-              onChange={setPhoneNumber}
+              onChange={(value) => setPhoneNumber(value)}
+              // placeholder="Select Contact Number"
             />
-          </div> */}
-          {/* <div className="w-full md:w-1/2 pb-5">
+          </div>
+          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+            <label className="block text-secondary text-xs font-semibold mb-2">
+              Country
+            </label>
+            <Select
+              showSearch
+              placeholder="Select country"
+              options={countryData}
+              onChange={(value) => setCountry(value)}
+              onSearch={onSearch}
+              className="w-full h-10 text-sm"
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap">
+          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+            <label className="block text-secondary text-xs font-semibold mb-2">
+              City
+            </label>
+            <input
+              {...form("city")}
+              name="city"
+              className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+              type="text"
+              placeholder="City"
+              autoComplete="off"
+            />
+          </div>
+          <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Address
             </label>
@@ -179,10 +187,10 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               name="address"
               className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
               type="text"
-              placeholder="Street City Country"
+              placeholder="Address"
               autoComplete="off"
             />
-          </div> */}
+          </div>
         </div>
         <ErrorFormMessage />
         <div className="flex items-center justify-end w-full hover:brightness-110">

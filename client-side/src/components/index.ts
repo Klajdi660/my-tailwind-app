@@ -25,6 +25,7 @@ export { ChangePassword } from "./Profile/ChangePassword";
 export { DeleteAccount } from "./Profile/DeleteAccount";
 export { EditProfile } from "./Profile/EditProfile";
 export { PersonalDetails } from "./Profile/PersonalDetails";
+export { ProfileDropdown } from "./Profile/ProfileDropDown";
 export { UserInfo } from "./Profile/UserInfo";
 
 // Sidebar
