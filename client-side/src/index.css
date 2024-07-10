@@ -261,51 +261,6 @@ input[type="checkbox"] {
 }
 /* */
 
-/* Contact Number */
-.form-control {
-  background-color: transparent !important;
-  color: var(--onNeutralBg) !important;
-  border: 1px solid var(--onNeutralBgDivider) !important;
-  border-radius: 5px !important;
-  height: 40px !important;
-  width: 100% !important;
-}
-.form-control:focus,
-.form-control:hover,
-.flag-dropdown:focus-within {
-  outline: 1px solid var(--primary);
-}
-.form-control input::placeholder {
-  color: var(--onNeutralBg) !important;
-}
-
-.flag-dropdown {
-  background-color: transparent !important;
-  border: 1px solid var(--onNeutralBgDivider) !important;
-}
-
-.selected-flag {
-  background-color: transparent !important;
-}
-
-.country-list {
-  background-color: var(--neutralBgAlt) !important;
-  color: var(--onNeutralBg) !important;
-  padding: 5px !important;
-}
-.country-list li {
-  margin-bottom: 5px !important;
-}
-.country-list li:hover {
-  background-color: var(--primary-opacity) !important;
-  border-radius: 5px !important;
-}
-.country-list .country.highlight {
-  background-color: var(--primary-opacity) !important;
-  border-radius: 5px !important;
-}
-/* */
-
 /* CUSTOM SCROLLBAR*/
 ::-webkit-scrollbar {
   @apply w-[5px];

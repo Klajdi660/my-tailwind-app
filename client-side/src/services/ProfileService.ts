@@ -82,11 +82,11 @@ export const useProfileService = () => {
     }
   };
 
-  const updateProfile = async (values: PersonalDetailsInput): Promise<void> => {
+  const updateProfile = async (values: any): Promise<void> => {
     try {
       setLoading(true);
 
-      const profileDetailsResp = await HttpClient.put<UserDetailsResponse>(
+      const profileDetailsResp = await HttpClient.post<UserDetailsResponse>(
         UPDATE_PROFILE_API,
         values
       );

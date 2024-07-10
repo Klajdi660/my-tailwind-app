@@ -12,9 +12,7 @@ import { Routes } from "./routes";
 // import { router } from "./routes";
 import { persistor, store } from "./store";
 import "./index.css";
-import "react-phone-input-2/lib/style.css";
 import "react-toastify/dist/ReactToastify.css";
-import "react-phone-input-2/lib/style.css";
 
 const themeConfig = {
   algorithm: theme.defaultAlgorithm,

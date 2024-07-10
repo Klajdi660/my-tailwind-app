@@ -32,6 +32,7 @@ instance.interceptors.request.use(
     // }
 
     // config.headers.Authorization = localStorage.atoken;
+
     const token =
       config.method === "get" ? localStorage.atoken : localStorage.atoken;
 

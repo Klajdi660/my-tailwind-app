@@ -1,85 +1,78 @@
 import { FunctionComponent, useState } from "react";
-import PhoneInput from "react-phone-input-2";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs, { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
+import { City, Country } from "country-state-city";
 import { ErrorFormMessage } from "../Common";
 import { Button } from "../UI";
 import { genderList, dateFormatList } from "../../data";
 import { useAuth } from "../../hooks";
 import { useProfileService } from "../../services";
-import { PersonalDetailsProps, PersonalDetailsInput } from "../../types";
-import { personalDetailsValidation } from "../../utils";
-import { Country, City, State } from "country-state-city";
+import { PersonalDetailsProps } from "../../types";
 
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const { user } = useAuth();
   const { updateProfile } = useProfileService();
   const [gender, setGender] = useState<string>("");
   const [birthday, setBirthday] = useState<Dayjs | null>(null);
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [phonePrefix, setPhonePrefix] = useState<string>("");
+  const [contactNumber, setContactNumber] = useState<string>("");
   const [country, setCountry] = useState<string>("");
 
   const countryData = Country.getAllCountries().map((country) => ({
-    value: country.isoCode,
-    label: country.name,
+    value: country.name,
   }));
 
-  const phoneCode = Country.getAllCountries().map((item) => ({
-    // value: item.flag,
+  const phonePrefixData = Country.getAllCountries().map((item) => ({
     value: item.phonecode,
+    icon: item.flag,
     label: `${item.flag} ${item.name} ${item.phonecode}`,
-  })) as any;
-  console.log("data :>> ", phoneCode);
+  }));
 
-  const onSearch = (value: string) => {
-    console.log("search:", value);
-  };
+  const onSearch = (value: string) => {};
 
   const defaultValues = {
     ...user?.extra,
-    gender: user?.extra?.gender.toLowerCase() || "Select Gender",
-    dateOfBirth: user?.extra?.dateOfBirth
-      ? dayjs(user.extra.dateOfBirth, dateFormatList[2])
-      : null,
+    // contactNumber: user?.extra?.contactNumber,
+    // gender: user?.extra?.gender?.toLowerCase(),
+    // country: user?.extra?.country,
+    // dateOfBirth: user?.extra?.dateOfBirth
+    //   ? dayjs(user.extra.dateOfBirth, dateFormatList[2])
+    //   : null,
   };
-
+  console.log("user :>> ", user);
   const {
     register: form,
-    // setValue,
-    // watch,
     handleSubmit,
     // formState: { errors, isValid },
   } = useForm({
     mode: "onTouched",
-    defaultValues: {
-      // firstName: user?.extra.firstName,
-      // lastName: user?.extra.lastName,
-      // birthday: user?.extra.
-      ...user?.extra,
-    },
-    // resolver: yupResolver(personalDetailsValidation),
+    defaultValues,
   });
 
-  // const gender = watch("gender");
+  console.log("defaultValues :>> ", defaultValues);
 
   const handleMenuClick = async (data: any) => {
     try {
-      console.log("phoneNumber :>> ", phoneNumber);
       const values = {
-        ...data,
         extra: {
-          firstName: data.firstName,
-          lastName: data.lastName,
+          ...data,
           dateOfBirth: birthday ? birthday.format(dateFormatList[2]) : "",
           gender,
+          contactNumber,
+          country,
         },
       };
       await updateProfile(values);
     } catch (error) {
       console.error(`Failed to update personal details! ${error}`);
     }
+  };
+
+  const handlePhonePrefixChange = (value: string) => {
+    const contactValue = `+${value}${contactNumber}`;
+    setPhonePrefix(value);
+    setContactNumber(contactValue);
   };
 
   return (
@@ -123,7 +116,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             </label>
             <DatePicker
               format={dateFormatList[2]}
-              defaultValue={defaultValues.dateOfBirth}
+              // defaultValue={defaultValues.dateOfBirth}
               showToday={false}
               placeholder={dateFormatList[2]}
               className="w-full h-10"
@@ -136,8 +129,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             </label>
             <Select
               // value={gender}
-              defaultValue={defaultValues.gender}
-              // onChange={(value) => setValue("gender", value)}
+              // defaultValue={defaultValues.gender}
+              defaultValue={user?.extra?.gender?.toLowerCase()}
               placeholder="Select Gender"
               options={genderList}
               onChange={(value) => setGender(value)}
@@ -150,19 +143,27 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               Contact number
             </label>
-            <Select
-              labelInValue
-              options={phoneCode}
-              className="w-full"
-              // onChange={(value) => setPhoneNumber(value.value)}
-              optionLabelProp="value"
-            />
-            {/* <PhoneInput
-              country={"al"}
-              value={phoneNumber}
-              onChange={(value) => setPhoneNumber(value)}
-              // placeholder="Select Contact Number"
-            /> */}
+            <div className="flex">
+              <Select
+                defaultValue={phonePrefixData[2].icon}
+                options={phonePrefixData}
+                // onChange={(value) => setPhonePrefix(value)}
+                onChange={handlePhonePrefixChange}
+                optionLabelProp="icon"
+                className="w-[16%] h-10 mr-2"
+                dropdownStyle={{ width: 250 }}
+              />
+              <input
+                {...form("contactNumber")}
+                // value={contactNumber}
+                // onChange={(e) => setContactNumber(e.target.value)}
+                name="contactNumber"
+                className="w-[84%] h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+                type="text"
+                placeholder="Phone Number"
+                autoComplete="contactNumber"
+              />
+            </div>
           </div>
           <div className="w-full md:w-1/2 md:pr-5 pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
@@ -170,6 +171,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             </label>
             <Select
               showSearch
+              defaultValue={user?.extra?.country}
               placeholder="Select country"
               options={countryData}
               onChange={(value) => setCountry(value)}
