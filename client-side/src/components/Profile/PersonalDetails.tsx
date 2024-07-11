@@ -2,8 +2,8 @@ import { FunctionComponent, useState } from "react";
 import { useForm } from "react-hook-form";
 import dayjs, { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
-import { City, Country } from "country-state-city";
-import { ErrorFormMessage } from "../Common";
+import { Country } from "country-state-city";
+// import { ErrorFormMessage } from "../Common";
 import { Button } from "../UI";
 import { genderList, dateFormatList } from "../../data";
 import { useAuth } from "../../hooks";
@@ -13,44 +13,47 @@ import { PersonalDetailsProps } from "../../types";
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const { user } = useAuth();
   const { updateProfile } = useProfileService();
-  const [gender, setGender] = useState<string>("");
-  const [birthday, setBirthday] = useState<Dayjs | null>(null);
-  const [phonePrefix, setPhonePrefix] = useState<string>("");
-  const [contactNumber, setContactNumber] = useState<string>("");
-  const [country, setCountry] = useState<string>("");
+  const [gender, setGender] = useState<string>(
+    user?.extra?.gender?.toLowerCase() || ""
+  );
+  const [birthday, setBirthday] = useState<Dayjs | null>(
+    dayjs(user?.extra?.dateOfBirth, dateFormatList[2]) || null
+  );
+  const [country, setCountry] = useState<string>(user?.extra?.country || "");
+  const [phonePrefix, setPhonePrefix] = useState<string>(
+    user?.extra?.contactNumber?.phonePrefix || ""
+  );
+
+  const phoneNumber = user?.extra?.contactNumber?.phoneNumber
+    .replace(phonePrefix, "")
+    .trim();
+
+  const [contactNumber, setContactNumber] = useState<string>(phoneNumber || "");
 
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
   }));
 
-  const phonePrefixData = Country.getAllCountries().map((item) => ({
-    value: item.phonecode,
-    icon: item.flag,
-    label: `${item.flag} ${item.name} ${item.phonecode}`,
-  }));
+  const phonePrefixData = Country.getAllCountries().map((item) => {
+    const { phonecode, flag, name, isoCode } = item;
 
-  const onSearch = (value: string) => {};
+    const prefix = phonecode.startsWith("+") ? phonecode : `+${phonecode}`;
 
-  const defaultValues = {
-    ...user?.extra,
-    // contactNumber: user?.extra?.contactNumber,
-    // gender: user?.extra?.gender?.toLowerCase(),
-    // country: user?.extra?.country,
-    // dateOfBirth: user?.extra?.dateOfBirth
-    //   ? dayjs(user.extra.dateOfBirth, dateFormatList[2])
-    //   : null,
-  };
-  console.log("user :>> ", user);
-  const {
-    register: form,
-    handleSubmit,
-    // formState: { errors, isValid },
-  } = useForm({
-    mode: "onTouched",
-    defaultValues,
+    return {
+      key: `${prefix}-${isoCode}`,
+      value: prefix,
+      selected: `${item.flag} ${prefix}`,
+      label: `${flag} ${name} ${prefix}`,
+    };
   });
 
-  console.log("defaultValues :>> ", defaultValues);
+  const onCountrySearch = (value: string) => {
+    setCountry(value);
+  };
+
+  const onPhonePrefixChange = (value: string) => {
+    setPhonePrefix(value);
+  };
 
   const handleMenuClick = async (data: any) => {
     try {
@@ -59,21 +62,23 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
           ...data,
           dateOfBirth: birthday ? birthday.format(dateFormatList[2]) : "",
           gender,
-          contactNumber,
+          contactNumber: {
+            phonePrefix: phonePrefix,
+            phoneNumber: contactNumber,
+          },
           country,
         },
       };
+
       await updateProfile(values);
     } catch (error) {
       console.error(`Failed to update personal details! ${error}`);
     }
   };
 
-  const handlePhonePrefixChange = (value: string) => {
-    const contactValue = `+${value}${contactNumber}`;
-    setPhonePrefix(value);
-    setContactNumber(contactValue);
-  };
+  const { register: form, handleSubmit } = useForm({
+    mode: "onTouched",
+  });
 
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card">
@@ -93,6 +98,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               type="text"
               placeholder="First Name"
               autoComplete="firstName"
+              defaultValue={user?.extra?.firstName}
             />
           </div>
           <div className="w-full md:w-1/2 md:pr-5 pb-5">
@@ -106,6 +112,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               type="text"
               placeholder="Last Name"
               autoComplete="lastName"
+              defaultValue={user?.extra?.lastName}
             />
           </div>
         </div>
@@ -116,8 +123,12 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             </label>
             <DatePicker
               format={dateFormatList[2]}
-              // defaultValue={defaultValues.dateOfBirth}
-              showToday={false}
+              defaultValue={
+                user?.extra?.dateOfBirth
+                  ? dayjs(user.extra.dateOfBirth, dateFormatList[2])
+                  : null
+              }
+              showNow={false}
               placeholder={dateFormatList[2]}
               className="w-full h-10"
               onChange={(date) => setBirthday(date)}
@@ -128,8 +139,6 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               Gender
             </label>
             <Select
-              // value={gender}
-              // defaultValue={defaultValues.gender}
               defaultValue={user?.extra?.gender?.toLowerCase()}
               placeholder="Select Gender"
               options={genderList}
@@ -145,23 +154,24 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             </label>
             <div className="flex">
               <Select
-                defaultValue={phonePrefixData[2].icon}
-                options={phonePrefixData}
-                // onChange={(value) => setPhonePrefix(value)}
-                onChange={handlePhonePrefixChange}
-                optionLabelProp="icon"
-                className="w-[16%] h-10 mr-2"
+                options={phonePrefixData.map(({ key, ...rest }) => ({
+                  key,
+                  ...rest,
+                }))}
+                onChange={onPhonePrefixChange}
+                optionLabelProp="selected"
+                className="w-[20%] h-10 mr-2"
                 dropdownStyle={{ width: 250 }}
+                defaultValue={phonePrefix}
               />
               <input
-                {...form("contactNumber")}
-                // value={contactNumber}
-                // onChange={(e) => setContactNumber(e.target.value)}
                 name="contactNumber"
-                className="w-[84%] h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+                onChange={(e) => setContactNumber(e.target.value)}
+                className="w-[80%] h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
                 type="text"
                 placeholder="Phone Number"
                 autoComplete="contactNumber"
+                defaultValue={phoneNumber}
               />
             </div>
           </div>
@@ -175,7 +185,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               placeholder="Select country"
               options={countryData}
               onChange={(value) => setCountry(value)}
-              onSearch={onSearch}
+              onSearch={onCountrySearch}
               className="w-full h-10 text-sm"
             />
           </div>
@@ -192,6 +202,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               type="text"
               placeholder="City"
               autoComplete="city"
+              defaultValue={user?.extra?.city}
             />
           </div>
           <div className="w-full md:w-1/2 md:pr-5 pb-5">
@@ -205,17 +216,17 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               type="text"
               placeholder="Address"
               autoComplete="address"
+              defaultValue={user?.extra?.address}
             />
           </div>
         </div>
-        <ErrorFormMessage />
+        {/* <ErrorFormMessage /> */}
         <div className="flex items-center justify-end w-full hover:brightness-110">
           <Button
             type="submit"
             label="Update Personal Details"
             variant="contained"
             className="w-fit"
-            // disabled={!isValid}
           />
         </div>
       </form>

@@ -13,17 +13,17 @@ import { ProviderProps } from "../types";
 export const PrivateLayout = ({ children }: ProviderProps) => {
   const { getUserDetails } = useUserService();
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        await getUserDetails();
-      } catch (error) {
-        console.error("Failed to fetch user details:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUserDetails = async () => {
+  //     try {
+  //       const user = await getUserDetails();
+  //     } catch (error) {
+  //       console.error("Failed to fetch user details:", error);
+  //     }
+  //   };
 
-    fetchUserDetails();
-  }, []);
+  //   fetchUserDetails();
+  // }, []);
 
   return (
     <div

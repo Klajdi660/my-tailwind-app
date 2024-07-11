@@ -57,6 +57,7 @@ export const useProfileService = () => {
         ...JSON.parse(data.extra),
       };
 
+      localStorage.user = JSON.stringify(data);
       setUser(data);
 
       if (
@@ -108,6 +109,7 @@ export const useProfileService = () => {
         ...extra,
       };
 
+      localStorage.user = JSON.stringify(data);
       setUser(data);
 
       notify({
@@ -143,6 +145,7 @@ export const useProfileService = () => {
         ...extra,
       };
 
+      localStorage.user = JSON.stringify(data);
       setUser(data);
 
       notify({
@@ -176,6 +179,7 @@ export const useProfileService = () => {
         ...extra,
       };
 
+      localStorage.user = JSON.stringify(data);
       setUser(data);
 
       notify({
