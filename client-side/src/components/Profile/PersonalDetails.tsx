@@ -13,13 +13,18 @@ import { PersonalDetailsProps } from "../../types";
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const { user } = useAuth();
   const { updateProfile } = useProfileService();
-  const [gender, setGender] = useState<string>(
-    user?.extra?.gender?.toLowerCase() || ""
+
+  const [gender, setGender] = useState<string | null>(
+    user?.extra?.gender?.toLowerCase() || null
   );
   const [birthday, setBirthday] = useState<Dayjs | null>(
-    dayjs(user?.extra?.dateOfBirth, dateFormatList[2]) || null
+    (user?.extra?.dateOfBirth &&
+      dayjs(user?.extra?.dateOfBirth, dateFormatList[2])) ||
+      null
   );
-  const [country, setCountry] = useState<string>(user?.extra?.country || "");
+  const [country, setCountry] = useState<string | null>(
+    user?.extra?.country || null
+  );
   const [phonePrefix, setPhonePrefix] = useState<string>(
     user?.extra?.contactNumber?.phonePrefix || ""
   );
@@ -162,7 +167,9 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
                 optionLabelProp="selected"
                 className="w-[20%] h-10 mr-2"
                 dropdownStyle={{ width: 250 }}
-                defaultValue={phonePrefix}
+                defaultValue={
+                  phonePrefix ? phonePrefix : phonePrefixData[2].selected
+                }
               />
               <input
                 name="contactNumber"
