@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import dayjs, { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
 import { Country } from "country-state-city";
@@ -16,17 +16,17 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
 
   const navigate = useNavigate();
 
-  const [gender, setGender] = useState<string | null>(
-    user?.extra?.gender || null
-  );
-  const [birthday, setBirthday] = useState<Dayjs | null>(
-    (user?.extra?.dateOfBirth &&
-      dayjs(user?.extra?.dateOfBirth, dateFormatList[2])) ||
-      null
-  );
-  const [country, setCountry] = useState<string | null>(
-    user?.extra?.country || null
-  );
+  // const [gender, setGender] = useState<string | null>(
+  //   user?.extra?.gender || null
+  // );
+  // const [birthday, setBirthday] = useState<Dayjs | null>(
+  //   (user?.extra?.dateOfBirth &&
+  //     dayjs(user?.extra?.dateOfBirth, dateFormatList[2])) ||
+  //     null
+  // );
+  // const [country, setCountry] = useState<string | null>(
+  //   user?.extra?.country || null
+  // );
   const [phonePrefix, setPhonePrefix] = useState<string>(
     user?.extra?.contactNumber?.phonePrefix || ""
   );
@@ -53,9 +53,9 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
     };
   });
 
-  const onCountrySearch = (value: string) => {
-    setCountry(value);
-  };
+  // const onCountrySearch = (value: string) => {
+  //   setCountry(value);
+  // };
 
   const onPhonePrefixChange = (value: string) => {
     setPhonePrefix(value);
@@ -66,23 +66,27 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
       const values = {
         extra: {
           ...data,
-          dateOfBirth: birthday ? birthday.format(dateFormatList[2]) : "",
-          gender,
+          // dateOfBirth: birthday ? birthday.format(dateFormatList[2]) : "",
+          // gender,
           contactNumber: {
             phonePrefix: phonePrefix,
             phoneNumber: contactNumber,
           },
-          country,
+          // country,
         },
       };
-
+      console.log("values :>> ", values);
       await updateProfile(values);
     } catch (error) {
       console.error(`Failed to update personal details! ${error}`);
     }
   };
 
-  const { register: form, handleSubmit } = useForm({
+  const {
+    register: form,
+    handleSubmit,
+    control,
+  } = useForm({
     mode: "onTouched",
   });
 
@@ -127,7 +131,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               Birthday
             </label>
-            <DatePicker
+            {/* <DatePicker
               format={dateFormatList[2]}
               defaultValue={
                 user?.extra?.dateOfBirth
@@ -138,19 +142,46 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               placeholder={dateFormatList[2]}
               className="w-full h-10"
               onChange={(date) => setBirthday(date)}
+            /> */}
+            <Controller
+              name="dateOfBirth"
+              control={control}
+              defaultValue={dayjs(user?.extra.dateOfBirth, dateFormatList[2])}
+              render={({ field }) => (
+                <DatePicker
+                  {...field}
+                  format={dateFormatList[2]}
+                  showNow={false}
+                  placeholder={dateFormatList[2]}
+                  className="w-full h-10"
+                />
+              )}
             />
           </div>
           <div className="w-full md:w-[48%] pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Gender
             </label>
-            <Select
+            {/* <Select
               defaultValue={user?.extra?.gender}
               placeholder="Select Gender"
               options={genderList}
               // optionLabelProp="label"
               onChange={(value) => setGender(value)}
               className="w-full h-10 text-sm"
+            /> */}
+            <Controller
+              name="gender"
+              control={control}
+              defaultValue={user?.extra?.gender || ""}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  className="w-full h-10 text-sm"
+                  placeholder="Select Gender"
+                  options={genderList}
+                />
+              )}
             />
           </div>
         </div>
@@ -188,7 +219,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               Country
             </label>
-            <Select
+            {/* <Select
               showSearch
               defaultValue={user?.extra?.country}
               placeholder="Select country"
@@ -196,6 +227,19 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               onChange={(value) => setCountry(value)}
               onSearch={onCountrySearch}
               className="w-full h-10 text-sm"
+            /> */}
+            <Controller
+              name="country"
+              control={control}
+              defaultValue={user?.extra.country}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  className="w-full h-10 text-sm"
+                  placeholder="Select country"
+                  options={countryData}
+                />
+              )}
             />
           </div>
         </div>
