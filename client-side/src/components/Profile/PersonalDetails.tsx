@@ -1,10 +1,9 @@
-import { FunctionComponent, useState, useEffect } from "react";
+import { FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import dayjs, { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
 import { Country } from "country-state-city";
-// import { ErrorFormMessage } from "../Common";
 import { Button } from "../UI";
 import { genderList, dateFormatList } from "../../data";
 import { useAuth } from "../../hooks";
@@ -35,9 +34,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const phoneNumber = user?.extra?.contactNumber?.phoneNumber
     .replace(phonePrefix, "")
     .trim();
-
   const [contactNumber, setContactNumber] = useState<string>(phoneNumber || "");
-  const [isFormComplete, setIsFormComplete] = useState<boolean>(false);
 
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
