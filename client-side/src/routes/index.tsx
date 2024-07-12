@@ -22,6 +22,7 @@ import {
   ComingSoonPage,
   // ErrorPage,
   ProfilePage,
+  EditProfilePage,
 } from "../pages";
 
 const {
@@ -32,6 +33,7 @@ const {
   login,
   passwordCode,
   profile,
+  editProfile,
   register,
   resetPassword,
   socialAuth,
@@ -108,6 +110,16 @@ export const Routes = () =>
         <PrivateGuard>
           <PrivateLayout>
             <ProfilePage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
+    {
+      path: editProfile,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <EditProfilePage />
           </PrivateLayout>
         </PrivateGuard>
       ),

@@ -6,13 +6,13 @@ import {
   Title,
   PersonalDetails,
   UserInfo,
-} from "../components";
-import { ProfilePageProps } from "../types";
+} from "../../components";
+import { ProfilePageProps } from "../../types";
 
-export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
+export const EditProfilePage: FunctionComponent<ProfilePageProps> = () => {
   return (
     <section className="account_page">
-      <Title name="Account Settings" type="large" />
+      <Title name="Edit Profile" type="large" />
       <div className="flex flex-col gap-y-10 text-onNeutralBg">
         <UserInfo />
         <EditProfile />
@@ -24,4 +24,4 @@ export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
   );
 };
 
-export default ProfilePage;
+export default EditProfilePage;

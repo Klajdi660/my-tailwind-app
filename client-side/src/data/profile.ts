@@ -2,6 +2,102 @@ import { ProfileItemList, GenderProperties, ProfileMenuItems } from "../types";
 
 export const profileList: ProfileItemList[] = [
   {
+    type: "input",
+    name: "username",
+    label: "Username",
+    props: {
+      type: "text",
+      placeholder: "",
+    },
+  },
+  {
+    type: "input",
+    name: "email",
+    label: "Email",
+    props: {
+      type: "text",
+      placeholder: "",
+    },
+  },
+];
+
+export const personalDetailsList = [
+  {
+    type: "input",
+    name: "firstName",
+    label: "First Name",
+    props: {
+      type: "text",
+      placeholder: "",
+    },
+  },
+  {
+    type: "input",
+    name: "lastName",
+    label: "Last Name",
+    props: {
+      type: "text",
+      placeholder: "",
+    },
+  },
+  {
+    type: "input",
+    name: "dateOfBirth",
+    label: "Birthday",
+    props: {
+      type: "text",
+      placeholder: "",
+    },
+  },
+  {
+    type: "input",
+    name: "gender",
+    label: "Gender",
+    props: {
+      type: "text",
+      placeholder: "",
+    },
+  },
+  {
+    type: "input",
+    name: "contactNumber",
+    label: "Contact Number",
+    props: {
+      type: "text",
+      placeholder: "",
+    },
+  },
+  {
+    type: "input",
+    name: "country",
+    label: "Country",
+    props: {
+      type: "text",
+      placeholder: "",
+    },
+  },
+  {
+    type: "input",
+    name: "city",
+    label: "City",
+    props: {
+      type: "text",
+      placeholder: "",
+    },
+  },
+  {
+    type: "input",
+    name: "address",
+    label: "Address",
+    props: {
+      type: "text",
+      placeholder: "",
+    },
+  },
+];
+
+export const editProfileList: ProfileItemList[] = [
+  {
     formName: "profile",
     formTitle: "Profile",
     btnTxt: "Save",
@@ -40,15 +136,15 @@ export const profileList: ProfileItemList[] = [
 
 export const genderList: GenderProperties[] = [
   {
-    value: "male",
+    value: "Male",
     label: "Male",
   },
   {
-    value: "female",
+    value: "Female",
     label: "Female",
   },
   {
-    value: "prefernottosay",
+    value: "Prefer not to say",
     label: "Prefer not to say",
   },
 ];

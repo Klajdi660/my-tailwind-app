@@ -1,7 +1,7 @@
 import { FunctionComponent, useMemo, useState } from "react";
 import { Form } from "../Auth";
 import { ImgUploader } from "../UI";
-import { profileList } from "../../data";
+import { editProfileList } from "../../data";
 import { useAuth } from "../../hooks";
 import { useProfileService } from "../../services";
 import { EditProfileProps, EditProfileInput } from "../../types";
@@ -16,7 +16,7 @@ export const EditProfile: FunctionComponent<EditProfileProps> = () => {
   const hasProvider = user?.provider !== "Email";
 
   const listForm = useMemo(() => {
-    return profileList;
+    return editProfileList;
   }, []);
 
   const handleOnSubmit = async (values: EditProfileInput) => {

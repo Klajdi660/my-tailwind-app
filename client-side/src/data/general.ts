@@ -30,7 +30,8 @@ export const paths: PathProperties = {
   // changePassword: "update-password/:email/:username/:h/:exp",
   resetPassword: "reset-password/:email/:hash",
   // resetPassword: "reset-password",
-  profile: "profile",
+  profile: "/profile",
+  editProfile: "/editProfile",
   discover: "/discover",
   browse: "browse",
 };

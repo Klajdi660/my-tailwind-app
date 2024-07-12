@@ -1,4 +1,5 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import dayjs, { Dayjs } from "dayjs";
 import { DatePicker, Select } from "antd";
@@ -14,8 +15,10 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const { user } = useAuth();
   const { updateProfile } = useProfileService();
 
+  const navigate = useNavigate();
+
   const [gender, setGender] = useState<string | null>(
-    user?.extra?.gender?.toLowerCase() || null
+    user?.extra?.gender || null
   );
   const [birthday, setBirthday] = useState<Dayjs | null>(
     (user?.extra?.dateOfBirth &&
@@ -34,6 +37,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
     .trim();
 
   const [contactNumber, setContactNumber] = useState<string>(phoneNumber || "");
+  const [isFormComplete, setIsFormComplete] = useState<boolean>(false);
 
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
@@ -91,8 +95,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
         <h5 className="text-lg font-semibold">Personal Details</h5>
       </div>
       <form className="flex flex-col" onSubmit={handleSubmit(handleMenuClick)}>
-        <div className="flex flex-wrap">
-          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+        <div className="flex flex-wrap justify-between">
+          <div className="w-full md:w-[48%] pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               First Name
             </label>
@@ -106,7 +110,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               defaultValue={user?.extra?.firstName}
             />
           </div>
-          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+          <div className="w-full md:w-[48%] pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Last Name
             </label>
@@ -121,8 +125,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             />
           </div>
         </div>
-        <div className="flex flex-wrap">
-          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+        <div className="flex flex-wrap justify-between">
+          <div className="w-full md:w-[48%] pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Birthday
             </label>
@@ -139,21 +143,22 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               onChange={(date) => setBirthday(date)}
             />
           </div>
-          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+          <div className="w-full md:w-[48%] pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Gender
             </label>
             <Select
-              defaultValue={user?.extra?.gender?.toLowerCase()}
+              defaultValue={user?.extra?.gender}
               placeholder="Select Gender"
               options={genderList}
+              // optionLabelProp="label"
               onChange={(value) => setGender(value)}
               className="w-full h-10 text-sm"
             />
           </div>
         </div>
-        <div className="flex flex-wrap">
-          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+        <div className="flex flex-wrap justify-between">
+          <div className="w-full md:w-[48%] pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Contact number
             </label>
@@ -182,7 +187,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               />
             </div>
           </div>
-          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+          <div className="w-full md:w-[48%] pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Country
             </label>
@@ -197,8 +202,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             />
           </div>
         </div>
-        <div className="flex flex-wrap">
-          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+        <div className="flex flex-wrap justify-between">
+          <div className="w-full md:w-[48%] pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               City
             </label>
@@ -212,7 +217,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               defaultValue={user?.extra?.city}
             />
           </div>
-          <div className="w-full md:w-1/2 md:pr-5 pb-5">
+          <div className="w-full md:w-[48%] pb-5">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Address
             </label>
@@ -227,14 +232,16 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             />
           </div>
         </div>
-        {/* <ErrorFormMessage /> */}
-        <div className="flex items-center justify-end w-full hover:brightness-110">
+        <div className="flex items-center justify-end gap-4">
           <Button
             type="submit"
-            label="Update Personal Details"
-            variant="contained"
-            className="w-fit"
+            label="Cancel"
+            variant="outlined"
+            onClick={() => {
+              navigate("/profile");
+            }}
           />
+          <Button type="submit" label="Save" variant="contained" />
         </div>
       </form>
     </div>
