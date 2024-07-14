@@ -40,20 +40,21 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
         {...props}
       >
         {/* {!isSubmitting ? ( */}
-        <div className="flex flex-row items-center justify-center">
+        <div className="flex flex-row items-center justify-center gap-2">
           {labelIcon && (
-            <div className="mr-1">
-              <Icon
-                name={labelIcon}
-                className={classNames(
-                  variant === "none" && "text-primary",
-                  variant === "contained" && "text-white",
-                  variant === "delete" && "text-white",
-                  variant === "filled" && "text-white",
-                  variant === "gradient" && "text-white"
-                )}
-              />
-            </div>
+            // <div className="mr-2">
+            <Icon
+              name={labelIcon}
+              className={classNames(
+                variant === "none" && "text-primary",
+                variant === "outlined" && "text-primary",
+                variant === "contained" && "text-white",
+                variant === "delete" && "text-white",
+                variant === "filled" && "text-white",
+                variant === "gradient" && "text-white"
+              )}
+            />
+            // </div>
           )}
           <div className="text-center whitespace-nowrap">{label}</div>
         </div>

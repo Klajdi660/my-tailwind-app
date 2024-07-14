@@ -15,7 +15,6 @@ export const Profile: FunctionComponent<ProfileProps> = () => {
 
   const { editProfile } = paths;
   const { firstName, lastName, avatar, contactNumber } = user?.extra;
-  const { phonePrefix, phoneNumber } = contactNumber;
 
   return (
     <div className="flex flex-col gap-y-10 text-onNeutralBg">
@@ -73,7 +72,9 @@ export const Profile: FunctionComponent<ProfileProps> = () => {
           listForm={personalDetailsList}
           defaultValues={{
             ...user?.extra,
-            contactNumber: `${phonePrefix}${phoneNumber}`,
+            contactNumber:
+              contactNumber &&
+              `${contactNumber?.phonePrefix}${contactNumber?.phoneNumber}`,
           }}
         />
       </div>

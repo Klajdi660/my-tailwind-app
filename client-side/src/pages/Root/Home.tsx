@@ -16,8 +16,10 @@ export const HomePage: FunctionComponent<HomePageProps> = () => {
           </Link>
           <div className="hover:brightness-110">
             <Button
-              variant="contained"
+              className="w-25"
+              variant="outlined"
               label="Login"
+              labelIcon="MdLogin"
               onClick={() => navigate("/login")}
             />
           </div>

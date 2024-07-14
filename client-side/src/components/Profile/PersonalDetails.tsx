@@ -16,17 +16,6 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
 
   const navigate = useNavigate();
 
-  // const [gender, setGender] = useState<string | null>(
-  //   user?.extra?.gender || null
-  // );
-  // const [birthday, setBirthday] = useState<Dayjs | null>(
-  //   (user?.extra?.dateOfBirth &&
-  //     dayjs(user?.extra?.dateOfBirth, dateFormatList[2])) ||
-  //     null
-  // );
-  // const [country, setCountry] = useState<string | null>(
-  //   user?.extra?.country || null
-  // );
   const [phonePrefix, setPhonePrefix] = useState<string>(
     user?.extra?.contactNumber?.phonePrefix || ""
   );
@@ -63,16 +52,17 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
 
   const handleMenuClick = async (data: any) => {
     try {
+      const { dateOfBirth } = data;
       const values = {
         extra: {
           ...data,
-          // dateOfBirth: birthday ? birthday.format(dateFormatList[2]) : "",
-          // gender,
+          dateOfBirth: dateOfBirth
+            ? dateOfBirth.format(dateFormatList[2])
+            : null,
           contactNumber: {
             phonePrefix: phonePrefix,
             phoneNumber: contactNumber,
           },
-          // country,
         },
       };
       console.log("values :>> ", values);
@@ -131,22 +121,14 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               Birthday
             </label>
-            {/* <DatePicker
-              format={dateFormatList[2]}
-              defaultValue={
-                user?.extra?.dateOfBirth
-                  ? dayjs(user.extra.dateOfBirth, dateFormatList[2])
-                  : null
-              }
-              showNow={false}
-              placeholder={dateFormatList[2]}
-              className="w-full h-10"
-              onChange={(date) => setBirthday(date)}
-            /> */}
             <Controller
               name="dateOfBirth"
               control={control}
-              defaultValue={dayjs(user?.extra.dateOfBirth, dateFormatList[2])}
+              defaultValue={
+                user?.extra.dateOfBirth
+                  ? dayjs(user?.extra.dateOfBirth, dateFormatList[2])
+                  : null
+              }
               render={({ field }) => (
                 <DatePicker
                   {...field}
@@ -162,18 +144,10 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               Gender
             </label>
-            {/* <Select
-              defaultValue={user?.extra?.gender}
-              placeholder="Select Gender"
-              options={genderList}
-              // optionLabelProp="label"
-              onChange={(value) => setGender(value)}
-              className="w-full h-10 text-sm"
-            /> */}
             <Controller
               name="gender"
               control={control}
-              defaultValue={user?.extra?.gender || ""}
+              defaultValue={user?.extra?.gender}
               render={({ field }) => (
                 <Select
                   {...field}
@@ -198,7 +172,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
                 }))}
                 onChange={onPhonePrefixChange}
                 optionLabelProp="selected"
-                className="w-[20%] h-10 mr-2"
+                className="w-[28%] md:w-[15%] sm:w-[14%] h-10 mr-2"
                 dropdownStyle={{ width: 250 }}
                 defaultValue={
                   phonePrefix ? phonePrefix : phonePrefixData[2].selected
@@ -207,7 +181,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               <input
                 name="contactNumber"
                 onChange={(e) => setContactNumber(e.target.value)}
-                className="w-[80%] h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+                className="w-[86%] h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
                 type="text"
                 placeholder="Phone Number"
                 autoComplete="contactNumber"
@@ -219,15 +193,6 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               Country
             </label>
-            {/* <Select
-              showSearch
-              defaultValue={user?.extra?.country}
-              placeholder="Select country"
-              options={countryData}
-              onChange={(value) => setCountry(value)}
-              onSearch={onCountrySearch}
-              className="w-full h-10 text-sm"
-            /> */}
             <Controller
               name="country"
               control={control}
