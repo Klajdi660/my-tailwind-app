@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import {
   CartSwitcher,
   Loading,
@@ -7,11 +7,11 @@ import {
   TopPlay,
   Modal,
 } from "../components";
-import { useUserService } from "../services";
+// import { useUserService } from "../services";
 import { ProviderProps } from "../types";
 
 export const PrivateLayout = ({ children }: ProviderProps) => {
-  const { getUserDetails } = useUserService();
+  // const { getUserDetails } = useUserService();
 
   // useEffect(() => {
   //   const fetchUserDetails = async () => {
