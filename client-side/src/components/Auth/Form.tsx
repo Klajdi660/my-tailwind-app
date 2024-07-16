@@ -131,7 +131,10 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
           type="submit"
           label={btnTitle}
           variant="contained"
-          className={classNames(formType === "auth" ? "w-full" : "w-fit")}
+          className={classNames(
+            "flex items-center justify-center gap-2",
+            formType === "auth" ? "w-full" : "w-fit"
+          )}
           disabled={!isValid}
         />
       </div>

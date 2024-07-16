@@ -172,7 +172,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
                 }))}
                 onChange={onPhonePrefixChange}
                 optionLabelProp="selected"
-                className="w-[28%] md:w-[15%] sm:w-[14%] h-10 mr-2"
+                className="w-[28%] md:w-[20%] sm:w-[14%] h-10 mr-2"
                 dropdownStyle={{ width: 250 }}
                 defaultValue={
                   phonePrefix ? phonePrefix : phonePrefixData[2].selected

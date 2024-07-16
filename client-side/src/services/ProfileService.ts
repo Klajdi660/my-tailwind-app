@@ -125,9 +125,14 @@ export const useProfileService = () => {
 
   const updateDisplayPicture = async (values: any) => {
     try {
+      const headers = {
+        "Content-Type": "multipart/form-data",
+      };
+
       const profilePhotoResp = await HttpClient.put<UserDetailsResponse>(
         UPDATE_PROFILE_PICTURE_API,
-        values
+        values,
+        { headers }
       );
 
       const { error, message, data } = profilePhotoResp;

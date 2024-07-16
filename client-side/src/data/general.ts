@@ -175,10 +175,14 @@ export const langMenuItem = ({ onSelectLanguage }: LangMenuItem) => [
 ];
 
 export const downloadBtnList: DownloadBtnList[] = [
-  { id: 1, name: "facebook", icon: facebookIcon },
-  { id: 2, name: "instagram", icon: instagramIcon },
-  { id: 3, name: "tiktok", icon: tiktokIcon },
-  { id: 4, name: "youtube", icon: youtubeIcon },
+  // { id: 1, name: "facebook", icon: facebookIcon },
+  // { id: 2, name: "instagram", icon: instagramIcon },
+  // { id: 3, name: "tiktok", icon: tiktokIcon },
+  // { id: 4, name: "youtube", icon: youtubeIcon },
+  { id: 1, name: "facebook", icon: "FaFacebook" },
+  { id: 2, name: "instagram", icon: "RiInstagramFill" },
+  { id: 3, name: "tiktok", icon: "FaTiktok" },
+  { id: 4, name: "youtube", icon: "FaYoutube" },
 ];
 
 export const grid: GridList = {

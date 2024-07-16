@@ -3,6 +3,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { noGameImg } from "../assets";
 
 dayjs.extend(customParseFormat);
 
@@ -89,4 +90,20 @@ export const fileBlob = (files: File[] | null) => {
   } else {
     return {};
   }
+};
+
+export const getGameCroppedImgUrl = (url: string) => {
+  if (!url) return noGameImg;
+
+  const target = "media/";
+  const index = url.indexOf(target) + target.length;
+  return url.slice(0, index) + "crop/600/400/" + url.slice(index);
+};
+
+export const gameNameTruncate = (str: string, len: number) => {
+  return str?.length
+    ? str.length <= len
+      ? `${str.slice(0, len)}`
+      : `${str.slice(0, len)}...`
+    : null;
 };

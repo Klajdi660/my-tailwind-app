@@ -32,4 +32,6 @@ export const profileEndpoints = {
 };
 
 // GAMES ENDPOINTS
-export const gameEndpoints = {};
+export const gameEndpoints = {
+  GET_GAMES_LIST_API: "/games",
+};

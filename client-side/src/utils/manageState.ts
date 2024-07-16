@@ -4,6 +4,7 @@ import {
   AppUtilState,
   NavScrollTriggerState,
   ProfilePhotoState,
+  SubmittingState,
 } from "../types";
 
 export const useNavScrollTrigger = create<NavScrollTriggerState>((set) => ({
@@ -35,4 +36,9 @@ export const useProfilePhoto = create<ProfilePhotoState>((set) => ({
   setFiles: (value: any) => set(() => ({ files: value })),
   setIsUpdatingProfileImg: (value: boolean) =>
     set(() => ({ isUpdatingProfileImg: value })),
+}));
+
+export const useSubmitting = create<SubmittingState>((set) => ({
+  isSubmitting: false,
+  setIsSubmitting: (value: boolean) => set(() => ({ isSubmitting: value })),
 }));

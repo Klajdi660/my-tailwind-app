@@ -17,8 +17,12 @@ export { Loadable } from "../routes/Loadable";
 export { SocialAuth } from "./Auth/SocialAuth";
 export { Template } from "./Auth/Template";
 
+// Cards
+export { TopPlayCard } from "./Cards/TopPlayCard";
+
 // Common
 export { ErrorFormMessage } from "./Common/ErrorFormMessage";
+export { PlatformIconList } from "./Common/PlatformIconList";
 
 // Profile
 export { ChangePassword } from "./Profile/ChangePassword";
@@ -28,6 +32,9 @@ export { PersonalDetails } from "./Profile/PersonalDetails";
 export { Profile } from "./Profile/Profile";
 export { ProfileDropdown } from "./Profile/ProfileDropDown";
 export { UserInfo } from "./Profile/UserInfo";
+
+// Section
+export { TopPlaySection } from "./Sections/TopPlaySection";
 
 // Sidebar
 export { Sidebar } from "./Sidebar/Sidebar";

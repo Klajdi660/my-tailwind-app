@@ -92,6 +92,11 @@ export interface ProfilePhotoState {
   setIsUpdatingProfileImg: (value: boolean) => void;
 }
 
+export interface SubmittingState {
+  isSubmitting: boolean;
+  setIsSubmitting: (value: boolean) => void;
+}
+
 // Component
 export interface NotificationItemList {
   id: number;

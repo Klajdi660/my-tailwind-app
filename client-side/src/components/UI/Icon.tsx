@@ -14,14 +14,21 @@ import {
   AiOutlineInstagram,
 } from "react-icons/ai";
 import { BiGame, BiSearch, BiUser, BiWorld } from "react-icons/bi";
-import { BsMoonStars, BsNintendoSwitch } from "react-icons/bs";
+import { BsMoonStars, BsNintendoSwitch, BsGlobe } from "react-icons/bs";
 import { CgGames } from "react-icons/cg";
 import {
+  FaFacebook,
   FaOpencart,
-  FaPlaystation,
   FaRegUser,
+  FaTiktok,
   FaUser,
   FaWpexplorer,
+  FaYoutube,
+  FaAndroid,
+  FaApple,
+  FaLinux,
+  FaPlaystation,
+  FaWindows,
   FaXbox,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -39,10 +46,12 @@ import {
   MdOutlineGames,
   MdOutlineWbSunny,
   MdStorefront,
+  MdPhoneIphone,
 } from "react-icons/md";
 import { PiWarningCircle, PiWarningCircleBold } from "react-icons/pi";
-import { RiFirefoxLine } from "react-icons/ri";
+import { RiFirefoxLine, RiInstagramFill } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox, SlArrowUp } from "react-icons/sl";
+import { SiNintendo } from "react-icons/si";
 import { TiTimes } from "react-icons/ti";
 import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
@@ -66,12 +75,13 @@ const icons: IconsMap = {
   BsMoonStars,
   BsNintendoSwitch,
   CgGames,
+  FaFacebook,
   FaOpencart,
-  FaPlaystation,
   FaRegUser,
+  FaTiktok,
   FaUser,
   FaWpexplorer,
-  FaXbox,
+  FaYoutube,
   FcGoogle,
   FiAlertTriangle,
   FiUpload,
@@ -90,10 +100,20 @@ const icons: IconsMap = {
   PiWarningCircle,
   PiWarningCircleBold,
   RiFirefoxLine,
+  RiInstagramFill,
   SlGameController,
   SlSocialDropbox,
   SlArrowUp,
   TiTimes,
+  FaAndroid,
+  FaApple,
+  FaLinux,
+  FaPlaystation,
+  FaWindows,
+  FaXbox,
+  MdPhoneIphone,
+  SiNintendo,
+  BsGlobe,
 };
 
 export const Icon: FunctionComponent<IconParams> = ({

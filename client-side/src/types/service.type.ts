@@ -49,6 +49,12 @@ export interface UserDetailsResponse {
   data?: any;
 }
 
+export interface ServerResponse {
+  error: boolean;
+  message: string;
+  data?: object | any;
+}
+
 export interface TranslationsResponse {
   [key: string]: string;
 }

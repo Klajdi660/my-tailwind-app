@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { Image } from "./UI";
+import { Icon } from "./UI";
 import { pageLink, downloadBtnList } from "../data";
 import { FooterProps } from "../types";
 
@@ -10,16 +10,15 @@ export const Footer: FunctionComponent<FooterProps> = () => {
       <div className="py-4 border-t border-divider">
         <div className="flex flex-row justify-center gap-5 download_buttons">
           {downloadBtnList.map((item) => (
-            <button
-              key={item.name}
-              className="w-12 h-12 rounded bg-divider flex_justify_center hover:bg-primary-opacity"
-            >
-              <Image imgUrl={item.icon} name="social logo" styles="w-7 h-7" />
-            </button>
+            <div className="relative group" key={item.name}>
+              <button className="w-12 h-12 rounded flex_justify_center group-hover:bg-primary-opacity">
+                <Icon name={item.icon} className="text-secondary" />
+              </button>
+            </div>
           ))}
         </div>
         <div className="footer_links">
-          <div className="flex justify-center gap-2 mt-4">
+          <div className="flex justify-center gap-2 mt-2">
             {pageLink.map((item) => (
               <Link
                 key={item.name}
@@ -32,7 +31,7 @@ export const Footer: FunctionComponent<FooterProps> = () => {
           </div>
           <div className="flex justify-center mt-2 footer_copyright">
             <p className="text-xs text-secondary">
-              Copyright © 2023{" "}
+              Copyright © 2024{" "}
               <span className="text-primary font-bold">GrooveIT</span>. All
               rights reserved.
             </p>

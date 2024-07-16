@@ -10,35 +10,16 @@ const instance = axios.create({
   baseURL: APP_URL,
   timeout: AXIOS_TIMEOUT_DURATION,
   headers: {
-    //   // "Content-Type": "application/json",
-    //   "Content-Type": "multipart/form-data",
+    "Content-Type": "application/json",
   },
 });
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    // if (config.url?.includes("auth/logout")) {
-    //   config.headers.Authorization = `Bearer ${localStorage.atoken}`;
-    //   return config;
-    // }
-
-    // if (config.url?.includes("auth")) return config;
-
-    // if (config.method === "get") {
-    //   // globalObject.lToken = globalObject.lToken || localStorage.lToken;
-    //   // config.headers.Authorization = globalObject.lToken;
-    //   config.headers.Authorization = `Bearer ${localStorage.atoken}`;
-    //   return config;
-    // }
-
-    // config.headers.Authorization = localStorage.atoken;
-
     const token =
       config.method === "get" ? localStorage.atoken : localStorage.atoken;
 
     config.headers.Authorization = `Bearer ${token}`;
-    config.headers["Content-Type"] =
-      config.method === "put" ? "multipart/form-data" : "application/json";
 
     return config;
   },
@@ -49,6 +30,7 @@ instance.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error: AxiosError) => {
     const originalRequest: any = error.config;
+
     if (error.response && error.response.status === 401) {
       try {
         store.dispatch(deleteUser());
@@ -82,8 +64,8 @@ export class HttpClient {
     return response.data;
   }
 
-  static async put<T>(url: string, data: unknown) {
-    const response = await this.instance.put<T>(url, data);
+  static async put<T>(url: string, data: unknown, options?: object) {
+    const response = await this.instance.put<T>(url, data, options);
     return response.data;
   }
 
