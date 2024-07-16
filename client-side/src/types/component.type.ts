@@ -76,6 +76,16 @@ export interface ErrorFormMessageProps {
   errorMessage?: ErrorFormMessageParams | any;
 }
 
+interface PlatformIconList {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+export interface PlatformIconListProps {
+  platforms: PlatformIconList[];
+}
+
 // Profile
 export interface ChangePasswordProps {
   // provider: string | any;

@@ -111,3 +111,7 @@ export interface ProfileMenuItems {
   hidden: () => void;
   logout: () => void;
 }
+
+export interface GameIconMapsProperties {
+  [key: string]: string;
+}

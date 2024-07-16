@@ -65,7 +65,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
           },
         },
       };
-      console.log("values :>> ", values);
+
       await updateProfile(values);
     } catch (error) {
       console.error(`Failed to update personal details! ${error}`);

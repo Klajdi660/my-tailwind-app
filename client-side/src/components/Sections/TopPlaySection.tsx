@@ -7,18 +7,12 @@ interface TopPlaySectionProps {
   gameList: any;
   listDivider?: boolean;
   imageDims?: string;
-  disableRowList: any;
 }
 
 export const TopPlaySection: FunctionComponent<TopPlaySectionProps> = (
   props
 ) => {
-  const {
-    gameList,
-    listDivider = true,
-    imageDims = "16",
-    disableRowList,
-  } = props;
+  const { gameList, listDivider = true, imageDims = "16" } = props;
 
   return (
     <div className="topPlay-section">
@@ -34,7 +28,6 @@ export const TopPlaySection: FunctionComponent<TopPlaySectionProps> = (
                     item={item}
                     imageDims={imageDims}
                     listDivider={listDivider}
-                    disableRowList={disableRowList}
                   />
                 );
               })}

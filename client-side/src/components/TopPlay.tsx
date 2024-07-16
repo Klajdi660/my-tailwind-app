@@ -51,18 +51,7 @@ export const TopPlay: FunctionComponent<TopPlayProps> = (props) => {
         <div className="flex-grow">
           <div className="sticky top-0 p-4 rounded bg-switch xl:rounded-none">
             <div className="top_picks_content">
-              <TopPlaySection
-                gameList={data}
-                disableRowList={[
-                  "no",
-                  "album",
-                  "duration",
-                  "more_button",
-                  "like_button",
-                  "dateCreated",
-                ]}
-                imageDims="11"
-              />
+              <TopPlaySection gameList={data} imageDims="11" />
             </div>
           </div>
         </div>

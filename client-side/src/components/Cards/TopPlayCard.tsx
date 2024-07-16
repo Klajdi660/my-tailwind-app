@@ -7,12 +7,10 @@ interface TopPlayCard {
   item: any;
   imageDims: string;
   listDivider: boolean;
-  disableRowList: any;
 }
 
 export const TopPlayCard: FunctionComponent<TopPlayCard> = (props) => {
-  const { item, listDivider, disableRowList } = props;
-  console.log("item :>> ", item);
+  const { item, listDivider } = props;
 
   return (
     <li
@@ -36,7 +34,7 @@ export const TopPlayCard: FunctionComponent<TopPlayCard> = (props) => {
               className={classNames("h-full w-full rounded aspect-square")}
             />
           </div>
-          <div className="flex flex-col flex-1 w-full gap-1 text-onNeutralBg">
+          <div className="flex flex-col flex-1 w-full gap-1 text-onNeutralBg group-hover:text-primary">
             <span className="text-sm">{gameNameTruncate(item.name, 25)}</span>
             <div className="flex flex-col gap-3 xs:flex-row">
               <PlatformIconList
