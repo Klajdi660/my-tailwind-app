@@ -19,7 +19,7 @@ export const TrackCardSkeleton: FunctionComponent<TrackCardSkeletonProps> = (
 
   return (
     <>
-      {number.map((_, index) => (
+      {[...Array(number)].map((_, index) => (
         <div key={index} className="col-span-1">
           <Skeleton className="flex fle-row items-center w-full p-4 rounded bg-card-skeleton">
             <Skeleton

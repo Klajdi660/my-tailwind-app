@@ -153,8 +153,8 @@ export type ImageDimsOptions = {
 };
 
 export interface TrackCardSkeletonProps {
-  number: any[];
-  imageDims: number;
+  number: number;
+  imageDims: any;
 }
 
 // UI

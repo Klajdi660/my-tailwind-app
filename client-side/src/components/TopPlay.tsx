@@ -31,7 +31,7 @@ import { classNames } from "../utils";
 export const TopPlay: FunctionComponent<TopPlayProps> = (props) => {
   const { getGamesList } = useGamesService();
 
-  const values = { page: 1, pageSize: 8 };
+  const values = { page: 1, pageSize: 5 };
 
   const queryOptions = {
     queryKey: ["topPlay"],
@@ -47,7 +47,7 @@ export const TopPlay: FunctionComponent<TopPlayProps> = (props) => {
         "top_picks_section xl:fixed top-0 xl:h-screen xl:w-aside min-w-aside hidden-0 relative main_width xl:left-auto mb-[100px] xl:mb-0 h-auto p-3 sm:p-6 xl:p-0 xl:block right-0 overflow-auto flex flex-col"
       )}
     >
-      <div className="w-full h-full bg-switch flex flex-col">
+      <div className="w-full h-full flex flex-col bg-switch">
         <div className="flex-grow">
           <div className="sticky top-0 p-4 rounded bg-switch xl:rounded-none">
             <div className="top_picks_content">

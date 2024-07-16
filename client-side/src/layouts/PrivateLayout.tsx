@@ -30,7 +30,7 @@ export const PrivateLayout = ({ children }: ProviderProps) => {
       className="flex flex-col max-w-full m-auto xl:flex-row app bg-main"
       id="main_app"
     >
-      <Loading />
+      {/* <Loading /> */}
       <Sidebar />
       <main className="relative w-full mx-auto overflow-hidden main_section">
         <Navbar />
