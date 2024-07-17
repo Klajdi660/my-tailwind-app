@@ -1,7 +1,5 @@
-// import { lazy } from "react";
 import { useRoutes } from "react-router-dom";
 import { PrivateGuard, PublicGuard } from "../guards";
-// import { Loadable } from "./Loadable";
 import { paths } from "../data";
 import { SocialAuth } from "../components";
 import { PrivateLayout, PublicLayout } from "../layouts";
@@ -15,6 +13,7 @@ import {
   BrowsePage,
   // CollectionPage,
   DiscoverPage,
+  GameDetailPage,
   HomePage,
   // MyGamesPage,
   // StorePage,
@@ -28,6 +27,7 @@ import {
 const {
   browse,
   discover,
+  gameDetail,
   forgotPassword,
   home,
   login,
@@ -58,6 +58,16 @@ export const Routes = () =>
         <PrivateGuard>
           <PrivateLayout>
             <DiscoverPage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
+    {
+      path: `${gameDetail}/:gameId`,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <GameDetailPage />
           </PrivateLayout>
         </PrivateGuard>
       ),
@@ -169,27 +179,3 @@ export const Routes = () =>
       element: <ComingSoonPage />,
     },
   ]);
-
-// const BrowsePage = Loadable(lazy(() => import("../pages/Root/Browse")));
-// // const DiscoverPage = Loadable(lazy(() => import("../pages/Root/Discover")));
-// const ForgotPasswordPage = Loadable(
-//   lazy(() => import("../pages/Auth/ForgotPassword"))
-// );
-// const HomePage = Loadable(lazy(() => import("../pages/Root/Home")));
-// const LoginPage = Loadable(lazy(() => import("../pages/Auth/Login")));
-// const PasswordConfirmCodePage = Loadable(
-//   lazy(() => import("../pages/Auth/PasswordConfirmCode"))
-// );
-// const ProfilePage = Loadable(lazy(() => import("../pages/Profile")));
-// const RegisterPage = Loadable(lazy(() => import("../pages/Auth/Register")));
-// const ResetPasswordPage = Loadable(
-//   lazy(() => import("../pages/Auth/ChangePassword"))
-// );
-// const SocialAuth = Loadable(
-//   lazy(() => import("../components/Auth/SocialAuth"))
-// );
-// const VerifyEmailPage = Loadable(
-//   lazy(() => import("../pages/Auth/VerifyEmail"))
-// );
-// // const ErrorPage = Loadable(lazy(() => import("../pages/Error")));
-// const ComingSoonPage = Loadable(lazy(() => import("../pages/ComingSoon")));

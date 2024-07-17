@@ -9,7 +9,6 @@ export { Notification } from "./Notification";
 export { Searchbar } from "./SearchBar";
 export { ShowApp } from "./ShowApp";
 export { TopPlay } from "./TopPlay";
-export { Loadable } from "../routes/Loadable";
 
 // Auth
 // export { LoginForm } from "./Auth/LoginForm";
@@ -23,6 +22,9 @@ export { TopPlayCard } from "./Cards/TopPlayCard";
 // Common
 export { ErrorFormMessage } from "./Common/ErrorFormMessage";
 export { PlatformIconList } from "./Common/PlatformIconList";
+
+// GameDetail
+export { GameDetail } from "./GameDetail/GameDetail";
 
 // Profile
 export { ChangePassword } from "./Profile/ChangePassword";

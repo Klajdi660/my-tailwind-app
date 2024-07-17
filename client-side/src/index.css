@@ -343,3 +343,8 @@ input[type="checkbox"] {
   background-color: red;
   border-radius: 50%;
 }
+
+/* Game detail */
+.tw-absolute-center-horizontal {
+  @apply absolute left-1/2 -translate-x-1/2;
+}

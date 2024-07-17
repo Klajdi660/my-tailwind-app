@@ -26,10 +26,12 @@ import { TopPlaySection } from "./Sections";
 import { Footer } from "./Footer";
 import { useGamesService } from "../services";
 import { TopPlayProps } from "../types";
-import { classNames } from "../utils";
+import { classNames, useHiddenTopPlay } from "../utils";
 
 export const TopPlay: FunctionComponent<TopPlayProps> = (props) => {
   const { getGamesList } = useGamesService();
+
+  const hiddenTopPlay = useHiddenTopPlay();
 
   const values = { page: 1, pageSize: 5 };
 
@@ -50,9 +52,11 @@ export const TopPlay: FunctionComponent<TopPlayProps> = (props) => {
       <div className="w-full h-full flex flex-col bg-switch">
         <div className="flex-grow">
           <div className="sticky top-0 p-4 rounded bg-switch xl:rounded-none">
-            <div className="top_picks_content">
-              <TopPlaySection gameList={data} imageDims="11" />
-            </div>
+            {hiddenTopPlay && (
+              <div className="top_picks_content">
+                <TopPlaySection gameList={data} imageDims="11" />
+              </div>
+            )}
           </div>
         </div>
         <Footer />

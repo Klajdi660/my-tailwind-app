@@ -33,5 +33,6 @@ export const profileEndpoints = {
 
 // GAMES ENDPOINTS
 export const gameEndpoints = {
-  GET_GAMES_LIST_API: "/games",
+  GET_GAME_LIST_API: "/games",
+  GET_GAME_DETAIL_API: "/games/game-detail",
 };

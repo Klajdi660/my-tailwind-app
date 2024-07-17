@@ -3,6 +3,7 @@ export { DesktopToggleButton } from "./Buttons/DesktopToggleButton";
 export { LanguageButton } from "./Buttons/LanguageButton";
 export { MobileToggleButton } from "./Buttons/MobileToggleButton";
 export { NotificationButton } from "./Buttons/NotificationButton";
+export { ShowMoreButton } from "./Buttons/ShowMoreButton";
 export { ThemeButton } from "./Buttons/ThemeButton";
 export { Button } from "./Button";
 export { CustomButton } from "./CustomButton";

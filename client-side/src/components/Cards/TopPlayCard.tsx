@@ -1,7 +1,8 @@
 import { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import { PlatformIconList } from "../Common";
+import { paths } from "../../data";
 import { classNames, gameNameTruncate } from "../../utils";
-
 interface TopPlayCard {
   key: number;
   item: any;
@@ -11,6 +12,7 @@ interface TopPlayCard {
 
 export const TopPlayCard: FunctionComponent<TopPlayCard> = (props) => {
   const { item, listDivider } = props;
+  const { gameDetail } = paths;
 
   return (
     <li
@@ -20,7 +22,10 @@ export const TopPlayCard: FunctionComponent<TopPlayCard> = (props) => {
         listDivider ? "py-3" : "py-2"
       )}
     >
-      <div className="relative flex justify-center w-full items-between group">
+      <Link
+        to={`${gameDetail}/${item.id}`}
+        className="relative flex justify-center w-full items-between group"
+      >
         <div className="flex items-center justify-start flex-1 gap-2 xs:gap-4">
           <div className="relative w-12 h-12">
             <div
@@ -43,7 +48,7 @@ export const TopPlayCard: FunctionComponent<TopPlayCard> = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     </li>
   );
 };

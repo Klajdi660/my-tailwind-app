@@ -1,4 +1,4 @@
-import { GameIconMapsProperties } from "../types";
+import { GameIconMapsProperties, ImageDimsOptions } from "../types";
 
 export const gameIconMap: GameIconMapsProperties = {
   pc: "FaWindows",
@@ -10,4 +10,11 @@ export const gameIconMap: GameIconMapsProperties = {
   android: "FaAndroid",
   ios: "MdPhoneIphone",
   web: "BsGlobe",
+};
+
+export const imageDimsOpt: ImageDimsOptions = {
+  11: "h-11 w-11",
+  16: "h-16 w-16",
+  20: "h-20 w-20",
+  28: "h-28 w-28",
 };

@@ -16,7 +16,7 @@ export const HeaderBannerSkeleton: FunctionComponent<
         <Skeleton
           className={classNames(
             `w-[180px] h-[180px] ${gradientClass} aspect-square`,
-            type === "artist" ? "rounded-full" : "rounded"
+            type === "game-detail" ? "rounded-full" : "rounded"
           )}
         />
         <div className="flex flex-col gap-2">

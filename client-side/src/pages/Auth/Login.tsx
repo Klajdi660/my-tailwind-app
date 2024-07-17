@@ -36,7 +36,7 @@ export const LoginPage: FunctionComponent<LoginPageProps> = () => {
   const handleOnSubmit = async (values: LoginUserInput) => {
     setIsSubmitting(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 3000)); // 3-second timeout
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       await login(values);
     } catch (error) {
       console.error(`Failed to login! ${error}`);

@@ -1,6 +1,8 @@
 import { FunctionComponent } from "react";
+import { useNavigate } from "react-router-dom";
 import { TopPlayCard } from "../Cards";
-import { Title } from "../UI";
+import { ShowMoreButton, Title } from "../UI";
+import { paths } from "../../data";
 import { useStore } from "../../hooks";
 import { classNames } from "../../utils";
 import { TrackCardSkeleton, TitleSkeleton } from "../Skeleton";
@@ -24,7 +26,11 @@ export const TopPlaySection: FunctionComponent<TopPlaySectionProps> = (
     enableTitle = true,
   } = props;
 
+  const { browse } = paths;
+
   const { loading } = useStore();
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -38,7 +44,12 @@ export const TopPlaySection: FunctionComponent<TopPlaySectionProps> = (
         </div>
       )}
       <div className="topPlay-section">
-        <Title name="Top Play Games" type="medium" divider={false} />
+        <Title
+          name="Top Play Games"
+          type="medium"
+          divider={false}
+          className="px-3 mt-2"
+        />
         <div className="">
           <div className={classNames("list_content")}>
             <ul className="flex flex-col w-full list-none">
@@ -55,6 +66,9 @@ export const TopPlaySection: FunctionComponent<TopPlaySectionProps> = (
                 })}
             </ul>
           </div>
+        </div>
+        <div className="flex items-center justify-center group">
+          <ShowMoreButton onClick={() => navigate(browse)} />
         </div>
       </div>
     </>

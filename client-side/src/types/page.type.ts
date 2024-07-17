@@ -38,6 +38,7 @@ export interface VerifyEmailInput {
 }
 
 export interface BrowsePageProps {}
+export interface GameDetailProps {}
 export interface CollectionPageProps {}
 export interface DiscoverPageProps {}
 export interface HomePageProps {}

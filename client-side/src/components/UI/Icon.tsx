@@ -13,8 +13,19 @@ import {
   AiOutlineYoutube,
   AiOutlineInstagram,
 } from "react-icons/ai";
-import { BiGame, BiSearch, BiUser, BiWorld } from "react-icons/bi";
-import { BsMoonStars, BsNintendoSwitch, BsGlobe } from "react-icons/bs";
+import {
+  BiChevronsRight,
+  BiGame,
+  BiSearch,
+  BiUser,
+  BiWorld,
+} from "react-icons/bi";
+import {
+  BsFillPlayFill,
+  BsMoonStars,
+  BsNintendoSwitch,
+  BsGlobe,
+} from "react-icons/bs";
 import { CgGames } from "react-icons/cg";
 import {
   FaFacebook,
@@ -68,10 +79,12 @@ const icons: IconsMap = {
   AiOutlineUser,
   AiOutlineYoutube,
   AiOutlineInstagram,
+  BiChevronsRight,
   BiGame,
   BiSearch,
   BiUser,
   BiWorld,
+  BsFillPlayFill,
   BsMoonStars,
   BsNintendoSwitch,
   CgGames,

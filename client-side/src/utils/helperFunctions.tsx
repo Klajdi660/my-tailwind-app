@@ -60,6 +60,13 @@ export const useMobileResponsive = () => {
   return !isMobile;
 };
 
+export const useHiddenTopPlay = () => {
+  const isTopPlayHidden = useMediaQuery({
+    query: "(min-width: 1280px)",
+  });
+  return isTopPlayHidden;
+};
+
 export const isRTokenExpired = () => {
   if (localStorage.rtoken) {
     const currentTime = dayjs().unix();

@@ -29,11 +29,12 @@ export const paths: PathProperties = {
   passwordCode: "password-code",
   // changePassword: "update-password/:email/:username/:h/:exp",
   resetPassword: "reset-password/:email/:hash",
-  // resetPassword: "reset-password",
+  // resetPassword: "/reset-password",
   profile: "/profile",
-  editProfile: "/editProfile",
+  editProfile: "/edit-profile",
   discover: "/discover",
-  browse: "browse",
+  gameDetail: "/game-detail",
+  browse: "/browse",
 };
 
 export const logo: LogoProperties = {
