@@ -29,9 +29,9 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
           className="bg-cover bg-center bg-no-repeat md:h-[400px] h-[300px] rounded-2xl relative"
         >
           <div className="bg-gradient-to-br from-transparent to-black/70 h-full rounded-2xl">
-            <div className="flex flex-col md:flex-row bottom-[-85%] md:bottom-[-20%]  items-start tw-absolute-center-horizontal w-full max-w-[1000px]">
-              <div className="flex gap-5 items-center">
-                <div className="shrink-0 w-[185px] ml-3 md:ml-0">
+            <div className="flex flex-col items-center md:flex-row bottom-[-85%] md:bottom-[-20%] tw-absolute-center-horizontal w-full max-w-[1000px]">
+              <div className="flex gap-5 items-end">
+                <div className="shrink-0">
                   <LazyLoadImage
                     src={background_image}
                     effect="opacity"
@@ -41,65 +41,39 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
                     height={260}
                   />
                 </div>
-                {isMobile && (
-                  // <Link to="#" className="group">
-                  //   <div className="flex gap-4 items-center pl-5 pr-12 py-3 rounded-full bg-primary text-white group-hover:brightness-110 transition duration-300 mt-24">
-                  //     <Icon
-                  //       name="BsFillPlayFill"
-                  //       size={25}
-                  //       className="text-white"
-                  //     />
-                  //     <span className="text-lg font-medium">WATCH</span>
-                  //   </div>
-                  // </Link>
-                  <Button
-                    label="WATCH"
-                    variant="contained"
-                    // labelIcon="BsFillPlayFill"
-                    className="rounded-full"
-                  />
-                )}
-              </div>
-              <div className="flex-grow md:ml-14 ml-6 mt-6 md:mt-0">
-                <div className="md:h-28 flex items-end">
-                  <h1 className="text-white text-4xl font-bold leading-tight">
-                    {name}
-                  </h1>
+                <div className="mb-5">
+                  {isMobile && (
+                    <Button
+                      label="WATCH"
+                      variant="contained"
+                      labelIcon="BsFillPlayFill"
+                      className="w-[140px] rounded-full"
+                    />
+                  )}
                 </div>
-                <ul className="flex gap-3 flex-wrap md:mt-2 mt-3 cursor-pointer">
+              </div>
+              <div className="flex-grow md:ml-14 ml-6 space-y-2 mb-10">
+                <h1 className="text-primary text-4xl font-bold leading-tight">
+                  {name}
+                </h1>
+                <div className="flex gap-4">
                   {genres.slice(0, 3).map((genre: any) => (
-                    <li key={genre.id} className="mb-3">
-                      <div
-                        // to={`/explore?genre=${genre.id}`}
-                        className="md:px-5 px-3 md:py-2 py-1 rounded-full uppercase font-medium border border-gray-300 md:text-white hover:brightness-75 transition duration-300"
-                      >
-                        {genre.name}
-                      </div>
-                    </li>
+                    <Button
+                      key={genre.id}
+                      label={genre.name}
+                      variant="outlined"
+                      className="rounded-full border-primary text-primary hover:brightness-75 transition duration-300"
+                    />
                   ))}
-                </ul>
-              </div>
-
-              {/* WATCH NOW */}
-              {!isMobile && (
-                // <Link to="#" className="group">
-                //   <div className="flex gap-4 items-center pl-6 pr-12 py-3 rounded-full bg-primary text-white group-hover:brightness-110 transition duration-300 mt-24">
-                //     <Icon
-                //       name="BsFillPlayFill"
-                //       size={25}
-                //       className="text-white "
-                //     />
-                //     <span className="text-lg font-medium">WATCH</span>
-                //   </div>
-                // </Link>
-                <div className="flex">
-                  <Button
-                    label="WATCH"
-                    variant="contained"
-                    labelIcon="BsFillPlayFill"
-                    className="w-[150px] rounded-full"
-                  />
                 </div>
+              </div>
+              {!isMobile && (
+                <Button
+                  label="WATCH"
+                  variant="contained"
+                  labelIcon="BsFillPlayFill"
+                  className="w-[150px] rounded-full"
+                />
               )}
             </div>
 
