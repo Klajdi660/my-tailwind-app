@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import { IconContext } from "react-icons";
 import {
+  AiFillHeart,
   AiOutlineCloudUpload,
   AiOutlineEdit,
   AiOutlineEye,
@@ -26,6 +27,7 @@ import {
   BsNintendoSwitch,
   BsGlobe,
 } from "react-icons/bs";
+import { CiShoppingTag } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
 import {
   FaFacebook,
@@ -68,6 +70,7 @@ import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
 
 const icons: IconsMap = {
+  AiFillHeart,
   AiOutlineCloudUpload,
   AiOutlineEdit,
   AiOutlineEye,
@@ -87,6 +90,7 @@ const icons: IconsMap = {
   BsFillPlayFill,
   BsMoonStars,
   BsNintendoSwitch,
+  CiShoppingTag,
   CgGames,
   FaFacebook,
   FaOpencart,

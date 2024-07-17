@@ -13,7 +13,7 @@ const SideMenuList: FunctionComponent<SideMenuListPorps> = (props) => {
             key={sidelink.id}
             placement="right"
             title={sidelink.name}
-            color="#2C333F"
+            // color="#2C333F"
             trigger={["hover"]}
             /*arrow={false}*/
           >
