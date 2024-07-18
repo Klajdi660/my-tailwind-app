@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { PlatformIconList } from "../Common";
 import { paths } from "../../data";
 import { classNames, gameNameTruncate } from "../../utils";
-interface TopPlayCard {
+interface TopPlayCardProps {
   key: number;
   item: any;
   imageDims: string;
   listDivider: boolean;
 }
 
-export const TopPlayCard: FunctionComponent<TopPlayCard> = (props) => {
+export const TopPlayCard: FunctionComponent<TopPlayCardProps> = (props) => {
   const { item, listDivider } = props;
   const { gameDetail } = paths;
 

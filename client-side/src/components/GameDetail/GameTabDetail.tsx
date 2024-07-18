@@ -52,7 +52,10 @@ export const GameTabDetail: FunctionComponent<GameTabDetailProps> = (props) => {
         {currentTab === "overall" && (
           <>
             <p className="text-onNeutralBg font-medium mb-3">STORY</p>
-            <ReadMore limitTextLength={250} className="text-secondary">
+            <ReadMore
+              limitTextLength={250}
+              className="text-secondary text-justify"
+            >
               {description_raw}
             </ReadMore>
             <p className="font-medium mt-8 mb-3">DETAILS</p>
