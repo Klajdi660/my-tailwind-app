@@ -35,4 +35,5 @@ export const profileEndpoints = {
 export const gameEndpoints = {
   GET_GAME_LIST_API: "/games",
   GET_GAME_DETAIL_API: "/games/game-detail",
+  GET_GAME_VIDEOS_API: "/games/game-videos",
 };

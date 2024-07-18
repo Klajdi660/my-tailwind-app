@@ -21,7 +21,8 @@ export { TopPlayCard } from "./Cards/TopPlayCard";
 
 // Common
 export { ErrorFormMessage } from "./Common/ErrorFormMessage";
-export { PlatformIconList } from "./Common/PlatformIconList";
+export * from "./Common/GameDetailCommon";
+export { ReadMore } from "./Common/ReadMore";
 
 // GameDetail
 export { GameDetail } from "./GameDetail/GameDetail";

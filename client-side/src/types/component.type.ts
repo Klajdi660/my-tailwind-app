@@ -86,6 +86,28 @@ export interface PlatformIconListProps {
   platforms: PlatformIconList[];
 }
 
+interface DeveloperList {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+}
+export interface DeveloperListProps {
+  developers: DeveloperList[];
+}
+
+interface PublisherList {
+  games_count: number;
+  id: number;
+  image_background: string;
+  name: string;
+  slug: string;
+}
+export interface PublisherListPorps {
+  publishers: PublisherList[];
+}
+
 // Profile
 export interface ChangePasswordProps {
   // provider: string | any;

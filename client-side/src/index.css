@@ -354,3 +354,7 @@ input[type="checkbox"] {
 .tw-flex-center {
   @apply flex justify-center items-center;
 }
+
+.ant-progress.ant-progress-circle .ant-progress-text {
+  color: var(--onNeutralBg) !important;
+}

@@ -1,23 +1,37 @@
 import { FunctionComponent } from "react";
-import { Tooltip } from "antd";
+import { Tooltip, Progress } from "antd";
+import type { ProgressProps } from "antd";
 import { Button, Icon, Image } from "../UI";
 // import { useStore } from "../../hooks";
 import { classNames, useMobileResponsive } from "../../utils";
+import { GameTabDetail } from "./GameTabDetail";
 
 interface GameDetailProps {
   gameDetail: any;
+  gameVideos: any;
 }
 
 export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
-  const { gameDetail } = props;
+  const { gameDetail, gameVideos } = props;
 
-  const { background_image, background_image_additional, name, genres } =
-    gameDetail;
+  const {
+    background_image,
+    background_image_additional,
+    name,
+    genres,
+    rating,
+    playtime,
+  } = gameDetail;
 
   // const { loading } = useStore();
   const isMobile = useMobileResponsive();
 
-  console.log("gameDetail :>> ", gameDetail);
+  const getColor = (rating: number) => {
+    if (rating >= 4) return "green";
+    if (rating >= 2) return "#0077B5";
+    return "red";
+  };
+  console.log("gameVideos :>> ", gameVideos.results);
   return (
     <div className="game_detail flex flex-col md:flex-row">
       <div className="flex-grow min-h-screen">
@@ -28,31 +42,30 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
           className="bg-cover bg-center bg-no-repeat md:h-[400px] h-[300px] rounded-2xl relative"
         >
           <div className="bg-gradient-to-br from-transparent to-black/70 h-full rounded-2xl">
-            <div className="flex flex-col items-center md:flex-row bottom-[-85%] md:bottom-[-20%] tw-absolute-center-horizontal w-full max-w-[1000px]">
-              <div className="flex gap-5 items-end">
-                <div className="shrink-0">
+            <div className="flex flex-col items-center md:flex-row absolute bottom-[-85%] md:bottom-[-20%] left-[10%] right-[3%]">
+              <div className="flex gap-5 items-center">
+                <div className="shrink-0 z-40">
                   <Image
                     imgUrl={background_image}
                     name="game-details-cover"
                     styles="w-[185px] h-[260px] object-cover rounded-md"
                   />
                 </div>
-                <div className="mb-5">
-                  {isMobile && (
-                    <Button
-                      label="WATCH"
-                      variant="contained"
-                      labelIcon="BsFillPlayFill"
-                      className="w-[140px] rounded-full"
-                    />
-                  )}
-                </div>
+                {isMobile && (
+                  <Button
+                    label="BUY NOW"
+                    variant="contained"
+                    labelIcon="CiShoppingTag"
+                    className="w-[150px] rounded-full"
+                  />
+                )}
               </div>
-              <div className="flex-grow md:ml-14 ml-6 space-y-2 mb-10">
+              <div className="flex-grow md:ml-10 ml-6 mt-6 md:mt-0 mb-10 z-40">
                 <h1 className="text-primary text-4xl font-bold leading-tight">
                   {name}
                 </h1>
-                <div className="flex gap-4">
+
+                <div className="flex gap-3 flex-wrap mt-3">
                   {genres.slice(0, 3).map((genre: any) => (
                     <Button
                       key={genre.id}
@@ -64,20 +77,12 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
                 </div>
               </div>
               {!isMobile && (
-                <div className="flex gap-5">
-                  <Button
-                    label="WATCH"
-                    variant="contained"
-                    labelIcon="BsFillPlayFill"
-                    className="w-[150px] rounded-full"
-                  />
-                  <Button
-                    label="BUY NOW"
-                    variant="contained"
-                    labelIcon="CiShoppingTag"
-                    className="w-[150px] rounded-full"
-                  />
-                </div>
+                <Button
+                  label="BUY NOW"
+                  variant="contained"
+                  labelIcon="CiShoppingTag"
+                  className="w-[150px] rounded-full"
+                />
               )}
             </div>
             <div className="flex gap-3 absolute top-[5%] right-[3%]">
@@ -117,24 +122,73 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
                   />
                 </button>
               </Tooltip>
-
-              {/* {!isMobile && (
-                <>
-                  <button className="tw-flex-center h-12 w-12 rounded-full border-[3px] border-white shadow-lg hover:border-primary transition duration-300 group">
-                    <BsShareFill
-                      size={20}
-                      className="text-white group-hover:text-primary transition duration-300"
-                    />
-                  </button>
-                  <button className="tw-flex-center h-12 w-12 rounded-full border-[3px] border-white shadow-lg hover:border-primary transition duration-300 group">
-                    <BsThreeDots
-                      size={20}
-                      className="text-white group-hover:text-primary transition duration-300"
-                    />
-                  </button>
-                </>
-              )} */}
             </div>
+          </div>
+        </div>
+        <div className="flex z-20 relative flex-col md:flex-row mt-32 md:mt-0 bg-switch">
+          {!isMobile && (
+            <div className="shrink-0 md:max-w-[150px] w-full flex items-center md:flex-col justify-center flex-row gap-20 mt-20 md:border-r border-divider pt-16">
+              <div className="flex flex-col gap-6 items-center">
+                <p className="text-onNeutralBg font-medium text-lg">RATING</p>
+                {!isMobile && (
+                  <div className="w-16">
+                    <Progress
+                      type="circle"
+                      size="small"
+                      strokeColor={getColor(rating)}
+                      percent={(rating / 5) * 100}
+                      format={() => rating.toFixed(1)}
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-col gap-3 items-center">
+                <p className="text-onNeutralBg font-medium text-lg">
+                  PLAY TIME
+                </p>
+                <div className="flex gap-2 items-center text-secondary">
+                  <p className="text-2xl">{playtime}</p>
+                  <span>min</span>
+                </div>
+              </div>
+            </div>
+          )}
+          <div className="flex-grow min-h-[500px] md:border-r border-divider md:px-16 px-5 md:py-7 pt-40">
+            <GameTabDetail gameDetail={gameDetail} />
+          </div>
+          <div className="shrink-0 md:max-w-[300px] w-full px-6 pt-6">
+            <p className="text-onNeutralBg font-medium text-lg mb-5">MEDIA</p>
+            <ul className="flex flex-col md:gap-[30px] gap-6">
+              {gameVideos.results.length > 0 &&
+                gameVideos.results.slice(0, 2).map((video: any) => {
+                  return (
+                    <li key={video.id}>
+                      <div className="relative h-0 pb-[56.25%]">
+                        <iframe
+                          frameBorder="0"
+                          allowFullScreen
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          title="Video trailer"
+                          width="100%"
+                          height="100%"
+                          // src={`https://www.youtube.com/embed/${video.id}?enablejsapi=1&amp;origin=http%3A%2F%2Flocalhost%3A3000&amp;widgetid=1`}
+                          src={video.data["max"]}
+                          id="widget2"
+                          className="absolute top-0 left-0 !w-full !h-full"
+                        ></iframe>
+                      </div>
+                      <p className="mt-3 text-lg whitespace-nowrap overflow-hidden text-ellipsis">
+                        {video.name}
+                      </p>
+                    </li>
+                  );
+                })}
+              {!gameVideos.results.length && (
+                <p className="text-primary text-xl font-bold text-center">
+                  No media found
+                </p>
+              )}
+            </ul>
           </div>
         </div>
       </div>

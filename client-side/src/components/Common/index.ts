@@ -1,2 +1,3 @@
 export { ErrorFormMessage } from "./ErrorFormMessage";
-export { PlatformIconList } from "./PlatformIconList";
+export { ReadMore } from "./ReadMore";
+export * from "./GameDetailCommon";
