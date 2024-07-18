@@ -18,7 +18,7 @@ export const TopPlayCard: FunctionComponent<TopPlayCard> = (props) => {
     <li
       key={item.id}
       className={classNames(
-        "relative p-3 flex items-center text-base !text-onNeutralBg hover:bg-card-hover hover:rounded cursor-pointer group border-divider focus-within:bg-divider focus-within:rounded",
+        "relative p-3 flex items-center text-base !text-onNeutralBg hover:bg-card-hover hover:rounded cursor-pointer group border-divider focus-within:bg-primary-opacity focus-within:rounded",
         listDivider ? "py-3" : "py-2"
       )}
     >
