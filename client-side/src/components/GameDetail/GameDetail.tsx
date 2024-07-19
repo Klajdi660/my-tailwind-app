@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
 import { Tooltip, Progress } from "antd";
-import type { ProgressProps } from "antd";
 import { Button, Icon, Image } from "../UI";
-// import { useStore } from "../../hooks";
+import { useStore } from "../../hooks";
 import { classNames, useMobileResponsive } from "../../utils";
 import { GameTabDetail } from "./GameTabDetail";
-
+import { Skeleton } from "../Common/Skeleton";
+import { HeaderBannerSkeleton } from "../Skeleton";
 interface GameDetailProps {
   gameDetail: any;
   gameVideos: any;
@@ -23,7 +23,9 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
     playtime,
   } = gameDetail;
 
-  // const { loading } = useStore();
+  const { results: gameVideoResults } = gameVideos;
+
+  const { loading } = useStore();
   const isMobile = useMobileResponsive();
 
   const getColor = (rating: number) => {
@@ -31,27 +33,58 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
     if (rating >= 2) return "#0077B5";
     return "red";
   };
-  console.log("gameVideos :>> ", gameVideos.results);
+
   return (
     <div className="game_detail flex flex-col md:flex-row">
       <div className="flex-grow min-h-screen">
-        <div
-          style={{
-            backgroundImage: `url(${background_image_additional})`,
-          }}
-          className="bg-cover bg-center bg-no-repeat md:h-[400px] h-[300px] rounded-2xl relative"
-        >
-          <div className="bg-gradient-to-br from-transparent to-black/70 h-full rounded-2xl">
-            <div className="flex flex-col items-center md:flex-row absolute bottom-[-85%] md:bottom-[-20%] left-[10%] right-[3%]">
-              <div className="flex gap-5 items-center">
-                <div className="shrink-0 z-40">
-                  <Image
-                    imgUrl={background_image}
-                    name="game-details-cover"
-                    styles="w-[185px] h-[260px] object-cover rounded-md"
-                  />
+        {loading && (
+          <div className="animate_skeleton">
+            <HeaderBannerSkeleton type="game-detail" />
+          </div>
+        )}
+        {!loading && (
+          <div
+            style={{
+              backgroundImage: `url(${background_image_additional})`,
+            }}
+            className="bg-cover bg-center bg-no-repeat md:h-[400px] h-[300px] rounded-2xl relative"
+          >
+            <div className="bg-gradient-to-br from-transparent to-black/70 h-full rounded-2xl">
+              <div className="flex flex-col items-center md:flex-row absolute bottom-[-85%] md:bottom-[-20%] left-[10%] right-[3%]">
+                <div className="flex gap-5 items-center">
+                  <div className="shrink-0 z-40">
+                    <Image
+                      imgUrl={background_image}
+                      name="game-details-cover"
+                      styles="w-[185px] h-[260px] object-cover rounded-md"
+                    />
+                  </div>
+                  {isMobile && (
+                    <Button
+                      label="BUY NOW"
+                      variant="contained"
+                      labelIcon="CiShoppingTag"
+                      className="w-[150px] rounded-full"
+                    />
+                  )}
                 </div>
-                {isMobile && (
+                <div className="flex-grow md:ml-10 ml-6 mt-6 md:mt-0 mb-10 z-40">
+                  <h1 className="text-primary text-4xl font-bold leading-tight">
+                    {name}
+                  </h1>
+
+                  <div className="flex gap-3 flex-wrap mt-3">
+                    {genres.slice(0, 3).map((genre: any) => (
+                      <Button
+                        key={genre.id}
+                        label={genre.name}
+                        variant="outlined"
+                        className="rounded-full border-primary text-primary hover:brightness-75 transition duration-300"
+                      />
+                    ))}
+                  </div>
+                </div>
+                {!isMobile && (
                   <Button
                     label="BUY NOW"
                     variant="contained"
@@ -60,71 +93,47 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
                   />
                 )}
               </div>
-              <div className="flex-grow md:ml-10 ml-6 mt-6 md:mt-0 mb-10 z-40">
-                <h1 className="text-primary text-4xl font-bold leading-tight">
-                  {name}
-                </h1>
-
-                <div className="flex gap-3 flex-wrap mt-3">
-                  {genres.slice(0, 3).map((genre: any) => (
-                    <Button
-                      key={genre.id}
-                      label={genre.name}
-                      variant="outlined"
-                      className="rounded-full border-primary text-primary hover:brightness-75 transition duration-300"
+              <div className="flex gap-3 absolute top-[5%] right-[3%]">
+                <Tooltip title="Add to Wishlist" trigger={["hover"]}>
+                  <button
+                    // onClick={bookmarkedHandler}
+                    className={classNames(
+                      "tw-flex-center h-12 w-12 rounded-full border-2 border-white shadow-lg hover:border-red-500 transition duration-300 group"
+                      // isBookmarked && "!border-primary"
+                    )}
+                  >
+                    <Icon
+                      name="AiFillHeart"
+                      size={20}
+                      className={classNames(
+                        "text-white group-hover:text-red-500 transition duration-300"
+                        // isBookmarked && "!text-primary"
+                      )}
                     />
-                  ))}
-                </div>
+                  </button>
+                </Tooltip>
+                <Tooltip title="Add to Cart" trigger={["hover"]}>
+                  <button
+                    // onClick={bookmarkedHandler}
+                    className={classNames(
+                      "tw-flex-center h-12 w-12 rounded-full border-2 border-white shadow-lg hover:border-primary transition duration-300 group"
+                      // isBookmarked && "!border-primary"
+                    )}
+                  >
+                    <Icon
+                      name="FaOpencart"
+                      size={20}
+                      className={classNames(
+                        "text-white group-hover:text-primary transition duration-300"
+                        // isBookmarked && "!text-primary"
+                      )}
+                    />
+                  </button>
+                </Tooltip>
               </div>
-              {!isMobile && (
-                <Button
-                  label="BUY NOW"
-                  variant="contained"
-                  labelIcon="CiShoppingTag"
-                  className="w-[150px] rounded-full"
-                />
-              )}
-            </div>
-            <div className="flex gap-3 absolute top-[5%] right-[3%]">
-              <Tooltip title="Add to Wishlist" trigger={["hover"]}>
-                <button
-                  // onClick={bookmarkedHandler}
-                  className={classNames(
-                    "tw-flex-center h-12 w-12 rounded-full border-2 border-white shadow-lg hover:border-red-500 transition duration-300 group"
-                    // isBookmarked && "!border-primary"
-                  )}
-                >
-                  <Icon
-                    name="AiFillHeart"
-                    size={20}
-                    className={classNames(
-                      "text-white group-hover:text-red-500 transition duration-300"
-                      // isBookmarked && "!text-primary"
-                    )}
-                  />
-                </button>
-              </Tooltip>
-              <Tooltip title="Add to Cart" trigger={["hover"]}>
-                <button
-                  // onClick={bookmarkedHandler}
-                  className={classNames(
-                    "tw-flex-center h-12 w-12 rounded-full border-2 border-white shadow-lg hover:border-primary transition duration-300 group"
-                    // isBookmarked && "!border-primary"
-                  )}
-                >
-                  <Icon
-                    name="FaOpencart"
-                    size={20}
-                    className={classNames(
-                      "text-white group-hover:text-primary transition duration-300"
-                      // isBookmarked && "!text-primary"
-                    )}
-                  />
-                </button>
-              </Tooltip>
             </div>
           </div>
-        </div>
+        )}
         <div className="flex z-20 relative flex-col md:flex-row mt-32 md:mt-0 bg-switch">
           {!isMobile && (
             <div className="shrink-0 md:max-w-[150px] w-full flex items-center md:flex-col justify-center flex-row gap-20 mt-20 md:border-r border-divider pt-16">
@@ -159,8 +168,8 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
           <div className="shrink-0 md:max-w-[300px] w-full px-6 pt-6">
             <p className="text-onNeutralBg font-medium text-lg mb-5">MEDIA</p>
             <ul className="flex flex-col md:gap-[30px] gap-6">
-              {gameVideos.results.length > 0 &&
-                gameVideos.results.slice(0, 2).map((video: any) => {
+              {gameVideoResults.length > 0 &&
+                gameVideoResults.slice(0, 2).map((video: any) => {
                   return (
                     <li key={video.id}>
                       <div className="relative h-0 pb-[56.25%]">
@@ -183,7 +192,7 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
                     </li>
                   );
                 })}
-              {!gameVideos.results.length && (
+              {!gameVideoResults.length && (
                 <p className="text-primary text-xl font-bold text-center">
                   No media found
                 </p>

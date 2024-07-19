@@ -6,7 +6,9 @@ import {
   DeveloperList,
   PublisherList,
 } from "../Common";
-import { dateFormatList } from "../../data";
+import { Tab } from "../UI";
+import { dateFormatList, gameTabsButton } from "../../data";
+import { classNames } from "../../utils";
 
 interface GameTabDetailProps {
   gameDetail: any;
@@ -24,30 +26,15 @@ export const GameTabDetail: FunctionComponent<GameTabDetailProps> = (props) => {
 
   const [currentTab, setCurrentTab] = useState("overall");
 
-  const tabButtons = ["overall", "cast", "reviews", "seasons"];
-
   const released_date = dayjs(released).format(dateFormatList[0]);
 
   return (
     <>
-      <ul className="flex gap-10 text-secondary text-lg justify-center">
-        {tabButtons.map((btnName: string, index: number) => (
-          <li
-            key={index}
-            // className={detail?.media_type === "movie" ? "last:hidden" : ""}
-          >
-            <button
-              onClick={() => setCurrentTab(btnName)}
-              className={`hover:text-primary transition duration-300 pb-1 ${
-                currentTab === btnName &&
-                "font-medium -translate-y-2 border-b-2 border-primary text-onNeutralBg"
-              }`}
-            >
-              {btnName[0].toUpperCase() + btnName.slice(1)}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <Tab
+        tabs={gameTabsButton}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
+      />
       <div className="mt-10 text-lg text-onNeutralBg">
         {currentTab === "overall" && (
           <>

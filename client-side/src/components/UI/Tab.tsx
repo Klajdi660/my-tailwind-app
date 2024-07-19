@@ -1,34 +1,47 @@
 import { FunctionComponent } from "react";
-import { Space, Button } from "antd";
-import { TabProps, TabMap } from "../../types";
+import { useStore } from "../../hooks";
+import { TabProps } from "../../types";
 import { classNames } from "../../utils";
+import { Skeleton } from "../Skeleton/Skeleton";
 
 export const Tab: FunctionComponent<TabProps> = (props) => {
-  const { tabData, field, setField } = props;
+  const { tabs, currentTab, setCurrentTab } = props;
+
+  const { loading } = useStore();
 
   return (
-    <Space
-      style={{
-        boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.5)",
-      }}
-      className="flex p-1 gap-x-1 my-3 rounded-xl max-w-max"
-    >
-      {tabData.map((tab: TabMap) => (
-        <Button
-          type="primary"
-          key={tab.id}
-          onClick={() => setField(tab.type)}
-          style={{
-            backgroundColor: field === tab.type ? "#2C333F" : "transparent",
-            color: field === tab.type ? "#EB6536" : "#999DAA",
-          }}
-          className={classNames(
-            `${field === tab.type ? "active-button" : "inactive-button"}`
-          )}
-        >
-          {tab.tabName}
-        </Button>
-      ))}
-    </Space>
+    <>
+      <ul className="flex gap-10 text-onNeutralBg text-lg justify-center">
+        {loading ? (
+          <>
+            {tabs.map((tab) => (
+              <Skeleton
+                key={tab.id}
+                className={classNames(
+                  "w-[100px] mx-1 h-[40px] bg-card-skeleton rounded-full"
+                )}
+              />
+            ))}
+          </>
+        ) : (
+          <>
+            {tabs.map((tab) => (
+              <li key={tab.id}>
+                <button
+                  className={classNames(
+                    "hover:text-primary transition duration-300 pb-1",
+                    currentTab === tab.id &&
+                      "font-medium -translate-y-2 border-b-2 border-primary text-primary"
+                  )}
+                  onClick={() => setCurrentTab(tab.id)}
+                >
+                  {tab.name}
+                </button>
+              </li>
+            ))}
+          </>
+        )}
+      </ul>
+    </>
   );
 };

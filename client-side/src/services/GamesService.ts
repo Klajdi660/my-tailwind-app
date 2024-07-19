@@ -10,7 +10,7 @@ export const useGamesService = () => {
   const { setLoading } = useStore();
   const [notify] = useNotification();
 
-  const getGamesList = async (values: any): Promise<void> => {
+  const getGameList = async (values: any): Promise<void> => {
     try {
       const params = new URLSearchParams(values).toString();
       const url = `${GET_GAME_LIST_API}?${params}`;
@@ -90,5 +90,5 @@ export const useGamesService = () => {
     }
   };
 
-  return { getGamesList, getGameDetail, getGameVideos };
+  return { getGameList, getGameDetail, getGameVideos };
 };

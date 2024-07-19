@@ -18,3 +18,10 @@ export const imageDimsOpt: ImageDimsOptions = {
   20: "h-20 w-20",
   28: "h-28 w-28",
 };
+
+export const gameTabsButton = [
+  { id: "overall", name: "Overall" },
+  { id: "cast", name: "Cast" },
+  { id: "reviews", name: "Reviews" },
+  { id: "seasons", name: "Seasons" },
+];

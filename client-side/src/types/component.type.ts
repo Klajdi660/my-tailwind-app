@@ -167,7 +167,7 @@ export interface SkeletonProps {
 }
 
 export interface TitleSkeletonProps {
-  type: string;
+  type?: string;
 }
 
 export type ImageDimsOptions = {
@@ -176,7 +176,8 @@ export type ImageDimsOptions = {
 
 export interface TrackCardSkeletonProps {
   number: number;
-  imageDims: any;
+  imageDims?: any;
+  type?: string;
 }
 
 // UI
@@ -302,9 +303,10 @@ export interface PatternBgProps {}
 export interface SocialAuthButtonProps {}
 
 export interface TabProps {
-  field: string;
-  setField: (tab: any) => void;
-  tabData: any;
+  tabs: { id: string; name: string }[];
+  currentTab: string;
+  setCurrentTab: (currentTab: string) => void;
+  // tabData: any;
 }
 
 export interface TabMap {
