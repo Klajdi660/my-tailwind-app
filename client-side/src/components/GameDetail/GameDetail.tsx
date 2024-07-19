@@ -13,7 +13,7 @@ interface GameDetailProps {
 
 export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
   const { gameDetail, gameVideos } = props;
-
+  console.log("gameVideos :>> ", gameVideos);
   const {
     background_image,
     background_image_additional,
@@ -157,7 +157,7 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
                 </p>
                 <div className="flex gap-2 items-center text-secondary">
                   <p className="text-2xl">{playtime}</p>
-                  <span>min</span>
+                  <span>hour</span>
                 </div>
               </div>
             </div>
