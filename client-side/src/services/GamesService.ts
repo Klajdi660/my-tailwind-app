@@ -3,8 +3,12 @@ import { HttpClient } from "../client";
 import { useNotification, useStore } from "../hooks";
 import { ServerResponse } from "../types";
 
-const { GET_GAME_LIST_API, GET_GAME_DETAIL_API, GET_GAME_VIDEOS_API } =
-  gameEndpoints;
+const {
+  GET_GAME_LIST_API,
+  GET_GAME_DETAIL_API,
+  GET_GAME_VIDEOS_API,
+  GET_GAME_Reviews_API,
+} = gameEndpoints;
 
 export const useGamesService = () => {
   const { setLoading } = useStore();
@@ -90,5 +94,29 @@ export const useGamesService = () => {
     }
   };
 
-  return { getGameList, getGameDetail, getGameVideos };
+  const getGameReviews = async (values: any): Promise<void> => {
+    try {
+      const params = new URLSearchParams(values).toString();
+      const url = `${GET_GAME_Reviews_API}?${params}`;
+
+      const getGameReviewsResp = await HttpClient.get<ServerResponse>(url);
+
+      const { error, message, data } = getGameReviewsResp;
+
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      return data;
+    } catch (error) {
+      console.error(`Get game videos field: ${error}`);
+      throw error;
+    }
+  };
+
+  return { getGameList, getGameDetail, getGameVideos, getGameReviews };
 };

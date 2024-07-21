@@ -156,7 +156,7 @@ export interface HeaderBannerSkeletonProps {
 
 export interface MediaCardSkeletonProps {
   type: string;
-  number: any[];
+  number: number;
 }
 
 export interface NavlistSkeletonProps {}
@@ -389,6 +389,10 @@ export interface UserMenuProps {
 }
 
 // Card
-export interface MediaCardProps {}
+export interface MediaCardProps {
+  game: any;
+  key: string;
+  type: string;
+}
 
 export interface MediaCardDetailsProps {}

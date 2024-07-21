@@ -8,14 +8,15 @@ import {
 } from "../Common";
 import { Tab } from "../UI";
 import { dateFormatList, gameTabsButton } from "../../data";
-import { classNames } from "../../utils";
+import { GameTabReviews } from "./GameTabReviews";
 
 interface GameTabDetailProps {
   gameDetail: any;
+  gameReviews: any;
 }
 
 export const GameTabDetail: FunctionComponent<GameTabDetailProps> = (props) => {
-  const { gameDetail } = props;
+  const { gameDetail, gameReviews } = props;
   const {
     description_raw,
     developers,
@@ -64,10 +65,8 @@ export const GameTabDetail: FunctionComponent<GameTabDetailProps> = (props) => {
             </p>
           </>
         )}
-        {currentTab !== "overall" && (
-          <ul className="flex text-primary text-2xl font-bold justify-center">
-            <p>Coming soon</p>
-          </ul>
+        {currentTab === "reviews" && (
+          <GameTabReviews gameReviews={gameReviews} />
         )}
       </div>
     </>

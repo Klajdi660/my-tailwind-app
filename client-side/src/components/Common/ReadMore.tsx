@@ -1,4 +1,5 @@
 import { FunctionComponent, HTMLProps, useState } from "react";
+import { classNames } from "../../utils";
 
 interface ReadMoreProps {
   children: React.ReactNode;
@@ -16,7 +17,7 @@ export const ReadMore: FunctionComponent<
     : (children as string).slice(0, limitTextLength);
 
   return (
-    <span {...others} className={`${className} inline-block`}>
+    <span {...others} className={classNames(className, "inline-block")}>
       {content}
 
       <button

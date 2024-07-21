@@ -12,7 +12,7 @@ export const MediaCardSkeleton: FunctionComponent<MediaCardSkeletonProps> = (
 
   return (
     <>
-      {number.map((_, index) => (
+      {[...Array(number)].map((_, index) => (
         <div className="col-spam-1" key={index}>
           <Skeleton className="w-full p-4 rounded bg-card-skeleton">
             <div className="aspect-square">

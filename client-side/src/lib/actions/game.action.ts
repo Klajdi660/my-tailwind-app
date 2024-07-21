@@ -4,21 +4,23 @@ import { useGamesService } from "../../services";
 interface GameData {
   gameDetail: any;
   gameVideos: any;
+  gameReviews: any;
 }
 
 export const useFetchGame = (gameId: string) => {
-  const { getGameDetail, getGameVideos } = useGamesService();
+  const { getGameDetail, getGameVideos, getGameReviews } = useGamesService();
 
   const { data } = useQuery<GameData | any>({
     queryKey: [`game_${gameId}`, { gameId }],
     queryFn: async () => {
       try {
         if (gameId) {
-          const [gameDetail, gameVideos] = await Promise.all([
+          const [gameDetail, gameVideos, gameReviews] = await Promise.all([
             getGameDetail({ gameId }),
             getGameVideos({ gameId }),
+            getGameReviews({ gameId }),
           ]);
-          return { gameDetail, gameVideos };
+          return { gameDetail, gameVideos, gameReviews };
         }
         return null;
       } catch (error) {

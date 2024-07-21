@@ -8,12 +8,16 @@ export const GameDetailPage: FunctionComponent<GameDetailProps> = () => {
   const { gameId } = useParams<{ gameId: string | any }>();
 
   const { data: gameData } = useFetchGame(gameId);
-  const { gameDetail, gameVideos } = gameData || {};
+  const { gameDetail, gameVideos, gameReviews } = gameData || {};
 
   return (
     <section className="game_detail_page">
-      {(gameDetail || gameVideos) && (
-        <GameDetail gameDetail={gameDetail} gameVideos={gameVideos} />
+      {(gameDetail || gameVideos || gameReviews) && (
+        <GameDetail
+          gameDetail={gameDetail}
+          gameVideos={gameVideos}
+          gameReviews={gameReviews}
+        />
       )}
     </section>
   );

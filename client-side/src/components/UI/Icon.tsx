@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import { IconContext } from "react-icons";
 import {
   AiFillHeart,
+  AiFillStar,
   AiOutlineCloudUpload,
   AiOutlineEdit,
   AiOutlineEye,
@@ -71,6 +72,7 @@ import { classNames } from "../../utils";
 
 const icons: IconsMap = {
   AiFillHeart,
+  AiFillStar,
   AiOutlineCloudUpload,
   AiOutlineEdit,
   AiOutlineEye,

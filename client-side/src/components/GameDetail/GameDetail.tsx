@@ -4,16 +4,17 @@ import { Button, Icon, Image } from "../UI";
 import { useStore } from "../../hooks";
 import { classNames, useMobileResponsive } from "../../utils";
 import { GameTabDetail } from "./GameTabDetail";
-import { Skeleton } from "../Common/Skeleton";
 import { HeaderBannerSkeleton } from "../Skeleton";
+
 interface GameDetailProps {
   gameDetail: any;
   gameVideos: any;
+  gameReviews: any;
 }
 
 export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
-  const { gameDetail, gameVideos } = props;
-  console.log("gameVideos :>> ", gameVideos);
+  const { gameDetail, gameVideos, gameReviews } = props;
+
   const {
     background_image,
     background_image_additional,
@@ -22,7 +23,7 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
     rating,
     playtime,
   } = gameDetail;
-
+  console.log("gameDetail :>> ", gameDetail);
   const { results: gameVideoResults } = gameVideos;
 
   const { loading } = useStore();
@@ -163,7 +164,7 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
             </div>
           )}
           <div className="flex-grow min-h-[500px] md:border-r border-divider md:px-16 px-5 md:py-7 pt-40">
-            <GameTabDetail gameDetail={gameDetail} />
+            <GameTabDetail gameDetail={gameDetail} gameReviews={gameReviews} />
           </div>
           <div className="shrink-0 md:max-w-[300px] w-full px-6 pt-6">
             <p className="text-onNeutralBg font-medium text-lg mb-5">MEDIA</p>

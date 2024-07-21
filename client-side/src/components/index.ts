@@ -18,6 +18,7 @@ export { Template } from "./Auth/Template";
 
 // Cards
 export { TopPlayCard } from "./Cards/TopPlayCard";
+export { MediaCard } from "./Cards/MediaCard";
 
 // Common
 export { ErrorFormMessage } from "./Common/ErrorFormMessage";
@@ -38,6 +39,7 @@ export { UserInfo } from "./Profile/UserInfo";
 
 // Section
 export { TopPlaySection } from "./Sections/TopPlaySection";
+export { MediaSection } from "./Sections/MediaSection";
 
 // Sidebar
 export { Sidebar } from "./Sidebar/Sidebar";

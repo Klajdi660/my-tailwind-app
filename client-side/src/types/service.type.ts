@@ -52,7 +52,7 @@ export interface UserDetailsResponse {
 export interface ServerResponse {
   error: boolean;
   message: string;
-  data?: object | any;
+  data?: any;
 }
 
 export interface TranslationsResponse {
