@@ -44,6 +44,7 @@ export const TopPlayCard: FunctionComponent<TopPlayCardProps> = (props) => {
             <div className="flex flex-col gap-3 xs:flex-row">
               <PlatformIconList
                 platforms={item.parent_platforms.map((p: any) => p.platform)}
+                className="group-hover:text-primary"
               />
             </div>
           </div>

@@ -37,7 +37,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
               <Icon
                 name={labelIcon}
                 className={classNames(
-                  variant === "none" && "text-primary",
+                  variant === "none" && "text-onNeutralBg",
                   variant === "outlined" && "text-primary",
                   variant === "contained" && "text-white",
                   variant === "delete" && "text-white",
@@ -46,7 +46,9 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
                 )}
               />
             )}
-            <div className="text-center whitespace-nowrap">{label}</div>
+            {label && (
+              <div className="text-center whitespace-nowrap">{label}</div>
+            )}
           </div>
         ) : (
           <>

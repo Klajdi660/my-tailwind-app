@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import { useSelector } from "react-redux";
 import { Icon } from "../Icon";
 import { CartButtonProps } from "../../../types";
 import { useAppUtil } from "../../../utils";
@@ -6,6 +7,8 @@ import { useAppUtil } from "../../../utils";
 export const CartButton: FunctionComponent<CartButtonProps> = () => {
   const { setOpenSwitch } = useAppUtil();
 
+  // const cart = useSelector((state: any) => state.cart.items);
+  // console.log("cart :>> ", cart);
   return (
     <div
       className="flex items-center h-full cursor-pointer"

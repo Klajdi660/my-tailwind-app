@@ -4,3 +4,4 @@ export { useNotification } from "./useNotification";
 // export { useSocket } from "./useSocket";
 export { useStore } from "./useStore";
 export { useTheme } from "./useTheme";
+export { useCart } from "./useCart";

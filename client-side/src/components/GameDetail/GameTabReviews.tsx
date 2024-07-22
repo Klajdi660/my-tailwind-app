@@ -14,12 +14,11 @@ interface ReviewContentProps {
 }
 
 const ReviewContent: FunctionComponent<ReviewContentProps> = (props) => {
-  const { gameReviews, type } = props;
+  const { gameReviews } = props;
 
   return (
     <ul className="flex flex-col gap-12 max-h-[400px] overflow-y-auto pr-4">
       {gameReviews.map((review: any) => {
-        console.log("review :>> ", review);
         return (
           <li key={review.id} className="flex gap-7">
             <div className="shrink-0 max-w-[60px] w-full h-[60px]">

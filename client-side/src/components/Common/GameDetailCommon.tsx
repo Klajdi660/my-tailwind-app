@@ -6,9 +6,11 @@ import {
   DeveloperListProps,
   PublisherListPorps,
 } from "../../types";
+import { classNames } from "../../utils";
 
 export const PlatformIconList: FunctionComponent<PlatformIconListProps> = ({
   platforms,
+  className,
 }) => {
   return (
     <>
@@ -16,7 +18,7 @@ export const PlatformIconList: FunctionComponent<PlatformIconListProps> = ({
         <Icon
           key={p.id}
           name={gameIconMap[p.slug]}
-          className="text-gray-400 group-hover:text-primary"
+          className={classNames("text-gray-500", className)}
           size={15}
         />
       ))}

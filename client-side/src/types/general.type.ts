@@ -122,3 +122,69 @@ export interface DownloadBtnList {
 export type GridList = {
   [key: number]: string;
 };
+
+// Game
+export interface GameParams {
+  added: number;
+  added_by_status: {
+    beaten: number;
+    dropped: number;
+    owned: number;
+    playing: number;
+    toplay: number;
+    yet: number;
+  };
+  background_image: string;
+  clip: string;
+  dominant_color: string;
+  esrb_rating: { id: number; name: string; slug: string };
+  genres: {
+    id: number;
+    name: string;
+    slug: string;
+    games_count: number;
+    image_background: string;
+  }[];
+  id: number;
+  metacritic: number;
+  name: string;
+  parent_platforms: { platform: { id: number; name: string; slug: string } }[];
+  platforms: {
+    platform: { id: number; name: string; slug: string };
+    released_at: string;
+  }[];
+  playtime: number;
+  rating: number;
+  rating_top: number;
+  ratings: { id: number; title: string; count: number; percent: number }[];
+  ratings_count: number;
+  released: string;
+  reviews_count: number;
+  reviews_text_count: number;
+  saturated_color: string;
+  short_screenshots: { id: number; image: string }[];
+  slug: string;
+  stores: {
+    id: number;
+    store: {
+      domain: string;
+      game_count: number;
+      id: number;
+      image_background: string;
+      name: string;
+      slug: string;
+    };
+  }[];
+  suggestions_count: number;
+  tags: {
+    games_count: number;
+    id: number;
+    image_background: string;
+    language: string;
+    name: string;
+    slug: string;
+  }[];
+  tba: boolean;
+  updated: string;
+  user_game: any;
+}

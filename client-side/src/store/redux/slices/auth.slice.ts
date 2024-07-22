@@ -28,5 +28,4 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
-
 export const { saveUser, updateUser, updateToken, deleteUser } = slice.actions;

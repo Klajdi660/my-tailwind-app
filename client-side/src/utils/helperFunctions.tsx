@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { noGameImg } from "../assets";
+import { GameParams } from "../types";
 
 dayjs.extend(customParseFormat);
 
@@ -116,7 +117,6 @@ export const gameNameTruncate = (str: string, len: number) => {
 };
 
 export const calculateTimePassed = (time: number): string => {
-  console.log("time :>> ", time);
   const unit = {
     year: 12 * 30 * 24 * 60 * 60 * 1000,
     month: 30 * 24 * 60 * 60 * 1000,
@@ -135,4 +135,31 @@ export const calculateTimePassed = (time: number): string => {
   }
 
   return "Just now";
+};
+
+export const getGamePrice = (game: GameParams) => {
+  const { released, genres } = game;
+
+  const isIndie = !!genres.find((genre) => genre.name === "Indie");
+
+  const releaseYear = new Date(released).getFullYear();
+  const currentYear = new Date().getFullYear();
+  const differenceYear = currentYear - releaseYear;
+
+  const minPrice = 1;
+  let discountPerYear = 0.35;
+  let newPrice = isIndie ? 30 : 70;
+
+  for (let i = 0; i < differenceYear; i++) {
+    newPrice += 1 - discountPerYear;
+    if (differenceYear > 0.1) {
+      discountPerYear -= 0.08;
+    } else {
+      discountPerYear = 0.1;
+    }
+  }
+
+  newPrice = Math.ceil(newPrice);
+  newPrice = newPrice < minPrice ? minPrice : newPrice;
+  return newPrice - 0.01;
 };

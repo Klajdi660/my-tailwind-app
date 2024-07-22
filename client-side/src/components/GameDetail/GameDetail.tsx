@@ -23,7 +23,7 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
     rating,
     playtime,
   } = gameDetail;
-  console.log("gameDetail :>> ", gameDetail);
+
   const { results: gameVideoResults } = gameVideos;
 
   const { loading } = useStore();

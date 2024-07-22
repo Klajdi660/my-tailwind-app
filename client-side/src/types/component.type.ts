@@ -84,6 +84,7 @@ interface PlatformIconList {
 
 export interface PlatformIconListProps {
   platforms: PlatformIconList[];
+  className?: string;
 }
 
 interface DeveloperList {
@@ -235,7 +236,7 @@ export type ModalDefaultStyles = {
 
 export interface ButtonProps {
   type?: "button" | "submit" | "reset";
-  label: string;
+  label?: string;
   disabled?: boolean;
   className?: string;
   variant:
@@ -391,7 +392,6 @@ export interface UserMenuProps {
 // Card
 export interface MediaCardProps {
   game: any;
-  key: string;
   type: string;
 }
 

@@ -35,8 +35,6 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
 
   const { loading } = useStore();
 
-  console.log("gameList :>> ", gameList);
-
   return (
     <>
       {loading ? (
