@@ -295,7 +295,8 @@ export interface ImgUploaderParams {}
 
 export interface OverlayProps {
   isOpen: boolean;
-  handleIsOpen: (value: boolean) => void;
+  // handleIsOpen: (value: boolean) => void;
+  handleIsOpen: any;
   transparent?: boolean;
   className?: string;
   isMobile?: boolean;

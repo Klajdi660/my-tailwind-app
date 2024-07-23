@@ -16,6 +16,11 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [show, setShow] = useState(true);
 
+  const handleBackCartSwitch = () => {
+    setOpenSwitch(false);
+    setIsEditing(false);
+  };
+
   return (
     <section
       className={classNames(
@@ -26,14 +31,15 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
     >
       <Overlay
         isOpen={openSwitch}
-        handleIsOpen={setOpenSwitch}
+        // handleIsOpen={setOpenSwitch}
+        handleIsOpen={handleBackCartSwitch}
         transparent
         isMobile={isMobile}
       />
       <div className="relative h-screen overflow-auto switch_body text-onNeutralBg bg-switch shadow-box">
         <div className="p-4 switch_header flex_justify_between">
           <div className="flex items-center gap-4 cursor-pointer">
-            <div onClick={() => setOpenSwitch(false)}>
+            <div onClick={handleBackCartSwitch}>
               <Icon name="GoArrowLeft" className="hover:text-primary" />
             </div>
             <h5 className="text-base font-semibold">Games</h5>
