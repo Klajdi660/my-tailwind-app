@@ -1,4 +1,3 @@
-export { CartSwitcher } from "./CartSwitcher";
 export { Footer } from "./Footer";
 export { FormField } from "./FormField";
 export { HomeFooter } from "./HomeFooter";
@@ -19,6 +18,9 @@ export { Template } from "./Auth/Template";
 // Cards
 export { TopPlayCard } from "./Cards/TopPlayCard";
 export { MediaCard } from "./Cards/MediaCard";
+
+// Cart
+export { CartSwitcher } from "./Cart/CartSwitcher";
 
 // Common
 export { ErrorFormMessage } from "./Common/ErrorFormMessage";

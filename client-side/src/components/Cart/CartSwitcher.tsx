@@ -1,11 +1,15 @@
 import { FunctionComponent } from "react";
-import { Icon, Overlay } from "./UI";
-import { CartSwitcherProps } from "../types";
-import { classNames, useAppUtil, useMobileResponsive } from "../utils";
+import { useSelector } from "react-redux";
+import { Icon, Overlay } from "../UI";
+import { RootState } from "../../store";
+import { CartSwitcherProps } from "../../types";
+import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
 
 export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   const { openSwitch, setOpenSwitch } = useAppUtil();
   const isMobile = useMobileResponsive();
+
+  const cart = useSelector((state: RootState) => state.cart.items);
 
   return (
     <section

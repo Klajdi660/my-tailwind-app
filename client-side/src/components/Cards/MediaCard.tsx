@@ -1,35 +1,34 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { PlatformIconList } from "../Common";
 import { Image, Icon } from "../UI";
 import { paths } from "../../data";
+import { useCart, useNotification } from "../../hooks";
 import { MediaCardProps } from "../../types";
 import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
-import { addToCart } from "../../store";
-import { useCart } from "../../hooks";
 
 export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
   const { game, type } = props;
 
   const { gameDetail } = paths;
 
+  const navigate = useNavigate();
+  const [notify] = useNotification();
   const { addGameToCart } = useCart();
 
-  console.log("game :>> ", game);
-
-  const navigate = useNavigate();
-
-  const dispatch = useDispatch();
+  const cart = useSelector((state: any) => state.cart.items);
 
   const gamePrice = getGamePrice(game);
 
+  const gameInCart = cart.find((item: any) => item.id === game.id);
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
-    dispatch(addToCart(game));
+    addGameToCart(game);
+    notify({ variant: "success", description: "Game was added to the cart" });
   };
 
-  //  hover:bg-card-hover
   return (
     <div
       className={classNames(
@@ -82,12 +81,18 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
           <div className="bg-primary-opacity p-2 rounded text-sm">
             ${gamePrice}
           </div>
-          <button
-            className="p-2 bg-primary-opacity rounded text-sm hover:bg-primary"
-            onClick={handleAddToCart}
-          >
-            <Icon name="FaOpencart" size={20} className="hover:text-white" />
-          </button>
+          {gameInCart ? (
+            <button className="p-2 bg-primary rounded text-sm">
+              <Icon name="FaOpencart" size={20} className="text-white" />
+            </button>
+          ) : (
+            <button
+              className="p-2 bg-primary-opacity rounded text-sm hover:bg-primary"
+              onClick={handleAddToCart}
+            >
+              <Icon name="FaOpencart" size={20} className="hover:text-white" />
+            </button>
+          )}
         </div>
       </div>
     </div>

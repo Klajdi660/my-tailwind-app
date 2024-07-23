@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { GameParams } from "../types";
 import { addToCart } from "../store";
 
+// import { addToCart } from "../store/redux/action";
+
 export const useCart = () => {
   const dispatch = useDispatch();
 
