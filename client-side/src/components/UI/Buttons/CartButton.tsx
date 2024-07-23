@@ -10,6 +10,8 @@ export const CartButton: FunctionComponent<CartButtonProps> = () => {
 
   const cart = useSelector((state: RootState) => state.cart.items);
 
+  console.log("cart 111 :>> ", cart);
+
   return (
     <div
       className="flex items-center h-full cursor-pointer"

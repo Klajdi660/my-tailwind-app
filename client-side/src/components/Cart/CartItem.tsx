@@ -1,19 +1,33 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { PlatformIconList } from "../Common";
 import { paths } from "../../data";
-import { classNames, gameNameTruncate } from "../../utils";
+import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
+import { useCart, useNotification } from "../../hooks";
+import { Button } from "../UI";
 
-interface TopPlayCardProps {
+interface CartItemProps {
   key: number;
   item: any;
   imageDims: string;
   listDivider: boolean;
 }
 
-export const TopPlayCard: FunctionComponent<TopPlayCardProps> = (props) => {
+export const CartItem: FunctionComponent<CartItemProps> = (props) => {
   const { item, listDivider } = props;
   const { gameDetail } = paths;
+
+  const { removeGameFromCart } = useCart();
+  const [notify] = useNotification();
+
+  const gamePrice = getGamePrice(item);
+
+  const handleRemoveFromCart = () => {
+    removeGameFromCart(item.id);
+    notify({
+      variant: "success",
+      description: "Game was delete from the cart",
+    });
+  };
 
   return (
     <li
@@ -41,16 +55,19 @@ export const TopPlayCard: FunctionComponent<TopPlayCardProps> = (props) => {
             />
           </div>
           <div className="flex flex-col flex-1 w-full gap-1 text-onNeutralBg group-hover:text-primary">
-            <span className="text-sm">{gameNameTruncate(item.name, 25)}</span>
-            <div className="flex flex-col gap-3 xs:flex-row">
-              <PlatformIconList
-                platforms={item.parent_platforms.map((p: any) => p.platform)}
-                className="group-hover:text-primary"
-              />
-            </div>
+            <span className="text-base">{gameNameTruncate(item.name, 25)}</span>
+            <p className="text-sm text-secondary">${gamePrice}</p>
           </div>
         </div>
       </Link>
+      <Button
+        onClick={handleRemoveFromCart}
+        variant="none"
+        className="w-8 h-8 flex_justify_center"
+        iconClassName="hover:text-primary"
+        labelIcon="AiOutlineDelete"
+        tooltipTitle="Delete"
+      />
     </li>
   );
 };

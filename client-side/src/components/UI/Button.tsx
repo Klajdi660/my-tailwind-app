@@ -2,10 +2,22 @@ import { forwardRef, FunctionComponent, Ref } from "react";
 import { Icon } from "./Icon";
 import { ButtonProps } from "../../types";
 import { classNames, useSubmitting } from "../../utils";
+import { Tooltip } from "antd";
 
 export const Button: FunctionComponent<ButtonProps> = forwardRef(
   (
-    { type, label, disabled, className, variant, labelIcon, onClick, ...props },
+    {
+      type,
+      label,
+      disabled,
+      className,
+      iconClassName,
+      variant,
+      labelIcon,
+      tooltipTitle,
+      onClick,
+      ...props
+    },
     ref: Ref<HTMLButtonElement>
   ) => {
     const { isSubmitting } = useSubmitting();
@@ -13,7 +25,8 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
     return (
       <button
         className={classNames(
-          variant === "none" && "text-primary hover:bg-primary-opacity",
+          // variant === "none" && "text-primary hover:bg-primary-opacity",
+          variant === "none" && className,
           variant === "outlined" &&
             "border border-primary text-primary hover:bg-primary-opacity",
           variant === "delete" && "bg-red-500 text-white hover:brightness-110",
@@ -32,24 +45,26 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
         {...props}
       >
         {!isSubmitting ? (
-          <div className="flex flex-row items-center justify-center gap-2">
-            {labelIcon && (
-              <Icon
-                name={labelIcon}
-                className={classNames(
-                  variant === "none" && "text-onNeutralBg",
-                  variant === "outlined" && "text-primary",
-                  variant === "contained" && "text-white",
-                  variant === "delete" && "text-white",
-                  variant === "filled" && "text-white",
-                  variant === "gradient" && "text-white"
-                )}
-              />
-            )}
-            {label && (
-              <div className="text-center whitespace-nowrap">{label}</div>
-            )}
-          </div>
+          <Tooltip arrow={false} title={tooltipTitle} trigger={["hover"]}>
+            <div className="flex flex-row items-center justify-center gap-2">
+              {labelIcon && (
+                <Icon
+                  name={labelIcon}
+                  className={classNames(
+                    variant === "none" && iconClassName,
+                    variant === "outlined" && "text-primary",
+                    variant === "contained" && "text-white",
+                    variant === "delete" && "text-white",
+                    variant === "filled" && "text-white",
+                    variant === "gradient" && "text-white"
+                  )}
+                />
+              )}
+              {label && (
+                <div className="text-center whitespace-nowrap">{label}</div>
+              )}
+            </div>
+          </Tooltip>
         ) : (
           <>
             <svg

@@ -14,6 +14,7 @@ import {
   AiOutlineUser,
   AiOutlineYoutube,
   AiOutlineInstagram,
+  AiOutlineDelete,
 } from "react-icons/ai";
 import {
   BiChevronsRight,
@@ -21,6 +22,7 @@ import {
   BiSearch,
   BiUser,
   BiWorld,
+  BiSelectMultiple,
 } from "react-icons/bi";
 import {
   BsFillPlayFill,
@@ -61,7 +63,10 @@ import {
   MdOutlineWbSunny,
   MdStorefront,
   MdPhoneIphone,
+  MdOutlineCancel,
+  MdClear,
 } from "react-icons/md";
+import { GoArrowLeft } from "react-icons/go";
 import { PiWarningCircle, PiWarningCircleBold } from "react-icons/pi";
 import { RiFirefoxLine, RiInstagramFill } from "react-icons/ri";
 import { SlGameController, SlSocialDropbox, SlArrowUp } from "react-icons/sl";
@@ -84,11 +89,13 @@ const icons: IconsMap = {
   AiOutlineUser,
   AiOutlineYoutube,
   AiOutlineInstagram,
+  AiOutlineDelete,
   BiChevronsRight,
   BiGame,
   BiSearch,
   BiUser,
   BiWorld,
+  BiSelectMultiple,
   BsFillPlayFill,
   BsMoonStars,
   BsNintendoSwitch,
@@ -116,6 +123,9 @@ const icons: IconsMap = {
   MdOutlineGames,
   MdOutlineWbSunny,
   MdStorefront,
+  MdOutlineCancel,
+  MdClear,
+  GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,
   RiFirefoxLine,

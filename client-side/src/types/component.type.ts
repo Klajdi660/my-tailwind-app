@@ -239,6 +239,8 @@ export interface ButtonProps {
   label?: string;
   disabled?: boolean;
   className?: string;
+  iconClassName?: string;
+  tooltipTitle?: string;
   variant:
     | "outlined"
     | "none"

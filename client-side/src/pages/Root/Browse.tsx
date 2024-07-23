@@ -10,7 +10,7 @@ export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
   const queryOptions = {
     queryKey: ["topPlay"],
     // queryKey: ["topPlay", values],
-    queryFn: () => getGameList({ page: 1, pageSize: 5 }),
+    queryFn: () => getGameList({ page: 1, pageSize: 20 }),
   };
 
   const { data: gameList } = useQuery(queryOptions);
