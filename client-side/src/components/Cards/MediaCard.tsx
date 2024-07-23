@@ -73,9 +73,9 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
               platforms={game.parent_platforms.map((p: any) => p.platform)}
             />
           </div>
-          <div className="bg-primary-opacity px-2 py-1 rounded text-sm">
+          {/* <div className="bg-primary-opacity px-2 py-1 rounded text-sm">
             {game.metacritic}
-          </div>
+          </div> */}
         </div>
         <div className="flex items-center justify-between mt-3">
           <div className="bg-primary-opacity p-2 rounded text-sm">

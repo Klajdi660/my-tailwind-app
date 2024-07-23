@@ -110,7 +110,7 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
           </div>
           <div className="group">
             <Button
-              label="BUY"
+              label="Checkout"
               variant="none"
               labelIcon="CiShoppingTag"
               className="bg-primary-opacity rounded-full group-hover:bg-primary group-hover:text-white"
