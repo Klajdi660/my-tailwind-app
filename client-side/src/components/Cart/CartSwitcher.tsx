@@ -32,13 +32,15 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
         transparent
         isMobile={isMobile}
       />
-      <CartHeader
-        cart={cart}
-        isEditing={isEditing}
-        setIsEditing={setIsEditing}
-        handleBackCartSwitch={handleBackCartSwitch}
-      />
-      <CartBody cart={cart} />
+      <div className="relative h-screen overflow-auto switch_body text-onNeutralBg bg-switch shadow-box">
+        <CartHeader
+          cart={cart}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+          handleBackCartSwitch={handleBackCartSwitch}
+        />
+        <CartBody cart={cart} />
+      </div>
     </section>
   );
 };
