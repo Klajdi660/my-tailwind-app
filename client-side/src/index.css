@@ -12,7 +12,7 @@
 
 html,
 body {
-  /* font-family: var(--font-family), sans-serif; */
+  font-family: var(--font-family), sans-serif;
   font-family:
     "Poppins",
     sans-serif,
@@ -30,18 +30,44 @@ body {
   color: var(--onNeutralBg) !important;
 }
 
+/* CUSTOM SCROLLBAR*/
+::-webkit-scrollbar {
+  @apply w-[5px];
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-button {
+  @apply hidden;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded-full hover:bg-primary-opacity transition duration-300;
+}
+
+.hide_scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide_scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @layer components {
   .cart_switch_section {
     @apply fixed z-[1000] top-0 h-screen duration-300 transition-all ease-linear;
   }
 
-  .cart_switch_button {
+  /* .cart_switch_button {
     @apply absolute z-[1045] rounded-tl-full rounded-tr-full rounded-bl-full rounded-br w-[40px] h-[40px] top-2 flex items-center justify-center;
-  }
+  } */
 
-  .absolute_centering {
+  /* .absolute_centering {
     @apply top-[50%] right-[50%] -translate-x-[50%] -translate-y-[50%];
-  }
+  } */
 
   .flex_justify_between {
     @apply flex items-center justify-between;
@@ -58,26 +84,26 @@ body {
   }
 }
 
-.primary_linear {
+/* .primary_linear {
   background: linear-gradient(var(--primary-light-gray), var(--primary));
-}
+} */
 
-.main_background {
+/* .main_background {
   background-image: linear-gradient(
     to bottom,
     var(--primary-opacity),
     var(--neutralBg) 1%,
     var(--neutralBg)
   );
-}
+} */
 
-.banner_background {
+/* .banner_background {
   background-image: linear-gradient(
     to bottom,
     transparent -300%,
     var(--neutralBg)
   );
-}
+} */
 
 .main_width,
 .nav_width {
@@ -87,10 +113,10 @@ body {
   transition-duration: 500ms;
 }
 
-.player_width {
+/* .player_width {
   width: var(--main-width);
   left: var(--sidebar-horizontal-width);
-}
+} */
 
 .sidebar_horizontal_width {
   width: var(--nav-width);
@@ -100,30 +126,25 @@ body {
   height: calc(100vh - var(--nav-height));
 }
 
-.genre_card_height {
+.switch_body_scroll {
+  height: calc(100vh - 200px);
+}
+
+/* .genre_card_height {
   height: calc(100vh - var(--nav-height) - var(--player-height));
-}
+} */
 
-.navbar_horizontal_width {
+/* .navbar_horizontal_width {
   width: calc(100% - var(--sidebar-width) - var(--aside-width));
-}
+} */
 
-.hide_scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.hide_scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.theme_switch_button_shadow {
+/* .theme_switch_button_shadow {
   box-shadow: var(--primary-light-gray) 0px 5px 14px 0px;
-}
+} */
 
-.slide_up {
+/* .slide_up {
   transition: all 0.8s ease-in;
-}
+} */
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -145,12 +166,66 @@ input[type="checkbox"] {
 }
 
 /* ANTD */
+
+/* .notify a:hover {
+  color: inherit;
+} */
+
+/* Start Loading */
+/* .progress {
+  animation: progress 1s infinite linear;
+}
+
+.left-right {
+  transform-origin: 0% 50%;
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(0) scaleX(0);
+  }
+  40% {
+    transform: translateX(0) scaleX(0.4);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.5);
+  }
+} */
+
+/* Game detail */
+/* .tw-absolute-center-horizontal {
+  @apply absolute left-1/2 -translate-x-1/2;
+} */
+
+/* .tw-flex-center {
+  @apply flex justify-center items-center;
+} */
+
+/* ANTD STYLE */
+
+/* Form */
 .ant-form-vertical .ant-form-item {
   margin-bottom: 0px;
 }
 
-.notify a:hover {
-  color: inherit;
+.ant-form input,
+.ant-input-affix-wrapper,
+.ant-checkbox .ant-checkbox-inner {
+  background-color: transparent !important;
+  color: var(--onNeutralBg) !important;
+  border: 1px solid var(--onNeutralBgDivider);
+}
+.ant-checkbox-checked:not(.ant-checkbox-disabled) .ant-checkbox-inner {
+  background-color: var(--primary) !important;
+}
+.ant-btn-primary:disabled {
+  background-color: transparent !important;
+  color: var(--onNeutralBg) !important;
+  border: 1px solid var(--onNeutralBgDivider);
+}
+
+.ant-form input::placeholder {
+  color: #9ca3af;
 }
 
 /* Date Picker */
@@ -180,9 +255,6 @@ input[type="checkbox"] {
 }
 .ant-picker-dropdown .ant-picker-panel-container {
   background-color: var(--neutralBgAlt);
-  /* display: flex;
-  justify-content: center;
-  width: 336px; */
 }
 .ant-picker-dropdown .ant-picker-cell {
   color: #9ca3af;
@@ -196,7 +268,6 @@ input[type="checkbox"] {
 .ant-picker-dropdown .ant-picker-header button:hover {
   color: var(--primary);
 }
-/*  */
 
 /* Ant Modal */
 .ant-modal .ant-modal-content {
@@ -213,7 +284,6 @@ input[type="checkbox"] {
 .ant-modal .ant-modal-close:hover {
   color: var(--onNeutralBg);
 }
-/* */
 
 /* Popover */
 .ant-popover {
@@ -226,29 +296,6 @@ input[type="checkbox"] {
 .ant-popover-inner {
   background-color: var(--neutralBgAlt) !important;
 }
-/*  */
-
-/* Form */
-.ant-form input,
-.ant-input-affix-wrapper,
-.ant-checkbox .ant-checkbox-inner {
-  background-color: transparent !important;
-  color: var(--onNeutralBg) !important;
-  border: 1px solid var(--onNeutralBgDivider);
-}
-.ant-checkbox-checked:not(.ant-checkbox-disabled) .ant-checkbox-inner {
-  background-color: var(--primary) !important;
-}
-.ant-btn-primary:disabled {
-  background-color: transparent !important;
-  color: var(--onNeutralBg) !important;
-  border: 1px solid var(--onNeutralBgDivider);
-}
-
-.ant-form input::placeholder {
-  color: #9ca3af;
-}
-/*  */
 
 /* Select */
 .ant-select-dropdown {
@@ -274,58 +321,8 @@ input[type="checkbox"] {
 .ant-select-outlined .ant-select-selector:focus-within {
   outline: 1px solid var(--primary) !important;
 }
-/* */
 
-/* CUSTOM SCROLLBAR*/
-::-webkit-scrollbar {
-  @apply w-[5px];
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-transparent;
-}
-
-::-webkit-scrollbar-button {
-  @apply hidden;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-primary rounded-full hover:bg-primary-opacity transition duration-300;
-}
-
-/*  OTP*/
-.otp-code input {
-  background: transparent;
-  color: var(--onNeutralBg);
-  border: 0.5px solid var(--onNeutralBgDivider);
-}
-
-/* Start Loading */
-.progress {
-  animation: progress 1s infinite linear;
-}
-
-.left-right {
-  transform-origin: 0% 50%;
-}
-
-@keyframes progress {
-  0% {
-    transform: translateX(0) scaleX(0);
-  }
-  40% {
-    transform: translateX(0) scaleX(0.4);
-  }
-  100% {
-    transform: translateX(100%) scaleX(0.5);
-  }
-}
-/* End Loading */
-/* .loading-class {
-  background: rgba(89, 131, 83, 0.09);
-  backdrop-filter: blur(2px);
-} */
-
+/* Tooltip */
 .ant-tooltip .ant-tooltip-inner {
   color: var(--onNeutralBg) !important;
   background: var(--switchBg) !important;
@@ -335,26 +332,14 @@ input[type="checkbox"] {
   background: var(--switchBg) !important;
 }
 
-.red-dot {
-  position: absolute;
-  left: -10px; /* Adjust this value as needed */
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  background-color: red;
-  border-radius: 50%;
-}
-
-/* Game detail */
-.tw-absolute-center-horizontal {
-  @apply absolute left-1/2 -translate-x-1/2;
-}
-
-.tw-flex-center {
-  @apply flex justify-center items-center;
-}
-
+/* Progress Bar */
 .ant-progress.ant-progress-circle .ant-progress-text {
   color: var(--onNeutralBg) !important;
+}
+
+/*  OTP*/
+.otp-code input {
+  background: transparent;
+  color: var(--onNeutralBg);
+  border: 0.5px solid var(--onNeutralBgDivider);
 }

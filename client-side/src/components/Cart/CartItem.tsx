@@ -1,28 +1,40 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
+import { Icon } from "../UI";
 import { paths } from "../../data";
-import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
 import { useCart, useNotification } from "../../hooks";
-import { Button } from "../UI";
+import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
 
 interface CartItemProps {
   key: number;
   item: any;
   imageDims: string;
-  listDivider: boolean;
 }
 
 export const CartItem: FunctionComponent<CartItemProps> = (props) => {
-  const { item, listDivider } = props;
+  const { item } = props;
+  const { id, name, slug, background_image } = item;
   const { gameDetail } = paths;
 
   const { removeGameFromCart } = useCart();
   const [notify] = useNotification();
 
+  const [count, setCount] = useState<number>(1);
+
   const gamePrice = getGamePrice(item);
 
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
+
+  const handleDecrement = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
+
   const handleRemoveFromCart = () => {
-    removeGameFromCart(item.id);
+    removeGameFromCart(id);
     notify({
       variant: "success",
       description: "Game was delete from the cart",
@@ -31,14 +43,13 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
 
   return (
     <li
-      key={item.id}
+      key={id}
       className={classNames(
-        "relative p-3 flex items-center text-base !text-onNeutralBg hover:bg-card-hover hover:rounded cursor-pointer group border-divider focus-within:bg-primary-opacity focus-within:rounded",
-        listDivider ? "py-3" : "py-2"
+        "relative p-2 flex items-center text-base !text-onNeutralBg cursor-pointer space-y-2"
       )}
     >
       <Link
-        to={`${gameDetail}/${item.id}`}
+        to={`${gameDetail}/${id}`}
         className="relative flex justify-center w-full items-center group"
       >
         <div className="flex items-center justify-start flex-1 gap-2 xs:gap-4">
@@ -49,25 +60,45 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
               )}
             />
             <img
-              src={item.background_image}
-              alt={item.slug}
+              src={background_image}
+              alt={slug}
               className={classNames("h-full w-full rounded aspect-square")}
             />
           </div>
-          <div className="flex flex-col flex-1 w-full gap-1 text-onNeutralBg group-hover:text-primary">
-            <span className="text-base">{gameNameTruncate(item.name, 25)}</span>
-            <p className="text-sm text-secondary">${gamePrice}</p>
+          <div className="flex flex-col flex-1 w-full gap-1 text-onNeutralBg">
+            <span className="text-base group-hover:text-primary">
+              {gameNameTruncate(name, 20)}
+            </span>
+            <p className="flex text-sm text-secondary gap-1 group-hover:text-primary">
+              <span className="text-red-600">$</span>
+              {gamePrice}
+            </p>
           </div>
         </div>
       </Link>
-      <Button
-        onClick={handleRemoveFromCart}
-        variant="none"
-        className="w-8 h-8 flex_justify_center"
-        iconClassName="hover:text-primary"
-        labelIcon="AiOutlineDelete"
-        tooltipTitle="Delete"
-      />
+      <div className="flex gap-2">
+        <div className="group flex items-center gap-2">
+          <Icon
+            name="BiMinus"
+            className="text-gray-500"
+            onClick={handleDecrement}
+          />
+          <p className="flex_justify_center text-sm text-onNeutralBg w-5 h-5 bg-primary-opacity rounded-sm cursor-default">
+            {count}
+          </p>
+          <Icon
+            name="BiPlus"
+            className="text-gray-500"
+            onClick={handleIncrement}
+          />
+        </div>
+        <div
+          className="w-6 h-6 flex_justify_center bg-red-500 rounded hover:opacity-80"
+          onClick={handleRemoveFromCart}
+        >
+          <Icon name="AiOutlineDelete" size={16} className="text-white" />
+        </div>
+      </div>
     </li>
   );
 };

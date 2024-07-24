@@ -15,6 +15,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
       variant,
       labelIcon,
       tooltipTitle,
+      size,
       onClick,
       ...props
     },
@@ -58,6 +59,7 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
                     variant === "filled" && "text-white",
                     variant === "gradient" && "text-white"
                   )}
+                  size={size}
                 />
               )}
               {label && (

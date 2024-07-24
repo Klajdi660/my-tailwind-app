@@ -23,6 +23,8 @@ import {
   BiUser,
   BiWorld,
   BiSelectMultiple,
+  BiMinus,
+  BiPlus,
 } from "react-icons/bi";
 import {
   BsFillPlayFill,
@@ -96,6 +98,8 @@ const icons: IconsMap = {
   BiUser,
   BiWorld,
   BiSelectMultiple,
+  BiMinus,
+  BiPlus,
   BsFillPlayFill,
   BsMoonStars,
   BsNintendoSwitch,
@@ -149,6 +153,7 @@ export const Icon: FunctionComponent<IconParams> = ({
   name = "MdHome",
   size = 20,
   className = "",
+  onClick,
   ...props
 }) => {
   const Icons = icons?.[name] || icons?.["MdHome"];
@@ -156,11 +161,12 @@ export const Icon: FunctionComponent<IconParams> = ({
   return (
     <IconContext.Provider
       value={{
-        className: classNames("text-onNeutralBg", className),
+        // className: classNames("text-onNeutralBg", className),
+        className: classNames(className, "text-onNeutralBg"),
         ...props,
       }}
     >
-      <Icons size={size} />
+      <Icons size={size} onClick={onClick} />
     </IconContext.Provider>
   );
 };

@@ -8,7 +8,7 @@ export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
   const { getGameList } = useGamesService();
 
   const queryOptions = {
-    queryKey: ["topPlay"],
+    queryKey: ["discover"],
     // queryKey: ["topPlay", values],
     queryFn: () => getGameList({ page: 1, pageSize: 20 }),
   };

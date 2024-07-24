@@ -236,6 +236,7 @@ export type ModalDefaultStyles = {
 
 export interface ButtonProps {
   type?: "button" | "submit" | "reset";
+  size?: number;
   label?: string;
   disabled?: boolean;
   className?: string;
@@ -267,6 +268,7 @@ export interface IconParams {
   name: string;
   props?: any;
   size?: number;
+  onClick?: any;
 }
 
 export type IconsMap = {
