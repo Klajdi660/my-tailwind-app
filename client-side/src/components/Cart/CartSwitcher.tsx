@@ -13,6 +13,7 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
 
   const [isEditing, setIsEditing] = useState(false);
+  const [isSelectAll, setIsSelectAll] = useState(false);
 
   const handleBackCartSwitch = () => {
     setOpenSwitch(false);
@@ -38,8 +39,14 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
           isEditing={isEditing}
           setIsEditing={setIsEditing}
           handleBackCartSwitch={handleBackCartSwitch}
+          isSelectAll={isSelectAll}
+          setIsSelectAll={setIsSelectAll}
         />
-        <CartBody cart={cart} />
+        <CartBody
+          cart={cart}
+          isSelectAll={isSelectAll}
+          setIsSelectAll={setIsSelectAll}
+        />
       </div>
     </section>
   );

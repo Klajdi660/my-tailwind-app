@@ -51,7 +51,7 @@ import {
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiUpload } from "react-icons/fi";
-import { HiMenuAlt2 } from "react-icons/hi";
+import { HiMenuAlt2, HiCheck } from "react-icons/hi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 import {
@@ -116,6 +116,7 @@ const icons: IconsMap = {
   FiAlertTriangle,
   FiUpload,
   HiMenuAlt2,
+  HiCheck,
   IoMdNotificationsOutline,
   LiaSignOutAltSolid,
   MdCancel,

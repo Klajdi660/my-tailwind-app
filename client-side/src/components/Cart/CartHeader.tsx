@@ -8,10 +8,18 @@ interface CartHeaderProps {
   handleBackCartSwitch: any;
   isEditing: boolean;
   setIsEditing: (isEditing: boolean) => void;
+  isSelectAll: boolean;
+  setIsSelectAll: (isSelectAll: boolean) => void;
 }
 
 export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
-  const { cart, handleBackCartSwitch, isEditing, setIsEditing } = props;
+  const {
+    cart,
+    handleBackCartSwitch,
+    isEditing,
+    setIsEditing,
+    setIsSelectAll,
+  } = props;
 
   const [show, setShow] = useState(true);
 
@@ -45,6 +53,7 @@ export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
               iconClassName="hover:text-primary"
               labelIcon="BiSelectMultiple"
               tooltipTitle="Select all"
+              onClick={() => setIsSelectAll(true)}
             />
             <Button
               variant="none"
@@ -58,7 +67,10 @@ export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
               labelIcon="MdOutlineCancel"
               className="w-8 h-8 flex_justify_center"
               iconClassName="hover:text-primary"
-              onClick={() => setIsEditing(false)}
+              onClick={() => {
+                setIsEditing(false);
+                setIsSelectAll(false);
+              }}
               tooltipTitle="Cancel"
             />
           </div>

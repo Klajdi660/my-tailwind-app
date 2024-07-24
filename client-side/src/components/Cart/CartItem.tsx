@@ -9,10 +9,12 @@ interface CartItemProps {
   key: number;
   item: any;
   imageDims: string;
+  isSelectAll: boolean;
+  setIsSelectAll: (isSelectAll: boolean) => void;
 }
 
 export const CartItem: FunctionComponent<CartItemProps> = (props) => {
-  const { item } = props;
+  const { item, isSelectAll, setIsSelectAll } = props;
   const { id, name, slug, background_image } = item;
   const { gameDetail } = paths;
 
@@ -40,12 +42,12 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
       description: "Game was delete from the cart",
     });
   };
-
+  console.log("isSelectAll :>> ", isSelectAll);
   return (
     <li
       key={id}
       className={classNames(
-        "relative p-2 flex items-center text-base !text-onNeutralBg cursor-pointer space-y-2"
+        "relative p-2 flex items-center text-base !text-onNeutralBg cursor-pointer"
       )}
     >
       <Link
@@ -92,12 +94,19 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
             onClick={handleIncrement}
           />
         </div>
-        <div
-          className="w-6 h-6 flex_justify_center bg-red-500 rounded hover:opacity-80"
-          onClick={handleRemoveFromCart}
-        >
-          <Icon name="AiOutlineDelete" size={16} className="text-white" />
-        </div>
+        {!isSelectAll && (
+          <div
+            className="w-6 h-6 flex_justify_center bg-red-500 rounded hover:opacity-80"
+            onClick={handleRemoveFromCart}
+          >
+            <Icon name="AiOutlineDelete" size={16} className="text-white" />
+          </div>
+        )}
+        {isSelectAll && (
+          <div className="w-6 h-6 flex_justify_center bg-primary rounded hover:opacity-80">
+            <Icon name="HiCheck" size={16} className="text-white" />
+          </div>
+        )}
       </div>
     </li>
   );

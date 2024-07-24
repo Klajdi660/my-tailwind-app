@@ -1,13 +1,15 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import { CartItem, CartFooter } from "../Cart";
 import { GameParams } from "../../types";
 
 interface CartBodyProps {
   cart: GameParams[];
+  isSelectAll: boolean;
+  setIsSelectAll: (isSelectAll: boolean) => void;
 }
 
 export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
-  const { cart } = props;
+  const { cart, isSelectAll, setIsSelectAll } = props;
 
   return (
     <div className="switch_body">
@@ -16,7 +18,13 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
         className="switch_body_scroll flex flex-col w-full px-2 list-none overflow-y-auto hide_scrollbar space-y-2"
       >
         {cart.map((item) => (
-          <CartItem key={item.id} item={item} imageDims="16" />
+          <CartItem
+            key={item.id}
+            item={item}
+            imageDims="16"
+            isSelectAll={isSelectAll}
+            setIsSelectAll={setIsSelectAll}
+          />
         ))}
       </ul>
       <CartFooter />
