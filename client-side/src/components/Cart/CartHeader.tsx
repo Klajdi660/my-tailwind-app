@@ -16,7 +16,7 @@ export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
   const [show, setShow] = useState(true);
 
   return (
-    <div className="switch_header flex_justify_between p-4 cursor-pointer">
+    <div className="switch_header flex_justify_between p-4 cursor-pointer h-navbar">
       <div className="flex items-center gap-4">
         <div onClick={handleBackCartSwitch}>
           <Icon name="GoArrowLeft" className="hover:text-primary" />

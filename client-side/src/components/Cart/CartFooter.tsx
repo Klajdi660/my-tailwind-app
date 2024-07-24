@@ -30,13 +30,13 @@ export const CartFooter: FunctionComponent<CartFooterProps> = (props) => {
           <span className="text-sm text-red-600">₵</span> 200
         </p>
       </div>
-      <div className="group mt-5">
+      <div className="group mt-2 w-full flex_justify_center">
         <Button
           label={buttonLabel}
           variant="none"
           labelIcon="CiShoppingTag"
-          className="bg-primary-opacity rounded-full group-hover:bg-primary group-hover:text-white"
-          iconClassName="text-onNeutralBg group-hover:text-white"
+          className="w-[80%] bg-primary rounded-full text-white group-hover:opacity-70"
+          iconClassName="text-white"
         />
       </div>
     </div>

@@ -22,7 +22,7 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   return (
     <section
       className={classNames(
-        "cart_switch_section w-aside",
+        "cart_switch_section w-aside bg-switch",
         openSwitch ? "right-0" : "-right-aside"
       )}
     >
@@ -32,16 +32,13 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
         transparent
         isMobile={isMobile}
       />
-      <div className="relative h-screen switch_body text-onNeutralBg bg-switch shadow-box">
-        <CartHeader
-          cart={cart}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-          handleBackCartSwitch={handleBackCartSwitch}
-        />
-        <CartBody cart={cart} />
-        {/* <CartFooter /> */}
-      </div>
+      <CartHeader
+        cart={cart}
+        isEditing={isEditing}
+        setIsEditing={setIsEditing}
+        handleBackCartSwitch={handleBackCartSwitch}
+      />
+      <CartBody cart={cart} />
     </section>
   );
 };
