@@ -9,12 +9,13 @@ interface CartItemProps {
   key: number;
   item: any;
   imageDims: string;
-  isSelectAll: boolean;
-  setIsSelectAll: (isSelectAll: boolean) => void;
+  isEditing: boolean;
+  selections: number[];
+  setSelections: (selections: number[]) => void;
 }
 
 export const CartItem: FunctionComponent<CartItemProps> = (props) => {
-  const { item, isSelectAll, setIsSelectAll } = props;
+  const { item, isEditing, selections, setSelections } = props;
   const { id, name, slug, background_image } = item;
   const { gameDetail } = paths;
 
@@ -42,7 +43,16 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
       description: "Game was delete from the cart",
     });
   };
-  console.log("isSelectAll :>> ", isSelectAll);
+
+  const hasOneSelect = selections.includes(id);
+
+  const oneSelectGame = () => {
+    const selectOne = hasOneSelect
+      ? selections.filter((selectedId) => selectedId !== id)
+      : [...selections, id];
+    setSelections(selectOne);
+  };
+
   return (
     <li
       key={id}
@@ -94,18 +104,23 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
             onClick={handleIncrement}
           />
         </div>
-        {!isSelectAll && (
+        {!isEditing && (
           <div
-            className="w-6 h-6 flex_justify_center bg-red-500 rounded hover:opacity-80"
+            className="w-5 h-5 flex_justify_center bg-red-500 rounded hover:opacity-80"
             onClick={handleRemoveFromCart}
           >
-            <Icon name="AiOutlineDelete" size={16} className="text-white" />
+            <Icon name="AiOutlineDelete" size={14} className="text-white" />
           </div>
         )}
-        {isSelectAll && (
-          <div className="w-6 h-6 flex_justify_center bg-primary rounded hover:opacity-80">
-            <Icon name="HiCheck" size={16} className="text-white" />
-          </div>
+        {isEditing && (
+          <button
+            className="w-5 h-5 flex_justify_center bg-none border border-primary rounded hover:opacity-80"
+            onClick={oneSelectGame}
+          >
+            {hasOneSelect && (
+              <Icon name="HiCheck" size={16} className="text-primary" />
+            )}
+          </button>
         )}
       </div>
     </li>

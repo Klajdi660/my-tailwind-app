@@ -4,30 +4,30 @@ import { GameParams } from "../../types";
 
 interface CartBodyProps {
   cart: GameParams[];
-  isSelectAll: boolean;
-  setIsSelectAll: (isSelectAll: boolean) => void;
+  isEditing: boolean;
+  selections: number[];
+  setSelections: (selections: number[]) => void;
+  setCheckoutOpen: (checkoutOpen: boolean) => void;
 }
 
 export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
-  const { cart, isSelectAll, setIsSelectAll } = props;
+  const { cart, isEditing, selections, setSelections, setCheckoutOpen } = props;
 
   return (
     <div className="switch_body">
-      <ul
-        //   className="flex flex-col w-full h-[340px] md:h-42 px-2 list-none overflow-y-scroll hide_scrollbar space-y-2"
-        className="switch_body_scroll flex flex-col w-full px-2 list-none overflow-y-auto hide_scrollbar space-y-2"
-      >
+      <ul className="switch_body_scroll flex flex-col w-full px-2 list-none overflow-y-auto hide_scrollbar">
         {cart.map((item) => (
           <CartItem
             key={item.id}
             item={item}
             imageDims="16"
-            isSelectAll={isSelectAll}
-            setIsSelectAll={setIsSelectAll}
+            isEditing={isEditing}
+            selections={selections}
+            setSelections={setSelections}
           />
         ))}
       </ul>
-      <CartFooter />
+      <CartFooter setCheckoutOpen={setCheckoutOpen} />
     </div>
   );
 };

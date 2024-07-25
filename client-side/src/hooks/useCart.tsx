@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { GameParams } from "../types";
-import { addToCart, removeFromCart } from "../store";
+import { addToCart, removeFromCart, removeSelectedGames } from "../store";
 
 export const useCart = () => {
   const dispatch = useDispatch();
@@ -13,5 +13,9 @@ export const useCart = () => {
     dispatch(removeFromCart(gameId));
   };
 
-  return { addGameToCart, removeGameFromCart };
+  const removeGameSelected = (selections: number[]) => {
+    dispatch(removeSelectedGames(selections));
+  };
+
+  return { addGameToCart, removeGameFromCart, removeGameSelected };
 };

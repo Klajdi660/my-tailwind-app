@@ -1,16 +1,19 @@
 import { FunctionComponent } from "react";
 import { Button } from "../UI";
 
-interface CartFooterProps {}
+interface CartFooterProps {
+  setCheckoutOpen: (checkoutOpen: boolean) => void;
+}
 
 export const CartFooter: FunctionComponent<CartFooterProps> = (props) => {
+  const { setCheckoutOpen } = props;
+
   const buttonLabel = `Checkout $${200}`;
 
   return (
     <div className="switch_footer flex_justify_between flex-col p-4 absolute bottom-0 w-full gap-3 bg-switch">
       <div className="w-full flex items-center justify-between text-base md:text-lg text-secondary">
         <p>Sub Total</p>
-        {/* <p>-</p> */}
         <p>
           <span className="text-sm text-red-600">₵</span> 200
         </p>
@@ -35,6 +38,7 @@ export const CartFooter: FunctionComponent<CartFooterProps> = (props) => {
           labelIcon="CiShoppingTag"
           className="w-[80%] bg-primary rounded-full text-white group-hover:opacity-70"
           iconClassName="text-white"
+          onClick={() => setCheckoutOpen(true)}
         />
       </div>
     </div>

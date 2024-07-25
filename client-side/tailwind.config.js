@@ -57,6 +57,7 @@ module.exports = {
         player: "var(--playerBg)",
 
         glassmorphism: "rgba(0, 0, 0, 0.50)",
+        "gray-lighten": "#989898",
       },
 
       width: {

@@ -2,35 +2,43 @@ import { FunctionComponent, useState } from "react";
 import { Badge } from "antd";
 import { Button, Icon } from "../UI";
 import { GameParams } from "../../types";
+import { classNames } from "../../utils";
 
 interface CartHeaderProps {
   cart: GameParams[];
-  handleBackCartSwitch: any;
+  backCartSwitchHandler: any;
   isEditing: boolean;
   setIsEditing: (isEditing: boolean) => void;
   isSelectAll: boolean;
-  setIsSelectAll: (isSelectAll: boolean) => void;
+  selectAllGameHandler: any;
+  cancelGameSelectedHandler: any;
+  selections: number[];
+  deleteSelectedGameHandler: any;
 }
 
 export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
   const {
     cart,
-    handleBackCartSwitch,
+    backCartSwitchHandler,
     isEditing,
     setIsEditing,
-    setIsSelectAll,
+    isSelectAll,
+    selectAllGameHandler,
+    cancelGameSelectedHandler,
+    selections,
+    deleteSelectedGameHandler,
   } = props;
 
-  const [show, setShow] = useState(true);
+  const noGameSelection = selections.length === 0;
 
   return (
-    <div className="switch_header flex_justify_between p-4 h-navbar cursor-pointer">
+    <div className="switch_header flex_justify_between px-2 py-4 h-navbar cursor-pointer">
       <div className="flex items-center gap-4">
-        <div onClick={handleBackCartSwitch}>
+        <div onClick={backCartSwitchHandler}>
           <Icon name="GoArrowLeft" className="hover:text-primary" />
         </div>
         <h5 className="text-base font-semibold">Games</h5>
-        <Badge count={show ? cart.length : 0} showZero color="var(--primary)" />
+        <Badge count={cart.length} showZero color="var(--primary)" />
       </div>
       <div className="flex items-center gap-2">
         {!isEditing && (
@@ -50,27 +58,28 @@ export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
             <Button
               variant="none"
               className="w-8 h-8 flex_justify_center"
-              iconClassName="hover:text-primary"
+              iconClassName={`${isSelectAll && "text-primary"} hover:text-primary`}
               labelIcon="BiSelectMultiple"
               tooltipTitle="Select all"
-              onClick={() => setIsSelectAll(true)}
+              onClick={selectAllGameHandler}
             />
             <Button
               variant="none"
               className="w-8 h-8 flex_justify_center"
-              iconClassName="hover:text-primary"
+              iconClassName={classNames(
+                !noGameSelection && "hover:text-primary"
+              )}
               labelIcon="AiOutlineDelete"
               tooltipTitle="Delete"
+              disabled={noGameSelection}
+              onClick={deleteSelectedGameHandler}
             />
             <Button
               variant="none"
               labelIcon="MdOutlineCancel"
               className="w-8 h-8 flex_justify_center"
               iconClassName="hover:text-primary"
-              onClick={() => {
-                setIsEditing(false);
-                setIsSelectAll(false);
-              }}
+              onClick={cancelGameSelectedHandler}
               tooltipTitle="Cancel"
             />
           </div>

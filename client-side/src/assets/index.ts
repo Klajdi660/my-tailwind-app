@@ -11,6 +11,7 @@ import tiktokIcon from "./tiktok.svg";
 import userIcon from "./user.png";
 import youtubeIcon from "./youtube.svg";
 import noGameImg from "./no-image-placeholder.webp";
+import emptyCart from "./emptyCart.svg";
 
 export {
   alFlag,
@@ -26,4 +27,5 @@ export {
   userIcon,
   youtubeIcon,
   noGameImg,
+  emptyCart,
 };
