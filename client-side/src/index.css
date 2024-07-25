@@ -197,10 +197,6 @@ input[type="checkbox"] {
   @apply absolute left-1/2 -translate-x-1/2;
 } */
 
-/* .tw-flex-center {
-  @apply flex justify-center items-center;
-} */
-
 /* ANTD STYLE */
 
 /* Form */

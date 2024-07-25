@@ -1,5 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import dayjs from "dayjs";
+import { GameTabReviews } from "./GameTabReviews";
 import {
   ReadMore,
   PlatformIconList,
@@ -8,12 +9,7 @@ import {
 } from "../Common";
 import { Tab } from "../UI";
 import { dateFormatList, gameTabsButton } from "../../data";
-import { GameTabReviews } from "./GameTabReviews";
-
-interface GameTabDetailProps {
-  gameDetail: any;
-  gameReviews: any;
-}
+import { GameTabDetailProps } from "../../types";
 
 export const GameTabDetail: FunctionComponent<GameTabDetailProps> = (props) => {
   const { gameDetail, gameReviews } = props;

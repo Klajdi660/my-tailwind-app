@@ -1,4 +1,9 @@
 import { ReactNode } from "react";
+import {
+  GameParams,
+  GameVideosParams,
+  GameReviewsParams,
+} from "./general.type";
 
 // Auth
 export interface FormListItem {
@@ -55,16 +60,63 @@ export interface OTPCodeFormProps {
 export interface SocialAuthProps {}
 
 export interface TemplateProps {
-  // title: string;
-  // description: string;
-  // formType: string;
-  // btnText?: string | any;
   defaultValues?: any;
   listForm: any;
   onSubmit: any;
   schema: any;
   handleResendCode?: any;
   data?: any;
+}
+
+// Card
+export interface MediaCardProps {
+  game: GameParams;
+  type: string;
+}
+
+export interface TopPlayCardProps {
+  key: number;
+  item: GameParams;
+  imageDims: string;
+  listDivider: boolean;
+}
+
+// Cart
+export interface CartBodyProps {
+  cart: GameParams[];
+  isEditing: boolean;
+  selections: number[];
+  setSelections: (selections: number[]) => void;
+  // setCheckoutOpen: (checkoutOpen: boolean) => void;
+}
+
+export interface CartEmptyPorps {
+  setOpenSwitch: (openSwitch: boolean) => void;
+}
+
+export interface CartFooterProps {
+  setCheckoutOpen: (checkoutOpen: boolean) => void;
+}
+
+export interface CartHeaderProps {
+  cart: GameParams[];
+  backCartSwitchHandler: () => void;
+  isEditing: boolean;
+  setIsEditing: (isEditing: boolean) => void;
+  isSelectAll: boolean;
+  selectAllGameHandler: () => void;
+  cancelGameSelectedHandler: () => void;
+  selections: number[];
+  deleteSelectedGameHandler: () => void;
+}
+
+export interface CartItemProps {
+  key: number;
+  item: GameParams;
+  imageDims: string;
+  isEditing: boolean;
+  selections: number[];
+  setSelections: (selections: number[]) => void;
 }
 
 // Common
@@ -109,6 +161,38 @@ export interface PublisherListPorps {
   publishers: PublisherList[];
 }
 
+export interface ReadMoreProps {
+  children: React.ReactNode;
+  className?: string;
+  limitTextLength: number;
+}
+
+export interface StarRatingProps {
+  star: number;
+  maxStar: number;
+}
+
+// GameDetail
+export interface GameDetailProps {
+  gameDetail: GameParams;
+  gameVideos: GameVideosParams;
+  gameReviews: GameReviewsParams[];
+}
+
+export interface GameTabDetailProps {
+  gameDetail: GameParams;
+  gameReviews: GameReviewsParams[];
+}
+
+export interface GameTabReviewsProps {
+  gameReviews: GameReviewsParams[];
+}
+
+export interface ReviewContentProps {
+  gameReviews: GameReviewsParams[];
+  type: string;
+}
+
 // Profile
 export interface ChangePasswordProps {
   // provider: string | any;
@@ -139,6 +223,25 @@ export interface PersonalDetailsInput {
 }
 
 export interface UserInfoProps {}
+
+// Section
+export interface MediaSectionProps {
+  enableTitle?: boolean;
+  gridNumber?: 2 | 3 | 4 | 5;
+  type: string;
+  skeletonItemNumber: number;
+  gameList: GameParams[] | any;
+  title: string;
+  subTitle: string;
+}
+
+export interface TopPlaySectionProps {
+  gameList: GameParams[] | any;
+  listDivider?: boolean;
+  imageDims?: string;
+  skeletonItemNumber?: number;
+  enableTitle?: boolean;
+}
 
 // Sidebar
 export interface SidebarPorps {}
@@ -330,6 +433,11 @@ export interface TitleProps {
   type: string;
 }
 
+export interface ShowMoreButtonProps {
+  className?: string;
+  onClick?: () => void;
+}
+
 // Other Component
 export interface CartSwitcherProps {}
 
@@ -393,11 +501,3 @@ export interface UserMenuProps {
   user: User;
   hidden: () => void;
 }
-
-// Card
-export interface MediaCardProps {
-  game: any;
-  type: string;
-}
-
-export interface MediaCardDetailsProps {}

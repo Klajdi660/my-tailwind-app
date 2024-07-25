@@ -1,20 +1,8 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { Badge } from "antd";
 import { Button, Icon } from "../UI";
-import { GameParams } from "../../types";
+import { CartHeaderProps } from "../../types";
 import { classNames } from "../../utils";
-
-interface CartHeaderProps {
-  cart: GameParams[];
-  backCartSwitchHandler: any;
-  isEditing: boolean;
-  setIsEditing: (isEditing: boolean) => void;
-  isSelectAll: boolean;
-  selectAllGameHandler: any;
-  cancelGameSelectedHandler: any;
-  selections: number[];
-  deleteSelectedGameHandler: any;
-}
 
 export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
   const {
@@ -34,9 +22,11 @@ export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
   return (
     <div className="switch_header flex_justify_between px-2 py-4 h-navbar cursor-pointer">
       <div className="flex items-center gap-4">
-        <div onClick={backCartSwitchHandler}>
-          <Icon name="GoArrowLeft" className="hover:text-primary" />
-        </div>
+        <Icon
+          name="GoArrowLeft"
+          className="hover:text-primary"
+          onClick={backCartSwitchHandler}
+        />
         <h5 className="text-base font-semibold">Games</h5>
         <Badge count={cart.length} showZero color="var(--primary)" />
       </div>

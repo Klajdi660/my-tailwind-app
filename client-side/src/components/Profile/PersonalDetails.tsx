@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import { DatePicker, Select } from "antd";
 import { Country } from "country-state-city";
 import { Button } from "../UI";

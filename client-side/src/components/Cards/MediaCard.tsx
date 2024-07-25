@@ -4,17 +4,15 @@ import { useSelector } from "react-redux";
 import { PlatformIconList } from "../Common";
 import { Image, Icon } from "../UI";
 import { paths } from "../../data";
-import { useCart, useNotification } from "../../hooks";
+import { useCart } from "../../hooks";
 import { MediaCardProps } from "../../types";
 import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
 
 export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
   const { game, type } = props;
-
   const { gameDetail } = paths;
 
   const navigate = useNavigate();
-  const [notify] = useNotification();
   const { addGameToCart } = useCart();
 
   const cart = useSelector((state: any) => state.cart.items);
@@ -26,13 +24,12 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     addGameToCart(game);
-    notify({ variant: "success", description: "Game was added to the cart" });
   };
 
   return (
     <div
       className={classNames(
-        "shadow-sm p-3 rounded bg-card duration-300 case-in cursor-pointer group"
+        "shadow-sm p-3 rounded bg-card duration-300 case-in cursor-pointer"
       )}
       onClick={() => navigate(`${gameDetail}/${game.id}`)}
     >
@@ -81,18 +78,26 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
           <div className="bg-primary-opacity p-2 rounded text-sm">
             ${gamePrice}
           </div>
-          {gameInCart ? (
-            <button className="p-2 bg-primary rounded text-sm">
-              <Icon name="FaOpencart" size={20} className="text-white" />
-            </button>
-          ) : (
+          <div className="group">
             <button
-              className="p-2 bg-primary-opacity rounded text-sm hover:bg-primary"
+              className={classNames(
+                "p-2 rounded text-sm",
+                gameInCart
+                  ? "bg-primary hover:opacity-70"
+                  : "bg-primary-opacity group-hover:bg-primary"
+              )}
               onClick={handleAddToCart}
             >
-              <Icon name="FaOpencart" size={20} className="hover:text-white" />
+              <Icon
+                name="FaOpencart"
+                size={20}
+                className={classNames(
+                  "group-hover:text-white",
+                  gameInCart && "text-white"
+                )}
+              />
             </button>
-          )}
+          </div>
         </div>
       </div>
     </div>

@@ -1,11 +1,7 @@
 import { FC } from "react";
 import { Icon } from "../UI";
+import { StarRatingProps } from "../../types";
 import { classNames } from "../../utils";
-
-interface StarRatingProps {
-  star: number;
-  maxStar: number;
-}
 
 export const StarRating: FC<StarRatingProps> = ({ star, maxStar }) => {
   if (star === 0) return <p></p>;

@@ -69,29 +69,29 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
           <div className="text-onNeutralBg">Test</div>
         ) : (
           <>
-            <CartHeader
-              cart={cart}
-              isEditing={isEditing}
-              setIsEditing={setIsEditing}
-              backCartSwitchHandler={backCartSwitchHandler}
-              isSelectAll={isSelectAll}
-              selections={selections}
-              selectAllGameHandler={selectAllGameHandler}
-              cancelGameSelectedHandler={cancelGameSelectedHandler}
-              deleteSelectedGameHandler={deleteSelectedGameHandler}
-            />
             {cart && cart.length > 0 ? (
-              <CartBody
-                cart={cart}
-                isEditing={isEditing}
-                selections={selections}
-                setSelections={setSelections}
-                setCheckoutOpen={setCheckoutOpen}
-              />
+              <>
+                <CartHeader
+                  cart={cart}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
+                  backCartSwitchHandler={backCartSwitchHandler}
+                  isSelectAll={isSelectAll}
+                  selections={selections}
+                  selectAllGameHandler={selectAllGameHandler}
+                  cancelGameSelectedHandler={cancelGameSelectedHandler}
+                  deleteSelectedGameHandler={deleteSelectedGameHandler}
+                />
+                <CartBody
+                  cart={cart}
+                  isEditing={isEditing}
+                  selections={selections}
+                  setSelections={setSelections}
+                />
+                <CartFooter setCheckoutOpen={setCheckoutOpen} />
+              </>
             ) : (
-              <div className="w-full flex-1 flex items-center justify-center">
-                <CartEmpty />
-              </div>
+              <CartEmpty setOpenSwitch={setOpenSwitch} />
             )}
           </>
         )}

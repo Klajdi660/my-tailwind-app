@@ -2,14 +2,8 @@ import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { PlatformIconList } from "../Common";
 import { paths } from "../../data";
+import { TopPlayCardProps } from "../../types";
 import { classNames, gameNameTruncate } from "../../utils";
-
-interface TopPlayCardProps {
-  key: number;
-  item: any;
-  imageDims: string;
-  listDivider: boolean;
-}
 
 export const TopPlayCard: FunctionComponent<TopPlayCardProps> = (props) => {
   const { item, listDivider } = props;

@@ -1,11 +1,7 @@
 import { FunctionComponent } from "react";
-import { classNames } from "../../../utils";
 import { Icon } from "../Icon";
-
-interface ShowMoreButtonProps {
-  className?: string;
-  onClick?: any;
-}
+import { ShowMoreButtonProps } from "../../../types";
+import { classNames } from "../../../utils";
 
 export const ShowMoreButton: FunctionComponent<ShowMoreButtonProps> = ({
   className,

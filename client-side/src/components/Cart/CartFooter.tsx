@@ -1,9 +1,6 @@
 import { FunctionComponent } from "react";
 import { Button } from "../UI";
-
-interface CartFooterProps {
-  setCheckoutOpen: (checkoutOpen: boolean) => void;
-}
+import { CartFooterProps } from "../../types";
 
 export const CartFooter: FunctionComponent<CartFooterProps> = (props) => {
   const { setCheckoutOpen } = props;

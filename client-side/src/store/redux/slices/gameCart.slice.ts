@@ -17,7 +17,7 @@ const slice = createSlice({
     addToCart: (state, action: PayloadAction<GameParams>) => {
       const inCart = state.items.find((item) => item.id === action.payload.id);
       if (inCart) {
-        toast.error("Game already in cart");
+        toast.error("Game already in cart", { pauseOnHover: false });
         return;
       }
 

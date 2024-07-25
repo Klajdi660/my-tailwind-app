@@ -3,16 +3,8 @@ import { Link } from "react-router-dom";
 import { Icon } from "../UI";
 import { paths } from "../../data";
 import { useCart, useNotification } from "../../hooks";
+import { CartItemProps } from "../../types";
 import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
-
-interface CartItemProps {
-  key: number;
-  item: any;
-  imageDims: string;
-  isEditing: boolean;
-  selections: number[];
-  setSelections: (selections: number[]) => void;
-}
 
 export const CartItem: FunctionComponent<CartItemProps> = (props) => {
   const { item, isEditing, selections, setSelections } = props;

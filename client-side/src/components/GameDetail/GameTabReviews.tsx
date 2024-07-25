@@ -2,16 +2,8 @@ import { FunctionComponent, useState } from "react";
 import { Image } from "../UI";
 import { userIcon } from "../../assets";
 import { ReadMore, StarRating } from "../Common";
+import { ReviewContentProps, GameTabReviewsProps } from "../../types";
 import { calculateTimePassed } from "../../utils";
-
-interface GameTabReviewsProps {
-  gameReviews: any;
-}
-
-interface ReviewContentProps {
-  gameReviews: any;
-  type: string;
-}
 
 const ReviewContent: FunctionComponent<ReviewContentProps> = (props) => {
   const { gameReviews } = props;

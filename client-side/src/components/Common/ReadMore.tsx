@@ -1,11 +1,6 @@
 import { FunctionComponent, HTMLProps, useState } from "react";
+import { ReadMoreProps } from "../../types";
 import { classNames } from "../../utils";
-
-interface ReadMoreProps {
-  children: React.ReactNode;
-  className?: string;
-  limitTextLength: number;
-}
 
 export const ReadMore: FunctionComponent<
   ReadMoreProps & HTMLProps<HTMLSpanElement>

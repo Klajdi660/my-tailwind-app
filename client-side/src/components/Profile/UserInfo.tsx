@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { PatternBg, Icon } from "../UI";
+import { Icon } from "../UI";
 import { useAuth } from "../../hooks";
 import { UserInfoProps } from "../../types";
 
@@ -10,7 +10,6 @@ export const UserInfo: FunctionComponent<UserInfoProps> = () => {
 
   return (
     <div className="relative p-4 rounded xs:p-6 bg-card">
-      {/* <PatternBg /> overflow-hidden  */}
       <div className="mb-4 header">
         <h5 className="text-lg font-semibold">User Information</h5>
       </div>

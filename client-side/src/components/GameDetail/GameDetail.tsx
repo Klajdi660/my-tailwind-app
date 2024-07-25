@@ -1,16 +1,12 @@
 import { FunctionComponent } from "react";
+import { useSelector } from "react-redux";
 import { Tooltip, Progress } from "antd";
-import { Button, Icon, Image } from "../UI";
-import { useStore } from "../../hooks";
-import { classNames, useMobileResponsive } from "../../utils";
 import { GameTabDetail } from "./GameTabDetail";
 import { HeaderBannerSkeleton } from "../Skeleton";
-
-interface GameDetailProps {
-  gameDetail: any;
-  gameVideos: any;
-  gameReviews: any;
-}
+import { Button, Icon, Image } from "../UI";
+import { useStore, useCart } from "../../hooks";
+import { GameDetailProps } from "../../types";
+import { classNames, useMobileResponsive } from "../../utils";
 
 export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
   const { gameDetail, gameVideos, gameReviews } = props;
@@ -22,17 +18,27 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
     genres,
     rating,
     playtime,
+    id,
   } = gameDetail;
 
   const { results: gameVideoResults } = gameVideos;
 
   const { loading } = useStore();
   const isMobile = useMobileResponsive();
+  const { addGameToCart } = useCart();
+
+  const cart = useSelector((state: any) => state.cart.items);
+
+  const gameInCart = cart.find((item: any) => item.id === id);
 
   const getColor = (rating: number) => {
     if (rating >= 4) return "green";
     if (rating >= 2) return "#0077B5";
     return "red";
+  };
+
+  const addToCartHandler = () => {
+    addGameToCart(gameDetail);
   };
 
   return (
@@ -99,7 +105,7 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
                   <button
                     // onClick={bookmarkedHandler}
                     className={classNames(
-                      "tw-flex-center h-12 w-12 rounded-full border-2 border-white shadow-lg hover:border-red-500 transition duration-300 group"
+                      "flex_justify_center h-12 w-12 rounded-full border-2 border-white shadow-lg hover:border-red-500 transition duration-300 group"
                       // isBookmarked && "!border-primary"
                     )}
                   >
@@ -115,18 +121,18 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
                 </Tooltip>
                 <Tooltip title="Add to Cart" trigger={["hover"]}>
                   <button
-                    // onClick={bookmarkedHandler}
+                    onClick={addToCartHandler}
                     className={classNames(
-                      "tw-flex-center h-12 w-12 rounded-full border-2 border-white shadow-lg hover:border-primary transition duration-300 group"
-                      // isBookmarked && "!border-primary"
+                      "flex_justify_center h-12 w-12 rounded-full border-2 border-white shadow-lg hover:border-primary transition duration-300 group",
+                      gameInCart && "!border-primary"
                     )}
                   >
                     <Icon
                       name="FaOpencart"
                       size={20}
                       className={classNames(
-                        "text-white group-hover:text-primary transition duration-300"
-                        // isBookmarked && "!text-primary"
+                        "text-white group-hover:text-primary transition duration-300",
+                        gameInCart && "!text-primary"
                       )}
                     />
                   </button>

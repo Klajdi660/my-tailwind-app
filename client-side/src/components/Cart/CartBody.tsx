@@ -1,17 +1,9 @@
-import { FunctionComponent, useState } from "react";
-import { CartItem, CartFooter } from "../Cart";
-import { GameParams } from "../../types";
-
-interface CartBodyProps {
-  cart: GameParams[];
-  isEditing: boolean;
-  selections: number[];
-  setSelections: (selections: number[]) => void;
-  setCheckoutOpen: (checkoutOpen: boolean) => void;
-}
+import { FunctionComponent } from "react";
+import { CartItem } from "../Cart";
+import { CartBodyProps } from "../../types";
 
 export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
-  const { cart, isEditing, selections, setSelections, setCheckoutOpen } = props;
+  const { cart, isEditing, selections, setSelections } = props;
 
   return (
     <div className="switch_body">
@@ -27,7 +19,7 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
           />
         ))}
       </ul>
-      <CartFooter setCheckoutOpen={setCheckoutOpen} />
+      {/* <CartFooter setCheckoutOpen={setCheckoutOpen} /> */}
     </div>
   );
 };

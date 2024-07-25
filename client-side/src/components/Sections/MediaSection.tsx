@@ -1,19 +1,10 @@
 import { FunctionComponent } from "react";
-import { useStore } from "../../hooks";
-import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
-import { classNames } from "../../utils";
-import { Title } from "../UI";
 import { MediaCard } from "../Cards";
-
-interface MediaSectionProps {
-  enableTitle?: boolean;
-  gridNumber?: 2 | 3 | 4 | 5;
-  type: string;
-  skeletonItemNumber: number;
-  gameList: any;
-  title: string;
-  subTitle: string;
-}
+import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
+import { Title } from "../UI";
+import { useStore } from "../../hooks";
+import { MediaSectionProps } from "../../types";
+import { classNames } from "../../utils";
 
 const grid = {
   2: "grid-cols-2",

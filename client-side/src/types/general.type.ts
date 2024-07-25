@@ -135,7 +135,16 @@ export interface GameParams {
     yet: number;
   };
   background_image: string;
+  background_image_additional?: string;
   clip: string;
+  description_raw: string;
+  developers: {
+    games_count: number;
+    id: number;
+    image_background: string;
+    name: string;
+    slug: string;
+  }[];
   dominant_color: string;
   esrb_rating: { id: number; name: string; slug: string };
   genres: {
@@ -154,6 +163,13 @@ export interface GameParams {
     released_at: string;
   }[];
   playtime: number;
+  publishers: {
+    games_count: number;
+    id: number;
+    image_background: string;
+    name: string;
+    slug: string;
+  }[];
   rating: number;
   rating_top: number;
   ratings: { id: number; title: string; count: number; percent: number }[];
@@ -187,4 +203,63 @@ export interface GameParams {
   tba: boolean;
   updated: string;
   user_game: any;
+}
+
+export interface GameVideosParams {
+  count: number;
+  next: any | null;
+  previous: any | null;
+  results: {
+    data: object;
+    id: number;
+    name: string;
+    preview: string;
+  }[];
+}
+
+export interface GameReviewsParams {
+  can_delete: boolean;
+  comments: { count: number; results: any[] };
+  comments_count: number;
+  comments_parent_count: number;
+  created: string;
+  edited: string;
+  extrenal_auth: string;
+  extrenal_avatar: string | null;
+  extrenal_lang: string;
+  external_source: string;
+  external_store: {
+    domain: string;
+    games_count: number;
+    id: number;
+    image_background: string;
+    name: string;
+    slug: string;
+  };
+  game: number;
+  id: number;
+  is_extrenal: boolean;
+  is_text: boolean;
+  likes_count: number;
+  likes_positive: number;
+  likes_rating: number;
+  posts_count: number;
+  rating: number;
+  reactions: any[];
+  share_image: string;
+  text: string;
+  text_attachments: number;
+  text_preview: string;
+  text_previews: any[];
+  user:
+    | {
+        avatar: string | null;
+        collections_count: number;
+        full_name: string;
+        games_count: number;
+        id: number;
+        slug: string;
+        userame: string;
+      }[]
+    | null;
 }
