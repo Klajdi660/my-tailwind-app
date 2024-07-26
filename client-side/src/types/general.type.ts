@@ -163,6 +163,7 @@ export interface GameParams {
     released_at: string;
   }[];
   playtime: number;
+  price?: number;
   publishers: {
     games_count: number;
     id: number;

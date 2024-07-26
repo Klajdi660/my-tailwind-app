@@ -21,6 +21,7 @@ const slice = createSlice({
         return;
       }
 
+      toast.success("Game added to cart", { pauseOnHover: false });
       // state.items.push(action.payload);
       state.items = [...state.items, action.payload];
     },

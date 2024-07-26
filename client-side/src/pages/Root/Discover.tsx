@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { DiscoverPageProps } from "../../types";
-import { Tooltip } from "antd";
+
 export const DiscoverPage: FunctionComponent<DiscoverPageProps> = () => {
   return (
     <section className="discover_page">

@@ -10,6 +10,7 @@ import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
 
 export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
   const { game, type } = props;
+  const { id, background_image, name, parent_platforms } = game;
   const { gameDetail } = paths;
 
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
 
   const gamePrice = getGamePrice(game);
 
-  const gameInCart = cart.find((item: any) => item.id === game.id);
+  const gameInCart = cart.find((item: any) => item.id === id);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -31,7 +32,7 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
       className={classNames(
         "shadow-sm p-3 rounded bg-card duration-300 case-in cursor-pointer"
       )}
-      onClick={() => navigate(`${gameDetail}/${game.id}`)}
+      onClick={() => navigate(`${gameDetail}/${id}`)}
     >
       <div className="relative flex justify-center">
         <div
@@ -40,13 +41,13 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
             type === "artist" ? "rounded-full" : "rounded"
           )}
         >
-          {game.background_image ? (
+          {background_image ? (
             <Image
               styles={classNames(
                 "object-cover aspect-square w-full",
                 type === "artist" ? "rounded-full" : "rounded"
               )}
-              imgUrl={game.background_image}
+              imgUrl={background_image}
               width={80}
               height={80}
               name="image"
@@ -62,12 +63,12 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
       </div>
       <div className={classNames("desc mt-4")}>
         <h6 className="text-base font-semibold text-onNeutralBg">
-          {gameNameTruncate(game?.name, 18)}
+          {gameNameTruncate(name, 18)}
         </h6>
         <div className="flex items-center justify-between mt-2">
           <div className="flex gap-2">
             <PlatformIconList
-              platforms={game.parent_platforms.map((p: any) => p.platform)}
+              platforms={parent_platforms.map((p: any) => p.platform)}
             />
           </div>
           {/* <div className="bg-primary-opacity px-2 py-1 rounded text-sm">

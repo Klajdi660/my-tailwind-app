@@ -140,7 +140,7 @@ export const calculateTimePassed = (time: number): string => {
 export const getGamePrice = (game: GameParams) => {
   const { released, genres } = game;
 
-  const isIndie = !!genres.find((genre) => genre.name === "Indie");
+  const isIndie = !!genres.find((genre) => genre.name !== "Indie");
 
   const releaseYear = new Date(released).getFullYear();
   const currentYear = new Date().getFullYear();
@@ -148,7 +148,7 @@ export const getGamePrice = (game: GameParams) => {
 
   const minPrice = 1;
   let discountPerYear = 0.35;
-  let newPrice = isIndie ? 30 : 70;
+  let newPrice = isIndie ? 10 : 70;
 
   for (let i = 0; i < differenceYear; i++) {
     newPrice += 1 - discountPerYear;

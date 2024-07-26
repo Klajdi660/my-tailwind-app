@@ -1,14 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import { useGamesService } from "../../services";
+import { GameData, GameParams } from "../../types";
+import { getGamePrice } from "../../utils";
 
-interface GameData {
-  gameDetail: any;
-  gameVideos: any;
-  gameReviews: any;
+interface GameFetchParams {
+  gameId?: string;
+  gameKey?: string;
+  page?: number;
+  pageSize?: number;
 }
 
-export const useFetchGame = (gameId: string) => {
-  const { getGameDetail, getGameVideos, getGameReviews } = useGamesService();
+export const useFetchGame = ({
+  gameId,
+  gameKey,
+  page,
+  pageSize,
+}: GameFetchParams) => {
+  const { getGameDetail, getGameVideos, getGameReviews, getGameList } =
+    useGamesService();
 
   const { data } = useQuery<GameData | any>({
     queryKey: [`game_${gameId}`, { gameId }],
@@ -29,5 +38,21 @@ export const useFetchGame = (gameId: string) => {
     },
   });
 
-  return { data };
+  const { data: gameList } = useQuery<GameParams | any>({
+    queryKey: [`${gameKey}`],
+    queryFn: async () => {
+      try {
+        let gameLists: any = await getGameList({ page, pageSize });
+
+        gameLists?.forEach(
+          (game: GameParams) => (game.price = getGamePrice(game))
+        );
+        return gameLists;
+      } catch (error) {
+        console.error(`Failed to fetch game. ${error}`);
+      }
+    },
+  });
+
+  return { data, gameList };
 };

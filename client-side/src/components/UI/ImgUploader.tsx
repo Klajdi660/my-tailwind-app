@@ -34,7 +34,6 @@ export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {
           />
         )}
         {isUpdatingProfileImg && (
-          // <div className="absolute flex items-center justify-center border-[4px] border-primary border-t-transparent h-12 w-12 rounded-full animate-spin z-10" />
           <>
             <div className="absolute inset-0 flex items-center justify-center z-10">
               <Image imgUrl={iconName} name="Loading Img" width={120} />

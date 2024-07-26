@@ -41,5 +41,3 @@ export const Footer: FunctionComponent<FooterProps> = () => {
     </div>
   );
 };
-
-export default Footer;

@@ -3,17 +3,24 @@ import { useQuery } from "@tanstack/react-query";
 import { BrowsePageProps } from "../../types";
 import { useGamesService } from "../../services";
 import { MediaSection } from "../../components";
+import { useFetchGame } from "../../lib";
 
 export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
-  const { getGameList } = useGamesService();
+  // const { getGameList } = useGamesService();
 
-  const queryOptions = {
-    queryKey: ["discover"],
-    // queryKey: ["topPlay", values],
-    queryFn: () => getGameList({ page: 1, pageSize: 20 }),
-  };
+  // const queryOptions = {
+  //   queryKey: ["discover"],
+  //   // queryKey: ["topPlay", values],
+  //   queryFn: () => getGameList({ page: 1, pageSize: 20 }),
+  // };
 
-  const { data: gameList } = useQuery(queryOptions);
+  // const { data: gameList } = useQuery(queryOptions);
+
+  const { gameList } = useFetchGame({
+    gameKey: "discover",
+    page: 1,
+    pageSize: 20,
+  });
 
   return (
     <section className="browse_page">

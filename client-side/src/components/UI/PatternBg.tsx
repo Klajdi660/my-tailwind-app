@@ -15,4 +15,3 @@ export const PatternBg: FunctionComponent<PatternBgProps> = () => {
     </>
   );
 };
-// z-20
