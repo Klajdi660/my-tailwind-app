@@ -3,7 +3,14 @@ import { CartItem } from "../Cart";
 import { CartBodyProps } from "../../types";
 
 export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
-  const { cart, isEditing, selections, setSelections } = props;
+  const {
+    cart,
+    isEditing,
+    selections,
+    setSelections,
+    quantities,
+    setQuantities,
+  } = props;
 
   return (
     <div className="switch_body">
@@ -16,10 +23,11 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
             isEditing={isEditing}
             selections={selections}
             setSelections={setSelections}
+            quantities={quantities}
+            setQuantities={setQuantities}
           />
         ))}
       </ul>
-      {/* <CartFooter setCheckoutOpen={setCheckoutOpen} /> */}
     </div>
   );
 };

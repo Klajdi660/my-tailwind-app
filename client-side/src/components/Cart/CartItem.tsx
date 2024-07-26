@@ -1,31 +1,38 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../UI";
 import { paths } from "../../data";
 import { useCart, useNotification } from "../../hooks";
 import { CartItemProps } from "../../types";
-import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
+import { classNames, gameNameTruncate } from "../../utils";
 
 export const CartItem: FunctionComponent<CartItemProps> = (props) => {
-  const { item, isEditing, selections, setSelections } = props;
-  const { id, name, slug, background_image } = item;
+  const {
+    item,
+    isEditing,
+    selections,
+    setSelections,
+    quantities,
+    setQuantities,
+  } = props;
+  const { id, name, slug, background_image, price } = item;
   const { gameDetail } = paths;
 
   const { removeGameFromCart } = useCart();
   const [notify] = useNotification();
 
-  const [count, setCount] = useState<number>(1);
-
-  const gamePrice = getGamePrice(item);
-
   const handleIncrement = () => {
-    setCount(count + 1);
+    setQuantities((prevQuantities: any) => ({
+      ...prevQuantities,
+      [id]: (prevQuantities[id] || 1) + 1,
+    }));
   };
 
   const handleDecrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
+    setQuantities((prevQuantities: any) => ({
+      ...prevQuantities,
+      [id]: Math.max((prevQuantities[id] || 1) - 1, 1),
+    }));
   };
 
   const handleRemoveFromCart = () => {
@@ -75,7 +82,7 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
             </span>
             <p className="flex text-sm text-secondary gap-1 group-hover:text-primary">
               <span className="text-red-600">$</span>
-              {gamePrice}
+              {price}
             </p>
           </div>
         </div>
@@ -88,7 +95,7 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
             onClick={handleDecrement}
           />
           <p className="flex_justify_center text-sm text-onNeutralBg w-5 h-5 bg-primary-opacity rounded-sm cursor-default">
-            {count}
+            {quantities[id] || 1}
           </p>
           <Icon
             name="BiPlus"

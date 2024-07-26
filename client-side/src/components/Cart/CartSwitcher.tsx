@@ -13,11 +13,15 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   const isMobile = useMobileResponsive();
 
   const cart = useSelector((state: RootState) => state.cart.items);
+  const gameId = cart.map((game) => game.id);
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isSelectAll, setIsSelectAll] = useState<boolean>(false);
   const [selections, setSelections] = useState<number[]>([]);
   const [checkoutOpen, setCheckoutOpen] = useState<boolean>(false);
+  const [quantities, setQuantities] = useState<{ [id: string]: number }>({
+    gameId: 1,
+  });
 
   const selectAllGameHandler = () => {
     if (isSelectAll) {
@@ -26,8 +30,6 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
     }
 
     setIsSelectAll(true);
-
-    const gameId = cart.map((game) => game.id);
     setSelections(gameId);
   };
 
@@ -87,8 +89,14 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
                   isEditing={isEditing}
                   selections={selections}
                   setSelections={setSelections}
+                  quantities={quantities}
+                  setQuantities={setQuantities}
                 />
-                <CartFooter setCheckoutOpen={setCheckoutOpen} />
+                <CartFooter
+                  setCheckoutOpen={setCheckoutOpen}
+                  cartItems={cart}
+                  quantities={quantities}
+                />
               </>
             ) : (
               <CartEmpty setOpenSwitch={setOpenSwitch} />

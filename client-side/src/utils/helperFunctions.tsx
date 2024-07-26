@@ -148,7 +148,7 @@ export const getGamePrice = (game: GameParams) => {
 
   const minPrice = 1;
   let discountPerYear = 0.35;
-  let newPrice = isIndie ? 10 : 70;
+  let newPrice = isIndie ? 5 : 10;
 
   for (let i = 0; i < differenceYear; i++) {
     newPrice += 1 - discountPerYear;
@@ -162,4 +162,32 @@ export const getGamePrice = (game: GameParams) => {
   newPrice = Math.ceil(newPrice);
   newPrice = newPrice < minPrice ? minPrice : newPrice;
   return newPrice - 0.01;
+};
+
+const calculateShippingCost = (price: number | any) => {
+  if (price <= 10.99) {
+    return 0;
+  }
+
+  return 0.99;
+};
+
+export const calculateTotalPrice = (
+  cartItems: GameParams[],
+  quantities: { [id: string]: number }
+) => {
+  let shipping = 0;
+  const subTotalPrice = cartItems.reduce((total, item) => {
+    const quantity = quantities[item.id] || 1;
+    shipping += calculateShippingCost(item.price) * quantity;
+    return parseFloat((total + item.price * quantity).toFixed(2));
+  }, 0);
+
+  const totalPrice = (subTotalPrice + shipping).toFixed(2);
+
+  return {
+    subTotalPrice,
+    shipping: shipping.toFixed(2),
+    totalPrice,
+  };
 };
