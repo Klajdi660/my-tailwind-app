@@ -56,7 +56,8 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   return (
     <section
       className={classNames(
-        "cart_switch_section w-aside bg-switch",
+        // "cart_switch_section w-aside bg-switch",
+        "cart_switch_section w-[380px] bg-switch",
         openSwitch ? "right-0" : "-right-aside"
       )}
     >
@@ -66,7 +67,10 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
         transparent
         isMobile={isMobile}
       />
-      <div className="relative h-screen overflow-auto switch_body text-onNeutralBg bg-switch shadow-box">
+      <div
+        // className="switch_body relative h-screen overflow-auto text-onNeutralBg bg-switch shadow-box"
+        className="switch_body relative text-onNeutralBg bg-switch shadow-box"
+      >
         {checkoutOpen ? (
           <div className="text-onNeutralBg">Test</div>
         ) : (

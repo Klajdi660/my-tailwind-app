@@ -71,7 +71,12 @@ import {
 import { GoArrowLeft } from "react-icons/go";
 import { PiWarningCircle, PiWarningCircleBold } from "react-icons/pi";
 import { RiFirefoxLine, RiInstagramFill } from "react-icons/ri";
-import { SlGameController, SlSocialDropbox, SlArrowUp } from "react-icons/sl";
+import {
+  SlGameController,
+  SlSocialDropbox,
+  SlArrowUp,
+  SlLocationPin,
+} from "react-icons/sl";
 import { SiNintendo } from "react-icons/si";
 import { TiTimes } from "react-icons/ti";
 import { IconParams, IconsMap } from "../../types";
@@ -139,6 +144,7 @@ const icons: IconsMap = {
   SlGameController,
   SlSocialDropbox,
   SlArrowUp,
+  SlLocationPin,
   TiTimes,
   FaAndroid,
   FaApple,

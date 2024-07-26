@@ -4,7 +4,7 @@ import { Icon } from "../UI";
 import { paths } from "../../data";
 import { useCart, useNotification } from "../../hooks";
 import { CartItemProps } from "../../types";
-import { classNames, gameNameTruncate } from "../../utils";
+import { classNames, gameNameTruncate, calculateTotalPrice } from "../../utils";
 
 export const CartItem: FunctionComponent<CartItemProps> = (props) => {
   const {
@@ -14,12 +14,15 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
     setSelections,
     quantities,
     setQuantities,
+    cartItems,
   } = props;
   const { id, name, slug, background_image, price } = item;
   const { gameDetail } = paths;
 
   const { removeGameFromCart } = useCart();
   const [notify] = useNotification();
+
+  const { shipping } = calculateTotalPrice(cartItems, quantities);
 
   const handleIncrement = () => {
     setQuantities((prevQuantities: any) => ({
@@ -56,7 +59,7 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
     <li
       key={id}
       className={classNames(
-        "relative p-2 flex items-center text-base !text-onNeutralBg cursor-pointer"
+        "relative p-2 flex items-start text-base !text-onNeutralBg cursor-pointer gap-2"
       )}
     >
       <Link
@@ -87,40 +90,53 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
           </div>
         </div>
       </Link>
-      <div className="flex gap-2">
-        <div className="group flex items-center gap-2">
-          <Icon
-            name="BiMinus"
-            className="text-gray-500"
-            onClick={handleDecrement}
-          />
-          <p className="flex_justify_center text-sm text-onNeutralBg w-5 h-5 bg-primary-opacity rounded-sm cursor-default">
-            {quantities[id] || 1}
-          </p>
-          <Icon
-            name="BiPlus"
-            className="text-gray-500"
-            onClick={handleIncrement}
-          />
-        </div>
-        {!isEditing && (
-          <div
-            className="w-5 h-5 flex_justify_center bg-red-500 rounded hover:opacity-80"
-            onClick={handleRemoveFromCart}
-          >
-            <Icon name="AiOutlineDelete" size={14} className="text-white" />
+      <div className="flex flex-col w-full space-y-3">
+        <div className="flex flex-col">
+          <div className="flex gap-2 text-base font-semibold justify-end items-center">
+            {" "}
+            <Icon name="LiaCarSideSolid" size={20} />
+            Shipping: ${shipping}
           </div>
-        )}
-        {isEditing && (
-          <button
-            className="w-5 h-5 flex_justify_center bg-none border border-primary rounded hover:opacity-80"
-            onClick={oneSelectGame}
-          >
-            {hasOneSelect && (
-              <Icon name="HiCheck" size={16} className="text-primary" />
+          <p className="flex justify-end text-base gap-1">
+            Delivery: <span className="font-semibold">Aug 20</span>
+          </p>
+        </div>
+        <div className="group flex flex-col">
+          <div className="flex flex-row justify-end items-center gap-2">
+            <Icon
+              name="BiMinus"
+              className="text-gray-500"
+              onClick={handleDecrement}
+            />
+            <p className="flex_justify_center text-sm text-onNeutralBg w-5 h-5 bg-primary-opacity rounded-sm cursor-default">
+              {quantities[id] || 1}
+            </p>
+            <Icon
+              name="BiPlus"
+              className="text-gray-500"
+              onClick={handleIncrement}
+            />
+            {!isEditing && (
+              <div
+                className="w-5 h-5 flex_justify_center bg-red-500 rounded hover:opacity-80"
+                onClick={handleRemoveFromCart}
+              >
+                <Icon name="AiOutlineDelete" size={14} className="text-white" />
+              </div>
             )}
-          </button>
-        )}
+            {isEditing && (
+              <button
+                className="w-5 h-5 flex_justify_center bg-none border border-primary rounded hover:opacity-80"
+                onClick={oneSelectGame}
+              >
+                {hasOneSelect && (
+                  <Icon name="HiCheck" size={16} className="text-primary" />
+                )}
+              </button>
+            )}
+          </div>
+          <p className="flex justify-end text-sm">145 available</p>
+        </div>
       </div>
     </li>
   );

@@ -87,7 +87,6 @@ export interface CartBodyProps {
   isEditing: boolean;
   selections: number[];
   setSelections: (selections: number[]) => void;
-  // setCheckoutOpen: (checkoutOpen: boolean) => void;
   quantities: { [id: string]: number };
   setQuantities: any;
 }
@@ -123,6 +122,7 @@ export interface CartItemProps {
   setSelections: (selections: number[]) => void;
   quantities: { [id: string]: number };
   setQuantities: any;
+  cartItems: GameParams[];
 }
 
 // Common
