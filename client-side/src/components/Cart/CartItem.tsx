@@ -12,10 +12,10 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
     item,
     isEditing,
     selections,
-    setSelections,
     quantities,
     setQuantities,
     cartItems,
+    setSelections,
     setSelectedHeaderOpen,
   } = props;
   const { id, name, slug, background_image, price } = item;

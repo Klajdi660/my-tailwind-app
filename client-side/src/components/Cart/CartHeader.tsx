@@ -7,13 +7,13 @@ import { classNames } from "../../utils";
 export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
   const {
     cart,
-    backCartSwitchHandler,
     isEditing,
-    setIsEditing,
     isSelectAll,
+    selections,
     selectAllGameHandler,
     cancelGameSelectedHandler,
-    selections,
+    setIsEditing,
+    backCartSwitchHandler,
     deleteSelectedGameHandler,
   } = props;
 

@@ -4,7 +4,7 @@ import { CartFooterProps } from "../../types";
 import { calculateTotalPrice } from "../../utils";
 
 export const CartFooter: FunctionComponent<CartFooterProps> = (props) => {
-  const { setCheckoutOpen, cartItems, quantities } = props;
+  const { cartItems, quantities, setCheckoutOpen } = props;
 
   const { subTotalPrice, shipping, totalPrice } = calculateTotalPrice(
     cartItems,

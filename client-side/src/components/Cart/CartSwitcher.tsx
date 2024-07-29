@@ -61,10 +61,10 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
     <>
       {checkoutOpen ? (
         <Checkout
-          setOpenSwitch={setOpenSwitch}
-          setCheckoutOpen={setCheckoutOpen}
           cartItems={cart}
           quantities={quantities}
+          setOpenSwitch={setOpenSwitch}
+          setCheckoutOpen={setCheckoutOpen}
         />
       ) : (
         <>
@@ -79,11 +79,11 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
                 <CartHeader
                   cart={cart}
                   isEditing={isEditing}
-                  setIsEditing={setIsEditing}
-                  backCartSwitchHandler={backCartSwitchHandler}
-                  isSelectAll={isSelectAll}
                   selections={selections}
+                  isSelectAll={isSelectAll}
+                  setIsEditing={setIsEditing}
                   selectAllGameHandler={selectAllGameHandler}
+                  backCartSwitchHandler={backCartSwitchHandler}
                   cancelGameSelectedHandler={cancelGameSelectedHandler}
                   deleteSelectedGameHandler={deleteSelectedGameHandler}
                 />
@@ -91,12 +91,12 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
                   cart={cart}
                   isEditing={isEditing}
                   selections={selections}
-                  setSelections={setSelections}
                   quantities={quantities}
+                  selectedHeaderOpen={selectedHeaderOpen}
+                  setSelections={setSelections}
                   setQuantities={setQuantities}
                   setCheckoutOpen={setCheckoutOpen}
                   setSelectedHeaderOpen={setSelectedHeaderOpen}
-                  selectedHeaderOpen={selectedHeaderOpen}
                 />
               </>
             ) : (

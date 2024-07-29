@@ -9,12 +9,12 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
     cart,
     isEditing,
     selections,
-    setSelections,
+    selectedHeaderOpen,
     quantities,
     setQuantities,
+    setSelections,
     setCheckoutOpen,
     setSelectedHeaderOpen,
-    selectedHeaderOpen,
   } = props;
 
   const allSelections = selections.length;
@@ -54,18 +54,18 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
             imageDims="16"
             isEditing={isEditing}
             selections={selections}
-            setSelections={setSelections}
             quantities={quantities}
             setQuantities={setQuantities}
             cartItems={cart}
             setSelectedHeaderOpen={setSelectedHeaderOpen}
+            setSelections={setSelections}
           />
         ))}
       </div>
       <CartFooter
-        setCheckoutOpen={setCheckoutOpen}
         cartItems={cart}
         quantities={quantities}
+        setCheckoutOpen={setCheckoutOpen}
       />
     </div>
   );
