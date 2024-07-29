@@ -36,14 +36,14 @@ export const Searchbar: FunctionComponent<SearchbarProps> = (props) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          {/* {isMobile && (
+          {isMobile && (
             <button
               className="w-8 h-8 transition-colors duration-500 rounded flex_justify_center bg-sidebar hover:bg-red-500"
               onClick={() => setToggleSearch(false)}
             >
               <Icon name="MdCancel" />
             </button>
-          )} */}
+          )}
         </div>
       </div>
       <div className="flex items-center h-full lg:hidden">

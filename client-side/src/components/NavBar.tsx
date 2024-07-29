@@ -9,7 +9,7 @@ import {
   NotificationButton,
   ThemeButton,
   MobileToggleButton,
-  // LanguageButton,
+  LanguageButton,
   Overlay,
 } from "./UI";
 import { icon, iconName } from "../assets";
@@ -77,7 +77,7 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
                 <>
                   <CartButton />
                   <NotificationButton />
-                  {/* <LanguageButton /> */}
+                  <LanguageButton />
                   <ThemeButton mode={theme.mode} dispatch={dispatch} />
                   <ProfileDropdown />
                 </>
