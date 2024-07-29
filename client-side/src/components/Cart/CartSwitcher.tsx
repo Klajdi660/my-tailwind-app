@@ -1,16 +1,16 @@
 import { FunctionComponent, useState } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
-import { CartBody, CartEmpty, CartHeader, CartCheckout } from "../Cart";
+import { CartBody, CartEmpty, CartHeader } from "../Cart";
+import { Checkout } from "../Checkout/Checkout";
 import { useCart } from "../../hooks";
 import { RootState } from "../../store";
 import { CartSwitcherProps } from "../../types";
-import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
+import { useAppUtil } from "../../utils";
 
 export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   const { openSwitch, setOpenSwitch } = useAppUtil();
   const { removeGameSelected } = useCart();
-  const isMobile = useMobileResponsive();
 
   const cart = useSelector((state: RootState) => state.cart.items);
   const gameId = cart.map((game) => game.id);
@@ -60,9 +60,11 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   return (
     <>
       {checkoutOpen ? (
-        <CartCheckout
+        <Checkout
           setOpenSwitch={setOpenSwitch}
           setCheckoutOpen={setCheckoutOpen}
+          cartItems={cart}
+          quantities={quantities}
         />
       ) : (
         <>

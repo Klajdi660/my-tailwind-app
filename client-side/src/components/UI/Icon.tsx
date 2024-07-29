@@ -25,12 +25,14 @@ import {
   BiSelectMultiple,
   BiMinus,
   BiPlus,
+  BiLock,
 } from "react-icons/bi";
 import {
   BsFillPlayFill,
   BsMoonStars,
   BsNintendoSwitch,
   BsGlobe,
+  BsShieldLock,
 } from "react-icons/bs";
 import { CiShoppingTag } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
@@ -70,7 +72,11 @@ import {
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import { PiWarningCircle, PiWarningCircleBold } from "react-icons/pi";
-import { RiFirefoxLine, RiInstagramFill } from "react-icons/ri";
+import {
+  RiFirefoxLine,
+  RiInstagramFill,
+  RiSecurePaymentLine,
+} from "react-icons/ri";
 import {
   SlGameController,
   SlSocialDropbox,
@@ -105,6 +111,7 @@ const icons: IconsMap = {
   BiSelectMultiple,
   BiMinus,
   BiPlus,
+  BiLock,
   BsFillPlayFill,
   BsMoonStars,
   BsNintendoSwitch,
@@ -141,6 +148,7 @@ const icons: IconsMap = {
   PiWarningCircleBold,
   RiFirefoxLine,
   RiInstagramFill,
+  RiSecurePaymentLine,
   SlGameController,
   SlSocialDropbox,
   SlArrowUp,
@@ -155,6 +163,7 @@ const icons: IconsMap = {
   MdPhoneIphone,
   SiNintendo,
   BsGlobe,
+  BsShieldLock,
 };
 
 export const Icon: FunctionComponent<IconParams> = ({
