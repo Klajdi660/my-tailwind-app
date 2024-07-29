@@ -26,10 +26,10 @@ export const CheckoutPaymentMethod: FunctionComponent<
       className="flex_justify_between w-full my-3 p-3 gap-4"
     >
       <Radio
-        value="momo"
+        value="mobile_money"
         className={classNames(
           "flex_justify_between px-4 py-2 rounded-full hover:bg-primary-opacity",
-          paymentMethod === "momo" && "bg-primary-opacity"
+          paymentMethod === "mobile_money" && "bg-primary-opacity"
         )}
       >
         <Image imgUrl={momo} name="momo_img" width={150} />
