@@ -11,10 +11,8 @@ export const CartFooter: FunctionComponent<CartFooterProps> = (props) => {
     quantities
   );
 
-  // absolute bottom-0
-
   return (
-    <div className="switch_footer flex_justify_between flex-col p-4  w-full gap-3 bg-switch">
+    <div className="w-full mt-2 md:mt-0 flex-1 rounded bg-primary-opacity rounded-t-[2rem] px-8 py-2 flex flex-col items-center justify-evenly">
       <div className="w-full flex items-center justify-between text-base md:text-lg text-secondary">
         <p>Sub Total</p>
         <p>

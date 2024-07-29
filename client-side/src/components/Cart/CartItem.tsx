@@ -5,6 +5,7 @@ import { paths } from "../../data";
 import { useCart, useNotification } from "../../hooks";
 import { CartItemProps } from "../../types";
 import { classNames, gameNameTruncate, calculateTotalPrice } from "../../utils";
+import { HiCheck } from "react-icons/hi";
 
 export const CartItem: FunctionComponent<CartItemProps> = (props) => {
   const {
@@ -15,6 +16,7 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
     quantities,
     setQuantities,
     cartItems,
+    setSelectedHeaderOpen,
   } = props;
   const { id, name, slug, background_image, price } = item;
   const { gameDetail } = paths;
@@ -53,13 +55,19 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
       ? selections.filter((selectedId) => selectedId !== id)
       : [...selections, id];
     setSelections(selectOne);
+
+    if (selectOne.length > 0) {
+      setSelectedHeaderOpen(true);
+    } else {
+      setSelectedHeaderOpen(false);
+    }
   };
 
   return (
-    <li
+    <div
       key={id}
       className={classNames(
-        "relative p-2 flex items-start text-base !text-onNeutralBg cursor-pointer gap-2"
+        "relative w-full p-4 flex items-start text-base !text-onNeutralBg cursor-pointer gap-2 bg-primary-opacity rounded-lg"
       )}
     >
       <Link
@@ -129,15 +137,13 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
                 className="w-5 h-5 flex_justify_center bg-none border border-primary rounded hover:opacity-80"
                 onClick={oneSelectGame}
               >
-                {hasOneSelect && (
-                  <Icon name="HiCheck" size={16} className="text-primary" />
-                )}
+                {hasOneSelect && <HiCheck size={16} className="text-primary" />}
               </button>
             )}
           </div>
           <p className="flex justify-end text-sm">145 available</p>
         </div>
       </div>
-    </li>
+    </div>
   );
 };

@@ -27,7 +27,7 @@ export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
           className="hover:text-primary"
           onClick={backCartSwitchHandler}
         />
-        <h5 className="text-base font-semibold">Games</h5>
+        <h5 className="text-onNeutralBg text-base font-semibold">Games</h5>
         <Badge count={cart.length} showZero color="var(--primary)" />
       </div>
       <div className="flex items-center gap-2">

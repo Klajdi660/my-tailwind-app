@@ -127,7 +127,8 @@ body {
 }
 
 .switch_body_scroll {
-  height: calc(100vh - 200px);
+  /* height: calc(100vh - 200px); */
+  height: calc(100vh - 400px);
 }
 
 /* .genre_card_height {

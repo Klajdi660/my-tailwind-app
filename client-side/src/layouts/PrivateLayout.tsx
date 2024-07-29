@@ -9,8 +9,10 @@ import {
 } from "../components";
 // import { useUserService } from "../services";
 import { ProviderProps } from "../types";
+import { useAppUtil } from "../utils";
 
 export const PrivateLayout = ({ children }: ProviderProps) => {
+  const { openSwitch } = useAppUtil();
   // const { getUserDetails } = useUserService();
 
   // useEffect(() => {
@@ -39,7 +41,7 @@ export const PrivateLayout = ({ children }: ProviderProps) => {
         </div>
       </main>
       <TopPlay />
-      <CartSwitcher />
+      {openSwitch && <CartSwitcher />}
       <Modal />
     </div>
   );

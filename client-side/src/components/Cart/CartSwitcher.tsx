@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import { useSelector } from "react-redux";
-import { CartBody, CartEmpty, CartHeader, CartFooter } from "../Cart";
-import { Overlay } from "../UI";
+import { motion } from "framer-motion";
+import { CartBody, CartEmpty, CartHeader, CartCheckout } from "../Cart";
 import { useCart } from "../../hooks";
 import { RootState } from "../../store";
 import { CartSwitcherProps } from "../../types";
@@ -19,6 +19,7 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   const [isSelectAll, setIsSelectAll] = useState<boolean>(false);
   const [selections, setSelections] = useState<number[]>([]);
   const [checkoutOpen, setCheckoutOpen] = useState<boolean>(false);
+  const [selectedHeaderOpen, setSelectedHeaderOpen] = useState<boolean>(false);
   const [quantities, setQuantities] = useState<{ [id: string]: number }>({
     gameId: 1,
   });
@@ -27,9 +28,12 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
     if (isSelectAll) {
       setSelections([]);
       setIsSelectAll(false);
+      setSelectedHeaderOpen(false);
+      return;
     }
 
     setIsSelectAll(true);
+    setSelectedHeaderOpen(true);
     setSelections(gameId);
   };
 
@@ -54,27 +58,20 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   };
 
   return (
-    <section
-      className={classNames(
-        // "cart_switch_section w-aside bg-switch",
-        "cart_switch_section w-[380px] bg-switch",
-        openSwitch ? "right-0" : "-right-aside"
-      )}
-    >
-      <Overlay
-        isOpen={openSwitch}
-        handleIsOpen={backCartSwitchHandler}
-        transparent
-        isMobile={isMobile}
-      />
-      <div
-        // className="switch_body relative h-screen overflow-auto text-onNeutralBg bg-switch shadow-box"
-        className="switch_body relative text-onNeutralBg bg-switch shadow-box"
-      >
-        {checkoutOpen ? (
-          <div className="text-onNeutralBg">Test</div>
-        ) : (
-          <>
+    <>
+      {checkoutOpen ? (
+        <CartCheckout
+          setOpenSwitch={setOpenSwitch}
+          setCheckoutOpen={setCheckoutOpen}
+        />
+      ) : (
+        <>
+          <motion.div
+            initial={{ opacity: 0, x: 200 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 200 }}
+            className={`w-full h-screen md:w-[380px] bg-switch md:backdrop-blur-sm flex flex-col z-[101] drop-shadow-xl fixed top-0 right-0`}
+          >
             {cart && cart.length > 0 ? (
               <>
                 <CartHeader
@@ -95,19 +92,17 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
                   setSelections={setSelections}
                   quantities={quantities}
                   setQuantities={setQuantities}
-                />
-                <CartFooter
                   setCheckoutOpen={setCheckoutOpen}
-                  cartItems={cart}
-                  quantities={quantities}
+                  setSelectedHeaderOpen={setSelectedHeaderOpen}
+                  selectedHeaderOpen={selectedHeaderOpen}
                 />
               </>
             ) : (
               <CartEmpty setOpenSwitch={setOpenSwitch} />
             )}
-          </>
-        )}
-      </div>
-    </section>
+          </motion.div>
+        </>
+      )}
+    </>
   );
 };
