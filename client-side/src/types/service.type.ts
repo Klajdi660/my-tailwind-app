@@ -10,7 +10,7 @@ export interface AuthService {
   resetPassword: (
     hash: string | any,
     email: string | any,
-    data: ResetPasswordInput
+    data: ResetPasswordInput | any
   ) => Promise<void>;
   logout: () => Promise<void>;
   login: (data: LoginUserInput) => Promise<void>;

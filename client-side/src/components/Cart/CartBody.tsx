@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import { Badge } from "antd";
 import { CartItem, CartFooter } from "../Cart";
 import { Icon } from "../UI";
+import { useStore } from "../../hooks";
 import { CartBodyProps } from "../../types";
 
 export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
@@ -16,6 +17,8 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
     setCheckoutOpen,
     setSelectedHeaderOpen,
   } = props;
+
+  const { shippingTo } = useStore();
 
   const allSelections = selections.length;
 
@@ -42,7 +45,8 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
           <p className="text-base font-semibold py-2">Ship to</p>
           <div className="flex items-center gap-2">
             <Icon name="SlLocationPin" size={14} />
-            Albania
+            {/* Albania */}
+            {shippingTo}
           </div>
         </div>
       )}

@@ -30,11 +30,11 @@ const StoreContext = createContext(initialState);
 
 const StoreProvider: React.FC<ProviderProps> = ({ children }) => {
   const { user } = useAuth();
-  const [lang, setLang] = useState<string>("en");
+  const [lang, setLang] = useState<string>("al");
   const [currency, setCurrency] = useState<string>("");
   const [userStore, setUserStore] = useState<Object>({});
   const [loading, setLoading] = useState<boolean>(false);
-  const [shippingTo, setShippingTo] = useState<string>("");
+  const [shippingTo, setShippingTo] = useState<string>("Albania");
   const [selectedTimeZone, setSelectedTimeZone] = useState<string>("");
   const [translations, setTranslations] = useState<TranslationsResponse>({});
 

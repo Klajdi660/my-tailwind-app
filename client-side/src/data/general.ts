@@ -159,11 +159,11 @@ export const langMenuItem = ({ onSelectLanguage }: LangMenuItem) => [
     },
   },
   {
-    id: "sh",
+    id: "en",
     icon: shFlag,
     name: "English",
     onClick: () => {
-      onSelectLanguage("sh");
+      onSelectLanguage("en");
     },
   },
 ];
