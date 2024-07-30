@@ -9,37 +9,37 @@ import { useStore } from "../hooks";
 import { LanguageProps } from "../types";
 
 const recommendedCountries = [
-  "United States",
   "Spain",
-  "France",
-  "United Kingdom",
-  "Brazil",
-  "Korea",
-  "Saudi Arabia",
-  "Israel",
-  "Netherlands",
-  "Canada",
   "Italy",
   "Chile",
-  "Ukraine",
+  "Korea",
+  "Brazil",
+  "France",
+  "Israel",
+  "Canada",
   "Poland",
+  "Ukraine",
   "Australia",
+  "Netherlands",
   "Switzerland",
+  "Saudi Arabia",
+  "United States",
+  "United Kingdom",
 ];
 
 const currencyMap = [
-  "Albania",
-  "United States",
   "France",
-  "United Kingdom",
+  "Albania",
   "Switzerland",
+  "United States",
+  "United Kingdom",
 ];
 
 const languageMaps = [
-  "English",
-  "Spanish",
   "French",
   "German",
+  "Spanish",
+  "English",
   "Italian",
   "Albanian",
 ];
