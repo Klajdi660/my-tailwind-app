@@ -195,7 +195,6 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               className="w-full h-10 text-sm"
               placeholder="Select currency"
               options={currencyOptions}
-              value={selectedCurrency}
             />
           )}
         />
