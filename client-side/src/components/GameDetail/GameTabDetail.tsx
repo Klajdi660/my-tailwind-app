@@ -3,9 +3,9 @@ import dayjs from "dayjs";
 import { GameTabReviews } from "./GameTabReviews";
 import {
   ReadMore,
-  PlatformIconList,
   DeveloperList,
   PublisherList,
+  PlatformIconList,
 } from "../Common";
 import { Tab } from "../UI";
 import { dateFormatList, gameTabsButton } from "../../data";
@@ -14,11 +14,11 @@ import { GameTabDetailProps } from "../../types";
 export const GameTabDetail: FunctionComponent<GameTabDetailProps> = (props) => {
   const { gameDetail, gameReviews } = props;
   const {
-    description_raw,
+    released,
     developers,
     publishers,
+    description_raw,
     parent_platforms,
-    released,
   } = gameDetail;
 
   const [currentTab, setCurrentTab] = useState("overall");

@@ -7,50 +7,50 @@ export interface ProviderProps {
 // Config
 export interface ThemeConfig {
   modes: string[];
+  sidebars: {
+    full: string;
+    folded: string;
+  };
+  players: string[];
+  fontFamilies: string[];
   colors: {
     [key: string]: {
       primary: string;
-      primaryLightGray: string;
       primaryOpacity: string;
+      primaryLightGray: string;
     };
   };
   themes: {
     [key: string]: {
-      neutralBg: string;
-      neutralBgOpacity: string;
-      neutralBgAlt: string;
-      onNeutralBg: string;
-      onNeutralBgSecondary: string;
-      onNeutralBgDivider: string;
-      switchBg: string;
       cardBg: string;
-      cardSkeletonBg: string;
-      cardBgHover: string;
       player: string;
+      switchBg: string;
+      neutralBg: string;
+      cardBgHover: string;
+      onNeutralBg: string;
+      neutralBgAlt: string;
+      cardSkeletonBg: string;
+      neutralBgOpacity: string;
+      onNeutralBgDivider: string;
+      onNeutralBgSecondary: string;
     };
-  };
-  players: string[];
-  fontFamilies: string[];
-  sidebars: {
-    folded: string;
-    full: string;
   };
 }
 
 // Hooks
 export interface NotifyParams {
-  description: string | any;
   variant: string;
+  description: string | any;
 }
 
 // Provider
 interface ThemeState {
   mode: string;
   color: string;
-  sidebar: "folded" | "full";
   layout: string;
   fontFamily: string;
   borderRadius: number;
+  sidebar: "folded" | "full";
 }
 
 export interface RootState {
@@ -59,8 +59,8 @@ export interface RootState {
 
 // Store
 export interface RememberMeState {
-  identifier: string;
   password: string;
+  identifier: string;
   remember?: boolean;
   rememberType?: string;
 }
@@ -100,8 +100,8 @@ export interface SubmittingState {
 // Component
 export interface NotificationItemList {
   id: number;
-  content: string;
   time: string;
+  content: string;
 }
 
 export interface PageLinkItem {
@@ -125,28 +125,42 @@ export type GridList = {
 
 // Game
 export interface GameParams {
-  added: number;
-  added_by_status: {
-    beaten: number;
-    dropped: number;
-    owned: number;
-    playing: number;
-    toplay: number;
-    yet: number;
-  };
-  background_image: string;
-  background_image_additional?: string;
+  id: number;
+  tba: boolean;
+  qty?: number;
   clip: string;
+  slug: string;
+  name: string;
+  added: number;
+  price: number;
+  rating: number;
+  user_game: any;
+  updated: string;
+  released: string;
+  playtime: number;
+  metacritic: number;
+  rating_top: number;
+  reviews_count: number;
+  ratings_count: number;
+  dominant_color: string;
   description_raw: string;
-  developers: {
-    games_count: number;
+  saturated_color: string;
+  background_image: string;
+  suggestions_count: number;
+  reviews_text_count: number;
+  background_image_additional?: string;
+  short_screenshots: { id: number; image: string }[];
+  esrb_rating: { id: number; name: string; slug: string };
+  ratings: { id: number; title: string; count: number; percent: number }[];
+  parent_platforms: { platform: { id: number; name: string; slug: string } }[];
+  tags: {
     id: number;
-    image_background: string;
     name: string;
     slug: string;
+    language: string;
+    games_count: number;
+    image_background: string;
   }[];
-  dominant_color: string;
-  esrb_rating: { id: number; name: string; slug: string };
   genres: {
     id: number;
     name: string;
@@ -154,57 +168,43 @@ export interface GameParams {
     games_count: number;
     image_background: string;
   }[];
-  id: number;
-  metacritic: number;
-  name: string;
-  parent_platforms: { platform: { id: number; name: string; slug: string } }[];
-  platforms: {
-    platform: { id: number; name: string; slug: string };
-    released_at: string;
-  }[];
-  playtime: number;
-  price: number;
-  publishers: {
-    games_count: number;
-    id: number;
-    image_background: string;
-    name: string;
-    slug: string;
-  }[];
-  qty?: number;
-  rating: number;
-  rating_top: number;
-  ratings: { id: number; title: string; count: number; percent: number }[];
-  ratings_count: number;
-  released: string;
-  reviews_count: number;
-  reviews_text_count: number;
-  saturated_color: string;
-  short_screenshots: { id: number; image: string }[];
-  slug: string;
   stores: {
     id: number;
     store: {
-      domain: string;
-      game_count: number;
       id: number;
-      image_background: string;
       name: string;
       slug: string;
+      domain: string;
+      game_count: number;
+      image_background: string;
     };
   }[];
-  suggestions_count: number;
-  tags: {
-    games_count: number;
+  platforms: {
+    released_at: string;
+    platform: { id: number; name: string; slug: string };
+  }[];
+  developers: {
     id: number;
-    image_background: string;
-    language: string;
     name: string;
     slug: string;
+    games_count: number;
+    image_background: string;
   }[];
-  tba: boolean;
-  updated: string;
-  user_game: any;
+  publishers: {
+    id: number;
+    name: string;
+    slug: string;
+    games_count: number;
+    image_background: string;
+  }[];
+  added_by_status: {
+    yet: number;
+    owned: number;
+    toplay: number;
+    beaten: number;
+    dropped: number;
+    playing: number;
+  };
 }
 
 export interface GameVideosParams {
@@ -212,56 +212,56 @@ export interface GameVideosParams {
   next: any | null;
   previous: any | null;
   results: {
-    data: object;
     id: number;
     name: string;
+    data: object;
     preview: string;
   }[];
 }
 
 export interface GameReviewsParams {
-  can_delete: boolean;
-  comments: { count: number; results: any[] };
-  comments_count: number;
-  comments_parent_count: number;
-  created: string;
-  edited: string;
-  extrenal_auth: string;
-  extrenal_avatar: string | null;
-  extrenal_lang: string;
-  external_source: string;
-  external_store: {
-    domain: string;
-    games_count: number;
-    id: number;
-    image_background: string;
-    name: string;
-    slug: string;
-  };
-  game: number;
   id: number;
-  is_extrenal: boolean;
-  is_text: boolean;
-  likes_count: number;
-  likes_positive: number;
-  likes_rating: number;
-  posts_count: number;
-  rating: number;
-  reactions: any[];
-  share_image: string;
+  game: number;
   text: string;
-  text_attachments: number;
+  edited: string;
+  rating: number;
+  created: string;
+  reactions: any[];
+  is_text: boolean;
+  can_delete: boolean;
+  posts_count: number;
+  share_image: string;
+  likes_count: number;
   text_preview: string;
+  is_extrenal: boolean;
   text_previews: any[];
+  likes_rating: number;
+  extrenal_lang: string;
+  extrenal_auth: string;
+  likes_positive: number;
+  comments_count: number;
+  external_source: string;
+  text_attachments: number;
+  comments_parent_count: number;
+  extrenal_avatar: string | null;
+  comments: { count: number; results: any[] };
   user:
     | {
-        avatar: string | null;
-        collections_count: number;
-        full_name: string;
-        games_count: number;
         id: number;
         slug: string;
         userame: string;
+        full_name: string;
+        games_count: number;
+        avatar: string | null;
+        collections_count: number;
       }[]
     | null;
+  external_store: {
+    id: number;
+    name: string;
+    slug: string;
+    domain: string;
+    games_count: number;
+    image_background: string;
+  };
 }

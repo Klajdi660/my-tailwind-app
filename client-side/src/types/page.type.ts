@@ -22,8 +22,8 @@ export interface RegisterUserInput {
   email: string;
   fullname: string;
   password: string;
-  // passwordConfirm: string;
   username: string;
+  // passwordConfirm: string;
 }
 
 export interface ResetPasswordPageProps {}

@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import {
-  AppModalState,
   AppUtilState,
-  NavScrollTriggerState,
-  ProfilePhotoState,
+  AppModalState,
   SubmittingState,
+  ProfilePhotoState,
+  NavScrollTriggerState,
 } from "../types";
 
 export const useNavScrollTrigger = create<NavScrollTriggerState>((set) => ({

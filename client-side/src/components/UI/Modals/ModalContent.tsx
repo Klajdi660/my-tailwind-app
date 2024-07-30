@@ -4,22 +4,22 @@ import { SmallModalProps, ModalDefaultStyles } from "../../../types";
 
 export const SmallModal: FunctionComponent<SmallModalProps> = (props) => {
   const {
-    open,
-    children,
-    footer,
-    title,
-    closable = true,
-    isMobile,
-    destroyOnClose = false,
     onOk,
-    okText = "btn_submit",
-    okButtonProps = { style: { display: "none" } },
-    onCancel,
-    cancelText = "btn_cancel",
-    cancelButtonProps = { style: { display: "none" } },
+    open,
     width,
+    title,
+    footer,
     height,
     styles,
+    children,
+    isMobile,
+    onCancel,
+    closable = true,
+    okText = "btn_submit",
+    destroyOnClose = false,
+    cancelText = "btn_cancel",
+    okButtonProps = { style: { display: "none" } },
+    cancelButtonProps = { style: { display: "none" } },
   } = props;
 
   const defaultBodyStyle: CSSProperties = {
@@ -34,20 +34,20 @@ export const SmallModal: FunctionComponent<SmallModalProps> = (props) => {
 
   return (
     <Modal
-      open={open}
-      title={title}
-      styles={stylesObj}
-      width={isMobile ? "50vw" : width || "60vw"}
       centered
+      open={open}
+      onOk={onOk}
+      title={title}
+      footer={footer}
+      okText={okText}
+      styles={stylesObj}
       closable={closable}
       onCancel={onCancel}
-      onOk={onOk}
-      okText={okText}
       cancelText={cancelText}
       okButtonProps={okButtonProps}
-      footer={footer}
       destroyOnClose={destroyOnClose}
       cancelButtonProps={cancelButtonProps}
+      width={isMobile ? "50vw" : width || "60vw"}
     >
       {children}
     </Modal>

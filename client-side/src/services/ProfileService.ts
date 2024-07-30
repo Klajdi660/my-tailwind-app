@@ -3,26 +3,26 @@ import { profileEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { useAuth, useNotification, useStore } from "../hooks";
 import {
-  updateRememberMeData,
   setIsAccountDelete,
+  updateRememberMeData,
   setAccountDeleteDaysDifference,
 } from "../store";
 import {
-  ChangePasswordInput,
-  DeleteProfileInput,
   EditProfileInput,
+  DeleteProfileInput,
+  ChangePasswordInput,
   UserDetailsResponse,
   PersonalDetailsInput,
 } from "../types";
 
 const {
-  CHANGE_USERNAME_API,
   UPDATE_PROFILE_API,
-  CHANGE_PASSWORD_API,
   DELETE_PROFILE_API,
-  CANCEL_DELETION_ACCOUNT_API,
+  CHANGE_PASSWORD_API,
+  CHANGE_USERNAME_API,
   UPDATE_PROFILE_PICTURE_API,
   DELETE_PROFILE_PICTURE_API,
+  CANCEL_DELETION_ACCOUNT_API,
 } = profileEndpoints;
 
 export const useProfileService = () => {

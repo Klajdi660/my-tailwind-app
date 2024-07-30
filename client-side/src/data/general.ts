@@ -1,40 +1,33 @@
+import { alFlag, shFlag } from "../assets";
 import {
-  alFlag,
-  shFlag,
-  facebookIcon,
-  instagramIcon,
-  tiktokIcon,
-  youtubeIcon,
-} from "../assets";
-import {
-  PathProperties,
-  LogoProperties,
-  FontSizesProperties,
-  AccountTypeList,
+  GridList,
   NavLinkList,
-  NotificationItemList,
   PageLinkItem,
   LangMenuItem,
+  PathProperties,
+  LogoProperties,
+  AccountTypeList,
   DownloadBtnList,
-  GridList,
+  FontSizesProperties,
+  NotificationItemList,
 } from "../types";
 
 export const paths: PathProperties = {
   home: "/",
   login: "/login",
-  socialAuth: "social-auth",
-  register: "register",
-  verifyEmail: "verify-email",
-  forgotPassword: "forgot-password",
-  passwordCode: "password-code",
-  // changePassword: "update-password/:email/:username/:h/:exp",
-  resetPassword: "reset-password/:email/:hash",
-  // resetPassword: "/reset-password",
-  profile: "/profile",
-  editProfile: "/edit-profile",
-  discover: "/discover",
-  gameDetail: "/game-detail",
   browse: "/browse",
+  profile: "/profile",
+  register: "register",
+  discover: "/discover",
+  socialAuth: "social-auth",
+  gameDetail: "/game-detail",
+  verifyEmail: "verify-email",
+  editProfile: "/edit-profile",
+  passwordCode: "password-code",
+  forgotPassword: "forgot-password",
+  // resetPassword: "/reset-password",
+  resetPassword: "reset-password/:email/:hash",
+  // changePassword: "update-password/:email/:username/:h/:exp",
 };
 
 export const logo: LogoProperties = {
@@ -43,11 +36,11 @@ export const logo: LogoProperties = {
 };
 
 export const fontSizes: FontSizesProperties = {
-  "extra-large": "text-3xl",
   large: "text-2xl",
   medium: "text-xl",
   small: "text-lg",
   "extra-small": "text-sm",
+  "extra-large": "text-3xl",
 };
 
 export const accountTypes: AccountTypeList[] = [
@@ -60,18 +53,18 @@ export const navlinks: NavLinkList[] = [
     name: "Home",
     subLinks: [
       {
-        id: "discover",
-        name: "Discover",
-        to: "/discover",
-        icon: "FaWpexplorer",
         tooltip: "hover",
+        id: "discover",
+        to: "/discover",
+        name: "Discover",
+        icon: "FaWpexplorer",
       },
       {
         id: "browse",
-        name: "Browse",
         to: "/browse",
-        icon: "MdOutlineExplore",
+        name: "Browse",
         tooltip: "hover",
+        icon: "MdOutlineExplore",
       },
     ],
   },
@@ -80,24 +73,24 @@ export const navlinks: NavLinkList[] = [
     subLinks: [
       {
         id: "my_games",
-        name: "My Games",
         to: "/my-games",
-        icon: "MdOutlineGames",
+        name: "My Games",
         tooltip: "hover",
+        icon: "MdOutlineGames",
       },
       {
         id: "wishlist",
-        name: "Wishlist",
         to: "/wishlist",
-        icon: "SlSocialDropbox",
+        name: "Wishlist",
         tooltip: "hover",
+        icon: "SlSocialDropbox",
       },
       {
         id: "store",
-        name: "Store",
         to: "/store",
-        icon: "MdStorefront",
+        name: "Store",
         tooltip: "hover",
+        icon: "MdStorefront",
       },
     ],
   },
@@ -106,23 +99,23 @@ export const navlinks: NavLinkList[] = [
     subLinks: [
       {
         id: "collection",
-        name: "Collections",
-        to: "/collection",
-        icon: "RiFirefoxLine",
         tooltip: "hover",
+        to: "/collection",
+        name: "Collections",
+        icon: "RiFirefoxLine",
       },
       {
         id: "platforms",
-        name: "Platforms",
-        to: "/platforms",
         icon: "CgGames",
+        to: "/platforms",
         tooltip: "hover",
+        name: "Platforms",
       },
       {
         id: "genres",
-        name: "Genres",
         to: "/genres",
         icon: "BiGame",
+        name: "Genres",
         tooltip: "hover",
       },
     ],
@@ -133,42 +126,42 @@ export const navlinks: NavLinkList[] = [
 export const notificationList: NotificationItemList[] = [
   {
     id: 1,
+    time: "1 minute ago",
     content:
       "Mark Smith reacted to your recent added playlist - My first playlist",
-    time: "1 minute ago",
   },
   {
     id: 2,
-    content: "Sarah Johnson created a new playlist - Downtown Music",
     time: "1 day ago",
+    content: "Sarah Johnson created a new playlist - Downtown Music",
   },
   {
     id: 3,
-    content: "Bob Manuel sent you a private message",
     time: "1 week ago",
+    content: "Bob Manuel sent you a private message",
   },
 ];
 
 export const pageLink: PageLinkItem[] = [
   { name: "About", link: "/" },
-  { name: "Contact", link: "/" },
   { name: "Legal", link: "/" },
   { name: "Policy", link: "/" },
+  { name: "Contact", link: "/" },
 ];
 
 export const langMenuItem = ({ onSelectLanguage }: LangMenuItem) => [
   {
     id: "al",
-    name: "Albanian",
     icon: alFlag,
+    name: "Albanian",
     onClick: () => {
       onSelectLanguage("al");
     },
   },
   {
     id: "sh",
-    name: "English",
     icon: shFlag,
+    name: "English",
     onClick: () => {
       onSelectLanguage("sh");
     },
@@ -176,14 +169,10 @@ export const langMenuItem = ({ onSelectLanguage }: LangMenuItem) => [
 ];
 
 export const downloadBtnList: DownloadBtnList[] = [
-  // { id: 1, name: "facebook", icon: facebookIcon },
-  // { id: 2, name: "instagram", icon: instagramIcon },
-  // { id: 3, name: "tiktok", icon: tiktokIcon },
-  // { id: 4, name: "youtube", icon: youtubeIcon },
-  { id: 1, name: "facebook", icon: "FaFacebook" },
-  { id: 2, name: "instagram", icon: "RiInstagramFill" },
-  { id: 3, name: "tiktok", icon: "FaTiktok" },
-  { id: 4, name: "youtube", icon: "FaYoutube" },
+  { id: 1, name: "tiktok", icon: "FaTiktok" },
+  { id: 2, name: "youtube", icon: "FaYoutube" },
+  { id: 3, name: "facebook", icon: "FaFacebook" },
+  { id: 4, name: "instagram", icon: "RiInstagramFill" },
 ];
 
 export const grid: GridList = {

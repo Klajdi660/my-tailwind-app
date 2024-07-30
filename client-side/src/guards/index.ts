@@ -1,2 +1,2 @@
-export { PrivateGuard } from "./PrivateGuard";
 export { PublicGuard } from "./PublicGuard";
+export { PrivateGuard } from "./PrivateGuard";

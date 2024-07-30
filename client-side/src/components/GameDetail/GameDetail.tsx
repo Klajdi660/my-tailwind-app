@@ -12,13 +12,13 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
   const { gameDetail, gameVideos, gameReviews } = props;
 
   const {
-    background_image,
-    background_image_additional,
+    id,
     name,
     genres,
     rating,
     playtime,
-    id,
+    background_image,
+    background_image_additional,
   } = gameDetail;
 
   const { results: gameVideoResults } = gameVideos;

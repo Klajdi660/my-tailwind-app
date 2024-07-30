@@ -4,14 +4,14 @@ import {
   useSelector as useAppSelector,
 } from "react-redux";
 import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  PAUSE,
-  PERSIST,
   PURGE,
+  PAUSE,
+  FLUSH,
+  PERSIST,
   REGISTER,
   REHYDRATE,
+  persistStore,
+  persistReducer,
 } from "redux-persist";
 import { rootPersistConfig, rootReducer } from "./slices";
 

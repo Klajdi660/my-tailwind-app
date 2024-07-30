@@ -5,9 +5,9 @@ import { useProfileService } from "../../../services";
 import { useAppModal, useProfilePhoto } from "../../../utils";
 
 export const ChangeProfilePhotoModal: FunctionComponent<any> = () => {
-  const { updateDisplayPicture, removeDisplayPicture } = useProfileService();
   const { modals, setModalOpen } = useAppModal();
   const { setIsUpdatingProfileImg } = useProfilePhoto();
+  const { updateDisplayPicture, removeDisplayPicture } = useProfileService();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 

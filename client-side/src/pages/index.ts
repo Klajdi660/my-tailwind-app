@@ -1,21 +1,18 @@
-export { ForgotPasswordPage } from "./Auth/ForgotPassword";
-export { LoginPage } from "./Auth/Login";
-export { PasswordConfirmCodePage } from "./Auth/PasswordConfirmCode";
-export { RegisterPage } from "./Auth/Register";
-export { ResetPasswordPage } from "./Auth/ResetPassword";
-export { VerifyEmailPage } from "./Auth/VerifyEmail";
-
-export { ProfilePage } from "./Profile/Profile";
-export { EditProfilePage } from "./Profile/EditProfile";
-
-export { BrowsePage } from "./Root/Browse";
-export { CollectionPage } from "./Root/Collections";
-export { DiscoverPage } from "./Root/Discover";
-export { GameDetailPage } from "./Root/GameDetailPage";
-export { HomePage } from "./Root/Home";
-export { MyGamesPage } from "./Root/MyGames";
-export { StorePage } from "./Root/Store";
-export { WishlistPage } from "./Root/Wishlist";
-
-export { ComingSoonPage } from "./ComingSoon";
 export { ErrorPage } from "./Error";
+export { HomePage } from "./Root/Home";
+export { StorePage } from "./Root/Store";
+export { LoginPage } from "./Auth/Login";
+export { BrowsePage } from "./Root/Browse";
+export { MyGamesPage } from "./Root/MyGames";
+export { ComingSoonPage } from "./ComingSoon";
+export { RegisterPage } from "./Auth/Register";
+export { WishlistPage } from "./Root/Wishlist";
+export { DiscoverPage } from "./Root/Discover";
+export { ProfilePage } from "./Profile/Profile";
+export { CollectionPage } from "./Root/Collections";
+export { VerifyEmailPage } from "./Auth/VerifyEmail";
+export { GameDetailPage } from "./Root/GameDetailPage";
+export { EditProfilePage } from "./Profile/EditProfile";
+export { ResetPasswordPage } from "./Auth/ResetPassword";
+export { ForgotPasswordPage } from "./Auth/ForgotPassword";
+export { PasswordConfirmCodePage } from "./Auth/PasswordConfirmCode";

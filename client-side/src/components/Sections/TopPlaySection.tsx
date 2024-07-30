@@ -13,10 +13,10 @@ export const TopPlaySection: FunctionComponent<TopPlaySectionProps> = (
 ) => {
   const {
     gameList,
-    listDivider = true,
     imageDims = "16",
-    skeletonItemNumber = 5,
+    listDivider = true,
     enableTitle = true,
+    skeletonItemNumber = 5,
   } = props;
 
   const { browse } = paths;

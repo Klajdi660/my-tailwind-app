@@ -12,13 +12,13 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
 
   const [
     {
+      btnTxt,
+      linkTo,
       formName,
       formTitle,
-      footerTitle,
       footerLink,
-      linkTo,
       description,
-      btnTxt,
+      footerTitle,
     },
   ] = listForm;
 

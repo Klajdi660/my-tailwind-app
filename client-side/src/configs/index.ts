@@ -1,2 +1,2 @@
-export * from "./general.config";
 export * from "./theme.config";
+export * from "./general.config";

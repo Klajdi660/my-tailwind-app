@@ -1,15 +1,15 @@
 import { GameIconMapsProperties, ImageDimsOptions } from "../types";
 
 export const gameIconMap: GameIconMapsProperties = {
-  pc: "FaWindows",
-  playstation: "FaPlaystation",
   xbox: "FaXbox",
-  nintendo: "SiNintendo",
   mac: "FaApple",
-  linux: "FaLinux",
-  android: "FaAndroid",
-  ios: "MdPhoneIphone",
   web: "BsGlobe",
+  pc: "FaWindows",
+  linux: "FaLinux",
+  ios: "MdPhoneIphone",
+  android: "FaAndroid",
+  nintendo: "SiNintendo",
+  playstation: "FaPlaystation",
 };
 
 export const imageDimsOpt: ImageDimsOptions = {
@@ -20,8 +20,8 @@ export const imageDimsOpt: ImageDimsOptions = {
 };
 
 export const gameTabsButton = [
-  { id: "overall", name: "Overall" },
   { id: "cast", name: "Cast" },
+  { id: "overall", name: "Overall" },
   { id: "reviews", name: "Reviews" },
   { id: "seasons", name: "Seasons" },
 ];

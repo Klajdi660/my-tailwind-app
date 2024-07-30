@@ -1,14 +1,14 @@
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { NotifyParams } from "../types";
+import "react-toastify/dist/ReactToastify.css";
 
 export const useNotification = () => {
   const toastFuncMap: any = {
+    default: toast,
     info: toast.info,
+    error: toast.error,
     success: toast.success,
     warning: toast.warning,
-    error: toast.error,
-    default: toast,
   };
 
   const notify = ({ description, variant = "success" }: NotifyParams) => {
@@ -19,16 +19,15 @@ export const useNotification = () => {
         <span className="text-onNeurtralBg">{description}</span>
       </div>,
       {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        // pauseOnHover: true,
-        pauseOnFocusLoss: false,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
         theme: "dark",
+        autoClose: 5000,
+        draggable: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        progress: undefined,
+        position: "top-right",
+        hideProgressBar: false,
+        pauseOnFocusLoss: false,
       }
     );
   };

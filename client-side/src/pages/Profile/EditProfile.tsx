@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
 import {
-  DeleteAccount,
-  EditProfile,
-  ChangePassword,
   Title,
-  PersonalDetails,
   UserInfo,
+  EditProfile,
+  DeleteAccount,
+  ChangePassword,
+  PersonalDetails,
 } from "../../components";
 import { ProfilePageProps } from "../../types";
 
@@ -16,9 +16,9 @@ export const EditProfilePage: FunctionComponent<ProfilePageProps> = () => {
       <div className="flex flex-col gap-y-10 text-onNeutralBg">
         <UserInfo />
         <EditProfile />
-        <PersonalDetails />
-        <ChangePassword />
         <DeleteAccount />
+        <ChangePassword />
+        <PersonalDetails />
       </div>
     </section>
   );

@@ -2,15 +2,15 @@ import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  Button,
   Image,
-  CartButton,
-  DesktopToggleButton,
-  NotificationButton,
-  ThemeButton,
-  MobileToggleButton,
-  LanguageButton,
+  Button,
   Overlay,
+  CartButton,
+  ThemeButton,
+  LanguageButton,
+  MobileToggleButton,
+  NotificationButton,
+  DesktopToggleButton,
 } from "./UI";
 import { icon, iconName } from "../assets";
 import { Searchbar, ProfileDropdown } from "../components";

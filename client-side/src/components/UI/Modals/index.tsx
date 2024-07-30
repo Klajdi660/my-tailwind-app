@@ -6,9 +6,9 @@ import { SessionExpiredModal } from "./SessionExpiredModal";
 export const Modal: FunctionComponent = () => {
   return (
     <>
+      <DeleteProfileModal />
       <SessionExpiredModal />
       <ChangeProfilePhotoModal />
-      <DeleteProfileModal />
     </>
   );
 };

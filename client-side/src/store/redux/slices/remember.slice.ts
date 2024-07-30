@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RememberMeState } from "../../../types";
 
 const initialState: RememberMeState = {
-  identifier: "",
   password: "",
+  identifier: "",
   remember: false,
   rememberType: "",
 };
@@ -13,20 +13,20 @@ const slice = createSlice({
   initialState,
   reducers: {
     saveRememberMeData: (state, action: PayloadAction<RememberMeState>) => {
-      state.identifier = action.payload.identifier;
       state.password = action.payload.password;
       state.remember = action.payload.remember;
+      state.identifier = action.payload.identifier;
       state.rememberType = action.payload.rememberType;
     },
     clearRememberMeData: (state) => {
-      state.identifier = "";
       state.password = "";
+      state.identifier = "";
       state.remember = false;
       state.rememberType = "";
     },
     updateRememberMeData: (state, action: PayloadAction<RememberMeState>) => {
-      state.identifier = action.payload.identifier;
       state.password = action.payload.password;
+      state.identifier = action.payload.identifier;
     },
   },
 });

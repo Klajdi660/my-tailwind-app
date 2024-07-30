@@ -4,16 +4,16 @@ import { GameData, GameParams } from "../../types";
 import { getGamePrice } from "../../utils";
 
 interface GameFetchParams {
+  page?: number;
   gameId?: string;
   gameKey?: string;
-  page?: number;
   pageSize?: number;
 }
 
 export const useFetchGame = ({
+  page,
   gameId,
   gameKey,
-  page,
   pageSize,
 }: GameFetchParams) => {
   const { getGameDetail, getGameVideos, getGameReviews, getGameList } =

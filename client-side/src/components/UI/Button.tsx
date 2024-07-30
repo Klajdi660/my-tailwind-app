@@ -8,14 +8,14 @@ export const Button: FunctionComponent<ButtonProps> = forwardRef(
   (
     {
       type,
+      size,
       label,
+      variant,
       disabled,
       className,
-      iconClassName,
-      variant,
       labelIcon,
       tooltipTitle,
-      size,
+      iconClassName,
       onClick,
       ...props
     },

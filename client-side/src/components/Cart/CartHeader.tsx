@@ -8,12 +8,12 @@ export const CartHeader: FunctionComponent<CartHeaderProps> = (props) => {
   const {
     cart,
     isEditing,
-    isSelectAll,
     selections,
-    selectAllGameHandler,
-    cancelGameSelectedHandler,
+    isSelectAll,
     setIsEditing,
+    selectAllGameHandler,
     backCartSwitchHandler,
+    cancelGameSelectedHandler,
     deleteSelectedGameHandler,
   } = props;
 

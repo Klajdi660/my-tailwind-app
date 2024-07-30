@@ -37,52 +37,53 @@ export const StylesProvider = () => {
   const sidebarWidth = isLargeScreen ? sT : 0;
 
   const {
-    neutralBg,
-    neutralBgOpacity,
-    neutralBgAlt,
-    onNeutralBg,
-    onNeutralBgSecondary,
-    player,
-    onNeutralBgDivider,
-    switchBg,
     cardBg,
-    cardSkeletonBg,
+    player,
+    switchBg,
+    neutralBg,
     cardBgHover,
+    onNeutralBg,
+    neutralBgAlt,
+    cardSkeletonBg,
+    neutralBgOpacity,
+    onNeutralBgDivider,
+    onNeutralBgSecondary,
   } = themeObj || {};
 
   const { primary, primaryOpacity, primaryLightGray } = colorObj || {};
 
   const styles = `
-    :root {
-      --primary: ${primary};
-      --primary-light-gray: ${primaryLightGray};
-      --primary-opacity: ${primaryOpacity};
-      --neutralBg: ${neutralBg};
-      --neutralBgOpacity: ${neutralBgOpacity};
-      --neutralBgAlt: ${neutralBgAlt};
-      --onNeutralBg: ${onNeutralBg};
-      --onNeutralBgSecondary: ${onNeutralBgSecondary};
-      --playerBg: ${player};
-      --onNeutralBgDivider: ${onNeutralBgDivider};
-      --switchBg: ${switchBg};
-      --cardBg: ${cardBg};
-      --cardSkeletonBg: ${cardSkeletonBg};
-      --cardBgHover: ${cardBgHover};
-      --sidebar-width: ${isMobile ? sidebars["full"] : sT}px;
-      --aside-width: ${aside}px;
-      --sidebar-horizontal-width: ${sidebarWidth}px;
-      --nav-height: ${navHeight}px;
-      --nav-width: calc(100vw - ${asideMobile}px);
-      --player-height: ${playerHeight}px;
-      --logo-width: ${120}px;
-      --main-width: calc(100% - ${sidebarWidth}px - ${asideMobile}px);
+    :root {   
       --main-margin-top: ${
         `${navHeight}px`
         // !isMobile ? `${navHeight * 2}px` : `${navHeight}px`
       };
+      --cardBg: ${cardBg};
+      --primary: ${primary};
+      --playerBg: ${player};
       --direction: ${layout};
-      --font-family: ${startCase(fontFamily)};
+      --logo-width: ${120}px;
+      --switchBg: ${switchBg};
+      --neutralBg: ${neutralBg};
+      --aside-width: ${aside}px;
+      --nav-height: ${navHeight}px;
+      --cardBgHover: ${cardBgHover};
+      --onNeutralBg: ${onNeutralBg};
+      --neutralBgAlt: ${neutralBgAlt};
+      --player-height: ${playerHeight}px;
       --border-radius: ${borderRadius}px;
+      --cardSkeletonBg: ${cardSkeletonBg};
+      --primary-opacity: ${primaryOpacity};
+      --neutralBgOpacity: ${neutralBgOpacity};
+      --font-family: ${startCase(fontFamily)};
+      --neutralBgOpacity: ${neutralBgOpacity};
+      --primary-light-gray: ${primaryLightGray};
+      --nav-width: calc(100vw - ${asideMobile}px);
+      --onNeutralBgDivider: ${onNeutralBgDivider};
+      --sidebar-horizontal-width: ${sidebarWidth}px;
+      --onNeutralBgSecondary: ${onNeutralBgSecondary};
+      --sidebar-width: ${isMobile ? sidebars["full"] : sT}px;
+      --main-width: calc(100% - ${sidebarWidth}px - ${asideMobile}px);
     }
   `;
 

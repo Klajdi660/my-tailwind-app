@@ -3,9 +3,9 @@ import { CheckoutPaymentMethod, CheckoutFooter } from "../Checkout";
 import { CheckoutCardForm, CheckoutMomoForm } from "./CheckoutForm";
 
 interface CheckoutBodyProps {
+  totalPrice: string;
   paymentMethod: string;
   setPaymentMethod: (paymentMethod: string) => void;
-  totalPrice: string;
 }
 
 export const CheckoutBody: FunctionComponent<CheckoutBodyProps> = (props) => {

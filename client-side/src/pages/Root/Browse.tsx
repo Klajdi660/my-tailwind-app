@@ -17,20 +17,20 @@ export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
   // const { data: gameList } = useQuery(queryOptions);
 
   const { gameList } = useFetchGame({
-    gameKey: "discover",
     page: 1,
     pageSize: 20,
+    gameKey: "discover",
   });
 
   return (
     <section className="browse_page">
       <div className="flex flex-col gap-y-16">
         <MediaSection
-          gameList={gameList}
-          title="Discover"
-          subTitle="Explore sonic realms with our Discover feature."
           type="playlist"
+          title="Discover"
+          gameList={gameList}
           skeletonItemNumber={5}
+          subTitle="Explore sonic realms with our Discover feature."
         />
       </div>
     </section>

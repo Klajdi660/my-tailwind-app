@@ -1,58 +1,40 @@
-export { Footer } from "./Footer";
-export { FormField } from "./FormField";
-export { HomeFooter } from "./HomeFooter";
-export { Language } from "./Language";
-export { Loading } from "./Loading";
-export { Navbar } from "./NavBar";
-export { Notification } from "./Notification";
-export { Searchbar } from "./SearchBar";
-export { ShowApp } from "./ShowApp";
-export { TopPlay } from "./TopPlay";
-
-// Auth
-// export { LoginForm } from "./Auth/LoginForm";
-// export { OTPCodeForm } from "./Auth/OTPCodeForm";
-export { SocialAuth } from "./Auth/SocialAuth";
-export { Template } from "./Auth/Template";
-
-// Cards
-export { TopPlayCard } from "./Cards/TopPlayCard";
-export { MediaCard } from "./Cards/MediaCard";
-
-// Cart
-export { CartSwitcher } from "./Cart/CartSwitcher";
-
-// Common
-export { ErrorFormMessage } from "./Common/ErrorFormMessage";
-export * from "./Common/GameDetailCommon";
-export { ReadMore } from "./Common/ReadMore";
-
-// GameDetail
-export { GameDetail } from "./GameDetail/GameDetail";
-
-// Profile
-export { ChangePassword } from "./Profile/ChangePassword";
-export { DeleteAccount } from "./Profile/DeleteAccount";
-export { EditProfile } from "./Profile/EditProfile";
-export { PersonalDetails } from "./Profile/PersonalDetails";
-export { Profile } from "./Profile/Profile";
-export { ProfileDropdown } from "./Profile/ProfileDropDown";
-export { UserInfo } from "./Profile/UserInfo";
-
-// Section
-export { TopPlaySection } from "./Sections/TopPlaySection";
-export { MediaSection } from "./Sections/MediaSection";
-
-// Sidebar
-export { Sidebar } from "./Sidebar/Sidebar";
-
-// UI
-export { Button } from "./UI/Button";
-export { Modal } from "./UI/Modals";
-export { DeleteProfileModal } from "./UI/Modals/DeleteProfileModal";
-export { ChangeProfilePhotoModal } from "./UI/Modals/ChangeProfilePhotoModal";
-export { SessionExpiredModal } from "./UI/Modals/SessionExpiredModal";
-export { Image } from "./UI/Image";
-export * from "./UI/Modals/ModalContent";
 export { Tab } from "./UI/Tab";
+export { Footer } from "./Footer";
+export { Navbar } from "./NavBar";
+export { Image } from "./UI/Image";
 export { Title } from "./UI/Title";
+export { ShowApp } from "./ShowApp";
+export { Loading } from "./Loading";
+export { TopPlay } from "./TopPlay";
+export { Modal } from "./UI/Modals";
+export { Button } from "./UI/Button";
+export { Language } from "./Language";
+export { FormField } from "./FormField";
+export { Searchbar } from "./SearchBar";
+export * from "./UI/Modals/ModalContent";
+export * from "./Common/GameDetailCommon";
+export { HomeFooter } from "./HomeFooter";
+export { Template } from "./Auth/Template";
+export { Sidebar } from "./Sidebar/Sidebar";
+export { Profile } from "./Profile/Profile";
+export { ReadMore } from "./Common/ReadMore";
+export { UserInfo } from "./Profile/UserInfo";
+export { Notification } from "./Notification";
+export { MediaCard } from "./Cards/MediaCard";
+export { SocialAuth } from "./Auth/SocialAuth";
+// export { LoginForm } from "./Auth/LoginForm";
+export { TopPlayCard } from "./Cards/TopPlayCard";
+export { CartSwitcher } from "./Cart/CartSwitcher";
+export { EditProfile } from "./Profile/EditProfile";
+// export { OTPCodeForm } from "./Auth/OTPCodeForm";
+export { GameDetail } from "./GameDetail/GameDetail";
+export { MediaSection } from "./Sections/MediaSection";
+export { DeleteAccount } from "./Profile/DeleteAccount";
+export { ChangePassword } from "./Profile/ChangePassword";
+export { TopPlaySection } from "./Sections/TopPlaySection";
+export { ProfileDropdown } from "./Profile/ProfileDropDown";
+export { PersonalDetails } from "./Profile/PersonalDetails";
+export { ErrorFormMessage } from "./Common/ErrorFormMessage";
+export { DeleteProfileModal } from "./UI/Modals/DeleteProfileModal";
+export { SessionExpiredModal } from "./UI/Modals/SessionExpiredModal";
+export { ChangeProfilePhotoModal } from "./UI/Modals/ChangeProfilePhotoModal";

@@ -1,11 +1,11 @@
 // import { useEffect } from "react";
 import {
-  CartSwitcher,
-  Loading,
+  Modal,
   Navbar,
   Sidebar,
   TopPlay,
-  Modal,
+  Loading,
+  CartSwitcher,
 } from "../components";
 // import { useUserService } from "../services";
 import { ProviderProps } from "../types";

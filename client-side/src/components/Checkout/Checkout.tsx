@@ -5,10 +5,10 @@ import { calculateTotalPrice } from "../../utils";
 import { GameParams } from "../../types";
 
 interface CartCheckoutPorps {
-  setOpenSwitch: (openSwitch: boolean) => void;
-  setCheckoutOpen: (checkoutOpen: boolean) => void;
   cartItems: GameParams[];
   quantities: { [id: string]: number };
+  setOpenSwitch: (openSwitch: boolean) => void;
+  setCheckoutOpen: (checkoutOpen: boolean) => void;
 }
 
 export const Checkout: FunctionComponent<CartCheckoutPorps> = (props) => {
@@ -32,9 +32,9 @@ export const Checkout: FunctionComponent<CartCheckoutPorps> = (props) => {
     >
       <CheckoutHeader closeCheckoutHandler={closeCheckoutHandler} />
       <CheckoutBody
+        totalPrice={totalPrice}
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
-        totalPrice={totalPrice}
       />
     </motion.div>
   );

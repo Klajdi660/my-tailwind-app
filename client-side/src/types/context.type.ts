@@ -1,21 +1,21 @@
 import {
+  User,
   FormItem,
   RegisterUserInput,
   TranslationsResponse,
-  User,
 } from "../types";
 
 export interface AuthContextType {
-  authenticateUser: (user: User) => void;
+  setUser?: any;
+  user?: User | null;
   isAuthenticated: boolean;
   lToken: string | undefined;
-  setLToken: (lToken: string) => void;
-  setSignUpData: (signupData: RegisterUserInput | any) => void;
   signupData?: RegisterUserInput | any;
-  unAuthenticateUser: () => void;
   updateUser: () => void;
-  user?: User | null;
-  setUser?: any;
+  unAuthenticateUser: () => void;
+  setLToken: (lToken: string) => void;
+  authenticateUser: (user: User) => void;
+  setSignUpData: (signupData: RegisterUserInput | any) => void;
 }
 
 export interface FormContextType {
@@ -23,17 +23,21 @@ export interface FormContextType {
 }
 
 export interface StoreContextType {
-  user?: User | null;
-  userStore: object;
-  setUserStore: (userStore: object) => void;
+  lang: string;
   loading: boolean;
-  setLoading: (loading: boolean) => void;
-  selectedTimeZone: string;
-  setSelectedTimeZone: (selectedTImeZone: string) => void;
+  currency: string;
+  userStore: object;
+  user?: User | null;
+  shippingTo: string;
   timeZones: string[];
   usersTimeZone: string;
-  lang: string;
-  setLang: (lang: string) => void;
+  selectedTimeZone: string;
   translations: TranslationsResponse;
+  setLang: (lang: string) => void;
+  setLoading: (loading: boolean) => void;
+  setCurrency: (currency: string) => void;
+  setUserStore: (userStore: object) => void;
+  setShippingTo: (shippingTo: string) => void;
+  setSelectedTimeZone: (selectedTImeZone: string) => void;
   setTranslations: (translations: TranslationsResponse) => void;
 }

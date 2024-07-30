@@ -4,74 +4,72 @@ import {
   GameVideosParams,
   GameReviewsParams,
 } from "./general.type";
-
-// Auth
 export interface FormListItem {
-  item: string | undefined;
-  btnTxt: string;
-  footerLink: string;
-  footerTitle: string;
-  formName: string;
-  formTitle: string;
-  formType: string;
+  name: string;
+  type: string;
   label: string;
   linkTo: string;
-  name: string;
+  btnTxt: string;
+  formType: string;
+  formName: string;
+  formTitle: string;
+  footerLink: string;
+  footerTitle: string;
+  item: string | undefined;
   props: {
-    disabled: boolean | undefined;
-    placeholder: string;
     type: string;
+    placeholder: string;
+    disabled: boolean | undefined;
   };
-  type: string;
 }
 
 export interface FormProps {
-  defaultValues?: any;
   files?: any;
+  schema?: any;
+  onSubmit?: any;
+  setFiles?: any;
+  defaultValues?: any;
   hasProvider?: boolean;
   lists: FormListItem[] | any;
-  onSubmit?: any;
-  schema?: any;
-  setFiles?: any;
 }
 
 export interface FormProps2 {
-  defaultValues?: any;
-  files?: any;
-  hasProvider?: boolean;
-  listForm: FormListItem[] | any;
-  onSubmit?: any;
-  schema?: any;
-  setFiles?: any;
   user?: any;
   data?: any;
+  files?: any;
+  schema?: any;
+  setFiles?: any;
+  onSubmit?: any;
+  defaultValues?: any;
+  hasProvider?: boolean;
+  listForm: FormListItem[] | any;
 }
 
 export interface OTPCodeFormProps {
-  btnText: string;
-  footerTitle: string;
-  footerLink: string;
-  linkTo: string;
-  onSubmit: any;
-  handleResendCode: any;
   data: any;
+  onSubmit: any;
+  linkTo: string;
+  btnText: string;
+  footerLink: string;
+  footerTitle: string;
+  handleResendCode: any;
 }
 
 export interface SocialAuthProps {}
 
 export interface TemplateProps {
-  defaultValues?: any;
+  data?: any;
+  schema: any;
   listForm: any;
   onSubmit: any;
-  schema: any;
+  defaultValues?: any;
   handleResendCode?: any;
-  data?: any;
 }
 
 // Card
 export interface MediaCardProps {
-  game: GameParams;
   type: string;
+  game: GameParams;
 }
 
 export interface TopPlayCardProps {
@@ -85,13 +83,13 @@ export interface TopPlayCardProps {
 export interface CartBodyProps {
   cart: GameParams[];
   isEditing: boolean;
+  setQuantities: any;
   selections: number[];
+  selectedHeaderOpen: boolean;
+  quantities: { [id: string]: number };
   setSelections: (selections: number[]) => void;
   setCheckoutOpen: (checkoutOpen: boolean) => void;
-  quantities: { [id: string]: number };
-  setQuantities: any;
   setSelectedHeaderOpen: (selectedHeaderOpen: boolean) => void;
-  selectedHeaderOpen: boolean;
 }
 
 export interface CartEmptyPorps {
@@ -99,21 +97,21 @@ export interface CartEmptyPorps {
 }
 
 export interface CartFooterProps {
-  setCheckoutOpen: (checkoutOpen: boolean) => void;
   cartItems: GameParams[];
   quantities: { [id: string]: number };
+  setCheckoutOpen: (checkoutOpen: boolean) => void;
 }
 
 export interface CartHeaderProps {
   cart: GameParams[];
-  backCartSwitchHandler: () => void;
   isEditing: boolean;
-  setIsEditing: (isEditing: boolean) => void;
   isSelectAll: boolean;
-  selectAllGameHandler: () => void;
-  cancelGameSelectedHandler: () => void;
   selections: number[];
+  selectAllGameHandler: () => void;
+  backCartSwitchHandler: () => void;
+  cancelGameSelectedHandler: () => void;
   deleteSelectedGameHandler: () => void;
+  setIsEditing: (isEditing: boolean) => void;
 }
 
 export interface CartItemProps {
@@ -121,11 +119,11 @@ export interface CartItemProps {
   item: GameParams;
   imageDims: string;
   isEditing: boolean;
-  selections: number[];
-  setSelections: (selections: number[]) => void;
-  quantities: { [id: string]: number };
   setQuantities: any;
+  selections: number[];
   cartItems: GameParams[];
+  quantities: { [id: string]: number };
+  setSelections: (selections: number[]) => void;
   setSelectedHeaderOpen: (selectedHeaderOpen: boolean) => void;
 }
 
@@ -145,8 +143,8 @@ interface PlatformIconList {
 }
 
 export interface PlatformIconListProps {
-  platforms: PlatformIconList[];
   className?: string;
+  platforms: PlatformIconList[];
 }
 
 interface DeveloperList {
@@ -161,20 +159,20 @@ export interface DeveloperListProps {
 }
 
 interface PublisherList {
-  games_count: number;
   id: number;
-  image_background: string;
   name: string;
   slug: string;
+  games_count: number;
+  image_background: string;
 }
 export interface PublisherListPorps {
   publishers: PublisherList[];
 }
 
 export interface ReadMoreProps {
-  children: React.ReactNode;
   className?: string;
   limitTextLength: number;
+  children: React.ReactNode;
 }
 
 export interface StarRatingProps {
@@ -199,8 +197,8 @@ export interface GameTabReviewsProps {
 }
 
 export interface ReviewContentProps {
-  gameReviews: GameReviewsParams[];
   type: string;
+  gameReviews: GameReviewsParams[];
 }
 
 // Profile
@@ -209,8 +207,8 @@ export interface ChangePasswordProps {
 }
 
 export interface ChangePasswordInput {
-  currentPassword: string;
   newPassword: string;
+  currentPassword: string;
   confirmNewPassword: string;
 }
 
@@ -226,9 +224,9 @@ export interface PersonalDetailsProps {}
 
 export interface PersonalDetailsInput {
   name?: string;
-  birthday?: string;
   gender?: string;
   address?: string;
+  birthday?: string;
   phoneNumber?: string;
 }
 
@@ -236,31 +234,31 @@ export interface UserInfoProps {}
 
 // Section
 export interface MediaSectionProps {
-  enableTitle?: boolean;
-  gridNumber?: 2 | 3 | 4 | 5;
   type: string;
-  skeletonItemNumber: number;
-  gameList: GameParams[] | any;
   title: string;
   subTitle: string;
+  enableTitle?: boolean;
+  gridNumber?: 2 | 3 | 4 | 5;
+  skeletonItemNumber: number;
+  gameList: GameParams[] | any;
 }
 
 export interface TopPlaySectionProps {
-  gameList: GameParams[] | any;
-  listDivider?: boolean;
   imageDims?: string;
-  skeletonItemNumber?: number;
   enableTitle?: boolean;
+  listDivider?: boolean;
+  skeletonItemNumber?: number;
+  gameList: GameParams[] | any;
 }
 
 // Sidebar
 export interface SidebarPorps {}
 
 export interface SideMenuListPorps {
+  iconRef: any;
   sidebarLinks: any;
   activeLink: string;
   handleLinkClick: any;
-  iconRef: any;
 }
 
 // Skeleton
@@ -289,9 +287,9 @@ export type ImageDimsOptions = {
 };
 
 export interface TrackCardSkeletonProps {
+  type?: string;
   number: number;
   imageDims?: any;
-  type?: string;
 }
 
 // UI
@@ -322,39 +320,32 @@ export interface DeleteProfileInput {
 }
 
 export interface SmallModalProps {
-  open: boolean;
-  children?: any;
-  footer?: any;
-  title?: string;
-  closable?: boolean;
-  isMobile?: boolean;
-  destroyOnClose?: boolean;
   onOk?: any;
-  okText?: string;
-  okButtonProps?: any;
-  onCancel?: any;
-  cancelText?: string;
   width?: any;
   height?: any;
   styles?: any;
+  footer?: any;
+  open: boolean;
+  onCancel?: any;
+  title?: string;
+  children?: any;
+  okText?: string;
+  closable?: boolean;
+  isMobile?: boolean;
+  cancelText?: string;
+  okButtonProps?: any;
   cancelButtonProps?: any;
+  destroyOnClose?: boolean;
 }
 
 export type ModalDefaultStyles = {
-  header?: object;
   body?: object;
-  footer?: object;
   mask?: object;
+  footer?: object;
+  header?: object;
 };
 
 export interface ButtonProps {
-  type?: "button" | "submit" | "reset";
-  size?: number;
-  label?: string;
-  disabled?: boolean;
-  className?: string;
-  iconClassName?: string;
-  tooltipTitle?: string;
   variant:
     | "outlined"
     | "none"
@@ -363,25 +354,32 @@ export interface ButtonProps {
     | "filled"
     | "delete"
     | "upload";
+  size?: number;
+  label?: string;
   labelIcon?: any;
+  className?: string;
+  disabled?: boolean;
+  tooltipTitle?: string;
+  iconClassName?: string;
   // isSubmitting?: boolean;
+  type?: "button" | "submit" | "reset";
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface CustomButtonProps {
-  sidebarLinks: any;
   activeLink: any;
+  sidebarLinks: any;
   handleLinkClick: any;
 }
 
 export interface GlobalLoadingProps {}
 
 export interface IconParams {
-  className?: string;
-  name: string;
   props?: any;
-  size?: number;
+  name: string;
   onClick?: any;
+  size?: number;
+  className?: string;
 }
 
 export type IconsMap = {
@@ -389,19 +387,19 @@ export type IconsMap = {
 };
 
 export interface IconButtonProps {
-  type?: "button" | "submit" | "reset";
-  name?: string | any;
   size?: number;
   className?: string;
-  iconClassName?: string;
   disabled?: boolean;
+  name?: string | any;
+  iconClassName?: string;
+  type?: "button" | "submit" | "reset";
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface ImageProps {
-  imgUrl: string;
   name?: string;
   width?: number;
+  imgUrl: string;
   height?: number;
   styles?: string;
 }
@@ -410,11 +408,11 @@ export interface ImgUploaderParams {}
 
 export interface OverlayProps {
   isOpen: boolean;
-  // handleIsOpen: (value: boolean) => void;
   handleIsOpen: any;
-  transparent?: boolean;
   className?: string;
   isMobile?: boolean;
+  transparent?: boolean;
+  // handleIsOpen: (value: boolean) => void;
 }
 
 export interface PatternBgProps {}
@@ -422,25 +420,25 @@ export interface PatternBgProps {}
 export interface SocialAuthButtonProps {}
 
 export interface TabProps {
-  tabs: { id: string; name: string }[];
-  currentTab: string;
-  setCurrentTab: (currentTab: string) => void;
   // tabData: any;
+  currentTab: string;
+  tabs: { id: string; name: string }[];
+  setCurrentTab: (currentTab: string) => void;
 }
 
 export interface TabMap {
   id: number;
-  tabName: string;
   type: string;
+  tabName: string;
 }
 
 export interface TitleProps {
-  desc?: string;
-  divider?: boolean;
-  className?: string;
-  color?: string;
   name: string;
   type: string;
+  desc?: string;
+  color?: string;
+  divider?: boolean;
+  className?: string;
 }
 
 export interface ShowMoreButtonProps {
@@ -454,12 +452,12 @@ export interface CartSwitcherProps {}
 export interface FooterProps {}
 
 export interface FormFieldPorps {
-  labelName: string;
-  placeholder: string;
-  inputType: string;
-  isTextArea: boolean;
   value: string;
   handleChange: any;
+  inputType: string;
+  labelName: string;
+  placeholder: string;
+  isTextArea: boolean;
 }
 
 export interface HomeFooterProps {}
@@ -474,8 +472,8 @@ export interface NavbarProps {}
 
 export interface NotificationProps {
   id: number;
-  content: string;
   time: string;
+  content: string;
 }
 
 export interface SearchbarProps {
@@ -492,19 +490,19 @@ export interface TopPlayProps {}
 export interface ProfileDropdownProps {}
 
 interface Extra {
-  firstName: string;
-  lastName: string;
   gender: string;
   avatar: string;
+  lastName: string;
+  firstName: string;
   dateOfBirth: string;
 }
 
 interface User {
   id: string;
-  email?: string;
-  username?: string;
-  avatar?: string;
   extra?: Extra;
+  email?: string;
+  avatar?: string;
+  username?: string;
 }
 
 export interface UserMenuProps {

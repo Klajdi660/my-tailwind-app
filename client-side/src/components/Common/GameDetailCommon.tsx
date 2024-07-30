@@ -2,9 +2,9 @@ import { FunctionComponent } from "react";
 import { Icon } from "../UI";
 import { gameIconMap } from "../../data";
 import {
-  PlatformIconListProps,
   DeveloperListProps,
   PublisherListPorps,
+  PlatformIconListProps,
 } from "../../types";
 import { classNames } from "../../utils";
 

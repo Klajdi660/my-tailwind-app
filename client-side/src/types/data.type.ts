@@ -11,21 +11,21 @@ export interface SocialAuthList {
 }
 
 export interface FormItem {
-  formType?: string;
-  formName?: string;
-  formTitle?: string;
-  description?: string;
-  btnTxt?: string;
-  footerTitle?: string;
-  footerLink?: string;
-  linkTo?: string;
   type?: string;
   name?: string;
   label?: string;
+  linkTo?: string;
+  btnTxt?: string;
+  formType?: string;
+  formName?: string;
+  formTitle?: string;
+  footerLink?: string;
+  description?: string;
+  footerTitle?: string;
   props?: {
     type: string;
-    placeholder: string;
     disabled?: boolean;
+    placeholder: string;
   };
 }
 
@@ -47,8 +47,8 @@ export type ModalProperties = {
 export interface FooterLink2 {
   title: string;
   links: {
-    title: string;
     link: string;
+    title: string;
   }[];
 }
 
@@ -67,14 +67,14 @@ export type FontSizesProperties = {
 
 export interface AccountTypeList {
   id: number;
-  tabName: string;
   type: string;
+  tabName: string;
 }
 
 interface SubLinkList {
   id: string;
-  name: string;
   to: string;
+  name: string;
   icon: string;
   tooltip: string;
 }
@@ -86,18 +86,18 @@ export interface NavLinkList {
 
 // Profile
 export interface ProfileItemList {
-  formName?: string;
-  formTitle?: string;
-  btnTxt?: string;
   type?: string;
   name?: string;
   label?: string;
-  containerDims?: string;
+  btnTxt?: string;
+  formName?: string;
+  formTitle?: string;
   borderType?: string;
+  containerDims?: string;
   props?: {
     type?: string;
-    placeholder?: string;
     disabled?: boolean;
+    placeholder?: string;
   };
 }
 
@@ -107,9 +107,9 @@ export interface GenderProperties {
 }
 
 export interface ProfileMenuItems {
-  navigate: (path: string) => void;
   hidden: () => void;
   logout: () => void;
+  navigate: (path: string) => void;
 }
 
 export interface GameIconMapsProperties {

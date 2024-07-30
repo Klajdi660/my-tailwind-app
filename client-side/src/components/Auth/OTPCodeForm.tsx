@@ -9,17 +9,17 @@ import { classNames } from "../../utils";
 
 export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
   const {
+    data,
+    linkTo,
     btnText,
+    onSubmit,
     footerLink,
     footerTitle,
-    linkTo,
-    onSubmit,
     handleResendCode,
-    data,
   } = props;
 
-  const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
   const [otpFilled, setOtpFilled] = useState<boolean>(false);
+  const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
 
   const handleOtpChange = async (code: string) => {
     setOtpFilled(code.length === 6);

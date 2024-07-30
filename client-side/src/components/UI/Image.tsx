@@ -6,8 +6,8 @@ export const Image: FunctionComponent<ImageProps> = (props) => {
 
   return (
     <img
-      src={imgUrl}
       alt={name}
+      src={imgUrl}
       width={width}
       height={height}
       className={styles}

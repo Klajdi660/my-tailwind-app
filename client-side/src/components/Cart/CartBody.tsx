@@ -9,9 +9,9 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
     cart,
     isEditing,
     selections,
-    selectedHeaderOpen,
     quantities,
     setQuantities,
+    selectedHeaderOpen,
     setSelections,
     setCheckoutOpen,
     setSelectedHeaderOpen,
@@ -52,11 +52,11 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
             key={item.id}
             item={item}
             imageDims="16"
+            cartItems={cart}
             isEditing={isEditing}
             selections={selections}
             quantities={quantities}
             setQuantities={setQuantities}
-            cartItems={cart}
             setSelectedHeaderOpen={setSelectedHeaderOpen}
             setSelections={setSelections}
           />

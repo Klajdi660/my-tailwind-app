@@ -6,12 +6,12 @@ import { paths } from "../data";
 import { useAuth, useNotification, useStore } from "../hooks";
 import { clearRememberMeData, saveRememberMeData } from "../store";
 import {
+  AuthService,
   AuthResponse,
   LoginUserInput,
+  RegisterResponse,
   RegisterUserInput,
   ForgotPasswordInput,
-  AuthService,
-  RegisterResponse,
 } from "../types";
 import { globalObject } from "../utils";
 
@@ -20,8 +20,8 @@ const {
   LOGOUT_API,
   REGISTER_API,
   VERIFY_EMAIL_API,
-  FORGOTPASSWORD_API,
   RESETPASSWORD_API,
+  FORGOTPASSWORD_API,
 } = endpoints;
 
 export const useAuthService = (): AuthService => {

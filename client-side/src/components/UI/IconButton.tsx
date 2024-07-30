@@ -6,12 +6,12 @@ import { classNames } from "../../utils";
 export const IconButton: FunctionComponent<IconButtonProps> = forwardRef(
   (
     {
-      type = "button",
       name,
       size,
+      disabled,
       className,
       iconClassName,
-      disabled,
+      type = "button",
       ...props
     },
     ref: Ref<HTMLButtonElement>

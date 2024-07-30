@@ -45,13 +45,16 @@ const User = () => {
 
 export const Sidebar: FunctionComponent<SidebarPorps> = () => {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
   const [notify] = useNotification();
-  const themeStorage = useSelector((state: any) => state.theme);
+  const { isAuthenticated } = useAuth();
+  const isMobile = useMobileResponsive();
+
   const [toggleNav, setToggleNav] = useState(false);
   const { toggleMenu, setToggleMenu } = useAppUtil();
-  const isMobile = useMobileResponsive();
+
+  const navigate = useNavigate();
+
+  const themeStorage = useSelector((state: any) => state.theme);
 
   const { sidebar } = themeStorage || defaultThemeConfig;
   const isFolded = sidebar === "folded";

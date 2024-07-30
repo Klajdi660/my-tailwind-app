@@ -16,8 +16,8 @@ export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
   const gameId = cart.map((game) => game.id);
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [isSelectAll, setIsSelectAll] = useState<boolean>(false);
   const [selections, setSelections] = useState<number[]>([]);
+  const [isSelectAll, setIsSelectAll] = useState<boolean>(false);
   const [checkoutOpen, setCheckoutOpen] = useState<boolean>(false);
   const [selectedHeaderOpen, setSelectedHeaderOpen] = useState<boolean>(false);
   const [quantities, setQuantities] = useState<{ [id: string]: number }>({

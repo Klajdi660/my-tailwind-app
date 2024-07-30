@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Image, Icon } from "../UI";
-import { emptyCart } from "../../assets";
+import { emptyCartImg } from "../../assets";
 import { CartEmptyPorps } from "../../types";
 
 export const CartEmpty: FunctionComponent<CartEmptyPorps> = (props) => {
@@ -21,7 +21,7 @@ export const CartEmpty: FunctionComponent<CartEmptyPorps> = (props) => {
         </div>
       </div>
       <div className="switch_body_scroll w-full p-5 flex flex-col items-center gap-4 justify-center">
-        <Image imgUrl={emptyCart} name="empty_cart" styles="h-[340px]" />
+        <Image imgUrl={emptyCartImg} name="empty_cart" styles="h-[340px]" />
         <p className="text-textColor  font-semibold">Cart is empty</p>
       </div>
     </>

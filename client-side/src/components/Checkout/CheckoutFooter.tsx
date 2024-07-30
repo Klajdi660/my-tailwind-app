@@ -1,4 +1,3 @@
-import { BsShieldLock } from "react-icons/bs";
 import { FunctionComponent } from "react";
 import { Icon } from "../UI";
 

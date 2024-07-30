@@ -42,12 +42,12 @@ export const personalDetailsList = [
   },
   {
     type: "input",
-    name: "dateOfBirth",
     label: "Birthday",
     props: {
       type: "text",
       placeholder: "",
     },
+    name: "dateOfBirth",
   },
   {
     type: "input",
@@ -60,12 +60,12 @@ export const personalDetailsList = [
   },
   {
     type: "input",
-    name: "contactNumber",
-    label: "Contact Number",
     props: {
       type: "text",
       placeholder: "",
     },
+    name: "contactNumber",
+    label: "Contact Number",
   },
   {
     type: "input",
@@ -77,8 +77,8 @@ export const personalDetailsList = [
     },
   },
   {
-    type: "input",
     name: "city",
+    type: "input",
     label: "City",
     props: {
       type: "text",
@@ -98,37 +98,37 @@ export const personalDetailsList = [
 
 export const editProfileList: ProfileItemList[] = [
   {
+    btnTxt: "Save",
     formName: "profile",
     formTitle: "Profile",
-    btnTxt: "Save",
   },
   {
-    type: "image_dropzone",
-    name: "imageUrl",
     label: "",
-    containerDims: "h-32 w-32",
-    borderType: "rounded-full",
     props: {
       type: "file",
       placeholder: "",
     },
+    name: "imageUrl",
+    type: "image_dropzone",
+    containerDims: "h-32 w-32",
+    borderType: "rounded-full",
   },
   {
     type: "input",
-    name: "username",
-    label: "Username",
     props: {
       type: "text",
       placeholder: "",
     },
+    name: "username",
+    label: "Username",
   },
   {
     type: "input",
     name: "email",
     label: "Email",
     props: {
-      disabled: true,
       type: "text",
+      disabled: true,
       placeholder: "",
     },
   },
@@ -152,17 +152,17 @@ export const genderList: GenderProperties[] = [
 export const changePasswordList = (isPasswordEnabled: boolean) => [
   {
     formName: "password",
-    formTitle: "Change Password",
     btnTxt: "Update Password",
+    formTitle: "Change Password",
   },
   {
     type: "input",
     name: "currentPassword",
     label: "Current Password",
     props: {
-      disabled: !isPasswordEnabled,
-      type: "password",
       placeholder: "",
+      type: "password",
+      disabled: !isPasswordEnabled,
     },
   },
   {
@@ -170,9 +170,9 @@ export const changePasswordList = (isPasswordEnabled: boolean) => [
     name: "newPassword",
     label: "New Password",
     props: {
-      disabled: !isPasswordEnabled,
-      type: "password",
       placeholder: "",
+      type: "password",
+      disabled: !isPasswordEnabled,
     },
   },
   {
@@ -180,32 +180,32 @@ export const changePasswordList = (isPasswordEnabled: boolean) => [
     name: "confirmNewPassword",
     label: "Confirm New Password",
     props: {
-      disabled: !isPasswordEnabled,
-      type: "password",
       placeholder: "",
+      type: "password",
+      disabled: !isPasswordEnabled,
     },
   },
 ];
 
 export const dateFormatList: string[] = [
-  "DD/MM/YYYY",
   "DD/MM/YY",
-  "DD-MM-YYYY",
   "DD-MM-YY",
+  "DD/MM/YYYY",
+  "DD-MM-YYYY",
 ];
 
 export const profileMenuItems = ({
-  navigate,
   hidden,
   logout,
+  navigate,
 }: ProfileMenuItems) => [
   {
     id: "profile",
-    name: "Profile",
     icon: "BiUser",
+    name: "Profile",
     onClick: () => {
-      navigate("/profile");
       hidden();
+      navigate("/profile");
     },
   },
   {
@@ -213,8 +213,8 @@ export const profileMenuItems = ({
     name: "Settings",
     icon: "AiOutlineSetting",
     onClick: () => {
-      navigate("/settings");
       hidden();
+      navigate("/settings");
     },
   },
   {

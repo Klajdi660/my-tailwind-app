@@ -18,11 +18,11 @@ const rootPersistConfig = { key: "root", storage, version: 1 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  user2: userReducer,
-  rememberMe: rememberMeReducer,
-  theme: themeReducer,
-  cancelDeleteAccount: cancelDeleteAccountReducer,
   cart: cartReducer,
+  user2: userReducer,
+  theme: themeReducer,
+  rememberMe: rememberMeReducer,
+  cancelDeleteAccount: cancelDeleteAccountReducer,
 });
 
 export { rootPersistConfig, rootReducer };

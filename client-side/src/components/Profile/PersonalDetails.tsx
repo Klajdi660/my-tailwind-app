@@ -27,6 +27,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
 
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
+    label: `${country.flag} ${country.name}`,
   }));
 
   const phonePrefixData = Country.getAllCountries().map((item) => {
@@ -202,6 +203,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
                   {...field}
                   className="w-full h-10 text-sm"
                   placeholder="Select country"
+                  optionLabelProp="value"
                   options={countryData}
                 />
               )}

@@ -10,11 +10,11 @@ import { HiCheck } from "react-icons/hi";
 export const CartItem: FunctionComponent<CartItemProps> = (props) => {
   const {
     item,
+    cartItems,
     isEditing,
     selections,
     quantities,
     setQuantities,
-    cartItems,
     setSelections,
     setSelectedHeaderOpen,
   } = props;

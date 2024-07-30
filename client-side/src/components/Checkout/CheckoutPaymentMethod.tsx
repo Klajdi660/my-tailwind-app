@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { momo, bank } from "../../assets";
+import { mobileMoneyImg, bankImg } from "../../assets";
 import { classNames } from "../../utils";
 import { Radio } from "antd";
 import type { RadioChangeEvent } from "antd";
@@ -32,7 +32,7 @@ export const CheckoutPaymentMethod: FunctionComponent<
           paymentMethod === "mobile_money" && "bg-primary-opacity"
         )}
       >
-        <Image imgUrl={momo} name="momo_img" width={150} />
+        <Image imgUrl={mobileMoneyImg} name="momo_img" width={150} />
       </Radio>
       <Radio
         value="bank"
@@ -41,7 +41,7 @@ export const CheckoutPaymentMethod: FunctionComponent<
           paymentMethod === "bank" && "bg-primary-opacity"
         )}
       >
-        <Image imgUrl={bank} name="bank_img" width={150} />
+        <Image imgUrl={bankImg} name="bank_img" width={150} />
       </Radio>
     </Radio.Group>
   );

@@ -8,18 +8,22 @@ import {
 } from "../types";
 
 const initialState: StoreContextType = {
-  userStore: {},
-  setUserStore: (userStore) => {},
-  loading: false,
-  setLoading: (loading) => {},
-  selectedTimeZone: "",
-  setSelectedTimeZone: (selectedTimeZone) => {},
-  timeZones: [],
-  usersTimeZone: "",
   lang: "",
-  setLang: (lang) => {},
+  currency: "",
+  userStore: {},
+  timeZones: [],
+  shippingTo: "",
+  loading: false,
   translations: {},
+  usersTimeZone: "",
+  selectedTimeZone: "",
+  setLang: (lang) => {},
+  setLoading: (loading) => {},
+  setCurrency: (currency) => {},
+  setUserStore: (userStore) => {},
+  setShippingTo: (shippingTo) => {},
   setTranslations: (translations) => {},
+  setSelectedTimeZone: (selectedTimeZone) => {},
 };
 
 const StoreContext = createContext(initialState);
@@ -27,9 +31,11 @@ const StoreContext = createContext(initialState);
 const StoreProvider: React.FC<ProviderProps> = ({ children }) => {
   const { user } = useAuth();
   const [lang, setLang] = useState<string>("en");
+  const [currency, setCurrency] = useState<string>("");
   const [userStore, setUserStore] = useState<Object>({});
-  const [selectedTimeZone, setSelectedTimeZone] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [shippingTo, setShippingTo] = useState<string>("");
+  const [selectedTimeZone, setSelectedTimeZone] = useState<string>("");
   const [translations, setTranslations] = useState<TranslationsResponse>({});
 
   let timeZones = moment.tz.names();
@@ -40,18 +46,22 @@ const StoreProvider: React.FC<ProviderProps> = ({ children }) => {
       value={{
         ...initialState,
         user,
-        userStore,
-        setUserStore,
-        loading,
-        setLoading,
-        selectedTimeZone,
-        setSelectedTimeZone,
-        timeZones,
-        usersTimeZone,
         lang,
-        setLang,
+        loading,
+        currency,
+        timeZones,
+        userStore,
+        shippingTo,
         translations,
+        usersTimeZone,
+        selectedTimeZone,
+        setLang,
+        setLoading,
+        setCurrency,
+        setUserStore,
+        setShippingTo,
         setTranslations,
+        setSelectedTimeZone,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-export { ErrorFormMessage } from "./ErrorFormMessage";
+export * from "./GameDetailCommon";
 export { ReadMore } from "./ReadMore";
 export { StarRating } from "./StarRating";
-export * from "./GameDetailCommon";
+export { ErrorFormMessage } from "./ErrorFormMessage";
