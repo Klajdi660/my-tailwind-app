@@ -14,7 +14,7 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
   const { user } = useAuth();
   const { updateProfile } = useProfileService();
 
-  const [selectedCurrency, setSelectedCurrency] = useState<string>("ALL");
+  // const [selectedCurrency, setSelectedCurrency] = useState<string>("ALL");
   const [selectedIsoCode, setSelectedIsoCode] = useState<string>("AL");
 
   const allCountries = Country.getAllCountries();
@@ -74,13 +74,14 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
       const curr = currencyList[currency]
         ? currencyList[currency].value
         : currencyList["USD"].value;
-      console.log("isoCode :>> ", isoCode);
+
       const lang = languageMaps[isoCode]
         ? languageMaps[isoCode].value
         : languageMaps["US"].value;
 
-      setSelectedCurrency(currency);
-      setSelectedIsoCode(isoCode);
+      // setSelectedCurrency(currency);
+      // setSelectedIsoCode(isoCode);
+
       setValue("currency", curr);
       setValue("lang", lang);
       setValue("shipTo", isoCode);
@@ -137,8 +138,7 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               options={combinedCountries}
               onChange={handleCountryChange}
               showSearch
-              // defaultValue={userSelectedData?.name}
-              defaultValue={user?.extra?.shipTo}
+              defaultValue={`${user?.extra?.flag}${user?.extra?.shipTo}`}
             />
           )}
         />
@@ -174,7 +174,6 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               className="w-full h-10 text-sm"
               placeholder="Select language"
               options={languageOptions}
-              // defaultValue={userSelectedData?.lang}
               defaultValue={user?.extra?.lang}
             />
           )}
@@ -196,7 +195,6 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               className="w-full h-10 text-sm"
               placeholder="Select currency"
               options={currencyOptions}
-              // defaultValue={userSelectedData?.currency}
               defaultValue={user?.extra?.currency}
             />
           )}

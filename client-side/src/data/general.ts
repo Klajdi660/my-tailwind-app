@@ -185,6 +185,7 @@ export const grid: GridList = {
 };
 
 export const recommendedCountries = [
+  "Albania",
   "Spain",
   "Italy",
   "Chile",
