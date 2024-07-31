@@ -138,7 +138,10 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               options={combinedCountries}
               onChange={handleCountryChange}
               showSearch
-              defaultValue={`${user?.extra?.flag}${user?.extra?.shipTo}`}
+              defaultValue={
+                user?.extra?.shipTo &&
+                `${user?.extra?.flag} ${user?.extra?.shipTo}`
+              }
             />
           )}
         />

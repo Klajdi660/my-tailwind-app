@@ -36,7 +36,7 @@ export const LanguageButton: FunctionComponent<LanguageButtonProps> = (
         onOpenChange={handleOpenChange}
         placement="topRight"
       >
-        <button className="flex-row w-14 h-12 transition-colors duration-500 rounded flex_justify_center bg-primary-opacity hover:bg-primary group">
+        <button className="flex-row w-16 h-12 gap-2 transition-colors duration-500 rounded flex_justify_center bg-primary-opacity hover:bg-primary group">
           {user?.extra?.shipTo ? (
             <>
               <div className="text-lg">{user?.extra?.flag}</div>
