@@ -4,7 +4,7 @@ import authReducer from "./auth.slice";
 import cancelDeleteAccountReducer from "./cancelDeleteAccount.slice";
 import rememberMeReducer from "./remember.slice";
 import themeReducer from "./theme.slice";
-import userReducer from "./user.slice";
+import userSelectedDataReducer from "./userSelectedData.slice";
 import cartReducer from "./gameCart.slice";
 
 // const rootPersistConfig = {
@@ -19,7 +19,7 @@ const rootPersistConfig = { key: "root", storage, version: 1 };
 const rootReducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
-  user2: userReducer,
+  userSelectedData: userSelectedDataReducer,
   theme: themeReducer,
   rememberMe: rememberMeReducer,
   cancelDeleteAccount: cancelDeleteAccountReducer,

@@ -16,9 +16,9 @@ export const EditProfilePage: FunctionComponent<ProfilePageProps> = () => {
       <div className="flex flex-col gap-y-10 text-onNeutralBg">
         <UserInfo />
         <EditProfile />
-        <DeleteAccount />
-        <ChangePassword />
         <PersonalDetails />
+        <ChangePassword />
+        <DeleteAccount />
       </div>
     </section>
   );

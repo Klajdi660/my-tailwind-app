@@ -1,54 +1,27 @@
 import React, { FunctionComponent, useState } from "react";
+import { useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { Country } from "country-state-city";
 import { State } from "country-state-city";
 import { Select } from "antd";
 import { Button } from "./UI";
-import { currencyList } from "../data";
-import { useStore } from "../hooks";
+import { currencyList, recommendedCountries, languageMaps } from "../data";
+import { useUserSelectedData } from "../hooks";
 import { LanguageProps } from "../types";
 
-const recommendedCountries = [
-  "Spain",
-  "Italy",
-  "Chile",
-  "Korea",
-  "Brazil",
-  "France",
-  "Israel",
-  "Canada",
-  "Poland",
-  "Ukraine",
-  "Australia",
-  "Netherlands",
-  "Switzerland",
-  "Saudi Arabia",
-  "United States",
-  "United Kingdom",
-];
-
-const currencyMap = [
-  "France",
-  "Albania",
-  "Switzerland",
-  "United States",
-  "United Kingdom",
-];
-
-const languageMaps = [
-  "French",
-  "German",
-  "Spanish",
-  "English",
-  "Italian",
-  "Albanian",
-];
-
 export const Language: FunctionComponent<LanguageProps> = (props) => {
-  const { setShippingTo } = useStore();
+  const { setOpen } = props;
+
+  const { setUserSelectedData } = useUserSelectedData();
 
   const [selectedCurrency, setSelectedCurrency] = useState<string>("ALL");
   const [selectedIsoCode, setSelectedIsoCode] = useState<string>("AL");
+
+  const { userSelectedData } = useSelector(
+    (state: any) => state.userSelectedData
+  );
+
+  // const { lang, currency, name } = userSelectedData;
 
   const allCountries = Country.getAllCountries();
 
@@ -60,13 +33,14 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
     (country) => !recommendedCountries.includes(country.name)
   );
 
-  const currencyCountries = allCountries.filter((country) =>
-    currencyMap.includes(country.name)
-  );
+  const languageOptions = Object.keys(languageMaps).map((lang) => ({
+    label: languageMaps[lang].label,
+    value: lang,
+  }));
 
-  const currencyOptions = currencyCountries.map((country) => ({
-    label: `${country.currency} (${currencyList[country.currency]})`,
-    value: country.currency,
+  const currencyOptions = Object.keys(currencyList).map((curr) => ({
+    label: currencyList[curr].label,
+    value: curr,
   }));
 
   const stateData = State.getStatesOfCountry(selectedIsoCode).map((state) => ({
@@ -74,18 +48,20 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
     displayValue: `${state.name} - ${state.isoCode}`,
   }));
 
-  console.log("selectedIsoCode :>> ", selectedIsoCode);
-
   const combinedCountries = [
     {
-      label: "Recommended",
+      label: (
+        <span className="text-onNeutralBg font-semibold">Recommended</span>
+      ),
       options: recommendedCountriesList.map((country) => ({
         label: `${country.flag} ${country.name}`,
         value: country.isoCode,
       })),
     },
     {
-      label: "All Countries",
+      label: (
+        <span className="text-onNeutralBg font-semibold">All Countries</span>
+      ),
       options: otherCountries.map((country) => ({
         label: `${country.flag} ${country.name}`,
         value: country.isoCode,
@@ -93,24 +69,33 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
     },
   ];
 
-  const languageOptions = languageMaps.map((language) => ({
-    label: language,
-    value: language,
-  }));
-
   const handleCountryChange = (countryCode: string) => {
     const selectedCountry = allCountries.find(
       (country) => country.isoCode === countryCode
     );
 
     if (selectedCountry) {
-      const { isoCode, currency, name } = selectedCountry;
+      const { isoCode, currency, name, flag } = selectedCountry;
+
+      const curr = currencyList[currency]
+        ? currencyList[currency].value
+        : currencyList["USD"].value;
+
+      const lang = languageMaps[isoCode]
+        ? languageMaps[isoCode].value
+        : languageMaps["US"].value;
 
       setSelectedCurrency(currency);
       setSelectedIsoCode(isoCode);
-      setShippingTo(name);
-      setValue("currency", currency);
+      setUserSelectedData({ isoCode, name, currency: curr, lang, flag });
+      setValue("currency", curr);
+      setValue("lang", lang);
+      setValue("shipTo", name);
     }
+  };
+  console.log("selectedCurrency :>> ", selectedCurrency);
+  const handleMenuClick = async (data: any) => {
+    setOpen(false);
   };
 
   const { register, handleSubmit, control, setValue } = useForm({
@@ -118,8 +103,11 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
   });
 
   return (
-    <form className="p-2 space-y-3 min-w-[300px]">
-      <div className="w-full flex flex-col mb-4 gap-4">
+    <form
+      className="p-2 space-y-3 min-w-[300px]"
+      onSubmit={handleSubmit(handleMenuClick)}
+    >
+      <div className="w-full flex flex-col mb-4">
         <label
           htmlFor="provider"
           className="font-semibold text-sm mb-1 text-secondary"
@@ -137,9 +125,7 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               options={combinedCountries}
               onChange={handleCountryChange}
               showSearch
-              filterOption={(input, option: any) =>
-                option?.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
+              defaultValue={userSelectedData?.name}
             />
           )}
         />
@@ -175,6 +161,7 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               className="w-full h-10 text-sm"
               placeholder="Select language"
               options={languageOptions}
+              defaultValue={userSelectedData?.lang}
             />
           )}
         />
@@ -195,6 +182,7 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               className="w-full h-10 text-sm"
               placeholder="Select currency"
               options={currencyOptions}
+              defaultValue={userSelectedData?.currency}
             />
           )}
         />

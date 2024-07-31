@@ -181,11 +181,3 @@ import { CurrencyProperties } from "../types";
 //   180: "YER",
 //   181: "ZMW",
 // };
-
-export const currencyList: { [key: string]: string } = {
-  ALL: "Albanian Lek",
-  EUR: "Euro",
-  USD: "US Dollar",
-  CHF: "Swiss Franc",
-  GBP: "Pound",
-};

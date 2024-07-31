@@ -40,4 +40,6 @@ export interface StoreContextType {
   setShippingTo: (shippingTo: string) => void;
   setSelectedTimeZone: (selectedTImeZone: string) => void;
   setTranslations: (translations: TranslationsResponse) => void;
+  setUserLangData: (userLangData: { [key: string]: string }) => void;
+  userLangData: { [key: string]: string };
 }

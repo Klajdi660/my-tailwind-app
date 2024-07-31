@@ -24,6 +24,8 @@ const initialState: StoreContextType = {
   setShippingTo: (shippingTo) => {},
   setTranslations: (translations) => {},
   setSelectedTimeZone: (selectedTimeZone) => {},
+  setUserLangData: (userLangData) => {},
+  userLangData: {},
 };
 
 const StoreContext = createContext(initialState);
@@ -37,6 +39,7 @@ const StoreProvider: React.FC<ProviderProps> = ({ children }) => {
   const [shippingTo, setShippingTo] = useState<string>("Albania");
   const [selectedTimeZone, setSelectedTimeZone] = useState<string>("");
   const [translations, setTranslations] = useState<TranslationsResponse>({});
+  const [userLangData, setUserLangData] = useState({});
 
   let timeZones = moment.tz.names();
   let usersTimeZone = moment.tz.guess();
@@ -62,6 +65,8 @@ const StoreProvider: React.FC<ProviderProps> = ({ children }) => {
         setShippingTo,
         setTranslations,
         setSelectedTimeZone,
+        userLangData,
+        setUserLangData,
       }}
     >
       {children}

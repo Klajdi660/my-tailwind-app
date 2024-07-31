@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react";
 import { Badge } from "antd";
+import { useSelector } from "react-redux";
 import { CartItem, CartFooter } from "../Cart";
 import { Icon } from "../UI";
-import { useStore } from "../../hooks";
 import { CartBodyProps } from "../../types";
 
 export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
@@ -18,7 +18,9 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
     setSelectedHeaderOpen,
   } = props;
 
-  const { shippingTo } = useStore();
+  const { userSelectedData } = useSelector(
+    (state: any) => state.userSelectedData
+  );
 
   const allSelections = selections.length;
 
@@ -41,14 +43,17 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
           </div>
         </div>
       ) : (
-        <div className="flex_justify_between w-full px-6 pt-2 text-onNeutralBg">
-          <p className="text-base font-semibold py-2">Ship to</p>
-          <div className="flex items-center gap-2">
-            <Icon name="SlLocationPin" size={14} />
-            {/* Albania */}
-            {shippingTo}
-          </div>
-        </div>
+        <>
+          {userSelectedData && (
+            <div className="flex_justify_between w-full px-6 pt-2 text-onNeutralBg">
+              <p className="text-base font-semibold py-2">Ship to</p>
+              <div className="flex items-center gap-2">
+                <Icon name="SlLocationPin" size={14} />
+                {userSelectedData?.name}
+              </div>
+            </div>
+          )}
+        </>
       )}
       <div className="switch_body_scroll w-full p-4 flex flex-col gap-3 overflow-y-scroll hide_scrollbar">
         {cart.map((item) => (

@@ -464,6 +464,7 @@ export interface HomeFooterProps {}
 
 export interface LanguageProps {
   onSelectLanguage: (language: string) => void;
+  setOpen: (open: boolean) => void;
 }
 
 export interface LoadingPorps {}

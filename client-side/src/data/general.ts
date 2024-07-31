@@ -4,6 +4,8 @@ import {
   NavLinkList,
   PageLinkItem,
   LangMenuItem,
+  LangMapParams,
+  CurrListParams,
   PathProperties,
   LogoProperties,
   AccountTypeList,
@@ -180,4 +182,40 @@ export const grid: GridList = {
   3: "grid-cols-2 xs:grid-cols-3",
   4: "grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4",
   5: "grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5",
+};
+
+export const recommendedCountries = [
+  "Spain",
+  "Italy",
+  "Chile",
+  "Korea",
+  "Brazil",
+  "France",
+  "Israel",
+  "Canada",
+  "Poland",
+  "Ukraine",
+  "Australia",
+  "Netherlands",
+  "Switzerland",
+  "Saudi Arabia",
+  "United States",
+  "United Kingdom",
+];
+
+export const currencyList: CurrListParams = {
+  EUR: { label: "EUR (Euro)", value: "EUR" },
+  GBP: { label: "GBP (Pound)", value: "GBP" },
+  USD: { label: "USD (US Dollar)", value: "USD" },
+  CHF: { label: "CHF (Swiss Franc)", value: "CHF" },
+  ALL: { label: "ALL (Albanian Lek)", value: "ALL" },
+};
+
+export const languageMaps: LangMapParams = {
+  FR: { label: "French", value: "FR" },
+  DE: { label: "German", value: "DE" },
+  ES: { label: "Spanish", value: "ES" },
+  US: { label: "English", value: "US" },
+  IT: { label: "Italian", value: "IT" },
+  AL: { label: "Albanian", value: "AL" },
 };
