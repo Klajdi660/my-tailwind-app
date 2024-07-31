@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { HttpClient } from "../client";
 import { StoreContext } from "../contexts";
-import { useStore, useNotification } from "../hooks";
 import { TranslationsResponse } from "../types";
+import { useStore, useNotification } from "../hooks";
 
 export const useStoreService = () => {
   const { translations, setTranslations } = useContext(StoreContext);

@@ -1,9 +1,9 @@
+import { motion } from "framer-motion";
 import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import { iconName } from "../../assets";
-import { Image, Button, HomeFooter } from "../../components";
 import { HomePageProps } from "../../types";
+import { Image, Button, HomeFooter } from "../../components";
 
 export const HomePage: FunctionComponent<HomePageProps> = () => {
   const navigate = useNavigate();

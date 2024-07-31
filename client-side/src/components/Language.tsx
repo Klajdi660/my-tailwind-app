@@ -1,13 +1,13 @@
-import React, { FunctionComponent, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { Country } from "country-state-city";
-import { State } from "country-state-city";
 import { Select } from "antd";
+import { State } from "country-state-city";
+import { Country } from "country-state-city";
+import { useForm, Controller } from "react-hook-form";
+import React, { FunctionComponent, useState } from "react";
 import { Button } from "./UI";
-import { currencyList, recommendedCountries, languageMaps } from "../data";
-import { useUserSelectedData, useAuth } from "../hooks";
 import { LanguageProps } from "../types";
 import { useProfileService } from "../services";
+import { useUserSelectedData, useAuth } from "../hooks";
+import { currencyList, recommendedCountries, languageMaps } from "../data";
 
 export const Language: FunctionComponent<LanguageProps> = (props) => {
   const { setOpen } = props;

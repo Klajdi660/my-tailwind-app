@@ -7,9 +7,9 @@ import {
   Loading,
   CartSwitcher,
 } from "../components";
-// import { useUserService } from "../services";
-import { ProviderProps } from "../types";
 import { useAppUtil } from "../utils";
+import { ProviderProps } from "../types";
+// import { useUserService } from "../services";
 
 export const PrivateLayout = ({ children }: ProviderProps) => {
   const { openSwitch } = useAppUtil();

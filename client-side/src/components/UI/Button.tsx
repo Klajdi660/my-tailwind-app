@@ -1,8 +1,8 @@
+import { Tooltip } from "antd";
 import { forwardRef, FunctionComponent, Ref } from "react";
 import { Icon } from "./Icon";
 import { ButtonProps } from "../../types";
 import { classNames, useSubmitting } from "../../utils";
-import { Tooltip } from "antd";
 
 export const Button: FunctionComponent<ButtonProps> = forwardRef(
   (

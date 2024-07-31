@@ -1,8 +1,8 @@
-import { FunctionComponent, useState } from "react";
 import { Popover } from "antd";
+import { FunctionComponent, useState } from "react";
 import { Icon } from "../Icon";
-import { Notification } from "../../Notification";
 import { notificationList } from "../../../data";
+import { Notification } from "../../Notification";
 import { NotificationButtonProps } from "../../../types";
 
 export const NotificationButton: FunctionComponent<

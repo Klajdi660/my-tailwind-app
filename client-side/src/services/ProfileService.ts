@@ -1,7 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { profileEndpoints } from "./Api";
-import { HttpClient } from "../client";
-import { useAuth, useNotification, useStore } from "../hooks";
 import {
   setIsAccountDelete,
   updateRememberMeData,
@@ -12,8 +10,10 @@ import {
   DeleteProfileInput,
   ChangePasswordInput,
   UserDetailsResponse,
-  PersonalDetailsInput,
+  // PersonalDetailsInput,
 } from "../types";
+import { HttpClient } from "../client";
+import { useAuth, useNotification, useStore } from "../hooks";
 
 const {
   UPDATE_PROFILE_API,

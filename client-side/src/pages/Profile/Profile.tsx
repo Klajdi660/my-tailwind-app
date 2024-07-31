@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
-import { Title, Profile } from "../../components";
 import { ProfilePageProps } from "../../types";
+import { Title, Profile } from "../../components";
 
 export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
   return (

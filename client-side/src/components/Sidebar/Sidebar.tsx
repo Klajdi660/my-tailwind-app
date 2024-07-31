@@ -1,12 +1,12 @@
-import { FunctionComponent, useMemo, useState, useEffect } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Tooltip } from "antd";
-import { Icon, Overlay, Image } from "../UI";
-import { defaultThemeConfig, themeConfig } from "../../configs";
+import { useSelector } from "react-redux";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { FunctionComponent, useMemo, useState, useEffect } from "react";
 import { navlinks } from "../../data";
-import { useAuth, useNotification } from "../../hooks";
 import { SidebarPorps } from "../../types";
+import { Icon, Overlay, Image } from "../UI";
+import { useAuth, useNotification } from "../../hooks";
+import { defaultThemeConfig, themeConfig } from "../../configs";
 import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
 
 const User = () => {

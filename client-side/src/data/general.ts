@@ -1,4 +1,3 @@
-import { alFlag, shFlag } from "../assets";
 import {
   GridList,
   NavLinkList,
@@ -13,6 +12,7 @@ import {
   FontSizesProperties,
   NotificationItemList,
 } from "../types";
+import { alFlag, shFlag } from "../assets";
 
 export const paths: PathProperties = {
   home: "/",

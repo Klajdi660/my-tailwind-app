@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
+import { FunctionComponent } from "react";
 import { Icon } from "./Icon";
 import { socialAuthList } from "../../data";
 import { SocialAuthButtonProps } from "../../types";

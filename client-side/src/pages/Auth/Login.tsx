@@ -1,8 +1,8 @@
-import { FunctionComponent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Template } from "../../components";
+import { useNavigate } from "react-router-dom";
+import { FunctionComponent, useEffect } from "react";
 import { useForm } from "../../hooks";
+import { Template } from "../../components";
 import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation, isRTokenExpired, useSubmitting } from "../../utils";

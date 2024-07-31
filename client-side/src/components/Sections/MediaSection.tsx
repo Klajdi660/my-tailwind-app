@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
 import { MediaCard } from "../Cards";
-import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
 import { Title } from "../UI";
 import { useStore } from "../../hooks";
-import { MediaSectionProps } from "../../types";
 import { classNames } from "../../utils";
+import { MediaSectionProps } from "../../types";
+import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
 
 const grid = {
   2: "grid-cols-2",

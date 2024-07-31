@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { Icon } from "../Icon";
-import { CartButtonProps } from "../../../types";
-import { useAppUtil } from "../../../utils";
 import { RootState } from "../../../store";
+import { useAppUtil } from "../../../utils";
+import { CartButtonProps } from "../../../types";
 
 export const CartButton: FunctionComponent<CartButtonProps> = () => {
   const { setOpenSwitch } = useAppUtil();

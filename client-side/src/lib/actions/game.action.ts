@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import { getGamePrice } from "../../utils";
 import { useGamesService } from "../../services";
 import { GameData, GameParams } from "../../types";
-import { getGamePrice } from "../../utils";
 
 interface GameFetchParams {
   page?: number;

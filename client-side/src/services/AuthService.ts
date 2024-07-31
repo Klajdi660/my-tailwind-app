@@ -1,10 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { endpoints } from "./Api";
-import { HttpClient } from "../client";
-import { paths } from "../data";
-import { useAuth, useNotification, useStore } from "../hooks";
-import { clearRememberMeData, saveRememberMeData } from "../store";
 import {
   AuthService,
   AuthResponse,
@@ -13,7 +9,11 @@ import {
   RegisterUserInput,
   ForgotPasswordInput,
 } from "../types";
+import { paths } from "../data";
+import { HttpClient } from "../client";
 import { globalObject } from "../utils";
+import { useAuth, useNotification, useStore } from "../hooks";
+import { clearRememberMeData, saveRememberMeData } from "../store";
 
 const {
   LOGIN_API,

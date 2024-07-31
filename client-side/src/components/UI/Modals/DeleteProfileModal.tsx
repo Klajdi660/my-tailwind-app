@@ -2,13 +2,13 @@ import { FunctionComponent } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SmallModal } from "./ModalContent";
-import { Button } from "../Button";
 import { Icon } from "../Icon";
-import { ErrorFormMessage } from "../../Common";
+import { Button } from "../Button";
 import { useAuth } from "../../../hooks";
+import { ErrorFormMessage } from "../../Common";
 import { useProfileService } from "../../../services";
-import { DeleteProfileProps, DeleteProfileInput } from "../../../types";
 import { useAppModal, deleteProfileValidation } from "../../../utils";
+import { DeleteProfileProps, DeleteProfileInput } from "../../../types";
 
 export const DeleteProfileModal: FunctionComponent<DeleteProfileProps> = () => {
   const { user } = useAuth();

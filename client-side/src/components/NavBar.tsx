@@ -12,11 +12,11 @@ import {
   NotificationButton,
   DesktopToggleButton,
 } from "./UI";
-import { icon, iconName } from "../assets";
-import { Searchbar, ProfileDropdown } from "../components";
-import { defaultThemeConfig } from "../configs";
 import { useAuth } from "../hooks";
 import { NavbarProps } from "../types";
+import { icon, iconName } from "../assets";
+import { defaultThemeConfig } from "../configs";
+import { Searchbar, ProfileDropdown } from "../components";
 import { useMobileResponsive, useAppUtil, classNames } from "../utils";
 
 export const Navbar: FunctionComponent<NavbarProps> = () => {

@@ -1,9 +1,9 @@
 import { FunctionComponent, useState } from "react";
-import { Template } from "../../components";
 import { useForm } from "../../hooks";
+import { Template } from "../../components";
 import { useAuthService } from "../../services";
-import { ForgotPasswordInput, ForgotPasswordPagePropes } from "../../types";
 import { forgotPassValidation } from "../../utils";
+import { ForgotPasswordInput, ForgotPasswordPagePropes } from "../../types";
 
 export const ForgotPasswordPage: FunctionComponent<
   ForgotPasswordPagePropes

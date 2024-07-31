@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect } from "react";
-import { OverlayProps } from "../../types";
 import { classNames } from "../../utils";
+import { OverlayProps } from "../../types";
 
 export const Overlay: FunctionComponent<OverlayProps> = (props) => {
   const { isMobile, isOpen, handleIsOpen, className } = props;

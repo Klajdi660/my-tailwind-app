@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react";
 import { Skeleton } from "./Skeleton";
+import { classNames } from "../../utils";
 import { imageDimsOpt } from "../../data";
 import { TrackCardSkeletonProps } from "../../types";
-import { classNames } from "../../utils";
 
 export const TrackCardSkeleton: FunctionComponent<TrackCardSkeletonProps> = (
   props

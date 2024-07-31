@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 import { TopPlayCard } from "../Cards";
-import { TrackCardSkeleton, TitleSkeleton } from "../Skeleton";
 import { ShowMoreButton, Title } from "../UI";
 import { paths } from "../../data";
 import { useStore } from "../../hooks";
-import { TopPlaySectionProps } from "../../types";
 import { classNames } from "../../utils";
+import { TopPlaySectionProps } from "../../types";
+import { TrackCardSkeleton, TitleSkeleton } from "../Skeleton";
 
 export const TopPlaySection: FunctionComponent<TopPlaySectionProps> = (
   props

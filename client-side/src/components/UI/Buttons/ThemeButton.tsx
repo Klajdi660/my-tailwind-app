@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Icon } from "../Icon";
-import { updateThemeConfig } from "../../../store";
 import { ThemeButtonProps } from "../../../types";
+import { updateThemeConfig } from "../../../store";
 
 export const ThemeButton: FunctionComponent<ThemeButtonProps> = (props) => {
   const { mode, dispatch } = props;

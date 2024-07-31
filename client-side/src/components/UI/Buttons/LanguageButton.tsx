@@ -1,9 +1,9 @@
-import { FunctionComponent, useState } from "react";
 import { Popover } from "antd";
-import { Language } from "../../Language";
-import { LanguageButtonProps } from "../../../types";
+import { FunctionComponent, useState } from "react";
 import { Icon } from "../Icon";
 import { useAuth } from "../../../hooks";
+import { Language } from "../../Language";
+import { LanguageButtonProps } from "../../../types";
 
 export const LanguageButton: FunctionComponent<LanguageButtonProps> = (
   props

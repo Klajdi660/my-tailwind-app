@@ -1,7 +1,7 @@
 import { gameEndpoints } from "./Api";
 import { HttpClient } from "../client";
-import { useNotification, useStore } from "../hooks";
 import { ServerResponse } from "../types";
+import { useNotification, useStore } from "../hooks";
 
 const {
   GET_GAME_LIST_API,

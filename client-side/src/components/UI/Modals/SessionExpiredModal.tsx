@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 import { SmallModal } from "./ModalContent";
-import { Button } from "../Button";
 import { Icon } from "../Icon";
+import { Button } from "../Button";
 import { paths } from "../../../data";
-import { SessionExpiredProps } from "../../../types";
 import { useAppModal } from "../../../utils";
+import { SessionExpiredProps } from "../../../types";
 
 export const SessionExpiredModal: FunctionComponent<
   SessionExpiredProps

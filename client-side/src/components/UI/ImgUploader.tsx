@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
-import { Button } from "./Button";
 import { Image } from "./Image";
-import { userIcon, iconName } from "../../assets";
+import { Button } from "./Button";
 import { useAuth } from "../../hooks";
 import { ImgUploaderParams } from "../../types";
+import { userIcon, iconName } from "../../assets";
 import { useAppModal, useProfilePhoto } from "../../utils";
 
 export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {

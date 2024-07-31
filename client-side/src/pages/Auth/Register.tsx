@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
-import { Template } from "../../components";
 import { useForm } from "../../hooks";
+import { Template } from "../../components";
 import { useAuthService } from "../../services";
-import { RegisterUserInput, RegisterPageProps } from "../../types";
 import { registerValidation } from "../../utils";
+import { RegisterUserInput, RegisterPageProps } from "../../types";
 
 export const RegisterPage: FunctionComponent<RegisterPageProps> = () => {
   const { listForm } = useForm();

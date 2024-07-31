@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./auth.slice";
-import cancelDeleteAccountReducer from "./cancelDeleteAccount.slice";
-import rememberMeReducer from "./remember.slice";
 import themeReducer from "./theme.slice";
-import userSelectedDataReducer from "./userSelectedData.slice";
 import cartReducer from "./gameCart.slice";
+import rememberMeReducer from "./remember.slice";
+import userSelectedDataReducer from "./userSelectedData.slice";
+import cancelDeleteAccountReducer from "./cancelDeleteAccount.slice";
 
 // const rootPersistConfig = {
 //   key: "root",

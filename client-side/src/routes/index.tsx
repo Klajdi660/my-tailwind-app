@@ -1,8 +1,4 @@
 import { useRoutes } from "react-router-dom";
-import { PrivateGuard, PublicGuard } from "../guards";
-import { paths } from "../data";
-import { SocialAuth } from "../components";
-import { PrivateLayout, PublicLayout } from "../layouts";
 import {
   HomePage,
   StorePage,
@@ -23,6 +19,10 @@ import {
   ForgotPasswordPage,
   PasswordConfirmCodePage,
 } from "../pages";
+import { paths } from "../data";
+import { SocialAuth } from "../components";
+import { PrivateGuard, PublicGuard } from "../guards";
+import { PrivateLayout, PublicLayout } from "../layouts";
 
 const {
   home,

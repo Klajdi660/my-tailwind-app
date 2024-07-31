@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Image } from "./UI";
-import { iconName } from "../assets";
 import { useStore } from "../hooks";
+import { iconName } from "../assets";
 import { LoadingPorps } from "../types";
 
 export const Loading: FunctionComponent<LoadingPorps> = () => {

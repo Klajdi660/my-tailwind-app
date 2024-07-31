@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react";
 import { Button, Tooltip } from "antd";
+import { FunctionComponent } from "react";
 import { CustomButtonProps } from "../../types";
 
 export const CustomButton: FunctionComponent<CustomButtonProps> = (props) => {

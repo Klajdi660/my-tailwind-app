@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
+import { FunctionComponent } from "react";
 import { Icon } from "./UI";
-import { pageLink, downloadBtnList } from "../data";
 import { FooterProps } from "../types";
+import { pageLink, downloadBtnList } from "../data";
 
 export const Footer: FunctionComponent<FooterProps> = () => {
   return (

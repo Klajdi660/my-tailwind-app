@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
-import { Template } from "../../components";
 import { useForm } from "../../hooks";
+import { Template } from "../../components";
 import { useAuthService } from "../../services";
-import { ResetPasswordPageProps, ResetPasswordInput } from "../../types";
 import { resetPassValidation } from "../../utils";
+import { ResetPasswordPageProps, ResetPasswordInput } from "../../types";
 
 export const ResetPasswordPage: FunctionComponent<
   ResetPasswordPageProps

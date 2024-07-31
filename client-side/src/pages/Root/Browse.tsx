@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { BrowsePageProps } from "../../types";
-import { useGamesService } from "../../services";
-import { MediaSection } from "../../components";
 import { useFetchGame } from "../../lib";
+import { BrowsePageProps } from "../../types";
+import { MediaSection } from "../../components";
+import { useGamesService } from "../../services";
 
 export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
   // const { getGameList } = useGamesService();

@@ -1,7 +1,7 @@
 import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
-import { useAuth, useNotification, useStore } from "../hooks";
 import { UserDetailsResponse } from "../types";
+import { useAuth, useNotification, useStore } from "../hooks";
 
 const { GET_USER_DETAILS_API } = userEndpoints;
 
