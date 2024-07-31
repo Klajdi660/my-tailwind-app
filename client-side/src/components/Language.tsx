@@ -1,25 +1,21 @@
 import React, { FunctionComponent, useState } from "react";
-import { useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { Country } from "country-state-city";
 import { State } from "country-state-city";
 import { Select } from "antd";
 import { Button } from "./UI";
 import { currencyList, recommendedCountries, languageMaps } from "../data";
-import { useUserSelectedData } from "../hooks";
+import { useUserSelectedData, useAuth } from "../hooks";
 import { LanguageProps } from "../types";
+import { useProfileService } from "../services";
 
 export const Language: FunctionComponent<LanguageProps> = (props) => {
   const { setOpen } = props;
-
-  const { setUserSelectedData } = useUserSelectedData();
+  const { user } = useAuth();
+  const { updateProfile } = useProfileService();
 
   const [selectedCurrency, setSelectedCurrency] = useState<string>("ALL");
   const [selectedIsoCode, setSelectedIsoCode] = useState<string>("AL");
-
-  const { userSelectedData } = useSelector(
-    (state: any) => state.userSelectedData
-  );
 
   const allCountries = Country.getAllCountries();
 
@@ -73,33 +69,51 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
     );
 
     if (selectedCountry) {
-      const { isoCode, currency, name, flag } = selectedCountry;
+      const { isoCode, currency } = selectedCountry;
 
       const curr = currencyList[currency]
         ? currencyList[currency].value
         : currencyList["USD"].value;
-
+      console.log("isoCode :>> ", isoCode);
       const lang = languageMaps[isoCode]
         ? languageMaps[isoCode].value
         : languageMaps["US"].value;
 
       setSelectedCurrency(currency);
       setSelectedIsoCode(isoCode);
-      setUserSelectedData({ isoCode, name, currency: curr, lang, flag });
       setValue("currency", curr);
       setValue("lang", lang);
-      setValue("shipTo", name);
+      setValue("shipTo", isoCode);
     }
   };
-  console.log("selectedCurrency :>> ", selectedCurrency);
+
   const handleMenuClick = async (data: any) => {
+    const selectedCountry = allCountries.find(
+      (country) => country.isoCode === data.shipTo
+    );
+    const values = {
+      extra: {
+        ...data,
+        shipTo: selectedCountry?.name,
+        flag: selectedCountry?.flag,
+      },
+    };
+    console.log("values :>> ", values);
+    await updateProfile(values);
     setOpen(false);
   };
 
-  const { register, handleSubmit, control, setValue } = useForm({
+  const {
+    register: form,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { isValid },
+  } = useForm({
     mode: "onTouched",
   });
 
+  console.log("user?.extra :>> ", user?.extra);
   return (
     <form
       className="p-2 space-y-3 min-w-[300px]"
@@ -123,7 +137,8 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               options={combinedCountries}
               onChange={handleCountryChange}
               showSearch
-              defaultValue={userSelectedData?.name}
+              // defaultValue={userSelectedData?.name}
+              defaultValue={user?.extra?.shipTo}
             />
           )}
         />
@@ -159,7 +174,8 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               className="w-full h-10 text-sm"
               placeholder="Select language"
               options={languageOptions}
-              defaultValue={userSelectedData?.lang}
+              // defaultValue={userSelectedData?.lang}
+              defaultValue={user?.extra?.lang}
             />
           )}
         />
@@ -180,7 +196,8 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
               className="w-full h-10 text-sm"
               placeholder="Select currency"
               options={currencyOptions}
-              defaultValue={userSelectedData?.currency}
+              // defaultValue={userSelectedData?.currency}
+              defaultValue={user?.extra?.currency}
             />
           )}
         />
@@ -191,6 +208,7 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
           variant="none"
           className="w-full bg-primary rounded-full text-white group-hover:opacity-70"
           iconClassName="text-white"
+          disabled={!isValid}
         />
       </div>
     </form>

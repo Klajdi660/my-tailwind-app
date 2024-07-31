@@ -216,6 +216,7 @@ export const languageMaps: LangMapParams = {
   DE: { label: "German", value: "DE" },
   ES: { label: "Spanish", value: "ES" },
   US: { label: "English", value: "US" },
+  GB: { label: "British English", value: "GB" },
   IT: { label: "Italian", value: "IT" },
   AL: { label: "Albanian", value: "AL" },
 };

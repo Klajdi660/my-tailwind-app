@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 import { Badge } from "antd";
-import { useSelector } from "react-redux";
 import { CartItem, CartFooter } from "../Cart";
 import { Icon } from "../UI";
 import { CartBodyProps } from "../../types";
+import { useAuth } from "../../hooks";
 
 export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
   const {
@@ -18,9 +18,7 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
     setSelectedHeaderOpen,
   } = props;
 
-  const { userSelectedData } = useSelector(
-    (state: any) => state.userSelectedData
-  );
+  const { user } = useAuth();
 
   const allSelections = selections.length;
 
@@ -44,12 +42,12 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
         </div>
       ) : (
         <>
-          {userSelectedData && (
+          {user?.extra?.shipTo && (
             <div className="flex_justify_between w-full px-6 pt-2 text-onNeutralBg">
               <p className="text-base font-semibold py-2">Ship to</p>
               <div className="flex items-center gap-2">
                 <Icon name="SlLocationPin" size={14} />
-                {userSelectedData.name}
+                {user?.extra?.shipTo}
               </div>
             </div>
           )}

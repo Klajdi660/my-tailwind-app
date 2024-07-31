@@ -1,18 +1,15 @@
 import { FunctionComponent, useState } from "react";
 import { Popover } from "antd";
-import { useSelector } from "react-redux";
 import { Language } from "../../Language";
 import { LanguageButtonProps } from "../../../types";
 import { Icon } from "../Icon";
+import { useAuth } from "../../../hooks";
 
 export const LanguageButton: FunctionComponent<LanguageButtonProps> = (
   props
 ) => {
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
-
-  const { userSelectedData } = useSelector(
-    (state: any) => state.userSelectedData
-  );
 
   const hide = () => {
     setOpen(false);
@@ -40,12 +37,12 @@ export const LanguageButton: FunctionComponent<LanguageButtonProps> = (
         placement="topRight"
       >
         <button className="flex-row w-14 h-12 transition-colors duration-500 rounded flex_justify_center bg-primary-opacity hover:bg-primary group">
-          {userSelectedData ? (
+          {user?.extra?.shipTo ? (
             <>
-              <div className="text-lg">{userSelectedData.flag}</div>
+              <div className="text-lg">{user?.extra?.flag}</div>
               <div className="flex flex-col group-hover:text-white">
-                <p className="text-xs">{userSelectedData.lang}/</p>
-                <p className="text-xs">{userSelectedData.currency}</p>
+                <p className="text-xs">{user?.extra?.lang}/</p>
+                <p className="text-xs">{user?.extra?.currency}</p>
               </div>
             </>
           ) : (

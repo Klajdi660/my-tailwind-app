@@ -1,17 +1,17 @@
-import { ConfigProvider, theme, App } from "antd";
-import { BrowserRouter as Router /*RouterProvider*/ } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
+import { ConfigProvider, theme, App } from "antd";
+import { HelmetProvider } from "react-helmet-async";
 import { PersistGate } from "redux-persist/integration/react";
+import { BrowserRouter as Router /*RouterProvider*/ } from "react-router-dom";
 // import { QueryClient, QueryClientProvider } from "react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 // import { Loading } from "./components";
 import { AuthProvider, FormProvider, StoreProvider } from "./contexts";
-import { StylesProvider } from "./providers";
 import { Routes } from "./routes";
 // import { router } from "./routes";
 import { persistor, store } from "./store";
+import { StylesProvider } from "./providers";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 

@@ -13,6 +13,7 @@ import { useAppUtil } from "../utils";
 
 export const PrivateLayout = ({ children }: ProviderProps) => {
   const { openSwitch } = useAppUtil();
+
   // const { getUserDetails } = useUserService();
 
   // useEffect(() => {
