@@ -1,10 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import { Popover } from "antd";
 import { useSelector } from "react-redux";
-import { Image } from "../Image";
 import { Language } from "../../Language";
-import { alFlag, shFlag } from "../../../assets";
-import { useStore } from "../../../hooks";
 import { LanguageButtonProps } from "../../../types";
 import { Icon } from "../Icon";
 
@@ -16,8 +13,6 @@ export const LanguageButton: FunctionComponent<LanguageButtonProps> = (
   const { userSelectedData } = useSelector(
     (state: any) => state.userSelectedData
   );
-
-  // const { flag, lang, currency } = userSelectedData;
 
   const hide = () => {
     setOpen(false);
@@ -45,20 +40,12 @@ export const LanguageButton: FunctionComponent<LanguageButtonProps> = (
         placement="topRight"
       >
         <button className="flex-row w-14 h-12 transition-colors duration-500 rounded flex_justify_center bg-primary-opacity hover:bg-primary group">
-          {/* {lang === "al" && (
-            <Image imgUrl={alFlag} name="flag_icon" styles="w-5 h-5" />
-          )}
-          {lang === "en" && (
-            <Image imgUrl={shFlag} name="flag_icon" styles="w-5 h-5" />
-          )} */}
-          {/* <Image imgUrl={userLangData?.flag} /> */}
-
           {userSelectedData ? (
             <>
-              <div className="text-lg">{userSelectedData?.flag}</div>
+              <div className="text-lg">{userSelectedData.flag}</div>
               <div className="flex flex-col group-hover:text-white">
-                <p className="text-xs">{userSelectedData?.lang}/</p>
-                <p className="text-xs">{userSelectedData?.currency}</p>
+                <p className="text-xs">{userSelectedData.lang}/</p>
+                <p className="text-xs">{userSelectedData.currency}</p>
               </div>
             </>
           ) : (

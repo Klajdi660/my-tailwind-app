@@ -49,7 +49,7 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
               <p className="text-base font-semibold py-2">Ship to</p>
               <div className="flex items-center gap-2">
                 <Icon name="SlLocationPin" size={14} />
-                {userSelectedData?.name}
+                {userSelectedData.name}
               </div>
             </div>
           )}

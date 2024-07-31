@@ -21,8 +21,6 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
     (state: any) => state.userSelectedData
   );
 
-  // const { lang, currency, name } = userSelectedData;
-
   const allCountries = Country.getAllCountries();
 
   const recommendedCountriesList = allCountries.filter((country) =>
