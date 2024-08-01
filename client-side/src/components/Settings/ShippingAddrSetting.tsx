@@ -2,6 +2,8 @@ import { Select } from "antd";
 import { FunctionComponent } from "react";
 import { Country } from "country-state-city";
 import { useForm, Controller } from "react-hook-form";
+import { Button } from "../UI";
+import { useAppModal } from "../../utils";
 import { recommendedCountries } from "../../data";
 
 interface ShippingAddrSettingProps {}
@@ -9,6 +11,8 @@ interface ShippingAddrSettingProps {}
 export const ShippingAddrSetting: FunctionComponent<
   ShippingAddrSettingProps
 > = (props) => {
+  const { setModalOpen } = useAppModal();
+
   const allCountries = Country.getAllCountries();
 
   const recommendedCountriesList = allCountries.filter((country) =>
@@ -52,6 +56,10 @@ export const ShippingAddrSetting: FunctionComponent<
       label: `${flag} ${name} ${prefix}`,
     };
   });
+
+  const handleModalClose = () => {
+    setModalOpen("settingsModal", false);
+  };
 
   const {
     register: form,
@@ -190,6 +198,16 @@ export const ShippingAddrSetting: FunctionComponent<
           placeholder="ZIP code"
           autoComplete="zip"
         />
+      </div>
+      <div className="flex items-center justify-end w-full mt-4">
+        <Button
+          type="submit"
+          label="Cancel"
+          variant="outlined"
+          className="mr-4"
+          onClick={handleModalClose}
+        />
+        <Button type="submit" label="Save" variant="contained" />
       </div>
     </form>
   );
