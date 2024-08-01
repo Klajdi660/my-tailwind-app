@@ -2,6 +2,10 @@ import { Select } from "antd";
 import { FunctionComponent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateThemeConfig } from "../../store";
+import creditCardType, {
+  getTypeInfo,
+  types as CardType,
+} from "credit-card-type";
 
 interface GeneralSettingProps {}
 
@@ -18,8 +22,11 @@ export const GeneralSetting: FunctionComponent<GeneralSettingProps> = (
 
   // const handleLangChange = (value: string) => {};
 
+  const test = creditCardType("4111");
+  console.log("test :>> ", test);
+
   return (
-    <form className="w-full flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4">
       <div className="w-full flex_justify_between flex-row">
         <label
           htmlFor="provider"
@@ -56,6 +63,6 @@ export const GeneralSetting: FunctionComponent<GeneralSettingProps> = (
           // onChange={handleLangChange}
         />
       </div>
-    </form>
+    </div>
   );
 };
