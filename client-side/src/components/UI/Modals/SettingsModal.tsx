@@ -42,8 +42,8 @@ export const SettingsModal: FunctionComponent<SettingsModalProps> = () => {
       <div className="modal-header w-full text-xl text-onNeutralBg font-semibold">
         Settings
       </div>
-      <div className="modal-body mt-4 flex flex-row gap-4">
-        <div className="modal-body-left w-[30%] flex flex-col gap-2">
+      <div className="modal-body w-full mt-4 flex flex-col md:flex-row gap-4">
+        <div className="modal-body-left w-full md:w-[30%] flex flex-row md:flex-col gap-2">
           {settingsLinks.map((settingLink) => {
             return (
               <div
@@ -84,7 +84,7 @@ export const SettingsModal: FunctionComponent<SettingsModalProps> = () => {
             );
           })}
         </div>
-        <div className="modal-body-right w-[70%]">
+        <div className="modal-body-right w-full md:w-[70%]">
           {/* <p className="text-onNeutralBg bg-primary-opacity p-2 w-full"> */}
           {renderSettingsContent()}
           {/* </p> */}
