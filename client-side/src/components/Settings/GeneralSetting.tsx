@@ -2,10 +2,7 @@ import { Select } from "antd";
 import { FunctionComponent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateThemeConfig } from "../../store";
-import creditCardType, {
-  getTypeInfo,
-  types as CardType,
-} from "credit-card-type";
+import creditCardType from "credit-card-type";
 
 interface GeneralSettingProps {}
 

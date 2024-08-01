@@ -1,6 +1,5 @@
 import { Select, Popover } from "antd";
 import { FunctionComponent } from "react";
-import { useForm, Controller } from "react-hook-form";
 import { Icon, Image, Button } from "../UI";
 import { bankImg } from "../../assets";
 import { currencyList } from "../../data";
@@ -26,18 +25,8 @@ export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
     value: curr,
   }));
 
-  const {
-    register: form,
-    handleSubmit,
-    control,
-    setValue,
-    formState: { isValid },
-  } = useForm({
-    mode: "onTouched",
-  });
-
   return (
-    <form className="w-full flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4">
       <div className="w-full flex_justify_between flex-row">
         <label
           htmlFor="provider"
@@ -45,19 +34,12 @@ export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
         >
           Currency
         </label>
-        <Controller
-          name="currency"
-          control={control}
-          render={({ field }) => (
-            <Select
-              {...field}
-              // variant="borderless"
-              className="h-10 w-52 text-sm"
-              placeholder="Select currency"
-              dropdownStyle={{ width: 200 }}
-              options={currencyOptions}
-            />
-          )}
+        <Select
+          // variant="borderless"
+          className="h-10 w-52 text-sm"
+          placeholder="Select currency"
+          dropdownStyle={{ width: 200 }}
+          options={currencyOptions}
         />
       </div>
       <div className="w-full flex flex-col gap-4">
@@ -67,7 +49,10 @@ export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
         >
           Cards
         </label>
-        <div className="grid grid-cols-2 gap-4">
+        <div
+          // className="grid grid-cols-2 gap-4"
+          className="grid sm:grid-cols-1 md:grid-cols-2 gap-4"
+        >
           <div className="h-32 grid grid-cols-2 gap-4 p-4 bg-primary-opacity rounded-lg text-onNeutralBg">
             <div className="flex items-start justify-start">
               <p className="text-lg font-bold">**** 7247</p>
@@ -99,6 +84,6 @@ export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
           </div>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
