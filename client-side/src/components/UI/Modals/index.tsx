@@ -1,7 +1,8 @@
 import { FunctionComponent } from "react";
-import { ChangeProfilePhotoModal } from "./ChangeProfilePhotoModal";
+import { SettingsModal } from "./SettingsModal";
 import { DeleteProfileModal } from "./DeleteProfileModal";
 import { SessionExpiredModal } from "./SessionExpiredModal";
+import { ChangeProfilePhotoModal } from "./ChangeProfilePhotoModal";
 
 export const Modal: FunctionComponent = () => {
   return (
@@ -9,6 +10,7 @@ export const Modal: FunctionComponent = () => {
       <DeleteProfileModal />
       <SessionExpiredModal />
       <ChangeProfilePhotoModal />
+      <SettingsModal />
     </>
   );
 };

@@ -7,17 +7,24 @@ import { profileMenuItems } from "../../data";
 import { useAuth } from "../../hooks";
 import { useAuthService } from "../../services";
 import { UserMenuProps, ProfileDropdownProps } from "../../types";
-import { classNames } from "../../utils";
+import { classNames, useAppModal } from "../../utils";
 
 const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
   const { user, hidden } = props;
 
+  const { setModalOpen } = useAppModal();
   const { logout } = useAuthService();
+
   const navigate = useNavigate();
 
   const { email, username, extra } = user;
 
-  const menuItems = profileMenuItems({ navigate, hidden, logout });
+  const menuItems = profileMenuItems({
+    navigate,
+    hidden,
+    logout,
+    setModalOpen,
+  });
 
   return (
     <div className="p-2 space-y-2 min-w-[300px]">

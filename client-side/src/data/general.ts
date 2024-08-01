@@ -9,6 +9,7 @@ import {
   LogoProperties,
   AccountTypeList,
   DownloadBtnList,
+  SettingsLinksParams,
   FontSizesProperties,
   NotificationItemList,
 } from "../types";
@@ -121,6 +122,27 @@ export const navlinks: NavLinkList[] = [
         tooltip: "hover",
       },
     ],
+  },
+];
+
+export const settingsLinks: SettingsLinksParams[] = [
+  {
+    id: "general",
+    to: "/general",
+    name: "General",
+    icon: "AiOutlineSetting",
+  },
+  {
+    id: "shipping",
+    to: "/shipping",
+    name: "Shipping address",
+    icon: "LuShip",
+  },
+  {
+    id: "payment",
+    to: "/payment",
+    name: "Payment",
+    icon: "MdOutlinePayment",
   },
 ];
 

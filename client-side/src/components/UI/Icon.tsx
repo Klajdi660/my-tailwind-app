@@ -30,6 +30,7 @@ import {
 } from "react-icons/bi";
 import {
   BsGlobe,
+  BsThreeDots,
   BsMoonStars,
   BsShieldLock,
   BsFillPlayFill,
@@ -57,6 +58,7 @@ import { FiAlertTriangle, FiUpload } from "react-icons/fi";
 import { HiMenuAlt2, HiCheck } from "react-icons/hi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { LiaSignOutAltSolid, LiaCarSideSolid } from "react-icons/lia";
+import { LuShip } from "react-icons/lu";
 import {
   MdHome,
   MdClear,
@@ -66,10 +68,12 @@ import {
   MdPhoneIphone,
   MdOutlineGames,
   MdOutlineCancel,
+  MdOutlinePayment,
   MdOutlineWbSunny,
   MdOutlineExplore,
   MdCurrencyBitcoin,
   MdOutlineDeleteOutline,
+  MdOutlineAddCircleOutline,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import { PiWarningCircle, PiWarningCircleBold } from "react-icons/pi";
@@ -86,7 +90,6 @@ import {
 } from "react-icons/sl";
 import { SiNintendo } from "react-icons/si";
 import { TiTimes } from "react-icons/ti";
-
 import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
 
@@ -116,6 +119,7 @@ const icons: IconsMap = {
   BiChevronsRight,
   BiSelectMultiple,
   BsGlobe,
+  BsThreeDots,
   BsMoonStars,
   BsShieldLock,
   BsFillPlayFill,
@@ -143,6 +147,7 @@ const icons: IconsMap = {
   IoMdNotificationsOutline,
   LiaCarSideSolid,
   LiaSignOutAltSolid,
+  LuShip,
   MdHome,
   MdClear,
   MdLogin,
@@ -151,10 +156,12 @@ const icons: IconsMap = {
   MdPhoneIphone,
   MdOutlineGames,
   MdOutlineCancel,
+  MdOutlinePayment,
   MdOutlineWbSunny,
   MdOutlineExplore,
   MdCurrencyBitcoin,
   MdOutlineDeleteOutline,
+  MdOutlineAddCircleOutline,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,

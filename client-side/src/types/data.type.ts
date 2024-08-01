@@ -84,6 +84,13 @@ export interface NavLinkList {
   subLinks: SubLinkList[];
 }
 
+export interface SettingsLinksParams {
+  id: string;
+  to: string;
+  name: string;
+  icon: string;
+}
+
 // Profile
 export interface ProfileItemList {
   type?: string;
@@ -110,6 +117,7 @@ export interface ProfileMenuItems {
   hidden: () => void;
   logout: () => void;
   navigate: (path: string) => void;
+  setModalOpen: any;
 }
 
 export interface GameIconMapsProperties {

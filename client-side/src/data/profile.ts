@@ -198,6 +198,7 @@ export const profileMenuItems = ({
   hidden,
   logout,
   navigate,
+  setModalOpen,
 }: ProfileMenuItems) => [
   {
     id: "profile",
@@ -214,7 +215,8 @@ export const profileMenuItems = ({
     icon: "AiOutlineSetting",
     onClick: () => {
       hidden();
-      navigate("/settings");
+      // navigate("/settings");
+      setModalOpen("settingsModal", true);
     },
   },
   {

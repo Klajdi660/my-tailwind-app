@@ -314,6 +314,7 @@ export interface ThemeButtonProps {
 export interface SessionExpiredProps {}
 
 export interface DeleteProfileProps {}
+export interface SettingsModalProps {}
 
 export interface DeleteProfileInput {
   confirmDelete: string;

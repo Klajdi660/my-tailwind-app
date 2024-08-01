@@ -23,31 +23,32 @@ export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
   const allSelections = selections.length;
 
   return (
-    <div className="w-full h-full rounded-t-[2rem] bg-main flex flex-col">
+    <div className="w-full h-full flex flex-col">
       {selectedHeaderOpen ? (
-        <div
-          className="flex_justify_between w-full px-6 pt-2 text-onNeutralBg bg-primary-opacity rounded-t-[2rem] cursor-pointer"
-          onClick={() => setSelectedHeaderOpen(false)}
-        >
-          <p className="flex items-center gap-2 text-base font-semibold py-2">
-            Selected items
-            <Badge count={allSelections} showZero color="var(--primary)" />
-          </p>
+        <div className="px-4">
           <div
-            className="bg-switch rounded p-1 hover:bg-primary-opacity"
+            className="flex_justify_between w-full px-4 text-onNeutralBg bg-primary-opacity cursor-pointer"
             onClick={() => setSelectedHeaderOpen(false)}
           >
-            <Icon name="MdClear" size={14} />
+            <p className="flex items-center gap-2 text-base font-semibold py-2">
+              Selected items
+              <Badge count={allSelections} showZero color="var(--primary)" />
+            </p>
+            <div className="" onClick={() => setSelectedHeaderOpen(false)}>
+              <Icon name="MdClear" size={20} className="hover:text-primary" />
+            </div>
           </div>
         </div>
       ) : (
         <>
           {user?.extra?.shipTo && (
-            <div className="flex_justify_between w-full px-6 pt-2 text-onNeutralBg">
-              <p className="text-base font-semibold py-2">Ship to</p>
-              <div className="flex items-center gap-2">
-                <Icon name="SlLocationPin" size={14} />
-                {user?.extra?.shipTo}
+            <div className="px-4">
+              <div className="flex_justify_between w-full px-4 text-onNeutralBg bg-primary-opacity">
+                <p className="text-base font-semibold py-2">Ship to</p>
+                <div className="flex items-center gap-2">
+                  <Icon name="SlLocationPin" size={14} />
+                  {user?.extra?.shipTo}
+                </div>
               </div>
             </div>
           )}

@@ -280,6 +280,7 @@ input[type="checkbox"] {
 }
 .ant-modal .ant-modal-close:hover {
   color: var(--onNeutralBg);
+  background: var(--primary-opacity);
 }
 
 /* Popover */
