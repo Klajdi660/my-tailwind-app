@@ -1,19 +1,11 @@
 import { Select, Popover } from "antd";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Icon, Image, Button } from "../UI";
 import { bankImg } from "../../assets";
 import { currencyList } from "../../data";
 
 interface PaymentSettingProps {}
-
-const EditCardContent: FunctionComponent = () => {
-  return (
-    <div className="p-2 min-w-[300px]">
-      <p className="text-onNeutralBg">Test</p>
-    </div>
-  );
-};
 
 const content = (
   <div className="flex_justify_center flex-row cursor-pointer gap-1 group">
@@ -89,7 +81,6 @@ export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
                 <Button
                   labelIcon="BsThreeDots"
                   variant="none"
-                  // className="px-0 py-0 hover:bg-primary-opacity w-8"
                   className="px-0 py-0"
                   iconClassName="hover:text-primary"
                 />

@@ -1,31 +1,22 @@
-import { FunctionComponent } from "react";
-import { useForm, Controller } from "react-hook-form";
 import { Select } from "antd";
+import { FunctionComponent } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateThemeConfig } from "../../store";
 
 interface GeneralSettingProps {}
-
-const themeOptions = [
-  { value: "Dark", label: "Dark" },
-  { value: "Light", label: "Light" },
-];
-
-const langOptions = [
-  { value: "Albanian", label: "Albanian" },
-  { value: "English", label: "English" },
-];
 
 export const GeneralSetting: FunctionComponent<GeneralSettingProps> = (
   props
 ) => {
-  const {
-    register: form,
-    handleSubmit,
-    control,
-    setValue,
-    formState: { isValid },
-  } = useForm({
-    mode: "onTouched",
-  });
+  const dispatch = useDispatch();
+
+  const theme = useSelector((state: any) => state.theme);
+
+  const handleThemeChange = (value: string) => {
+    dispatch(updateThemeConfig({ mode: value }));
+  };
+
+  // const handleLangChange = (value: string) => {};
 
   return (
     <form className="w-full flex flex-col gap-4">
@@ -36,18 +27,16 @@ export const GeneralSetting: FunctionComponent<GeneralSettingProps> = (
         >
           Theme
         </label>
-        <Controller
-          name="theme"
-          control={control}
-          render={({ field }) => (
-            <Select
-              {...field}
-              // variant="borderless"
-              className="h-10 w-52 text-sm"
-              placeholder="Select theme"
-              options={themeOptions}
-            />
-          )}
+        <Select
+          // variant="borderless"
+          className="h-10 w-52 text-sm"
+          placeholder="Select theme"
+          options={[
+            { value: "dark", label: "Dark" },
+            { value: "light", label: "Light" },
+          ]}
+          defaultValue={theme.mode}
+          onChange={handleThemeChange}
         />
       </div>
       <div className="w-full flex_justify_between flex-row">
@@ -57,17 +46,14 @@ export const GeneralSetting: FunctionComponent<GeneralSettingProps> = (
         >
           Language
         </label>
-        <Controller
-          name="lang"
-          control={control}
-          render={({ field }) => (
-            <Select
-              {...field}
-              className="h-10 w-52 text-sm"
-              placeholder="Select language"
-              options={langOptions}
-            />
-          )}
+        <Select
+          className="h-10 w-52 text-sm"
+          placeholder="Select language"
+          options={[
+            { value: "Albanian", label: "Albanian" },
+            { value: "English", label: "English" },
+          ]}
+          // onChange={handleLangChange}
         />
       </div>
     </form>

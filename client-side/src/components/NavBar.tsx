@@ -77,8 +77,8 @@ export const Navbar: FunctionComponent<NavbarProps> = () => {
                 <>
                   <CartButton />
                   <NotificationButton />
-                  <LanguageButton />
-                  <ThemeButton mode={theme.mode} dispatch={dispatch} />
+                  {/* <LanguageButton /> */}
+                  {/* <ThemeButton mode={theme.mode} dispatch={dispatch} /> */}
                   <ProfileDropdown />
                 </>
               ) : (
