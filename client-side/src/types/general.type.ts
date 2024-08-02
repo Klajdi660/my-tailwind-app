@@ -123,10 +123,6 @@ export type GridList = {
   [key: number]: string;
 };
 
-export type CurrListParams = {
-  [key: string]: { label: string; value: string };
-};
-
 export type LangMapParams = {
   [key: string]: { label: string; value: string };
 };

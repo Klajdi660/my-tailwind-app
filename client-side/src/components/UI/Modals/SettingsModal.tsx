@@ -85,9 +85,7 @@ export const SettingsModal: FunctionComponent<SettingsModalProps> = () => {
           })}
         </div>
         <div className="modal-body-right w-full md:w-[70%]">
-          {/* <p className="text-onNeutralBg bg-primary-opacity p-2 w-full"> */}
           {renderSettingsContent()}
-          {/* </p> */}
         </div>
       </div>
     </SmallModal>

@@ -99,7 +99,6 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
         flag: selectedCountry?.flag,
       },
     };
-    console.log("values :>> ", values);
     await updateProfile(values);
     setOpen(false);
   };
@@ -114,7 +113,6 @@ export const Language: FunctionComponent<LanguageProps> = (props) => {
     mode: "onTouched",
   });
 
-  console.log("user?.extra :>> ", user?.extra);
   return (
     <form
       className="p-2 space-y-3 min-w-[300px]"

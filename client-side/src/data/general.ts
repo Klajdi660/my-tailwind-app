@@ -4,7 +4,6 @@ import {
   PageLinkItem,
   LangMenuItem,
   LangMapParams,
-  CurrListParams,
   PathProperties,
   LogoProperties,
   AccountTypeList,
@@ -225,14 +224,6 @@ export const recommendedCountries = [
   "United States",
   "United Kingdom",
 ];
-
-export const currencyList: CurrListParams = {
-  EUR: { label: "EUR (Euro)", value: "EUR" },
-  GBP: { label: "GBP (Pound)", value: "GBP" },
-  USD: { label: "USD (US Dollar)", value: "USD" },
-  CHF: { label: "CHF (Swiss Franc)", value: "CHF" },
-  ALL: { label: "ALL (Albanian Lek)", value: "ALL" },
-};
 
 export const languageMaps: LangMapParams = {
   FR: { label: "French", value: "FR" },

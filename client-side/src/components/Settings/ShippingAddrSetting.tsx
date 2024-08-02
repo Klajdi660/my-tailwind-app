@@ -201,7 +201,7 @@ export const ShippingAddrSetting: FunctionComponent<
       </div>
       <div className="flex items-center justify-end w-full mt-4">
         <Button
-          type="submit"
+          type="button"
           label="Cancel"
           variant="outlined"
           className="mr-4"

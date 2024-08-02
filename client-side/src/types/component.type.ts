@@ -315,6 +315,7 @@ export interface SessionExpiredProps {}
 
 export interface DeleteProfileProps {}
 export interface SettingsModalProps {}
+export interface PaymentCardProps {}
 
 export interface DeleteProfileInput {
   confirmDelete: string;

@@ -1,29 +1,68 @@
 import { Select, Popover } from "antd";
 import { FunctionComponent } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Icon, Image, Button } from "../UI";
-import { bankImg } from "../../assets";
+import { visaImg, masterCardImg } from "../../assets";
 import { currencyList } from "../../data";
+import { useAppModal } from "../../utils";
+import { removeSelectedCard } from "../../store";
 
 interface PaymentSettingProps {}
 
-const content = (
-  <div className="flex_justify_center flex-row cursor-pointer gap-1 group">
-    <Icon
-      name="AiOutlineDelete"
-      size={16}
-      className="group-hover:text-primary"
-    />
-    <p className="text-secondary group-hover:text-primary">Remove card</p>
-  </div>
-);
+interface NewCardContentProps {
+  cardId: number;
+}
+
+const cardImg: { [key: string]: string } = {
+  visa: visaImg,
+  mastercard: masterCardImg,
+};
+
+const NewCardContent: FunctionComponent<NewCardContentProps> = (props) => {
+  const { cardId } = props;
+
+  const dispatch = useDispatch();
+
+  const handleRemoveCard = () => {
+    dispatch(removeSelectedCard(cardId));
+  };
+
+  return (
+    <div
+      className="flex_justify_center flex-row cursor-pointer gap-1 group"
+      onClick={handleRemoveCard}
+    >
+      <Icon
+        name="AiOutlineDelete"
+        size={16}
+        className="group-hover:text-primary"
+      />
+      <p className="text-secondary group-hover:text-primary">Remove card</p>
+    </div>
+  );
+};
+
+const maskCardNumber = (cardNumber: string) => {
+  const last4Digits = cardNumber.slice(-4);
+  const maskedNumber = cardNumber.slice(0, -4).replace(/\d/g, "*");
+  return maskedNumber + last4Digits;
+};
 
 export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
   props
 ) => {
+  const { setModalOpen } = useAppModal();
+
+  const cards = useSelector((state: any) => state.settingCard.items);
+
   const currencyOptions = Object.keys(currencyList).map((curr) => ({
     label: currencyList[curr].label,
     value: curr,
   }));
+
+  const handleModalClose = () => {
+    setModalOpen("paymentCardModal", true);
+  };
 
   return (
     <div className="w-full flex flex-col gap-4">
@@ -49,30 +88,43 @@ export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
         >
           Cards
         </label>
-        <div
-          // className="grid grid-cols-2 gap-4"
-          className="grid sm:grid-cols-1 md:grid-cols-2 gap-4"
-        >
-          <div className="h-32 grid grid-cols-2 gap-4 p-4 bg-primary-opacity rounded-lg text-onNeutralBg">
-            <div className="flex items-start justify-start">
-              <p className="text-lg font-bold">**** 7247</p>
-            </div>
-            <div className="flex items-start justify-end">
-              <Image imgUrl={bankImg} name="bank_img" width={80} />
-            </div>
-            <div></div>
-            <div className="flex items-end justify-end cursor-pointer">
-              <Popover arrow={false} content={content}>
-                <Button
-                  labelIcon="BsThreeDots"
-                  variant="none"
-                  className="px-0 py-0"
-                  iconClassName="hover:text-primary"
-                />
-              </Popover>
-            </div>
-          </div>
-          <div className="h-32 flex_justify_center flex-row gap-2 bg-primary-opacity rounded-lg cursor-pointer group text-onNeutralBg">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
+          {cards.map((card: any) => {
+            return (
+              <div
+                className="h-32 grid grid-cols-2 gap-4 p-4 bg-primary-opacity rounded-lg text-onNeutralBg"
+                key={card.id}
+              >
+                <div className="flex items-start justify-start">
+                  <p className="text-lg font-bold">
+                    {maskCardNumber(card.cardNumber)}
+                  </p>
+                </div>
+                <div className="flex items-start justify-end mt-1">
+                  <Image
+                    imgUrl={cardImg[card?.cardType]}
+                    name="bank_img"
+                    width={50}
+                  />
+                </div>
+                <div></div>
+                <div className="flex items-end justify-end cursor-pointer">
+                  <Popover
+                    arrow={false}
+                    content={<NewCardContent cardId={card.id} />}
+                  >
+                    <button>
+                      <Icon name="BsThreeDots" className="hover:text-primary" />
+                    </button>
+                  </Popover>
+                </div>
+              </div>
+            );
+          })}
+          <div
+            className="h-32 flex_justify_center flex-row gap-2 bg-primary-opacity rounded-lg cursor-pointer group text-onNeutralBg"
+            onClick={handleModalClose}
+          >
             <Icon
               name="MdOutlineAddCircleOutline"
               size={20}

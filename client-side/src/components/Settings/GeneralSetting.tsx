@@ -2,7 +2,7 @@ import { Select } from "antd";
 import { FunctionComponent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateThemeConfig } from "../../store";
-import creditCardType from "credit-card-type";
+import { themeList, languageList } from "../../data";
 
 interface GeneralSettingProps {}
 
@@ -19,9 +19,6 @@ export const GeneralSetting: FunctionComponent<GeneralSettingProps> = (
 
   // const handleLangChange = (value: string) => {};
 
-  const test = creditCardType("4111");
-  console.log("test :>> ", test);
-
   return (
     <div className="w-full flex flex-col gap-4">
       <div className="w-full flex_justify_between flex-row">
@@ -35,10 +32,7 @@ export const GeneralSetting: FunctionComponent<GeneralSettingProps> = (
           // variant="borderless"
           className="h-10 w-52 text-sm"
           placeholder="Select theme"
-          options={[
-            { value: "dark", label: "Dark" },
-            { value: "light", label: "Light" },
-          ]}
+          options={themeList}
           defaultValue={theme.mode}
           onChange={handleThemeChange}
         />
@@ -53,10 +47,7 @@ export const GeneralSetting: FunctionComponent<GeneralSettingProps> = (
         <Select
           className="h-10 w-52 text-sm"
           placeholder="Select language"
-          options={[
-            { value: "Albanian", label: "Albanian" },
-            { value: "English", label: "English" },
-          ]}
+          options={languageList}
           // onChange={handleLangChange}
         />
       </div>

@@ -123,3 +123,13 @@ export interface ProfileMenuItems {
 export interface GameIconMapsProperties {
   [key: string]: string;
 }
+
+// Settings
+export type CurrListParams = {
+  [key: string]: { label: string; value: string };
+};
+
+export type SettingListParams = {
+  label: string;
+  value: string;
+};
