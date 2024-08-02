@@ -17,6 +17,7 @@ import facebookIcon from "./facebook-icon.svg";
 import linkedinIcon from "./linkedin-icon.svg";
 import masterCardImg from "./mastercard-Logo.png";
 import noGameImg from "./no-image-placeholder.webp";
+import cvvNumberImg from "./cvvImg.jpg";
 
 export {
   icon,
@@ -38,4 +39,5 @@ export {
   masterCardImg,
   mobileMoneyImg,
   maestroCardImg,
+  cvvNumberImg,
 };

@@ -1,21 +1,53 @@
 import { Popover, Select } from "antd";
+import { useDispatch } from "react-redux";
 import { FunctionComponent } from "react";
 import creditCardType from "credit-card-type";
 import { useForm, Controller } from "react-hook-form";
 import { SmallModal } from "./ModalContent";
+import { Icon } from "../Icon";
 import { Image } from "../Image";
 import { Button } from "../Button";
+import { addNewCard } from "../../../store";
 import { useAppModal } from "../../../utils";
 import { PaymentCardProps } from "../../../types";
-import { masterCardImg, visaImg, maestroCardImg } from "../../../assets";
 import { cardMonthList, cardYearList } from "../../../data";
-import { addNewCard } from "../../../store";
-import { useDispatch } from "react-redux";
-import { Icon } from "../Icon";
+import {
+  masterCardImg,
+  visaImg,
+  maestroCardImg,
+  cvvNumberImg,
+} from "../../../assets";
 
 const cvvContent = (
-  <div>
-    <div className="text-red-500">TEST</div>
+  <div className="w-full flex flex-col text-onNeutralBg">
+    <p className="text-base font-bold">Add cvv card</p>
+    <div className="w-full flex_justify_center flex-col">
+      <div className="w-full flex flex-row">
+        <Image imgUrl={cvvNumberImg} height={200} width={200} />
+        <div className="w-[250px]">
+          <p className="flex items-center font-semibold">
+            <Icon name="GoDotFill" />
+            American Express
+          </p>
+          <p className="ml-5 text-justify">
+            CVV is the 4 digit number in the front side of the card, right above
+            the card number
+          </p>
+        </div>
+      </div>
+      <div className="w-full flex flex-row">
+        <Image imgUrl={cvvNumberImg} height={200} width={200} />
+        <div className="w-[250px]">
+          <p className="flex items-center font-semibold">
+            <Icon name="GoDotFill" />
+            Other Cards
+          </p>
+          <p className="ml-5 text-justify">
+            CVV is the 3 digit number on the back of your card
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 );
 
@@ -147,7 +179,10 @@ export const PaymentCardModal: FunctionComponent<PaymentCardProps> = () => {
                   autoComplete="cardCvvNumber"
                 />
                 <Popover placement="left" content={cvvContent}>
-                  <button className="absolute top-1/2 right-2 transform -translate-y-1/2 text-secondary">
+                  <button
+                    type="button"
+                    className="absolute top-1/2 right-2 transform -translate-y-1/2 text-secondary"
+                  >
                     <Icon name="AiOutlineExclamationCircle" size={16} />
                   </button>
                 </Popover>
