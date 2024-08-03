@@ -30,7 +30,7 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
   return (
     <div
       className={classNames(
-        "shadow-sm p-3 rounded bg-card duration-300 case-in cursor-pointer"
+        "shadow-sm p-3 rounded bg-card duration-300 case-in cursor-pointer text-onNeutralBg"
       )}
       onClick={() => navigate(`${gameDetail}/${id}`)}
     >
@@ -62,7 +62,7 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
         </div>
       </div>
       <div className={classNames("desc mt-4")}>
-        <h6 className="text-base font-semibold text-onNeutralBg">
+        <h6 className="text-base font-semibold">
           {gameNameTruncate(name, 18)}
         </h6>
         <div className="flex items-center justify-between mt-2">
