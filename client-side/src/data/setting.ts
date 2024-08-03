@@ -1,4 +1,18 @@
-import { SettingListParams, CurrListParams } from "../types";
+import {
+  SettingListParams,
+  CurrListParams,
+  CardImgParams,
+  CardImgListParams,
+} from "../types";
+import {
+  americanExpressCardImg,
+  discoverCardImg,
+  maestroCardImg,
+  masterCardImg,
+  paypalCardImg,
+  payseraCardImg,
+  visaCardImg,
+} from "../assets";
 
 export const themeList: SettingListParams[] = [
   { value: "dark", label: "Dark" },
@@ -62,3 +76,24 @@ export const cardYearList: SettingListParams[] = [
   { value: "2049", label: "2049" },
   { value: "2050", label: "2050" },
 ];
+
+export const cardImgList: CardImgListParams[] = [
+  { id: 1, name: "visa_card", img: visaCardImg, width: 50 },
+  { id: 2, name: "master_card", img: masterCardImg, width: 40 },
+  { id: 3, name: "maestro_card", img: maestroCardImg, width: 40 },
+  { id: 4, name: "paysera_card", img: payseraCardImg, width: 60 },
+  { id: 5, name: "paypal_card", img: paypalCardImg, width: 60 },
+  { id: 6, name: "discover_card", img: discoverCardImg, width: 35 },
+  {
+    id: 7,
+    name: "americanExpress_card",
+    img: americanExpressCardImg,
+    width: 50,
+  },
+];
+
+export const cardImg: CardImgParams = {
+  visa: visaCardImg,
+  mastercard: masterCardImg,
+  discover: discoverCardImg,
+};

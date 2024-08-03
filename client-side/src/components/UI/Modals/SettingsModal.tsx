@@ -37,13 +37,13 @@ export const SettingsModal: FunctionComponent<SettingsModalProps> = () => {
       open={modals["settingsModal"]}
       onCancel={handleModalClose}
       closable={true}
-      width={800}
+      // width={800}
     >
       <div className="modal-header w-full text-xl text-onNeutralBg font-semibold">
         Settings
       </div>
       <div className="modal-body w-full mt-4 flex flex-col md:flex-row gap-4">
-        <div className="modal-body-left w-full md:w-[30%] flex flex-row md:flex-col gap-2">
+        <div className="modal-body-left w-full md:w-[20%] flex flex-row md:flex-col gap-2">
           {settingsLinks.map((settingLink) => {
             return (
               <div
@@ -84,7 +84,7 @@ export const SettingsModal: FunctionComponent<SettingsModalProps> = () => {
             );
           })}
         </div>
-        <div className="modal-body-right w-full md:w-[70%]">
+        <div className="modal-body-right w-full md:w-[80%]">
           {renderSettingsContent()}
         </div>
       </div>

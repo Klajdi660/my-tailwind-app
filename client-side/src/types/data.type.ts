@@ -133,3 +133,13 @@ export type SettingListParams = {
   label: string;
   value: string;
 };
+
+export interface CardImgListParams {
+  id: number;
+  name: string;
+  img: string;
+  width: number;
+}
+export interface CardImgParams {
+  [key: string]: string;
+}

@@ -3,7 +3,7 @@ import icon from "./icon.png";
 import shFlag from "./sh.svg";
 import bankImg from "./visa.png";
 import userIcon from "./user.png";
-import visaImg from "./visa.svg.png";
+import visaCardImg from "./visa.svg.png";
 import tiktokIcon from "./tiktok.svg";
 import iconName from "./iconName.png";
 import mobileMoneyImg from "./momo.png";
@@ -11,20 +11,24 @@ import youtubeIcon from "./youtube.svg";
 import appleIcon from "./apple-icon.svg";
 import emptyCartImg from "./emptyCart.svg";
 import googleIcon from "./google-icon.svg";
-import maestroCardImg from "./maestro.png";
+import maestroCardImg from "./MaestroCard.png";
 import instagramIcon from "./instagram.svg";
 import facebookIcon from "./facebook-icon.svg";
 import linkedinIcon from "./linkedin-icon.svg";
-import masterCardImg from "./mastercard-Logo.png";
+import masterCardImg from "./MasterCard.jpg";
 import noGameImg from "./no-image-placeholder.webp";
 import cvvNumberImg from "./cvvImg.jpg";
+import payseraCardImg from "./PayseraCard.png";
+import paypalCardImg from "./PaypalCard.png";
+import americanExpressCardImg from "./AmericanExpressCard.png";
+import discoverCardImg from "./DiscoverCard.png";
 
 export {
   icon,
   alFlag,
   shFlag,
   bankImg,
-  visaImg,
+  visaCardImg,
   iconName,
   userIcon,
   noGameImg,
@@ -40,4 +44,8 @@ export {
   mobileMoneyImg,
   maestroCardImg,
   cvvNumberImg,
+  payseraCardImg,
+  paypalCardImg,
+  americanExpressCardImg,
+  discoverCardImg,
 };

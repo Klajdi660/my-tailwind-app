@@ -10,13 +10,8 @@ import { Button } from "../Button";
 import { addNewCard } from "../../../store";
 import { useAppModal } from "../../../utils";
 import { PaymentCardProps } from "../../../types";
-import { cardMonthList, cardYearList } from "../../../data";
-import {
-  masterCardImg,
-  visaImg,
-  maestroCardImg,
-  cvvNumberImg,
-} from "../../../assets";
+import { cardMonthList, cardYearList, cardImgList } from "../../../data";
+import { cvvNumberImg } from "../../../assets";
 
 const cvvContent = (
   <div className="w-full flex flex-col text-onNeutralBg">
@@ -88,7 +83,7 @@ export const PaymentCardModal: FunctionComponent<PaymentCardProps> = () => {
       open={modals["paymentCardModal"]}
       onCancel={handleModalClose}
       closable={true}
-      width={800}
+      // width={800}
     >
       <div className="modal-header w-full text-xl text-onNeutralBg font-semibold">
         Add new card
@@ -96,9 +91,14 @@ export const PaymentCardModal: FunctionComponent<PaymentCardProps> = () => {
       <div className="modal-body w-full mt-4 flex flex-col gap-4 text-onNeutralBg">
         <div className="w-full flex items-center gap-4 bg-primary-opacity rounded-lg p-2">
           <p className="text-base font-bold">Add new card</p>
-          <Image imgUrl={visaImg} name="visa_img" width={50} />
-          <Image imgUrl={masterCardImg} name="mastercard_img" width={40} />
-          <Image imgUrl={maestroCardImg} name="maestrocard_img" width={40} />
+          {cardImgList.map((cardImg) => (
+            <Image
+              key={cardImg.id}
+              imgUrl={cardImg.img}
+              name={cardImg.name}
+              width={cardImg.width}
+            />
+          ))}
         </div>
         <form
           className="w-full flex flex-col mt-4"

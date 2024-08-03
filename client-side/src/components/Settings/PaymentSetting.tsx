@@ -1,9 +1,8 @@
 import { Select, Popover } from "antd";
 import { FunctionComponent } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Icon, Image, Button } from "../UI";
-import { visaImg, masterCardImg } from "../../assets";
-import { currencyList } from "../../data";
+import { Icon, Image } from "../UI";
+import { currencyList, cardImg } from "../../data";
 import { useAppModal } from "../../utils";
 import { removeSelectedCard } from "../../store";
 
@@ -12,11 +11,6 @@ interface PaymentSettingProps {}
 interface NewCardContentProps {
   cardId: number;
 }
-
-const cardImg: { [key: string]: string } = {
-  visa: visaImg,
-  mastercard: masterCardImg,
-};
 
 const NewCardContent: FunctionComponent<NewCardContentProps> = (props) => {
   const { cardId } = props;
@@ -64,6 +58,8 @@ export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
     setModalOpen("paymentCardModal", true);
   };
 
+  console.log("cards :>> ", cards);
+
   return (
     <div className="w-full flex flex-col gap-4">
       <div className="w-full flex_justify_between flex-row">
@@ -92,7 +88,7 @@ export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
           {cards.map((card: any) => {
             return (
               <div
-                className="h-32 grid grid-cols-2 gap-4 p-4 bg-primary-opacity rounded-lg text-onNeutralBg"
+                className="h-40 grid grid-cols-2 gap-4 p-4 bg-primary-opacity rounded-lg text-onNeutralBg"
                 key={card.id}
               >
                 <div className="flex items-start justify-start">
@@ -122,7 +118,7 @@ export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
             );
           })}
           <div
-            className="h-32 flex_justify_center flex-row gap-2 bg-primary-opacity rounded-lg cursor-pointer group text-onNeutralBg"
+            className="h-40 flex_justify_center flex-row gap-2 bg-primary-opacity rounded-lg cursor-pointer group text-onNeutralBg"
             onClick={handleModalClose}
           >
             <Icon
