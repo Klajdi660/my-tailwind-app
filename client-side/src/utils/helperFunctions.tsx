@@ -191,3 +191,20 @@ export const calculateTotalPrice = (
     totalPrice,
   };
 };
+
+export const getRandomDiscoverGames = (games: unknown[], length: number) => {
+  const randomGames = new Set();
+
+  while (randomGames.size < length) {
+    const index = Math.floor(Math.random() * games?.length);
+    randomGames.add(games[index]);
+  }
+
+  return { ...randomGames };
+};
+
+export const cycleDiscoverGameArray = (array: unknown[]) => {
+  const newArray = [...array];
+  newArray.push(newArray.shift());
+  return newArray;
+};

@@ -59,7 +59,7 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
             <div className="bg-gradient-to-br from-transparent to-black/70 h-full rounded-2xl">
               <div className="flex flex-col items-center md:flex-row absolute bottom-[-85%] md:bottom-[-20%] left-[10%] right-[3%]">
                 <div className="flex gap-5 items-center">
-                  <div className="shrink-0 z-40">
+                  <div className="shrink-0">
                     <Image
                       imgUrl={background_image}
                       name="game-details-cover"
@@ -75,7 +75,7 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
                     />
                   )}
                 </div>
-                <div className="flex-grow md:ml-10 ml-6 mt-6 md:mt-0 mb-10 z-40">
+                <div className="flex-grow md:ml-10 ml-6 mt-6 md:mt-0 mb-10">
                   <h1 className="text-primary text-4xl font-bold leading-tight">
                     {name}
                   </h1>
@@ -141,7 +141,7 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
             </div>
           </div>
         )}
-        <div className="flex z-20 relative flex-col md:flex-row mt-32 md:mt-0 bg-switch">
+        <div className="flex z-20 relative flex-col md:flex-row mt-32 md:mt-0">
           {!isMobile && (
             <div className="shrink-0 md:max-w-[150px] w-full flex items-center md:flex-col justify-center flex-row gap-20 mt-20 md:border-r border-divider pt-16">
               <div className="flex flex-col gap-6 items-center">

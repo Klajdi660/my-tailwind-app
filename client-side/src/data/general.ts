@@ -124,6 +124,74 @@ export const navlinks: NavLinkList[] = [
   },
 ];
 
+interface NavListsParams {
+  id: string;
+  tooltip: string;
+  to: string;
+  name: string;
+  icon: string;
+}
+
+export const navLists: NavListsParams[] = [
+  {
+    tooltip: "hover",
+    id: "discover",
+    to: "/discover",
+    name: "Discover",
+    icon: "FaWpexplorer",
+  },
+  {
+    id: "browse",
+    to: "/browse",
+    name: "Browse",
+    tooltip: "hover",
+    icon: "MdOutlineExplore",
+  },
+
+  {
+    id: "my_games",
+    to: "/my-games",
+    name: "My Games",
+    tooltip: "hover",
+    icon: "MdOutlineGames",
+  },
+  {
+    id: "wishlist",
+    to: "/wishlist",
+    name: "Wishlist",
+    tooltip: "hover",
+    icon: "SlSocialDropbox",
+  },
+  {
+    id: "store",
+    to: "/store",
+    name: "Store",
+    tooltip: "hover",
+    icon: "MdStorefront",
+  },
+  {
+    id: "collection",
+    tooltip: "hover",
+    to: "/collection",
+    name: "Collections",
+    icon: "RiFirefoxLine",
+  },
+  {
+    id: "platforms",
+    icon: "CgGames",
+    to: "/platforms",
+    tooltip: "hover",
+    name: "Platforms",
+  },
+  {
+    id: "genres",
+    to: "/genres",
+    icon: "BiGame",
+    name: "Genres",
+    tooltip: "hover",
+  },
+];
+
 export const settingsLinks: SettingsLinksParams[] = [
   {
     id: "general",
