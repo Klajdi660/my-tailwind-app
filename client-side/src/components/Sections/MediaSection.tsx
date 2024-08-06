@@ -1,10 +1,13 @@
-import { FunctionComponent } from "react";
+import { Fragment, FunctionComponent } from "react";
 import { MediaCard } from "../Cards";
 import { Title } from "../UI";
 import { useStore } from "../../hooks";
 import { classNames } from "../../utils";
 import { MediaSectionProps } from "../../types";
 import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
+import { useGames } from "../../hooks/useGames";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { Spin } from "antd";
 
 const grid = {
   2: "grid-cols-2",
@@ -24,11 +27,18 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
     gameList,
   } = props;
 
-  const { loading } = useStore();
+  // const { loading } = useStore();
+  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
+  if (!data) return;
+
+  const dataLength = data.pages.reduce(
+    (total, page) => total + page.results.length,
+    0
+  );
 
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <div className="animate_skeleton">
           {enableTitle && <TitleSkeleton />}
           <div className={classNames("grid gap-4", grid?.[gridNumber])}>
@@ -47,7 +57,35 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
             </div>
           </div>
         </section>
-      )}
+      )} */}
+      <InfiniteScroll
+        dataLength={dataLength}
+        next={fetchNextPage}
+        hasMore={hasNextPage}
+        loader={<Spin />}
+      >
+        {isLoading && (
+          <div className="animate_skeleton">
+            {enableTitle && <TitleSkeleton />}
+            <div className={classNames("grid gap-4", grid?.[gridNumber])}>
+              <MediaCardSkeleton number={skeletonItemNumber} type={type} />
+            </div>
+          </div>
+        )}
+        {data &&
+          data.pages.map((page, index) => {
+            return (
+              <div
+                key={index}
+                className={classNames("grid gap-4", grid?.[gridNumber])}
+              >
+                {page.results.map((game) => (
+                  <MediaCard key={game.id} game={game} type={type} />
+                ))}
+              </div>
+            );
+          })}
+      </InfiniteScroll>
     </>
   );
 };

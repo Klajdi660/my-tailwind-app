@@ -43,7 +43,7 @@ export const PrivateLayout = ({ children }: ProviderProps) => {
           {children}
         </div>
       </main>
-      <TopPlay />
+      {/* <TopPlay /> */}
       {openSwitch && <CartSwitcher />}
       <Modal />
     </div>

@@ -58,8 +58,6 @@ export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
     setModalOpen("paymentCardModal", true);
   };
 
-  console.log("cards :>> ", cards);
-
   return (
     <div className="w-full flex flex-col gap-4">
       <div className="w-full flex_justify_between flex-row">

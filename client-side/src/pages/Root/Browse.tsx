@@ -4,6 +4,7 @@ import { useFetchGame } from "../../lib";
 import { BrowsePageProps } from "../../types";
 import { MediaSection } from "../../components";
 import { useGamesService } from "../../services";
+import { useGames } from "../../hooks/useGames";
 
 export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
   // const { getGameList } = useGamesService();
@@ -16,11 +17,11 @@ export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
 
   // const { data: gameList } = useQuery(queryOptions);
 
-  const { gameList } = useFetchGame({
-    page: 1,
-    pageSize: 20,
-    gameKey: "discover",
-  });
+  // const { gameList } = useFetchGame({
+  //   page: 1,
+  //   pageSize: 20,
+  //   gameKey: "discover",
+  // });
 
   return (
     <section className="browse_page">
@@ -28,7 +29,7 @@ export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
         <MediaSection
           type="playlist"
           title="Discover"
-          gameList={gameList}
+          // gameList={gameList}
           skeletonItemNumber={5}
           subTitle="Explore sonic realms with our Discover feature."
         />

@@ -240,7 +240,7 @@ export interface MediaSectionProps {
   enableTitle?: boolean;
   gridNumber?: 2 | 3 | 4 | 5;
   skeletonItemNumber: number;
-  gameList: GameParams[] | any;
+  gameList?: GameParams[] | any;
 }
 
 export interface TopPlaySectionProps {

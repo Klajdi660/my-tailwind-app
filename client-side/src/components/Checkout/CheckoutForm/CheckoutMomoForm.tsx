@@ -27,9 +27,7 @@ export const CheckoutMomoForm: FunctionComponent<CheckoutMomoFormPorps> = (
 ) => {
   const { totalPrice } = props;
 
-  const handleMenuClick = async (data: any) => {
-    console.log("data :>> ", data);
-  };
+  const handleMenuClick = async (data: any) => {};
 
   const {
     register: form,

@@ -11,9 +11,7 @@ export const CheckoutCardForm: FunctionComponent<CheckoutCardFormProps> = (
 ) => {
   const { totalPrice } = props;
 
-  const handleMenuClick = async (data: any) => {
-    console.log("data 22 :>> ", data);
-  };
+  const handleMenuClick = async (data: any) => {};
 
   const {
     register: form,

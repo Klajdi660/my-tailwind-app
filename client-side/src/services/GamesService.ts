@@ -2,6 +2,7 @@ import { gameEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { ServerResponse } from "../types";
 import { useNotification, useStore } from "../hooks";
+import axios, { AxiosRequestConfig } from "axios";
 
 const {
   GET_GAME_LIST_API,
@@ -13,6 +14,24 @@ const {
 export const useGamesService = () => {
   const { setLoading } = useStore();
   const [notify] = useNotification();
+
+  const getGames = async (pageParam: number | any) => {
+    const params = new URLSearchParams({
+      page: pageParam.toString(),
+    }).toString();
+    const url = `${GET_GAME_LIST_API}?${params}`;
+    console.log("url :>> ", url);
+    const getGameListResp = await HttpClient.get<ServerResponse>(url);
+    const { error, message, data } = getGameListResp;
+    if (error) {
+      notify({
+        variant: "error",
+        description: message,
+      });
+      return;
+    }
+    return data;
+  };
 
   const getGameList = async (values: any): Promise<void> => {
     try {
@@ -118,5 +137,11 @@ export const useGamesService = () => {
     }
   };
 
-  return { getGameList, getGameDetail, getGameVideos, getGameReviews };
+  return {
+    getGameList,
+    getGameDetail,
+    getGameVideos,
+    getGameReviews,
+    getGames,
+  };
 };

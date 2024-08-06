@@ -9,13 +9,15 @@ export interface FetchResponse<T> {
 }
 
 export const useGames = () => {
-  //   const { getGames } = useGamesService();
-  //   return useInfiniteQuery<FetchResponse<GameParams>, Error>({
-  //     queryKey: ["games"],
-  //     queryFn: async ({ pageParam = 1 }) => await getGames({ page: pageParam }),
-  //     getNextPageParam: (lastPage, allPages) => {
-  //       return lastPage.next ? allPages.length + 1 : undefined;
-  //     },
-  //     initialPageParam: "",
-  //   });
+  const { getGames } = useGamesService();
+  return useInfiniteQuery<FetchResponse<GameParams>, Error>({
+    queryKey: ["games"],
+    queryFn: async ({ pageParam = 1 }) => await getGames(pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      console.log("lastPage :>> ", lastPage);
+      console.log("allPages :>> ", allPages);
+      return lastPage.next ? allPages.length + 1 : undefined;
+    },
+    initialPageParam: 1,
+  });
 };
