@@ -20,7 +20,7 @@ export const useGamesService = () => {
       page: pageParam.toString(),
     }).toString();
     const url = `${GET_GAME_LIST_API}?${params}`;
-    console.log("url :>> ", url);
+
     const getGameListResp = await HttpClient.get<ServerResponse>(url);
     const { error, message, data } = getGameListResp;
     if (error) {

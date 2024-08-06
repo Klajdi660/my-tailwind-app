@@ -14,8 +14,6 @@ export const useGames = () => {
     queryKey: ["games"],
     queryFn: async ({ pageParam = 1 }) => await getGames(pageParam),
     getNextPageParam: (lastPage, allPages) => {
-      console.log("lastPage :>> ", lastPage);
-      console.log("allPages :>> ", allPages);
       return lastPage.next ? allPages.length + 1 : undefined;
     },
     initialPageParam: 1,
