@@ -34,7 +34,7 @@ export const useGamesService = () => {
         return;
       }
 
-      return data;
+      return data.results;
     } catch (error) {
       setLoading(false);
       console.error(`Get games list field: ${error}`);
