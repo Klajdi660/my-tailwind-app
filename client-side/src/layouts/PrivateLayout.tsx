@@ -7,6 +7,7 @@ import {
   Loading,
   CartSwitcher,
   // SidebarMini,
+  TabTitle,
 } from "../components";
 import { useAppUtil } from "../utils";
 import { ProviderProps } from "../types";
@@ -34,6 +35,7 @@ export const PrivateLayout = ({ children }: ProviderProps) => {
       className="flex flex-col max-w-full m-auto xl:flex-row app bg-main"
       id="main_app"
     >
+      <TabTitle />
       {/* <Loading /> */}
       <Sidebar />
       {/* <SidebarMini /> */}

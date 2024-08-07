@@ -38,3 +38,4 @@ export { ErrorFormMessage } from "./Common/ErrorFormMessage";
 export { DeleteProfileModal } from "./UI/Modals/DeleteProfileModal";
 export { SessionExpiredModal } from "./UI/Modals/SessionExpiredModal";
 export { ChangeProfilePhotoModal } from "./UI/Modals/ChangeProfilePhotoModal";
+export { TabTitle } from "./Common/TabTittle";
