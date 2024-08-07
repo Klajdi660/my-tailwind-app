@@ -33,37 +33,45 @@ export const useGamesService = () => {
     return data;
   };
 
-  const getGameList = async (values: any): Promise<void> => {
+  // const getGameList = async (values: any): Promise<void> => {
+  //   try {
+  //     const params = new URLSearchParams(values).toString();
+  //     const url = `${GET_GAME_LIST_API}?${params}`;
+
+  //     setLoading(true);
+
+  //     const getGameListResp = await HttpClient.get<ServerResponse>(url);
+
+  //     setLoading(false);
+
+  //     const { error, message, data } = getGameListResp;
+  //     if (error) {
+  //       notify({
+  //         variant: "error",
+  //         description: message,
+  //       });
+  //       return;
+  //     }
+
+  //     return data.results;
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.error(`Get games list field: ${error}`);
+  //     throw error;
+  //   }
+  // };
+
+  const getGameDetail = async (
+    values:
+      | string
+      | string[][]
+      | Record<string, string>
+      | URLSearchParams
+      | undefined
+  ): Promise<void> => {
     try {
       const params = new URLSearchParams(values).toString();
-      const url = `${GET_GAME_LIST_API}?${params}`;
-
-      setLoading(true);
-
-      const getGameListResp = await HttpClient.get<ServerResponse>(url);
-
-      setLoading(false);
-
-      const { error, message, data } = getGameListResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
-
-      return data.results;
-    } catch (error) {
-      setLoading(false);
-      console.error(`Get games list field: ${error}`);
-      throw error;
-    }
-  };
-
-  const getGameDetail = async (values: any): Promise<void> => {
-    try {
-      const params = new URLSearchParams(values).toString();
+      console.log("params :>> ", params);
       const url = `${GET_GAME_DETAIL_API}?${params}`;
 
       setLoading(true);
@@ -138,7 +146,7 @@ export const useGamesService = () => {
   };
 
   return {
-    getGameList,
+    // getGameList,
     getGameDetail,
     getGameVideos,
     getGameReviews,

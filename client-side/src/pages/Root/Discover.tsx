@@ -12,19 +12,19 @@ import { useScrollTo } from "framer-motion-scroll-to-hook";
 const cardDuration = 10;
 
 export const DiscoverPage: FunctionComponent<DiscoverPageProps> = () => {
-  const { getGameList } = useGamesService();
-  const scrollTo = useScrollTo();
+  // const { getGameList } = useGamesService();
+  // const scrollTo = useScrollTo();
 
-  const { gameDetail } = paths;
+  // const { gameDetail } = paths;
 
-  const [games, setGames] = useState<GameParams[]>();
+  // const [games, setGames] = useState<GameParams[]>();
 
-  const queryOptions = {
-    queryKey: ["topPlay"],
-    queryFn: () => getGameList({ page: 1, pageSize: 5 }),
-  };
+  // const queryOptions = {
+  //   queryKey: ["topPlay"],
+  //   queryFn: () => getGameList({ page: 1, pageSize: 5 }),
+  // };
 
-  const { data: gameList } = useQuery(queryOptions) as any;
+  // const { data: gameList } = useQuery(queryOptions) as any;
 
   // useEffect(() => {
   //   let interval: any;
@@ -50,12 +50,12 @@ export const DiscoverPage: FunctionComponent<DiscoverPageProps> = () => {
           <div className="w-full flex_justify_between flex-row h-[250px]">
             <div className="flex_justify_between flex-row bg-switch w-[68%] h-full rounded-3xl p-4">
               <div>TEST</div>
-              <Image
+              {/* <Image
                 imgUrl={gameList?.[0]?.background_image}
                 styles="rounded-3xl w-[48%] h-full"
-              />
+              /> */}
             </div>
-            <div className="flex_justify_center flex-col w-[30%] h-full">
+            {/* <div className="flex_justify_center flex-col w-[30%] h-full">
               <ul className="flex flex-col w-full list-none gap-2 py-2">
                 {gameList?.length &&
                   gameList?.slice(1, 4).map((item: any) => {
@@ -104,7 +104,7 @@ export const DiscoverPage: FunctionComponent<DiscoverPageProps> = () => {
                     );
                   })}
               </ul>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>

@@ -7,16 +7,16 @@ import { useGamesService } from "../services";
 import { classNames, useHiddenTopPlay } from "../utils";
 
 export const TopPlay: FunctionComponent<TopPlayProps> = (props) => {
-  const { getGameList } = useGamesService();
-  const hiddenTopPlay = useHiddenTopPlay();
+  // const { getGameList } = useGamesService();
+  // const hiddenTopPlay = useHiddenTopPlay();
 
-  const queryOptions = {
-    queryKey: ["topPlay"],
-    // queryKey: ["topPlay", values],
-    queryFn: () => getGameList({ page: 1, pageSize: 5 }),
-  };
+  // const queryOptions = {
+  //   queryKey: ["topPlay"],
+  //   // queryKey: ["topPlay", values],
+  //   queryFn: () => getGameList({ page: 1, pageSize: 5 }),
+  // };
 
-  const { data: gameList } = useQuery(queryOptions);
+  // const { data: gameList } = useQuery(queryOptions);
 
   return (
     <section
@@ -27,11 +27,11 @@ export const TopPlay: FunctionComponent<TopPlayProps> = (props) => {
       <div className="w-full h-full flex flex-col bg-switch">
         <div className="flex-grow">
           <div className="sticky top-0 p-4 rounded bg-switch xl:rounded-none">
-            {hiddenTopPlay && (
+            {/* {hiddenTopPlay && (
               <div className="top_picks_content">
                 <TopPlaySection gameList={gameList} imageDims="11" />
               </div>
-            )}
+            )} */}
           </div>
         </div>
         <Footer />

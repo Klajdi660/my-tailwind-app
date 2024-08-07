@@ -36,6 +36,10 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
     0
   );
 
+  console.log("error :>> ", error);
+  console.log("isLoading :>> ", isLoading);
+  console.log("data :>> ", data);
+
   return (
     <>
       {/* {loading ? (
@@ -64,14 +68,14 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
         hasMore={hasNextPage}
         loader={<Spin />}
       >
-        {isLoading && (
+        {/* {isLoading && (
           <div className="animate_skeleton">
             {enableTitle && <TitleSkeleton />}
             <div className={classNames("grid gap-4", grid?.[gridNumber])}>
               <MediaCardSkeleton number={skeletonItemNumber} type={type} />
             </div>
           </div>
-        )}
+        )} */}
         {data &&
           data.pages.map((page, index) => {
             return (

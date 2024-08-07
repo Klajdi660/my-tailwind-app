@@ -16,8 +16,7 @@ export const useFetchGame = ({
   gameKey,
   pageSize,
 }: GameFetchParams) => {
-  const { getGameDetail, getGameVideos, getGameReviews, getGameList } =
-    useGamesService();
+  const { getGameDetail, getGameVideos, getGameReviews } = useGamesService();
 
   const { data } = useQuery<GameData | any>({
     queryKey: [`game_${gameId}`, { gameId }],
@@ -38,21 +37,22 @@ export const useFetchGame = ({
     },
   });
 
-  const { data: gameList } = useQuery<GameParams | any>({
-    queryKey: [`${gameKey}`],
-    queryFn: async () => {
-      try {
-        let gameLists: any = await getGameList({ page, pageSize });
+  // const { data: gameList } = useQuery<GameParams | any>({
+  //   queryKey: [`${gameKey}`],
+  //   queryFn: async () => {
+  //     try {
+  //       let gameLists: any = await getGameList({ page, pageSize });
 
-        gameLists?.forEach(
-          (game: GameParams) => (game.price = getGamePrice(game))
-        );
-        return gameLists;
-      } catch (error) {
-        console.error(`Failed to fetch game. ${error}`);
-      }
-    },
-  });
+  //       gameLists?.forEach(
+  //         (game: GameParams) => (game.price = getGamePrice(game))
+  //       );
+  //       return gameLists;
+  //     } catch (error) {
+  //       console.error(`Failed to fetch game. ${error}`);
+  //     }
+  //   },
+  // });
 
-  return { data, gameList };
+  // return { data, gameList };
+  return { data };
 };
