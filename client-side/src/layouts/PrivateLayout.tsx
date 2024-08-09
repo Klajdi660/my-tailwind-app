@@ -38,14 +38,14 @@ export const PrivateLayout = ({ children }: ProviderProps) => {
       <TabTitle />
       {/* <Loading /> */}
       <Sidebar />
-      {/* <SidebarMini /> */}
+
       <main className="relative w-full mx-auto overflow-hidden main_section">
         <Navbar />
         <div className="relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 main_width page_content mt-main-top">
           {children}
         </div>
       </main>
-      {/* <TopPlay /> */}
+      <TopPlay />
       {openSwitch && <CartSwitcher />}
       <Modal />
     </div>
