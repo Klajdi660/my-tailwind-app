@@ -24,7 +24,7 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
 
   return (
     <section className={`${formName}_section`}>
-      <div className="flex-col h-full py-6 m-auto bg-main flex_justify_center">
+      <div className="flex-col h-full py-6 m-auto bg-main flex_justify_center tw-absolute-center">
         <div className="w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 bg-card rounded">
           <div className="flex flex-col items-center mb-6 lg:mb-6">
             <Link to="/" className="flex flex-row items-center gap-1 m-0 logo">
