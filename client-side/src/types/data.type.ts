@@ -13,6 +13,7 @@ export interface SocialAuthList {
 export interface FormItem {
   type?: string;
   name?: string;
+  iconName?: string;
   label?: string;
   linkTo?: string;
   btnTxt?: string;

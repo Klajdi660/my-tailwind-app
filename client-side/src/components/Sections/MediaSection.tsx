@@ -36,10 +36,6 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
     0
   );
 
-  console.log("error :>> ", error);
-  console.log("isLoading :>> ", isLoading);
-  console.log("data :>> ", data);
-
   return (
     <>
       {/* {loading ? (
@@ -66,7 +62,8 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
         dataLength={dataLength}
         next={fetchNextPage}
         hasMore={hasNextPage}
-        loader={<Spin />}
+        loader={<div>Loading...</div>}
+        endMessage={<></>}
       >
         {/* {isLoading && (
           <div className="animate_skeleton">

@@ -6,6 +6,7 @@ import {
 } from "./general.type";
 export interface FormListItem {
   name: string;
+  iconName: string;
   type: string;
   label: string;
   linkTo: string;

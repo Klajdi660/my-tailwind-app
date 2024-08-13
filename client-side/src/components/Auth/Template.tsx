@@ -28,7 +28,7 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
         <div className="w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 bg-card rounded">
           <div className="flex flex-col items-center mb-6 lg:mb-6">
             <Link to="/" className="flex flex-row items-center gap-1 m-0 logo">
-              <Image imgUrl={iconName} name="template_logo" width={100} />
+              <Image imgUrl={iconName} name="template_logo" width={140} />
             </Link>
           </div>
           {!data?.resetPassEmailSent ? (
@@ -45,7 +45,9 @@ export const Template: FunctionComponent<TemplateProps> = (props) => {
               <SocialAuthButton />
               <div className="flex items-center justify-center gap-4 my-6 divider">
                 <div className="h-[1px] bg-divider flex-1" />
-                <span className="text-sm text-onNeutralBg">or</span>
+                <span className="text-sm text-onNeutralBg">
+                  or use your email account
+                </span>
                 <div className="h-[1px] bg-divider flex-1" />
               </div>
             </>

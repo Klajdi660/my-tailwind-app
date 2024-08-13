@@ -35,14 +35,6 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
               <Fragment key={index}>
                 {["input", "textarea"].includes(list.type) && (
                   <fieldset>
-                    <div className="flex items-baseline justify-between">
-                      <label
-                        className="mb-2 text-xs font-semibold text-secondary"
-                        htmlFor={list?.name}
-                      >
-                        {list?.label}
-                      </label>
-                    </div>
                     <div
                       className={classNames(
                         "relative",
@@ -72,28 +64,33 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
                             }
                             autoComplete={formName !== "login" ? "off" : "on"}
                           />
-                          {["password", "confirmPassword"]?.includes(
-                            list.props.type
-                          ) && (
-                            <span className="absolute right-2 top-[50%] translate-y-[-50%]">
-                              {!list.props.disabled && (
-                                <IconButton
-                                  name={
-                                    !showPass?.[list.name]
+                          <span className="absolute right-2 top-[50%] translate-y-[-50%]">
+                            {!list.props.disabled && (
+                              <IconButton
+                                name={
+                                  ["password", "confirmPassword"]?.includes(
+                                    list.props.type
+                                  )
+                                    ? showPass?.[list.name]
                                       ? "AiOutlineEyeInvisible"
                                       : "AiOutlineEye"
-                                  }
-                                  iconClassName="text-secondary hover:text-onNeutralBg"
-                                  onClick={() =>
-                                    setShowPass((prevS: any) => ({
-                                      ...prevS,
-                                      [list.name]: !prevS?.[list.name],
-                                    }))
-                                  }
-                                />
-                              )}
-                            </span>
-                          )}
+                                    : `${list.iconName}`
+                                }
+                                iconClassName={`text-secondary ${
+                                  ["password", "confirmPassword"]?.includes(
+                                    list.props.type
+                                  ) &&
+                                  "hover:text-onNeutralBg hover:scale-[1.1]"
+                                }`}
+                                onClick={() =>
+                                  setShowPass((prevS: any) => ({
+                                    ...prevS,
+                                    [list.name]: !prevS?.[list.name],
+                                  }))
+                                }
+                              />
+                            )}
+                          </span>
                         </div>
                       )}
                     </div>
@@ -107,9 +104,12 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
           })}
         </>
       ) : (
-        <p className="text-base font-normal tracking-wider text-secondary">
-          We have sent the reset email to your email {data?.resetPassEmail} to
-          reset password.
+        <p className="text-base font-normal tracking-wider text-secondary text-justify">
+          We have sent the reset email to your email
+          <span className="text-onNeutralBg font-semibold">
+            {data?.resetPassEmail}
+          </span>
+          to reset password.
         </p>
       )}
       {formName === "login" && (
@@ -126,7 +126,12 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
           </Link>
         </div>
       )}
-      <div className="flex items-center justify-end w-full hover:brightness-110">
+      <div
+        className={classNames(
+          "flex items-center justify-end w-full",
+          isValid && "hover:brightness-110"
+        )}
+      >
         <Button
           type="submit"
           label={btnTitle}
