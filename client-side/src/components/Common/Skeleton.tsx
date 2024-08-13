@@ -5,11 +5,11 @@ interface SkeletonProps {
   children?: React.ReactNode;
 }
 
-export const Skeleton: FC<HTMLProps<HTMLDivElement> & SkeletonProps> = ({
-  className,
-  children,
-  ...others
-}) => {
+export const Skeleton: FC<HTMLProps<HTMLDivElement> & SkeletonProps> = (
+  props
+) => {
+  const { className, children, ...others } = props;
+
   return (
     <div
       className={`${className} animate-pulse bg-card-skeleton rounded-md `}

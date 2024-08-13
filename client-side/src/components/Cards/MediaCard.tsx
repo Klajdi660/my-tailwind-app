@@ -30,7 +30,7 @@ export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
   return (
     <div
       className={classNames(
-        "shadow-sm p-3 rounded bg-card duration-300 case-in cursor-pointer text-onNeutralBg"
+        "shadow-sm p-3 rounded bg-card duration-300 case-in cursor-pointer text-onNeutralBg transition duration-300 relative"
       )}
       onClick={() => navigate(`${gameDetail}/${id}`)}
     >

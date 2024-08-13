@@ -7,7 +7,8 @@ import { MediaSectionProps } from "../../types";
 import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
 import { useGames } from "../../hooks/useGames";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Spin } from "antd";
+import { Skeleton } from "../Common/Skeleton";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const grid = {
   2: "grid-cols-2",
@@ -26,7 +27,7 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
     subTitle,
     gameList,
   } = props;
-
+  const [parent] = useAutoAnimate();
   // const { loading } = useStore();
   const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
   if (!data) return;
@@ -36,6 +37,7 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
     0
   );
 
+  console.log("data :>> ", data);
   return (
     <>
       {/* {loading ? (
@@ -73,10 +75,11 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
             </div>
           </div>
         )} */}
-        {data &&
+        {data.pages &&
           data.pages.map((page, index) => {
             return (
               <div
+                ref={parent}
                 key={index}
                 className={classNames("grid gap-4", grid?.[gridNumber])}
               >
@@ -86,6 +89,12 @@ export const MediaSection: FunctionComponent<MediaSectionProps> = (props) => {
               </div>
             );
           })}
+        {!data.pages &&
+          [...new Array(15)].map((_, index) => (
+            <li key={index}>
+              <Skeleton className="h-0 pb-[160%]" />
+            </li>
+          ))}
       </InfiniteScroll>
     </>
   );

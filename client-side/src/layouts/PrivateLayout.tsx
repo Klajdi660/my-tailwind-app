@@ -12,9 +12,11 @@ import {
 import { useAppUtil } from "../utils";
 import { ProviderProps } from "../types";
 // import { useUserService } from "../services";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export const PrivateLayout = ({ children }: ProviderProps) => {
   const { openSwitch } = useAppUtil();
+  const [parent] = useAutoAnimate();
 
   // const { getUserDetails } = useUserService();
 
@@ -41,7 +43,10 @@ export const PrivateLayout = ({ children }: ProviderProps) => {
 
       <main className="relative w-full mx-auto overflow-hidden main_section">
         <Navbar />
-        <div className="relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 main_width page_content mt-main-top">
+        <div
+          ref={parent}
+          className="relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 main_width page_content mt-main-top"
+        >
           {children}
         </div>
       </main>

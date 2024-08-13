@@ -1,12 +1,14 @@
 import { FunctionComponent } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useFetchGame } from "../../lib";
+// import { useQuery } from "@tanstack/react-query";
+// import { useFetchGame } from "../../lib";
 import { BrowsePageProps } from "../../types";
 import { MediaSection } from "../../components";
-import { useGamesService } from "../../services";
-import { useGames } from "../../hooks/useGames";
+// import { useGamesService } from "../../services";
+// import { useGames } from "../../hooks/useGames";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
+  const [parent] = useAutoAnimate();
   // const { getGameList } = useGamesService();
 
   // const queryOptions = {
@@ -24,17 +26,15 @@ export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
   // });
 
   return (
-    <section className="browse_page">
-      <div className="flex flex-col gap-y-16">
-        <MediaSection
-          type="playlist"
-          title="Discover"
-          // gameList={gameList}
-          skeletonItemNumber={5}
-          subTitle="Explore sonic realms with our Discover feature."
-        />
-      </div>
-    </section>
+    <div className="browse_page flex flex-col" ref={parent}>
+      <MediaSection
+        type="playlist"
+        title="Discover"
+        // gameList={gameList}
+        skeletonItemNumber={5}
+        subTitle="Explore sonic realms with our Discover feature."
+      />
+    </div>
   );
 };
 
