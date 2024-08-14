@@ -1,7 +1,7 @@
 import { Select } from "antd";
 import { FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { updateThemeConfig } from "../../store";
+import { useDispatch } from "react-redux";
+import { updateThemeConfig, useAppSelector } from "../../store";
 import { themeList, languageList } from "../../data";
 
 interface GeneralSettingProps {}
@@ -9,7 +9,7 @@ interface GeneralSettingProps {}
 export const GeneralSetting: FC<GeneralSettingProps> = (props) => {
   const dispatch = useDispatch();
 
-  const theme = useSelector((state: any) => state.theme);
+  const theme = useAppSelector((state) => state.theme);
 
   const handleThemeChange = (value: string) => {
     dispatch(updateThemeConfig({ mode: value }));

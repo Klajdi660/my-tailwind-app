@@ -1,42 +1,9 @@
 export interface ForgotPasswordPagePropes {}
-
-export interface ForgotPasswordInput {
-  email: string;
-}
-
 export interface LoginPageProps {}
-
-export interface LoginUserInput {
-  password: string;
-  remember: boolean;
-  identifier: string;
-}
-
 export interface PasswordConfirmCodePageProps {}
-
-export interface PasswordConfirmCodeInput {}
-
 export interface RegisterPageProps {}
-
-export interface RegisterUserInput {
-  email: string;
-  fullname: string;
-  password: string;
-  username: string;
-  // passwordConfirm: string;
-}
-
 export interface ResetPasswordPageProps {}
-
-export interface ResetPasswordInput {}
-
 export interface VerifyEmailPagePorps {}
-
-export interface VerifyEmailInput {
-  code: string;
-  email: string;
-}
-
 export interface BrowsePageProps {}
 export interface GameDetailPageProps {}
 export interface CollectionPageProps {}
@@ -48,3 +15,25 @@ export interface WishlistPageProps {}
 export interface ComingSoonPageProps {}
 export interface ErrorPageProps {}
 export interface ProfilePageProps {}
+
+export interface ResetPasswordValues {}
+export interface PasswordConfirmCodeValues {}
+export interface RegisterUserValues {
+  email: string;
+  fullname: string;
+  password: string;
+  username: string;
+  // passwordConfirm: string;
+}
+export interface VerifyEmailValues {
+  code: string;
+  email: string;
+}
+export interface LoginUserValues {
+  password: string;
+  remember: boolean;
+  identifier: string;
+}
+export interface ForgotPasswordValues {
+  email: string;
+}

@@ -1,9 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
-  useDispatch as useAppDispatch,
-  useSelector as useAppSelector,
-} from "react-redux";
-import {
   PURGE,
   PAUSE,
   FLUSH,
@@ -31,13 +27,7 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
-const { dispatch } = store;
-
-const useSelector = useAppSelector;
-
-const useDispatch = () => useAppDispatch();
-
-export { store, persistor, dispatch, useSelector, useDispatch };
+export { store, persistor };
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

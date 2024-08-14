@@ -1,23 +1,23 @@
 import {
-  LoginUserInput,
-  VerifyEmailInput,
-  RegisterUserInput,
-  ResetPasswordInput,
-  ForgotPasswordInput,
+  LoginUserValues,
+  VerifyEmailValues,
+  RegisterUserValues,
+  ResetPasswordValues,
+  ForgotPasswordValues,
 } from "./page.type";
 
 export interface AuthService {
   resetPassword: (
     hash: string | any,
     email: string | any,
-    data: ResetPasswordInput | any
+    data: ResetPasswordValues | any
   ) => Promise<void>;
   logout: () => Promise<void>;
-  login: (data: LoginUserInput) => Promise<void>;
+  login: (data: LoginUserValues) => Promise<void>;
   socialAuth: (tokenParam: string) => Promise<void>;
-  register: (data: RegisterUserInput) => Promise<void>;
-  verifyEmail: (data: VerifyEmailInput) => Promise<void>;
-  forgotPassword: (data: ForgotPasswordInput) => Promise<void>;
+  register: (data: RegisterUserValues) => Promise<void>;
+  verifyEmail: (data: VerifyEmailValues) => Promise<void>;
+  forgotPassword: (data: ForgotPasswordValues) => Promise<void>;
 }
 
 export interface AuthResponse {

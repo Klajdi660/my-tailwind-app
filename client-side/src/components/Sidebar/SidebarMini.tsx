@@ -1,5 +1,4 @@
 import { Tooltip } from "antd";
-import { useSelector } from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { FC, useMemo, useState, useEffect } from "react";
 import { navLists } from "../../data";
@@ -9,10 +8,9 @@ import { defaultThemeConfig, themeConfig } from "../../configs";
 import { classNames, useAppUtil } from "../../utils";
 import { icon, userIcon } from "../../assets";
 import { ProfileDropdown } from "../Profile/ProfileDropDown";
+import { useAppSelector } from "../../store";
 
-interface SidebarMiniProps {}
-
-export const SidebarMini: FC<SidebarMiniProps> = () => {
+export const SidebarMini: FC = () => {
   const { pathname } = useLocation();
   const [notify] = useNotification();
   const { isAuthenticated, user } = useAuth();
@@ -23,7 +21,7 @@ export const SidebarMini: FC<SidebarMiniProps> = () => {
 
   const navigate = useNavigate();
 
-  const themeStorage = useSelector((state: any) => state.theme);
+  const themeStorage = useAppSelector((state) => state.theme);
 
   const { sidebar } = themeStorage || defaultThemeConfig;
   const isFolded = sidebar === "folded";

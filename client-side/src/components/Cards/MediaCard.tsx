@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { PlatformIconList } from "../Common";
 import { Image, Icon } from "../UI";
 import { paths } from "../../data";
 import { useCart } from "../../hooks";
 import { MediaCardProps } from "../../types";
 import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
+import { useAppSelector } from "../../store";
 
 export const MediaCard: FC<MediaCardProps> = (props) => {
   const { game, type } = props;
@@ -16,7 +16,7 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
   const navigate = useNavigate();
   const { addGameToCart } = useCart();
 
-  const cart = useSelector((state: any) => state.cart.items);
+  const cart = useAppSelector((state) => state.cart.items);
 
   const gamePrice = getGamePrice(game);
 

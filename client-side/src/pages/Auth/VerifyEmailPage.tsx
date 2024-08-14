@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { FormTemplate } from "../../components";
 import { verifyValidation } from "../../utils";
 import { useAuthService } from "../../services";
-import { VerifyEmailPagePorps, VerifyEmailInput } from "../../types";
+import { VerifyEmailPagePorps, VerifyEmailValues } from "../../types";
 
 export const VerifyEmailPage: FC<VerifyEmailPagePorps> = () => {
   const location = useLocation();
@@ -11,7 +11,7 @@ export const VerifyEmailPage: FC<VerifyEmailPagePorps> = () => {
 
   const { registerData } = location.state || {};
 
-  const onSubmitVerifyEmailHandler = async (values: VerifyEmailInput) => {
+  const onSubmitVerifyEmailHandler = async (values: VerifyEmailValues) => {
     try {
       const { code } = values;
       await verifyEmail({

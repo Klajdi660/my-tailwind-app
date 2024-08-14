@@ -8,7 +8,7 @@ import { useAuth } from "../../../hooks";
 import { ErrorFormMessage } from "../../Common";
 import { useProfileService } from "../../../services";
 import { useAppModal, deleteProfileValidation } from "../../../utils";
-import { DeleteProfileProps, DeleteProfileInput } from "../../../types";
+import { DeleteProfileProps, DeleteProfileValues } from "../../../types";
 
 export const DeleteProfileModal: FC<DeleteProfileProps> = () => {
   const { user } = useAuth();
@@ -32,7 +32,7 @@ export const DeleteProfileModal: FC<DeleteProfileProps> = () => {
     setModalOpen("deleteProfileModal", false);
   };
 
-  const handleOnSubmit = async (values: DeleteProfileInput) => {
+  const handleOnSubmit = async (values: DeleteProfileValues) => {
     try {
       await deleteProfile(values);
       handleModalOpen();

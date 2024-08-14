@@ -4,7 +4,7 @@ import { Icon } from "../UI";
 import { changePasswordList } from "../../data";
 import { useAuth } from "../../hooks";
 import { useProfileService } from "../../services";
-import { ChangePasswordProps, ChangePasswordInput } from "../../types";
+import { ChangePasswordProps, ChangePasswordValues } from "../../types";
 import { updatePasswordValidation } from "../../utils";
 
 export const ChangePassword: FC<ChangePasswordProps> = () => {
@@ -17,7 +17,7 @@ export const ChangePassword: FC<ChangePasswordProps> = () => {
     return changePasswordList(isPasswordEnabled);
   }, [isPasswordEnabled]);
 
-  const handleOnSubmit = async (values: ChangePasswordInput) => {
+  const handleOnSubmit = async (values: ChangePasswordValues) => {
     try {
       await changePassword(values);
     } catch (error) {

@@ -3,7 +3,7 @@ import { FC, useEffect } from "react";
 import { FormTemplate } from "../../components";
 import { useAppSelector } from "../../store";
 import { useAuthService } from "../../services";
-import { LoginUserInput, LoginPageProps } from "../../types";
+import { LoginUserValues, LoginPageProps } from "../../types";
 import { loginValidation, isRTokenExpired, useSubmitting } from "../../utils";
 
 export const LoginPage: FC<LoginPageProps> = () => {
@@ -20,7 +20,7 @@ export const LoginPage: FC<LoginPageProps> = () => {
     }
   }, []);
 
-  const onSubmitLoginHandler = async (values: LoginUserInput) => {
+  const onSubmitLoginHandler = async (values: LoginUserValues) => {
     setIsSubmitting(true);
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));

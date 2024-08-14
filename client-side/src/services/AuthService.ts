@@ -4,10 +4,10 @@ import { endpoints } from "./Api";
 import {
   AuthService,
   AuthResponse,
-  LoginUserInput,
+  LoginUserValues,
   RegisterResponse,
-  RegisterUserInput,
-  ForgotPasswordInput,
+  RegisterUserValues,
+  ForgotPasswordValues,
 } from "../types";
 import { paths } from "../data";
 import { HttpClient } from "../client";
@@ -33,7 +33,7 @@ export const useAuthService = (): AuthService => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const login = async (values: LoginUserInput): Promise<void> => {
+  const login = async (values: LoginUserValues): Promise<void> => {
     try {
       setLoading(true);
 
@@ -109,7 +109,7 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const register = async (values: RegisterUserInput): Promise<void> => {
+  const register = async (values: RegisterUserValues): Promise<void> => {
     try {
       setLoading(true);
 
@@ -198,7 +198,9 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const forgotPassword = async (values: ForgotPasswordInput): Promise<void> => {
+  const forgotPassword = async (
+    values: ForgotPasswordValues
+  ): Promise<void> => {
     try {
       const forgotPasswordResp = await HttpClient.post<AuthResponse>(
         FORGOTPASSWORD_API,

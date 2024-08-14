@@ -1,16 +1,16 @@
 import { FC } from "react";
-import { useSelector } from "react-redux";
 import { Button, Icon } from "../UI";
 import { useProfileService } from "../../services";
 import { DeleteAccountProps } from "../../types";
 import { useAppModal } from "../../utils";
+import { useAppSelector } from "../../store";
 
 export const DeleteAccount: FC<DeleteAccountProps> = () => {
   const { cancelDeleteProfile } = useProfileService();
   const { setModalOpen } = useAppModal();
 
-  const { isAccountDelete, accoundDeleteDaysDifference } = useSelector(
-    (state: any) => state.cancelDeleteAccount
+  const { isAccountDelete, accoundDeleteDaysDifference } = useAppSelector(
+    (state) => state.cancelDeleteAccount
   );
 
   const handleCancelDelete = async () => {

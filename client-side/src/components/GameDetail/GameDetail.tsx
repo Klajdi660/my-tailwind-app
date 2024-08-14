@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useSelector } from "react-redux";
 import { Tooltip, Progress } from "antd";
 import { GameTabDetail } from "./GameTabDetail";
 import { HeaderBannerSkeleton } from "../Skeleton";
@@ -7,6 +6,7 @@ import { Button, Icon, Image } from "../UI";
 import { useStore, useCart, useMediaResponsive } from "../../hooks";
 import { GameDetailProps } from "../../types";
 import { classNames } from "../../utils";
+import { useAppSelector } from "../../store";
 
 export const GameDetail: FC<GameDetailProps> = (props) => {
   const { gameDetail, gameVideos, gameReviews } = props;
@@ -27,7 +27,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
   const { isMobile } = useMediaResponsive();
   const { addGameToCart } = useCart();
 
-  const cart = useSelector((state: any) => state.cart.items);
+  const cart = useAppSelector((state) => state.cart.items);
 
   const gameInCart = cart.find((item: any) => item.id === id);
 

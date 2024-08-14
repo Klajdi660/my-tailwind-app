@@ -4,7 +4,7 @@ import { ImgUploader } from "../UI";
 import { editProfileList } from "../../data";
 import { useAuth } from "../../hooks";
 import { useProfileService } from "../../services";
-import { EditProfileProps, EditProfileInput } from "../../types";
+import { EditProfileProps, EditProfileValues } from "../../types";
 import { editProfileValidation } from "../../utils";
 
 export const EditProfile: FC<EditProfileProps> = () => {
@@ -19,7 +19,7 @@ export const EditProfile: FC<EditProfileProps> = () => {
     return editProfileList;
   }, []);
 
-  const handleOnSubmit = async (values: EditProfileInput) => {
+  const handleOnSubmit = async (values: EditProfileValues) => {
     try {
       await changeUsername(values);
     } catch (error) {

@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { FormTemplate } from "../../components";
 import { useAuthService } from "../../services";
 import { forgotPassValidation } from "../../utils";
-import { ForgotPasswordInput, ForgotPasswordPagePropes } from "../../types";
+import { ForgotPasswordValues, ForgotPasswordPagePropes } from "../../types";
 
 export const ForgotPasswordPage: FC<ForgotPasswordPagePropes> = () => {
   const { forgotPassword } = useAuthService();
@@ -10,7 +10,7 @@ export const ForgotPasswordPage: FC<ForgotPasswordPagePropes> = () => {
   const [resetPassEmail, setResetEmail] = useState<string>("");
   const [resetPassEmailSent, setResetPassEmailSent] = useState<boolean>(false);
 
-  const onSubmitForgotPassHandler = async (values: ForgotPasswordInput) => {
+  const onSubmitForgotPassHandler = async (values: ForgotPasswordValues) => {
     try {
       await forgotPassword(values);
       setResetEmail(values.email);

@@ -1,10 +1,10 @@
 import { Select, Popover } from "antd";
 import { FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Icon, Image } from "../UI";
 import { currencyList, cardImg } from "../../data";
 import { useAppModal } from "../../utils";
-import { removeSelectedCard } from "../../store";
+import { removeSelectedCard, useAppSelector } from "../../store";
 
 interface PaymentSettingProps {}
 
@@ -45,7 +45,7 @@ const maskCardNumber = (cardNumber: string) => {
 export const PaymentSetting: FC<PaymentSettingProps> = (props) => {
   const { setModalOpen } = useAppModal();
 
-  const cards = useSelector((state: any) => state.settingCard.items);
+  const cards = useAppSelector((state) => state.settingCard.items);
 
   const currencyOptions = Object.keys(currencyList).map((curr) => ({
     label: currencyList[curr].label,

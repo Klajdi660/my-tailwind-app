@@ -1,5 +1,4 @@
 import { Tooltip } from "antd";
-import { useSelector } from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { FC, useMemo, useState, useEffect } from "react";
 import { navlinks } from "../../data";
@@ -8,6 +7,7 @@ import { Icon, Overlay, Image } from "../UI";
 import { useAuth, useNotification, useMediaResponsive } from "../../hooks";
 import { defaultThemeConfig, themeConfig } from "../../configs";
 import { classNames, useAppUtil } from "../../utils";
+import { useAppSelector } from "../../store";
 
 const User = () => {
   const { user } = useAuth();
@@ -54,7 +54,7 @@ export const Sidebar: FC<SidebarPorps> = () => {
 
   const navigate = useNavigate();
 
-  const themeStorage = useSelector((state: any) => state.theme);
+  const themeStorage = useAppSelector((state) => state.theme);
 
   const { sidebar } = themeStorage || defaultThemeConfig;
   const isFolded = sidebar === "folded";

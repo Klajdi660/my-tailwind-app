@@ -1,14 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { profileEndpoints } from "./Api";
 import {
   setIsAccountDelete,
   updateRememberMeData,
   setAccountDeleteDaysDifference,
+  useAppSelector,
 } from "../store";
 import {
-  EditProfileInput,
-  DeleteProfileInput,
-  ChangePasswordInput,
+  EditProfileValues,
+  DeleteProfileValues,
+  ChangePasswordValues,
   UserDetailsResponse,
   // PersonalDetailsInput,
 } from "../types";
@@ -31,9 +32,9 @@ export const useProfileService = () => {
   const [notify] = useNotification();
   const dispatch = useDispatch();
 
-  const rememberMe = useSelector((state: any) => state.rememberMe);
+  const rememberMe = useAppSelector((state) => state.rememberMe);
 
-  const changeUsername = async (values: EditProfileInput): Promise<void> => {
+  const changeUsername = async (values: EditProfileValues): Promise<void> => {
     try {
       setLoading(true);
 
@@ -196,7 +197,7 @@ export const useProfileService = () => {
     }
   };
 
-  const deleteProfile = async (values: DeleteProfileInput) => {
+  const deleteProfile = async (values: DeleteProfileValues) => {
     try {
       setLoading(true);
 
@@ -264,7 +265,9 @@ export const useProfileService = () => {
     }
   };
 
-  const changePassword = async (values: ChangePasswordInput): Promise<void> => {
+  const changePassword = async (
+    values: ChangePasswordValues
+  ): Promise<void> => {
     try {
       setLoading(true);
 

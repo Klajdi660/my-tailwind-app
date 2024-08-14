@@ -191,7 +191,7 @@ export interface ChangePasswordProps {
   // provider: string | any;
 }
 
-export interface ChangePasswordInput {
+export interface ChangePasswordValues {
   newPassword: string;
   currentPassword: string;
   confirmNewPassword: string;
@@ -201,13 +201,13 @@ export interface DeleteAccountProps {}
 
 export interface EditProfileProps {}
 
-export interface EditProfileInput {
+export interface EditProfileValues {
   username: string;
 }
 
 export interface PersonalDetailsProps {}
 
-export interface PersonalDetailsInput {
+export interface PersonalDetailsValues {
   name?: string;
   gender?: string;
   address?: string;
@@ -302,7 +302,7 @@ export interface DeleteProfileProps {}
 export interface SettingsModalProps {}
 export interface PaymentCardProps {}
 
-export interface DeleteProfileInput {
+export interface DeleteProfileValues {
   confirmDelete: string;
 }
 

@@ -1,14 +1,13 @@
 import { FC } from "react";
-import { useSelector } from "react-redux";
 import { Icon } from "../Icon";
-import { RootState } from "../../../store";
+import { useAppSelector } from "../../../store";
 import { useAppUtil } from "../../../utils";
 import { CartButtonProps } from "../../../types";
 
 export const CartButton: FC<CartButtonProps> = () => {
   const { setOpenSwitch } = useAppUtil();
 
-  const cart = useSelector((state: RootState) => state.cart.items);
+  const cart = useAppSelector((state) => state.cart.items);
 
   return (
     <div

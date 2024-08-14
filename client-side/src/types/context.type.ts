@@ -1,7 +1,7 @@
 import {
   User,
   FormItem,
-  RegisterUserInput,
+  RegisterUserValues,
   TranslationsResponse,
 } from "../types";
 
@@ -10,12 +10,12 @@ export interface AuthContextType {
   user?: User | null;
   isAuthenticated: boolean;
   lToken: string | undefined;
-  signupData?: RegisterUserInput | any;
+  signupData?: RegisterUserValues | any;
   updateUser: () => void;
   unAuthenticateUser: () => void;
   setLToken: (lToken: string) => void;
   authenticateUser: (user: User) => void;
-  setSignUpData: (signupData: RegisterUserInput | any) => void;
+  setSignUpData: (signupData: RegisterUserValues | any) => void;
 }
 
 export interface FormContextType {

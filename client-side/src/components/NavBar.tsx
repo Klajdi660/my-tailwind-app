@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   Image,
   Button,
@@ -18,6 +18,7 @@ import { icon, iconName } from "../assets";
 import { defaultThemeConfig } from "../configs";
 import { Searchbar, ProfileDropdown } from "../components";
 import { useAppUtil, classNames } from "../utils";
+import { useAppSelector } from "../store";
 
 export const Navbar: FC<NavbarProps> = () => {
   const { user } = useAuth();
@@ -27,7 +28,7 @@ export const Navbar: FC<NavbarProps> = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const theme = useSelector((state: any) => state.theme);
+  const theme = useAppSelector((state) => state.theme);
 
   const { sidebar } = theme || defaultThemeConfig;
   const isFolded = sidebar === "folded";

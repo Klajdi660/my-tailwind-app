@@ -1,6 +1,6 @@
 import { FC } from "react";
 import {
-  PasswordConfirmCodeInput,
+  PasswordConfirmCodeValues,
   PasswordConfirmCodePageProps,
 } from "../../types";
 import { FormTemplate } from "../../components";
@@ -8,7 +8,7 @@ import { verifyValidation } from "../../utils";
 
 export const PasswordConfirmCodePage: FC<PasswordConfirmCodePageProps> = () => {
   const onSubmitPassConfirmCodeHandler = async (
-    values: PasswordConfirmCodeInput
+    values: PasswordConfirmCodeValues
   ) => {};
 
   return (

@@ -1,10 +1,9 @@
 import { FC, useState } from "react";
-import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { CartBody, CartEmpty, CartHeader } from "../Cart";
 import { Checkout } from "../Checkout/Checkout";
 import { useCart } from "../../hooks";
-import { RootState } from "../../store";
+import { RootState, useAppSelector } from "../../store";
 import { CartSwitcherProps } from "../../types";
 import { useAppUtil } from "../../utils";
 
@@ -12,7 +11,7 @@ export const CartSwitcher: FC<CartSwitcherProps> = () => {
   const { openSwitch, setOpenSwitch } = useAppUtil();
   const { removeGameSelected } = useCart();
 
-  const cart = useSelector((state: RootState) => state.cart.items);
+  const cart = useAppSelector((state) => state.cart.items);
   const gameId = cart.map((game) => game.id);
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
