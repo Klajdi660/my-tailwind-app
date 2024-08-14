@@ -1,4 +1,4 @@
-// import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import {
   Modal,
   Navbar,
@@ -14,7 +14,7 @@ import { ProviderProps } from "../types";
 // import { useUserService } from "../services";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-export const PrivateLayout = ({ children }: ProviderProps) => {
+export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
   const { openSwitch } = useAppUtil();
   const [parent] = useAutoAnimate();
 

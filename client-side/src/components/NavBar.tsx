@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -12,16 +12,16 @@ import {
   NotificationButton,
   DesktopToggleButton,
 } from "./UI";
-import { useAuth } from "../hooks";
+import { useAuth, useMediaResponsive } from "../hooks";
 import { NavbarProps } from "../types";
 import { icon, iconName } from "../assets";
 import { defaultThemeConfig } from "../configs";
 import { Searchbar, ProfileDropdown } from "../components";
-import { useMobileResponsive, useAppUtil, classNames } from "../utils";
+import { useAppUtil, classNames } from "../utils";
 
-export const Navbar: FunctionComponent<NavbarProps> = () => {
+export const Navbar: FC<NavbarProps> = () => {
   const { user } = useAuth();
-  const isMobile = useMobileResponsive();
+  const { isMobile } = useMediaResponsive();
   const { toggleSearch, setToggleSearch } = useAppUtil();
 
   const dispatch = useDispatch();

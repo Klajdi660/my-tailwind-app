@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { ProfileForm } from "../Auth";
 import { Button, Image } from "../UI";
@@ -8,7 +8,7 @@ import { useAuth } from "../../hooks";
 
 interface ProfileProps {}
 
-export const Profile: FunctionComponent<ProfileProps> = () => {
+export const Profile: FC<ProfileProps> = () => {
   const { user } = useAuth();
 
   const navigate = useNavigate();

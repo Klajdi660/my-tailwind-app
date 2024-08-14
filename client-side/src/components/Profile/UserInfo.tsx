@@ -1,9 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Icon } from "../UI";
 import { useAuth } from "../../hooks";
 import { UserInfoProps } from "../../types";
 
-export const UserInfo: FunctionComponent<UserInfoProps> = () => {
+export const UserInfo: FC<UserInfoProps> = () => {
   const { user } = useAuth();
 
   const hasProvider = user?.provider !== "Email";

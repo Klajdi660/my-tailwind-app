@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Select } from "antd";
 import { Button } from "../../UI";
@@ -22,9 +22,7 @@ const providerList = [
   },
 ];
 
-export const CheckoutMomoForm: FunctionComponent<CheckoutMomoFormPorps> = (
-  props
-) => {
+export const CheckoutMomoForm: FC<CheckoutMomoFormPorps> = (props) => {
   const { totalPrice } = props;
 
   const handleMenuClick = async (data: any) => {};

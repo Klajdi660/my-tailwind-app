@@ -53,21 +53,6 @@ export const useLocalStorage = (key: string, defaultValue: any) => {
   return [value, setValue];
 };
 
-export const useMobileResponsive = () => {
-  const isMobile = useMediaQuery({
-    query: "(min-width: 1024px)",
-  });
-
-  return !isMobile;
-};
-
-export const useHiddenTopPlay = () => {
-  const isTopPlayHidden = useMediaQuery({
-    query: "(min-width: 1280px)",
-  });
-  return isTopPlayHidden;
-};
-
 export const isRTokenExpired = () => {
   if (localStorage.rtoken) {
     const currentTime = dayjs().unix();

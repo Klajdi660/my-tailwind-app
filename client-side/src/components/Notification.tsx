@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Icon } from "./UI";
 import { NotificationProps } from "../types";
 
-export const Notification: FunctionComponent<NotificationProps[]> = (
-  notificationList
-) => {
+export const Notification: FC<NotificationProps[]> = (notificationList) => {
   return (
     <div className="p-2 space-y-2 w-[300px] notify">
       <div className="flex items-center gap-3 p-3 rounded bg-main">

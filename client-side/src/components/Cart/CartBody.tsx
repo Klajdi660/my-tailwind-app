@@ -1,11 +1,11 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Badge } from "antd";
 import { CartItem, CartFooter } from "../Cart";
 import { Icon } from "../UI";
 import { CartBodyProps } from "../../types";
 import { useAuth } from "../../hooks";
 
-export const CartBody: FunctionComponent<CartBodyProps> = (props) => {
+export const CartBody: FC<CartBodyProps> = (props) => {
   const {
     cart,
     isEditing,

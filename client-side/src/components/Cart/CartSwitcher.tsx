@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { CartBody, CartEmpty, CartHeader } from "../Cart";
@@ -8,7 +8,7 @@ import { RootState } from "../../store";
 import { CartSwitcherProps } from "../../types";
 import { useAppUtil } from "../../utils";
 
-export const CartSwitcher: FunctionComponent<CartSwitcherProps> = () => {
+export const CartSwitcher: FC<CartSwitcherProps> = () => {
   const { openSwitch, setOpenSwitch } = useAppUtil();
   const { removeGameSelected } = useCart();
 

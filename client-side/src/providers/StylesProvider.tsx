@@ -1,27 +1,18 @@
 import { startCase } from "lodash";
-import { useSelector } from "react-redux";
-import { useMediaQuery } from "react-responsive";
-import { RootState } from "../types";
-import { useMobileResponsive } from "../utils";
 import { themeConfig, defaultThemeConfig } from "../configs";
+import { useAppSelector } from "../store";
+import { useMediaResponsive } from "../hooks";
+import { FC } from "react";
 
-export const StylesProvider = () => {
-  const isMobile = useMobileResponsive();
+export const StylesProvider: FC = () => {
+  const { isMobile, isLargeScreen, isExtraLargeScreen } = useMediaResponsive();
 
-  const themeStorage = useSelector((state: RootState) => state.theme);
+  const themeStorage = useAppSelector((state) => state.theme);
 
-  const { mode, color, sidebar, layout, fontFamily, borderRadius } =
+  const { mode, color, sidebar, fontFamily, borderRadius } =
     themeStorage || defaultThemeConfig;
 
   const { colors, themes, sidebars } = themeConfig || {};
-
-  const isLargeScreen = useMediaQuery({
-    query: "(min-width: 1024px)",
-  });
-
-  const isExtraLargeScreen = useMediaQuery({
-    query: "(min-width: 1280px)",
-  });
 
   const theme = mode === "light" ? "theme_light" : "theme_dark";
 
@@ -61,7 +52,6 @@ export const StylesProvider = () => {
       --cardBg: ${cardBg};
       --primary: ${primary};
       --playerBg: ${player};
-      --direction: ${layout};
       --logo-width: ${120}px;
       --switchBg: ${switchBg};
       --neutralBg: ${neutralBg};
@@ -79,6 +69,7 @@ export const StylesProvider = () => {
       --neutralBgOpacity: ${neutralBgOpacity};
       --primary-light-gray: ${primaryLightGray};
       --nav-width: calc(100vw - ${asideMobile}px);
+      // --nav-width: calc(100vw - ${asideMobile}px - ${isMobile ? "0" : "5"}px);
       --onNeutralBgDivider: ${onNeutralBgDivider};
       --sidebar-horizontal-width: ${sidebarWidth}px;
       --onNeutralBgSecondary: ${onNeutralBgSecondary};
@@ -89,5 +80,3 @@ export const StylesProvider = () => {
 
   return <style>{styles}</style>;
 };
-
-// --nav-width: calc(100vw - ${asideMobile}px - ${isMobile ? "0" : "5"}px);

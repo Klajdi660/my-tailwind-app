@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Popover } from "antd";
 import { Image, Icon, Button } from "../UI";
@@ -9,7 +9,7 @@ import { useAuthService } from "../../services";
 import { UserMenuProps, ProfileDropdownProps } from "../../types";
 import { classNames, useAppModal } from "../../utils";
 
-const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
+const UserMenu: FC<UserMenuProps> = (props) => {
   const { user, hidden } = props;
 
   const { setModalOpen } = useAppModal();
@@ -86,7 +86,7 @@ const UserMenu: FunctionComponent<UserMenuProps> = (props) => {
   );
 };
 
-export const ProfileDropdown: FunctionComponent<ProfileDropdownProps> = () => {
+export const ProfileDropdown: FC<ProfileDropdownProps> = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
 

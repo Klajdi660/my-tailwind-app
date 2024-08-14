@@ -1,10 +1,10 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useParams } from "react-router-dom";
 import { useFetchGame } from "../../lib";
 import { GameDetail } from "../../components";
 import { GameDetailPageProps } from "../../types";
 
-export const GameDetailPage: FunctionComponent<GameDetailPageProps> = () => {
+export const GameDetailPage: FC<GameDetailPageProps> = () => {
   const { gameId } = useParams<{ gameId: string | any }>();
 
   const { data: gameData } = useFetchGame({ gameId });
@@ -22,5 +22,3 @@ export const GameDetailPage: FunctionComponent<GameDetailPageProps> = () => {
     </section>
   );
 };
-
-export default GameDetailPage;

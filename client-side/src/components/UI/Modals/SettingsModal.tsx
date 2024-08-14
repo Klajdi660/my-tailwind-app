@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FC, useState } from "react";
 import { SmallModal } from "./ModalContent";
 import { useAppModal, classNames } from "../../../utils";
 import { SettingsModalProps } from "../../../types";
@@ -10,7 +10,7 @@ import {
   ShippingAddrSetting,
 } from "../../Settings";
 
-export const SettingsModal: FunctionComponent<SettingsModalProps> = () => {
+export const SettingsModal: FC<SettingsModalProps> = () => {
   const { modals, setModalOpen } = useAppModal();
 
   const [selectedSetting, setSelectedSetting] = useState(settingsLinks[0].id);

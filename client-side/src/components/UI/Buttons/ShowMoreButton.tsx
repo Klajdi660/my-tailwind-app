@@ -1,9 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Icon } from "../Icon";
 import { classNames } from "../../../utils";
 import { ShowMoreButtonProps } from "../../../types";
 
-export const ShowMoreButton: FunctionComponent<ShowMoreButtonProps> = ({
+export const ShowMoreButton: FC<ShowMoreButtonProps> = ({
   className,
   ...props
 }) => {

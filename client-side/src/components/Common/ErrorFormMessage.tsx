@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Icon } from "../UI";
 import { ErrorFormMessageProps } from "../../types";
 
-export const ErrorFormMessage: FunctionComponent<ErrorFormMessageProps> = ({
+export const ErrorFormMessage: FC<ErrorFormMessageProps> = ({
   errorMessage,
 }) => {
   const message = errorMessage?.message || String(errorMessage || "");

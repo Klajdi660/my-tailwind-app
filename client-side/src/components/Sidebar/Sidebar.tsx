@@ -1,13 +1,13 @@
 import { Tooltip } from "antd";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { FunctionComponent, useMemo, useState, useEffect } from "react";
+import { FC, useMemo, useState, useEffect } from "react";
 import { navlinks } from "../../data";
 import { SidebarPorps } from "../../types";
 import { Icon, Overlay, Image } from "../UI";
-import { useAuth, useNotification } from "../../hooks";
+import { useAuth, useNotification, useMediaResponsive } from "../../hooks";
 import { defaultThemeConfig, themeConfig } from "../../configs";
-import { classNames, useAppUtil, useMobileResponsive } from "../../utils";
+import { classNames, useAppUtil } from "../../utils";
 
 const User = () => {
   const { user } = useAuth();
@@ -43,11 +43,11 @@ const User = () => {
   );
 };
 
-export const Sidebar: FunctionComponent<SidebarPorps> = () => {
+export const Sidebar: FC<SidebarPorps> = () => {
   const { pathname } = useLocation();
   const [notify] = useNotification();
   const { isAuthenticated } = useAuth();
-  const isMobile = useMobileResponsive();
+  const { isMobile } = useMediaResponsive();
 
   const [toggleNav, setToggleNav] = useState(false);
   const { toggleMenu, setToggleMenu } = useAppUtil();

@@ -1,11 +1,11 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import { PlatformIconList } from "../Common";
 import { paths } from "../../data";
 import { TopPlayCardProps } from "../../types";
 import { classNames, gameNameTruncate } from "../../utils";
 
-export const TopPlayCard: FunctionComponent<TopPlayCardProps> = (props) => {
+export const TopPlayCard: FC<TopPlayCardProps> = (props) => {
   const { item, listDivider } = props;
   const { gameDetail } = paths;
 

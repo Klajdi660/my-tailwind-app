@@ -1,11 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Skeleton } from "./Skeleton";
 import { classNames } from "../../utils";
 import { MediaCardSkeletonProps } from "../../types";
 
-export const MediaCardSkeleton: FunctionComponent<MediaCardSkeletonProps> = (
-  props
-) => {
+export const MediaCardSkeleton: FC<MediaCardSkeletonProps> = (props) => {
   const { type, number } = props;
 
   const gradientClass = "bg-gradient-to-l from-main to-card";

@@ -1,12 +1,10 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Skeleton } from "./Skeleton";
 import { classNames } from "../../utils";
 import { imageDimsOpt } from "../../data";
 import { TrackCardSkeletonProps } from "../../types";
 
-export const TrackCardSkeleton: FunctionComponent<TrackCardSkeletonProps> = (
-  props
-) => {
+export const TrackCardSkeleton: FC<TrackCardSkeletonProps> = (props) => {
   const { number, imageDims } = props;
 
   const gradientClass = "bg-gradient-to-l from-main to-card";

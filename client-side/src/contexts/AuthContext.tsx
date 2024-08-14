@@ -1,10 +1,4 @@
-import {
-  useMemo,
-  useState,
-  useEffect,
-  createContext,
-  FunctionComponent,
-} from "react";
+import { useMemo, useState, useEffect, createContext, FC } from "react";
 import { AuthContextType, ProviderProps, User } from "../types";
 
 const initialState: AuthContextType = {
@@ -32,7 +26,7 @@ const getUserFromLocalStorage = (): User | null => {
 
 const AuthContext = createContext(initialState);
 
-const AuthProvider: FunctionComponent<ProviderProps> = ({ children }) => {
+const AuthProvider: FC<ProviderProps> = ({ children }) => {
   const [lToken, setLToken] = useState("");
   const [signupData, setSignUpData] = useState();
   // const [user, setUser] = useState<User | null>(null);

@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import {
   Title,
   UserInfo,
@@ -9,7 +9,7 @@ import {
 } from "../../components";
 import { ProfilePageProps } from "../../types";
 
-export const EditProfilePage: FunctionComponent<ProfilePageProps> = () => {
+export const EditProfilePage: FC<ProfilePageProps> = () => {
   return (
     <section className="account_page">
       <Title name="Edit Profile" type="large" />
@@ -23,5 +23,3 @@ export const EditProfilePage: FunctionComponent<ProfilePageProps> = () => {
     </section>
   );
 };
-
-export default EditProfilePage;

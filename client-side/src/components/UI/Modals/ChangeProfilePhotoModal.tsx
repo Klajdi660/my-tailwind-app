@@ -1,10 +1,10 @@
-import { FunctionComponent, ChangeEvent, useRef } from "react";
+import { FC, ChangeEvent, useRef } from "react";
 import { SmallModal } from "./ModalContent";
 import { Button } from "../Button";
 import { useProfileService } from "../../../services";
 import { useAppModal, useProfilePhoto } from "../../../utils";
 
-export const ChangeProfilePhotoModal: FunctionComponent<any> = () => {
+export const ChangeProfilePhotoModal: FC<any> = () => {
   const { modals, setModalOpen } = useAppModal();
   const { setIsUpdatingProfileImg } = useProfilePhoto();
   const { updateDisplayPicture, removeDisplayPicture } = useProfileService();

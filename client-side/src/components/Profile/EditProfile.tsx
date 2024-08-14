@@ -1,4 +1,4 @@
-import { FunctionComponent, useMemo, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { Form } from "../Auth";
 import { ImgUploader } from "../UI";
 import { editProfileList } from "../../data";
@@ -7,7 +7,7 @@ import { useProfileService } from "../../services";
 import { EditProfileProps, EditProfileInput } from "../../types";
 import { editProfileValidation } from "../../utils";
 
-export const EditProfile: FunctionComponent<EditProfileProps> = () => {
+export const EditProfile: FC<EditProfileProps> = () => {
   const { user } = useAuth();
   const { changeUsername } = useProfileService();
 

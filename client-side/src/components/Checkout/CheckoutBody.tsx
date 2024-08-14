@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { CheckoutPaymentMethod, CheckoutFooter } from "../Checkout";
 import { CheckoutCardForm, CheckoutMomoForm } from "./CheckoutForm";
 
@@ -8,7 +8,7 @@ interface CheckoutBodyProps {
   setPaymentMethod: (paymentMethod: string) => void;
 }
 
-export const CheckoutBody: FunctionComponent<CheckoutBodyProps> = (props) => {
+export const CheckoutBody: FC<CheckoutBodyProps> = (props) => {
   const { paymentMethod, setPaymentMethod, totalPrice } = props;
 
   return (

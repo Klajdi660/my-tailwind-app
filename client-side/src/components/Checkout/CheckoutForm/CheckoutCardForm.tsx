@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../../UI";
 
@@ -6,9 +6,7 @@ interface CheckoutCardFormProps {
   totalPrice: string;
 }
 
-export const CheckoutCardForm: FunctionComponent<CheckoutCardFormProps> = (
-  props
-) => {
+export const CheckoutCardForm: FC<CheckoutCardFormProps> = (props) => {
   const { totalPrice } = props;
 
   const handleMenuClick = async (data: any) => {};

@@ -1,13 +1,11 @@
 import { Popover } from "antd";
-import { FunctionComponent, useState } from "react";
+import { FC, useState } from "react";
 import { Icon } from "../Icon";
 import { useAuth } from "../../../hooks";
 import { Language } from "../../Language";
 import { LanguageButtonProps } from "../../../types";
 
-export const LanguageButton: FunctionComponent<LanguageButtonProps> = (
-  props
-) => {
+export const LanguageButton: FC<LanguageButtonProps> = (props) => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
 

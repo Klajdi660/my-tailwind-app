@@ -1,14 +1,14 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useSelector } from "react-redux";
 import { Tooltip, Progress } from "antd";
 import { GameTabDetail } from "./GameTabDetail";
 import { HeaderBannerSkeleton } from "../Skeleton";
 import { Button, Icon, Image } from "../UI";
-import { useStore, useCart } from "../../hooks";
+import { useStore, useCart, useMediaResponsive } from "../../hooks";
 import { GameDetailProps } from "../../types";
-import { classNames, useMobileResponsive } from "../../utils";
+import { classNames } from "../../utils";
 
-export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
+export const GameDetail: FC<GameDetailProps> = (props) => {
   const { gameDetail, gameVideos, gameReviews } = props;
 
   const {
@@ -24,7 +24,7 @@ export const GameDetail: FunctionComponent<GameDetailProps> = (props) => {
   const { results: gameVideoResults } = gameVideos;
 
   const { loading } = useStore();
-  const isMobile = useMobileResponsive();
+  const { isMobile } = useMediaResponsive();
   const { addGameToCart } = useCart();
 
   const cart = useSelector((state: any) => state.cart.items);

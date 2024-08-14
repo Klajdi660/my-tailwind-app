@@ -1,39 +1,26 @@
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { FunctionComponent, useEffect } from "react";
-import { useForm } from "../../hooks";
-import { Template } from "../../components";
+import { FC, useEffect } from "react";
+import { FormTemplate } from "../../components";
+import { useAppSelector } from "../../store";
 import { useAuthService } from "../../services";
 import { LoginUserInput, LoginPageProps } from "../../types";
 import { loginValidation, isRTokenExpired, useSubmitting } from "../../utils";
 
-export const LoginPage: FunctionComponent<LoginPageProps> = () => {
-  const { listForm } = useForm();
+export const LoginPage: FC<LoginPageProps> = () => {
   const { login } = useAuthService();
   const { setIsSubmitting } = useSubmitting();
 
   const navigate = useNavigate();
 
-  const rememberMe = useSelector((state: any) => state.rememberMe);
+  const rememberMe = useAppSelector((state) => state.rememberMe);
 
   useEffect(() => {
     if (localStorage.user) {
-      // localStorage.lastLocation
-      //   ? navigate(`/${localStorage.lastLocation}`)
-      //   : navigate("/discover");
       navigate("/discover");
     }
   }, []);
 
-  // const handleOnSubmit = async (values: LoginUserInput) => {
-  //   try {
-  //     await login(values);
-  //   } catch (error) {
-  //     console.error(`Failed to login! ${error}`);
-  //   }
-  // };
-
-  const handleOnSubmit = async (values: LoginUserInput) => {
+  const onSubmitLoginHandler = async (values: LoginUserInput) => {
     setIsSubmitting(true);
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -55,13 +42,10 @@ export const LoginPage: FunctionComponent<LoginPageProps> = () => {
   })();
 
   return (
-    <Template
-      listForm={listForm}
+    <FormTemplate
       schema={loginValidation}
-      onSubmit={handleOnSubmit}
+      onSubmit={onSubmitLoginHandler}
       defaultValues={defaultValues}
     />
   );
 };
-
-export default LoginPage;

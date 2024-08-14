@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { iconName } from "../../assets";
 import { HomePageProps } from "../../types";
 import { Image, Button, HomeFooter } from "../../components";
 
-export const HomePage: FunctionComponent<HomePageProps> = () => {
+export const HomePage: FC<HomePageProps> = () => {
   const navigate = useNavigate();
 
   return (
@@ -37,5 +37,3 @@ export const HomePage: FunctionComponent<HomePageProps> = () => {
     </>
   );
 };
-
-export default HomePage;

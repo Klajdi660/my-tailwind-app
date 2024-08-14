@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { ErrorPageProps } from "../types";
 
-export const ErrorPage: FunctionComponent<ErrorPageProps> = () => {
+export const ErrorPage: FC<ErrorPageProps> = () => {
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="text-center">
@@ -22,5 +22,3 @@ export const ErrorPage: FunctionComponent<ErrorPageProps> = () => {
     </div>
   );
 };
-
-export default ErrorPage;

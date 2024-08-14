@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SmallModal } from "./ModalContent";
@@ -10,7 +10,7 @@ import { useProfileService } from "../../../services";
 import { useAppModal, deleteProfileValidation } from "../../../utils";
 import { DeleteProfileProps, DeleteProfileInput } from "../../../types";
 
-export const DeleteProfileModal: FunctionComponent<DeleteProfileProps> = () => {
+export const DeleteProfileModal: FC<DeleteProfileProps> = () => {
   const { user } = useAuth();
   const { deleteProfile } = useProfileService();
   const { modals, setModalOpen } = useAppModal();

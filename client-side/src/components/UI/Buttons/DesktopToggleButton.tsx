@@ -1,11 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Icon } from "../Icon";
 import { updateThemeConfig } from "../../../store";
 import { DesktopToggleButtonProps } from "../../../types";
 
-export const DesktopToggleButton: FunctionComponent<
-  DesktopToggleButtonProps
-> = (props) => {
+export const DesktopToggleButton: FC<DesktopToggleButtonProps> = (props) => {
   const { theme, dispatch } = props;
 
   const changeTheme = (value: any) => {

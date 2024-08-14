@@ -1,27 +1,24 @@
-import { FunctionComponent, useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import OtpInput from "react18-input-otp";
 import { Form, Progress } from "antd";
 import { Button } from "../UI";
+import { useForm } from "../../hooks";
 import { OTPCodeFormProps } from "../../types";
 import { classNames } from "../../utils";
 
-export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
-  const {
-    data,
-    linkTo,
-    btnText,
-    onSubmit,
-    footerLink,
-    footerTitle,
-    handleResendCode,
-  } = props;
+export const OTPCodeForm: FC<OTPCodeFormProps> = (props) => {
+  const { data, onSubmit, resendCodeHandler } = props;
+
+  const { listForm } = useForm();
 
   const [otpFilled, setOtpFilled] = useState<boolean>(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number>(0);
 
-  const handleOtpChange = async (code: string) => {
+  const [{ btnTxt, linkTo, footerLink, footerTitle }] = listForm as any;
+
+  const otpChangeHandler = async (code: string) => {
     setOtpFilled(code.length === 6);
   };
 
@@ -47,7 +44,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
     <Form className="flex flex-col gap-5" layout="vertical" onFinish={onSubmit}>
       <Form.Item name="code">
         <OtpInput
-          onChange={handleOtpChange}
+          onChange={otpChangeHandler}
           numInputs={6}
           separator={false}
           // isInputNum={true} only number
@@ -74,7 +71,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
       </Form.Item>
       <Button
         type="submit"
-        label={btnText}
+        label={btnTxt}
         variant="contained"
         className={classNames(otpFilled && "hover:brightness-125")}
         disabled={!otpFilled}
@@ -107,7 +104,7 @@ export const OTPCodeForm: FunctionComponent<OTPCodeFormProps> = (props) => {
       </div>
       <div className="flex justify-center text-sm text-onNeutralBg">
         Didn't recieve code? &nbsp;
-        <div className="cursor-pointer" onClick={handleResendCode}>
+        <div className="cursor-pointer" onClick={resendCodeHandler}>
           <p className="text-primary hover:underline underline-offset-2">
             Resend
           </p>

@@ -1,9 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Image, Icon } from "../UI";
 import { emptyCartImg } from "../../assets";
 import { CartEmptyPorps } from "../../types";
 
-export const CartEmpty: FunctionComponent<CartEmptyPorps> = (props) => {
+export const CartEmpty: FC<CartEmptyPorps> = (props) => {
   const { setOpenSwitch } = props;
 
   return (

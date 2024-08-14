@@ -1,9 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Button } from "../UI";
 import { CartFooterProps } from "../../types";
 import { calculateTotalPrice } from "../../utils";
 
-export const CartFooter: FunctionComponent<CartFooterProps> = (props) => {
+export const CartFooter: FC<CartFooterProps> = (props) => {
   const { cartItems, quantities, setCheckoutOpen } = props;
 
   const { subTotalPrice, shipping, totalPrice } = calculateTotalPrice(

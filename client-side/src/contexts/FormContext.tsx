@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { createContext, FunctionComponent, useMemo } from "react";
+import { createContext, FC, useMemo } from "react";
 import { formList } from "../data";
 import { FormContextType, ProviderProps } from "../types";
 
@@ -9,7 +9,7 @@ const initialState: FormContextType = {
 
 const FormContext = createContext(initialState);
 
-const FormProvider: FunctionComponent<ProviderProps> = ({ children }) => {
+const FormProvider: FC<ProviderProps> = ({ children }) => {
   const { pathname } = useLocation();
 
   const key = pathname.split("/")[1];

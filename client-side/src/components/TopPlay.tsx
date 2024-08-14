@@ -1,12 +1,12 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Footer } from "./Footer";
 import { TopPlaySection } from "./Sections";
 import { TopPlayProps } from "../types";
 import { useGamesService } from "../services";
-import { classNames, useHiddenTopPlay } from "../utils";
+import { classNames } from "../utils";
 
-export const TopPlay: FunctionComponent<TopPlayProps> = (props) => {
+export const TopPlay: FC<TopPlayProps> = (props) => {
   // const { getGameList } = useGamesService();
   // const hiddenTopPlay = useHiddenTopPlay();
 

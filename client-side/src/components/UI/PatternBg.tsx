@@ -1,7 +1,7 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { PatternBgProps } from "../../types";
 
-export const PatternBg: FunctionComponent<PatternBgProps> = () => {
+export const PatternBg: FC<PatternBgProps> = () => {
   const gradientClass = "bg-gradient-to-l from-card to-primary";
 
   return (

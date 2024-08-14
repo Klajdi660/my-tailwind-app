@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Icon } from "../UI";
 import { gameIconMap } from "../../data";
 import {
@@ -8,7 +8,7 @@ import {
 } from "../../types";
 import { classNames } from "../../utils";
 
-export const PlatformIconList: FunctionComponent<PlatformIconListProps> = ({
+export const PlatformIconList: FC<PlatformIconListProps> = ({
   platforms,
   className,
 }) => {
@@ -26,9 +26,7 @@ export const PlatformIconList: FunctionComponent<PlatformIconListProps> = ({
   );
 };
 
-export const DeveloperList: FunctionComponent<DeveloperListProps> = ({
-  developers,
-}) => {
+export const DeveloperList: FC<DeveloperListProps> = ({ developers }) => {
   return (
     <>
       {developers.map((dev, index) => (
@@ -41,9 +39,7 @@ export const DeveloperList: FunctionComponent<DeveloperListProps> = ({
   );
 };
 
-export const PublisherList: FunctionComponent<PublisherListPorps> = ({
-  publishers,
-}) => {
+export const PublisherList: FC<PublisherListPorps> = ({ publishers }) => {
   return (
     <>
       {publishers.map((pub) => (

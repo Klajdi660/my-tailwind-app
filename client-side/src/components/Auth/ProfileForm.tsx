@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { FormProps2, FormListItem } from "../../types";
+import { FormProps, FormListItem } from "../../types";
 
-export const ProfileForm: FunctionComponent<FormProps2> = (props) => {
+export const ProfileForm: FC<FormProps> = (props) => {
   const { listForm, defaultValues } = props;
 
   const { register: form } = useForm({

@@ -7,10 +7,12 @@ export interface ProviderProps {
 // Config
 export interface ThemeConfig {
   modes: string[];
-  sidebars: {
-    full: string;
-    folded: string;
-  };
+  sidebars:
+    | {
+        full: string;
+        folded: string;
+      }
+    | any;
   players: string[];
   fontFamilies: string[];
   colors: {
@@ -44,18 +46,18 @@ export interface NotifyParams {
 }
 
 // Provider
-interface ThemeState {
-  mode: string;
-  color: string;
-  layout: string;
-  fontFamily: string;
-  borderRadius: number;
-  sidebar: "folded" | "full";
-}
+// interface ThemeState {
+//   mode: string;
+//   color: string;
+//   layout: string;
+//   fontFamily: string;
+//   borderRadius: number;
+//   sidebar: "folded" | "full";
+// }
 
-export interface RootState {
-  theme: ThemeState;
-}
+// export interface RootState {
+//   theme: ThemeState;
+// }
 
 // Store
 export interface RememberMeState {

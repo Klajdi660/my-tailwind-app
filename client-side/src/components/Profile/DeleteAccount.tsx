@@ -1,11 +1,11 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useSelector } from "react-redux";
 import { Button, Icon } from "../UI";
 import { useProfileService } from "../../services";
 import { DeleteAccountProps } from "../../types";
 import { useAppModal } from "../../utils";
 
-export const DeleteAccount: FunctionComponent<DeleteAccountProps> = () => {
+export const DeleteAccount: FC<DeleteAccountProps> = () => {
   const { cancelDeleteProfile } = useProfileService();
   const { setModalOpen } = useAppModal();
 

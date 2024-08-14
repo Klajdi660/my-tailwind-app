@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 // import { useQuery } from "@tanstack/react-query";
 // import { useFetchGame } from "../../lib";
 import { BrowsePageProps } from "../../types";
@@ -7,7 +7,7 @@ import { MediaSection } from "../../components";
 // import { useGames } from "../../hooks/useGames";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
+export const BrowsePage: FC<BrowsePageProps> = () => {
   const [parent] = useAutoAnimate();
   // const { getGameList } = useGamesService();
 
@@ -37,5 +37,3 @@ export const BrowsePage: FunctionComponent<BrowsePageProps> = () => {
     </div>
   );
 };
-
-export default BrowsePage;

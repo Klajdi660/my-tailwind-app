@@ -1,9 +1,9 @@
-import { FunctionComponent, useState } from "react";
+import { FC, useState } from "react";
 import { Icon } from "./UI";
 import { classNames } from "../utils";
 import { SearchbarProps } from "../types";
 
-export const Searchbar: FunctionComponent<SearchbarProps> = (props) => {
+export const Searchbar: FC<SearchbarProps> = (props) => {
   const { isMobile, toggleSearch, setToggleSearch } = props;
 
   const [input, setInput] = useState("");

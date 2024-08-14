@@ -1,13 +1,11 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Icon } from "../UI";
 
 interface CheckoutHeaderPorps {
   closeCheckoutHandler: any;
 }
 
-export const CheckoutHeader: FunctionComponent<CheckoutHeaderPorps> = (
-  props
-) => {
+export const CheckoutHeader: FC<CheckoutHeaderPorps> = (props) => {
   const { closeCheckoutHandler } = props;
   return (
     <div className="w-full flex_justify_between px-2 py-4 h-navbar cursor-pointer">

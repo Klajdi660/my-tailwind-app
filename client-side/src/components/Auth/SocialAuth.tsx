@@ -1,9 +1,9 @@
-import { FunctionComponent, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import { useAuthService } from "../../services";
 import { SocialAuthProps } from "../../types";
 
-export const SocialAuth: FunctionComponent<SocialAuthProps> = () => {
+export const SocialAuth: FC<SocialAuthProps> = () => {
   const { socialAuth } = useAuthService();
   const location = useLocation();
 
@@ -18,7 +18,6 @@ export const SocialAuth: FunctionComponent<SocialAuthProps> = () => {
 
   return (
     <>
-      {/* {isAuthenticated ? <Navigate to="/discover" /> : <Navigate to="/login" />} */}
       <Navigate to="/discover" />
     </>
   );

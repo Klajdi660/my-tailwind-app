@@ -1,7 +1,7 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { ImageProps } from "../../types";
 
-export const Image: FunctionComponent<ImageProps> = (props) => {
+export const Image: FC<ImageProps> = (props) => {
   const { imgUrl, name, width, height, styles } = props;
 
   return (

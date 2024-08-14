@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { PlatformIconList } from "../Common";
@@ -8,7 +8,7 @@ import { useCart } from "../../hooks";
 import { MediaCardProps } from "../../types";
 import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
 
-export const MediaCard: FunctionComponent<MediaCardProps> = (props) => {
+export const MediaCard: FC<MediaCardProps> = (props) => {
   const { game, type } = props;
   const { id, background_image, name, parent_platforms } = game;
   const { gameDetail } = paths;

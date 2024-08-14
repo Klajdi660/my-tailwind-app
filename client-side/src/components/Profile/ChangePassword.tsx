@@ -1,4 +1,4 @@
-import { FunctionComponent, useMemo } from "react";
+import { FC, useMemo } from "react";
 import { Form } from "../Auth";
 import { Icon } from "../UI";
 import { changePasswordList } from "../../data";
@@ -7,7 +7,7 @@ import { useProfileService } from "../../services";
 import { ChangePasswordProps, ChangePasswordInput } from "../../types";
 import { updatePasswordValidation } from "../../utils";
 
-export const ChangePassword: FunctionComponent<ChangePasswordProps> = () => {
+export const ChangePassword: FC<ChangePasswordProps> = () => {
   const { user } = useAuth();
   const { changePassword } = useProfileService();
 

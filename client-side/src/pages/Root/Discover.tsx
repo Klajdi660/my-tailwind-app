@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { DiscoverPageProps, GameParams } from "../../types";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +11,7 @@ import { useScrollTo } from "framer-motion-scroll-to-hook";
 
 const cardDuration = 10;
 
-export const DiscoverPage: FunctionComponent<DiscoverPageProps> = () => {
+export const DiscoverPage: FC<DiscoverPageProps> = () => {
   // const { getGameList } = useGamesService();
   // const scrollTo = useScrollTo();
 
@@ -111,5 +111,3 @@ export const DiscoverPage: FunctionComponent<DiscoverPageProps> = () => {
     </section>
   );
 };
-
-export default DiscoverPage;

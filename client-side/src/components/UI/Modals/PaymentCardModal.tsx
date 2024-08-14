@@ -1,6 +1,6 @@
 import { Popover, Select } from "antd";
 import { useDispatch } from "react-redux";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import creditCardType from "credit-card-type";
 import { useForm, Controller } from "react-hook-form";
 import { SmallModal } from "./ModalContent";
@@ -46,7 +46,7 @@ const cvvContent = (
   </div>
 );
 
-export const PaymentCardModal: FunctionComponent<PaymentCardProps> = () => {
+export const PaymentCardModal: FC<PaymentCardProps> = () => {
   const { modals, setModalOpen } = useAppModal();
 
   const dispatch = useDispatch();

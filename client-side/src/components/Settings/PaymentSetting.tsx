@@ -1,5 +1,5 @@
 import { Select, Popover } from "antd";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Icon, Image } from "../UI";
 import { currencyList, cardImg } from "../../data";
@@ -12,7 +12,7 @@ interface NewCardContentProps {
   cardId: number;
 }
 
-const NewCardContent: FunctionComponent<NewCardContentProps> = (props) => {
+const NewCardContent: FC<NewCardContentProps> = (props) => {
   const { cardId } = props;
 
   const dispatch = useDispatch();
@@ -42,9 +42,7 @@ const maskCardNumber = (cardNumber: string) => {
   return maskedNumber + last4Digits;
 };
 
-export const PaymentSetting: FunctionComponent<PaymentSettingProps> = (
-  props
-) => {
+export const PaymentSetting: FC<PaymentSettingProps> = (props) => {
   const { setModalOpen } = useAppModal();
 
   const cards = useSelector((state: any) => state.settingCard.items);

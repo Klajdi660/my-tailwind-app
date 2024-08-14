@@ -1,8 +1,8 @@
 import { Modal } from "antd";
-import { FunctionComponent, CSSProperties } from "react";
+import { FC, CSSProperties } from "react";
 import { SmallModalProps, ModalDefaultStyles } from "../../../types";
 
-export const SmallModal: FunctionComponent<SmallModalProps> = (props) => {
+export const SmallModal: FC<SmallModalProps> = (props) => {
   const {
     onOk,
     open,

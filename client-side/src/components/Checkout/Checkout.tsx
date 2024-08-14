@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FC, useState } from "react";
 import { motion } from "framer-motion";
 import { CheckoutBody, CheckoutHeader } from "../Checkout";
 import { calculateTotalPrice } from "../../utils";
@@ -11,7 +11,7 @@ interface CartCheckoutPorps {
   setCheckoutOpen: (checkoutOpen: boolean) => void;
 }
 
-export const Checkout: FunctionComponent<CartCheckoutPorps> = (props) => {
+export const Checkout: FC<CartCheckoutPorps> = (props) => {
   const { setOpenSwitch, setCheckoutOpen, cartItems, quantities } = props;
 
   const [paymentMethod, setPaymentMethod] = useState<string>("bank");

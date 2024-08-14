@@ -1,13 +1,13 @@
-import { Fragment, FunctionComponent, useState } from "react";
+import { FC, Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorFormMessage } from "../Common";
 import { Button, IconButton } from "../UI";
-import { FormProps2, FormListItem } from "../../types";
+import { FormProps, FormListItem } from "../../types";
 import { classNames } from "../../utils";
 
-export const Form: FunctionComponent<FormProps2> = (props) => {
+export const Form: FC<FormProps> = (props) => {
   const { listForm, onSubmit, schema, defaultValues, data } = props;
 
   const [showPass, setShowPass] = useState(null);
@@ -27,7 +27,7 @@ export const Form: FunctionComponent<FormProps2> = (props) => {
   const btnTitle = !data?.resetPassEmailSent ? btnTxt : "Resend Email";
 
   return (
-    <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
       {!data?.resetPassEmailSent ? (
         <>
           {listForm.map((list: FormListItem, index: number) => {

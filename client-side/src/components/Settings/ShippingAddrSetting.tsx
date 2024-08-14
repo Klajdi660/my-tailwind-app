@@ -1,5 +1,5 @@
 import { Select } from "antd";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Country } from "country-state-city";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "../UI";
@@ -8,9 +8,7 @@ import { recommendedCountries } from "../../data";
 
 interface ShippingAddrSettingProps {}
 
-export const ShippingAddrSetting: FunctionComponent<
-  ShippingAddrSettingProps
-> = (props) => {
+export const ShippingAddrSetting: FC<ShippingAddrSettingProps> = (props) => {
   const { setModalOpen } = useAppModal();
 
   const allCountries = Country.getAllCountries();

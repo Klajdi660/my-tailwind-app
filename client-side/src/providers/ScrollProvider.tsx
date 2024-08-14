@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ProviderProps } from "../types";
 import { useNavScrollTrigger } from "../utils";
 
-export const ScrollProvider = ({ children }: ProviderProps) => {
+export const ScrollProvider: FC<ProviderProps> = ({ children }) => {
   const { pathname } = useLocation();
   const { setNavScrollTrigger } = useNavScrollTrigger();
 

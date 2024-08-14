@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { paths } from "../data";
 import { ComingSoonPageProps } from "../types";
 
-export const ComingSoonPage: FunctionComponent<ComingSoonPageProps> = () => {
+export const ComingSoonPage: FC<ComingSoonPageProps> = () => {
   const { discover } = paths;
 
   return (
@@ -22,5 +22,3 @@ export const ComingSoonPage: FunctionComponent<ComingSoonPageProps> = () => {
     </div>
   );
 };
-
-export default ComingSoonPage;

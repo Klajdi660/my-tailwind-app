@@ -1,12 +1,10 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { StorePageProps } from "../../types";
 
-export const StorePage: FunctionComponent<StorePageProps> = () => {
+export const StorePage: FC<StorePageProps> = () => {
   return (
     <>
       <h1 className="text-onNeutralBg">Store Page</h1>;
     </>
   );
 };
-
-export default StorePage;

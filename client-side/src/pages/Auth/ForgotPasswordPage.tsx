@@ -1,20 +1,16 @@
-import { FunctionComponent, useState } from "react";
-import { useForm } from "../../hooks";
-import { Template } from "../../components";
+import { FC, useState } from "react";
+import { FormTemplate } from "../../components";
 import { useAuthService } from "../../services";
 import { forgotPassValidation } from "../../utils";
 import { ForgotPasswordInput, ForgotPasswordPagePropes } from "../../types";
 
-export const ForgotPasswordPage: FunctionComponent<
-  ForgotPasswordPagePropes
-> = () => {
-  const { listForm } = useForm();
+export const ForgotPasswordPage: FC<ForgotPasswordPagePropes> = () => {
   const { forgotPassword } = useAuthService();
 
   const [resetPassEmail, setResetEmail] = useState<string>("");
   const [resetPassEmailSent, setResetPassEmailSent] = useState<boolean>(false);
 
-  const handleOnSubmit = async (values: ForgotPasswordInput) => {
+  const onSubmitForgotPassHandler = async (values: ForgotPasswordInput) => {
     try {
       await forgotPassword(values);
       setResetEmail(values.email);
@@ -25,13 +21,10 @@ export const ForgotPasswordPage: FunctionComponent<
   };
 
   return (
-    <Template
-      listForm={listForm}
-      onSubmit={handleOnSubmit}
+    <FormTemplate
+      onSubmit={onSubmitForgotPassHandler}
       schema={forgotPassValidation}
       data={{ resetPassEmailSent, resetPassEmail }}
     />
   );
 };
-
-export default ForgotPasswordPage;

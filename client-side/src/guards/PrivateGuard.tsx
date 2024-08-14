@@ -1,10 +1,8 @@
-import { FunctionComponent, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { ProviderProps } from "../types";
 import { isATokenExpired, useAppModal } from "../utils";
 
-export const PrivateGuard: FunctionComponent<ProviderProps> = ({
-  children,
-}) => {
+export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
   const { setModalOpen } = useAppModal();
 
   useEffect(() => {

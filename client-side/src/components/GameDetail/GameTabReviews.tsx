@@ -1,11 +1,11 @@
-import { FunctionComponent, useState } from "react";
+import { FC, useState } from "react";
 import { Image } from "../UI";
 import { userIcon } from "../../assets";
 import { ReadMore, StarRating } from "../Common";
 import { ReviewContentProps, GameTabReviewsProps } from "../../types";
 import { calculateTimePassed } from "../../utils";
 
-const ReviewContent: FunctionComponent<ReviewContentProps> = (props) => {
+const ReviewContent: FC<ReviewContentProps> = (props) => {
   const { gameReviews } = props;
 
   return (
@@ -45,9 +45,7 @@ const ReviewContent: FunctionComponent<ReviewContentProps> = (props) => {
   );
 };
 
-export const GameTabReviews: FunctionComponent<GameTabReviewsProps> = (
-  props
-) => {
+export const GameTabReviews: FC<GameTabReviewsProps> = (props) => {
   const { gameReviews } = props;
 
   const [reviewSortType, setReviewSortType] = useState("desc");

@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FC, useState } from "react";
 import dayjs from "dayjs";
 import { GameTabReviews } from "./GameTabReviews";
 import {
@@ -11,7 +11,7 @@ import { Tab } from "../UI";
 import { dateFormatList, gameTabsButton } from "../../data";
 import { GameTabDetailProps } from "../../types";
 
-export const GameTabDetail: FunctionComponent<GameTabDetailProps> = (props) => {
+export const GameTabDetail: FC<GameTabDetailProps> = (props) => {
   const { gameDetail, gameReviews } = props;
   const {
     released,

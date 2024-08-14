@@ -1,9 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Skeleton } from "./Skeleton";
 import { classNames } from "../../utils";
 import { TitleSkeletonProps } from "../../types";
 
-export const TitleSkeleton: FunctionComponent<TitleSkeletonProps> = (props) => {
+export const TitleSkeleton: FC<TitleSkeletonProps> = (props) => {
   const { type } = props;
 
   const gradientClass = "bg-gradient-to-l from-main to-card";

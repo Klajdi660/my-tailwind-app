@@ -1,19 +1,17 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useLocation } from "react-router-dom";
-import { useForm } from "../../hooks";
-import { Template } from "../../components";
+import { FormTemplate } from "../../components";
 import { verifyValidation } from "../../utils";
 import { useAuthService } from "../../services";
 import { VerifyEmailPagePorps, VerifyEmailInput } from "../../types";
 
-export const VerifyEmailPage: FunctionComponent<VerifyEmailPagePorps> = () => {
+export const VerifyEmailPage: FC<VerifyEmailPagePorps> = () => {
   const location = useLocation();
-  const { listForm } = useForm();
   const { verifyEmail, register } = useAuthService();
 
   const { registerData } = location.state || {};
 
-  const handleOnSubmit = async (values: VerifyEmailInput) => {
+  const onSubmitVerifyEmailHandler = async (values: VerifyEmailInput) => {
     try {
       const { code } = values;
       await verifyEmail({
@@ -25,7 +23,7 @@ export const VerifyEmailPage: FunctionComponent<VerifyEmailPagePorps> = () => {
     }
   };
 
-  const handleResendCode = async () => {
+  const resendCodeHandler = async () => {
     try {
       await register(registerData);
     } catch (error) {
@@ -34,14 +32,11 @@ export const VerifyEmailPage: FunctionComponent<VerifyEmailPagePorps> = () => {
   };
 
   return (
-    <Template
-      listForm={listForm}
+    <FormTemplate
       schema={verifyValidation}
-      onSubmit={handleOnSubmit}
-      handleResendCode={handleResendCode}
+      onSubmit={onSubmitVerifyEmailHandler}
+      resendCodeHandler={resendCodeHandler}
       data={registerData}
     />
   );
 };
-
-export default VerifyEmailPage;

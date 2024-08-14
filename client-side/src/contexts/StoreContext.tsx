@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import { createContext, useState } from "react";
+import { FC, createContext, useState } from "react";
 import {
   ProviderProps,
   StoreContextType,
@@ -30,7 +30,7 @@ const initialState: StoreContextType = {
 
 const StoreContext = createContext(initialState);
 
-const StoreProvider: React.FC<ProviderProps> = ({ children }) => {
+const StoreProvider: FC<ProviderProps> = ({ children }) => {
   const { user } = useAuth();
   const [lang, setLang] = useState<string>("al");
   const [currency, setCurrency] = useState<string>("");

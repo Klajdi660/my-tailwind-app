@@ -1,10 +1,12 @@
-import { FunctionComponent, HTMLProps, useState } from "react";
+import { FC, HTMLProps, useState } from "react";
 import { ReadMoreProps } from "../../types";
 import { classNames } from "../../utils";
 
-export const ReadMore: FunctionComponent<
-  ReadMoreProps & HTMLProps<HTMLSpanElement>
-> = ({ children, className = "", limitTextLength, ...others }) => {
+export const ReadMore: FC<ReadMoreProps & HTMLProps<HTMLSpanElement>> = (
+  props
+) => {
+  const { children, className = "", limitTextLength, ...others } = props;
+
   const [isReadingMore, setIsReadingMore] = useState(false);
 
   const content = isReadingMore

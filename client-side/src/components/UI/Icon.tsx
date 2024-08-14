@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { IconContext } from "react-icons";
 import {
   AiFillStar,
@@ -180,7 +180,7 @@ const icons: IconsMap = {
   TiTimes,
 };
 
-export const Icon: FunctionComponent<IconParams> = ({
+export const Icon: FC<IconParams> = ({
   name = "MdHome",
   size = 20,
   className = "",

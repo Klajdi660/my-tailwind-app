@@ -1,9 +1,9 @@
-import { forwardRef, FunctionComponent, Ref } from "react";
+import { forwardRef, FC, Ref } from "react";
 import { Icon } from "./Icon";
 import { classNames } from "../../utils";
 import { IconButtonProps } from "../../types";
 
-export const IconButton: FunctionComponent<IconButtonProps> = forwardRef(
+export const IconButton: FC<IconButtonProps> = forwardRef(
   (
     {
       name,

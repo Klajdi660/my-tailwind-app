@@ -14,7 +14,7 @@ export { Searchbar } from "./SearchBar";
 export * from "./UI/Modals/ModalContent";
 export * from "./Common/GameDetailCommon";
 export { HomeFooter } from "./HomeFooter";
-export { Template } from "./Auth/Template";
+export { FormTemplate } from "./Auth/FormTemplate";
 export { Sidebar } from "./Sidebar/Sidebar";
 export { Profile } from "./Profile/Profile";
 export { ReadMore } from "./Common/ReadMore";

@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../UI";
 import { paths } from "../../data";
@@ -7,7 +7,7 @@ import { CartItemProps } from "../../types";
 import { classNames, gameNameTruncate, calculateTotalPrice } from "../../utils";
 import { HiCheck } from "react-icons/hi";
 
-export const CartItem: FunctionComponent<CartItemProps> = (props) => {
+export const CartItem: FC<CartItemProps> = (props) => {
   const {
     item,
     cartItems,

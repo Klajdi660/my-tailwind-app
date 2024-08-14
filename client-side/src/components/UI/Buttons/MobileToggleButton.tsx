@@ -1,11 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Icon } from "../Icon";
 import { useAppUtil } from "../../../utils";
 import { MobileToggleButtonProps } from "../../../types";
 
-export const MobileToggleButton: FunctionComponent<
-  MobileToggleButtonProps
-> = () => {
+export const MobileToggleButton: FC<MobileToggleButtonProps> = () => {
   const { toggleMenu, setToggleMenu } = useAppUtil();
 
   return (

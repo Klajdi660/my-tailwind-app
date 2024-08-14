@@ -1,10 +1,10 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Image } from "./UI";
 import { useStore } from "../hooks";
 import { iconName } from "../assets";
 import { LoadingPorps } from "../types";
 
-export const Loading: FunctionComponent<LoadingPorps> = () => {
+export const Loading: FC<LoadingPorps> = () => {
   const { loading } = useStore();
   const [isLoading, setIsLoading] = useState(false);
 

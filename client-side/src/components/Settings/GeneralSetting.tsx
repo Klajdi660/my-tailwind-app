@@ -1,14 +1,12 @@
 import { Select } from "antd";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateThemeConfig } from "../../store";
 import { themeList, languageList } from "../../data";
 
 interface GeneralSettingProps {}
 
-export const GeneralSetting: FunctionComponent<GeneralSettingProps> = (
-  props
-) => {
+export const GeneralSetting: FC<GeneralSettingProps> = (props) => {
   const dispatch = useDispatch();
 
   const theme = useSelector((state: any) => state.theme);

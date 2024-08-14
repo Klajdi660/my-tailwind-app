@@ -1,10 +1,10 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useStore } from "../../hooks";
 import { TabProps } from "../../types";
 import { classNames } from "../../utils";
 import { Skeleton } from "../Skeleton/Skeleton";
 
-export const Tab: FunctionComponent<TabProps> = (props) => {
+export const Tab: FC<TabProps> = (props) => {
   const { tabs, currentTab, setCurrentTab } = props;
 
   const { loading } = useStore();

@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { mobileMoneyImg, bankImg } from "../../assets";
 import { classNames } from "../../utils";
 import { Radio } from "antd";
@@ -10,9 +10,9 @@ interface CheckoutPaymentMethodProps {
   setPaymentMethod: (paymentMethod: string) => void;
 }
 
-export const CheckoutPaymentMethod: FunctionComponent<
-  CheckoutPaymentMethodProps
-> = (props) => {
+export const CheckoutPaymentMethod: FC<CheckoutPaymentMethodProps> = (
+  props
+) => {
   const { paymentMethod, setPaymentMethod } = props;
 
   const onChange = (e: RadioChangeEvent) => {

@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Image } from "./Image";
 import { Button } from "./Button";
 import { useAuth } from "../../hooks";
@@ -6,7 +6,7 @@ import { ImgUploaderParams } from "../../types";
 import { userIcon, iconName } from "../../assets";
 import { useAppModal, useProfilePhoto } from "../../utils";
 
-export const ImgUploader: FunctionComponent<ImgUploaderParams> = () => {
+export const ImgUploader: FC<ImgUploaderParams> = () => {
   const { user } = useAuth();
   const { setModalOpen } = useAppModal();
   const { isUpdatingProfileImg } = useProfilePhoto();

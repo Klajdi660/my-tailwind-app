@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Image, Icon } from "./UI";
 import { icon } from "../assets";
 import { HomeFooterProps } from "../types";
 import { topFooter, bottomFooter } from "../data";
 
-export const HomeFooter: FunctionComponent<HomeFooterProps> = () => {
+export const HomeFooter: FC<HomeFooterProps> = () => {
   return (
     <div className="bg-neutralBgOpacity backdrop-blur-[50px]">
       <div className="flex flex-col lg:flex-row justify-between items-center gap-3 w-11/12 max-w-full mx-auto text-sm py-10 cursor-pointer">

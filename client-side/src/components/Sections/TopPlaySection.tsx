@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { TopPlayCard } from "../Cards";
 import { ShowMoreButton, Title } from "../UI";
@@ -8,9 +8,7 @@ import { classNames } from "../../utils";
 import { TopPlaySectionProps } from "../../types";
 import { TrackCardSkeleton, TitleSkeleton } from "../Skeleton";
 
-export const TopPlaySection: FunctionComponent<TopPlaySectionProps> = (
-  props
-) => {
+export const TopPlaySection: FC<TopPlaySectionProps> = (props) => {
   const {
     gameList,
     imageDims = "16",

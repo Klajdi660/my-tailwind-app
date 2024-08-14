@@ -1,15 +1,15 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { fontSizes } from "../../data";
 import { TitleProps } from "../../types";
 import { classNames } from "../../utils";
 
-export const Title: FunctionComponent<TitleProps> = (props) => {
+export const Title: FC<TitleProps> = (props) => {
   const { name, desc, type, divider = true, className, color } = props;
 
   const fontType = fontSizes[type] || "";
 
   return (
-    <div className="flex flex-col gap-3 mb-4">
+    <div className="flex flex-col gap-3 mb-6">
       <div className="flex_justify_between">
         <h2
           className={classNames(

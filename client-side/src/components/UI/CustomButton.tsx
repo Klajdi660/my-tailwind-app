@@ -1,8 +1,8 @@
 import { Button, Tooltip } from "antd";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { CustomButtonProps } from "../../types";
 
-export const CustomButton: FunctionComponent<CustomButtonProps> = (props) => {
+export const CustomButton: FC<CustomButtonProps> = (props) => {
   const { sidebarLinks, activeLink, handleLinkClick } = props;
 
   return (

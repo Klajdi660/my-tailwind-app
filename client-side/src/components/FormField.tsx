@@ -1,7 +1,7 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { FormFieldPorps } from "../types";
 
-export const FormField: FunctionComponent<FormFieldPorps> = (props) => {
+export const FormField: FC<FormFieldPorps> = (props) => {
   const { labelName, placeholder, inputType, isTextArea, value, handleChange } =
     props;
 

@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { SmallModal } from "./ModalContent";
 import { Icon } from "../Icon";
@@ -7,9 +7,7 @@ import { paths } from "../../../data";
 import { useAppModal } from "../../../utils";
 import { SessionExpiredProps } from "../../../types";
 
-export const SessionExpiredModal: FunctionComponent<
-  SessionExpiredProps
-> = () => {
+export const SessionExpiredModal: FC<SessionExpiredProps> = () => {
   const { home } = paths;
   const { modals, setModalOpen } = useAppModal();
   const navigate = useNavigate();

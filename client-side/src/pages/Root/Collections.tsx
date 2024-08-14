@@ -1,12 +1,10 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { CollectionPageProps } from "../../types";
 
-export const CollectionPage: FunctionComponent<CollectionPageProps> = () => {
+export const CollectionPage: FC<CollectionPageProps> = () => {
   return (
     <>
       <h1 className="text-onNeutralBg">Collection Page</h1>;
     </>
   );
 };
-
-export default CollectionPage;

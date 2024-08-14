@@ -2,14 +2,14 @@ import { Select } from "antd";
 import { State } from "country-state-city";
 import { Country } from "country-state-city";
 import { useForm, Controller } from "react-hook-form";
-import React, { FunctionComponent, useState } from "react";
+import React, { FC, useState } from "react";
 import { Button } from "./UI";
 import { LanguageProps } from "../types";
 import { useProfileService } from "../services";
 import { useUserSelectedData, useAuth } from "../hooks";
 import { currencyList, recommendedCountries, languageMaps } from "../data";
 
-export const Language: FunctionComponent<LanguageProps> = (props) => {
+export const Language: FC<LanguageProps> = (props) => {
   const { setOpen } = props;
   const { user } = useAuth();
   const { updateProfile } = useProfileService();

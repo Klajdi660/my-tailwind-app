@@ -25,46 +25,30 @@ export interface FormListItem {
 }
 
 export interface FormProps {
-  files?: any;
-  schema?: any;
+  listForm: FormListItem[] | any;
   onSubmit?: any;
-  setFiles?: any;
+  schema?: any;
   defaultValues?: any;
-  hasProvider?: boolean;
-  lists: FormListItem[] | any;
-}
-
-export interface FormProps2 {
-  user?: any;
   data?: any;
   files?: any;
-  schema?: any;
   setFiles?: any;
-  onSubmit?: any;
-  defaultValues?: any;
   hasProvider?: boolean;
-  listForm: FormListItem[] | any;
 }
 
 export interface OTPCodeFormProps {
   data: any;
   onSubmit: any;
-  linkTo: string;
-  btnText: string;
-  footerLink: string;
-  footerTitle: string;
-  handleResendCode: any;
+  resendCodeHandler: any;
 }
 
 export interface SocialAuthProps {}
 
-export interface TemplateProps {
+export interface FormTemplateProps {
   data?: any;
   schema: any;
-  listForm: any;
   onSubmit: any;
   defaultValues?: any;
-  handleResendCode?: any;
+  resendCodeHandler?: any;
 }
 
 // Card

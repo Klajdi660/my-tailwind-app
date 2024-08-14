@@ -1,11 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Skeleton } from "./Skeleton";
 import { classNames } from "../../utils";
 import { HeaderBannerSkeletonProps } from "../../types";
 
-export const HeaderBannerSkeleton: FunctionComponent<
-  HeaderBannerSkeletonProps
-> = (props) => {
+export const HeaderBannerSkeleton: FC<HeaderBannerSkeletonProps> = (props) => {
   const { type } = props;
 
   const gradientClass = "bg-gradient-to-l from-main to-card";

@@ -1,9 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { Icon } from "../Icon";
 import { ThemeButtonProps } from "../../../types";
 import { updateThemeConfig } from "../../../store";
 
-export const ThemeButton: FunctionComponent<ThemeButtonProps> = (props) => {
+export const ThemeButton: FC<ThemeButtonProps> = (props) => {
   const { mode, dispatch } = props;
 
   const toggleMode = () => {

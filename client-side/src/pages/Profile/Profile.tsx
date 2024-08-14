@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { ProfilePageProps } from "../../types";
 import { Title, Profile } from "../../components";
 
-export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
+export const ProfilePage: FC<ProfilePageProps> = () => {
   return (
     <section className="account_page">
       <Title name="Profile" type="large" />
@@ -10,5 +10,3 @@ export const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
     </section>
   );
 };
-
-export default ProfilePage;
