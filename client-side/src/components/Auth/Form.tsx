@@ -65,31 +65,30 @@ export const Form: FC<FormProps> = (props) => {
                             autoComplete={formName !== "login" ? "off" : "on"}
                           />
                           <span className="absolute right-2 top-[50%] translate-y-[-50%]">
-                            {!list.props.disabled && (
-                              <IconButton
-                                name={
-                                  ["password", "confirmPassword"]?.includes(
-                                    list.props.type
-                                  )
-                                    ? showPass?.[list.name]
-                                      ? "AiOutlineEyeInvisible"
-                                      : "AiOutlineEye"
-                                    : `${list.iconName}`
-                                }
-                                iconClassName={`text-secondary ${
-                                  ["password", "confirmPassword"]?.includes(
-                                    list.props.type
-                                  ) &&
-                                  "hover:text-onNeutralBg hover:scale-[1.1]"
-                                }`}
-                                onClick={() =>
-                                  setShowPass((prevS: any) => ({
-                                    ...prevS,
-                                    [list.name]: !prevS?.[list.name],
-                                  }))
-                                }
-                              />
-                            )}
+                            {/* {!list.props.disabled && ( */}
+                            <IconButton
+                              name={
+                                ["password", "confirmPassword"]?.includes(
+                                  list.props.type
+                                )
+                                  ? showPass?.[list.name]
+                                    ? "AiOutlineEyeInvisible"
+                                    : "AiOutlineEye"
+                                  : `${list.iconName}`
+                              }
+                              iconClassName={`text-secondary ${
+                                ["password", "confirmPassword"]?.includes(
+                                  list.props.type
+                                ) && "hover:text-onNeutralBg hover:scale-[1.1]"
+                              }`}
+                              onClick={() =>
+                                setShowPass((prevS: any) => ({
+                                  ...prevS,
+                                  [list.name]: !prevS?.[list.name],
+                                }))
+                              }
+                            />
+                            {/* )} */}
                           </span>
                         </div>
                       )}

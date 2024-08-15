@@ -11,26 +11,26 @@ import {
 } from "../components";
 import { useAppUtil } from "../utils";
 import { ProviderProps } from "../types";
-// import { useUserService } from "../services";
+import { useUserService } from "../services";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
   const { openSwitch } = useAppUtil();
   const [parent] = useAutoAnimate();
 
-  // const { getUserDetails } = useUserService();
+  const { getUserDetails } = useUserService();
 
-  // useEffect(() => {
-  //   const fetchUserDetails = async () => {
-  //     try {
-  //       const user = await getUserDetails();
-  //     } catch (error) {
-  //       console.error("Failed to fetch user details:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const user = await getUserDetails();
+      } catch (error) {
+        console.error("Failed to fetch user details:", error);
+      }
+    };
 
-  //   fetchUserDetails();
-  // }, []);
+    fetchUserDetails();
+  }, []);
 
   return (
     <div

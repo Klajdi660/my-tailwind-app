@@ -22,6 +22,8 @@ import payseraCardImg from "./PayseraCard.png";
 import paypalCardImg from "./PaypalCard.png";
 import americanExpressCardImg from "./AmericanExpressCard.png";
 import discoverCardImg from "./DiscoverCard.png";
+import gadOfWarImg from "./god-of-war.jpg";
+import gadOfWar2Img from "./gad-of-war-2.webp";
 
 export {
   icon,
@@ -48,4 +50,6 @@ export {
   paypalCardImg,
   americanExpressCardImg,
   discoverCardImg,
+  gadOfWarImg,
+  gadOfWar2Img,
 };

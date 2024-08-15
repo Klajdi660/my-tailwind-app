@@ -120,11 +120,13 @@ export const editProfileList: ProfileItemList[] = [
       placeholder: "",
     },
     name: "username",
+    iconName: "AiOutlineUser",
     label: "Username",
   },
   {
     type: "input",
     name: "email",
+    iconName: "AiOutlineMail",
     label: "Email",
     props: {
       type: "text",

@@ -99,6 +99,7 @@ export const useAuthService = (): AuthService => {
         .replace("%20", " ");
 
       const user = JSON.parse(atob(token.split(".")[1]));
+      console.log("user :>> ", user);
       localStorage.atoken = token;
       localStorage.user = JSON.stringify(user);
       authenticateUser({ id: user.id });

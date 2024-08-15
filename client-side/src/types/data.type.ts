@@ -96,6 +96,7 @@ export interface SettingsLinksParams {
 export interface ProfileItemList {
   type?: string;
   name?: string;
+  iconName?: string;
   label?: string;
   btnTxt?: string;
   formName?: string;

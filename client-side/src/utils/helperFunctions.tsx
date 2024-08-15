@@ -85,12 +85,12 @@ export const fileBlob = (files: File[] | null) => {
   }
 };
 
-export const getGameCroppedImgUrl = (url: string) => {
-  if (!url) return noGameImg;
-
-  const target = "media/";
-  const index = url.indexOf(target) + target.length;
-  return url.slice(0, index) + "crop/600/400/" + url.slice(index);
+const IMAGE_URL = "https://image.tmdb.org/t/p";
+export const resizeImage = (
+  imgUrl: string,
+  width: string = "original"
+): string => {
+  return `${IMAGE_URL}/${width}${imgUrl}`;
 };
 
 export const gameNameTruncate = (str: string, len: number) => {

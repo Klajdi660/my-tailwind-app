@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import dayjs from "dayjs";
@@ -10,7 +10,7 @@ import { useAuth } from "../../hooks";
 import { useProfileService } from "../../services";
 import { PersonalDetailsProps } from "../../types";
 
-export const PersonalDetails: FC<PersonalDetailsProps> = () => {
+export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const { user } = useAuth();
   const { updateProfile } = useProfileService();
 

@@ -7,7 +7,10 @@ import { topFooter, bottomFooter } from "../data";
 
 export const HomeFooter: FC<HomeFooterProps> = () => {
   return (
-    <div className="bg-neutralBgOpacity backdrop-blur-[50px]">
+    <div
+      className=""
+      // className="bg-neutralBgOpacity backdrop-blur-[50px]"
+    >
       <div className="flex flex-col lg:flex-row justify-between items-center gap-3 w-11/12 max-w-full mx-auto text-sm py-10 cursor-pointer">
         <div className="flex flex-row justify-center text-secondary gap-3">
           {topFooter.map((ele, i) => (

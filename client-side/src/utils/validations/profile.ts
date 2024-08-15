@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 export const editProfileValidation = yup
   .object({
-    email: yup.string().trim().email(),
+    // email: yup.string().trim().email(),
     username: yup
       .string()
       .trim()
@@ -18,16 +18,13 @@ export const personalDetailsValidation = yup
   .object({
     firstName: yup
       .string()
-      .required({ message: "Please input your First Name." })
-      .optional(),
+      .required({ message: "Please input your First Name." }),
     lastName: yup
       .string()
-      .required({ message: "Please input your Last Name." })
-      .optional(),
-    // address: yup
-    //   .string()
-    //   .required({ message: "Please input your address." })
-    //   .optional(),
+      .required({ message: "Please input your Last Name." }),
+    dateOfBirth: yup
+      .string()
+      .required({ message: "Please input your Birthday." }),
   })
   .required();
 

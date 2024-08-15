@@ -34,13 +34,13 @@ const AuthProvider: FC<ProviderProps> = ({ children }) => {
 
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
-  useEffect(() => {
-    const storedUser = getUserFromLocalStorage();
-    if (storedUser) {
-      setUser(storedUser);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [localStorage.atoken]);
+  // useEffect(() => {
+  //   const storedUser = getUserFromLocalStorage();
+  //   if (storedUser) {
+  //     setUser(storedUser);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [localStorage.atoken]);
 
   const authenticateUser = (user: User) => {
     setUser(user);

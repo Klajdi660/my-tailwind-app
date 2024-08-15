@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { ImageProps } from "../../types";
+import { resizeImage } from "../../utils";
 
 export const Image: FC<ImageProps> = (props) => {
   const { imgUrl, name, width, height, styles } = props;
