@@ -154,7 +154,7 @@ export interface GameParams {
   background_image: string;
   suggestions_count: number;
   reviews_text_count: number;
-  background_image_additional?: string;
+  background_image_additional: string;
   short_screenshots: { id: number; image: string }[];
   esrb_rating: { id: number; name: string; slug: string };
   ratings: { id: number; title: string; count: number; percent: number }[];
