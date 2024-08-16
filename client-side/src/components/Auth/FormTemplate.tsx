@@ -20,8 +20,8 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
   return (
     <div
       className={classNames(
-        `${formName}_section`,
-        "flex-col h-full py-6 m-auto bg-main flex justify-center items-center tw-absolute-center"
+        // `${formName}_section`,
+        "flex-col h-full py-6 m-auto bg-main flex_justify_center absolute_center"
       )}
     >
       <div className="w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 bg-card rounded">
