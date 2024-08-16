@@ -1,3 +1,33 @@
+// AUTH
+export { Form } from "./Auth/Form";
+export { FormTemplate } from "./Auth/FormTemplate";
+// export { OTPCodeForm } from "./Auth/OTPCodeForm";
+export { ProfileForm } from "./Auth/ProfileForm";
+export { SocialAuth } from "./Auth/SocialAuth";
+
+// CARDS
+export { MediaCard } from "./Cards/MediaCard";
+export { TopPlayCard } from "./Cards/TopPlayCard";
+
+// CART
+// export { CartBody } from "./Cart/CartBody";
+export { CartEmpty } from "./Cart/CartEmpty";
+export { CartFooter } from "./Cart/CartFooter";
+export { CartHeader } from "./Cart/CartHeader";
+export { CartItem } from "./Cart/CartItem";
+export { CartSwitcher } from "./Cart/CartSwitcher";
+
+// CHECKOUT
+// COMMON
+// GAME DETAIL
+// HOME
+export { SliderGames } from "./Home/SliderGames";
+// PROFILE
+// SECTIONS
+// SETTINGS
+// SIDEBAR
+// SKELETON
+// UI
 export { Tab } from "./UI/Tab";
 export { Footer } from "./Footer";
 export { Navbar } from "./NavBar";
@@ -14,19 +44,15 @@ export { Searchbar } from "./SearchBar";
 export * from "./UI/Modals/ModalContent";
 export * from "./Common/GameDetailCommon";
 export { HomeFooter } from "./HomeFooter";
-export { FormTemplate } from "./Auth/FormTemplate";
+
 export { Sidebar } from "./Sidebar/Sidebar";
 export { Profile } from "./Profile/Profile";
 export { ReadMore } from "./Common/ReadMore";
 export { UserInfo } from "./Profile/UserInfo";
 export { Notification } from "./Notification";
-export { MediaCard } from "./Cards/MediaCard";
-export { SocialAuth } from "./Auth/SocialAuth";
-// export { LoginForm } from "./Auth/LoginForm";
-export { TopPlayCard } from "./Cards/TopPlayCard";
-export { CartSwitcher } from "./Cart/CartSwitcher";
+
 export { EditProfile } from "./Profile/EditProfile";
-// export { OTPCodeForm } from "./Auth/OTPCodeForm";
+
 export { GameDetail } from "./GameDetail/GameDetail";
 export { MediaSection } from "./Sections/MediaSection";
 export { DeleteAccount } from "./Profile/DeleteAccount";

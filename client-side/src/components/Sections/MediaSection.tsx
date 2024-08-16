@@ -29,15 +29,14 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
   } = props;
   const [parent] = useAutoAnimate();
   // const { loading } = useStore();
-  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
-  if (!data) return;
+  // const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
+  // if (!data) return;
 
-  const dataLength = data.pages.reduce(
-    (total, page) => total + page.results.length,
-    0
-  );
+  // const dataLength = data.pages.reduce(
+  //   (total, page) => total + page.results.length,
+  //   0
+  // );
 
-  console.log("data :>> ", data);
   return (
     <>
       {/* {loading ? (
@@ -60,14 +59,14 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
           </div>
         </section>
       )} */}
-      <InfiniteScroll
+      {/* <InfiniteScroll
         dataLength={dataLength}
         next={fetchNextPage}
         hasMore={hasNextPage}
         loader={<div>Loading...</div>}
         endMessage={<></>}
-      >
-        {/* {isLoading && (
+      > */}
+      {/* {isLoading && (
           <div className="animate_skeleton">
             {enableTitle && <TitleSkeleton />}
             <div className={classNames("grid gap-4", grid?.[gridNumber])}>
@@ -75,7 +74,7 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
             </div>
           </div>
         )} */}
-        {data.pages &&
+      {/* {data.pages &&
           data.pages.map((page, index) => {
             return (
               <div
@@ -94,8 +93,8 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
             <li key={index}>
               <Skeleton className="h-0 pb-[160%]" />
             </li>
-          ))}
-      </InfiniteScroll>
+          ))} */}
+      {/* </InfiniteScroll> */}
     </>
   );
 };

@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { iconName } from "../../assets";
 import { HomePageProps } from "../../types";
 import { Image, Button, HomeFooter } from "../../components";
-import { useGames } from "../../hooks/useGames";
+import { useGame, useGameSlider } from "../../hooks";
+import { classNames } from "../../utils";
 
 const getBackgroundStyle = (imageUrl: string | undefined) => ({
   backgroundImage: `url(${imageUrl})`,
@@ -16,34 +17,31 @@ const getBackgroundStyle = (imageUrl: string | undefined) => ({
 });
 
 export const HomePage: FC<HomePageProps> = () => {
+  const { gamesSlider } = useGameSlider();
+
   const navigate = useNavigate();
 
-  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
+  const [backgroundImage, setBackgroundImage] = useState<string | undefined>();
+  const [selectedGameId, setSelectedGameId] = useState<number | undefined>();
 
-  const initialBackgroundImage =
-    data && data.pages.length > 0 && data.pages[0].results.length > 0
-      ? data.pages[0].results[0].background_image
-      : undefined;
+  const { gameDetail } = useGame(selectedGameId) as any;
 
-  const [backgroundImage, setBackgroundImage] = useState<string | undefined>(
-    initialBackgroundImage
-  );
-  const [selectedGame, setSelectedGame] = useState<{
-    id: number;
-    name: string;
-    background_image: string;
-  } | null>(null);
+  useEffect(() => {
+    if (gamesSlider && gamesSlider.length > 0) {
+      const initialBackgroundImage =
+        gamesSlider[0].background_image || undefined;
+      const initialGameId = gamesSlider[0].id || undefined;
+      setBackgroundImage(initialBackgroundImage);
+      setSelectedGameId(initialGameId);
+    }
+  }, [gamesSlider]);
 
-  if (!data) return null;
-
-  const handleImageChange = (game: {
-    id: number;
-    name: string;
-    background_image: string;
-  }) => {
-    setBackgroundImage(game.background_image);
-    setSelectedGame(game);
+  const selectedGameHandler = (gameId: number, imgUrl: string) => {
+    setSelectedGameId(gameId);
+    setBackgroundImage(imgUrl);
   };
+
+  if (!gamesSlider) return null;
 
   return (
     <div
@@ -80,45 +78,39 @@ export const HomePage: FC<HomePageProps> = () => {
             </motion.div>
           </div>
         </div>
-
         <div className="flex h-auto items-center justify-center my-10">
           <div className="flex w-11/12 max-w-full items-center justify-between">
-            {data.pages &&
-              data.pages.map((page, index) => (
-                <div
-                  key={index}
-                  className="flex flex-row items-start justify-end gap-2"
-                >
-                  {page.results.slice(0, 10).map((game) => (
-                    <div key={game.id} className="relative flex">
-                      <button
-                        onClick={() =>
-                          handleImageChange({
-                            id: game.id,
-                            name: game.name,
-                            background_image: game.background_image,
-                          })
-                        }
-                      >
-                        <Image
-                          imgUrl={game.background_image}
-                          styles={`rounded-xl object-cover transition-all duration-300 ${
-                            selectedGame?.id === game.id
-                              ? "w-36 h-36 shadow-lg border-2 border-white p-1"
-                              : "w-24 h-24 opacity-80 hover:opacity-100"
-                          }`}
-                        />
-                      </button>
-
-                      {selectedGame?.id === game.id && (
-                        <div className="w-[500px] text-white text-2xl absolute bottom-0 left-40">
-                          {selectedGame.name}
-                        </div>
+            <div className="flex flex-row items-start justify-end gap-2">
+              {gamesSlider?.map((game: any, index: number) => (
+                <div key={game.id} className="relative">
+                  <button
+                    onClick={() =>
+                      selectedGameHandler(game.id, game.background_image)
+                    }
+                  >
+                    <Image
+                      imgUrl={game.background_image}
+                      styles={classNames(
+                        "rounded-xl object-cover transition-all duration-300",
+                        selectedGameId === game.id
+                          ? "w-36 h-36 shadow-lg border-2 border-white p-1"
+                          : "w-24 h-24 opacity-80"
                       )}
+                    />
+                  </button>
+                  {selectedGameId === game.id && (
+                    <div
+                      className={classNames(
+                        "absolute bottom-3 w-[500px]",
+                        index === gamesSlider.length - 1 ? "right-0" : "left-40"
+                      )}
+                    >
+                      <p className="text-white text-2xl">{gameDetail?.name}</p>
                     </div>
-                  ))}
+                  )}
                 </div>
               ))}
+            </div>
           </div>
         </div>
       </div>

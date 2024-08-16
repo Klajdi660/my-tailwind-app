@@ -9,6 +9,7 @@ const {
   GET_GAME_DETAIL_API,
   GET_GAME_VIDEOS_API,
   GET_GAME_Reviews_API,
+  GET_GAME_SLIDER_API,
 } = gameEndpoints;
 
 export const useGamesService = () => {
@@ -23,6 +24,21 @@ export const useGamesService = () => {
 
     const getGameListResp = await HttpClient.get<ServerResponse>(url);
     const { error, message, data } = getGameListResp;
+    if (error) {
+      notify({
+        variant: "error",
+        description: message,
+      });
+      return;
+    }
+    return data;
+  };
+
+  const getGamesSlider = async () => {
+    const url = `${GET_GAME_SLIDER_API}`;
+
+    const getGameSliderResp = await HttpClient.get<ServerResponse>(url);
+    const { error, message, data } = getGameSliderResp;
     if (error) {
       notify({
         variant: "error",
@@ -61,17 +77,12 @@ export const useGamesService = () => {
   //   }
   // };
 
-  const getGameDetail = async (
-    values:
-      | string
-      | string[][]
-      | Record<string, string>
-      | URLSearchParams
-      | undefined
-  ): Promise<void> => {
+  const getGameDetail = async (gameId: string): Promise<void> => {
     try {
-      const params = new URLSearchParams(values).toString();
-      console.log("params :>> ", params);
+      // const params = new URLSearchParams(values).toString();
+      const params = new URLSearchParams({
+        gameId: gameId,
+      })?.toString();
       const url = `${GET_GAME_DETAIL_API}?${params}`;
 
       setLoading(true);
@@ -151,5 +162,6 @@ export const useGamesService = () => {
     getGameVideos,
     getGameReviews,
     getGames,
+    getGamesSlider,
   };
 };

@@ -37,4 +37,5 @@ export const gameEndpoints = {
   GET_GAME_DETAIL_API: "/games/game-detail",
   GET_GAME_VIDEOS_API: "/games/game-videos",
   GET_GAME_Reviews_API: "/games/game-reviews",
+  GET_GAME_SLIDER_API: "/games/game-slider",
 };

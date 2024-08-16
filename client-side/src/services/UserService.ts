@@ -16,7 +16,7 @@ export const useUserService = () => {
     try {
       const userId = user?.id;
       if (!userId) throw new Error("User ID is not available");
-      console.log("user?.id :>> ", user?.id);
+
       const url = `${GET_USER_DETAILS_API}/${userId}`;
 
       setLoading(true);
