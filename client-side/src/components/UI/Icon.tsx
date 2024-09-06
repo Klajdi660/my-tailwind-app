@@ -53,11 +53,13 @@ import {
   FaOpencart,
   FaWpexplorer,
   FaPlaystation,
+  FaClock,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiUpload } from "react-icons/fi";
 import { GoDotFill } from "react-icons/go";
 import { HiMenuAlt2, HiCheck } from "react-icons/hi";
+import { HiChartBar } from "react-icons/hi2";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { LiaSignOutAltSolid, LiaCarSideSolid } from "react-icons/lia";
 import { LuShip } from "react-icons/lu";
@@ -112,6 +114,7 @@ const icons: IconsMap = {
   AiOutlineCloudUpload,
   AiOutlineEyeInvisible,
   AiOutlineExclamationCircle,
+  FaClock,
   BiPlus,
   BiLock,
   BiGame,
@@ -148,6 +151,7 @@ const icons: IconsMap = {
   GoDotFill,
   HiCheck,
   HiMenuAlt2,
+  HiChartBar,
   IoMdNotificationsOutline,
   LiaCarSideSolid,
   LiaSignOutAltSolid,

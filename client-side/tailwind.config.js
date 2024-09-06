@@ -93,6 +93,20 @@ module.exports = {
       borderRadius: {
         DEFAULT: "var(--border-radius)",
       },
+
+      fontFamily: {
+        luminariFantasy: ["Luminari", "fantasy"],
+        impactFantasy: ["Impact", "fantasy"],
+        markerFantasy: ["Marker Felt", "fantasy"],
+        bradleyCursive: ["Bradley Hand", "cursive"],
+        brushCursive: ["Brush Script MT", "Brush Script Std", "cursive"],
+        monospace: ["monospace"],
+        newCenturySchoolbook: [
+          "New Century Schoolbook",
+          "TeX Gyre Schola",
+          "serif",
+        ],
+      },
     },
   },
   plugins: [],

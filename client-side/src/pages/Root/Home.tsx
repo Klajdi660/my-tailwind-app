@@ -12,8 +12,6 @@ const getBackgroundStyle = (imageUrl: string | undefined) => ({
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
-  // backgroundBlendMode: "overlay",
-  // backgroundColor: "rgba(0,0,0,0.6)",
 });
 
 export const HomePage: FC<HomePageProps> = () => {
@@ -64,7 +62,7 @@ export const HomePage: FC<HomePageProps> = () => {
             "linear-gradient(to top, rgba(255, 255, 255, 0.3), rgba(0,0,0,0.8))",
         }}
       >
-        <div className="flex h-navbar items-center justify-center">
+        <div className="flex justify-center">
           <div className="flex w-11/12 max-w-full items-center justify-between mt-10">
             <Link to="/">
               <motion.div whileHover={{ scale: 1.1 }}>
@@ -87,9 +85,9 @@ export const HomePage: FC<HomePageProps> = () => {
             </motion.div>
           </div>
         </div>
-        <div className="flex h-auto items-center justify-center my-10">
-          <div className="flex w-11/12 max-w-full items-center justify-between">
-            <div className="flex md:flex-row flex-col items-start justify-end gap-2">
+        <div className="flex items-center justify-center my-16">
+          <div className="flex flex-col w-11/12 max-w-full">
+            <div className="flex md:flex-row flex-col items-start justify-start gap-2">
               {gamesSlider?.map((game: any, index: number) => (
                 <div key={game.id} className="relative flex items-end">
                   <button
@@ -112,16 +110,7 @@ export const HomePage: FC<HomePageProps> = () => {
                     />
                   </button>
                   {selectedGameId === game.id && (
-                    <div
-                      className={classNames(
-                        // "absolute bottom-3 flex flex-row items-center gap-2",
-                        "flex flex-row gap-2 items-center",
-                        "fixed ml-40"
-                        // index === gamesSlider.length - 1
-                        //   ? "static mr-40"
-                        //   : "fixed ml-40"
-                      )}
-                    >
+                    <div className="flex flex-row gap-2 items-center fixed ml-40">
                       <div className="flex gap-2 p-2 bg-white rounded-md">
                         <PlatformIconList
                           className="text-onNeutralBg"
@@ -134,6 +123,59 @@ export const HomePage: FC<HomePageProps> = () => {
                 </div>
               ))}
             </div>
+            {gameDetail && (
+              <div className="flex flex-row justify-between items-end">
+                <div className="flex flex-col gap-16">
+                  <div className="flex text-white text-5xl font-newCenturySchoolbook">
+                    {gameDetail.name}
+                  </div>
+                  <div className="flex flex-row gap-6">
+                    <motion.div className="hover:brightness-110">
+                      <Button
+                        className="w-60 h-14 bg-white bg-opacity-10 text-white text-xl font-normal rounded-full"
+                        iconClassName="text-white"
+                        variant="none"
+                        label="Buy Game"
+                        labelIcon="CiShoppingTag"
+                        size={25}
+                      />
+                    </motion.div>
+                    <motion.div className="hover:brightness-110">
+                      <Button
+                        className="w-14 h-14 bg-white bg-opacity-10 text-white text-xl font-normal rounded-full"
+                        iconClassName="text-white"
+                        variant="none"
+                        labelIcon="BsThreeDots"
+                      />
+                    </motion.div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-6">
+                  <Image
+                    imgUrl={gameDetail.background_image}
+                    styles={classNames(
+                      "w-52 h-60 rounded-lg object-cover transition-all duration-300"
+                    )}
+                  />
+                  <div className="flex justify-between">
+                    <Button
+                      className="w-20 h-10 bg-white bg-opacity-10 text-white text-lg font-normal rounded-xl"
+                      iconClassName="text-white"
+                      variant="none"
+                      label={gameDetail.metacritic}
+                      labelIcon="HiChartBar"
+                    />
+                    <Button
+                      className="w-20 h-10 bg-white bg-opacity-10 text-white text-lg font-normal rounded-xl"
+                      iconClassName="text-white"
+                      variant="none"
+                      label={`${gameDetail.playtime}h`}
+                      labelIcon="FaClock"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
