@@ -56,128 +56,125 @@ export const HomePage: FC<HomePageProps> = () => {
       style={getBackgroundStyle(backgroundImage)}
     >
       <div
-        className="w-full h-screen"
+        className="w-full h-screen p-12 flex flex-col gap-12"
         style={{
           backgroundImage:
             "linear-gradient(to top, rgba(255, 255, 255, 0.3), rgba(0,0,0,0.8))",
         }}
       >
-        <div className="flex justify-center">
-          <div className="flex w-11/12 max-w-full items-center justify-between mt-10">
-            <Link to="/">
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <Image imgUrl={iconName} name="App Logo" width={150} />
-              </motion.div>
-            </Link>
-            <motion.div
-              className="hover:brightness-110"
-              whileTap={{ scale: 0.8 }}
-              whileHover={{ scale: 1.1 }}
-            >
-              <Button
-                className="w-24 bg-white bg-opacity-10 text-white"
-                iconClassName="text-white"
-                variant="none"
-                label="Login"
-                labelIcon="MdLogin"
-                onClick={() => navigate("/login")}
-              />
+        <div className="flex items-center justify-between">
+          <Link to="/">
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <Image imgUrl={iconName} name="App Logo" width={150} />
             </motion.div>
-          </div>
+          </Link>
+          <motion.div
+            className="hover:brightness-110"
+            whileTap={{ scale: 0.8 }}
+            whileHover={{ scale: 1.1 }}
+          >
+            <Button
+              className="w-24 bg-white bg-opacity-10 text-white"
+              iconClassName="text-white"
+              variant="none"
+              label="Login"
+              labelIcon="MdLogin"
+              onClick={() => navigate("/login")}
+            />
+          </motion.div>
         </div>
-        <div className="flex items-center justify-center my-16">
-          <div className="flex flex-col w-11/12 max-w-full">
-            <div className="flex md:flex-row flex-col items-start justify-start gap-2">
-              {gamesSlider?.map((game: any, index: number) => (
-                <div key={game.id} className="relative flex items-end">
-                  <button
-                    onClick={() =>
-                      selectedGameHandler(
-                        game.id,
-                        game.background_image,
-                        game.parent_platforms
-                      )
-                    }
-                  >
-                    <Image
-                      imgUrl={game.background_image}
-                      styles={classNames(
-                        "rounded-xl object-cover transition-all duration-300",
-                        selectedGameId === game.id
-                          ? "w-36 h-36 shadow-lg border-2 border-white p-1"
-                          : "w-24 h-24 opacity-80"
-                      )}
-                    />
-                  </button>
-                  {selectedGameId === game.id && (
-                    <div className="flex flex-row gap-2 items-center fixed ml-40">
-                      <div className="flex gap-2 p-2 bg-white rounded-md">
-                        <PlatformIconList
-                          className="text-onNeutralBg"
-                          platforms={platformsIcon.map((p: any) => p.platform)}
-                        />
-                      </div>
-                      <p className="text-white text-2xl">{gameDetail?.name}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-            {gameDetail && (
-              <div className="flex flex-row justify-between items-end">
-                <div className="flex flex-col gap-16">
-                  <div className="flex text-white text-5xl font-newCenturySchoolbook">
-                    {gameDetail.name}
-                  </div>
-                  <div className="flex flex-row gap-6">
-                    <motion.div className="hover:brightness-110">
-                      <Button
-                        className="w-60 h-14 bg-white bg-opacity-10 text-white text-xl font-normal rounded-full"
-                        iconClassName="text-white"
-                        variant="none"
-                        label="Buy Game"
-                        labelIcon="CiShoppingTag"
-                        size={25}
-                      />
-                    </motion.div>
-                    <motion.div className="hover:brightness-110">
-                      <Button
-                        className="w-14 h-14 bg-white bg-opacity-10 text-white text-xl font-normal rounded-full"
-                        iconClassName="text-white"
-                        variant="none"
-                        labelIcon="BsThreeDots"
-                      />
-                    </motion.div>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-6">
+        <div className="flex items-center justify-start">
+          <div className="flex md:flex-row flex-col items-start justify-start gap-2">
+            {gamesSlider?.map((game: any, index: number) => (
+              <div key={game.id} className="relative flex items-end">
+                <button
+                  onClick={() =>
+                    selectedGameHandler(
+                      game.id,
+                      game.background_image,
+                      game.parent_platforms
+                    )
+                  }
+                >
                   <Image
-                    imgUrl={gameDetail.background_image}
+                    imgUrl={game.background_image}
                     styles={classNames(
-                      "w-52 h-60 rounded-lg object-cover transition-all duration-300"
+                      "rounded-xl object-cover transition-all duration-300",
+                      selectedGameId === game.id
+                        ? "w-36 h-36 shadow-lg border-2 border-white p-1"
+                        : "w-24 h-24 opacity-80"
                     )}
                   />
-                  <div className="flex justify-between">
-                    <Button
-                      className="w-20 h-10 bg-white bg-opacity-10 text-white text-lg font-normal rounded-xl"
-                      iconClassName="text-white"
-                      variant="none"
-                      label={gameDetail.metacritic}
-                      labelIcon="HiChartBar"
-                    />
-                    <Button
-                      className="w-20 h-10 bg-white bg-opacity-10 text-white text-lg font-normal rounded-xl"
-                      iconClassName="text-white"
-                      variant="none"
-                      label={`${gameDetail.playtime}h`}
-                      labelIcon="FaClock"
-                    />
+                </button>
+                {selectedGameId === game.id && (
+                  <div className="flex flex-row gap-2 items-center fixed ml-40">
+                    <div className="flex gap-2 p-2 bg-white rounded-md">
+                      <PlatformIconList
+                        className="text-onNeutralBg"
+                        platforms={platformsIcon.map((p: any) => p.platform)}
+                      />
+                    </div>
+                    <p className="text-white text-2xl">{gameDetail?.name}</p>
                   </div>
-                </div>
+                )}
               </div>
-            )}
+            ))}
           </div>
         </div>
+        {/* Move the gameDetail section to the bottom */}
+        {gameDetail && (
+          <div className="mt-auto flex items-end justify-between">
+            <div className="flex flex-col gap-16">
+              <div className="flex text-white text-5xl font-newCenturySchoolbook">
+                {gameDetail.name}
+              </div>
+              <div className="flex flex-row gap-6">
+                <motion.div className="hover:brightness-110">
+                  <Button
+                    className="w-60 h-14 bg-white bg-opacity-10 text-white text-xl font-normal rounded-full"
+                    iconClassName="text-white"
+                    variant="none"
+                    label="Buy Game"
+                    labelIcon="CiShoppingTag"
+                    size={25}
+                  />
+                </motion.div>
+                <motion.div className="hover:brightness-110">
+                  <Button
+                    className="w-14 h-14 bg-white bg-opacity-10 text-white text-xl font-normal rounded-full"
+                    iconClassName="text-white"
+                    variant="none"
+                    labelIcon="BsThreeDots"
+                  />
+                </motion.div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-6">
+              <Image
+                imgUrl={gameDetail.background_image}
+                styles={classNames(
+                  "w-52 h-60 rounded-lg object-cover transition-all duration-300"
+                )}
+              />
+              <div className="flex justify-between">
+                <Button
+                  className="w-20 h-10 bg-white bg-opacity-10 text-white text-lg font-normal rounded-xl"
+                  iconClassName="text-white"
+                  variant="none"
+                  label={gameDetail.metacritic}
+                  labelIcon="HiChartBar"
+                />
+                <Button
+                  className="w-20 h-10 bg-white bg-opacity-10 text-white text-lg font-normal rounded-xl"
+                  iconClassName="text-white"
+                  variant="none"
+                  label={`${gameDetail.playtime}h`}
+                  labelIcon="FaClock"
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
