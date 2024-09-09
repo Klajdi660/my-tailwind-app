@@ -2,14 +2,17 @@ import { FC } from "react";
 // import { useQuery } from "@tanstack/react-query";
 // import { useFetchGame } from "../../lib";
 import { BrowsePageProps } from "../../types";
-import { MediaSection } from "../../components";
+import { MediaSection, Button } from "../../components";
 // import { useGamesService } from "../../services";
-// import { useGames } from "../../hooks/useGames";
+import { useGames, useScrollPosition } from "../../hooks";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { classNames } from "../../utils";
 
 export const BrowsePage: FC<BrowsePageProps> = () => {
   const [parent] = useAutoAnimate();
+  const isShowScrollUpBtn = useScrollPosition();
   // const { getGameList } = useGamesService();
+  // const [isShowScrollUpBtn, setIsShowScrollUpBtn] = useState(false);
 
   // const queryOptions = {
   //   queryKey: ["discover"],
@@ -25,15 +28,36 @@ export const BrowsePage: FC<BrowsePageProps> = () => {
   //   gameKey: "discover",
   // });
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="browse_page flex flex-col" ref={parent}>
-      <MediaSection
-        type="playlist"
-        title="Discover"
-        // gameList={gameList}
-        skeletonItemNumber={5}
-        subTitle="Explore sonic realms with our Discover feature."
-      />
-    </div>
+    <>
+      {isShowScrollUpBtn && (
+        <div className="group">
+          <Button
+            iconClassName="group-hover:text-white"
+            variant="none"
+            labelIcon="RiArrowUpLine"
+            size={22}
+            onClick={scrollToTop}
+            className="fixed bottom-40 right-60 z-50 py-4 rounded-full bg-primary-opacity group-hover:bg-primary"
+          />
+        </div>
+      )}
+      <div className="browse_page flex flex-col" ref={parent}>
+        <MediaSection
+          type="playlist"
+          title="Discover"
+          // gameList={gameList}
+          skeletonItemNumber={5}
+          subTitle="Explore sonic realms with our Discover feature."
+        />
+      </div>
+    </>
   );
 };

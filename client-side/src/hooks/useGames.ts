@@ -14,18 +14,21 @@ interface UseGamesParams {
 
 export const useGames = () => {
   const { getGames } = useGamesService();
-  const { data: gameList } = useInfiniteQuery<FetchResponse<GameParams>, Error>(
-    {
-      queryKey: ["games"],
-      queryFn: async ({ pageParam = 1 }) => await getGames(pageParam),
-      getNextPageParam: (lastPage, allPages) => {
-        return lastPage.next ? allPages.length + 1 : undefined;
-      },
-      initialPageParam: 1,
-    }
-  );
+  const {
+    data: gameList,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery<FetchResponse<GameParams>, Error>({
+    queryKey: ["games"],
+    queryFn: async ({ pageParam = 1 }) => await getGames(pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.next ? allPages.length + 1 : undefined;
+    },
+    initialPageParam: 1,
+  });
 
-  return { gameList };
+  return { gameList, isLoading, fetchNextPage, hasNextPage };
 };
 
 export const useGame = (gameId: number | any) => {

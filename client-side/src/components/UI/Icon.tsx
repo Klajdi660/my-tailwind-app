@@ -36,6 +36,7 @@ import {
   BsShieldLock,
   BsFillPlayFill,
   BsNintendoSwitch,
+  BsFillArrowUpCircleFill,
 } from "react-icons/bs";
 import { CiShoppingTag } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
@@ -80,11 +81,16 @@ import {
   MdOutlineAddCircleOutline,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
-import { PiWarningCircle, PiWarningCircleBold } from "react-icons/pi";
+import {
+  PiWarningCircle,
+  PiWarningCircleBold,
+  PiArrowFatLinesUp,
+} from "react-icons/pi";
 import {
   RiFirefoxLine,
   RiInstagramFill,
   RiSecurePaymentLine,
+  RiArrowUpLine,
 } from "react-icons/ri";
 import {
   SlArrowUp,
@@ -130,6 +136,7 @@ const icons: IconsMap = {
   BsShieldLock,
   BsFillPlayFill,
   BsNintendoSwitch,
+  BsFillArrowUpCircleFill,
   CiShoppingTag,
   CgGames,
   FaUser,
@@ -173,9 +180,11 @@ const icons: IconsMap = {
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,
+  PiArrowFatLinesUp,
   RiFirefoxLine,
   RiInstagramFill,
   RiSecurePaymentLine,
+  RiArrowUpLine,
   SlArrowUp,
   SlLocationPin,
   SlSocialDropbox,

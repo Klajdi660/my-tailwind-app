@@ -5,7 +5,7 @@ import { useStore } from "../../hooks";
 import { classNames } from "../../utils";
 import { MediaSectionProps } from "../../types";
 import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
-import { useGames } from "../../hooks/useGames";
+import { useGames } from "../../hooks";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Skeleton } from "../Common/Skeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -25,17 +25,18 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
     skeletonItemNumber = gridNumber * 2,
     title,
     subTitle,
-    gameList,
+    // gameList,
   } = props;
   const [parent] = useAutoAnimate();
   // const { loading } = useStore();
-  // const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
-  // if (!data) return;
 
-  // const dataLength = data.pages.reduce(
-  //   (total, page) => total + page.results.length,
-  //   0
-  // );
+  const { gameList, isLoading, fetchNextPage, hasNextPage } = useGames();
+  if (!gameList) return;
+
+  const dataLength = gameList.pages.reduce(
+    (total, page) => total + page.results.length,
+    0
+  );
 
   return (
     <>
@@ -59,23 +60,23 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
           </div>
         </section>
       )} */}
-      {/* <InfiniteScroll
+      <InfiniteScroll
         dataLength={dataLength}
         next={fetchNextPage}
         hasMore={hasNextPage}
         loader={<div>Loading...</div>}
         endMessage={<></>}
-      > */}
-      {/* {isLoading && (
+      >
+        {isLoading && (
           <div className="animate_skeleton">
             {enableTitle && <TitleSkeleton />}
             <div className={classNames("grid gap-4", grid?.[gridNumber])}>
               <MediaCardSkeleton number={skeletonItemNumber} type={type} />
             </div>
           </div>
-        )} */}
-      {/* {data.pages &&
-          data.pages.map((page, index) => {
+        )}
+        {gameList.pages &&
+          gameList.pages.map((page, index) => {
             return (
               <div
                 ref={parent}
@@ -88,13 +89,13 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
               </div>
             );
           })}
-        {!data.pages &&
+        {!gameList.pages &&
           [...new Array(15)].map((_, index) => (
             <li key={index}>
               <Skeleton className="h-0 pb-[160%]" />
             </li>
-          ))} */}
-      {/* </InfiniteScroll> */}
+          ))}
+      </InfiniteScroll>
     </>
   );
 };

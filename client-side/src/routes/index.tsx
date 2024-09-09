@@ -42,36 +42,36 @@ const {
 
 export const Routes = () =>
   useRoutes([
-    // {
-    //   path: browse,
-    //   element: (
-    //     <PrivateGuard>
-    //       <PrivateLayout>
-    //         <BrowsePage />
-    //       </PrivateLayout>
-    //     </PrivateGuard>
-    //   ),
-    // },
-    // {
-    //   path: discover,
-    //   element: (
-    //     <PrivateGuard>
-    //       <PrivateLayout>
-    //         <DiscoverPage />
-    //       </PrivateLayout>
-    //     </PrivateGuard>
-    //   ),
-    // },
-    // {
-    //   path: `${gameDetail}/:gameId`,
-    //   element: (
-    //     <PrivateGuard>
-    //       <PrivateLayout>
-    //         <GameDetailPage />
-    //       </PrivateLayout>
-    //     </PrivateGuard>
-    //   ),
-    // },
+    {
+      path: browse,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <BrowsePage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
+    {
+      path: discover,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <DiscoverPage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
+    {
+      path: `${gameDetail}/:gameId`,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <GameDetailPage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
     {
       path: forgotPassword,
       element: (
