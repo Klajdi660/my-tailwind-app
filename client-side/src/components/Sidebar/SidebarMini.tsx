@@ -42,7 +42,7 @@ export const SidebarMini: FC = () => {
     }
 
     navigate(link.to);
-    localStorage.lastLocation = link.name.toLowerCase();
+    // localStorage.lastLocation = link.name.toLowerCase();
   };
 
   useEffect(() => {

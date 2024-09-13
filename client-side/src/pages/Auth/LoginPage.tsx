@@ -14,11 +14,11 @@ export const LoginPage: FC<LoginPageProps> = () => {
 
   const rememberMe = useAppSelector((state) => state.rememberMe);
 
-  useEffect(() => {
-    if (localStorage.user) {
-      navigate("/discover");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.user) {
+  //     navigate("/discover");
+  //   }
+  // }, []);
 
   const onSubmitLoginHandler = async (values: LoginUserValues) => {
     setIsSubmitting(true);
@@ -36,7 +36,7 @@ export const LoginPage: FC<LoginPageProps> = () => {
     if (rememberMe.remember && isRTokenExpired()) {
       return rememberMe;
     } else {
-      delete localStorage.rtoken;
+      // delete localStorage.rtoken;
       return {};
     }
   })();

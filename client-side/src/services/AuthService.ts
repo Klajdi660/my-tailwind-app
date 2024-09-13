@@ -13,7 +13,14 @@ import { paths } from "../data";
 import { HttpClient } from "../client";
 import { globalObject } from "../utils";
 import { useAuth, useNotification, useStore } from "../hooks";
-import { clearRememberMeData, saveRememberMeData } from "../store";
+import {
+  clearRememberMeData,
+  saveRememberMeData,
+  setAToken,
+  setRToken,
+  setUser,
+  setLoading,
+} from "../store";
 
 const {
   LOGIN_API,
@@ -28,18 +35,18 @@ export const useAuthService = (): AuthService => {
   const { discover } = paths;
 
   const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
-  const { setLoading } = useStore();
+  // const { setLoading } = useStore();
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const login = async (values: LoginUserValues): Promise<void> => {
     try {
-      setLoading(true);
+      dispatch(setLoading(true));
 
       const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, values);
 
-      setLoading(false);
+      dispatch(setLoading(false));
 
       const { error, message, data } = loginResp;
       if (error) {
@@ -58,31 +65,35 @@ export const useAuthService = (): AuthService => {
 
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));
 
+      dispatch(setAToken(aToken));
+      dispatch(setRToken(rToken));
+      dispatch(setUser(user));
+
       localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
       localStorage.rtoken = JSON.stringify(rtoken);
 
-      if (values.remember) {
-        const rememberType = values.identifier.includes("@")
-          ? "email"
-          : "username";
+      // if (values.remember) {
+      //   const rememberType = values.identifier.includes("@")
+      //     ? "email"
+      //     : "username";
 
-        dispatch(
-          saveRememberMeData({
-            ...values,
-            rememberType,
-          })
-        );
-      } else {
-        dispatch(clearRememberMeData());
-      }
+      //   dispatch(
+      //     saveRememberMeData({
+      //       ...values,
+      //       rememberType,
+      //     })
+      //   );
+      // } else {
+      //   dispatch(clearRememberMeData());
+      // }
 
-      setLToken(aToken);
-      globalObject.lToken = data.aToken;
-      authenticateUser({ id: user.id });
+      // setLToken(aToken);
+      // globalObject.lToken = data.aToken;
+      // authenticateUser({ id: user.id });
       navigate(`${discover}`);
     } catch (error) {
-      setLoading(false);
+      dispatch(setLoading(false));
       notify({
         variant: "error",
         description: "Login failed. Incorrect email/username or password",
@@ -185,10 +196,13 @@ export const useAuthService = (): AuthService => {
     try {
       await HttpClient.get<AuthResponse>(LOGOUT_API);
 
-      unAuthenticateUser();
+      // unAuthenticateUser();
+
       delete localStorage.atoken;
       delete localStorage.user;
-      delete localStorage.lastLocation;
+      delete localStorage.rtoken;
+
+      // delete localStorage.lastLocation;
       navigate("/");
     } catch (error) {
       notify({

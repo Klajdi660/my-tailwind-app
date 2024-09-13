@@ -75,7 +75,7 @@ export const Sidebar: FC<SidebarPorps> = () => {
     }
 
     navigate(link.to);
-    localStorage.lastLocation = link.name.toLowerCase();
+    // localStorage.lastLocation = link.name.toLowerCase();
   };
 
   useEffect(() => {

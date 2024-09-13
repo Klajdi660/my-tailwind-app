@@ -8,6 +8,7 @@ import { useAuth } from "../../hooks";
 import { useAuthService } from "../../services";
 import { UserMenuProps, ProfileDropdownProps } from "../../types";
 import { classNames, useAppModal } from "../../utils";
+import { useAppSelector } from "../../store";
 
 const UserMenu: FC<UserMenuProps> = (props) => {
   const { user, hidden } = props;
@@ -87,8 +88,13 @@ const UserMenu: FC<UserMenuProps> = (props) => {
 };
 
 export const ProfileDropdown: FC<ProfileDropdownProps> = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+
   const [open, setOpen] = useState(false);
+
+  const { user } = useAppSelector((state) => state.user);
+
+  console.log("user ppp :>> ", user);
 
   const hidden = () => {
     setOpen(false);
@@ -98,7 +104,7 @@ export const ProfileDropdown: FC<ProfileDropdownProps> = () => {
     setOpen(newOpen);
   };
 
-  if (!user) return null;
+  // if (!user) return null;
 
   return (
     <div className="flex items-center h-full profile cursor-pointer">

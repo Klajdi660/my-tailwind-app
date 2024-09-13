@@ -18,7 +18,7 @@ export const SessionExpiredModal: FC<SessionExpiredProps> = () => {
 
     delete localStorage.atoken;
     delete localStorage.user;
-    delete localStorage.lastLocation;
+    // delete localStorage.lastLocation;
   };
 
   return (
