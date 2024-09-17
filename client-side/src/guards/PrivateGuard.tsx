@@ -23,9 +23,9 @@ export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
   //   return () => clearInterval(interval);
   // }, []);
 
-  const { login } = paths;
+  const { login, home } = paths;
 
   const { atoken } = useAppSelector((state) => state.auth);
 
-  return atoken !== null ? children : <Navigate to={login} />;
+  return atoken !== null ? children : <Navigate to={home} />;
 };

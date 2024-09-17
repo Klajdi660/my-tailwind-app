@@ -198,6 +198,10 @@ export const useAuthService = (): AuthService => {
 
       // unAuthenticateUser();
 
+      dispatch(setAToken(null));
+      dispatch(setRToken(null));
+      dispatch(setUser(null));
+
       delete localStorage.atoken;
       delete localStorage.user;
       delete localStorage.rtoken;
