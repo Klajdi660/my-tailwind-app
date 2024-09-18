@@ -6,12 +6,12 @@ import { DatePicker, Select } from "antd";
 import { Country } from "country-state-city";
 import { Button } from "../UI";
 import { genderList, dateFormatList } from "../../data";
-import { useAuth } from "../../hooks";
+import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
 import { PersonalDetailsProps } from "../../types";
 
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.user);
   const { updateProfile } = useProfileService();
 
   const navigate = useNavigate();

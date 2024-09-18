@@ -2,13 +2,13 @@ import { FC, useMemo, useState } from "react";
 import { Form } from "../Auth";
 import { ImgUploader } from "../UI";
 import { editProfileList } from "../../data";
-import { useAuth } from "../../hooks";
+import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
 import { EditProfileProps, EditProfileValues } from "../../types";
 import { editProfileValidation } from "../../utils";
 
 export const EditProfile: FC<EditProfileProps> = () => {
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.user);
   const { changeUsername } = useProfileService();
 
   const [files, setFiles] = useState(null);

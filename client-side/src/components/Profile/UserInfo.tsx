@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Icon } from "../UI";
-import { useAuth } from "../../hooks";
+import { useAppSelector } from "../../store";
 import { UserInfoProps } from "../../types";
 
 export const UserInfo: FC<UserInfoProps> = () => {
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.user);
 
   const hasProvider = user?.provider !== "Email";
 

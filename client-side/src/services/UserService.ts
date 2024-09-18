@@ -1,14 +1,18 @@
+import { useDispatch } from "react-redux";
 import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { UserDetailsResponse } from "../types";
-import { useAuth, useNotification, useStore } from "../hooks";
+import { useNotification, useStore } from "../hooks";
+import { useAppSelector, setUser } from "../store";
 
 const { GET_USER_DETAILS_API } = userEndpoints;
 
 export const useUserService = () => {
-  const { user, setUser } = useAuth();
   const { setLoading } = useStore();
   const [notify] = useNotification();
+  const dispatch = useDispatch();
+
+  const { user } = useAppSelector((state) => state.user);
 
   const getUsers = async () => {};
 
@@ -38,7 +42,7 @@ export const useUserService = () => {
         ...JSON.parse(data.extra),
       };
 
-      setUser(data);
+      dispatch(setUser(data));
     } catch (error) {
       setLoading(false);
       console.error(`Get user details failed: ${error} `);

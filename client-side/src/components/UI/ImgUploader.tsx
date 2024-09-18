@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { Image } from "./Image";
 import { Button } from "./Button";
-import { useAuth } from "../../hooks";
+import { useAppSelector } from "../../store";
 import { ImgUploaderParams } from "../../types";
 import { userIcon, iconName } from "../../assets";
 import { useAppModal, useProfilePhoto } from "../../utils";
 
 export const ImgUploader: FC<ImgUploaderParams> = () => {
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.user);
   const { setModalOpen } = useAppModal();
   const { isUpdatingProfileImg } = useProfilePhoto();
 

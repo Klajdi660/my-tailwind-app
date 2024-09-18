@@ -4,14 +4,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SmallModal } from "./ModalContent";
 import { Icon } from "../Icon";
 import { Button } from "../Button";
-import { useAuth } from "../../../hooks";
+import { useAppSelector } from "../../../store";
 import { ErrorFormMessage } from "../../Common";
 import { useProfileService } from "../../../services";
 import { useAppModal, deleteProfileValidation } from "../../../utils";
 import { DeleteProfileProps, DeleteProfileValues } from "../../../types";
 
 export const DeleteProfileModal: FC<DeleteProfileProps> = () => {
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.user);
   const { deleteProfile } = useProfileService();
   const { modals, setModalOpen } = useAppModal();
 

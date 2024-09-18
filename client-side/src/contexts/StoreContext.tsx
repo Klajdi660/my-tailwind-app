@@ -5,7 +5,7 @@ import {
   StoreContextType,
   TranslationsResponse,
 } from "../types";
-import { useAuth } from "../hooks";
+import { useAppSelector } from "../store";
 
 const initialState: StoreContextType = {
   lang: "",
@@ -31,7 +31,7 @@ const initialState: StoreContextType = {
 const StoreContext = createContext(initialState);
 
 const StoreProvider: FC<ProviderProps> = ({ children }) => {
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.user);
   const [lang, setLang] = useState<string>("al");
   const [currency, setCurrency] = useState<string>("");
   const [userStore, setUserStore] = useState<Object>({});

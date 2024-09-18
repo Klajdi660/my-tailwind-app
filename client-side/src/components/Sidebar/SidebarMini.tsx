@@ -13,7 +13,7 @@ import { useAppSelector } from "../../store";
 export const SidebarMini: FC = () => {
   const { pathname } = useLocation();
   const [notify] = useNotification();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { isMobile } = useMediaResponsive();
 
   const [toggleNav, setToggleNav] = useState(false);

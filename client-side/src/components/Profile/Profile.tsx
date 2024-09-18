@@ -4,12 +4,12 @@ import { ProfileForm } from "../Auth";
 import { Button, Image } from "../UI";
 import { userIcon } from "../../assets";
 import { paths, profileList, personalDetailsList } from "../../data";
-import { useAuth } from "../../hooks";
+import { useAppSelector } from "../../store";
 
 interface ProfileProps {}
 
 export const Profile: FC<ProfileProps> = () => {
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.user);
 
   const navigate = useNavigate();
 

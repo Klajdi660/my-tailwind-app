@@ -2,13 +2,13 @@ import { FC, useMemo } from "react";
 import { Form } from "../Auth";
 import { Icon } from "../UI";
 import { changePasswordList } from "../../data";
-import { useAuth } from "../../hooks";
+import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
 import { ChangePasswordProps, ChangePasswordValues } from "../../types";
 import { updatePasswordValidation } from "../../utils";
 
 export const ChangePassword: FC<ChangePasswordProps> = () => {
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.user);
   const { changePassword } = useProfileService();
 
   let isPasswordEnabled = user?.provider === "Email";

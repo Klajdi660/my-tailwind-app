@@ -10,7 +10,7 @@ import { classNames, useAppUtil } from "../../utils";
 import { useAppSelector } from "../../store";
 
 const User = () => {
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.user);
 
   const { email, username, avatar, extra } = user || {};
 

@@ -12,7 +12,7 @@ import {
   NotificationButton,
   DesktopToggleButton,
 } from "./UI";
-import { useAuth, useMediaResponsive } from "../hooks";
+import { useMediaResponsive } from "../hooks";
 import { NavbarProps } from "../types";
 import { icon, iconName } from "../assets";
 import { defaultThemeConfig } from "../configs";
@@ -21,7 +21,6 @@ import { useAppUtil, classNames } from "../utils";
 import { useAppSelector } from "../store";
 
 export const Navbar: FC<NavbarProps> = () => {
-  // const { user } = useAuth();
   const { isMobile } = useMediaResponsive();
   const { toggleSearch, setToggleSearch } = useAppUtil();
 
@@ -31,8 +30,6 @@ export const Navbar: FC<NavbarProps> = () => {
   const theme = useAppSelector((state) => state.theme);
   const { user } = useAppSelector((state) => state.user);
   const { atoken } = useAppSelector((state) => state.auth);
-
-  console.log("atoken :>> ", atoken);
 
   const { sidebar } = theme || defaultThemeConfig;
   const isFolded = sidebar === "folded";

@@ -5,6 +5,7 @@ import {
   updateRememberMeData,
   setAccountDeleteDaysDifference,
   useAppSelector,
+  setUser,
 } from "../store";
 import {
   EditProfileValues,
@@ -14,7 +15,7 @@ import {
   // PersonalDetailsInput,
 } from "../types";
 import { HttpClient } from "../client";
-import { useAuth, useNotification, useStore } from "../hooks";
+import { useNotification, useStore } from "../hooks";
 
 const {
   UPDATE_PROFILE_API,
@@ -27,12 +28,12 @@ const {
 } = profileEndpoints;
 
 export const useProfileService = () => {
-  const { user, setUser } = useAuth();
   const { setLoading } = useStore();
   const [notify] = useNotification();
   const dispatch = useDispatch();
 
   const rememberMe = useAppSelector((state) => state.rememberMe);
+  const { user } = useAppSelector((state) => state.user);
 
   const changeUsername = async (values: EditProfileValues): Promise<void> => {
     try {
@@ -59,7 +60,7 @@ export const useProfileService = () => {
       };
 
       localStorage.user = JSON.stringify(data);
-      setUser(data);
+      dispatch(setUser(data));
 
       if (
         (values.username && rememberMe.rememberType === "username",
@@ -111,7 +112,7 @@ export const useProfileService = () => {
       };
 
       localStorage.user = JSON.stringify(data);
-      setUser(data);
+      dispatch(setUser(data));
 
       notify({
         variant: "success",
@@ -152,7 +153,7 @@ export const useProfileService = () => {
       };
 
       localStorage.user = JSON.stringify(data);
-      setUser(data);
+      dispatch(setUser(data));
 
       notify({
         variant: "success",
@@ -186,7 +187,7 @@ export const useProfileService = () => {
       };
 
       localStorage.user = JSON.stringify(data);
-      setUser(data);
+      dispatch(setUser(data));
 
       notify({
         variant: "success",
