@@ -1,51 +1,61 @@
-import { FC, useMemo, useState } from "react";
-import { Form } from "../Auth";
-import { ImgUploader } from "../UI";
-import { editProfileList } from "../../data";
+import { FC } from "react";
+import { Button, Image } from "../UI";
+import { EditProfileProps } from "../../types";
+import { useAppModal, useProfilePhoto } from "../../utils";
 import { useAppSelector } from "../../store";
-import { useProfileService } from "../../services";
-import { EditProfileProps, EditProfileValues } from "../../types";
-import { editProfileValidation } from "../../utils";
+import { userIcon, iconName } from "../../assets";
 
 export const EditProfile: FC<EditProfileProps> = () => {
+  const { setModalOpen } = useAppModal();
+  const { isUpdatingProfileImg } = useProfilePhoto();
+
   const { user } = useAppSelector((state) => state.user);
-  const { changeUsername } = useProfileService();
 
-  const [files, setFiles] = useState(null);
+  const { avatar } = user.extra;
 
-  const hasProvider = user?.provider !== "Email";
-
-  const listForm = useMemo(() => {
-    return editProfileList;
-  }, []);
-
-  const handleOnSubmit = async (values: EditProfileValues) => {
-    try {
-      await changeUsername(values);
-    } catch (error) {
-      console.error(`Failed to login! ${error}`);
-    }
+  const handleModalOpen = () => {
+    setModalOpen("changeProfilePhotoModal", true);
   };
 
   return (
-    <div className="relative p-4 rounded xs:p-6 bg-card">
-      <div className="mb-4 header">
-        <h5 className="text-lg font-semibold">Profile</h5>
+    <>
+      <h5 className="text-lg font-semibold">Profile photo</h5>
+      <div className="flex flex-col items-center gap-6">
+        <div className="relative w-52 h-52 rounded-full ring-2 ring-gray-300">
+          {avatar ? (
+            <Image
+              imgUrl={avatar}
+              name="Profile Img"
+              styles="w-52 h-52 rounded-full p-1 object-cover"
+            />
+          ) : (
+            <Image
+              imgUrl={userIcon}
+              name="Profile Img"
+              styles="w-52 h-52 rounded-full p-1 ring-2 ring-gray-300 bg-main"
+            />
+          )}
+          {isUpdatingProfileImg && (
+            <>
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <Image imgUrl={iconName} name="Loading Img" width={120} />
+              </div>
+              <div className="absolute inset-1 bg-gray-400 backdrop-filter backdrop-blur-md bg-opacity-10 rounded-full" />
+            </>
+          )}
+        </div>
+        <div className="group">
+          <Button
+            type="submit"
+            label="Change photo"
+            labelIcon="HiOutlineUpload"
+            variant="none"
+            onClick={handleModalOpen}
+            className="w-48 h-10 rounded-full bg-primary-opacity text-onNeutralBg group-hover:bg-primary group-hover:text-white"
+            iconClassName="group-hover:text-white"
+          />
+        </div>
       </div>
-      <ImgUploader />
-      <Form
-        listForm={listForm}
-        schema={editProfileValidation}
-        files={files}
-        setFiles={setFiles}
-        hasProvider={hasProvider}
-        onSubmit={handleOnSubmit}
-        defaultValues={{
-          username: user?.username,
-          email: user?.email,
-          image: user?.extra?.avatar,
-        }}
-      />
-    </div>
+    </>
   );
 };

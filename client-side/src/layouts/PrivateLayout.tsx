@@ -51,7 +51,7 @@ export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
           {children}
         </div>
       </main>
-      <TopPlay />
+      {/* <TopPlay /> */}
       {openSwitch && <CartSwitcher />}
       <Modal />
     </div>

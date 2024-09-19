@@ -60,19 +60,19 @@ export const Sidebar: FC<SidebarPorps> = () => {
   const isFolded = sidebar === "folded";
 
   const handleLinkClick = (link: any) => {
-    if (!isAuthenticated && link.name !== "Discover") {
-      const description = (
-        <span>
-          Please login to access{" "}
-          <span className="text-primary">{link.name}</span> page.
-        </span>
-      );
+    // if (!isAuthenticated && link.name !== "Discover") {
+    //   const description = (
+    //     <span>
+    //       Please login to access{" "}
+    //       <span className="text-primary">{link.name}</span> page.
+    //     </span>
+    //   );
 
-      return notify({
-        variant: "warning",
-        description,
-      });
-    }
+    //   return notify({
+    //     variant: "warning",
+    //     description,
+    //   });
+    // }
 
     navigate(link.to);
     // localStorage.lastLocation = link.name.toLowerCase();

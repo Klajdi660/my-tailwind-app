@@ -47,7 +47,7 @@ export const Form: FC<FormProps> = (props) => {
                           <input
                             {...form(list.name)}
                             className={classNames(
-                              "w-full h-10 px-2 rounded text-sm bg-transparent text-onNeutralBg no-focus border-divider outline-0 disabled:text-secondary",
+                              "w-full h-12 px-2 rounded text-sm bg-transparent text-onNeutralBg no-focus border-divider outline-0 disabled:text-secondary",
                               errors[list.name] && "border border-red-500"
                             )}
                             {...list.props}
@@ -136,7 +136,7 @@ export const Form: FC<FormProps> = (props) => {
           label={btnTitle}
           variant="contained"
           className={classNames(
-            "flex items-center justify-center gap-2",
+            "flex items-center justify-center gap-2 h-10",
             formType === "auth" ? "w-full" : "w-fit"
           )}
           disabled={!isValid}

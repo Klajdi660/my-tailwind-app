@@ -206,6 +206,7 @@ export interface EditProfileValues {
 }
 
 export interface PersonalDetailsProps {}
+export interface AddressDetailsProps {}
 
 export interface PersonalDetailsValues {
   name?: string;

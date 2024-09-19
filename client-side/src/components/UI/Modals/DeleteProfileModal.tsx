@@ -87,14 +87,14 @@ export const DeleteProfileModal: FC<DeleteProfileProps> = () => {
           <ErrorFormMessage errorMessage={errors?.["confirmDelete"]?.message} />
           <div className="flex items-center justify-end w-full mt-7">
             <Button
-              type="submit"
+              type="button"
               label="Keep Account"
               variant="outlined"
               className="mr-4"
               onClick={handleModalClose}
             />
             <Button
-              type="submit"
+              type="button"
               label="Delete Account"
               variant="delete"
               disabled={!isValid}

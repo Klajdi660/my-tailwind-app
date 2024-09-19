@@ -52,7 +52,7 @@ export { UserInfo } from "./Profile/UserInfo";
 export { Notification } from "./Notification";
 
 export { EditProfile } from "./Profile/EditProfile";
-
+export { AddressDetails } from "./Profile/AddressDetails";
 export { GameDetail } from "./GameDetail/GameDetail";
 export { MediaSection } from "./Sections/MediaSection";
 export { DeleteAccount } from "./Profile/DeleteAccount";

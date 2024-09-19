@@ -28,6 +28,7 @@ import {
   BiSearch,
   BiChevronsRight,
   BiSelectMultiple,
+  BiSend,
 } from "react-icons/bi";
 import {
   BsGlobe,
@@ -37,6 +38,7 @@ import {
   BsFillPlayFill,
   BsNintendoSwitch,
   BsFillArrowUpCircleFill,
+  BsSignpostSplit,
 } from "react-icons/bs";
 import { CiShoppingTag } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
@@ -57,9 +59,14 @@ import {
   FaClock,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { FiAlertTriangle, FiUpload } from "react-icons/fi";
+import { FiAlertTriangle, FiUpload, FiEdit } from "react-icons/fi";
 import { GoDotFill } from "react-icons/go";
-import { HiMenuAlt2, HiCheck } from "react-icons/hi";
+import {
+  HiMenuAlt2,
+  HiCheck,
+  HiOutlineUpload,
+  HiOutlineLocationMarker,
+} from "react-icons/hi";
 import { HiChartBar } from "react-icons/hi2";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { LiaSignOutAltSolid, LiaCarSideSolid } from "react-icons/lia";
@@ -79,6 +86,9 @@ import {
   MdCurrencyBitcoin,
   MdOutlineDeleteOutline,
   MdOutlineAddCircleOutline,
+  MdOutlineEmail,
+  MdOutlinePhoneEnabled,
+  MdOutlineLocationSearching,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import {
@@ -99,7 +109,7 @@ import {
   SlGameController,
 } from "react-icons/sl";
 import { SiNintendo } from "react-icons/si";
-import { TiTimes } from "react-icons/ti";
+import { TiTimes, TiLocationArrowOutline } from "react-icons/ti";
 import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
 
@@ -130,6 +140,7 @@ const icons: IconsMap = {
   BiSearch,
   BiChevronsRight,
   BiSelectMultiple,
+  BiSend,
   BsGlobe,
   BsThreeDots,
   BsMoonStars,
@@ -137,6 +148,7 @@ const icons: IconsMap = {
   BsFillPlayFill,
   BsNintendoSwitch,
   BsFillArrowUpCircleFill,
+  BsSignpostSplit,
   CiShoppingTag,
   CgGames,
   FaUser,
@@ -155,10 +167,13 @@ const icons: IconsMap = {
   FcGoogle,
   FiUpload,
   FiAlertTriangle,
+  FiEdit,
   GoDotFill,
   HiCheck,
+  HiOutlineUpload,
   HiMenuAlt2,
   HiChartBar,
+  HiOutlineLocationMarker,
   IoMdNotificationsOutline,
   LiaCarSideSolid,
   LiaSignOutAltSolid,
@@ -177,6 +192,9 @@ const icons: IconsMap = {
   MdCurrencyBitcoin,
   MdOutlineDeleteOutline,
   MdOutlineAddCircleOutline,
+  MdOutlineEmail,
+  MdOutlinePhoneEnabled,
+  MdOutlineLocationSearching,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,
@@ -191,6 +209,7 @@ const icons: IconsMap = {
   SlGameController,
   SiNintendo,
   TiTimes,
+  TiLocationArrowOutline,
 };
 
 export const Icon: FC<IconParams> = ({
