@@ -16,8 +16,9 @@ export const Form: FC<FormProps> = (props) => {
 
   const {
     register: form,
-    handleSubmit,
     formState: { errors, isValid },
+    handleSubmit,
+    reset,
   } = useForm({
     mode: "onTouched",
     resolver: yupResolver(schema),
@@ -25,6 +26,10 @@ export const Form: FC<FormProps> = (props) => {
   });
 
   const btnTitle = !data?.resetPassEmailSent ? btnTxt : "Resend Email";
+
+  const handelFormCancle = () => {
+    reset();
+  };
 
   return (
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
@@ -47,8 +52,9 @@ export const Form: FC<FormProps> = (props) => {
                           <input
                             {...form(list.name)}
                             className={classNames(
-                              "w-full h-12 px-2 rounded text-sm bg-transparent text-onNeutralBg no-focus border-divider outline-0 disabled:text-secondary",
-                              errors[list.name] && "border border-red-500"
+                              "w-full h-12 px-2 rounded text-sm bg-transparent text-onNeutralBg no-focus border border-divider outline-0 disabled:text-secondary hover:border-primary",
+                              errors[list.name] &&
+                                "border border-red-500 hover:border-red-500"
                             )}
                             {...list.props}
                             placeholder={list.props.placeholder || list.label}
@@ -128,9 +134,19 @@ export const Form: FC<FormProps> = (props) => {
       <div
         className={classNames(
           "flex items-center justify-end w-full",
-          isValid && "hover:brightness-110"
+          isValid && "hover:brightness-110",
+          formName === "password" && "gap-4"
         )}
       >
+        {formName === "password" && isValid && (
+          <Button
+            type="button"
+            variant="outlined"
+            label="Cancel"
+            className="h-10"
+            onClick={handelFormCancle}
+          />
+        )}
         <Button
           type="submit"
           label={btnTitle}

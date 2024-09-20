@@ -7,7 +7,11 @@ import { Button } from "../Button";
 import { useAppSelector } from "../../../store";
 import { ErrorFormMessage } from "../../Common";
 import { useProfileService } from "../../../services";
-import { useAppModal, deleteProfileValidation } from "../../../utils";
+import {
+  useAppModal,
+  deleteProfileValidation,
+  classNames,
+} from "../../../utils";
 import { DeleteProfileProps, DeleteProfileValues } from "../../../types";
 
 export const DeleteProfileModal: FC<DeleteProfileProps> = () => {
@@ -19,6 +23,7 @@ export const DeleteProfileModal: FC<DeleteProfileProps> = () => {
     register: form,
     handleSubmit,
     formState: { errors, isValid },
+    reset,
   } = useForm({
     mode: "onTouched",
     resolver: yupResolver(deleteProfileValidation),
@@ -29,6 +34,7 @@ export const DeleteProfileModal: FC<DeleteProfileProps> = () => {
   };
 
   const handleModalClose = () => {
+    reset();
     setModalOpen("deleteProfileModal", false);
   };
 
@@ -80,7 +86,11 @@ export const DeleteProfileModal: FC<DeleteProfileProps> = () => {
           <input
             {...form("confirmDelete")}
             name="confirmDelete"
-            className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+            className={classNames(
+              "w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary",
+              errors["confirmDelete"] &&
+                "border border-red-500 hover:border-red-500"
+            )}
             type="text"
             placeholder="Type delete to confirm"
           />

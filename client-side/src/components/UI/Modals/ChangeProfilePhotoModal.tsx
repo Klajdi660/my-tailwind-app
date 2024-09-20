@@ -60,7 +60,7 @@ export const ChangeProfilePhotoModal: FC<any> = () => {
         Choose profile picture
       </div>
 
-      <div className="modal-body mt-5 flex flex-col gap-1">
+      <div className="modal-body mt-4 flex flex-col gap-1">
         <hr className="w-full border-t border-divider" />
 
         <input
@@ -74,26 +74,27 @@ export const ChangeProfilePhotoModal: FC<any> = () => {
           type="submit"
           label="Upload Photo"
           variant="none"
+          className="text-onNeutralBg hover:bg-primary-opacity"
           onClick={handleFileClick}
         />
 
-        <hr className="w-full border-t border-divider" />
+        {/* <hr className="w-full border-t border-divider" /> */}
 
         <Button
           type="submit"
           label="Remove Current Photo"
           variant="none"
-          className="text-red-500"
+          className="text-red-500 hover:bg-red-100"
           onClick={removeProfileImg}
         />
 
-        <hr className="w-full border-t border-divider" />
+        {/* <hr className="w-full border-t border-divider" /> */}
 
         <Button
           type="submit"
           label="Cancel"
           variant="none"
-          className=""
+          className="text-onNeutralBg hover:bg-primary-opacity"
           onClick={handleModalClose}
         />
       </div>

@@ -1,8 +1,7 @@
 import * as yup from "yup";
 
-export const editProfileValidation = yup
+export const editUsernameValidation = yup
   .object({
-    // email: yup.string().trim().email(),
     username: yup
       .string()
       .trim()
@@ -10,7 +9,6 @@ export const editProfileValidation = yup
       .max(50, { message: "Maximum 50 caracters." })
       .matches(/^[^@]+$/, "Input should not contain symbols.")
       .required(),
-    imageUrl: yup.string().trim().nullable(),
   })
   .required();
 

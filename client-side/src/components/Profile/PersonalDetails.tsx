@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import dayjs from "dayjs";
 import { DatePicker, Select } from "antd";
 import { Country } from "country-state-city";
-import { Button, Icon } from "../UI";
+import { Button } from "../UI";
 import { genderList, dateFormatList } from "../../data";
 import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
@@ -88,41 +88,29 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               First Name
             </label>
-            <div className="relative">
-              <input
-                {...form("firstName")}
-                name="firstName"
-                className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
-                type="text"
-                placeholder="First Name"
-                autoComplete="firstName"
-                defaultValue={user?.extra?.firstName}
-              />
-              <Icon
-                name="BiUser"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-secondary"
-              />
-            </div>
+            <input
+              {...form("firstName")}
+              name="firstName"
+              className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+              type="text"
+              placeholder="First Name"
+              autoComplete="firstName"
+              defaultValue={user?.extra?.firstName}
+            />
           </div>
           <div className="w-full md:w-[48%]">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Last Name
             </label>
-            <div className="relative">
-              <input
-                {...form("lastName")}
-                name="lastName"
-                className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
-                type="text"
-                placeholder="Last Name"
-                autoComplete="lastName"
-                defaultValue={user?.extra?.lastName}
-              />
-              <Icon
-                name="BiUser"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-secondary"
-              />
-            </div>
+            <input
+              {...form("lastName")}
+              name="lastName"
+              className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+              type="text"
+              placeholder="Last Name"
+              autoComplete="lastName"
+              defaultValue={user?.extra?.lastName}
+            />
           </div>
         </div>
         <div className="flex flex-wrap justify-between">
@@ -173,7 +161,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               Contact number
             </label>
-            <div className="flex">
+            <div className="flex items-center w-full h-12 text-sm text-onNeutralBg border border-divider rounded px-2 hover:border-primary">
               <Select
                 options={phonePrefixData.map(({ key, ...rest }) => ({
                   key,
@@ -181,27 +169,21 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
                 }))}
                 onChange={onPhonePrefixChange}
                 optionLabelProp="selected"
-                className="w-[28%] md:w-[20%] sm:w-[14%] h-12 mr-2"
+                className="contactNr-select bg-primary-opacity"
                 dropdownStyle={{ width: 250 }}
                 defaultValue={
                   phonePrefix ? phonePrefix : phonePrefixData[2].selected
                 }
               />
-              <div className="relative w-[86%]">
-                <input
-                  name="contactNumber"
-                  onChange={(e) => setContactNumber(e.target.value)}
-                  className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
-                  type="text"
-                  placeholder="Phone Number"
-                  autoComplete="contactNumber"
-                  defaultValue={phoneNumber}
-                />
-                <Icon
-                  name="MdOutlinePhoneEnabled"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-secondary"
-                />
-              </div>
+              <input
+                name="contactNumber"
+                onChange={(e) => setContactNumber(e.target.value)}
+                className="w-full h-12 bg-transparent px-2 focus-within:none outline-0"
+                type="text"
+                placeholder="Phone Number"
+                autoComplete="contactNumber"
+                defaultValue={phoneNumber}
+              />
             </div>
           </div>
         </div>
@@ -214,41 +196,34 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               Country
             </label>
-            <div className="relative">
-              <input
-                {...form("country")}
-                name="country"
-                className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
-                type="text"
-                placeholder="Enter country"
-                autoComplete="country"
-                defaultValue={country}
-              />
-              <Icon
-                name="TiLocationArrowOutline"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-secondary"
-              />
-            </div>
+            <Controller
+              name="country"
+              control={control}
+              defaultValue={country}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  className="w-full h-12 text-sm"
+                  placeholder="Select country"
+                  optionLabelProp="value"
+                  options={countryData}
+                />
+              )}
+            />
           </div>
           <div className="w-full md:w-[48%]">
             <label className="block text-secondary text-xs font-semibold mb-2">
               City
             </label>
-            <div className="relative">
-              <input
-                {...form("city")}
-                name="city"
-                className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
-                type="text"
-                placeholder="Enter city"
-                autoComplete="city"
-                defaultValue={city}
-              />
-              <Icon
-                name="MdOutlineLocationSearching"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-secondary"
-              />
-            </div>
+            <input
+              {...form("city")}
+              name="city"
+              className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+              type="text"
+              placeholder="Enter city"
+              autoComplete="city"
+              defaultValue={city}
+            />
           </div>
         </div>
         <div className="flex flex-wrap justify-between">
@@ -256,41 +231,29 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <label className="block text-secondary text-xs font-semibold mb-2">
               Address Line
             </label>
-            <div className="relative">
-              <input
-                {...form("address")}
-                name="address"
-                className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
-                type="text"
-                placeholder="Enter address"
-                autoComplete="address"
-                defaultValue={address}
-              />
-              <Icon
-                name="HiOutlineLocationMarker"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-secondary"
-              />
-            </div>
+            <input
+              {...form("address")}
+              name="address"
+              className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+              type="text"
+              placeholder="Enter address"
+              autoComplete="address"
+              defaultValue={address}
+            />
           </div>
           <div className="w-full md:w-[48%]">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Postal Code
             </label>
-            <div className="relative">
-              <input
-                {...form("postalCode")}
-                name="postalCode"
-                className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
-                type="text"
-                placeholder="Enter postal code"
-                autoComplete="postalCode"
-                defaultValue={postalCode}
-              />
-              <Icon
-                name="BsSignpostSplit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-secondary"
-              />
-            </div>
+            <input
+              {...form("postalCode")}
+              name="postalCode"
+              className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+              type="text"
+              placeholder="Enter postal code"
+              autoComplete="postalCode"
+              defaultValue={postalCode}
+            />
           </div>
         </div>
       </div>

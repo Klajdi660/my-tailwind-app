@@ -1,10 +1,12 @@
-import { FC, useState } from "react";
+import { FC, useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Tooltip } from "antd";
 import { Icon, Button } from "../UI";
 import { useAppSelector } from "../../store";
 import { UserInfoProps } from "../../types";
-import { classNames } from "../../utils";
+import { classNames, editUsernameValidation } from "../../utils";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ErrorFormMessage } from "../Common";
 
 export const UserInfo: FC<UserInfoProps> = () => {
   const [isUpdatingUsername, setIsUpdatingUsername] = useState(false);
@@ -45,29 +47,43 @@ export const UserInfo: FC<UserInfoProps> = () => {
 
   const {
     register: form,
+    formState: { errors, isValid },
     handleSubmit,
     reset,
   } = useForm({
     mode: "onTouched",
+    resolver: yupResolver(editUsernameValidation),
   });
 
   const handleMenuClick = async (data: any) => {
     console.log("data :>> ", data);
+    document.removeEventListener("keydown", handleKeyDown);
   };
 
   const handleCancleClick = () => {
     setIsUpdatingUsername(true);
+    startEditing();
+    reset({ username: "" });
   };
 
   const handleClick = isUpdatingUsername
     ? handleSubmit(handleMenuClick)
     : handleCancleClick;
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Escape") {
-      setIsUpdatingUsername(false);
-      reset({ username });
-    }
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsUpdatingUsername(false);
+        reset({ username });
+        document.removeEventListener("keydown", handleKeyDown);
+      }
+    },
+    [setIsUpdatingUsername]
+  );
+
+  const startEditing = () => {
+    setIsUpdatingUsername(true);
+    document.addEventListener("keydown", handleKeyDown);
   };
 
   return (
@@ -104,17 +120,25 @@ export const UserInfo: FC<UserInfoProps> = () => {
           <label className="block text-secondary text-xs font-semibold mb-2">
             Username
           </label>
-          <div className="flex justify-between" onKeyDown={handleKeyDown}>
+          <div className="flex justify-between">
             <div className="flex flex-col w-[90%]">
               <div className="relative">
                 <input
                   {...form("username")}
                   name="username"
-                  className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+                  className={classNames(
+                    "w-full h-12 text-sm text-onNeutralBg rounded px-2 focus-within:border-primary outline-0",
+                    isUpdatingUsername
+                      ? "bg-transparent border border-divider hover:border-primary"
+                      : "bg-main text-secondary",
+                    errors["username"] &&
+                      "border border-red-500 hover:border-red-500"
+                  )}
                   type="text"
                   placeholder="Enter username"
                   autoComplete="username"
                   defaultValue={username}
+                  disabled={isUpdatingUsername ? false : true}
                 />
                 <Tooltip title={usernameTooltipTitle} trigger={["hover"]}>
                   <button className="absolute right-2 top-1/2 transform -translate-y-1/2">
@@ -123,15 +147,24 @@ export const UserInfo: FC<UserInfoProps> = () => {
                 </Tooltip>
               </div>
             </div>
-            <Button
-              type="button"
-              labelIcon={usernameIcon}
-              variant="contained"
-              onClick={handleClick}
-            />
+            <Tooltip
+              title={isUpdatingUsername ? "" : "Edit username"}
+              trigger={["hover"]}
+            >
+              <Button
+                type="button"
+                labelIcon={usernameIcon}
+                variant="contained"
+                onClick={handleClick}
+                disabled={isUpdatingUsername && !isValid}
+              />
+            </Tooltip>
           </div>
           {isUpdatingUsername && (
-            <p className="text-sm text-secondary mt-1">Press Esc to cancel</p>
+            <>
+              <ErrorFormMessage errorMessage={errors?.["username"]?.message} />
+              <p className="text-sm text-secondary mt-1">Press Esc to cancel</p>
+            </>
           )}
         </div>
       </form>
