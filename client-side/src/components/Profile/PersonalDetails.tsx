@@ -15,7 +15,6 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const navigate = useNavigate();
 
   const { user } = useAppSelector((state) => state.user);
-
   const { address, country, city, postalCode } = user.extra;
 
   const [phonePrefix, setPhonePrefix] = useState<string>(
@@ -27,6 +26,21 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
     .trim();
   const [contactNumber, setContactNumber] = useState<string>(phoneNumber || "");
 
+  const [isFormChanged, setIsFormChanged] = useState(false);
+
+  const defaultValues = {
+    firstName: user?.extra?.firstName,
+    lastName: user?.extra?.lastName,
+    dateOfBirth: user?.extra.dateOfBirth
+      ? dayjs(user?.extra.dateOfBirth, dateFormatList[2])
+      : null,
+    gender: user?.extra?.gender,
+    country: country,
+    city: city,
+    address: address,
+    postalCode: postalCode,
+  };
+
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
     label: `${country.flag} ${country.name}`,
@@ -34,9 +48,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
 
   const phonePrefixData = Country.getAllCountries().map((item) => {
     const { phonecode, flag, name, isoCode } = item;
-
     const prefix = phonecode.startsWith("+") ? phonecode : `+${phonecode}`;
-
     return {
       key: `${prefix}-${isoCode}`,
       value: prefix,
@@ -47,6 +59,15 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
 
   const onPhonePrefixChange = (value: string) => {
     setPhonePrefix(value);
+    setIsFormChanged(true);
+  };
+
+  const handleInputChange = (field: string, value: any) => {
+    setIsFormChanged(true);
+
+    if (field === "contactNumber") {
+      setContactNumber(value);
+    }
   };
 
   const handleMenuClick = async (data: any) => {
@@ -66,6 +87,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
       };
 
       await updateProfile(values);
+      setIsFormChanged(false);
     } catch (error) {
       console.error(`Failed to update personal details! ${error}`);
     }
@@ -95,7 +117,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               type="text"
               placeholder="First Name"
               autoComplete="firstName"
-              defaultValue={user?.extra?.firstName}
+              defaultValue={defaultValues.firstName}
+              onChange={(e) => handleInputChange("firstName", e.target.value)}
             />
           </div>
           <div className="w-full md:w-[48%]">
@@ -109,7 +132,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               type="text"
               placeholder="Last Name"
               autoComplete="lastName"
-              defaultValue={user?.extra?.lastName}
+              defaultValue={defaultValues.lastName}
+              onChange={(e) => handleInputChange("lastName", e.target.value)}
             />
           </div>
         </div>
@@ -121,11 +145,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <Controller
               name="dateOfBirth"
               control={control}
-              defaultValue={
-                user?.extra.dateOfBirth
-                  ? dayjs(user?.extra.dateOfBirth, dateFormatList[2])
-                  : null
-              }
+              defaultValue={defaultValues.dateOfBirth}
               render={({ field }) => (
                 <DatePicker
                   {...field}
@@ -133,6 +153,10 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
                   showNow={false}
                   placeholder={dateFormatList[2]}
                   className="w-full h-12"
+                  onChange={(date) => {
+                    field.onChange(date);
+                    setIsFormChanged(true);
+                  }}
                 />
               )}
             />
@@ -144,13 +168,17 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <Controller
               name="gender"
               control={control}
-              defaultValue={user?.extra?.gender}
+              defaultValue={defaultValues.gender}
               render={({ field }) => (
                 <Select
                   {...field}
                   className="w-full h-12 text-sm"
                   placeholder="Select Gender"
                   options={genderList}
+                  onChange={(value) => {
+                    field.onChange(value);
+                    setIsFormChanged(true);
+                  }}
                 />
               )}
             />
@@ -177,7 +205,9 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               />
               <input
                 name="contactNumber"
-                onChange={(e) => setContactNumber(e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("contactNumber", e.target.value)
+                }
                 className="w-full h-12 bg-transparent px-2 focus-within:none outline-0"
                 type="text"
                 placeholder="Phone Number"
@@ -199,7 +229,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <Controller
               name="country"
               control={control}
-              defaultValue={country}
+              defaultValue={defaultValues.country || ""}
               render={({ field }) => (
                 <Select
                   {...field}
@@ -207,6 +237,10 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
                   placeholder="Select country"
                   optionLabelProp="value"
                   options={countryData}
+                  onChange={(value) => {
+                    field.onChange(value);
+                    setIsFormChanged(true);
+                  }}
                 />
               )}
             />
@@ -222,7 +256,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               type="text"
               placeholder="Enter city"
               autoComplete="city"
-              defaultValue={city}
+              defaultValue={defaultValues.city}
+              onChange={(e) => handleInputChange("city", e.target.value)}
             />
           </div>
         </div>
@@ -238,7 +273,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               type="text"
               placeholder="Enter address"
               autoComplete="address"
-              defaultValue={address}
+              defaultValue={defaultValues.address}
+              onChange={(e) => handleInputChange("address", e.target.value)}
             />
           </div>
           <div className="w-full md:w-[48%]">
@@ -252,29 +288,38 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               type="text"
               placeholder="Enter postal code"
               autoComplete="postalCode"
-              defaultValue={postalCode}
+              defaultValue={defaultValues.postalCode}
+              onChange={(e) => handleInputChange("postalCode", e.target.value)}
             />
           </div>
         </div>
       </div>
 
       <div className="flex items-center justify-end gap-4 mt-6">
-        <Button
-          type="submit"
+        {/* <Button
+          type="button"
           label="Cancel"
           variant="outlined"
           className="h-10"
           onClick={() => {
             navigate("/profile");
           }}
-        />
+        /> */}
         <Button
           type="submit"
           label="Save Changes"
           variant="contained"
           className="h-10"
+          disabled={!isFormChanged}
         />
       </div>
     </form>
   );
 };
+
+// if value is empty
+// if (!value) {
+//   setIsFormChanged(false);
+// } else {
+//   setIsFormChanged(true);
+// }
