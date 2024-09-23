@@ -111,7 +111,10 @@ export const UserInfo: FC<UserInfoProps> = () => {
             />
             <Tooltip title={emailTooltipTitle} trigger={["hover"]}>
               <button className="absolute right-2 top-1/2 transform -translate-y-1/2">
-                <Icon name="PiWarningCircle" className="text-secondary" />
+                <Icon
+                  name="PiWarningCircle"
+                  className="text-secondary hover:text-primary"
+                />
               </button>
             </Tooltip>
           </div>
@@ -142,7 +145,10 @@ export const UserInfo: FC<UserInfoProps> = () => {
                 />
                 <Tooltip title={usernameTooltipTitle} trigger={["hover"]}>
                   <button className="absolute right-2 top-1/2 transform -translate-y-1/2">
-                    <Icon name="PiWarningCircle" className="text-secondary" />
+                    <Icon
+                      name="PiWarningCircle"
+                      className="text-secondary hover:text-primary"
+                    />
                   </button>
                 </Tooltip>
               </div>
