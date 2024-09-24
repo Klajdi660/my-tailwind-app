@@ -9,7 +9,9 @@ export const Title: FC<TitleProps> = (props) => {
   const fontType = fontSizes[type] || "";
 
   return (
-    <div className="flex flex-col gap-3 mb-6">
+    <div
+    // className="flex flex-col gap-3 mb-6"
+    >
       <div className="flex_justify_between">
         <h2
           className={classNames(

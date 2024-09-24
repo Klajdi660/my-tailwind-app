@@ -50,7 +50,7 @@ export { Profile } from "./Profile/Profile";
 export { ReadMore } from "./Common/ReadMore";
 export { UserInfo } from "./Profile/UserInfo";
 export { Notification } from "./Notification";
-
+export { AccountSettingSidebar } from "./Profile/AccountSettingSidebar";
 export { EditProfile } from "./Profile/EditProfile";
 export { AddressDetails } from "./Profile/AddressDetails";
 export { GameDetail } from "./GameDetail/GameDetail";

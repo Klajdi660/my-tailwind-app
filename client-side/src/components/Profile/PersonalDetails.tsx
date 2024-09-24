@@ -102,11 +102,14 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   });
 
   return (
-    <form onSubmit={handleSubmit(handleMenuClick)}>
+    <form
+      onSubmit={handleSubmit(handleMenuClick)}
+      className="bg-card p-8 rounded"
+    >
       <h5 className="text-lg font-semibold pb-6">Personal Details</h5>
       <div className="flex flex-col gap-6">
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-[48%]">
+        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               First Name
             </label>
@@ -121,7 +124,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               onChange={(e) => handleInputChange("firstName", e.target.value)}
             />
           </div>
-          <div className="w-full md:w-[48%]">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Last Name
             </label>
@@ -137,8 +140,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             />
           </div>
         </div>
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-[48%]">
+        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Birthday
             </label>
@@ -161,7 +164,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               )}
             />
           </div>
-          <div className="w-full md:w-[48%]">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Gender
             </label>
@@ -184,8 +187,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             />
           </div>
         </div>
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-[48%]">
+        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Contact number
             </label>
@@ -216,13 +219,14 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               />
             </div>
           </div>
+          <div className="w-full"></div>
         </div>
       </div>
 
       <h5 className="text-lg font-semibold py-6">Address Details</h5>
       <div className="flex flex-col gap-6">
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-[48%]">
+        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Country
             </label>
@@ -245,7 +249,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               )}
             />
           </div>
-          <div className="w-full md:w-[48%]">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               City
             </label>
@@ -261,8 +265,8 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             />
           </div>
         </div>
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-[48%]">
+        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Address Line
             </label>
@@ -277,7 +281,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               onChange={(e) => handleInputChange("address", e.target.value)}
             />
           </div>
-          <div className="w-full md:w-[48%]">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Postal Code
             </label>

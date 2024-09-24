@@ -22,8 +22,8 @@ export const DeleteAccount: FC<DeleteAccountProps> = () => {
   };
 
   return (
-    <>
-      <h5 className="text-lg font-semibold">Delete Account</h5>
+    <div className="bg-card p-8 rounded">
+      <h5 className="text-lg font-semibold pb-6">Delete Account</h5>
       {isAccountDelete ? (
         <>
           <span className="flex items-center gap-1 text-sm text-secondary">
@@ -60,7 +60,7 @@ export const DeleteAccount: FC<DeleteAccountProps> = () => {
             account, which will cancel your deletion. After 14 days deletion
             will be irreversible.
           </p>
-          <div className="flex justify-end mt-2">
+          <div className="flex justify-end mt-6">
             <Button
               type="submit"
               label="Delete Account"
@@ -71,6 +71,6 @@ export const DeleteAccount: FC<DeleteAccountProps> = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };

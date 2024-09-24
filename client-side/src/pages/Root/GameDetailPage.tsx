@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
-// import { useFetchGame } from "../../lib";
+import { useGame } from "../../hooks";
 import { GameDetail } from "../../components";
 import { GameDetailPageProps } from "../../types";
 
@@ -8,6 +8,7 @@ export const GameDetailPage: FC<GameDetailPageProps> = () => {
   const { gameId } = useParams<{ gameId: string | any }>();
 
   // const { data: gameData } = useFetchGame({ gameId });
+  const { gameDetail } = useGame(gameId) as any;
   // const { gameDetail, gameVideos, gameReviews } = gameData || {};
 
   return (
@@ -19,6 +20,7 @@ export const GameDetailPage: FC<GameDetailPageProps> = () => {
           gameReviews={gameReviews}
         />
       )} */}
+      {gameDetail && <GameDetail gameDetail={gameDetail} />}
     </section>
   );
 };

@@ -26,8 +26,8 @@ export const ChangePassword: FC<ChangePasswordProps> = () => {
   };
 
   return (
-    <>
-      <div className="">
+    <div className="bg-card p-8 rounded">
+      <div className="pb-6">
         <h5 className="text-lg font-semibold">Change Password</h5>
         {!isPasswordEnabled && (
           <span className="flex items-center gap-1 text-sm text-yellow-500 ">
@@ -51,6 +51,6 @@ export const ChangePassword: FC<ChangePasswordProps> = () => {
           confirmNewPassword: !isPasswordEnabled ? "**********" : "",
         }}
       />
-    </>
+    </div>
   );
 };

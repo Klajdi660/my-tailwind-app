@@ -89,6 +89,8 @@ import {
   MdOutlineEmail,
   MdOutlinePhoneEnabled,
   MdOutlineLocationSearching,
+  MdOutlineSwitchAccount,
+  MdOutlineCameraAlt,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import {
@@ -195,6 +197,8 @@ const icons: IconsMap = {
   MdOutlineEmail,
   MdOutlinePhoneEnabled,
   MdOutlineLocationSearching,
+  MdOutlineSwitchAccount,
+  MdOutlineCameraAlt,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,

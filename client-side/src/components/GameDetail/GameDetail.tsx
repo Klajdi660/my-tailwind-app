@@ -9,7 +9,7 @@ import { classNames } from "../../utils";
 import { useAppSelector } from "../../store";
 
 export const GameDetail: FC<GameDetailProps> = (props) => {
-  const { gameDetail, gameVideos, gameReviews } = props;
+  const { gameDetail /*gameVideos, gameReviews*/ } = props;
 
   const {
     id,
@@ -21,7 +21,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
     background_image_additional,
   } = gameDetail;
 
-  const { results: gameVideoResults } = gameVideos;
+  // const { results: gameVideoResults } = gameVideos;
 
   const { loading } = useStore();
   const { isMobile } = useMediaResponsive();
@@ -141,7 +141,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
             </div>
           </div>
         )}
-        <div className="flex z-20 relative flex-col md:flex-row mt-32 md:mt-0">
+        {/* <div className="flex z-20 relative flex-col md:flex-row mt-32 md:mt-0">
           {!isMobile && (
             <div className="shrink-0 md:max-w-[150px] w-full flex items-center md:flex-col justify-center flex-row gap-20 mt-20 md:border-r border-divider pt-16">
               <div className="flex flex-col gap-6 items-center">
@@ -206,7 +206,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
               )}
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

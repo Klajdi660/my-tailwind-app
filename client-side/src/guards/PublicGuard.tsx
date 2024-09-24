@@ -5,7 +5,7 @@ import { useAppSelector } from "../store";
 import { paths } from "../data";
 
 export const PublicGuard: FC<ProviderProps> = ({ children }) => {
-  const { discover } = paths;
+  const { discover, home } = paths;
 
   const { atoken } = useAppSelector((state) => state.auth);
 

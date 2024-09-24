@@ -87,8 +87,8 @@ export const UserInfo: FC<UserInfoProps> = () => {
   };
 
   return (
-    <>
-      <h5 className="text-lg font-semibold">Account Information</h5>
+    <div className="bg-card p-8 rounded">
+      <h5 className="text-lg font-semibold pb-6">Account Information</h5>
       <form className="flex flex-col gap-6">
         <div className="">
           <label className="block text-secondary text-xs font-semibold mb-2">
@@ -123,8 +123,8 @@ export const UserInfo: FC<UserInfoProps> = () => {
           <label className="block text-secondary text-xs font-semibold mb-2">
             Username
           </label>
-          <div className="flex justify-between">
-            <div className="flex flex-col w-[90%]">
+          <div className="flex justify-between gap-2">
+            <div className="flex flex-col w-full">
               <div className="relative">
                 <input
                   {...form("username")}
@@ -174,6 +174,6 @@ export const UserInfo: FC<UserInfoProps> = () => {
           )}
         </div>
       </form>
-    </>
+    </div>
   );
 };

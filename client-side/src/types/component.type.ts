@@ -168,8 +168,8 @@ export interface StarRatingProps {
 // GameDetail
 export interface GameDetailProps {
   gameDetail: GameParams;
-  gameVideos: GameVideosParams;
-  gameReviews: GameReviewsParams[];
+  gameVideos?: GameVideosParams;
+  gameReviews?: GameReviewsParams[];
 }
 
 export interface GameTabDetailProps {
