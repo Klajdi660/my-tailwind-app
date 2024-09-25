@@ -56,7 +56,6 @@ export const UserInfo: FC<UserInfoProps> = () => {
   });
 
   const handleMenuClick = async (data: any) => {
-    console.log("data :>> ", data);
     document.removeEventListener("keydown", handleKeyDown);
   };
 

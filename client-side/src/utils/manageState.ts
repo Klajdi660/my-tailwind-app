@@ -33,6 +33,8 @@ export const useAppModal = create<AppModalState>((set) => ({
 export const useProfilePhoto = create<ProfilePhotoState>((set) => ({
   files: null,
   isUpdatingProfileImg: false,
+  photoType: "",
+  setPhotoType: (value: string) => set(() => ({ photoType: value })),
   setFiles: (value: any) => set(() => ({ files: value })),
   setIsUpdatingProfileImg: (value: boolean) =>
     set(() => ({ isUpdatingProfileImg: value })),

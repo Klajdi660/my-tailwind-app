@@ -90,6 +90,8 @@ export interface AppModalState {
 export interface ProfilePhotoState {
   files: any;
   isUpdatingProfileImg: boolean;
+  photoType: string;
+  setPhotoType: (value: string) => void;
   setFiles: (value: any) => void;
   setIsUpdatingProfileImg: (value: boolean) => void;
 }

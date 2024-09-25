@@ -6,7 +6,7 @@ import { useAppModal, useProfilePhoto } from "../../../utils";
 
 export const ChangeProfilePhotoModal: FC<any> = () => {
   const { modals, setModalOpen } = useAppModal();
-  const { setIsUpdatingProfileImg } = useProfilePhoto();
+  const { setIsUpdatingProfileImg, photoType } = useProfilePhoto();
   const { updateDisplayPicture, removeDisplayPicture } = useProfileService();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -30,7 +30,7 @@ export const ChangeProfilePhotoModal: FC<any> = () => {
         const formData = new FormData();
         formData.append("displayPicture", file);
 
-        await updateDisplayPicture(formData);
+        await updateDisplayPicture(formData, photoType);
 
         setIsUpdatingProfileImg(false);
       }
@@ -41,7 +41,7 @@ export const ChangeProfilePhotoModal: FC<any> = () => {
 
   const removeProfileImg = async () => {
     try {
-      await removeDisplayPicture();
+      await removeDisplayPicture(photoType);
 
       handleModalClose();
     } catch (error) {

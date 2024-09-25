@@ -125,15 +125,18 @@ export const useProfileService = () => {
     }
   };
 
-  const updateDisplayPicture = async (values: any) => {
+  const updateDisplayPicture = async (formData: any, photoType: string) => {
     try {
       const headers = {
         "Content-Type": "multipart/form-data",
       };
 
+      const params = new URLSearchParams({ photoType }).toString();
+      const url = `${UPDATE_PROFILE_PICTURE_API}?${params}`;
+
       const profilePhotoResp = await HttpClient.put<UserDetailsResponse>(
-        UPDATE_PROFILE_PICTURE_API,
-        values,
+        url,
+        formData,
         { headers }
       );
 
@@ -164,12 +167,13 @@ export const useProfileService = () => {
     }
   };
 
-  const removeDisplayPicture = async () => {
+  const removeDisplayPicture = async (photoType: string) => {
     try {
+      const params = new URLSearchParams({ photoType }).toString();
+      const url = `${DELETE_PROFILE_PICTURE_API}?${params}`;
+
       const removeProfilePhotoResp =
-        await HttpClient.delete<UserDetailsResponse>(
-          DELETE_PROFILE_PICTURE_API
-        );
+        await HttpClient.delete<UserDetailsResponse>(url);
 
       const { error, message, data } = removeProfilePhotoResp;
       if (error) {

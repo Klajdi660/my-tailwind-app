@@ -24,7 +24,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
         "flex-col h-full py-6 m-auto bg-main flex_justify_center absolute_center"
       )}
     >
-      <div className="w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 bg-card rounded">
+      <div className="flex flex-col w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 bg-card rounded">
         <Link to="/" className="flex_justify_center mb-6">
           <Image imgUrl={iconName} name="template_logo" width={140} />
         </Link>

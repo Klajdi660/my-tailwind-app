@@ -7,13 +7,14 @@ import { userIcon, iconName } from "../../assets";
 
 export const EditProfile: FC<EditProfileProps> = () => {
   const { setModalOpen } = useAppModal();
-  const { isUpdatingProfileImg } = useProfilePhoto();
+  const { isUpdatingProfileImg, setPhotoType } = useProfilePhoto();
 
   const { user } = useAppSelector((state) => state.user);
 
   const { avatar } = user.extra;
 
   const handleModalOpen = () => {
+    setPhotoType("profilPhoto");
     setModalOpen("changeProfilePhotoModal", true);
   };
 

@@ -29,6 +29,7 @@ import {
   BiChevronsRight,
   BiSelectMultiple,
   BiSend,
+  BiPencil,
 } from "react-icons/bi";
 import {
   BsGlobe,
@@ -52,6 +53,7 @@ import {
   FaAndroid,
   FaWindows,
   FaRegUser,
+  FaRegUserCircle,
   FaFacebook,
   FaOpencart,
   FaWpexplorer,
@@ -91,6 +93,8 @@ import {
   MdOutlineLocationSearching,
   MdOutlineSwitchAccount,
   MdOutlineCameraAlt,
+  MdOutlineEdit,
+  MdOutlineVerifiedUser,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import {
@@ -112,6 +116,7 @@ import {
 } from "react-icons/sl";
 import { SiNintendo } from "react-icons/si";
 import { TiTimes, TiLocationArrowOutline } from "react-icons/ti";
+import { TbUserSquare } from "react-icons/tb";
 import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
 
@@ -143,6 +148,7 @@ const icons: IconsMap = {
   BiChevronsRight,
   BiSelectMultiple,
   BiSend,
+  BiPencil,
   BsGlobe,
   BsThreeDots,
   BsMoonStars,
@@ -162,6 +168,7 @@ const icons: IconsMap = {
   FaAndroid,
   FaWindows,
   FaRegUser,
+  FaRegUserCircle,
   FaFacebook,
   FaOpencart,
   FaWpexplorer,
@@ -199,6 +206,8 @@ const icons: IconsMap = {
   MdOutlineLocationSearching,
   MdOutlineSwitchAccount,
   MdOutlineCameraAlt,
+  MdOutlineEdit,
+  MdOutlineVerifiedUser,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,
@@ -214,6 +223,7 @@ const icons: IconsMap = {
   SiNintendo,
   TiTimes,
   TiLocationArrowOutline,
+  TbUserSquare,
 };
 
 export const Icon: FC<IconParams> = ({
