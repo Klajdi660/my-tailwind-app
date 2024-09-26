@@ -26,7 +26,6 @@ export const EditProfilePage: FC<ProfilePageProps> = () => {
         <div className="flex flex-col gap-4">
           <UserInfo />
           <PersonalDetails />
-          {/* <AddressDetails /> */}
           <ChangePassword />
           <DeleteAccount />
         </div>
