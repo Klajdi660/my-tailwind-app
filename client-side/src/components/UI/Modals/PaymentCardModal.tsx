@@ -10,7 +10,12 @@ import { Button } from "../Button";
 import { addNewCard } from "../../../store";
 import { useAppModal } from "../../../utils";
 import { PaymentCardProps } from "../../../types";
-import { cardMonthList, cardYearList, cardImgList } from "../../../data";
+import {
+  cardMonthList,
+  cardYearList,
+  cardImgList,
+  cardTypList,
+} from "../../../data";
 import { cvvNumberImg } from "../../../assets";
 
 const cvvContent = (
@@ -104,6 +109,25 @@ export const PaymentCardModal: FC<PaymentCardProps> = () => {
           className="w-full flex flex-col mt-4"
           onSubmit={handleSubmit(handleMenuClick)}
         >
+          <div className="flex flex-wrap justify-between">
+            <div className="w-full md:w-[48%] pb-5">
+              <label className="block text-secondary text-xs font-semibold mb-2">
+                Card Type
+              </label>
+              <Controller
+                name="typeOfCard"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    className="w-full h-10 text-sm"
+                    placeholder="Card Type"
+                    options={cardTypList}
+                  />
+                )}
+              />
+            </div>
+          </div>
           <div className="flex flex-wrap justify-between">
             <div className="w-full md:w-[48%] pb-5">
               <label className="block text-secondary text-xs font-semibold mb-2">

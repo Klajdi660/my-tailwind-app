@@ -233,7 +233,9 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <Controller
               name="country"
               control={control}
-              defaultValue={defaultValues.country || ""}
+              defaultValue={
+                defaultValues.country ? defaultValues.country : null
+              }
               render={({ field }) => (
                 <Select
                   {...field}

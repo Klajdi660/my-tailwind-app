@@ -3,8 +3,9 @@ import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { Icon, Image } from "../UI";
 import { currencyList, cardImg } from "../../data";
-import { useAppModal } from "../../utils";
+import { useAppModal, maskCardNumber } from "../../utils";
 import { removeSelectedCard, useAppSelector } from "../../store";
+import { noCardTypeImg } from "../../assets";
 
 interface PaymentSettingProps {}
 
@@ -12,7 +13,7 @@ interface NewCardContentProps {
   cardId: number;
 }
 
-const NewCardContent: FC<NewCardContentProps> = (props) => {
+export const NewCardContent: FC<NewCardContentProps> = (props) => {
   const { cardId } = props;
 
   const dispatch = useDispatch();
@@ -36,16 +37,10 @@ const NewCardContent: FC<NewCardContentProps> = (props) => {
   );
 };
 
-const maskCardNumber = (cardNumber: string) => {
-  const last4Digits = cardNumber.slice(-4);
-  const maskedNumber = cardNumber.slice(0, -4).replace(/\d/g, "*");
-  return maskedNumber + last4Digits;
-};
-
 export const PaymentSetting: FC<PaymentSettingProps> = (props) => {
   const { setModalOpen } = useAppModal();
 
-  const cards = useAppSelector((state) => state.settingCard.items);
+  const { cardItems } = useAppSelector((state) => state.settingCard);
 
   const currencyOptions = Object.keys(currencyList).map((curr) => ({
     label: currencyList[curr].label,
@@ -81,20 +76,24 @@ export const PaymentSetting: FC<PaymentSettingProps> = (props) => {
           Cards
         </label>
         <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
-          {cards.map((card: any) => {
+          {cardItems.map((cardItem: any) => {
+            const { id, cardNumber, cardType } = cardItem;
+
             return (
               <div
                 className="h-40 grid grid-cols-2 gap-4 p-4 bg-primary-opacity rounded-lg text-onNeutralBg"
-                key={card.id}
+                key={id}
               >
                 <div className="flex items-start justify-start">
                   <p className="text-lg font-bold">
-                    {maskCardNumber(card.cardNumber)}
+                    {maskCardNumber(cardNumber)}
                   </p>
                 </div>
                 <div className="flex items-start justify-end mt-1">
                   <Image
-                    imgUrl={cardImg[card?.cardType]}
+                    imgUrl={
+                      cardImg[cardType] ? cardImg[cardType] : noCardTypeImg
+                    }
                     name="bank_img"
                     width={50}
                   />
@@ -103,7 +102,7 @@ export const PaymentSetting: FC<PaymentSettingProps> = (props) => {
                 <div className="flex items-end justify-end cursor-pointer">
                   <Popover
                     arrow={false}
-                    content={<NewCardContent cardId={card.id} />}
+                    content={<NewCardContent cardId={id} />}
                   >
                     <button>
                       <Icon name="BsThreeDots" className="hover:text-primary" />

@@ -10,11 +10,11 @@ interface Card {
 }
 
 interface CardState {
-  items: Card[];
+  cardItems: Card[];
 }
 
 const initialState: CardState = {
-  items: [],
+  cardItems: [],
 };
 
 const slice = createSlice({
@@ -22,7 +22,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     addNewCard: (state, action: PayloadAction<Card>) => {
-      const existingCard = state.items.find(
+      const existingCard = state.cardItems.find(
         (item) => item.cardNumber === action.payload.cardNumber
       );
       if (existingCard) {
@@ -30,14 +30,16 @@ const slice = createSlice({
         return;
       }
 
-      state.items = [
-        ...state.items,
-        { ...action.payload, id: state.items.length },
+      state.cardItems = [
+        ...state.cardItems,
+        { ...action.payload, id: state.cardItems.length },
       ];
       toast.success("Card added successfully.");
     },
     removeSelectedCard: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      state.cardItems = state.cardItems.filter(
+        (item) => item.id !== action.payload
+      );
       toast.success("Card removed successfully.");
     },
   },

@@ -40,6 +40,7 @@ import {
   BsNintendoSwitch,
   BsFillArrowUpCircleFill,
   BsSignpostSplit,
+  BsGenderAmbiguous,
 } from "react-icons/bs";
 import { CiShoppingTag } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
@@ -59,6 +60,7 @@ import {
   FaWpexplorer,
   FaPlaystation,
   FaClock,
+  FaStreetView,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiUpload, FiEdit } from "react-icons/fi";
@@ -95,8 +97,10 @@ import {
   MdOutlineCameraAlt,
   MdOutlineEdit,
   MdOutlineVerifiedUser,
+  MdCalendarMonth,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
+import { LiaCoinsSolid } from "react-icons/lia";
 import {
   PiWarningCircle,
   PiWarningCircleBold,
@@ -116,7 +120,7 @@ import {
 } from "react-icons/sl";
 import { SiNintendo } from "react-icons/si";
 import { TiTimes, TiLocationArrowOutline } from "react-icons/ti";
-import { TbUserSquare } from "react-icons/tb";
+import { TbUserSquare, TbBuildingWarehouse } from "react-icons/tb";
 import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
 
@@ -157,6 +161,7 @@ const icons: IconsMap = {
   BsNintendoSwitch,
   BsFillArrowUpCircleFill,
   BsSignpostSplit,
+  BsGenderAmbiguous,
   CiShoppingTag,
   CgGames,
   FaUser,
@@ -173,11 +178,13 @@ const icons: IconsMap = {
   FaOpencart,
   FaWpexplorer,
   FaPlaystation,
+  FaStreetView,
   FcGoogle,
   FiUpload,
   FiAlertTriangle,
   FiEdit,
   GoDotFill,
+  LiaCoinsSolid,
   HiCheck,
   HiOutlineUpload,
   HiMenuAlt2,
@@ -208,6 +215,7 @@ const icons: IconsMap = {
   MdOutlineCameraAlt,
   MdOutlineEdit,
   MdOutlineVerifiedUser,
+  MdCalendarMonth,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,
@@ -224,6 +232,7 @@ const icons: IconsMap = {
   TiTimes,
   TiLocationArrowOutline,
   TbUserSquare,
+  TbBuildingWarehouse,
 };
 
 export const Icon: FC<IconParams> = ({

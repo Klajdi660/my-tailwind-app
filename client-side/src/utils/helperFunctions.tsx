@@ -193,3 +193,9 @@ export const cycleDiscoverGameArray = (array: unknown[]) => {
   newArray.push(newArray.shift());
   return newArray;
 };
+
+export const maskCardNumber = (cardNumber: string) => {
+  const last4Digits = cardNumber.slice(-4);
+  const maskedNumber = cardNumber.slice(0, -4).replace(/\d/g, "*");
+  return maskedNumber + last4Digits;
+};
