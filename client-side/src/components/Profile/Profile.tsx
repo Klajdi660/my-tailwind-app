@@ -52,7 +52,7 @@ export const Profile: FC<ProfileProps> = () => {
   return (
     <>
       <div className="relative bg-card rounded">
-        <div className="relative h-52 bg-gray-300 rounded">
+        <div className="relative h-52 bg-gray-200 rounded">
           {cover && (
             <Image
               imgUrl={cover}
@@ -153,7 +153,7 @@ export const Profile: FC<ProfileProps> = () => {
           </button>
         </div>
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="FaRegUser" />
             </button>
@@ -162,7 +162,7 @@ export const Profile: FC<ProfileProps> = () => {
               <p>{firstName}</p>
             </div>
           </div>
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4 ">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="FaRegUser" />
             </button>
@@ -173,7 +173,7 @@ export const Profile: FC<ProfileProps> = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="MdCalendarMonth" />
             </button>
@@ -182,7 +182,7 @@ export const Profile: FC<ProfileProps> = () => {
               <p>{dateOfBirth}</p>
             </div>
           </div>
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="BsGenderAmbiguous" />
             </button>
@@ -193,7 +193,7 @@ export const Profile: FC<ProfileProps> = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="MdPhoneIphone" />
             </button>
@@ -210,7 +210,7 @@ export const Profile: FC<ProfileProps> = () => {
 
         <h5 className="text-xl font-semibold pt-6">Address Details</h5>
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4 ">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="MdOutlineLocationSearching" />
             </button>
@@ -219,7 +219,7 @@ export const Profile: FC<ProfileProps> = () => {
               <p>{country}</p>
             </div>
           </div>
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="TiLocationArrowOutline" />
             </button>
@@ -230,7 +230,7 @@ export const Profile: FC<ProfileProps> = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="SlLocationPin" />
             </button>
@@ -239,7 +239,7 @@ export const Profile: FC<ProfileProps> = () => {
               <p>{address}</p>
             </div>
           </div>
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="BsSignpostSplit" />
             </button>
@@ -264,7 +264,7 @@ export const Profile: FC<ProfileProps> = () => {
           </button>
         </div>
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="FaRegUser" />
             </button>
@@ -273,7 +273,7 @@ export const Profile: FC<ProfileProps> = () => {
               <p>Full Name</p>
             </div>
           </div>
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="MdPhoneIphone" />
             </button>
@@ -284,7 +284,7 @@ export const Profile: FC<ProfileProps> = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="MdOutlineLocationSearching" />
             </button>
@@ -293,7 +293,7 @@ export const Profile: FC<ProfileProps> = () => {
               <p>Country Name</p>
             </div>
           </div>
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="TiLocationArrowOutline" />
             </button>
@@ -304,7 +304,7 @@ export const Profile: FC<ProfileProps> = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="SlLocationPin" />
             </button>
@@ -313,7 +313,7 @@ export const Profile: FC<ProfileProps> = () => {
               <p>City Name</p>
             </div>
           </div>
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="FaStreetView" />
             </button>
@@ -324,7 +324,7 @@ export const Profile: FC<ProfileProps> = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="TbBuildingWarehouse" />
             </button>
@@ -333,7 +333,7 @@ export const Profile: FC<ProfileProps> = () => {
               <p>Build Number</p>
             </div>
           </div>
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="BsSignpostSplit" />
             </button>
@@ -358,7 +358,7 @@ export const Profile: FC<ProfileProps> = () => {
           </button>
         </div>
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4 ">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="BiWorld" />
             </button>
@@ -367,7 +367,7 @@ export const Profile: FC<ProfileProps> = () => {
               <p>Language Type</p>
             </div>
           </div>
-          <div className="flex w-full gap-4 bg-primary-opacity rounded p-2">
+          <div className="flex w-full gap-4 ">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="LiaCoinsSolid" size={22} />
             </button>
