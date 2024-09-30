@@ -20,12 +20,12 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
   return (
     <div
       className={classNames(
-        // `${formName}_section`,
+        `${formName}_section`,
         "flex-col h-full py-6 m-auto bg-main flex_justify_center absolute_center"
       )}
     >
-      <div className="flex flex-col w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 bg-card rounded">
-        <Link to="/" className="flex_justify_center mb-6">
+      <div className="flex flex-col w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 gap-6 bg-card rounded">
+        <Link to="/" className="flex_justify_center">
           <Image imgUrl={iconName} name="template_logo" width={140} />
         </Link>
         {!data?.resetPassEmailSent ? (
@@ -40,7 +40,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
         {["login", "register"]?.includes(formName) && (
           <>
             <SocialAuthButton />
-            <div className="flex items-center justify-center gap-4 my-6 divider">
+            <div className="flex items-center justify-center gap-4 divider">
               <div className="h-[1px] bg-divider flex-1" />
               <span className="text-sm text-onNeutralBg">
                 or use your email account
@@ -64,7 +64,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
               defaultValues={defaultValues}
               data={data}
             />
-            <div className="flex justify-center mt-6 text-sm text-onNeutralBg">
+            <div className="flex justify-center text-sm text-onNeutralBg">
               {footerTitle}
               <Link to={linkTo}>
                 <p className="ml-1 text-primary hover:underline underline-offset-2">
