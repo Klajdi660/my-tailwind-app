@@ -10,7 +10,6 @@ export const Title: FC<TitleProps> = (props) => {
 
   return (
     <div className="flex flex-col gap-3">
-      {/* <div className="flex_justify_between"> */}
       <h2
         className={classNames(
           "font-semibold",
@@ -21,7 +20,6 @@ export const Title: FC<TitleProps> = (props) => {
       >
         {name}
       </h2>
-      {/* </div> */}
       {desc && (
         <p className="-mt-2 text-sm font-normal tracking-wider text-secondary">
           {desc || "Top picks for you. Updated daily."}
