@@ -42,9 +42,10 @@ export const Form: FC<FormProps> = (props) => {
                   <fieldset>
                     <div
                       className={classNames(
-                        "relative",
-                        !errors[list.name] &&
-                          "border rounded border-divider focus-within:border-primary"
+                        "relative rounded",
+                        errors[list.name]
+                          ? "border border-red-500 hover:border-red-500"
+                          : "border border-divider focus-within:border-primary hover:border-primary"
                       )}
                     >
                       {list.type === "input" && (
@@ -52,9 +53,7 @@ export const Form: FC<FormProps> = (props) => {
                           <input
                             {...form(list.name)}
                             className={classNames(
-                              "w-full h-12 px-2 rounded text-sm bg-transparent text-onNeutralBg no-focus border border-divider outline-0 disabled:text-secondary hover:border-primary",
-                              errors[list.name] &&
-                                "border border-red-500 hover:border-red-500"
+                              "w-full h-12 px-2 text-sm text-onNeutralBg bg-transparent no-focus outline-0 disabled:text-secondary"
                             )}
                             {...list.props}
                             placeholder={list.props.placeholder || list.label}
