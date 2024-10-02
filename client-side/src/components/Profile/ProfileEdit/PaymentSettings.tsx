@@ -128,7 +128,7 @@ export const PaymentSettings: FC<PaymentSettingsProps> = () => {
         </div>
 
         <h5 className="text-lg font-semibold">Card Details</h5>
-        <div className="w-full flex items-center gap-4 bg-primary-opacity rounded-lg p-2">
+        <div className="flex items-center gap-4 bg-primary-opacity rounded p-2">
           <p className="text-base font-bold">Add new card</p>
           {cardImgList.map((cardImg) => (
             <Image

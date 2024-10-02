@@ -25,7 +25,7 @@ export const GeneralSettings: FC = () => {
             </span>
           </label>
           <Select
-            className="w-1/2 h-12 w-full text-sm"
+            className="w-1/2 h-12 text-sm"
             placeholder="Select theme"
             options={themeList}
             defaultValue={theme.mode}
