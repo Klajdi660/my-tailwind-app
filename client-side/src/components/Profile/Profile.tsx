@@ -10,12 +10,14 @@ import {
   classNames,
   useAppModal,
   maskCardNumber,
+  useSelectedSettings,
 } from "../../utils";
 import { NewCardContent } from "../Settings";
 
 interface ProfileProps {}
 
 export const Profile: FC<ProfileProps> = () => {
+  const { setSelectedSetting } = useSelectedSettings();
   const { isUpdatingProfileImg, setPhotoType } = useProfilePhoto();
   const { setModalOpen } = useAppModal();
   const navigate = useNavigate();
@@ -99,6 +101,7 @@ export const Profile: FC<ProfileProps> = () => {
             className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity"
             onClick={() => {
               navigate(editProfile);
+              setSelectedSetting("account-settings");
             }}
           >
             <Icon name="MdOutlineEdit" size={28} />
@@ -147,6 +150,7 @@ export const Profile: FC<ProfileProps> = () => {
             className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity"
             onClick={() => {
               navigate(editProfile);
+              setSelectedSetting("account-settings");
             }}
           >
             <Icon name="MdOutlineEdit" size={28} />
@@ -258,6 +262,7 @@ export const Profile: FC<ProfileProps> = () => {
             className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity"
             onClick={() => {
               navigate(editProfile);
+              setSelectedSetting("shipping-settings");
             }}
           >
             <Icon name="MdOutlineEdit" size={28} />
@@ -352,6 +357,7 @@ export const Profile: FC<ProfileProps> = () => {
             className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity"
             onClick={() => {
               navigate(editProfile);
+              setSelectedSetting("payment-settings");
             }}
           >
             <Icon name="MdOutlineEdit" size={28} />

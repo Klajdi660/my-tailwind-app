@@ -9,5 +9,6 @@ export const PublicGuard: FC<ProviderProps> = ({ children }) => {
 
   const { atoken } = useAppSelector((state) => state.auth);
 
-  return atoken === null ? children : <Navigate to={discover} />;
+  // return atoken === null ? children : <Navigate to={discover} />;
+  return children;
 };

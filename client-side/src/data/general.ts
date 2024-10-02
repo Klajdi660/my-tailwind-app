@@ -206,15 +206,15 @@ export const settingsLinks: SettingsLinksParams[] = [
     icon: "AiOutlineSetting",
   },
   {
-    id: "shipping",
+    id: "shipping-settings",
     to: "/shipping",
-    name: "Shipping Address",
+    name: "Shipping Address Settings",
     icon: "LuShip",
   },
   {
-    id: "payment",
+    id: "payment-settings",
     to: "/payment",
-    name: "Payment",
+    name: "Payment Settings",
     icon: "MdOutlinePayment",
   },
 ];

@@ -22,7 +22,13 @@ export { CartSwitcher } from "./Cart/CartSwitcher";
 // GAME DETAIL
 // HOME
 export { SliderGames } from "./Home/SliderGames";
+
 // PROFILE
+export { AccountSettings } from "./Profile/ProfileEdit/AccountSettings";
+export { GeneralSettings } from "./Profile/ProfileEdit/GeneralSettings";
+export { PaymentSettings } from "./Profile/ProfileEdit/PaymentSettings";
+export { ShippingAddressSettings } from "./Profile/ProfileEdit/ShippingAddressSettings";
+
 // SECTIONS
 // SETTINGS
 // SIDEBAR

@@ -5,7 +5,9 @@ import {
   SubmittingState,
   ProfilePhotoState,
   NavScrollTriggerState,
+  SelectedSettingsState,
 } from "../types";
+import { settingsLinks } from "../data";
 
 export const useNavScrollTrigger = create<NavScrollTriggerState>((set) => ({
   navScrollTrigger: false,
@@ -43,4 +45,13 @@ export const useProfilePhoto = create<ProfilePhotoState>((set) => ({
 export const useSubmitting = create<SubmittingState>((set) => ({
   isSubmitting: false,
   setIsSubmitting: (value: boolean) => set(() => ({ isSubmitting: value })),
+}));
+
+export const useSelectedSettings = create<SelectedSettingsState>((set) => ({
+  selectedSetting: settingsLinks[0].id,
+  selectedEditProfileName: settingsLinks[0].name,
+  setSelectedSetting: (value: string) =>
+    set(() => ({ selectedSetting: value })),
+  setSelectedEditProfileName: (value: string) =>
+    set(() => ({ selectedEditProfileName: value })),
 }));
