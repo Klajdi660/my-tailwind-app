@@ -16,6 +16,7 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
   const navigate = useNavigate();
   const { addGameToCart } = useCart();
 
+  const { currency } = useAppSelector((state) => state.user);
   const cart = useAppSelector((state) => state.cart.items);
 
   const gamePrice = getGamePrice(game);
@@ -30,11 +31,11 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
   return (
     <div
       className={classNames(
-        "shadow-sm p-3 rounded bg-card duration-300 case-in cursor-pointer text-onNeutralBg transition duration-300 relative"
+        "shadow-sm p-3 rounded bg-card duration-300 case-in cursor-pointer text-onNeutralBg hover:bg-card-hover"
       )}
       onClick={() => navigate(`${gameDetail}/${id}`)}
     >
-      <div className="relative flex justify-center">
+      <div className="relative">
         <div
           className={classNames(
             "relative h-full w-full overflow-hidden shadow_card",
@@ -48,8 +49,8 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
                 type === "artist" ? "rounded-full" : "rounded"
               )}
               imgUrl={background_image}
-              width={80}
-              height={80}
+              width={100}
+              height={100}
               name="image"
             />
           ) : (
@@ -61,21 +62,22 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
           )}
         </div>
       </div>
-      <div className={classNames("desc mt-4")}>
-        <h6 className="text-base font-semibold">
-          {gameNameTruncate(name, 18)}
-        </h6>
-        <div className="flex items-center justify-between mt-2">
+      <div className={classNames("flex flex-col gap-4 mt-4 desc")}>
+        <h6 className="text-md font-semibold">{gameNameTruncate(name, 18)}</h6>
+        <div className="flex flex_justify_between">
           <div className="flex gap-2">
             <PlatformIconList
-              platforms={parent_platforms.map((p: any) => p.platform)}
+              platforms={parent_platforms
+                .slice(0, 3)
+                .map((p: any) => p.platform)}
             />
           </div>
-          {/* <div className="bg-primary-opacity px-2 py-1 rounded text-sm">
-            {game.metacritic}
-          </div> */}
+          <p>
+            {currency}
+            {gamePrice}
+          </p>
         </div>
-        <div className="flex items-center justify-between mt-3">
+        {/* <div className="flex items-center justify-between mt-3">
           <div className="bg-primary-opacity p-2 rounded text-sm">
             ${gamePrice}
           </div>
@@ -99,7 +101,7 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
               />
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

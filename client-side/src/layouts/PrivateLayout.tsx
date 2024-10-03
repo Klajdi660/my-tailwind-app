@@ -1,4 +1,5 @@
 import { FC, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Modal,
   Navbar,
@@ -9,15 +10,20 @@ import {
   // SidebarMini,
   TabTitle,
 } from "../components";
-import { useAppUtil } from "../utils";
+import { useAppUtil, classNames, getAside } from "../utils";
 import { ProviderProps } from "../types";
 // import { useUserService } from "../services";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useAppSelector } from "../store";
+
 export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
   const { openSwitch } = useAppUtil();
   const [parent] = useAutoAnimate();
+  const { pathname } = useLocation();
+
   const { loading } = useAppSelector((state) => state.auth);
+
+  const hasAside = getAside(pathname);
 
   // const { getUserDetails } = useUserService();
 
@@ -46,7 +52,10 @@ export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
         <Navbar />
         <div
           ref={parent}
-          className="relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 main_width page_content mt-main-top"
+          className={classNames(
+            "relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 page_content mt-main-top",
+            !hasAside ? "main_width" : "other_main_width"
+          )}
         >
           {children}
         </div>

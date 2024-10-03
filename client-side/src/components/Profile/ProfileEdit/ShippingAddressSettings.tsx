@@ -98,6 +98,7 @@ export const ShippingAddressSettings: FC = () => {
                 optionLabelProp="selected"
                 className="contactNr-select bg-primary-opacity"
                 dropdownStyle={{ width: 250 }}
+                defaultValue="+355"
               />
               <input
                 name="contactNumber"

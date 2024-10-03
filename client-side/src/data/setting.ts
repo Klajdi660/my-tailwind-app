@@ -3,6 +3,7 @@ import {
   CurrListParams,
   CardImgParams,
   CardImgListParams,
+  CurrencySymbolProperties,
 } from "../types";
 import {
   americanExpressCardImg,
@@ -26,11 +27,19 @@ export const languageList: SettingListParams[] = [
 ];
 
 export const currencyList: CurrListParams = {
+  ALL: { label: "ALL (Albanian Lek)", value: "ALL" },
   EUR: { label: "EUR (Euro)", value: "EUR" },
   GBP: { label: "GBP (Pound)", value: "GBP" },
   USD: { label: "USD (US Dollar)", value: "USD" },
   CHF: { label: "CHF (Swiss Franc)", value: "CHF" },
-  ALL: { label: "ALL (Albanian Lek)", value: "ALL" },
+};
+
+export const currencySymbolList: CurrencySymbolProperties = {
+  ALL: "L",
+  EUR: "€",
+  USD: "$",
+  GBP: "£",
+  CHF: "CHF",
 };
 
 export const cardTypList: SettingListParams[] = [

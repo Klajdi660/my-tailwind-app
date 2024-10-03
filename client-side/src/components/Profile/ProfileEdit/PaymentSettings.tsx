@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import creditCardType from "credit-card-type";
 import { Icon, Image, Button } from "../../UI";
-import { currencyList } from "../../../data";
 import { removeSelectedCard, addNewCard } from "../../../store";
 import { cvvNumberImg } from "../../../assets";
 import {
@@ -80,11 +79,6 @@ export const NewCardContent: FC<NewCardContentProps> = (props) => {
 export const PaymentSettings: FC<PaymentSettingsProps> = () => {
   const dispatch = useDispatch();
 
-  const currencyOptions = Object.keys(currencyList).map((curr) => ({
-    label: currencyList[curr].label,
-    value: curr,
-  }));
-
   const handleMenuClick = async (data: any) => {
     const cardType = creditCardType(data.cardNumber);
 
@@ -111,22 +105,6 @@ export const PaymentSettings: FC<PaymentSettingsProps> = () => {
   return (
     <div className="w-full text-onNeutralBg">
       <div className="flex flex-col bg-card p-8 rounded gap-6">
-        <h5 className="text-lg font-semibold">Currency preferences</h5>
-        <div className="flex_justify_between">
-          <label className="flex flex-col font-semibold text-md">
-            Currency
-            <span className="text-secondary">
-              Select the currency you use on GrooveIT
-            </span>
-          </label>
-          <Select
-            className="w-1/2 h-12 text-sm"
-            placeholder="Select currency"
-            // dropdownStyle={{ width: 200 }}
-            options={currencyOptions}
-          />
-        </div>
-
         <h5 className="text-lg font-semibold">Card Details</h5>
         <div className="w-full flex items-center gap-4 bg-primary-opacity rounded-lg p-2">
           <p className="text-base font-bold">Add new card</p>

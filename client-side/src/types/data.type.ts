@@ -39,6 +39,10 @@ export type CurrencyProperties = {
   [key: number]: string;
 };
 
+export type CurrencySymbolProperties = {
+  [key: string]: string;
+};
+
 // Modal
 export type ModalProperties = {
   [key: number]: string;

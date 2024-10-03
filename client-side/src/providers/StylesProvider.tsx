@@ -3,6 +3,7 @@ import { themeConfig, defaultThemeConfig } from "../configs";
 import { useAppSelector } from "../store";
 import { useMediaResponsive } from "../hooks";
 import { FC } from "react";
+import { paths } from "../data";
 
 export const StylesProvider: FC = () => {
   const { isMobile, isLargeScreen, isExtraLargeScreen } = useMediaResponsive();
@@ -74,8 +75,8 @@ export const StylesProvider: FC = () => {
       --sidebar-horizontal-width: ${sidebarWidth}px;
       --onNeutralBgSecondary: ${onNeutralBgSecondary};
       --sidebar-width: ${isMobile ? sidebars["full"] : sT}px;
-      --main-width: calc(100% - ${sidebarWidth}px);
-      // --main-width: calc(100% - ${sidebarWidth}px - ${asideMobile}px);
+      --other-main-width: calc(100% - ${sidebarWidth}px);
+      --main-width: calc(100% - ${sidebarWidth}px - ${asideMobile}px);
     }
   `;
 

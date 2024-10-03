@@ -86,6 +86,7 @@ export const fileBlob = (files: File[] | null) => {
 };
 
 const IMAGE_URL = "https://image.tmdb.org/t/p";
+
 export const resizeImage = (
   imgUrl: string,
   width: string = "original"
@@ -198,4 +199,10 @@ export const maskCardNumber = (cardNumber: string) => {
   const last4Digits = cardNumber.slice(-4);
   const maskedNumber = cardNumber.slice(0, -4).replace(/\d/g, "*");
   return maskedNumber + last4Digits;
+};
+
+export const getAside = (pathname: string) => {
+  const key = pathname.split("/")[1];
+  const hasAside = ["profile", "edit-profile"]?.includes(key);
+  return hasAside;
 };

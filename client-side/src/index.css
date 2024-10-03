@@ -130,6 +130,13 @@ body,
   transition-duration: 500ms;
 }
 
+.other_main_width {
+  width: var(--other-main-width);
+  left: var(--sidebar-horizontal-width);
+  transition: all;
+  transition-duration: 500ms;
+}
+
 /* .player_width {
   width: var(--main-width);
   left: var(--sidebar-horizontal-width);

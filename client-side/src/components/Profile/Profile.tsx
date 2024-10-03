@@ -41,7 +41,7 @@ export const Profile: FC<ProfileProps> = () => {
     postalCode,
   } = user.extra;
 
-  const { phonePrefix, phoneNumber } = contactNumber;
+  const { phonePrefix, phoneNumber } = contactNumber || {};
 
   const verifyType = verified === "1" ? "Verified" : "Verify now";
   const isVerify = verified === "1";
