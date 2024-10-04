@@ -5,6 +5,7 @@ export const editUsernameValidation = yup
     username: yup
       .string()
       .trim()
+      .required({ message: "Please input your new Username." })
       .min(8, { message: "Minimum 8 characters." })
       .max(50, { message: "Maximum 50 caracters." })
       .matches(/^[^@]+$/, "Input should not contain symbols.")

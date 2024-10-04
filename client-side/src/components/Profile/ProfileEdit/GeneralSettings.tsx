@@ -26,7 +26,7 @@ export const GeneralSettings: FC = () => {
   const handleCurrencyChange = (value: string) => {
     dispatch(setCurrency(currencySymbolList[value]));
   };
-  console.log("currencyOptions :>> ", currencyOptions);
+
   return (
     <div className="w-full text-onNeutralBg">
       <div className="flex flex-col bg-card p-8 rounded gap-6">

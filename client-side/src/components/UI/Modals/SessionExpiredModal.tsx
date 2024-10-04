@@ -8,7 +8,7 @@ import { useAppModal } from "../../../utils";
 import { SessionExpiredProps } from "../../../types";
 
 export const SessionExpiredModal: FC<SessionExpiredProps> = () => {
-  const { home } = paths;
+  const { home, login } = paths;
   const { modals, setModalOpen } = useAppModal();
   const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ export const SessionExpiredModal: FC<SessionExpiredProps> = () => {
     navigate(home);
 
     delete localStorage.atoken;
+    delete localStorage.rtoken;
     delete localStorage.user;
     // delete localStorage.lastLocation;
   };

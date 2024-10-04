@@ -45,6 +45,7 @@ export const Profile: FC<ProfileProps> = () => {
 
   const verifyType = verified === "1" ? "Verified" : "Verify now";
   const isVerify = verified === "1";
+  console.log("isVerify :>> ", isVerify);
 
   const handleModalOpen = () => {
     setPhotoType("cover");
@@ -124,11 +125,17 @@ export const Profile: FC<ProfileProps> = () => {
               <Icon
                 name="MdOutlineVerifiedUser"
                 className={classNames(
-                  isVerify ? "text-green-600" : "text-primary"
+                  isVerify ? "text-[#16a34a]" : "text-primary"
                 )}
                 size={18}
               />
-              <p>{verifyType}</p>
+              <p
+                className={classNames(
+                  isVerify ? "text-green-600" : "text-primary"
+                )}
+              >
+                {verifyType}
+              </p>
             </button>
           </div>
           <div className="flex gap-4">

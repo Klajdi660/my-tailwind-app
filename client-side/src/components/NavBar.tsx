@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   Image,
@@ -17,12 +17,13 @@ import { NavbarProps } from "../types";
 import { icon, iconName } from "../assets";
 import { defaultThemeConfig } from "../configs";
 import { Searchbar, ProfileDropdown } from "../components";
-import { useAppUtil, classNames } from "../utils";
+import { useAppUtil, classNames, getAside } from "../utils";
 import { useAppSelector } from "../store";
 
 export const Navbar: FC<NavbarProps> = () => {
   const { isMobile } = useMediaResponsive();
   const { toggleSearch, setToggleSearch } = useAppUtil();
+  const { pathname } = useLocation();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,12 +32,19 @@ export const Navbar: FC<NavbarProps> = () => {
   const { user } = useAppSelector((state) => state.user);
   const { atoken } = useAppSelector((state) => state.auth);
 
+  const hasAside = getAside(pathname);
+
   const { sidebar } = theme || defaultThemeConfig;
   const isFolded = sidebar === "folded";
   const showFull = Boolean(isFolded && !isMobile);
 
   return (
-    <nav className="fixed z-[10] h-navbar top-0 bg-neutralBgOpacity backdrop-blur-[50px] sidebar_horizontal_width">
+    <nav
+      className={classNames(
+        "fixed z-[10] h-navbar top-0 bg-neutralBgOpacity backdrop-blur-[50px]",
+        hasAside ? "sidebar_horizontal_width" : "w-full"
+      )}
+    >
       <Overlay
         isOpen={toggleSearch}
         handleIsOpen={setToggleSearch}
@@ -63,7 +71,7 @@ export const Navbar: FC<NavbarProps> = () => {
             )}
           </Link>
         </div>
-        <div className="flex items-center gap-4 px-3 lg:flex-1">
+        <div className="flex items-center gap-4 px-3 sm:px-6 lg:flex-1">
           <div className="z-20 flex items-center flex-1 h-full gap-4">
             <DesktopToggleButton theme={theme} dispatch={dispatch} />
             <Searchbar
