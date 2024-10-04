@@ -45,7 +45,6 @@ export const Profile: FC<ProfileProps> = () => {
 
   const verifyType = verified === "1" ? "Verified" : "Verify now";
   const isVerify = verified === "1";
-  console.log("isVerify :>> ", isVerify);
 
   const handleModalOpen = () => {
     setPhotoType("cover");

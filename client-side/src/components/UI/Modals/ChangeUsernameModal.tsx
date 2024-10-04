@@ -17,7 +17,7 @@ export const ChangeUsernameModal: FC = () => {
 
   const { user } = useAppSelector((state) => state.user);
 
-  const { username } = user;
+  const { username } = user || {};
 
   const handleModalClose = () => {
     reset();
