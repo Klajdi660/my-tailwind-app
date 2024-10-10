@@ -1,10 +1,11 @@
 import { FC } from "react";
-import { Icon } from "../UI";
+import { Button, Icon, Image } from "../UI";
 import { gameIconMap } from "../../data";
 import {
   DeveloperListProps,
   PublisherListPorps,
   PlatformIconListProps,
+  GameGenreListProps,
 } from "../../types";
 import { classNames } from "../../utils";
 
@@ -48,5 +49,28 @@ export const PublisherList: FC<PublisherListPorps> = ({ publishers }) => {
         </span>
       ))}
     </>
+  );
+};
+
+export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
+  return (
+    <div className="flex gap-2 text-onNeutralBg">
+      {gameGenres.slice(0, 8).map((genre) => (
+        <button
+          key={genre.id}
+          type="button"
+          className="flex_justify_center w-full gap-2 bg-primary-opacity py-4 rounded-2xl hover:bg-primary group"
+        >
+          <Image imgUrl={genre.image_background} styles="rounded h-10 w-10" />
+          <span className="group-hover:!text-white">{genre.name}</span>
+        </button>
+      ))}
+      <button className="rounded-l-2xl transition-colors duration-500 rounded flex_justify_center bg-primary-opacity hover:bg-primary group">
+        <Icon
+          name="MdOutlineKeyboardDoubleArrowRight"
+          className="group-hover:!text-white"
+        />
+      </button>
+    </div>
   );
 };

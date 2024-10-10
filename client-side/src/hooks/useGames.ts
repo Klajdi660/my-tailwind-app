@@ -50,3 +50,19 @@ export const useGameSlider = () => {
 
   return { gamesSlider };
 };
+
+export const useGameHook = () => {
+  const { getGames, getGameDetail, getGamesSlider, getGameGenreList } =
+    useGamesService();
+
+  const useGameGenreList = () => {
+    const { data: gameGenreList } = useQuery({
+      queryKey: ["genres"],
+      queryFn: async () => await getGameGenreList(),
+    });
+
+    return { gameGenreList };
+  };
+
+  return { useGameGenreList };
+};

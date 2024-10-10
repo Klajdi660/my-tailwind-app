@@ -154,6 +154,24 @@ export interface PublisherListPorps {
   publishers: PublisherList[];
 }
 
+interface GameGenreList {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+  games: {
+    id: number;
+    added: number;
+    name: string;
+    slug: string;
+  }[];
+}
+
+export interface GameGenreListProps {
+  gameGenres: GameGenreList[];
+}
+
 export interface ReadMoreProps {
   className?: string;
   limitTextLength: number;

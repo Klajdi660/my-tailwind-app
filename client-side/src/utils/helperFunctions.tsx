@@ -203,6 +203,6 @@ export const maskCardNumber = (cardNumber: string) => {
 
 export const getAside = (pathname: string) => {
   const key = pathname.split("/")[1];
-  const hasAside = ["discover", "browse"]?.includes(key);
+  const hasAside = ["browse"]?.includes(key);
   return hasAside;
 };

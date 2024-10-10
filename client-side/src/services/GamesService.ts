@@ -8,8 +8,9 @@ const {
   GET_GAME_LIST_API,
   GET_GAME_DETAIL_API,
   GET_GAME_VIDEOS_API,
-  GET_GAME_Reviews_API,
+  GET_GAME_REVIEWS_API,
   GET_GAME_SLIDER_API,
+  GET_GAME_GENRE_LIST_API,
 } = gameEndpoints;
 
 export const useGamesService = () => {
@@ -135,7 +136,7 @@ export const useGamesService = () => {
   const getGameReviews = async (values: any): Promise<void> => {
     try {
       const params = new URLSearchParams(values).toString();
-      const url = `${GET_GAME_Reviews_API}?${params}`;
+      const url = `${GET_GAME_REVIEWS_API}?${params}`;
 
       const getGameReviewsResp = await HttpClient.get<ServerResponse>(url);
 
@@ -156,6 +157,29 @@ export const useGamesService = () => {
     }
   };
 
+  const getGameGenreList = async (): Promise<void> => {
+    try {
+      const url = `${GET_GAME_GENRE_LIST_API}`;
+
+      const getGameGenreListResp = await HttpClient.get<ServerResponse>(url);
+
+      const { error, message, data } = getGameGenreListResp;
+
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      return data;
+    } catch (error) {
+      console.error(`Get game genre list field: ${error}`);
+      throw error;
+    }
+  };
+
   return {
     // getGameList,
     getGameDetail,
@@ -163,5 +187,6 @@ export const useGamesService = () => {
     getGameReviews,
     getGames,
     getGamesSlider,
+    getGameGenreList,
   };
 };

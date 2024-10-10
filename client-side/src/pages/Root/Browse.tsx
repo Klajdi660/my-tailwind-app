@@ -5,12 +5,11 @@ import { BrowsePageProps } from "../../types";
 import { MediaSection, Button } from "../../components";
 // import { useGamesService } from "../../services";
 import { useGames, useScrollPosition } from "../../hooks";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { classNames } from "../../utils";
 
 export const BrowsePage: FC<BrowsePageProps> = () => {
-  const [parent] = useAutoAnimate();
   const isShowScrollUpBtn = useScrollPosition();
+
   // const { getGameList } = useGamesService();
   // const [isShowScrollUpBtn, setIsShowScrollUpBtn] = useState(false);
 
@@ -49,7 +48,7 @@ export const BrowsePage: FC<BrowsePageProps> = () => {
           />
         </div>
       )}
-      <div className="browse_page flex flex-col" ref={parent}>
+      <div className="browse_page flex flex-col">
         <MediaSection
           type="playlist"
           title="Discover"
