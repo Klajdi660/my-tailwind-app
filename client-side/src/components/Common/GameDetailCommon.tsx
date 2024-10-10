@@ -8,6 +8,7 @@ import {
   GameGenreListProps,
 } from "../../types";
 import { classNames } from "../../utils";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const PlatformIconList: FC<PlatformIconListProps> = ({
   platforms,
@@ -59,9 +60,15 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
         <button
           key={genre.id}
           type="button"
-          className="flex_justify_center w-full gap-2 bg-primary-opacity py-4 rounded-2xl hover:bg-primary group"
+          className="flex_justify_center w-full gap-2 bg-primary-opacity py-4 rounded-2xl hover:bg-primary hover:scale-105 hover:brightness-110 transition duration-300 relative group"
         >
-          <Image imgUrl={genre.image_background} styles="rounded h-10 w-10" />
+          {/* <Image imgUrl={genre.image_background} styles="rounded h-10 w-10" /> */}
+          <LazyLoadImage
+            alt={genre.name}
+            src={genre.image_background}
+            className="rounded h-10 w-10 object-cover"
+            // effect="blur"
+          />
           <span className="group-hover:!text-white">{genre.name}</span>
         </button>
       ))}
