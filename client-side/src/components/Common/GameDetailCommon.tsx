@@ -80,7 +80,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
             alt={genre.name}
             src={genre.image_background}
             className="rounded h-10 w-10 object-cover"
-            // effect="blur"
+            effect="blur"
           />
           <span
             // className="group-hover:!text-white"
