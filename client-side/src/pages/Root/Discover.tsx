@@ -14,11 +14,11 @@ export const DiscoverPage: FC<DiscoverPageProps> = () => {
     <section className="discover_page">
       <div className="flex flex-col gap-y-16">
         <section className="discover-content flex flex-col gap-6">
-          <div className="w-full flex_justify_between flex-col h-[250px]">
+          {/* <div className="w-full flex_justify_between flex-col h-[250px]">
             <div className="flex_justify_between flex-row bg-switch w-full h-full rounded-3xl p-4">
               <div>Discover Page</div>
             </div>
-          </div>
+          </div> */}
           <GameGenreList gameGenres={gameGenreList} />
         </section>
       </div>
