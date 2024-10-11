@@ -370,3 +370,21 @@ input[type="checkbox"] {
 .ant-radio-wrapper {
   margin-inline-end: 0 !important;
 }
+
+/* CUSTOM SLIDER */
+:root {
+  --swiper-theme-color: white !important;
+  --swiper-navigation-size: 15px !important;
+}
+
+.genre-section-slider .swiper-button-prev {
+  color: var(--onNeutralBg) !important;
+  --swiper-navigation-size: 16px !important;
+  z-index: 20 !important;
+}
+
+.genre-section-slider .swiper-button-next {
+  color: var(--onNeutralBg) !important;
+  --swiper-navigation-size: 16px !important;
+  z-index: 20 !important;
+}

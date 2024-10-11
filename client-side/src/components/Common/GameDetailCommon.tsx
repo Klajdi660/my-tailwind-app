@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Button, Icon, Image } from "../UI";
+import { Icon } from "../UI";
 import { gameIconMap } from "../../data";
 import {
   DeveloperListProps,
@@ -9,6 +9,7 @@ import {
 } from "../../types";
 import { classNames } from "../../utils";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export const PlatformIconList: FC<PlatformIconListProps> = ({
   platforms,
@@ -57,50 +58,46 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
   const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null);
 
   const handleGenreClick = (id: number) => {
-    setSelectedGenreId(id); // Update the selected genre
+    setSelectedGenreId(id);
   };
 
   return (
-    <div className="flex items-center gap-2 text-onNeutralBg">
-      {gameGenres.slice(0, 10).map((genre) => (
-        <button
-          key={genre.id}
-          type="button"
-          // className="flex_justify_center w-full gap-2 bg-primary-opacity py-4 rounded-2xl hover:bg-primary hover:scale-105 hover:brightness-110 transition duration-300 relative group"
-          onClick={() => handleGenreClick(genre.id)}
-          className={classNames(
-            "flex_justify_center w-full gap-2 py-4 rounded-2xl transition duration-300 relative group",
-            selectedGenreId === genre.id
-              ? "bg-primary"
-              : "bg-primary-opacity hover:bg-primary hover:scale-105 hover:brightness-110"
-          )}
-        >
-          {/* <Image imgUrl={genre.image_background} styles="rounded h-10 w-10" /> */}
-          <LazyLoadImage
-            alt={genre.name}
-            src={genre.image_background}
-            className="rounded h-10 w-10 object-cover"
-            effect="blur"
-          />
-          <span
-            // className="group-hover:!text-white"
+    <Swiper
+      navigation={false}
+      slidesPerView="auto"
+      spaceBetween={10}
+      className="genre-section-slider w-full text-onNeutralBg"
+    >
+      {gameGenres.map((genre) => (
+        <SwiperSlide key={genre.id} className="!w-[175px]">
+          <button
+            key={genre.id}
+            type="button"
+            onClick={() => handleGenreClick(genre.id)}
             className={classNames(
-              "group-hover:!text-white",
-              selectedGenreId === genre.id && "text-white"
+              "flex_justify_center w-full gap-2 py-4 rounded-2xl transition duration-300 relative group",
+              selectedGenreId === genre.id
+                ? "bg-primary"
+                : "bg-primary-opacity hover:bg-primary hover:brightness-110"
             )}
           >
-            {genre.name}
-          </span>
-        </button>
+            <LazyLoadImage
+              alt={genre.name}
+              src={genre.image_background}
+              className="rounded h-10 w-10 object-cover"
+              effect="blur"
+            />
+            <span
+              className={classNames(
+                "group-hover:!text-white",
+                selectedGenreId === genre.id && "text-white"
+              )}
+            >
+              {genre.name}
+            </span>
+          </button>
+        </SwiperSlide>
       ))}
-      <div className="w-10 h-10">
-        <button className="w-10 h-10 rounded-full transition-colors duration-500 rounded flex_justify_center hover:bg-primary group">
-          <Icon
-            name="MdKeyboardArrowRight"
-            className="group-hover:!text-white"
-          />
-        </button>
-      </div>
-    </div>
+    </Swiper>
   );
 };
