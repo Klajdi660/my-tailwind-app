@@ -10,6 +10,7 @@ import {
 import { classNames } from "../../utils";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 
 export const PlatformIconList: FC<PlatformIconListProps> = ({
   platforms,
@@ -63,6 +64,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
 
   return (
     <Swiper
+      modules={[Navigation]}
       navigation={false}
       slidesPerView="auto"
       spaceBetween={10}

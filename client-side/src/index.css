@@ -377,7 +377,7 @@ input[type="checkbox"] {
   --swiper-navigation-size: 15px !important;
 }
 
-.genre-section-slider .swiper-button-prev {
+/* .genre-section-slider .swiper-button-prev {
   color: var(--onNeutralBg) !important;
   --swiper-navigation-size: 16px !important;
   z-index: 20 !important;
@@ -387,4 +387,4 @@ input[type="checkbox"] {
   color: var(--onNeutralBg) !important;
   --swiper-navigation-size: 16px !important;
   z-index: 20 !important;
-}
+} */
