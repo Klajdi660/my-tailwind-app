@@ -378,9 +378,19 @@ input[type="checkbox"] {
 }
 
 /* .genre-section-slider .swiper-button-prev {
+  color: var(--onNeutralBg);
+} */
+/* .genre-section-slider .swiper-button-prev {
   color: var(--onNeutralBg) !important;
   --swiper-navigation-size: 16px !important;
   z-index: 20 !important;
+  padding: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  margin-top: 22px;
 }
 
 .genre-section-slider .swiper-button-next {

@@ -100,6 +100,7 @@ import {
   MdCalendarMonth,
   MdOutlineKeyboardDoubleArrowRight,
   MdKeyboardArrowRight,
+  MdKeyboardArrowLeft,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import { LiaCoinsSolid } from "react-icons/lia";
@@ -220,6 +221,7 @@ const icons: IconsMap = {
   MdCalendarMonth,
   MdOutlineKeyboardDoubleArrowRight,
   MdKeyboardArrowRight,
+  MdKeyboardArrowLeft,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,
