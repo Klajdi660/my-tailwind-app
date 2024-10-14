@@ -96,6 +96,7 @@ export const PaymentSetting: FC<PaymentSettingProps> = (props) => {
                     }
                     name="bank_img"
                     width={50}
+                    effect="opacity"
                   />
                 </div>
                 <div></div>

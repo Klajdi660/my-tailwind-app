@@ -59,7 +59,7 @@ export const SidebarMini: FC = () => {
   return (
     <section className="sidebarmini_section shrink-0 max-w-[80px] w-full py-4 flex_justify_between flex-col sticky top-0 h-screen bg-sidebar">
       <Link to="/discover">
-        <Image imgUrl={icon} name="App Logo" width={60} />
+        <Image imgUrl={icon} name="App Logo" width={60} effect="opacity" />
       </Link>
       <div className="overflow-y-auto hide_scrollbar">
         <div className="flex flex-col gap-1">

@@ -64,6 +64,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
                       imgUrl={background_image}
                       name="game-details-cover"
                       styles="w-[185px] h-[260px] object-cover rounded-md"
+                      effect="blur"
                     />
                   </div>
                   {isMobile && (

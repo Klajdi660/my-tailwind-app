@@ -52,6 +52,7 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
               width={100}
               height={100}
               name="image"
+              effect="blur"
             />
           ) : (
             <Icon

@@ -23,7 +23,7 @@ const cvvContent = (
     <p className="text-base font-bold">Add cvv card</p>
     <div className="w-full flex_justify_center flex-col">
       <div className="w-full flex flex-row">
-        <Image imgUrl={cvvNumberImg} height={200} width={200} />
+        <Image imgUrl={cvvNumberImg} height={200} width={200} effect="none" />
         <div className="w-[250px]">
           <p className="flex items-center font-semibold">
             <Icon name="GoDotFill" />
@@ -36,7 +36,7 @@ const cvvContent = (
         </div>
       </div>
       <div className="w-full flex flex-row">
-        <Image imgUrl={cvvNumberImg} height={200} width={200} />
+        <Image imgUrl={cvvNumberImg} height={200} width={200} effect="none" />
         <div className="w-[250px]">
           <p className="flex items-center font-semibold">
             <Icon name="GoDotFill" />
@@ -102,6 +102,7 @@ export const PaymentCardModal: FC<PaymentCardProps> = () => {
               imgUrl={cardImg.img}
               name={cardImg.name}
               width={cardImg.width}
+              effect="none"
             />
           ))}
         </div>

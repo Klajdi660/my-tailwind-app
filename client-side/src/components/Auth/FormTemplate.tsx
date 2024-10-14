@@ -27,7 +27,12 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
     >
       <div className="flex flex-col w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 gap-6 bg-card rounded">
         <Link to="/" className="flex_justify_center">
-          <Image imgUrl={iconName} name="template_logo" width={140} />
+          <Image
+            imgUrl={iconName}
+            name="template_logo"
+            width={140}
+            effect="opacity"
+          />
         </Link>
         {!data?.resetPassEmailSent ? (
           <Title name={formTitle || ""} desc={description} type="medium" />

@@ -25,6 +25,7 @@ const User = () => {
             imgUrl={avatar}
             styles="w-full h-full rounded-full"
             name="sidebar user"
+            effect="blur"
           />
         ) : (
           <Icon name="FaRegUser" size={16} />

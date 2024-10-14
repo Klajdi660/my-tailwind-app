@@ -1,5 +1,5 @@
 import { FC, useState, useRef } from "react";
-import { Icon } from "../UI";
+import { Icon, Image } from "../UI";
 import { gameIconMap } from "../../data";
 import {
   DeveloperListProps,
@@ -123,10 +123,16 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
                   : "bg-primary-opacity hover:bg-primary hover:brightness-110"
               )}
             >
-              <LazyLoadImage
+              {/* <LazyLoadImage
                 alt={genre.name}
                 src={genre.image_background}
                 className="rounded h-10 w-10 object-cover"
+                effect="blur"
+              /> */}
+              <Image
+                name={genre.name}
+                imgUrl={genre.image_background}
+                styles="w-10 h-10 rounded object-cover"
                 effect="blur"
               />
               <span

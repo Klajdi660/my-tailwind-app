@@ -12,7 +12,7 @@ export const Image: FC<ImageProps> = (props) => {
       width={width}
       height={height}
       className={styles}
-      effect="blur"
+      effect={effect}
     />
   );
 };

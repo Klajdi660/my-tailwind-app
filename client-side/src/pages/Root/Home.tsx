@@ -65,7 +65,12 @@ export const HomePage: FC<HomePageProps> = () => {
         <div className="flex items-center justify-between">
           <Link to="/">
             <motion.div whileHover={{ scale: 1.1 }}>
-              <Image imgUrl={iconName} name="App Logo" width={150} />
+              <Image
+                imgUrl={iconName}
+                name="App Logo"
+                width={150}
+                effect="opacity"
+              />
             </motion.div>
           </Link>
           <motion.div
@@ -104,6 +109,7 @@ export const HomePage: FC<HomePageProps> = () => {
                         ? "w-36 h-36 shadow-lg border-2 border-white p-1"
                         : "w-24 h-24 opacity-80"
                     )}
+                    effect="opacity"
                   />
                 </button>
                 {selectedGameId === game.id && (
@@ -155,6 +161,7 @@ export const HomePage: FC<HomePageProps> = () => {
                 styles={classNames(
                   "w-52 h-60 rounded-lg object-cover transition-all duration-300"
                 )}
+                effect="blur"
               />
               <div className="flex justify-between">
                 <Button

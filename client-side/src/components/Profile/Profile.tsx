@@ -60,6 +60,7 @@ export const Profile: FC<ProfileProps> = () => {
               imgUrl={cover}
               name="Cover Photo"
               styles="w-full h-full object-cover rounded-t"
+              effect="blur"
             />
           )}
           <div className="absolute top-8 right-8 group">
@@ -80,18 +81,25 @@ export const Profile: FC<ProfileProps> = () => {
                 imgUrl={avatar}
                 name="Profile Img"
                 styles="w-40 h-40 rounded-full p-1 object-cover"
+                effect="blur"
               />
             ) : (
               <Image
                 imgUrl={userIcon}
                 name="Profile Img"
                 styles="w-40 h-40 rounded-full p-1 ring-1 ring-white bg-main"
+                effect="blur"
               />
             )}
             {isUpdatingProfileImg && (
               <>
                 <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <Image imgUrl={iconName} name="Loading Img" width={120} />
+                  <Image
+                    imgUrl={iconName}
+                    name="Loading Img"
+                    width={120}
+                    effect="blur"
+                  />
                 </div>
                 <div className="absolute inset-1 bg-gray-400 backdrop-filter backdrop-blur-md bg-opacity-10 rounded-full" />
               </>
@@ -416,6 +424,7 @@ export const Profile: FC<ProfileProps> = () => {
                           cardImg[cardType] ? cardImg[cardType] : noCardTypeImg
                         }
                         name="bank_img"
+                        effect="none"
                       />
                     </div>
                   </div>

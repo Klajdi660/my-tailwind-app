@@ -55,7 +55,13 @@ export const HomeFooter: FC<HomeFooterProps> = () => {
             </div>
           ))}
         </div>
-        <Image imgUrl={icon} name="footer_logo" width={60} height={60} />
+        <Image
+          imgUrl={icon}
+          name="footer_logo"
+          width={60}
+          height={60}
+          effect="blur"
+        />
       </div>
     </div>
   );

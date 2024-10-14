@@ -65,9 +65,19 @@ export const Navbar: FC<NavbarProps> = () => {
         >
           <Link to="/discover" className="flex items-center h-full gap-2 logo">
             {!showFull ? (
-              <Image imgUrl={iconName} name="App Logo" width={100} />
+              <Image
+                imgUrl={iconName}
+                name="App Logo"
+                width={100}
+                effect="opacity"
+              />
             ) : (
-              <Image imgUrl={icon} name="App Logo2" width={50} />
+              <Image
+                imgUrl={icon}
+                name="App Logo2"
+                width={50}
+                effect="opacity"
+              />
             )}
           </Link>
         </div>

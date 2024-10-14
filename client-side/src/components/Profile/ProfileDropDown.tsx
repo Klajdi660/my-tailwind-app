@@ -38,12 +38,14 @@ const UserMenu: FC<UserMenuProps> = (props) => {
               imgUrl={extra.avatar || userIcon}
               styles="w-12 h-12 p-1 rounded-full object-cover"
               name="sidebar user"
+              effect="blur"
             />
           ) : (
             <Image
               imgUrl={userIcon}
               styles="w-11 h-11 p-1 rounded-full bg-sidebar"
               name="sidebar user"
+              effect="blur"
             />
           )}
           <div className="flex flex-col flex-1 text-sm text-secondary hover:text-primary">
