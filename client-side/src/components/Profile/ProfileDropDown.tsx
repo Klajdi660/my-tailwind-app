@@ -111,14 +111,16 @@ export const ProfileDropdown: FC<ProfileDropdownProps> = () => {
         onOpenChange={handleOpenChange}
         placement="topRight"
       >
-        <Image
-          imgUrl={user.extra.avatar ? user.extra.avatar : userIcon}
-          styles={classNames(
-            "w-10 h-10 rounded-full p-0.5 ring-2 object-cover",
-            open ? "ring-primary" : "ring-gray-300"
-          )}
-          name="user_img"
-        />
+        <button type="button">
+          <Image
+            imgUrl={user.extra.avatar ? user.extra.avatar : userIcon}
+            styles={classNames(
+              "w-10 h-10 rounded-full p-0.5 ring-2 object-cover",
+              open ? "ring-primary" : "ring-gray-300"
+            )}
+            name="user_img"
+          />
+        </button>
       </Popover>
     </div>
   );
