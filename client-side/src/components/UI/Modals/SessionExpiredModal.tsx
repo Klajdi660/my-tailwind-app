@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SmallModal } from "./ModalContent";
 import { Icon } from "../Icon";
@@ -6,19 +7,25 @@ import { Button } from "../Button";
 import { paths } from "../../../data";
 import { useAppModal } from "../../../utils";
 import { SessionExpiredProps } from "../../../types";
+import { setAToken, setRToken, setUser } from "../../../store";
 
 export const SessionExpiredModal: FC<SessionExpiredProps> = () => {
   const { home, login } = paths;
   const { modals, setModalOpen } = useAppModal();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleModalClose = () => {
     setModalOpen("sessionExpiredModal", false);
-    navigate(home);
+    // navigate(home);
+
+    dispatch(setAToken(null));
+    dispatch(setRToken(null));
+    dispatch(setUser(null));
 
     delete localStorage.atoken;
-    delete localStorage.rtoken;
     delete localStorage.user;
+    delete localStorage.rtoken;
     // delete localStorage.lastLocation;
   };
 

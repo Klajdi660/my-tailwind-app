@@ -56,104 +56,10 @@ export const PublisherList: FC<PublisherListPorps> = ({ publishers }) => {
   );
 };
 
-// export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
-//   const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null);
-//   const [isAtBeginning, setIsAtBeginning] = useState<boolean>(true);
-
-//   const prevRef = useRef<HTMLButtonElement>(null);
-//   const nextRef = useRef<HTMLButtonElement>(null);
-//   const swiperRef = useRef<SwiperType | null>(null);
-
-//   const handleGenreClick = (id: number) => {
-//     setSelectedGenreId(id);
-//   };
-
-//   return (
-//     <div className="flex">
-//       <div className="flex_justify_center">
-//         {!isAtBeginning && (
-//           <button
-//             ref={prevRef}
-//             type="button"
-//             className="w-10 h-10 flex_justify_center transition-colors duration-500 rounded-full hover:bg-primary group"
-//             onClick={() => swiperRef.current?.slidePrev()}
-//           >
-//             <Icon
-//               size={25}
-//               name="MdKeyboardArrowLeft"
-//               className="group-hover:!text-white"
-//             />
-//           </button>
-//         )}
-//       </div>
-//       <SwiperComponent
-//         modules={[Navigation]}
-//         navigation={{
-//           prevEl: prevRef.current,
-//           nextEl: nextRef.current,
-//         }}
-//         onBeforeInit={(swiper) => {
-//           swiperRef.current = swiper;
-//         }}
-//         onSlideChange={(swiper) => {
-//           setIsAtBeginning(swiper.isBeginning);
-//         }}
-//         slidesPerView="auto"
-//         spaceBetween={10}
-//         className="genre-section-slider w-full text-onNeutralBg"
-//       >
-//         {gameGenres.map((genre) => (
-//           <SwiperSlide key={genre.id} className="!w-[175px]">
-//             <button
-//               key={genre.id}
-//               type="button"
-//               onClick={() => handleGenreClick(genre.id)}
-//               className={classNames(
-//                 "flex_justify_center w-full gap-2 py-4 rounded-2xl transition duration-300 relative group",
-//                 selectedGenreId === genre.id
-//                   ? "bg-primary"
-//                   : "bg-primary-opacity hover:bg-primary hover:brightness-110"
-//               )}
-//             >
-//               <LazyLoadImage
-//                 alt={genre.name}
-//                 src={genre.image_background}
-//                 className="rounded h-10 w-10 object-cover"
-//               />
-//               <span
-//                 className={classNames(
-//                   "group-hover:!text-white",
-//                   selectedGenreId === genre.id && "text-white"
-//                 )}
-//               >
-//                 {genre.name}
-//               </span>
-//             </button>
-//           </SwiperSlide>
-//         ))}
-//       </SwiperComponent>
-//       <div className="flex_justify_center">
-//         <button
-//           ref={nextRef}
-//           type="button"
-//           className="w-10 h-10 flex_justify_center transition-colors duration-500 rounded-full hover:bg-primary group"
-//           onClick={() => swiperRef.current?.slideNext()}
-//         >
-//           <Icon
-//             size={25}
-//             name="MdKeyboardArrowRight"
-//             className="group-hover:!text-white"
-//           />
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
 export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
   const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null);
   const [isAtBeginning, setIsAtBeginning] = useState<boolean>(true);
-  const [isAtEnd, setIsAtEnd] = useState<boolean>(false); // New state to track if at the end
+  const [isAtEnd, setIsAtEnd] = useState<boolean>(false);
 
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
@@ -165,7 +71,6 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
 
   const handleNextClick = () => {
     swiperRef.current?.slideNext();
-    // Check if the swiper is at the end after attempting to slide
     if (swiperRef.current) {
       setIsAtEnd(swiperRef.current.isEnd);
     }
@@ -200,7 +105,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
         }}
         onSlideChange={(swiper) => {
           setIsAtBeginning(swiper.isBeginning);
-          setIsAtEnd(swiper.isEnd); // Set isAtEnd based on swiper state
+          setIsAtEnd(swiper.isEnd);
         }}
         slidesPerView="auto"
         spaceBetween={10}
@@ -222,6 +127,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
                 alt={genre.name}
                 src={genre.image_background}
                 className="rounded h-10 w-10 object-cover"
+                effect="blur"
               />
               <span
                 className={classNames(
@@ -236,12 +142,12 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
         ))}
       </SwiperComponent>
       <div className="flex_justify_center">
-        {!isAtEnd && ( // Hide next button if at the end
+        {!isAtEnd && (
           <button
             ref={nextRef}
             type="button"
             className="w-10 h-10 flex_justify_center transition-colors duration-500 rounded-full hover:bg-primary group"
-            onClick={handleNextClick} // Updated to use the new handler
+            onClick={handleNextClick}
           >
             <Icon
               size={25}

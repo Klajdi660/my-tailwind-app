@@ -35,7 +35,7 @@ const UserMenu: FC<UserMenuProps> = (props) => {
         >
           {extra?.avatar ? (
             <Image
-              imgUrl={extra.avatar}
+              imgUrl={extra.avatar || userIcon}
               styles="w-12 h-12 p-1 rounded-full object-cover"
               name="sidebar user"
             />
@@ -109,27 +109,14 @@ export const ProfileDropdown: FC<ProfileDropdownProps> = () => {
         onOpenChange={handleOpenChange}
         placement="topRight"
       >
-        <>
-          {user?.extra?.avatar ? (
-            <Image
-              imgUrl={user.extra.avatar}
-              styles={classNames(
-                "w-10 h-10 rounded-full p-0.5 ring-2 object-cover",
-                open ? "ring-primary" : "ring-gray-300"
-              )}
-              name="User Img"
-            />
-          ) : (
-            <Image
-              imgUrl={userIcon}
-              name="Profile Img"
-              styles={classNames(
-                "w-10 h-10 rounded-full p-0.5 ring-2 bg-main",
-                open ? "ring-primary" : "ring-gray-300"
-              )}
-            />
+        <Image
+          imgUrl={user.extra.avatar ? user.extra.avatar : userIcon}
+          styles={classNames(
+            "w-10 h-10 rounded-full p-0.5 ring-2 object-cover",
+            open ? "ring-primary" : "ring-gray-300"
           )}
-        </>
+          name="user_img"
+        />
       </Popover>
     </div>
   );

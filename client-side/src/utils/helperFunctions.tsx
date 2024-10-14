@@ -1,38 +1,9 @@
 import dayjs from "dayjs";
-import moment from "moment";
 import { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import { noGameImg } from "../assets";
 import { GameParams } from "../types";
-
-dayjs.extend(customParseFormat);
-
-export const convertTZ = (rawDate: string, selectedTimeZone: string) => {
-  const dateFormat = "DD-MM-YYYY HH:mm:ss";
-  let [date, time] = moment
-    .tz(rawDate, selectedTimeZone)
-    .format(dateFormat)
-    .split(" ");
-  return { date, time };
-};
 
 export const classNames = (...classes: any) => {
   return classes.filter(Boolean).join(" ");
-};
-
-export const getTimeOfDay = () => {
-  const currentTime = dayjs();
-  const hour = currentTime.hour();
-
-  switch (true) {
-    case hour >= 5 && hour < 12:
-      return "Good Morning";
-    case hour >= 12 && hour < 18:
-      return "Good Afternoon";
-    default:
-      return "Good Evening";
-  }
 };
 
 const getStorageValue = (key: string, defaultValue: any) => {

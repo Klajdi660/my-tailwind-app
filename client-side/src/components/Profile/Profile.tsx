@@ -116,7 +116,7 @@ export const Profile: FC<ProfileProps> = () => {
               className={classNames(
                 "flex items-center px-3 py-0.5 text-primary rounded-full border border-dashed",
                 isVerify
-                  ? "border-green-600 text-green-600"
+                  ? "border-green-700 text-green-700"
                   : "border border-primary"
               )}
               disabled={isVerify}
@@ -124,13 +124,13 @@ export const Profile: FC<ProfileProps> = () => {
               <Icon
                 name="MdOutlineVerifiedUser"
                 className={classNames(
-                  isVerify ? "text-[#16a34a]" : "text-primary"
+                  isVerify ? "text-green-700" : "text-primary"
                 )}
                 size={18}
               />
               <p
                 className={classNames(
-                  isVerify ? "text-green-600" : "text-primary"
+                  isVerify ? "text-green-700" : "text-primary"
                 )}
               >
                 {verifyType}

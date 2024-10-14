@@ -13,11 +13,11 @@ import { persistor, store } from "./store";
 import { StylesProvider } from "./providers";
 import { AuthProvider, FormProvider, StoreProvider } from "./contexts";
 import "./index.css";
-import "react-toastify/dist/ReactToastify.css";
 import "swiper/css";
-import "swiper/swiper-bundle.css";
-import "swiper/css/navigation";
 import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/swiper-bundle.css";
+import "react-toastify/dist/ReactToastify.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "react-lazy-load-image-component/src/effects/opacity.css";
 

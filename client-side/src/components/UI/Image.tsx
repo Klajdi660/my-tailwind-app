@@ -3,7 +3,7 @@ import { ImageProps } from "../../types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const Image: FC<ImageProps> = (props) => {
-  const { imgUrl, name, width, height, styles } = props;
+  const { imgUrl, name, width, height, styles, effect } = props;
 
   return (
     <LazyLoadImage

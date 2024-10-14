@@ -10,7 +10,7 @@ export const LoginPage: FC<LoginPageProps> = () => {
   const { login } = useAuthService();
   const { setIsSubmitting } = useSubmitting();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const rememberMe = useAppSelector((state) => state.rememberMe);
 

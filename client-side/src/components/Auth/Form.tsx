@@ -118,8 +118,8 @@ export const Form: FC<FormProps> = (props) => {
       )}
       {formName === "login" && (
         <div className="flex flex-1 items-center">
-          <input type="checkbox" {...form("remember")} name="remember" />
-          <label className="ml-2 text-xs text-secondary">Remember Me</label>
+          {/* <input type="checkbox" {...form("remember")} name="remember" /> */}
+          {/* <label className="ml-2 text-xs text-secondary">Remember Me</label> */}
           <Link
             to="/forgot-password"
             className="ml-auto tex-right text-xs text-onNeutralBg"

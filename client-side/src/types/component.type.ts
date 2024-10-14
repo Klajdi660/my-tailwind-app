@@ -408,6 +408,7 @@ export interface ImageProps {
   imgUrl: string;
   height?: number;
   styles?: string;
+  effect?: string;
 }
 
 export interface ImgUploaderParams {}

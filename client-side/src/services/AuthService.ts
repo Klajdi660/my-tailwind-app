@@ -29,6 +29,7 @@ const {
   VERIFY_EMAIL_API,
   RESETPASSWORD_API,
   FORGOTPASSWORD_API,
+  OAUTH_GOOGLE_CALLBACK_API,
 } = endpoints;
 
 export const useAuthService = (): AuthService => {
@@ -44,7 +45,7 @@ export const useAuthService = (): AuthService => {
     try {
       dispatch(setLoading(true));
 
-      const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, values);
+      const loginResp = await HttpClient.get<AuthResponse>(LOGIN_API, values);
 
       dispatch(setLoading(false));
 
@@ -105,17 +106,29 @@ export const useAuthService = (): AuthService => {
 
   const socialAuth = async (tokenParam: string) => {
     try {
-      const token = tokenParam
-        .slice(tokenParam.indexOf("=") + 1)
-        .replace("%20", " ");
+      const query = new URLSearchParams(tokenParam);
 
-      const user = JSON.parse(atob(token.split(".")[1]));
+      const tokens = query.get("token");
+      const queryUser = query.get("user");
 
-      localStorage.atoken = token;
+      const user = JSON.parse(queryUser || "");
+      const token = JSON.parse(tokens || "");
+
+      const { aToken, rToken } = token;
+
+      user.extra = {
+        ...JSON.parse(user.extra),
+      };
+
+      dispatch(setAToken(aToken));
+      dispatch(setRToken(rToken));
+      dispatch(setUser(user));
+
+      localStorage.atoken = aToken;
+      localStorage.rtoken = JSON.stringify(rToken);
       localStorage.user = JSON.stringify(user);
 
-      authenticateUser({ id: user.id });
-      dispatch(clearRememberMeData());
+      // dispatch(clearRememberMeData());
     } catch (error) {
       console.error(`SocialAuth login failed: ${error}`);
       throw error;

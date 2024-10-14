@@ -1,11 +1,13 @@
 import { FC, useEffect } from "react";
-import { ProviderProps } from "../types";
-import { isATokenExpired, useAppModal } from "../utils";
-import { useAppSelector } from "../store";
-import { paths } from "../data";
 import { Navigate } from "react-router-dom";
+import { paths } from "../data";
+import { ProviderProps } from "../types";
+import { useAppSelector } from "../store";
+import { isATokenExpired, useAppModal } from "../utils";
 
 export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
+  const { home } = paths;
+
   const { setModalOpen } = useAppModal();
 
   useEffect(() => {
@@ -17,16 +19,12 @@ export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
 
     checkATokenExpiry();
 
-    // Check token expiration every time localStorage.exp changes
     const interval = setInterval(checkATokenExpiry, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const { login, home } = paths;
+  const { user } = useAppSelector((state) => state.user);
 
-  const { atoken } = useAppSelector((state) => state.auth);
-
-  // return atoken !== null ? children : <Navigate to={home} />;
-  return children;
+  return user !== null ? children : <Navigate to={home} />;
 };

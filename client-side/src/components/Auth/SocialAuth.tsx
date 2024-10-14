@@ -5,6 +5,7 @@ import { SocialAuthProps } from "../../types";
 
 export const SocialAuth: FC<SocialAuthProps> = () => {
   const { socialAuth } = useAuthService();
+
   const location = useLocation();
 
   const tokenParam = location.search;
