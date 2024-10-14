@@ -424,7 +424,6 @@ export const Profile: FC<ProfileProps> = () => {
                           cardImg[cardType] ? cardImg[cardType] : noCardTypeImg
                         }
                         name="bank_img"
-                        effect="none"
                       />
                     </div>
                   </div>

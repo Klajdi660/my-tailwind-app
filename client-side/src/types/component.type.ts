@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Effect } from "react-lazy-load-image-component";
 import {
   GameParams,
   GameVideosParams,
@@ -408,7 +409,7 @@ export interface ImageProps {
   imgUrl: string;
   height?: number;
   styles?: string;
-  effect?: string | any;
+  effect?: Effect;
 }
 
 export interface ImgUploaderParams {}

@@ -29,7 +29,7 @@ export const Loading: FC<LoadingPorps> = () => {
         </div>
       </div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <Image imgUrl={iconName} name="Loading Img" width={200} effect="none" />
+        <Image imgUrl={iconName} name="Loading Img" width={200} />
       </div>
     </div>
   );
