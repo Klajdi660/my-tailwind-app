@@ -45,7 +45,7 @@ export const useAuthService = (): AuthService => {
     try {
       dispatch(setLoading(true));
 
-      const loginResp = await HttpClient.get<AuthResponse>(LOGIN_API, values);
+      const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, values);
 
       dispatch(setLoading(false));
 
