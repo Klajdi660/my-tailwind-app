@@ -16,7 +16,7 @@ export const DiscoverPage: FC<DiscoverPageProps> = () => {
       <div className="discover_genre_section">
         <div className="flex_justify_between">
           <Title name="Game Genres" type="large" divider={false} />
-          {/* <div className="flex gap-2">
+          <div className="flex gap-2">
             <button
               type="button"
               className="w-8 h-8 flex_justify_center transition-colors duration-500 bg-card rounded-full hover:bg-primary group"
@@ -35,7 +35,7 @@ export const DiscoverPage: FC<DiscoverPageProps> = () => {
                 className="group-hover:!text-white"
               />
             </button>
-          </div> */}
+          </div>
         </div>
         <GameGenreList gameGenres={gameGenreList} />
       </div>

@@ -11,6 +11,8 @@ import { classNames } from "../../utils";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
+import { useAppSelector } from "../../store";
+import { defaultThemeConfig } from "../../configs";
 
 export const PlatformIconList: FC<PlatformIconListProps> = ({
   platforms,
@@ -65,6 +67,11 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
   const nextRef = useRef<HTMLButtonElement>(null);
   const swiperRef = useRef<SwiperType | null>(null);
 
+  const themeStorage = useAppSelector((state) => state.theme);
+
+  const { sidebar } = themeStorage || defaultThemeConfig;
+  const isFolded = sidebar === "folded";
+
   const handleGenreClick = (id: number) => {
     setSelectedGenreId(id);
   };
@@ -112,7 +119,13 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
         className="genre-section-slider flex items-center w-full text-onNeutralBg"
       >
         {gameGenres.map((genre) => (
-          <SwiperSlide key={genre.id} className="!w-[178px]">
+          <SwiperSlide
+            key={genre.id}
+            className={classNames(
+              !isFolded ? "!w-[160px]" : "!w-[175px]"
+              // "!w-[178px]",
+            )}
+          >
             <button
               type="button"
               onClick={() => handleGenreClick(genre.id)}
@@ -141,7 +154,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
           </SwiperSlide>
         ))}
       </SwiperComponent>
-      <div className="flex_justify_center">
+      {/* <div className="flex_justify_center">
         {!isAtEnd && (
           <button
             ref={nextRef}
@@ -156,7 +169,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
             />
           </button>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
