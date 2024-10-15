@@ -171,9 +171,10 @@ interface GameGenreList {
 
 export interface GameGenreListProps {
   gameGenres: GameGenreList[];
-  prevRef?: any;
-  nextRef?: any;
-  swiperRef?: any;
+  prevRef: React.RefObject<HTMLButtonElement>;
+  nextRef: React.RefObject<HTMLButtonElement>;
+  setIsBeginning: (value: boolean) => void;
+  setIsEnd: (value: boolean) => void;
 }
 
 export interface ReadMoreProps {
