@@ -85,7 +85,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
 
   return (
     <div className="flex items-center">
-      <div className="flex_justify_center">
+      {/* <div className="flex_justify_center">
         {!isAtBeginning && (
           <button
             ref={prevRef}
@@ -100,7 +100,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
             />
           </button>
         )}
-      </div>
+      </div> */}
       <SwiperComponent
         modules={[Navigation]}
         navigation={{
@@ -114,23 +114,25 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
           setIsAtBeginning(swiper.isBeginning);
           setIsAtEnd(swiper.isEnd);
         }}
-        slidesPerView="auto"
+        // slidesPerView="auto"
+        slidesPerView={8}
         spaceBetween={10}
-        className="genre-section-slider flex items-center w-full text-onNeutralBg"
+        // className="genre-section-slider flex items-center w-full text-onNeutralBg"
       >
         {gameGenres.map((genre) => (
           <SwiperSlide
             key={genre.id}
-            className={classNames(
-              !isFolded ? "!w-[160px]" : "!w-[175px]"
+            className={
+              classNames()
+              // !isFolded ? "!w-[160px]" : "!w-[175px]"
               // "!w-[178px]",
-            )}
+            }
           >
             <button
               type="button"
               onClick={() => handleGenreClick(genre.id)}
               className={classNames(
-                "flex_justify_center flex-col w-full gap-2 p-4 rounded-xl transition duration-300 relative group",
+                "flex_justify_center flex-col w-full h-full gap-2 p-4 rounded-xl transition duration-300 relative group",
                 selectedGenreId === genre.id
                   ? "bg-primary"
                   : "bg-card hover:bg-primary-opacity hover:brightness-110"
@@ -139,7 +141,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
               <Image
                 name={genre.name}
                 imgUrl={genre.image_background}
-                styles="w-40 h-20 rounded object-cover"
+                styles="w-40 h-28 rounded object-cover"
                 effect="blur"
               />
               <span

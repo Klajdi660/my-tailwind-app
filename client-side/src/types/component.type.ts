@@ -171,6 +171,9 @@ interface GameGenreList {
 
 export interface GameGenreListProps {
   gameGenres: GameGenreList[];
+  prevRef?: any;
+  nextRef?: any;
+  swiperRef?: any;
 }
 
 export interface ReadMoreProps {
