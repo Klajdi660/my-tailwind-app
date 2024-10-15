@@ -53,7 +53,7 @@ export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
         <div
           ref={parent}
           className={classNames(
-            "relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 page_content mt-main-top",
+            "page_content relative overflow-y-scroll hide_scrollbar p-3 sm:p-6 mb-6 mt-main-top",
             hasAside ? "main_width" : "other_main_width"
           )}
         >

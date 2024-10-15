@@ -217,8 +217,8 @@ export const profileMenuItems = ({
     icon: "AiOutlineSetting",
     onClick: () => {
       hidden();
-      // navigate("/settings");
-      setModalOpen("settingsModal", true);
+      navigate("/edit-profile");
+      // setModalOpen("settingsModal", true);
     },
   },
   {

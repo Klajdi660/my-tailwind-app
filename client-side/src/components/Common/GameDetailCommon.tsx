@@ -8,7 +8,6 @@ import {
   GameGenreListProps,
 } from "../../types";
 import { classNames } from "../../utils";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
@@ -23,7 +22,8 @@ export const PlatformIconList: FC<PlatformIconListProps> = ({
         <Icon
           key={p.id}
           name={gameIconMap[p.slug]}
-          className={classNames("text-gray-500", className)}
+          // className={classNames("text-secondary", className)}
+          className={className}
           size={15}
         />
       ))}
@@ -77,7 +77,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex items-center">
       <div className="flex_justify_center">
         {!isAtBeginning && (
           <button
@@ -109,39 +109,33 @@ export const GameGenreList: FC<GameGenreListProps> = ({ gameGenres }) => {
         }}
         slidesPerView="auto"
         spaceBetween={10}
-        className="genre-section-slider w-full text-onNeutralBg"
+        className="genre-section-slider flex items-center w-full text-onNeutralBg"
       >
         {gameGenres.map((genre) => (
-          <SwiperSlide key={genre.id} className="!w-[175px]">
+          <SwiperSlide key={genre.id} className="!w-[178px]">
             <button
               type="button"
               onClick={() => handleGenreClick(genre.id)}
               className={classNames(
-                "flex_justify_center w-full gap-2 py-4 rounded-2xl transition duration-300 relative group",
+                "flex_justify_center flex-col w-full gap-2 p-4 rounded-xl transition duration-300 relative group",
                 selectedGenreId === genre.id
                   ? "bg-primary"
-                  : "bg-primary-opacity hover:bg-primary hover:brightness-110"
+                  : "bg-card hover:bg-primary-opacity hover:brightness-110"
               )}
             >
-              {/* <LazyLoadImage
-                alt={genre.name}
-                src={genre.image_background}
-                className="rounded h-10 w-10 object-cover"
-                effect="blur"
-              /> */}
               <Image
                 name={genre.name}
                 imgUrl={genre.image_background}
-                styles="w-10 h-10 rounded object-cover"
+                styles="w-40 h-20 rounded object-cover"
                 effect="blur"
               />
               <span
                 className={classNames(
-                  "group-hover:!text-white",
+                  // "group-hover:!text-white",
                   selectedGenreId === genre.id && "text-white"
                 )}
               >
-                {genre.name}
+                {genre.name} Games
               </span>
             </button>
           </SwiperSlide>

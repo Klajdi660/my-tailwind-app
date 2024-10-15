@@ -41,6 +41,7 @@ import {
   BsFillArrowUpCircleFill,
   BsSignpostSplit,
   BsGenderAmbiguous,
+  BsThreeDotsVertical,
 } from "react-icons/bs";
 import { CiShoppingTag } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
@@ -165,6 +166,7 @@ const icons: IconsMap = {
   BsFillArrowUpCircleFill,
   BsSignpostSplit,
   BsGenderAmbiguous,
+  BsThreeDotsVertical,
   CiShoppingTag,
   CgGames,
   FaUser,
