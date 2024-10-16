@@ -5,7 +5,6 @@ import { MediaSectionProps } from "../../types";
 import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
 import { useGameHook } from "../../hooks";
 import InfiniteScroll from "react-infinite-scroll-component";
-// import { Skeleton } from "../Common/Skeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const grid = {
@@ -66,12 +65,6 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
               </div>
             );
           })}
-        {/* {!gameList.pages &&
-          [...new Array(15)].map((_, index) => (
-            <li key={index}>
-              <Skeleton className="h-0 pb-[160%]" />
-            </li>
-          ))} */}
       </InfiniteScroll>
     </>
   );
