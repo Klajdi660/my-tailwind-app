@@ -4,10 +4,9 @@ export const endpoints = {
   LOGOUT_API: "/auth/logout",
   REGISTER_API: "/auth/register",
   OAUTH_GOOGLE_API: "/auth/google",
-  OAUTH_GOOGLE_CALLBACK_API: "/auth/google/success",
   VERIFY_EMAIL_API: "/auth/verify-email",
-  RESETPASSWORD_API: "/auth/reset-password",
-  FORGOTPASSWORD_API: "/auth/forgot-password",
+  RESET_PASSWORD_API: "/auth/reset-password",
+  FORGOT_PASSWORD_API: "/auth/forgot-password",
 };
 
 // USER ENDPOINTS
@@ -16,7 +15,7 @@ export const userEndpoints = {
   DELETE_USER_API: "",
   UPDATE_USER_API: "",
   UPDATE_USER_PHOTO_API: "",
-  CHANGEPASSWORD_API: "",
+  CHANGE_PASSWORD_API: "",
   CONTACT_API: "",
   GET_USER_DETAILS_API: "/user",
 };

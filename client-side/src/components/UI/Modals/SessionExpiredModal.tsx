@@ -7,7 +7,12 @@ import { Button } from "../Button";
 import { paths } from "../../../data";
 import { useAppModal } from "../../../utils";
 import { SessionExpiredProps } from "../../../types";
-import { setAToken, setRToken, setUser } from "../../../store";
+import {
+  setAToken,
+  setIsAuthenticated,
+  setRToken,
+  setUser,
+} from "../../../store";
 
 export const SessionExpiredModal: FC<SessionExpiredProps> = () => {
   const { home, login } = paths;
@@ -22,6 +27,7 @@ export const SessionExpiredModal: FC<SessionExpiredProps> = () => {
     dispatch(setAToken(null));
     dispatch(setRToken(null));
     dispatch(setUser(null));
+    dispatch(setIsAuthenticated(false));
 
     delete localStorage.atoken;
     delete localStorage.user;

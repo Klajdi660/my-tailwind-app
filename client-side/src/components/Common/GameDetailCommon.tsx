@@ -55,13 +55,9 @@ export const PublisherList: FC<PublisherListPorps> = ({ publishers }) => {
   );
 };
 
-export const GameGenreList: FC<GameGenreListProps> = ({
-  gameGenres,
-  prevRef,
-  nextRef,
-  setIsBeginning,
-  setIsEnd,
-}) => {
+export const GameGenreList: FC<GameGenreListProps> = (props) => {
+  const { gameGenres, prevRef, nextRef, setIsBeginning, setIsEnd } = props;
+
   const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null);
 
   const handleGenreClick = (id: number) => {
@@ -86,7 +82,7 @@ export const GameGenreList: FC<GameGenreListProps> = ({
         }}
         onReachBeginning={() => setIsBeginning(true)}
         onReachEnd={() => setIsEnd(true)}
-        slidesPerView={8}
+        slidesPerView={6}
         spaceBetween={10}
       >
         {gameGenres.map((genre) => (

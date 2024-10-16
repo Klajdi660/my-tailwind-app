@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  isAuthenticated: false,
   signupData: null,
   loading: false,
   atoken: localStorage.atoken ? localStorage.atoken : null,
@@ -11,6 +12,9 @@ const slice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    setIsAuthenticated(state, action) {
+      state.isAuthenticated = action.payload;
+    },
     setSignupData(state, action) {
       state.signupData = action.payload;
     },
@@ -27,5 +31,10 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
-export const { setSignupData, setLoading, setAToken, setRToken } =
-  slice.actions;
+export const {
+  setSignupData,
+  setLoading,
+  setAToken,
+  setRToken,
+  setIsAuthenticated,
+} = slice.actions;

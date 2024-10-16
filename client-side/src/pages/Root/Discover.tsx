@@ -20,7 +20,7 @@ export const DiscoverPage: FC<DiscoverPageProps> = () => {
 
   return (
     <section className="discover_page flex flex-col gap-6">
-      <div className="discover_genre_section flex flex-col gap-2">
+      <div className="discover_genre_section">
         <div className="flex_justify_between">
           <Title name="Game Genres" type="large" divider={false} />
           <div className="flex gap-2">

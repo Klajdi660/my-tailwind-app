@@ -20,6 +20,7 @@ import {
   setRToken,
   setUser,
   setLoading,
+  setIsAuthenticated,
 } from "../store";
 
 const {
@@ -27,9 +28,8 @@ const {
   LOGOUT_API,
   REGISTER_API,
   VERIFY_EMAIL_API,
-  RESETPASSWORD_API,
-  FORGOTPASSWORD_API,
-  OAUTH_GOOGLE_CALLBACK_API,
+  RESET_PASSWORD_API,
+  FORGOT_PASSWORD_API,
 } = endpoints;
 
 export const useAuthService = (): AuthService => {
@@ -69,6 +69,7 @@ export const useAuthService = (): AuthService => {
       dispatch(setAToken(aToken));
       dispatch(setRToken(rToken));
       dispatch(setUser(user));
+      dispatch(setIsAuthenticated(true));
 
       localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
@@ -123,6 +124,7 @@ export const useAuthService = (): AuthService => {
       dispatch(setAToken(aToken));
       dispatch(setRToken(rToken));
       dispatch(setUser(user));
+      dispatch(setIsAuthenticated(true));
 
       localStorage.atoken = aToken;
       localStorage.rtoken = JSON.stringify(rToken);
@@ -214,6 +216,7 @@ export const useAuthService = (): AuthService => {
       dispatch(setAToken(null));
       dispatch(setRToken(null));
       dispatch(setUser(null));
+      dispatch(setIsAuthenticated(false));
 
       delete localStorage.atoken;
       delete localStorage.user;
@@ -236,7 +239,7 @@ export const useAuthService = (): AuthService => {
   ): Promise<void> => {
     try {
       const forgotPasswordResp = await HttpClient.post<AuthResponse>(
-        FORGOTPASSWORD_API,
+        FORGOT_PASSWORD_API,
         values
       );
 
@@ -269,7 +272,7 @@ export const useAuthService = (): AuthService => {
   ): Promise<void> => {
     try {
       const params = new URLSearchParams({ email, hash }).toString();
-      const url = `${RESETPASSWORD_API}?${params}`;
+      const url = `${RESET_PASSWORD_API}?${params}`;
 
       const resetPasswordResp = await HttpClient.post<AuthResponse>(
         url,
