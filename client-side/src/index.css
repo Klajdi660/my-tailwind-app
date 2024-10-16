@@ -398,7 +398,3 @@ input[type="checkbox"] {
   --swiper-navigation-size: 16px !important;
   z-index: 20 !important;
 } */
-
-.swiper-wrapper {
-  align-items: center;
-}
