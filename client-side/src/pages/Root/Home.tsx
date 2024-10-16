@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { iconName } from "../../assets";
 import { HomePageProps } from "../../types";
 import { Image, Button, HomeFooter, PlatformIconList } from "../../components";
-import { useGame, useGameSlider } from "../../hooks";
+import { useGameHook } from "../../hooks";
 import { classNames } from "../../utils";
 
 const getBackgroundStyle = (imageUrl: string | undefined) => ({
@@ -15,6 +15,7 @@ const getBackgroundStyle = (imageUrl: string | undefined) => ({
 });
 
 export const HomePage: FC<HomePageProps> = () => {
+  const { useGameSlider, useGameDetail } = useGameHook();
   const { gamesSlider } = useGameSlider();
 
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export const HomePage: FC<HomePageProps> = () => {
   const [selectedGameId, setSelectedGameId] = useState<number | undefined>();
   const [platformsIcon, setPlatformsIcon] = useState([]);
 
-  const { gameDetail } = useGame(selectedGameId) as any;
+  const { gameDetail } = useGameDetail(selectedGameId) as any;
 
   useEffect(() => {
     if (gamesSlider && gamesSlider.length > 0) {

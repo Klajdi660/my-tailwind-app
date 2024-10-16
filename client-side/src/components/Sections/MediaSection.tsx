@@ -3,7 +3,7 @@ import { MediaCard } from "../Cards";
 import { classNames } from "../../utils";
 import { MediaSectionProps } from "../../types";
 import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
-import { useGames } from "../../hooks";
+import { useGameHook } from "../../hooks";
 import InfiniteScroll from "react-infinite-scroll-component";
 // import { Skeleton } from "../Common/Skeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -25,8 +25,9 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
     subTitle,
   } = props;
   const [parent] = useAutoAnimate();
+  const { useGameList } = useGameHook();
 
-  const { gameList, isLoading, fetchNextPage, hasNextPage } = useGames();
+  const { gameList, isLoading, fetchNextPage, hasNextPage } = useGameList();
   if (!gameList) return;
 
   const dataLength = gameList.pages.reduce(
