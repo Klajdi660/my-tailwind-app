@@ -30,6 +30,7 @@ export const paths: PathProperties = {
   // resetPassword: "/reset-password",
   resetPassword: "reset-password/:email/:hash",
   // changePassword: "update-password/:email/:username/:h/:exp",
+  saveAuthData: "/save-auth",
 };
 
 export const logo: LogoProperties = {

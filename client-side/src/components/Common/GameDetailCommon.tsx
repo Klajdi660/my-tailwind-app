@@ -21,7 +21,6 @@ export const PlatformIconList: FC<PlatformIconListProps> = ({
         <Icon
           key={p.id}
           name={gameIconMap[p.slug]}
-          // className={classNames("text-secondary", className)}
           className={className}
           size={15}
         />

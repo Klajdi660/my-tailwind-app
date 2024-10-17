@@ -5,7 +5,7 @@ import { ProviderProps } from "../types";
 import { useAppSelector } from "../store";
 
 export const PublicGuard: FC<ProviderProps> = ({ children }) => {
-  const { discover } = paths;
+  const { discover, saveAuthData } = paths;
 
   // const { user } = useAppSelector((state) => state.user);
 
@@ -13,5 +13,5 @@ export const PublicGuard: FC<ProviderProps> = ({ children }) => {
 
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-  return !isAuthenticated ? children : <Navigate to={discover} />;
+  return !isAuthenticated ? children : <Navigate to={saveAuthData} />;
 };

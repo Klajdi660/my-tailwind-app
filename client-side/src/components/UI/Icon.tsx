@@ -109,6 +109,7 @@ import {
   PiWarningCircle,
   PiWarningCircleBold,
   PiArrowFatLinesUp,
+  PiKeyholeThin,
 } from "react-icons/pi";
 import {
   RiFirefoxLine,
@@ -228,6 +229,7 @@ const icons: IconsMap = {
   PiWarningCircle,
   PiWarningCircleBold,
   PiArrowFatLinesUp,
+  PiKeyholeThin,
   RiFirefoxLine,
   RiInstagramFill,
   RiSecurePaymentLine,

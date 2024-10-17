@@ -18,6 +18,7 @@ import {
   ResetPasswordPage,
   ForgotPasswordPage,
   PasswordConfirmCodePage,
+  SaveDataAuthPage,
 } from "../pages";
 import { paths } from "../data";
 import { SocialAuth } from "../components";
@@ -38,10 +39,22 @@ const {
   passwordCode,
   resetPassword,
   forgotPassword,
+  saveAuthData,
 } = paths;
 
 export const Routes = () =>
   useRoutes([
+    {
+      path: saveAuthData,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <SaveDataAuthPage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
+
     {
       path: browse,
       element: (

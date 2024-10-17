@@ -93,7 +93,7 @@ export const useAuthService = (): AuthService => {
       // setLToken(aToken);
       // globalObject.lToken = data.aToken;
       // authenticateUser({ id: user.id });
-      navigate(`${discover}`);
+      // navigate(`${discover}`);
     } catch (error) {
       dispatch(setLoading(false));
       notify({
