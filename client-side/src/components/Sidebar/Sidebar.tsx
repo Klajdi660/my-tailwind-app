@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Tooltip } from "antd";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { FC, useMemo, useState, useEffect } from "react";
@@ -46,7 +47,6 @@ const User = () => {
 
 export const Sidebar: FC<SidebarPorps> = () => {
   const { pathname } = useLocation();
-  const [notify] = useNotification();
   const { isAuthenticated } = useAuth();
   const { isMobile } = useMediaResponsive();
 

@@ -22,7 +22,7 @@ export const AddressDetails: FunctionComponent<AddressDetailsProps> = () => {
   const {
     register: form,
     handleSubmit,
-    control,
+    // control,
   } = useForm({
     mode: "onTouched",
   });

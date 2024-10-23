@@ -72,7 +72,7 @@ export const PaymentCardModal: FC<PaymentCardProps> = () => {
     register: form,
     handleSubmit,
     control,
-    formState: { errors, isValid },
+    // formState: { errors, isValid },
     reset,
   } = useForm({
     mode: "onTouched",

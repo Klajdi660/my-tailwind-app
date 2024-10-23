@@ -20,8 +20,8 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
     type,
     gridNumber = 5,
     skeletonItemNumber = gridNumber * 2,
-    title,
-    subTitle,
+    // title,
+    // subTitle,
   } = props;
   const [parent] = useAutoAnimate();
   const { useGameList } = useGameHook();

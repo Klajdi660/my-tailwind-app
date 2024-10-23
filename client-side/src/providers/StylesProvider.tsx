@@ -3,7 +3,6 @@ import { themeConfig, defaultThemeConfig } from "../configs";
 import { useAppSelector } from "../store";
 import { useMediaResponsive } from "../hooks";
 import { FC } from "react";
-import { paths } from "../data";
 
 export const StylesProvider: FC = () => {
   const { isMobile, isLargeScreen, isExtraLargeScreen } = useMediaResponsive();

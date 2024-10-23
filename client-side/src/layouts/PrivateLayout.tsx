@@ -1,43 +1,24 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useLocation } from "react-router-dom";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import {
   Modal,
   Navbar,
   Sidebar,
-  TopPlay,
-  Loading,
+  // TopPlay,
+  // Loading,
   CartSwitcher,
-  // SidebarMini,
   TabTitle,
 } from "../components";
 import { useAppUtil, classNames, getAside } from "../utils";
 import { ProviderProps } from "../types";
-// import { useUserService } from "../services";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { useAppSelector } from "../store";
 
 export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
   const { openSwitch } = useAppUtil();
   const [parent] = useAutoAnimate();
   const { pathname } = useLocation();
 
-  const { loading } = useAppSelector((state) => state.auth);
-
   const hasAside = getAside(pathname);
-
-  // const { getUserDetails } = useUserService();
-
-  // useEffect(() => {
-  //   const fetchUserDetails = async () => {
-  //     try {
-  //       const user = await getUserDetails();
-  //     } catch (error) {
-  //       console.error("Failed to fetch user details:", error);
-  //     }
-  //   };
-
-  //   fetchUserDetails();
-  // }, []);
 
   return (
     <div

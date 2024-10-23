@@ -108,9 +108,9 @@ export const Form: FC<FormProps> = (props) => {
           })}
         </>
       ) : (
-        <p className="text-base font-normal tracking-wider text-secondary text-justify">
+        <p className="text-base font-normal tracking-wider text-secondary">
           We have sent the reset email to your email
-          <span className="text-onNeutralBg font-semibold">
+          <span className="text-onNeutralBg font-semibold mx-2">
             {data?.resetPassEmail}
           </span>
           to reset password.

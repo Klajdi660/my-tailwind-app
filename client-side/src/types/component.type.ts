@@ -17,6 +17,7 @@ export interface FormListItem {
   formTitle: string;
   footerLink: string;
   footerTitle: string;
+  description: string;
   item: string | undefined;
   props: {
     type: string;

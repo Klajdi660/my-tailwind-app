@@ -3,7 +3,7 @@ import { FC, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { iconName } from "../../assets";
 import { HomePageProps } from "../../types";
-import { Image, Button, HomeFooter, PlatformIconList } from "../../components";
+import { Image, Button, PlatformIconList } from "../../components";
 import { useGameHook } from "../../hooks";
 import { classNames } from "../../utils";
 

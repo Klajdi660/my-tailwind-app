@@ -2,7 +2,6 @@ import { gameEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { ServerResponse } from "../types";
 import { useNotification, useStore } from "../hooks";
-import axios, { AxiosRequestConfig } from "axios";
 
 const {
   GET_GAME_LIST_API,
@@ -80,7 +79,6 @@ export const useGamesService = () => {
 
   const getGameDetail = async (gameId: string): Promise<void> => {
     try {
-      // const params = new URLSearchParams(values).toString();
       const params = new URLSearchParams({
         gameId: gameId,
       })?.toString();

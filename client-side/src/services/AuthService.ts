@@ -9,13 +9,9 @@ import {
   RegisterUserValues,
   ForgotPasswordValues,
 } from "../types";
-import { paths } from "../data";
 import { HttpClient } from "../client";
-import { globalObject } from "../utils";
-import { useAuth, useNotification, useStore } from "../hooks";
+import { useNotification } from "../hooks";
 import {
-  clearRememberMeData,
-  saveRememberMeData,
   setAToken,
   setRToken,
   setUser,
@@ -33,10 +29,6 @@ const {
 } = endpoints;
 
 export const useAuthService = (): AuthService => {
-  const { discover } = paths;
-
-  const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
-  // const { setLoading } = useStore();
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -62,7 +54,6 @@ export const useAuthService = (): AuthService => {
       user.extra = {
         ...JSON.parse(user.extra),
       };
-      // const user = JSON.parse(atob(aToken.split(".")[1]));
 
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));
 
@@ -74,26 +65,6 @@ export const useAuthService = (): AuthService => {
       localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
       localStorage.rtoken = JSON.stringify(rtoken);
-
-      // if (values.remember) {
-      //   const rememberType = values.identifier.includes("@")
-      //     ? "email"
-      //     : "username";
-
-      //   dispatch(
-      //     saveRememberMeData({
-      //       ...values,
-      //       rememberType,
-      //     })
-      //   );
-      // } else {
-      //   dispatch(clearRememberMeData());
-      // }
-
-      // setLToken(aToken);
-      // globalObject.lToken = data.aToken;
-      // authenticateUser({ id: user.id });
-      // navigate(`${discover}`);
     } catch (error) {
       dispatch(setLoading(false));
       notify({
@@ -129,8 +100,6 @@ export const useAuthService = (): AuthService => {
       localStorage.atoken = aToken;
       localStorage.rtoken = JSON.stringify(rToken);
       localStorage.user = JSON.stringify(user);
-
-      // dispatch(clearRememberMeData());
     } catch (error) {
       console.error(`SocialAuth login failed: ${error}`);
       throw error;
@@ -257,8 +226,6 @@ export const useAuthService = (): AuthService => {
         variant: "info",
         description: message,
       });
-
-      // navigate("/password-code", { state: { passData: values } });
     } catch (error) {
       console.error(`Forgot Pass Failed: ${error}`);
       throw error;

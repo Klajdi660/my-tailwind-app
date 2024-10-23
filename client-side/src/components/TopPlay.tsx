@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import { Footer } from "./Footer";
-import { TopPlaySection } from "./Sections";
+// import { TopPlaySection } from "./Sections";
 import { TopPlayProps } from "../types";
-import { useGamesService } from "../services";
+// import { useGamesService } from "../services";
 import { classNames } from "../utils";
 
 export const TopPlay: FC<TopPlayProps> = (props) => {

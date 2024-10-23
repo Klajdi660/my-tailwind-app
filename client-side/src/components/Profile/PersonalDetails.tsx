@@ -1,5 +1,4 @@
 import { FunctionComponent, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import dayjs from "dayjs";
 import { DatePicker, Select } from "antd";
@@ -12,7 +11,6 @@ import { PersonalDetailsProps } from "../../types";
 
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   const { updateProfile } = useProfileService();
-  const navigate = useNavigate();
 
   const { user } = useAppSelector((state) => state.user);
   const { address, country, city, postalCode } = user.extra;

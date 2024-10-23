@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import { useAuthService } from "../../services";

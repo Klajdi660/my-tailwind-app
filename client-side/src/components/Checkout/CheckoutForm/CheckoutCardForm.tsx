@@ -14,7 +14,7 @@ export const CheckoutCardForm: FC<CheckoutCardFormProps> = (props) => {
   const {
     register: form,
     handleSubmit,
-    control,
+    // control,
   } = useForm({
     mode: "onTouched",
   });

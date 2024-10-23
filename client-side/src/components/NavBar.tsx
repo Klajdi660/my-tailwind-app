@@ -6,8 +6,8 @@ import {
   Button,
   Overlay,
   CartButton,
-  ThemeButton,
-  LanguageButton,
+  // ThemeButton,
+  // LanguageButton,
   MobileToggleButton,
   NotificationButton,
   DesktopToggleButton,
@@ -29,7 +29,7 @@ export const Navbar: FC<NavbarProps> = () => {
   const navigate = useNavigate();
 
   const theme = useAppSelector((state) => state.theme);
-  const { user } = useAppSelector((state) => state.user);
+  // const { user } = useAppSelector((state) => state.user);
   const { atoken } = useAppSelector((state) => state.auth);
 
   const hasAside = getAside(pathname);

@@ -59,10 +59,10 @@ export const ShippingAddressSettings: FC = () => {
 
   const {
     register: form,
-    handleSubmit,
+    // handleSubmit,
     control,
-    setValue,
-    formState: { isValid },
+    // setValue,
+    // formState: { isValid },
   } = useForm({
     mode: "onTouched",
   });

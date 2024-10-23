@@ -22,11 +22,7 @@ export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
     const interval = setInterval(checkATokenExpiry, 1000);
 
     return () => clearInterval(interval);
-  }, []);
-
-  // const { user } = useAppSelector((state) => state.user);
-
-  // return user !== null ? children : <Navigate to={home} />;
+  }, [setModalOpen]);
 
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 

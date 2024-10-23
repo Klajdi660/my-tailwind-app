@@ -1,6 +1,6 @@
 import axios, {
   AxiosError,
-  AxiosResponse,
+  // AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
 import { APP_URL, AXIOS_TIMEOUT_DURATION } from "../../configs";

@@ -3,7 +3,7 @@ import { classNames } from "../../utils";
 import { OverlayProps } from "../../types";
 
 export const Overlay: FC<OverlayProps> = (props) => {
-  const { isMobile, isOpen, handleIsOpen, className } = props;
+  const { /*isMobile,*/ isOpen, handleIsOpen, className } = props;
 
   useEffect(() => {
     isOpen

@@ -6,7 +6,7 @@ import { SocialAuthButton, Title, Image } from "../UI";
 import { iconName } from "../../assets";
 import { useForm } from "../../hooks";
 import { classNames } from "../../utils";
-import { FormTemplateProps } from "../../types";
+import { FormTemplateProps, FormListItem } from "../../types";
 
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { schema, onSubmit, defaultValues, resendCodeHandler, data } = props;
@@ -15,13 +15,12 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
 
   const [
     { linkTo, formName, formTitle, footerLink, description, footerTitle },
-  ] = listForm as any;
+  ] = listForm as FormListItem[];
 
   return (
     <div
       className={classNames(
         `${formName}_section`,
-        // "flex-col h-full py-6 m-auto bg-main flex_justify_center absolute_center"
         "flex_justify_center absolute_center"
       )}
     >

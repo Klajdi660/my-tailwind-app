@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Tooltip, Progress } from "antd";
-import { GameTabDetail } from "./GameTabDetail";
+import { Tooltip } from "antd";
+// import { GameTabDetail } from "./GameTabDetail";
 import { HeaderBannerSkeleton } from "../Skeleton";
 import { Button, Icon, Image } from "../UI";
 import { useStore, useCart, useMediaResponsive } from "../../hooks";
@@ -15,8 +15,8 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
     id,
     name,
     genres,
-    rating,
-    playtime,
+    // rating,
+    // playtime,
     background_image,
     background_image_additional,
   } = gameDetail;
@@ -31,11 +31,11 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
 
   const gameInCart = cart.find((item: any) => item.id === id);
 
-  const getColor = (rating: number) => {
-    if (rating >= 4) return "green";
-    if (rating >= 2) return "#0077B5";
-    return "red";
-  };
+  // const getColor = (rating: number) => {
+  //   if (rating >= 4) return "green";
+  //   if (rating >= 2) return "#0077B5";
+  //   return "red";
+  // };
 
   const addToCartHandler = () => {
     addGameToCart(gameDetail);

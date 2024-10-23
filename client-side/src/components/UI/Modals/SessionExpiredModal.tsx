@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { SmallModal } from "./ModalContent";
 import { Icon } from "../Icon";
 import { Button } from "../Button";
-import { paths } from "../../../data";
+// import { paths } from "../../../data";
 import { useAppModal } from "../../../utils";
 import { SessionExpiredProps } from "../../../types";
 import {
@@ -15,9 +15,9 @@ import {
 } from "../../../store";
 
 export const SessionExpiredModal: FC<SessionExpiredProps> = () => {
-  const { home, login } = paths;
+  // const { home, login } = paths;
   const { modals, setModalOpen } = useAppModal();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleModalClose = () => {
