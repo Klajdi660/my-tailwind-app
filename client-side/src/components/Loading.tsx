@@ -3,20 +3,23 @@ import { Image } from "./UI";
 import { useStore } from "../hooks";
 import { iconName } from "../assets";
 import { LoadingPorps } from "../types";
+import { useAppSelector } from "../store";
 
 export const Loading: FC<LoadingPorps> = () => {
-  const { loading } = useStore();
+  // const { loading } = useStore();
+  const { loading } = useAppSelector((state) => state.auth);
+
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (loading) {
-      setIsLoading(true);
-    } else {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-    }
-    // loading ? setIsLoading(true) : setIsLoading(false);
+    // if (loading) {
+    //   setIsLoading(true);
+    // } else {
+    //   setTimeout(() => {
+    //     setIsLoading(false);
+    //   }, 1000);
+    // }
+    loading ? setIsLoading(true) : setIsLoading(false);
   }, [loading]);
 
   if (!isLoading) return null;

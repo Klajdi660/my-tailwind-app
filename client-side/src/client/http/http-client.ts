@@ -25,36 +25,6 @@ instance.interceptors.request.use(
   },
   (error: AxiosError) => Promise.reject(error)
 );
-instance.interceptors.response.use(
-  (response) => response,
-  async (error: AxiosError) => {
-    const originalRequest = error.config as any;
-
-    // Check for 401 error (Unauthorized) and if the request has been retried already
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-
-      try {
-        const rToken = localStorage.rtoken;
-
-        const response = await instance.post("/refresh", { rToken });
-        const { atoken } = response.data;
-
-        localStorage.atoken = atoken;
-
-        originalRequest.headers["Authorization"] = `Bearer ${atoken}`;
-
-        return instance(originalRequest);
-      } catch (refreshError) {
-        // Optionally: Handle failed refresh, e.g., logout or redirect to login
-        console.error("Failed to refresh token", refreshError);
-        return Promise.reject(refreshError);
-      }
-    }
-
-    return Promise.reject(error);
-  }
-);
 
 // instance.interceptors.response.use(
 //   (response: AxiosResponse) => response,

@@ -7,6 +7,7 @@ import { iconName } from "../../assets";
 import { useForm } from "../../hooks";
 import { classNames } from "../../utils";
 import { FormTemplateProps, FormListItem } from "../../types";
+import { useAppSelector } from "../../store";
 
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { schema, onSubmit, defaultValues, resendCodeHandler, data } = props;
@@ -16,6 +17,13 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const [
     { linkTo, formName, formTitle, footerLink, description, footerTitle },
   ] = listForm as FormListItem[];
+
+  const { remember, saveAuthUserData } = useAppSelector(
+    (state) => state.rememberMe
+  );
+
+  console.log("remember :>> ", remember);
+  console.log("saveAuthUserData :>> ", saveAuthUserData);
 
   return (
     <div

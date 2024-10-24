@@ -6,7 +6,7 @@ import {
   Navbar,
   Sidebar,
   // TopPlay,
-  // Loading,
+  Loading,
   CartSwitcher,
   TabTitle,
 } from "../components";
@@ -26,7 +26,7 @@ export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
       id="main_app"
     >
       <TabTitle />
-      {/* <Loading /> */}
+      <Loading />
       <Sidebar />
 
       <main className="relative w-full mx-auto overflow-hidden main_section">

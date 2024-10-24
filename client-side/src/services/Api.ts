@@ -18,6 +18,7 @@ export const userEndpoints = {
   CHANGE_PASSWORD_API: "",
   CONTACT_API: "",
   GET_USER_DETAILS_API: "/user",
+  SAVE_AUTH_USER_API: "/user/save-auth-user",
 };
 
 // PROFILE ENDPOINTS

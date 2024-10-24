@@ -1,12 +1,31 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Button, Icon } from "../../components/UI";
+import { useUserService } from "../../services";
+import { setRemember } from "../../store";
 import { paths } from "../../data";
 
 export const SaveDataAuthPage: FC = () => {
   const { discover } = paths;
 
+  const { saveAuthUser } = useUserService();
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const onSubmitSaveAuthUserHandler = async () => {
+    try {
+      await saveAuthUser({ remember: true });
+    } catch (error) {
+      console.error(`Failed to save auth user! ${error}`);
+    }
+  };
+
+  const onCancelSaveAuthUserHandler = async () => {
+    dispatch(setRemember(false));
+    navigate(discover);
+  };
 
   return (
     <div className="fixed inset-0 flex justify-center items-center">
@@ -22,14 +41,14 @@ export const SaveDataAuthPage: FC = () => {
             type="button"
             label="Save info"
             variant="contained"
-            onClick={() => navigate(discover)}
+            onClick={onSubmitSaveAuthUserHandler}
           />
           <Button
             type="button"
             label="Not now"
             variant="none"
             className="text-primary hover:text-onNeutralBg"
-            onClick={() => navigate(discover)}
+            onClick={onCancelSaveAuthUserHandler}
           />
         </div>
       </div>

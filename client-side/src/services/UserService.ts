@@ -1,16 +1,26 @@
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { UserDetailsResponse } from "../types";
 import { useNotification, useStore } from "../hooks";
-import { useAppSelector, setUser } from "../store";
+import {
+  useAppSelector,
+  setUser,
+  setSaveUserAuthData,
+  setRemember,
+} from "../store";
+import { paths } from "../data";
 
-const { GET_USER_DETAILS_API } = userEndpoints;
+const { GET_USER_DETAILS_API, SAVE_AUTH_USER_API } = userEndpoints;
 
 export const useUserService = () => {
+  const { discover } = paths;
+
   const { setLoading } = useStore();
   const [notify] = useNotification();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { user } = useAppSelector((state) => state.user);
 
@@ -50,6 +60,38 @@ export const useUserService = () => {
     }
   };
 
+  const saveAuthUser = async (values: any): Promise<void> => {
+    try {
+      const { username, extra } = user;
+      const { photo } = extra;
+
+      const saveAuthUserResp = await HttpClient.post<any>(
+        SAVE_AUTH_USER_API,
+        values
+      );
+      const { error, message, data } = saveAuthUserResp;
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      const { saveAuthUserToken } = data;
+
+      localStorage.saveAuthUserToken = saveAuthUserToken;
+
+      dispatch(setRemember(true));
+      dispatch(setSaveUserAuthData({ username: username, avatar: photo }));
+
+      navigate(discover);
+    } catch (error) {
+      console.error(`Save auth user failed: ${error} `);
+      throw error;
+    }
+  };
+
   const confirmUser = async () => {};
 
   const editUser = async () => {};
@@ -65,5 +107,6 @@ export const useUserService = () => {
     editUser,
     exportUsers,
     dowbloadFile,
+    saveAuthUser,
   };
 };

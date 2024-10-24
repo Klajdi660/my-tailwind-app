@@ -1,36 +1,22 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RememberMeState } from "../../../types";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: RememberMeState = {
-  password: "",
-  identifier: "",
+const initialState: any = {
   remember: false,
-  rememberType: "",
+  saveUserAuthData: null,
 };
 
 const slice = createSlice({
   name: "rememberMe",
   initialState,
   reducers: {
-    saveRememberMeData: (state, action: PayloadAction<RememberMeState>) => {
-      state.password = action.payload.password;
-      state.remember = action.payload.remember;
-      state.identifier = action.payload.identifier;
-      state.rememberType = action.payload.rememberType;
+    setRemember(state, action) {
+      state.remember = action.payload;
     },
-    clearRememberMeData: (state) => {
-      state.password = "";
-      state.identifier = "";
-      state.remember = false;
-      state.rememberType = "";
-    },
-    updateRememberMeData: (state, action: PayloadAction<RememberMeState>) => {
-      state.password = action.payload.password;
-      state.identifier = action.payload.identifier;
+    setSaveUserAuthData(state, action) {
+      state.saveAuthUserData = action.payload;
     },
   },
 });
 
-export const { saveRememberMeData, clearRememberMeData, updateRememberMeData } =
-  slice.actions;
+export const { setRemember, setSaveUserAuthData } = slice.actions;
 export default slice.reducer;

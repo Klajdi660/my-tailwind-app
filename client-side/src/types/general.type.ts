@@ -60,12 +60,6 @@ export interface NotifyParams {
 // }
 
 // Store
-export interface RememberMeState {
-  password: string;
-  identifier: string;
-  remember?: boolean;
-  rememberType?: string;
-}
 
 // Utils
 export interface AppUtilState {

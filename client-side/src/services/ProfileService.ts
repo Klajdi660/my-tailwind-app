@@ -2,9 +2,7 @@ import { useDispatch } from "react-redux";
 import { profileEndpoints } from "./Api";
 import {
   setIsAccountDelete,
-  updateRememberMeData,
   setAccountDeleteDaysDifference,
-  useAppSelector,
   setUser,
 } from "../store";
 import {
@@ -32,9 +30,6 @@ export const useProfileService = () => {
   const [notify] = useNotification();
   const dispatch = useDispatch();
 
-  const rememberMe = useAppSelector((state) => state.rememberMe);
-  const { user } = useAppSelector((state) => state.user);
-
   const changeUsername = async (values: EditProfileValues): Promise<void> => {
     try {
       setLoading(true);
@@ -61,18 +56,6 @@ export const useProfileService = () => {
 
       localStorage.user = JSON.stringify(data);
       dispatch(setUser(data));
-
-      if (
-        (values.username && rememberMe.rememberType === "username",
-        user?.provider === "Email")
-      ) {
-        dispatch(
-          updateRememberMeData({
-            identifier: data.username,
-            password: rememberMe.password,
-          })
-        );
-      }
 
       notify({
         variant: "success",
@@ -248,7 +231,7 @@ export const useProfileService = () => {
 
       setLoading(false);
 
-      const { error, message, data } = cancelDeleteProfileResp;
+      const { error, message } = cancelDeleteProfileResp;
       if (error) {
         notify({
           variant: "error",
@@ -292,12 +275,6 @@ export const useProfileService = () => {
         return;
       }
 
-      dispatch(
-        updateRememberMeData({
-          identifier: rememberMe.identifier,
-          password: values.newPassword,
-        })
-      );
       notify({
         variant: "success",
         description: message,

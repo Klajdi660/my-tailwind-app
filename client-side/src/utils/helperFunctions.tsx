@@ -45,6 +45,17 @@ export const isATokenExpired = () => {
   return false;
 };
 
+export const isTokenExpired = (token: string) => {
+  const hasToken = atob(token.split(".")[1]);
+
+  if (hasToken) {
+    const currentTime = dayjs().unix();
+    const tokenExpirationTime = JSON.parse(token).exp;
+    return currentTime > parseInt(tokenExpirationTime);
+  }
+  return false;
+};
+
 export const fileBlob = (files: File[] | null) => {
   if (files?.[0]) {
     return {
