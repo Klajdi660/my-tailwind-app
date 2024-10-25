@@ -64,7 +64,7 @@ export const useAuthService = (): AuthService => {
 
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));
 
-      dispatch(setRemember(user.extra.remember));
+      // dispatch(setRemember(user.extra.remember));
       dispatch(setAToken(aToken));
       dispatch(setRToken(rToken));
       dispatch(setUser(user));

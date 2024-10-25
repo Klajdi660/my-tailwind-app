@@ -47,7 +47,8 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
             type="medium"
           />
         )}
-        {/* {remember && !showSaveForm && <OneUserSaveForm />} */}
+        {/* {remember && !showSaveForm && <OneUserSaveForm />}
+         */}
         {
           <>
             {["login", "register"]?.includes(formName) && (
