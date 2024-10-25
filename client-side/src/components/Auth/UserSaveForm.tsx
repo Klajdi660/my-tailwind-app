@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../store";
+import { useDispatch } from "react-redux";
+import { useAppSelector, setRemember, setShowSaveForm } from "../../store";
 import { Button, Image } from "../UI";
 import { userIcon } from "../../assets";
 import { paths } from "../../data";
@@ -9,12 +10,18 @@ export const OneUserSaveForm: FC = () => {
   const { login, register } = paths;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { saveAuthUserData } = useAppSelector((state) => state.rememberMe);
 
   const { username, avatar } = saveAuthUserData;
 
   const labelTitle = `Continue as ${username}`;
+
+  const handleSwitchAccount = () => {
+    dispatch(setShowSaveForm(true));
+    navigate(login);
+  };
 
   return (
     <div className="flex_justify_center flex-col gap-10 text-onNeutralBg">
@@ -50,7 +57,7 @@ export const OneUserSaveForm: FC = () => {
           variant="none"
           className="text-primary hover:text-onNeutralBg"
           label="Switch accounts"
-          onClick={() => navigate(login)}
+          onClick={handleSwitchAccount}
         />
         or
         <Button

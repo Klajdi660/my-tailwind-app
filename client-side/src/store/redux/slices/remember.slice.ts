@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: any = {
   remember: false,
-  saveUserAuthData: null,
+  saveUserAuthData: [],
+  currenSavetUserAuthIndex: null,
 };
 
 const slice = createSlice({
@@ -13,10 +14,17 @@ const slice = createSlice({
       state.remember = action.payload;
     },
     setSaveUserAuthData(state, action) {
-      state.saveAuthUserData = action.payload;
+      state.saveUserAuthData.push(action.payload);
+    },
+    setShowSaveForm(state, action) {
+      state.showSaveForm = action.payload;
+    },
+    setCurrentSaveUserAuthIndex(state, action) {
+      state.currenSavetUserAuthIndex = action.payload;
     },
   },
 });
 
-export const { setRemember, setSaveUserAuthData } = slice.actions;
+export const { setRemember, setSaveUserAuthData, setShowSaveForm } =
+  slice.actions;
 export default slice.reducer;

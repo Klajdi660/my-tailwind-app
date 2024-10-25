@@ -19,12 +19,13 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
     { linkTo, formName, formTitle, footerLink, description, footerTitle },
   ] = listForm as FormListItem[];
 
-  const { remember, saveAuthUserData } = useAppSelector(
+  const { remember, saveAuthUserData, showSaveForm } = useAppSelector(
     (state) => state.rememberMe
   );
 
   console.log("remember :>> ", remember);
   console.log("saveAuthUserData 22 :>> ", saveAuthUserData);
+  console.log("showSaveForm :>> ", showSaveForm);
 
   return (
     <div
@@ -46,8 +47,8 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
             type="medium"
           />
         )}
-        {remember && <OneUserSaveForm />}
-        {!remember && (
+        {/* {remember && !showSaveForm && <OneUserSaveForm />} */}
+        {
           <>
             {["login", "register"]?.includes(formName) && (
               <>
@@ -87,7 +88,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
               </>
             )}
           </>
-        )}
+        }
       </div>
     </div>
   );

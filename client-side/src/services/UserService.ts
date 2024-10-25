@@ -65,6 +65,8 @@ export const useUserService = () => {
       const { username, extra } = user;
       const { photo } = extra;
 
+      console.log("user :>> ", user);
+
       const saveAuthUserResp = await HttpClient.post<any>(
         SAVE_AUTH_USER_API,
         values
@@ -79,6 +81,7 @@ export const useUserService = () => {
       }
 
       const { saveAuthUserToken } = data;
+      console.log("data :>> ", data);
 
       localStorage.saveAuthUserToken = saveAuthUserToken;
 

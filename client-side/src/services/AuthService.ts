@@ -17,7 +17,9 @@ import {
   setUser,
   setLoading,
   setIsAuthenticated,
+  setRemember,
 } from "../store";
+import { paths } from "../data";
 
 const {
   LOGIN_API,
@@ -29,6 +31,8 @@ const {
 } = endpoints;
 
 export const useAuthService = (): AuthService => {
+  const { discover, saveAuthData } = paths;
+
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -55,8 +59,12 @@ export const useAuthService = (): AuthService => {
         ...JSON.parse(user.extra),
       };
 
+      console.log("user.extra.remember :>> ", user.extra.remember);
+      // const navgateTo = user.extra.remember ? discover : saveAuthData;
+
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));
 
+      dispatch(setRemember(user.extra.remember));
       dispatch(setAToken(aToken));
       dispatch(setRToken(rToken));
       dispatch(setUser(user));
@@ -65,6 +73,8 @@ export const useAuthService = (): AuthService => {
       localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
       localStorage.rtoken = JSON.stringify(rtoken);
+
+      // navigate(navgateTo);
     } catch (error) {
       dispatch(setLoading(false));
       notify({
