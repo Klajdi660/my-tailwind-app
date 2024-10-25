@@ -59,7 +59,6 @@ export const useAuthService = (): AuthService => {
         ...JSON.parse(user.extra),
       };
 
-      console.log("user.extra.remember :>> ", user.extra.remember);
       // const navgateTo = user.extra.remember ? discover : saveAuthData;
 
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));

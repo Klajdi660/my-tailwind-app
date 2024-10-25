@@ -23,10 +23,6 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
     (state) => state.rememberMe
   );
 
-  console.log("remember :>> ", remember);
-  console.log("saveAuthUserData 22 :>> ", saveAuthUserData);
-  console.log("showSaveForm :>> ", showSaveForm);
-
   return (
     <div
       className={classNames(
