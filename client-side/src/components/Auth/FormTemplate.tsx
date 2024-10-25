@@ -8,6 +8,7 @@ import { useForm } from "../../hooks";
 import { classNames } from "../../utils";
 import { FormTemplateProps, FormListItem } from "../../types";
 import { useAppSelector } from "../../store";
+import { OneUserSaveForm } from "./UserSaveForm";
 
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { schema, onSubmit, defaultValues, resendCodeHandler, data } = props;
@@ -23,7 +24,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
   );
 
   console.log("remember :>> ", remember);
-  console.log("saveAuthUserData :>> ", saveAuthUserData);
+  console.log("saveAuthUserData 22 :>> ", saveAuthUserData);
 
   return (
     <div
@@ -45,41 +46,46 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
             type="medium"
           />
         )}
-        {["login", "register"]?.includes(formName) && (
+        {remember && <OneUserSaveForm />}
+        {!remember && (
           <>
-            <SocialAuthButton />
-            <div className="flex_justify_center gap-4 divider">
-              <div className="h-[1px] bg-divider flex-1" />
-              <span className="text-sm text-onNeutralBg">
-                or use your email account
-              </span>
-              <div className="h-[1px] bg-divider flex-1" />
-            </div>
-          </>
-        )}
-        {["verify-email", "password-code"]?.includes(formName) ? (
-          <OTPCodeForm
-            onSubmit={onSubmit}
-            resendCodeHandler={resendCodeHandler}
-            data={data}
-          />
-        ) : (
-          <>
-            <Form
-              listForm={listForm}
-              schema={schema}
-              onSubmit={onSubmit}
-              defaultValues={defaultValues}
-              data={data}
-            />
-            <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
-              {footerTitle}
-              <Link to={linkTo}>
-                <p className="text-primary hover:underline underline-offset-2">
-                  {footerLink}
-                </p>
-              </Link>
-            </div>
+            {["login", "register"]?.includes(formName) && (
+              <>
+                <SocialAuthButton />
+                <div className="flex_justify_center gap-4 divider">
+                  <div className="h-[1px] bg-divider flex-1" />
+                  <span className="text-sm text-onNeutralBg">
+                    or use your email account
+                  </span>
+                  <div className="h-[1px] bg-divider flex-1" />
+                </div>
+              </>
+            )}
+            {["verify-email", "password-code"]?.includes(formName) ? (
+              <OTPCodeForm
+                onSubmit={onSubmit}
+                resendCodeHandler={resendCodeHandler}
+                data={data}
+              />
+            ) : (
+              <>
+                <Form
+                  listForm={listForm}
+                  schema={schema}
+                  onSubmit={onSubmit}
+                  defaultValues={defaultValues}
+                  data={data}
+                />
+                <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
+                  {footerTitle}
+                  <Link to={linkTo}>
+                    <p className="text-primary hover:underline underline-offset-2">
+                      {footerLink}
+                    </p>
+                  </Link>
+                </div>
+              </>
+            )}
           </>
         )}
       </div>

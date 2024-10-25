@@ -4,6 +4,7 @@ export { FormTemplate } from "./Auth/FormTemplate";
 // export { OTPCodeForm } from "./Auth/OTPCodeForm";
 export { ProfileForm } from "./Auth/ProfileForm";
 export { SocialAuth } from "./Auth/SocialAuth";
+export * from "./Auth/UserSaveForm";
 
 // CARDS
 export { MediaCard } from "./Cards/MediaCard";

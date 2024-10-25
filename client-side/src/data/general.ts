@@ -19,7 +19,7 @@ export const paths: PathProperties = {
   login: "/login",
   browse: "/browse",
   profile: "/profile",
-  register: "register",
+  register: "/register",
   discover: "/discover",
   socialAuth: "social-auth",
   gameDetail: "/game-detail",
