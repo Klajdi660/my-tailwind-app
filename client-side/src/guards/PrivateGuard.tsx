@@ -3,16 +3,18 @@ import { Navigate } from "react-router-dom";
 import { paths } from "../data";
 import { ProviderProps } from "../types";
 import { useAppSelector } from "../store";
-import { isATokenExpired, useAppModal } from "../utils";
+import { isTokenExpired, useAppModal } from "../utils";
 
 export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
   const { home } = paths;
 
   const { setModalOpen } = useAppModal();
 
+  const token = localStorage.atoken;
+
   useEffect(() => {
     const checkATokenExpiry = () => {
-      if (isATokenExpired()) {
+      if (isTokenExpired(token)) {
         setModalOpen("sessionExpiredModal", true);
       }
     };
@@ -22,7 +24,7 @@ export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
     const interval = setInterval(checkATokenExpiry, 1000);
 
     return () => clearInterval(interval);
-  }, [setModalOpen]);
+  }, [setModalOpen, token]);
 
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 

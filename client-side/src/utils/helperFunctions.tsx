@@ -24,27 +24,6 @@ export const useLocalStorage = (key: string, defaultValue: any) => {
   return [value, setValue];
 };
 
-export const isRTokenExpired = () => {
-  if (localStorage.rtoken) {
-    const currentTime = dayjs().unix();
-    const rTokenExpTime = JSON.parse(localStorage.rtoken).exp;
-    return parseInt(rTokenExpTime) > currentTime;
-  }
-  return false;
-};
-
-export const isATokenExpired = () => {
-  const atoken = atob(localStorage.atoken.split(".")[1]);
-
-  if (atoken) {
-    const currentTime = dayjs().unix();
-    const tokenExpirationTime = JSON.parse(atoken).exp;
-    return currentTime > parseInt(tokenExpirationTime);
-  }
-
-  return false;
-};
-
 export const isTokenExpired = (token: string) => {
   const hasToken = atob(token.split(".")[1]);
 
