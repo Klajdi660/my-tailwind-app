@@ -69,7 +69,7 @@ export const useAuthService = (): AuthService => {
       dispatch(setUser(user));
       dispatch(setIsAuthenticated(true));
 
-      localStorage.atoken = JSON.stringify(aToken);
+      localStorage.atoken = aToken;
       localStorage.user = JSON.stringify(user);
       localStorage.rtoken = JSON.stringify(rtoken);
 

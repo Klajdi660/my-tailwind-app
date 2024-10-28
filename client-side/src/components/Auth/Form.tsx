@@ -1,5 +1,5 @@
 import { FC, Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorFormMessage } from "../Common";
@@ -116,10 +116,10 @@ export const Form: FC<FormProps> = (props) => {
           to reset password.
         </p>
       )}
-      {formName === "login" && (
+      {/* {formName === "login" && (
         <div className="flex flex-1 items-center">
-          {/* <input type="checkbox" {...form("remember")} name="remember" /> */}
-          {/* <label className="ml-2 text-xs text-secondary">Remember Me</label> */}
+          <input type="checkbox" {...form("remember")} name="remember" />
+          <label className="ml-2 text-xs text-secondary">Remember Me</label>
           <Link
             to="/forgot-password"
             className="ml-auto tex-right text-xs text-onNeutralBg"
@@ -129,7 +129,7 @@ export const Form: FC<FormProps> = (props) => {
             </p>
           </Link>
         </div>
-      )}
+      )} */}
       <div
         className={classNames(
           "flex items-center justify-end w-full",

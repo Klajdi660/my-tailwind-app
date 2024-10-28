@@ -7,8 +7,8 @@ import { iconName } from "../../assets";
 import { useForm } from "../../hooks";
 import { classNames } from "../../utils";
 import { FormTemplateProps, FormListItem } from "../../types";
-import { useAppSelector } from "../../store";
-import { OneUserSaveForm } from "./UserSaveForm";
+// import { useAppSelector } from "../../store";
+// import { OneUserSaveForm } from "./UserSaveForm";
 
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { schema, onSubmit, defaultValues, resendCodeHandler, data } = props;
@@ -19,9 +19,9 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
     { linkTo, formName, formTitle, footerLink, description, footerTitle },
   ] = listForm as FormListItem[];
 
-  const { remember, saveAuthUserData, showSaveForm } = useAppSelector(
-    (state) => state.rememberMe
-  );
+  // const { remember, saveAuthUserData, showSaveForm } = useAppSelector(
+  //   (state) => state.rememberMe
+  // );
 
   return (
     <div
@@ -74,6 +74,16 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
                   defaultValues={defaultValues}
                   data={data}
                 />
+                {formName === "login" && (
+                  <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
+                    Forgot Password!
+                    <Link to="/forgot-password">
+                      <p className="text-primary hover:underline underline-offset-2">
+                        Reset
+                      </p>
+                    </Link>
+                  </div>
+                )}
                 <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
                   {footerTitle}
                   <Link to={linkTo}>
