@@ -74,23 +74,25 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
                   defaultValues={defaultValues}
                   data={data}
                 />
-                {formName === "login" && (
+                <div className="flex flex-col gap-4">
+                  {formName === "login" && (
+                    <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
+                      Forgot Password!
+                      <Link to="/forgot-password">
+                        <p className="text-primary hover:underline underline-offset-2">
+                          Reset
+                        </p>
+                      </Link>
+                    </div>
+                  )}
                   <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
-                    Forgot Password!
-                    <Link to="/forgot-password">
+                    {footerTitle}
+                    <Link to={linkTo}>
                       <p className="text-primary hover:underline underline-offset-2">
-                        Reset
+                        {footerLink}
                       </p>
                     </Link>
                   </div>
-                )}
-                <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
-                  {footerTitle}
-                  <Link to={linkTo}>
-                    <p className="text-primary hover:underline underline-offset-2">
-                      {footerLink}
-                    </p>
-                  </Link>
                 </div>
               </>
             )}

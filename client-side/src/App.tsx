@@ -11,6 +11,7 @@ import { Routes } from "./routes";
 import { persistor, store } from "./store";
 import { StylesProvider } from "./providers";
 import { AuthProvider, FormProvider, StoreProvider } from "./contexts";
+
 import "./index.css";
 import "swiper/css";
 import "swiper/css/autoplay";
