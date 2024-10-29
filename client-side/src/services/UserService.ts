@@ -7,8 +7,8 @@ import { useNotification, useStore } from "../hooks";
 import {
   useAppSelector,
   setUser,
-  setSaveUserAuthData,
   setRemember,
+  setSavedAuthUser,
 } from "../store";
 import { paths } from "../data";
 
@@ -62,7 +62,7 @@ export const useUserService = () => {
 
   const saveAuthUser = async (values: any): Promise<void> => {
     try {
-      const { username, extra } = user;
+      const { id, username, extra } = user;
       const { photo } = extra;
 
       const saveAuthUserResp = await HttpClient.post<any>(
@@ -82,8 +82,10 @@ export const useUserService = () => {
 
       localStorage.saveAuthUserToken = saveAuthUserToken;
 
+      // if (saveAuthUserData) {
       dispatch(setRemember(true));
-      dispatch(setSaveUserAuthData({ username: username, avatar: photo }));
+      dispatch(setSavedAuthUser({ id, username, photo }));
+      // }
 
       navigate(discover);
     } catch (error) {

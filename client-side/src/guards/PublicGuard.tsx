@@ -8,7 +8,7 @@ export const PublicGuard: FC<ProviderProps> = ({ children }) => {
   const { discover, saveAuthData } = paths;
 
   const { isAuthenticated } = useAppSelector((state) => state.auth);
-  const { remember } = useAppSelector((state) => state.rememberMe);
+  const { remember } = useAppSelector((state) => state.user);
 
   const navigateTo = remember ? discover : saveAuthData;
 

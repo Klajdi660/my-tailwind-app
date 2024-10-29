@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Button, Icon } from "../../components/UI";
 import { useUserService } from "../../services";
-import { setRemember } from "../../store";
 import { paths } from "../../data";
+import { setRemember } from "../../store";
 
 export const SaveDataAuthPage: FC = () => {
   const { discover } = paths;

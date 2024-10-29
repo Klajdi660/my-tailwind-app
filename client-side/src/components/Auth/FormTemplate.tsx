@@ -7,8 +7,8 @@ import { iconName } from "../../assets";
 import { useForm } from "../../hooks";
 import { classNames } from "../../utils";
 import { FormTemplateProps, FormListItem } from "../../types";
-// import { useAppSelector } from "../../store";
-// import { OneUserSaveForm } from "./UserSaveForm";
+import { useAppSelector } from "../../store";
+import { OneUserSaveForm } from "./UserSaveForm";
 
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { schema, onSubmit, defaultValues, resendCodeHandler, data } = props;
@@ -19,9 +19,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
     { linkTo, formName, formTitle, footerLink, description, footerTitle },
   ] = listForm as FormListItem[];
 
-  // const { remember, saveAuthUserData, showSaveForm } = useAppSelector(
-  //   (state) => state.rememberMe
-  // );
+  const { remember } = useAppSelector((state) => state.user);
 
   return (
     <div
@@ -43,9 +41,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
             type="medium"
           />
         )}
-        {/* {remember && !showSaveForm && <OneUserSaveForm />}
-         */}
-        {
+        {remember ? (
           <>
             {["login", "register"]?.includes(formName) && (
               <>
@@ -97,7 +93,9 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
               </>
             )}
           </>
-        }
+        ) : (
+          <OneUserSaveForm />
+        )}
       </div>
     </div>
   );

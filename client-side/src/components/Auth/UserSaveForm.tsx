@@ -1,31 +1,29 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useAppSelector, setRemember, setShowSaveForm } from "../../store";
-import { Button, Image } from "../UI";
-import { userIcon } from "../../assets";
+// import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../store";
+import { Button } from "../UI";
+// import { userIcon } from "../../assets";
 import { paths } from "../../data";
 
 export const OneUserSaveForm: FC = () => {
   const { login, register } = paths;
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const { saveAuthUserData } = useAppSelector((state) => state.rememberMe);
+  const { saveAuthUserData } = useAppSelector((state) => state.user);
 
-  const { username, avatar } = saveAuthUserData;
-
-  const labelTitle = `Continue as ${username}`;
+  console.log("saveAuthUserData :>> ", saveAuthUserData);
+  // const labelTitle = `Continue as ${username}`;
 
   const handleSwitchAccount = () => {
-    dispatch(setShowSaveForm(true));
     navigate(login);
   };
 
   return (
     <div className="flex_justify_center flex-col gap-10 text-onNeutralBg">
-      <div className="relative w-40 h-40 rounded-full ring-2 ring-white bg-white">
+      {/* <div className="relative w-40 h-40 rounded-full ring-2 ring-white bg-white">
         {avatar ? (
           <Image
             imgUrl={avatar}
@@ -41,18 +39,18 @@ export const OneUserSaveForm: FC = () => {
             effect="blur"
           />
         )}
-      </div>
-      <div className="flex flex-col gap-6">
+      </div> */}
+      {/* <div className="flex flex-col gap-6">
         <Button variant="contained" label={labelTitle} />
         <Button
           variant="none"
           label="Remove account"
           className="text-primary hover:text-onNeutralBg"
         />
-      </div>
+      </div>*/}
       <div className="w-full h-[1px] bg-divider" />
       <div>
-        <p className="text-secondary text-center">Not {username}?</p>
+        {/* <p className="text-secondary text-center">Not {username}?</p> */}
         <Button
           variant="none"
           className="text-primary hover:text-onNeutralBg"
