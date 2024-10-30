@@ -63,6 +63,7 @@ import {
   FaClock,
   FaStreetView,
 } from "react-icons/fa";
+import { FaCirclePlus } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiUpload, FiEdit } from "react-icons/fi";
 import { GoDotFill } from "react-icons/go";
@@ -185,6 +186,7 @@ const icons: IconsMap = {
   FaWpexplorer,
   FaPlaystation,
   FaStreetView,
+  FaCirclePlus,
   FcGoogle,
   FiUpload,
   FiAlertTriangle,

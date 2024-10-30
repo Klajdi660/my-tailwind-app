@@ -4,6 +4,7 @@ import { User } from "../../../types";
 interface SaveAuthUserData {
   id: string;
   username: string;
+  email: string;
   photo: any;
 }
 

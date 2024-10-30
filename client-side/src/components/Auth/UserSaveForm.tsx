@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store";
-import { Button, Image } from "../UI";
+import { Button, Icon, Image } from "../UI";
 import { userIcon } from "../../assets";
 import { paths } from "../../data";
 
@@ -16,67 +16,52 @@ export const UserSaveForm: FC = () => {
     <div className="flex_justify_center gap-6 absolute_center">
       {saveAuthUserData.map((saveAuthUser) => {
         return (
-          <div
+          <button
+            type="button"
             key={saveAuthUser.id}
-            className="flex_justify_center flex-col text-onNeutralBg bg-card rounded p-4 gap-4"
+            className="flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl p-4 gap-4 hover:bg-primary-opacity w-40 h-52"
           >
-            <div className="w-full text-center">
-              {saveAuthUser.username}
-              <div className="w-full h-[1px] bg-divider mt-4" />
-            </div>
-
-            <div className="w-60 h-52 flex items-center flex-col gap-4">
-              {saveAuthUser.photo ? (
-                <Image
-                  imgUrl={saveAuthUser.photo}
-                  name="Profile Img"
-                  styles="w-24 h-24 rounded-full p-1 object-cover"
-                  effect="blur"
-                />
-              ) : (
-                <Image
-                  imgUrl={userIcon}
-                  name="Profile Img"
-                  styles="w-24 h-24 rounded-full p-1 ring-2 ring-white bg-main"
-                  effect="blur"
-                />
-              )}
-
-              <div className="flex flex-col gap-2">
-                <Button
-                  variant="contained"
-                  label={`Continue as ${saveAuthUser.username}`}
-                />
-                <Button
-                  variant="none"
-                  label="Remove account"
-                  className="text-primary hover:text-onNeutralBg"
-                />
-              </div>
-            </div>
-          </div>
+            <div className="w-full text-center">{saveAuthUser.email}</div>
+            {saveAuthUser.photo ? (
+              <Image
+                imgUrl={saveAuthUser.photo}
+                name="Profile Img"
+                styles="w-20 h-20 rounded-full p-1 ring-2 ring-white object-cover"
+                effect="blur"
+              />
+            ) : (
+              <Image
+                imgUrl={userIcon}
+                name="Profile Img"
+                styles="w-20 h-20 rounded-full p-1 ring-2 ring-white bg-main"
+                effect="blur"
+              />
+            )}
+            <div className="w-full text-center">{saveAuthUser.username}</div>
+          </button>
         );
       })}
-      <div className="flex_justify_center flex-col text-onNeutralBg bg-card rounded p-4 gap-4">
+      <button
+        type="button"
+        className="flex_justify_center flex-col text-onNeutralBg bg-card rounded p-4 gap-4 w-40 h-52 hover:bg-primary-opacity"
+      >
         <div className="w-full text-center">
           Switch accounts
-          <div className="w-full h-[1px] bg-divider mt-4" />
+          {/* <div className="w-full h-[1px] bg-divider mt-4" /> */}
         </div>
 
-        <div
-          className="group w-60 h-52 flex_justify_center"
-          onClick={() => navigate(login)}
-        >
-          <Button
-            variant="none"
-            type="button"
-            className="w-24 h-24 rounded-full flex_justify_center border-2 group-hover:border-primary"
-            iconClassName="group-hover:text-primary"
-            labelIcon="AiOutlinePlus"
-            size={40}
-          />
-        </div>
-      </div>
+        <Icon name="FaCirclePlus" className="w-20 h-20 text-secondary" />
+        {/* 
+        <Button
+          variant="none"
+          type="button"
+          // className="flex_justify_center"
+          iconClassName="w-20 h-20 text-secondary"
+          labelIcon="FaCirclePlus"
+          // size={40}
+        /> */}
+        <div className="w-full text-center">Test</div>
+      </button>
     </div>
   );
 };

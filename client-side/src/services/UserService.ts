@@ -62,7 +62,7 @@ export const useUserService = () => {
 
   const saveAuthUser = async (values: any): Promise<void> => {
     try {
-      const { id, username, extra } = user;
+      const { id, username, email, extra } = user;
       const { avatar } = extra;
 
       const saveAuthUserResp = await HttpClient.post<any>(
@@ -84,7 +84,7 @@ export const useUserService = () => {
 
       // if (saveAuthUserData) {
       dispatch(setRemember(true));
-      dispatch(setSavedAuthUser({ id, username, photo: avatar }));
+      dispatch(setSavedAuthUser({ id, username, email, photo: avatar }));
       // }
 
       navigate(discover);
