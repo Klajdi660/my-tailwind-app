@@ -7,4 +7,5 @@ export interface User {
   name?: string;
   provider?: string;
   username?: string;
+  verified: any;
 }

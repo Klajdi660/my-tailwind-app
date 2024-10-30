@@ -117,7 +117,7 @@ export const HomePage: FC<HomePageProps> = () => {
                   <div className="flex flex-row gap-2 items-center fixed ml-40">
                     <div className="flex gap-2 p-2 bg-white rounded-md">
                       <PlatformIconList
-                        className="text-[#404040]"
+                        className="text-secondary"
                         platforms={platformsIcon.map((p: any) => p.platform)}
                       />
                     </div>

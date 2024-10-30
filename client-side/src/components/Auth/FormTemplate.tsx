@@ -7,8 +7,6 @@ import { iconName } from "../../assets";
 import { useForm } from "../../hooks";
 import { classNames } from "../../utils";
 import { FormTemplateProps, FormListItem } from "../../types";
-import { useAppSelector } from "../../store";
-import { OneUserSaveForm } from "./UserSaveForm";
 
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { schema, onSubmit, defaultValues, resendCodeHandler, data } = props;
@@ -18,8 +16,6 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const [
     { linkTo, formName, formTitle, footerLink, description, footerTitle },
   ] = listForm as FormListItem[];
-
-  const { remember } = useAppSelector((state) => state.user);
 
   return (
     <div
@@ -41,60 +37,55 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
             type="medium"
           />
         )}
-        {remember ? (
+
+        {["login", "register"]?.includes(formName) && (
           <>
-            {["login", "register"]?.includes(formName) && (
-              <>
-                <SocialAuthButton />
-                <div className="flex_justify_center gap-4 divider">
-                  <div className="h-[1px] bg-divider flex-1" />
-                  <span className="text-sm text-onNeutralBg">
-                    or use your email account
-                  </span>
-                  <div className="h-[1px] bg-divider flex-1" />
-                </div>
-              </>
-            )}
-            {["verify-email", "password-code"]?.includes(formName) ? (
-              <OTPCodeForm
-                onSubmit={onSubmit}
-                resendCodeHandler={resendCodeHandler}
-                data={data}
-              />
-            ) : (
-              <>
-                <Form
-                  listForm={listForm}
-                  schema={schema}
-                  onSubmit={onSubmit}
-                  defaultValues={defaultValues}
-                  data={data}
-                />
-                <div className="flex flex-col gap-4">
-                  {formName === "login" && (
-                    <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
-                      Forgot Password!
-                      <Link to="/forgot-password">
-                        <p className="text-primary hover:underline underline-offset-2">
-                          Reset
-                        </p>
-                      </Link>
-                    </div>
-                  )}
-                  <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
-                    {footerTitle}
-                    <Link to={linkTo}>
-                      <p className="text-primary hover:underline underline-offset-2">
-                        {footerLink}
-                      </p>
-                    </Link>
-                  </div>
-                </div>
-              </>
-            )}
+            <SocialAuthButton />
+            <div className="flex_justify_center gap-4 divider">
+              <div className="h-[1px] bg-divider flex-1" />
+              <span className="text-sm text-onNeutralBg">
+                or use your email account
+              </span>
+              <div className="h-[1px] bg-divider flex-1" />
+            </div>
           </>
+        )}
+        {["verify-email", "password-code"]?.includes(formName) ? (
+          <OTPCodeForm
+            onSubmit={onSubmit}
+            resendCodeHandler={resendCodeHandler}
+            data={data}
+          />
         ) : (
-          <OneUserSaveForm />
+          <>
+            <Form
+              listForm={listForm}
+              schema={schema}
+              onSubmit={onSubmit}
+              defaultValues={defaultValues}
+              data={data}
+            />
+            <div className="flex flex-col gap-4">
+              {formName === "login" && (
+                <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
+                  Forgot Password!
+                  <Link to="/forgot-password">
+                    <p className="text-primary hover:underline underline-offset-2">
+                      Reset
+                    </p>
+                  </Link>
+                </div>
+              )}
+              <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
+                {footerTitle}
+                <Link to={linkTo}>
+                  <p className="text-primary hover:underline underline-offset-2">
+                    {footerLink}
+                  </p>
+                </Link>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>

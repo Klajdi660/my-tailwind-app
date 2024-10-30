@@ -21,7 +21,7 @@ import {
   SaveDataAuthPage,
 } from "../pages";
 import { paths } from "../data";
-import { SocialAuth } from "../components";
+import { SocialAuth, UserSaveForm } from "../components";
 import { PrivateGuard, PublicGuard } from "../guards";
 import { PrivateLayout, PublicLayout } from "../layouts";
 
@@ -40,6 +40,7 @@ const {
   resetPassword,
   forgotPassword,
   saveAuthData,
+  accountSaved,
 } = paths;
 
 export const Routes = () =>
@@ -54,7 +55,16 @@ export const Routes = () =>
         </PrivateGuard>
       ),
     },
-
+    {
+      path: accountSaved,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <UserSaveForm />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
     {
       path: browse,
       element: (

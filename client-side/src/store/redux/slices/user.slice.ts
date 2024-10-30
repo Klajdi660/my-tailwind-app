@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { User } from "../../../types";
 
 interface SaveAuthUserData {
   id: string;
@@ -7,7 +8,7 @@ interface SaveAuthUserData {
 }
 
 interface UserState {
-  user: any;
+  user: User;
   saveAuthUserData: SaveAuthUserData[];
   currency: string;
   remember: boolean;

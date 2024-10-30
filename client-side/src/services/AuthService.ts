@@ -180,8 +180,6 @@ export const useAuthService = (): AuthService => {
     try {
       await HttpClient.get<AuthResponse>(LOGOUT_API);
 
-      // unAuthenticateUser();
-
       dispatch(setAToken(null));
       dispatch(setRToken(null));
       dispatch(setUser(null));
@@ -192,7 +190,6 @@ export const useAuthService = (): AuthService => {
       delete localStorage.rtoken;
 
       // delete localStorage.lastLocation;
-      navigate("/");
     } catch (error) {
       notify({
         variant: "error",
