@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store";
-import { Button, Icon, Image } from "../UI";
+import { Icon, Image } from "../UI";
 import { userIcon } from "../../assets";
 import { paths } from "../../data";
+import { Tooltip } from "antd";
 
 export const UserSaveForm: FC = () => {
   const { login } = paths;
@@ -19,47 +20,55 @@ export const UserSaveForm: FC = () => {
           <button
             type="button"
             key={saveAuthUser.id}
-            className="flex flex-col items-center text-onNeutralBg bg-card rounded-xl p-4 hover:bg-primary-opacity w-44 h-52"
+            className="relative flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2 group"
           >
-            <div className="flex w-full justify-end">
-              <Icon
-                name="BsThreeDotsVertical"
-                className="text-secondary"
-                size={12}
-              />
+            {/* Tooltip for removing account, visible only on hover */}
+            <div className="absolute top-2 left-2 hidden group-hover:flex">
+              <Tooltip
+                title="Remove account from this page"
+                placement="topLeft"
+              >
+                <div className="flex_justify_center bg-main h-6 w-6 rounded-full cursor-pointer">
+                  <Icon
+                    name="MdClear"
+                    size={14}
+                    className="hover:text-primary"
+                  />
+                </div>
+              </Tooltip>
             </div>
-            <div className="flex_justify_between flex-col gap-4 w-full">
-              <p className="w-full text-center">{saveAuthUser.email}</p>
+
+            <div className="flex_justify_center flex-col gap-4">
+              <p>{saveAuthUser.email}</p>
               {saveAuthUser.photo ? (
                 <Image
                   imgUrl={saveAuthUser.photo}
                   name="Profile Img"
-                  styles="w-20 h-20 rounded-full p-1 ring-2 ring-white object-cover"
+                  styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg object-cover"
                   effect="blur"
                 />
               ) : (
                 <Image
                   imgUrl={userIcon}
                   name="Profile Img"
-                  styles="w-20 h-20 rounded-full p-1 ring-2 ring-white bg-main"
+                  styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg bg-main"
                   effect="blur"
                 />
               )}
-              <p className="w-full text-center">{saveAuthUser.username}</p>
+              <p className="h-4">{saveAuthUser.username}</p>
             </div>
           </button>
         );
       })}
       <button
-        className="flex_justify_center flex-col text-onNeutralBg bg-card rounded p-4 gap-4 w-44 h-52 hover:bg-primary-opacity"
+        className="flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2"
         onClick={() => navigate(login)}
       >
-        <div className="w-full text-center">
-          Switch accounts
-          {/* <div className="w-full h-[1px] bg-divider mt-4" /> */}
+        <div className="flex_justify_center flex-col gap-4">
+          <p>Switch accounts</p>
+          <Icon name="FaCirclePlus" className="w-20 h-20 text-secondary" />
+          <p className="h-4"></p>
         </div>
-        <Icon name="FaCirclePlus" className="w-20 h-20 text-secondary" />
-        <div className="h-4"></div>
       </button>
     </div>
   );
