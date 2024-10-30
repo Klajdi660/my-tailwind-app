@@ -42,25 +42,15 @@ export const UserSaveForm: FC = () => {
         );
       })}
       <button
-        type="button"
         className="flex_justify_center flex-col text-onNeutralBg bg-card rounded p-4 gap-4 w-40 h-52 hover:bg-primary-opacity"
+        onClick={() => navigate(login)}
       >
         <div className="w-full text-center">
           Switch accounts
           {/* <div className="w-full h-[1px] bg-divider mt-4" /> */}
         </div>
-
         <Icon name="FaCirclePlus" className="w-20 h-20 text-secondary" />
-        {/* 
-        <Button
-          variant="none"
-          type="button"
-          // className="flex_justify_center"
-          iconClassName="w-20 h-20 text-secondary"
-          labelIcon="FaCirclePlus"
-          // size={40}
-        /> */}
-        <div className="w-full text-center">Test</div>
+        <div className="h-5"></div>
       </button>
     </div>
   );
