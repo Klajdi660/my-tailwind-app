@@ -8,12 +8,142 @@ import { userIcon, iconName } from "../../assets";
 import { paths } from "../../data";
 import { Tooltip } from "antd";
 import { useAuthService } from "../../services";
+import { isTokenExpired } from "../../utils";
+
+// export const UserSaveForm: FC = () => {
+//   const { logIn, home } = paths;
+
+//   const { loginSavedUser } = useAuthService();
+
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+
+//   const { saveAuthUserData } = useAppSelector((state) => state.user);
+
+//   const handleRemoveUser = (id: string) => {
+//     dispatch(clearSavedAuthUser(id));
+//   };
+
+//   const onSubmitLoginSavedUserHandler = async () => {
+//     try {
+//       await loginSavedUser();
+//     } catch (error) {
+//       console.error(`Failed to login! ${error}`);
+//     }
+//   };
+
+//   useEffect(() => {
+//     saveAuthUserData.forEach((user) => {
+//       if (isTokenExpired(user.saveAuthUserToken)) {
+//         dispatch(clearSavedAuthUser(user.id));
+//       }
+//     });
+//   }, [saveAuthUserData, dispatch]);
+
+//   useEffect(() => {
+//     if (saveAuthUserData.length === 0) {
+//       navigate(logIn);
+//     }
+//   }, [saveAuthUserData, navigate, logIn]);
+
+//   return (
+//     <div className="flex_justify_between flex-col text-onNeutralBg py-40 h-screen">
+//       <div className="flex_justify_center flex-col gap-4">
+//         <Link to={home}>
+//           <motion.div whileHover={{ scale: 1.1 }}>
+//             <Image
+//               imgUrl={iconName}
+//               name="App Logo"
+//               width={150}
+//               effect="opacity"
+//             />
+//           </motion.div>
+//         </Link>
+//         <p className="text-4xl">Who's using GrooveIT?</p>
+//         <p className="text-base text-center text-secondary">
+//           With GrooveIT profiles you can separate all your GrooveIT stuff.
+//           Create profiles for friends and family, or split between work and fun.
+//         </p>
+//       </div>
+//       <div className="flex_justify_center gap-6">
+//         {saveAuthUserData
+//           .filter((user) => !isTokenExpired(user.saveAuthUserToken)) // Only include valid tokens
+//           .map((saveAuthUser) => {
+//             return (
+//               <button
+//                 type="button"
+//                 key={saveAuthUser.id}
+//                 className="relative flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2 group"
+//               >
+//                 <div className="absolute top-2 left-2 hidden group-hover:flex">
+//                   <Tooltip
+//                     title="Remove account from this page"
+//                     placement="topLeft"
+//                   >
+//                     <div
+//                       className="flex_justify_center bg-card h-6 w-6 rounded-full cursor-pointer"
+//                       onClick={() => handleRemoveUser(saveAuthUser.id)}
+//                     >
+//                       <Icon
+//                         name="MdClear"
+//                         size={14}
+//                         className="hover:text-primary"
+//                       />
+//                     </div>
+//                   </Tooltip>
+//                 </div>
+
+//                 <div
+//                   className="flex_justify_center flex-col gap-4"
+//                   onClick={onSubmitLoginSavedUserHandler}
+//                 >
+//                   <p>{saveAuthUser.email}</p>
+//                   {saveAuthUser.photo ? (
+//                     <Image
+//                       imgUrl={saveAuthUser.photo}
+//                       name="Profile Img"
+//                       styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg object-cover"
+//                       effect="blur"
+//                     />
+//                   ) : (
+//                     <Image
+//                       imgUrl={userIcon}
+//                       name="Profile Img"
+//                       styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg bg-main"
+//                       effect="blur"
+//                     />
+//                   )}
+//                   <p className="h-4">{saveAuthUser.username}</p>
+//                 </div>
+//               </button>
+//             );
+//           })}
+//         <button
+//           className="flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2"
+//           onClick={() => navigate(logIn)}
+//         >
+//           <div className="flex_justify_center flex-col gap-4">
+//             <p>Switch accounts</p>
+//             <Icon name="FaCirclePlus" className="w-20 h-20 text-secondary" />
+//             <p className="h-4"></p>
+//           </div>
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// Function to check if a token is expired
+// const isTokenExpired = (token: string): boolean => {
+//   const tokenData = JSON.parse(atob(token.split(".")[1]));
+//   const expiryTime = tokenData.exp * 1000; // Convert from seconds to milliseconds
+//   return Date.now() > expiryTime;
+// };
 
 export const UserSaveForm: FC = () => {
   const { logIn, home } = paths;
 
   const { loginSavedUser } = useAuthService();
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,6 +151,16 @@ export const UserSaveForm: FC = () => {
 
   const handleRemoveUser = (id: string) => {
     dispatch(clearSavedAuthUser(id));
+  };
+
+  const getValidUsers = () => {
+    return saveAuthUserData.filter((user) => {
+      if (isTokenExpired(user.saveAuthUserToken)) {
+        dispatch(clearSavedAuthUser(user.id));
+        return false;
+      }
+      return true;
+    });
   };
 
   const onSubmitLoginSavedUserHandler = async () => {
@@ -33,9 +173,12 @@ export const UserSaveForm: FC = () => {
 
   useEffect(() => {
     if (saveAuthUserData.length === 0) {
+      delete localStorage.saveAuthUserToken;
       navigate(logIn);
     }
   }, [saveAuthUserData, navigate, logIn]);
+
+  const validUsers = getValidUsers();
 
   return (
     <div className="flex_justify_between flex-col text-onNeutralBg py-40 h-screen">
@@ -57,56 +200,54 @@ export const UserSaveForm: FC = () => {
         </p>
       </div>
       <div className="flex_justify_center gap-6">
-        {saveAuthUserData.map((saveAuthUser) => {
-          return (
-            <button
-              type="button"
-              key={saveAuthUser.id}
-              className="relative flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2 group"
-            >
-              <div className="absolute top-2 left-2 hidden group-hover:flex">
-                <Tooltip
-                  title="Remove account from this page"
-                  placement="topLeft"
-                >
-                  <div
-                    className="flex_justify_center bg-card h-6 w-6 rounded-full cursor-pointer"
-                    onClick={() => handleRemoveUser(saveAuthUser.id)}
-                  >
-                    <Icon
-                      name="MdClear"
-                      size={14}
-                      className="hover:text-primary"
-                    />
-                  </div>
-                </Tooltip>
-              </div>
-
-              <div
-                className="flex_justify_center flex-col gap-4"
-                onClick={onSubmitLoginSavedUserHandler}
+        {validUsers.map((saveAuthUser) => (
+          <button
+            type="button"
+            key={saveAuthUser.id}
+            className="relative flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2 group"
+          >
+            <div className="absolute top-2 left-2 hidden group-hover:flex">
+              <Tooltip
+                title="Remove account from this page"
+                placement="topLeft"
               >
-                <p>{saveAuthUser.email}</p>
-                {saveAuthUser.photo ? (
-                  <Image
-                    imgUrl={saveAuthUser.photo}
-                    name="Profile Img"
-                    styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg object-cover"
-                    effect="blur"
+                <div
+                  className="flex_justify_center bg-card h-6 w-6 rounded-full cursor-pointer"
+                  onClick={() => handleRemoveUser(saveAuthUser.id)}
+                >
+                  <Icon
+                    name="MdClear"
+                    size={14}
+                    className="hover:text-primary"
                   />
-                ) : (
-                  <Image
-                    imgUrl={userIcon}
-                    name="Profile Img"
-                    styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg bg-main"
-                    effect="blur"
-                  />
-                )}
-                <p className="h-4">{saveAuthUser.username}</p>
-              </div>
-            </button>
-          );
-        })}
+                </div>
+              </Tooltip>
+            </div>
+
+            <div
+              className="flex_justify_center flex-col gap-4"
+              onClick={onSubmitLoginSavedUserHandler}
+            >
+              <p>{saveAuthUser.email}</p>
+              {saveAuthUser.photo ? (
+                <Image
+                  imgUrl={saveAuthUser.photo}
+                  name="Profile Img"
+                  styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg object-cover"
+                  effect="blur"
+                />
+              ) : (
+                <Image
+                  imgUrl={userIcon}
+                  name="Profile Img"
+                  styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg bg-main"
+                  effect="blur"
+                />
+              )}
+              <p className="h-4">{saveAuthUser.username}</p>
+            </div>
+          </button>
+        ))}
         <button
           className="flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2"
           onClick={() => navigate(logIn)}

@@ -80,11 +80,19 @@ export const useUserService = () => {
 
       const { saveAuthUserToken } = data;
 
-      localStorage.saveAuthUserToken = saveAuthUserToken;
+      // localStorage.saveAuthUserToken = saveAuthUserToken;
 
       // if (saveAuthUserData) {
       dispatch(setRemember(true));
-      dispatch(setSavedAuthUser({ id, username, email, photo: avatar }));
+      dispatch(
+        setSavedAuthUser({
+          id,
+          username,
+          email,
+          photo: avatar,
+          saveAuthUserToken,
+        })
+      );
       // }
 
       navigate(discover);

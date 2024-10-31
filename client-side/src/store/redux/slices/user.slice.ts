@@ -5,6 +5,7 @@ interface SaveAuthUserData {
   id: string;
   username: string;
   email: string;
+  saveAuthUserToken: string;
   photo: any;
 }
 

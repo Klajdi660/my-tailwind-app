@@ -7,6 +7,7 @@ import {
   setUser,
   setLoading,
   setIsAuthenticated,
+  useAppSelector,
 } from "../store";
 import {
   AuthService,
@@ -36,6 +37,8 @@ export const useAuthService = (): AuthService => {
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { saveAuthUserData } = useAppSelector((state) => state.user);
 
   const login = async (values: LoginUserValues): Promise<void> => {
     try {
@@ -82,10 +85,22 @@ export const useAuthService = (): AuthService => {
 
   const loginSavedUser = async (): Promise<void> => {
     try {
+      const savedUser = saveAuthUserData.find(
+        (user) => user.id === saveAuthUserData[0]?.id
+      ) as any;
+
+      console.log("savedUser :>> ", savedUser);
+
       dispatch(setLoading(true));
 
-      const loginSavedUserResp =
-        await HttpClient.get<AuthResponse>(LOGIN_SAVED_USER_API);
+      const headers = {
+        Authorization: `Bearer ${savedUser.saveAuthUserToken}`,
+      };
+      console.log("headers :>> ", headers);
+      const loginSavedUserResp = await HttpClient.get<AuthResponse>(
+        LOGIN_SAVED_USER_API,
+        { headers }
+      );
 
       dispatch(setLoading(false));
 

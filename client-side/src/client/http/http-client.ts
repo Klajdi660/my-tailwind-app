@@ -16,16 +16,19 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    if (config.url?.includes("auth/login-saved-user")) {
-      const saveToken = localStorage.saveAuthUserToken;
+    console.log("config :>> ", config);
+    // if (config.url?.includes("auth/login-saved-user")) {
+    //   const saveToken = localStorage.saveAuthUserToken;
 
-      config.headers.Authorization = `Bearer ${saveToken}`;
+    //   config.headers.Authorization = `Bearer ${saveToken}`;
 
-      return config;
-    }
+    //   return config;
+    // }
 
-    const token =
-      config.method === "get" ? localStorage.atoken : localStorage.atoken;
+    // const token =
+    //   config.method === "get" ? localStorage.atoken : localStorage.atoken;
+
+    const token = config.method === "post" && localStorage.atoken;
 
     config.headers.Authorization = `Bearer ${token}`;
 
