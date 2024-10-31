@@ -30,7 +30,7 @@ export const HomePage: FC<HomePageProps> = () => {
 
   const { gameDetail } = useGameDetail(selectedGameId) as any;
 
-  const { saveAuthUserData, remember } = useAppSelector((state) => state.user);
+  const { saveAuthUserData } = useAppSelector((state) => state.user);
 
   const navigateTo = saveAuthUserData.length > 0 ? accountSaved : logIn;
 

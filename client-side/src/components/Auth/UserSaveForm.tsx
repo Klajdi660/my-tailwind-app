@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { useAppSelector } from "../../store";
+import { useAppSelector, clearSavedAuthUser } from "../../store";
 import { Icon, Image } from "../UI";
 import { userIcon, iconName } from "../../assets";
 import { paths } from "../../data";
@@ -10,9 +11,20 @@ import { Tooltip } from "antd";
 export const UserSaveForm: FC = () => {
   const { logIn, home } = paths;
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { saveAuthUserData } = useAppSelector((state) => state.user);
+
+  const handleRemoveUser = (id: string) => {
+    dispatch(clearSavedAuthUser(id));
+  };
+
+  useEffect(() => {
+    if (saveAuthUserData.length === 0) {
+      navigate(logIn);
+    }
+  }, [saveAuthUserData, navigate, logIn]);
 
   return (
     <div className="flex_justify_between flex-col text-onNeutralBg py-40 h-screen">
@@ -41,13 +53,15 @@ export const UserSaveForm: FC = () => {
               key={saveAuthUser.id}
               className="relative flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2 group"
             >
-              {/* Tooltip for removing account, visible only on hover */}
               <div className="absolute top-2 left-2 hidden group-hover:flex">
                 <Tooltip
                   title="Remove account from this page"
                   placement="topLeft"
                 >
-                  <div className="flex_justify_center bg-main h-6 w-6 rounded-full cursor-pointer">
+                  <div
+                    className="flex_justify_center bg-card h-6 w-6 rounded-full cursor-pointer"
+                    onClick={() => handleRemoveUser(saveAuthUser.id)}
+                  >
                     <Icon
                       name="MdClear"
                       size={14}

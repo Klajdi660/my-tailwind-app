@@ -43,6 +43,12 @@ const slice = createSlice({
         state.saveAuthUserData.push(action.payload);
       }
     },
+    clearSavedAuthUser(state, action) {
+      const userIdToRemove = action.payload;
+      state.saveAuthUserData = state.saveAuthUserData.filter(
+        (user) => user.id !== userIdToRemove
+      );
+    },
     setCurrency(state, action) {
       state.currency = action.payload;
     },
@@ -53,5 +59,10 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
-export const { setUser, setCurrency, setRemember, setSavedAuthUser } =
-  slice.actions;
+export const {
+  setUser,
+  setCurrency,
+  setRemember,
+  setSavedAuthUser,
+  clearSavedAuthUser,
+} = slice.actions;
