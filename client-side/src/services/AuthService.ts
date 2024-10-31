@@ -102,7 +102,6 @@ export const useAuthService = (): AuthService => {
       user.extra = {
         ...JSON.parse(user.extra),
       };
-      console.log("data :>> ", data);
       const rtoken = JSON.parse(atob(rToken.split(".")[1]));
 
       dispatch(setAToken(aToken));

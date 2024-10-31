@@ -16,14 +16,11 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    console.log("config.url :>> ", config.url);
-    console.log("object :>> ", config.url?.includes("auth/login-saved-user"));
     if (config.url?.includes("auth/login-saved-user")) {
-      console.log("HYRII :>> ");
       const saveToken = localStorage.saveAuthUserToken;
 
       config.headers.Authorization = `Bearer ${saveToken}`;
-      console.log("config :>> ", config);
+
       return config;
     }
 
@@ -31,7 +28,7 @@ instance.interceptors.request.use(
       config.method === "get" ? localStorage.atoken : localStorage.atoken;
 
     config.headers.Authorization = `Bearer ${token}`;
-    console.log("config 222 :>> ", config);
+
     return config;
   },
   (error: AxiosError) => Promise.reject(error)
