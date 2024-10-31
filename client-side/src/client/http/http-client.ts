@@ -4,7 +4,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import { APP_URL, AXIOS_TIMEOUT_DURATION } from "../../configs";
-// import { deleteUser, store } from "../../store";
+import { store } from "../../store";
 
 const instance = axios.create({
   baseURL: APP_URL,
@@ -16,19 +16,20 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    console.log("config :>> ", config);
-    // if (config.url?.includes("auth/login-saved-user")) {
-    //   const saveToken = localStorage.saveAuthUserToken;
+    const state = store.getState();
+    const { saveAuthUserData } = state.user;
 
-    //   config.headers.Authorization = `Bearer ${saveToken}`;
+    const savedUserToken = saveAuthUserData.find(
+      (user) => user.id === saveAuthUserData[0]?.id
+    )?.saveAuthUserToken;
 
-    //   return config;
-    // }
+    if (config.url?.includes("auth/login-saved-user")) {
+      config.headers.Authorization = `Bearer ${savedUserToken}`;
+      return config;
+    }
 
-    // const token =
-    //   config.method === "get" ? localStorage.atoken : localStorage.atoken;
-
-    const token = config.method === "post" && localStorage.atoken;
+    const token =
+      config.method === "get" ? localStorage.atoken : localStorage.atoken;
 
     config.headers.Authorization = `Bearer ${token}`;
 
