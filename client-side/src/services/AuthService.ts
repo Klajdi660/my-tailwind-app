@@ -22,6 +22,7 @@ import { useNotification } from "../hooks";
 
 const {
   LOGIN_API,
+  LOGIN_SAVED_USER_API,
   LOGOUT_API,
   REGISTER_API,
   VERIFY_EMAIL_API,
@@ -73,6 +74,50 @@ export const useAuthService = (): AuthService => {
       notify({
         variant: "error",
         description: "Login failed. Incorrect email/username or password",
+      });
+      console.error(`Login failed: ${error}`);
+      throw error;
+    }
+  };
+
+  const loginSavedUser = async (): Promise<void> => {
+    try {
+      dispatch(setLoading(true));
+
+      const loginSavedUserResp =
+        await HttpClient.get<AuthResponse>(LOGIN_SAVED_USER_API);
+
+      dispatch(setLoading(false));
+
+      const { error, message, data } = loginSavedUserResp;
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      const { aToken, rToken, user } = data;
+      user.extra = {
+        ...JSON.parse(user.extra),
+      };
+      console.log("data :>> ", data);
+      const rtoken = JSON.parse(atob(rToken.split(".")[1]));
+
+      dispatch(setAToken(aToken));
+      dispatch(setRToken(rToken));
+      dispatch(setUser(user));
+      dispatch(setIsAuthenticated(true));
+
+      localStorage.atoken = aToken;
+      localStorage.user = JSON.stringify(user);
+      localStorage.rtoken = JSON.stringify(rtoken);
+    } catch (error) {
+      dispatch(setLoading(false));
+      notify({
+        variant: "error",
+        description: "Login failed. Try again later.",
       });
       console.error(`Login failed: ${error}`);
       throw error;
@@ -276,5 +321,6 @@ export const useAuthService = (): AuthService => {
     emailVerify,
     resetPassword,
     forgotPassword,
+    loginSavedUser,
   };
 };

@@ -1,6 +1,7 @@
 // AUTH ENDPOINTS
 export const endpoints = {
   LOGIN_API: "/auth/login",
+  LOGIN_SAVED_USER_API: "/auth/login-saved-user",
   LOGOUT_API: "/auth/logout",
   REGISTER_API: "/auth/register",
   OAUTH_GOOGLE_API: "/auth/google",

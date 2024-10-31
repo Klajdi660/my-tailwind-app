@@ -7,9 +7,12 @@ import { Icon, Image } from "../UI";
 import { userIcon, iconName } from "../../assets";
 import { paths } from "../../data";
 import { Tooltip } from "antd";
+import { useAuthService } from "../../services";
 
 export const UserSaveForm: FC = () => {
   const { logIn, home } = paths;
+
+  const { loginSavedUser } = useAuthService();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,6 +21,14 @@ export const UserSaveForm: FC = () => {
 
   const handleRemoveUser = (id: string) => {
     dispatch(clearSavedAuthUser(id));
+  };
+
+  const onSubmitLoginSavedUserHandler = async () => {
+    try {
+      await loginSavedUser();
+    } catch (error) {
+      console.error(`Failed to login! ${error}`);
+    }
   };
 
   useEffect(() => {
@@ -71,7 +82,10 @@ export const UserSaveForm: FC = () => {
                 </Tooltip>
               </div>
 
-              <div className="flex_justify_center flex-col gap-4">
+              <div
+                className="flex_justify_center flex-col gap-4"
+                onClick={onSubmitLoginSavedUserHandler}
+              >
                 <p>{saveAuthUser.email}</p>
                 {saveAuthUser.photo ? (
                   <Image
