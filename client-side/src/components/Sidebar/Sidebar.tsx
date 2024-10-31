@@ -2,7 +2,7 @@
 import { Tooltip } from "antd";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { FC, useMemo, useState, useEffect } from "react";
-import { navlinks } from "../../data";
+import { navlinks, paths } from "../../data";
 import { SidebarPorps } from "../../types";
 import { Icon, Overlay, Image } from "../UI";
 import { useAuth, useNotification, useMediaResponsive } from "../../hooks";
@@ -11,6 +11,8 @@ import { classNames, useAppUtil } from "../../utils";
 import { useAppSelector } from "../../store";
 
 const User = () => {
+  const { profile } = paths;
+
   const { user } = useAppSelector((state) => state.user);
 
   const { email, username, avatar, extra } = user || {};
@@ -18,7 +20,7 @@ const User = () => {
   return (
     <Link
       className="gap-2 p-2 rounded flex_justify_between bg-main hover:bg-primary-opacity"
-      to="/profile"
+      to={profile}
     >
       <div className="w-10 h-10 rounded-full flex_justify_center bg-sidebar">
         {avatar ? (

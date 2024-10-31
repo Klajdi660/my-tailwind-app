@@ -7,7 +7,7 @@ import { useAppSelector } from "../store";
 import { isATokenExpired, useAppModal } from "../utils";
 
 export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
-  const { home, accountSaved } = paths;
+  const { home } = paths;
 
   const { setModalOpen } = useAppModal();
 
@@ -26,9 +26,6 @@ export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
   }, []);
 
   const { isAuthenticated } = useAppSelector((state) => state.auth);
-  const { remember } = useAppSelector((state) => state.user);
 
-  const navigateTo = remember ? home : accountSaved;
-
-  return isAuthenticated ? children : <Navigate to={navigateTo} />;
+  return isAuthenticated ? children : <Navigate to={home} />;
 };

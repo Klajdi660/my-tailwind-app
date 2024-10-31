@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { FC, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { paths } from "../../data";
 import { iconName } from "../../assets";
-import { HomePageProps } from "../../types";
-import { Image, Button, PlatformIconList } from "../../components";
-import { useGameHook } from "../../hooks";
 import { classNames } from "../../utils";
+import { useGameHook } from "../../hooks";
+import { HomePageProps } from "../../types";
+import { useAppSelector } from "../../store";
+import { Image, Button, PlatformIconList } from "../../components";
 
 const getBackgroundStyle = (imageUrl: string | undefined) => ({
   backgroundImage: `url(${imageUrl})`,
@@ -15,6 +17,8 @@ const getBackgroundStyle = (imageUrl: string | undefined) => ({
 });
 
 export const HomePage: FC<HomePageProps> = () => {
+  const { logIn, accountSaved, home } = paths;
+
   const { useGameSlider, useGameDetail } = useGameHook();
   const { gamesSlider } = useGameSlider();
 
@@ -25,6 +29,10 @@ export const HomePage: FC<HomePageProps> = () => {
   const [platformsIcon, setPlatformsIcon] = useState([]);
 
   const { gameDetail } = useGameDetail(selectedGameId) as any;
+
+  const { saveAuthUserData, remember } = useAppSelector((state) => state.user);
+
+  const navigateTo = saveAuthUserData.length > 0 ? accountSaved : logIn;
 
   useEffect(() => {
     if (gamesSlider && gamesSlider.length > 0) {
@@ -64,7 +72,7 @@ export const HomePage: FC<HomePageProps> = () => {
         }}
       >
         <div className="flex items-center justify-between">
-          <Link to="/">
+          <Link to={home}>
             <motion.div whileHover={{ scale: 1.1 }}>
               <Image
                 imgUrl={iconName}
@@ -85,7 +93,7 @@ export const HomePage: FC<HomePageProps> = () => {
               variant="none"
               label="Login"
               labelIcon="MdLogin"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate(navigateTo)}
             />
           </motion.div>
         </div>

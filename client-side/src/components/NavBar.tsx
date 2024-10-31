@@ -22,7 +22,7 @@ import { Searchbar, ProfileDropdown } from "../components";
 import { useAppUtil, classNames, getAside } from "../utils";
 
 export const Navbar: FC<NavbarProps> = () => {
-  const { logIn } = paths;
+  const { logIn, discover } = paths;
 
   const { isMobile } = useMediaResponsive();
   const { toggleSearch, setToggleSearch } = useAppUtil();
@@ -66,7 +66,7 @@ export const Navbar: FC<NavbarProps> = () => {
             // !isMobile && "w-sidebar"
           )}
         >
-          <Link to="/discover" className="flex items-center h-full gap-2 logo">
+          <Link to={discover} className="flex items-center h-full gap-2 logo">
             {!showFull ? (
               <Image imgUrl={iconName} name="App Logo" width={100} />
             ) : (

@@ -1,7 +1,7 @@
 import { Tooltip } from "antd";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { FC, useMemo, useState, useEffect } from "react";
-import { navLists } from "../../data";
+import { navLists, paths } from "../../data";
 import { Icon, Overlay, Image } from "../UI";
 import { useAuth, useNotification, useMediaResponsive } from "../../hooks";
 import { defaultThemeConfig, themeConfig } from "../../configs";
@@ -11,6 +11,8 @@ import { ProfileDropdown } from "../Profile/ProfileDropDown";
 import { useAppSelector } from "../../store";
 
 export const SidebarMini: FC = () => {
+  const { discover } = paths;
+
   const { pathname } = useLocation();
   const [notify] = useNotification();
   const { isAuthenticated } = useAuth();
@@ -58,7 +60,7 @@ export const SidebarMini: FC = () => {
 
   return (
     <section className="sidebarmini_section shrink-0 max-w-[80px] w-full py-4 flex_justify_between flex-col sticky top-0 h-screen bg-sidebar">
-      <Link to="/discover">
+      <Link to={discover}>
         <Image imgUrl={icon} name="App Logo" width={60} effect="opacity" />
       </Link>
       <div className="overflow-y-auto hide_scrollbar">

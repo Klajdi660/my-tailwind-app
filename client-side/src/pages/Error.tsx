@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { FC } from "react";
+import { paths } from "../data";
 import { ErrorPageProps } from "../types";
 
 export const ErrorPage: FC<ErrorPageProps> = () => {
+  const { home } = paths;
+
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="text-center">
@@ -14,7 +17,7 @@ export const ErrorPage: FC<ErrorPageProps> = () => {
           The page you are looking for might be in another universe.
         </p>
         <div className="mt-6">
-          <Link to="/" className="text-primary hover:underline">
+          <Link to={home} className="text-primary hover:underline">
             Go back home
           </Link>
         </div>

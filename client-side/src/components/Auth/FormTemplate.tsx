@@ -7,9 +7,12 @@ import { iconName } from "../../assets";
 import { useForm } from "../../hooks";
 import { classNames } from "../../utils";
 import { FormTemplateProps, FormListItem } from "../../types";
+import { paths } from "../../data";
 
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { schema, onSubmit, defaultValues, resendCodeHandler, data } = props;
+
+  const { home, forgotPassword } = paths;
 
   const { listForm } = useForm();
 
@@ -25,7 +28,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
       )}
     >
       <div className="flex flex-col w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 gap-6 bg-card rounded">
-        <Link to="/" className="flex_justify_center">
+        <Link to={home} className="flex_justify_center">
           <Image imgUrl={iconName} name="template_logo" width={140} />
         </Link>
         {!data?.resetPassEmailSent ? (
@@ -69,7 +72,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
               {formName === "login" && (
                 <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
                   Forgot Password!
-                  <Link to="/forgot-password">
+                  <Link to={forgotPassword}>
                     <p className="text-primary hover:underline underline-offset-2">
                       Reset
                     </p>
