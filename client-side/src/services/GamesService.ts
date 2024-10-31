@@ -179,11 +179,11 @@ export const useGamesService = () => {
   };
 
   return {
+    getGames,
     // getGameList,
     getGameDetail,
     getGameVideos,
     getGameReviews,
-    getGames,
     getGamesSlider,
     getGameGenreList,
   };

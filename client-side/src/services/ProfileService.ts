@@ -287,12 +287,12 @@ export const useProfileService = () => {
   };
 
   return {
-    changeUsername,
     updateProfile,
+    deleteProfile,
+    changePassword,
+    changeUsername,
+    cancelDeleteProfile,
     updateDisplayPicture,
     removeDisplayPicture,
-    deleteProfile,
-    cancelDeleteProfile,
-    changePassword,
   };
 };

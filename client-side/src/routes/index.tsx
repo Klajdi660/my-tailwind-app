@@ -27,7 +27,7 @@ import { PrivateLayout, PublicLayout } from "../layouts";
 
 const {
   home,
-  login,
+  logIn,
   browse,
   profile,
   discover,
@@ -117,7 +117,7 @@ export const Routes = () =>
       index: true,
     },
     {
-      path: login,
+      path: logIn,
       element: (
         <PublicGuard>
           <PublicLayout>

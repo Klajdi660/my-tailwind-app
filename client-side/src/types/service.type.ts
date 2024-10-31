@@ -16,7 +16,7 @@ export interface AuthService {
   login: (data: LoginUserValues) => Promise<void>;
   socialAuth: (tokenParam: string) => Promise<void>;
   register: (data: RegisterUserValues) => Promise<void>;
-  verifyEmail: (data: VerifyEmailValues) => Promise<void>;
+  emailVerify: (data: VerifyEmailValues) => Promise<void>;
   forgotPassword: (data: ForgotPasswordValues) => Promise<void>;
 }
 

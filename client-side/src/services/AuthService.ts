@@ -2,6 +2,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { endpoints } from "./Api";
 import {
+  setAToken,
+  setRToken,
+  setUser,
+  setLoading,
+  setIsAuthenticated,
+} from "../store";
+import {
   AuthService,
   AuthResponse,
   LoginUserValues,
@@ -9,15 +16,9 @@ import {
   RegisterUserValues,
   ForgotPasswordValues,
 } from "../types";
+import { paths } from "../data";
 import { HttpClient } from "../client";
 import { useNotification } from "../hooks";
-import {
-  setAToken,
-  setRToken,
-  setUser,
-  setLoading,
-  setIsAuthenticated,
-} from "../store";
 
 const {
   LOGIN_API,
@@ -29,6 +30,8 @@ const {
 } = endpoints;
 
 export const useAuthService = (): AuthService => {
+  const { verifyEmail, logIn } = paths;
+
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -134,7 +137,7 @@ export const useAuthService = (): AuthService => {
 
       const registerData = { ...values, codeExpire: data.codeExpire };
 
-      navigate("/verify-email", { state: { registerData } });
+      navigate(verifyEmail, { state: { registerData } });
     } catch (error) {
       setLoading(false);
       console.error(`Signup failed: ${error}`);
@@ -142,7 +145,7 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const verifyEmail = async (values: any): Promise<void> => {
+  const emailVerify = async (values: any): Promise<void> => {
     try {
       setLoading(true);
 
@@ -168,7 +171,7 @@ export const useAuthService = (): AuthService => {
         description: message,
       });
 
-      navigate("/login");
+      navigate(logIn);
     } catch (error) {
       setLoading(false);
       console.error(`Verify email failed: ${error}`);
@@ -258,7 +261,7 @@ export const useAuthService = (): AuthService => {
         description: message,
       });
 
-      navigate("/login");
+      navigate(logIn);
     } catch (error) {
       console.error(`Reset password failed: ${error}`);
       throw error;
@@ -267,11 +270,11 @@ export const useAuthService = (): AuthService => {
 
   return {
     login,
-    socialAuth,
-    register,
-    verifyEmail,
     logout,
-    forgotPassword,
+    register,
+    socialAuth,
+    emailVerify,
     resetPassword,
+    forgotPassword,
   };
 };

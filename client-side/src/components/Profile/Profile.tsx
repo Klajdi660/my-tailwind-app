@@ -17,6 +17,8 @@ import { NewCardContent } from "../Settings";
 interface ProfileProps {}
 
 export const Profile: FC<ProfileProps> = () => {
+  const { editProfile } = paths;
+
   const { setSelectedSetting } = useSelectedSettings();
   const { isUpdatingProfileImg, setPhotoType } = useProfilePhoto();
   const { setModalOpen } = useAppModal();
@@ -25,7 +27,6 @@ export const Profile: FC<ProfileProps> = () => {
   const { user } = useAppSelector((state) => state.user);
   const { cardItems } = useAppSelector((state) => state.settingCard);
 
-  const { editProfile } = paths;
   const { verified, email, username } = user;
   const {
     firstName,

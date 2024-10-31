@@ -1,4 +1,7 @@
+import { paths } from "./general";
 import { ProfileItemList, GenderProperties, ProfileMenuItems } from "../types";
+
+const { profile, editProfile } = paths;
 
 export const profileList: ProfileItemList[] = [
   {
@@ -208,7 +211,7 @@ export const profileMenuItems = ({
     name: "Profile",
     onClick: () => {
       hidden();
-      navigate("/profile");
+      navigate(profile);
     },
   },
   {
@@ -217,7 +220,7 @@ export const profileMenuItems = ({
     icon: "AiOutlineSetting",
     onClick: () => {
       hidden();
-      navigate("/edit-profile");
+      navigate(editProfile);
       // setModalOpen("settingsModal", true);
     },
   },

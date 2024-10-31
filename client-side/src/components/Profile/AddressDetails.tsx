@@ -2,10 +2,13 @@ import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Button, Icon } from "../UI";
+import { paths } from "../../data";
 import { useAppSelector } from "../../store";
 import { AddressDetailsProps } from "../../types";
 
 export const AddressDetails: FunctionComponent<AddressDetailsProps> = () => {
+  const { profile } = paths;
+
   const { user } = useAppSelector((state) => state.user);
 
   const { city, address, country, postalCode } = user.extra;
@@ -124,7 +127,7 @@ export const AddressDetails: FunctionComponent<AddressDetailsProps> = () => {
             label="Cancel"
             variant="outlined"
             onClick={() => {
-              navigate("/profile");
+              navigate(profile);
             }}
           />
           <Button type="submit" label="Save" variant="contained" />

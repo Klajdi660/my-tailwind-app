@@ -12,15 +12,18 @@ import {
   NotificationButton,
   DesktopToggleButton,
 } from "./UI";
-import { useMediaResponsive } from "../hooks";
+import { paths } from "../data";
 import { NavbarProps } from "../types";
+import { useAppSelector } from "../store";
 import { icon, iconName } from "../assets";
+import { useMediaResponsive } from "../hooks";
 import { defaultThemeConfig } from "../configs";
 import { Searchbar, ProfileDropdown } from "../components";
 import { useAppUtil, classNames, getAside } from "../utils";
-import { useAppSelector } from "../store";
 
 export const Navbar: FC<NavbarProps> = () => {
+  const { logIn } = paths;
+
   const { isMobile } = useMediaResponsive();
   const { toggleSearch, setToggleSearch } = useAppUtil();
   const { pathname } = useLocation();
@@ -96,7 +99,7 @@ export const Navbar: FC<NavbarProps> = () => {
                   <Button
                     variant="contained"
                     label="Login"
-                    onClick={() => navigate("/login")}
+                    onClick={() => navigate(logIn)}
                   />
                 </div>
               )}

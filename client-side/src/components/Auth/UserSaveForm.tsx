@@ -7,7 +7,7 @@ import { paths } from "../../data";
 import { Tooltip } from "antd";
 
 export const UserSaveForm: FC = () => {
-  const { login } = paths;
+  const { logIn } = paths;
 
   const navigate = useNavigate();
 
@@ -62,7 +62,7 @@ export const UserSaveForm: FC = () => {
       })}
       <button
         className="flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2"
-        onClick={() => navigate(login)}
+        onClick={() => navigate(logIn)}
       >
         <div className="flex_justify_center flex-col gap-4">
           <p>Switch accounts</p>

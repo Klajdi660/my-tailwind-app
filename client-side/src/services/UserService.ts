@@ -104,11 +104,11 @@ export const useUserService = () => {
 
   return {
     getUsers,
-    getUserDetails,
-    confirmUser,
     editUser,
+    confirmUser,
     exportUsers,
     dowbloadFile,
     saveAuthUser,
+    getUserDetails,
   };
 };

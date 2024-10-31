@@ -15,7 +15,7 @@ import {
 } from "../../../store";
 
 export const SessionExpiredModal: FC<SessionExpiredProps> = () => {
-  // const { home, login } = paths;
+  // const { home, logIn } = paths;
   const { modals, setModalOpen } = useAppModal();
   // const navigate = useNavigate();
   const dispatch = useDispatch();
