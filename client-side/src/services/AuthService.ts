@@ -229,7 +229,7 @@ export const useAuthService = (): AuthService => {
 
       dispatch(setAToken(null));
       dispatch(setRToken(null));
-      dispatch(setUser(null));
+      // dispatch(setUser(null));
       dispatch(setIsAuthenticated(false));
 
       delete localStorage.atoken;

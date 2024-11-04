@@ -4,7 +4,7 @@ import { PlatformIconList } from "../Common";
 import { Image } from "../UI";
 import { paths } from "../../data";
 import { MediaCardProps } from "../../types";
-import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
+import { classNames, nameTruncate, getGamePrice } from "../../utils";
 import { useAppSelector } from "../../store";
 
 export const MediaCard: FC<MediaCardProps> = (props) => {
@@ -45,7 +45,7 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
       </div>
       <div className="flex flex-col gap-2 desc mt-4 text-left">
         <h6 className="text-sm font-semibold text-onNeutralBg">
-          {gameNameTruncate(name, 18)}
+          {nameTruncate(name, 18)}
         </h6>
         <p className="flex flex-col gap-2 text-xs font-normal text-secondary">
           <span className="flex gap-2">

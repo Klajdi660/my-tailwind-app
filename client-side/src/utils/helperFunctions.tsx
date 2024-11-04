@@ -62,7 +62,7 @@ export const resizeImage = (
   return `${IMAGE_URL}/${width}${imgUrl}`;
 };
 
-export const gameNameTruncate = (str: string, len: number) => {
+export const nameTruncate = (str: string, len: number) => {
   return str?.length
     ? str.length <= len
       ? `${str.slice(0, len)}`

@@ -8,7 +8,7 @@ import { userIcon, iconName } from "../../assets";
 import { paths } from "../../data";
 import { Tooltip } from "antd";
 import { useAuthService } from "../../services";
-import { isTokenExpired } from "../../utils";
+import { isTokenExpired, nameTruncate } from "../../utils";
 
 export const UserSaveForm: FC = () => {
   const { logIn, home } = paths;
@@ -50,7 +50,7 @@ export const UserSaveForm: FC = () => {
   const validUsers = getValidUsers();
 
   return (
-    <div className="flex_justify_between flex-col text-onNeutralBg py-40 h-screen">
+    <div className="flex_justify_between flex-col text-onNeutralBg md:py-20 py-40 h-screen">
       <div className="flex_justify_center flex-col gap-4">
         <Link to={home}>
           <motion.div whileHover={{ scale: 1.1 }}>
@@ -97,12 +97,19 @@ export const UserSaveForm: FC = () => {
               className="flex_justify_center flex-col gap-4"
               onClick={onSubmitLoginSavedUserHandler}
             >
-              <p>{saveAuthUser.email}</p>
+              <Tooltip
+                arrow={false}
+                placement="bottom"
+                title={saveAuthUser.email}
+              >
+                <p>{nameTruncate(saveAuthUser.email, 19)}</p>
+              </Tooltip>
               {saveAuthUser.photo ? (
                 <Image
                   imgUrl={saveAuthUser.photo}
                   name="Profile Img"
-                  styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg object-cover"
+                  // styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg object-cover"
+                  styles="w-20 h-20 rounded-full object-cover"
                   effect="blur"
                 />
               ) : (
