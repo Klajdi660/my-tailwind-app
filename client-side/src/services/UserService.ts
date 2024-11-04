@@ -9,6 +9,7 @@ import {
   setUser,
   setRemember,
   setSavedAuthUser,
+  setActiveUser,
 } from "../store";
 import { paths } from "../data";
 
@@ -78,7 +79,7 @@ export const useUserService = () => {
         return;
       }
 
-      const { saveAuthUserToken } = data;
+      const { saveAuthUserToken, newUser } = data;
 
       dispatch(setRemember(true));
       dispatch(
@@ -90,6 +91,7 @@ export const useUserService = () => {
           saveAuthUserToken,
         })
       );
+      dispatch(setActiveUser(id));
 
       navigate(discover);
     } catch (error) {
