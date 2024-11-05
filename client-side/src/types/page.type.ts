@@ -4,7 +4,6 @@ export interface PasswordConfirmCodePageProps {}
 export interface RegisterPageProps {}
 export interface ResetPasswordPageProps {}
 export interface VerifyEmailPagePorps {}
-export interface BrowsePageProps {}
 export interface GameDetailPageProps {}
 export interface CollectionPageProps {}
 export interface DiscoverPageProps {}

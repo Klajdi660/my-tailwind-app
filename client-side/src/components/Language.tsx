@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Select } from "antd";
 import { State } from "country-state-city";
 import { Country } from "country-state-city";
@@ -6,12 +7,12 @@ import React, { FC, useState } from "react";
 import { Button } from "./UI";
 import { LanguageProps } from "../types";
 import { useProfileService } from "../services";
-import { useUserSelectedData, useAuth } from "../hooks";
+import { useAppSelector } from "../store";
 import { currencyList, recommendedCountries, languageMaps } from "../data";
 
 export const Language: FC<LanguageProps> = (props) => {
   const { setOpen } = props;
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.user);
   const { updateProfile } = useProfileService();
 
   // const [selectedCurrency, setSelectedCurrency] = useState<string>("ALL");

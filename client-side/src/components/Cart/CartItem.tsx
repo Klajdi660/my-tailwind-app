@@ -4,7 +4,7 @@ import { Icon } from "../UI";
 import { paths } from "../../data";
 import { useCart, useNotification } from "../../hooks";
 import { CartItemProps } from "../../types";
-import { classNames, gameNameTruncate, calculateTotalPrice } from "../../utils";
+import { classNames, nameTruncate, calculateTotalPrice } from "../../utils";
 import { HiCheck } from "react-icons/hi";
 
 export const CartItem: FC<CartItemProps> = (props) => {
@@ -89,7 +89,7 @@ export const CartItem: FC<CartItemProps> = (props) => {
           </div>
           <div className="flex flex-col flex-1 w-full gap-1 text-onNeutralBg">
             <span className="text-base group-hover:text-primary">
-              {gameNameTruncate(name, 20)}
+              {nameTruncate(name, 20)}
             </span>
             <p className="flex text-sm text-secondary gap-1 group-hover:text-primary">
               <span className="text-red-600">$</span>

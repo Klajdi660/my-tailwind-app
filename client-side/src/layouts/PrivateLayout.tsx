@@ -1,56 +1,47 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
+import { useLocation } from "react-router-dom";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import {
   Modal,
   Navbar,
   Sidebar,
-  TopPlay,
+  // TopPlay,
   Loading,
   CartSwitcher,
-  // SidebarMini,
   TabTitle,
 } from "../components";
-import { useAppUtil } from "../utils";
+import { useAppUtil, classNames, getAside } from "../utils";
 import { ProviderProps } from "../types";
-import { useUserService } from "../services";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
   const { openSwitch } = useAppUtil();
   const [parent] = useAutoAnimate();
+  const { pathname } = useLocation();
 
-  const { getUserDetails } = useUserService();
-
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const user = await getUserDetails();
-      } catch (error) {
-        console.error("Failed to fetch user details:", error);
-      }
-    };
-
-    fetchUserDetails();
-  }, []);
+  const hasAside = getAside(pathname);
 
   return (
     <div
-      className="flex flex-col max-w-full m-auto xl:flex-row app bg-main"
+      className="flex flex-col max-w-full m-auto xl:flex-row app bg-main text-onNeutralBg"
       id="main_app"
     >
       <TabTitle />
-      {/* <Loading /> */}
+      <Loading />
       <Sidebar />
 
       <main className="relative w-full mx-auto overflow-hidden main_section">
         <Navbar />
         <div
           ref={parent}
-          className="relative mb-6 overflow-y-scroll hide_scrollbar p-3 sm:p-6 main_width page_content mt-main-top"
+          className={classNames(
+            "page_content relative overflow-y-scroll hide_scrollbar p-3 sm:p-6 mb-6 mt-main-top",
+            hasAside ? "main_width" : "other_main_width"
+          )}
         >
           {children}
         </div>
       </main>
-      <TopPlay />
+      {/* <TopPlay /> */}
       {openSwitch && <CartSwitcher />}
       <Modal />
     </div>

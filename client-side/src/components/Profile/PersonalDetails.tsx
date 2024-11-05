@@ -1,20 +1,19 @@
 import { FunctionComponent, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import dayjs from "dayjs";
 import { DatePicker, Select } from "antd";
 import { Country } from "country-state-city";
 import { Button } from "../UI";
 import { genderList, dateFormatList } from "../../data";
-import { useAuth } from "../../hooks";
+import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
 import { PersonalDetailsProps } from "../../types";
 
 export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
-  const { user } = useAuth();
   const { updateProfile } = useProfileService();
 
-  const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state.user);
+  const { address, country, city, postalCode } = user.extra;
 
   const [phonePrefix, setPhonePrefix] = useState<string>(
     user?.extra?.contactNumber?.phonePrefix || ""
@@ -25,6 +24,21 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
     .trim();
   const [contactNumber, setContactNumber] = useState<string>(phoneNumber || "");
 
+  const [isFormChanged, setIsFormChanged] = useState(false);
+
+  const defaultValues = {
+    firstName: user?.extra?.firstName,
+    lastName: user?.extra?.lastName,
+    dateOfBirth: user?.extra.dateOfBirth
+      ? dayjs(user?.extra.dateOfBirth, dateFormatList[2])
+      : null,
+    gender: user?.extra?.gender,
+    country: country,
+    city: city,
+    address: address,
+    postalCode: postalCode,
+  };
+
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
     label: `${country.flag} ${country.name}`,
@@ -32,9 +46,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
 
   const phonePrefixData = Country.getAllCountries().map((item) => {
     const { phonecode, flag, name, isoCode } = item;
-
     const prefix = phonecode.startsWith("+") ? phonecode : `+${phonecode}`;
-
     return {
       key: `${prefix}-${isoCode}`,
       value: prefix,
@@ -43,12 +55,17 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
     };
   });
 
-  // const onCountrySearch = (value: string) => {
-  //   setCountry(value);
-  // };
-
   const onPhonePrefixChange = (value: string) => {
     setPhonePrefix(value);
+    setIsFormChanged(true);
+  };
+
+  const handleInputChange = (field: string, value: any) => {
+    setIsFormChanged(true);
+
+    if (field === "contactNumber") {
+      setContactNumber(value);
+    }
   };
 
   const handleMenuClick = async (data: any) => {
@@ -68,6 +85,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
       };
 
       await updateProfile(values);
+      setIsFormChanged(false);
     } catch (error) {
       console.error(`Failed to update personal details! ${error}`);
     }
@@ -82,90 +100,97 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
   });
 
   return (
-    <div className="relative p-4 rounded xs:p-6 bg-card">
-      <div className="mb-4 header">
-        <h5 className="text-lg font-semibold">Personal Details</h5>
-      </div>
-      <form className="flex flex-col" onSubmit={handleSubmit(handleMenuClick)}>
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-[48%] pb-5">
+    <form
+      onSubmit={handleSubmit(handleMenuClick)}
+      className="bg-card p-8 rounded"
+    >
+      <h5 className="text-lg font-semibold pb-6">Personal Details</h5>
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               First Name
             </label>
             <input
               {...form("firstName")}
               name="firstName"
-              className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+              className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
               type="text"
               placeholder="First Name"
               autoComplete="firstName"
-              defaultValue={user?.extra?.firstName}
+              defaultValue={defaultValues.firstName}
+              onChange={(e) => handleInputChange("firstName", e.target.value)}
             />
           </div>
-          <div className="w-full md:w-[48%] pb-5">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Last Name
             </label>
             <input
               {...form("lastName")}
               name="lastName"
-              className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+              className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
               type="text"
               placeholder="Last Name"
               autoComplete="lastName"
-              defaultValue={user?.extra?.lastName}
+              defaultValue={defaultValues.lastName}
+              onChange={(e) => handleInputChange("lastName", e.target.value)}
             />
           </div>
         </div>
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-[48%] pb-5">
+        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Birthday
             </label>
             <Controller
               name="dateOfBirth"
               control={control}
-              defaultValue={
-                user?.extra.dateOfBirth
-                  ? dayjs(user?.extra.dateOfBirth, dateFormatList[2])
-                  : null
-              }
+              defaultValue={defaultValues.dateOfBirth}
               render={({ field }) => (
                 <DatePicker
                   {...field}
                   format={dateFormatList[2]}
                   showNow={false}
                   placeholder={dateFormatList[2]}
-                  className="w-full h-10"
+                  className="w-full h-12"
+                  onChange={(date) => {
+                    field.onChange(date);
+                    setIsFormChanged(true);
+                  }}
                 />
               )}
             />
           </div>
-          <div className="w-full md:w-[48%] pb-5">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Gender
             </label>
             <Controller
               name="gender"
               control={control}
-              defaultValue={user?.extra?.gender}
+              defaultValue={defaultValues.gender}
               render={({ field }) => (
                 <Select
                   {...field}
-                  className="w-full h-10 text-sm"
+                  className="w-full h-12 text-sm"
                   placeholder="Select Gender"
                   options={genderList}
+                  onChange={(value) => {
+                    field.onChange(value);
+                    setIsFormChanged(true);
+                  }}
                 />
               )}
             />
           </div>
         </div>
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-[48%] pb-5">
+        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Contact number
             </label>
-            <div className="flex">
+            <div className="flex items-center w-full h-12 text-sm text-onNeutralBg border border-divider rounded px-2 hover:border-primary">
               <Select
                 options={phonePrefixData.map(({ key, ...rest }) => ({
                   key,
@@ -173,7 +198,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
                 }))}
                 onChange={onPhonePrefixChange}
                 optionLabelProp="selected"
-                className="w-[28%] md:w-[20%] sm:w-[14%] h-10 mr-2"
+                className="contactNr-select bg-primary-opacity"
                 dropdownStyle={{ width: 250 }}
                 defaultValue={
                   phonePrefix ? phonePrefix : phonePrefixData[2].selected
@@ -181,8 +206,10 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               />
               <input
                 name="contactNumber"
-                onChange={(e) => setContactNumber(e.target.value)}
-                className="w-[86%] h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+                onChange={(e) =>
+                  handleInputChange("contactNumber", e.target.value)
+                }
+                className="w-full h-12 bg-transparent px-2 focus-within:none outline-0"
                 type="text"
                 placeholder="Phone Number"
                 autoComplete="contactNumber"
@@ -190,68 +217,113 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
               />
             </div>
           </div>
-          <div className="w-full md:w-[48%] pb-5">
+          <div className="w-full"></div>
+        </div>
+      </div>
+
+      <h5 className="text-lg font-semibold py-6">Address Details</h5>
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               Country
             </label>
             <Controller
               name="country"
               control={control}
-              defaultValue={user?.extra.country}
+              defaultValue={
+                defaultValues.country ? defaultValues.country : null
+              }
               render={({ field }) => (
                 <Select
                   {...field}
-                  className="w-full h-10 text-sm"
+                  className="w-full h-12 text-sm"
                   placeholder="Select country"
                   optionLabelProp="value"
                   options={countryData}
+                  onChange={(value) => {
+                    field.onChange(value);
+                    setIsFormChanged(true);
+                  }}
                 />
               )}
             />
           </div>
-        </div>
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-[48%] pb-5">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
               City
             </label>
             <input
               {...form("city")}
               name="city"
-              className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+              className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
               type="text"
-              placeholder="City"
+              placeholder="Enter city"
               autoComplete="city"
-              defaultValue={user?.extra?.city}
+              defaultValue={defaultValues.city}
+              onChange={(e) => handleInputChange("city", e.target.value)}
             />
           </div>
-          <div className="w-full md:w-[48%] pb-5">
+        </div>
+        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+          <div className="w-full">
             <label className="block text-secondary text-xs font-semibold mb-2">
-              Address
+              Address Line
             </label>
             <input
               {...form("address")}
               name="address"
-              className="w-full h-10 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+              className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
               type="text"
-              placeholder="Address"
+              placeholder="Enter address"
               autoComplete="address"
-              defaultValue={user?.extra?.address}
+              defaultValue={defaultValues.address}
+              onChange={(e) => handleInputChange("address", e.target.value)}
+            />
+          </div>
+          <div className="w-full">
+            <label className="block text-secondary text-xs font-semibold mb-2">
+              Postal Code
+            </label>
+            <input
+              {...form("postalCode")}
+              name="postalCode"
+              className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+              type="text"
+              placeholder="Enter postal code"
+              autoComplete="postalCode"
+              defaultValue={defaultValues.postalCode}
+              onChange={(e) => handleInputChange("postalCode", e.target.value)}
             />
           </div>
         </div>
-        <div className="flex items-center justify-end gap-4">
-          <Button
-            type="submit"
-            label="Cancel"
-            variant="outlined"
-            onClick={() => {
-              navigate("/profile");
-            }}
-          />
-          <Button type="submit" label="Save" variant="contained" />
-        </div>
-      </form>
-    </div>
+      </div>
+
+      <div className="flex items-center justify-end gap-4 mt-6">
+        {/* <Button
+          type="button"
+          label="Cancel"
+          variant="outlined"
+          className="h-10"
+          onClick={() => {
+            navigate("/profile");
+          }}
+        /> */}
+        <Button
+          type="submit"
+          label="Save Changes"
+          variant="contained"
+          className="h-10"
+          disabled={!isFormChanged}
+        />
+      </div>
+    </form>
   );
 };
+
+// if value is empty
+// if (!value) {
+//   setIsFormChanged(false);
+// } else {
+//   setIsFormChanged(true);
+// }

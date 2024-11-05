@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { PlatformIconList } from "../Common";
-import { Image, Icon } from "../UI";
+import { Image } from "../UI";
 import { paths } from "../../data";
-import { useCart } from "../../hooks";
 import { MediaCardProps } from "../../types";
-import { classNames, gameNameTruncate, getGamePrice } from "../../utils";
+import { classNames, nameTruncate, getGamePrice } from "../../utils";
 import { useAppSelector } from "../../store";
 
 export const MediaCard: FC<MediaCardProps> = (props) => {
@@ -14,92 +13,54 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
   const { gameDetail } = paths;
 
   const navigate = useNavigate();
-  const { addGameToCart } = useCart();
 
-  const cart = useAppSelector((state) => state.cart.items);
+  const { currency } = useAppSelector((state) => state.user);
 
   const gamePrice = getGamePrice(game);
 
-  const gameInCart = cart.find((item: any) => item.id === id);
-
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    addGameToCart(game);
-  };
-
   return (
     <div
-      className={classNames(
-        "shadow-sm p-3 rounded bg-card duration-300 case-in cursor-pointer text-onNeutralBg transition duration-300 relative"
-      )}
+      className="shadow-sm p-3 rounded bg-card duration-300 ease-in cursor-pointer text-onNeutralBg hover:bg-card-hover"
       onClick={() => navigate(`${gameDetail}/${id}`)}
     >
-      <div className="relative flex justify-center">
+      <div className="relative">
         <div
           className={classNames(
-            "relative h-full w-full overflow-hidden shadow_card",
+            "relative h-full w-full overflow-hidden",
             type === "artist" ? "rounded-full" : "rounded"
           )}
         >
-          {background_image ? (
+          {background_image && (
             <Image
               styles={classNames(
-                "object-cover aspect-square w-full",
+                "object-cover aspect-square w-full h-full",
                 type === "artist" ? "rounded-full" : "rounded"
               )}
               imgUrl={background_image}
-              width={80}
-              height={80}
               name="image"
-            />
-          ) : (
-            <Icon
-              name="BsMusicNoteBeamed"
-              size={60}
-              className="!text-secondary"
+              effect="blur"
             />
           )}
         </div>
       </div>
-      <div className={classNames("desc mt-4")}>
-        <h6 className="text-base font-semibold">
-          {gameNameTruncate(name, 18)}
+      <div className="flex flex-col gap-2 desc mt-4 text-left">
+        <h6 className="text-sm font-semibold text-onNeutralBg">
+          {nameTruncate(name, 18)}
         </h6>
-        <div className="flex items-center justify-between mt-2">
-          <div className="flex gap-2">
+        <p className="flex flex-col gap-2 text-xs font-normal text-secondary">
+          <span className="flex gap-2">
             <PlatformIconList
-              platforms={parent_platforms.map((p: any) => p.platform)}
+              className="text-secondary"
+              platforms={parent_platforms
+                .slice(0, 3)
+                .map((p: any) => p.platform)}
             />
-          </div>
-          {/* <div className="bg-primary-opacity px-2 py-1 rounded text-sm">
-            {game.metacritic}
-          </div> */}
-        </div>
-        <div className="flex items-center justify-between mt-3">
-          <div className="bg-primary-opacity p-2 rounded text-sm">
-            ${gamePrice}
-          </div>
-          <div className="group">
-            <button
-              className={classNames(
-                "p-2 rounded text-sm",
-                gameInCart
-                  ? "bg-primary hover:opacity-70"
-                  : "bg-primary-opacity group-hover:bg-primary"
-              )}
-              onClick={handleAddToCart}
-            >
-              <Icon
-                name="FaOpencart"
-                size={20}
-                className={classNames(
-                  "group-hover:text-white",
-                  gameInCart && "text-white"
-                )}
-              />
-            </button>
-          </div>
-        </div>
+          </span>
+          <span>
+            {currency}
+            {gamePrice}
+          </span>
+        </p>
       </div>
     </div>
   );

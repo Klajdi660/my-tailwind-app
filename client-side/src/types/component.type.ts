@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Effect } from "react-lazy-load-image-component";
 import {
   GameParams,
   GameVideosParams,
@@ -16,6 +17,7 @@ export interface FormListItem {
   formTitle: string;
   footerLink: string;
   footerTitle: string;
+  description: string;
   item: string | undefined;
   props: {
     type: string;
@@ -154,6 +156,28 @@ export interface PublisherListPorps {
   publishers: PublisherList[];
 }
 
+interface GameGenreList {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+  games: {
+    id: number;
+    added: number;
+    name: string;
+    slug: string;
+  }[];
+}
+
+export interface GameGenreListProps {
+  gameGenres: GameGenreList[];
+  prevRef: React.RefObject<HTMLButtonElement>;
+  nextRef: React.RefObject<HTMLButtonElement>;
+  setIsBeginning: (value: boolean) => void;
+  setIsEnd: (value: boolean) => void;
+}
+
 export interface ReadMoreProps {
   className?: string;
   limitTextLength: number;
@@ -168,8 +192,8 @@ export interface StarRatingProps {
 // GameDetail
 export interface GameDetailProps {
   gameDetail: GameParams;
-  gameVideos: GameVideosParams;
-  gameReviews: GameReviewsParams[];
+  gameVideos?: GameVideosParams;
+  gameReviews?: GameReviewsParams[];
 }
 
 export interface GameTabDetailProps {
@@ -206,6 +230,7 @@ export interface EditProfileValues {
 }
 
 export interface PersonalDetailsProps {}
+export interface AddressDetailsProps {}
 
 export interface PersonalDetailsValues {
   name?: string;
@@ -389,6 +414,7 @@ export interface ImageProps {
   imgUrl: string;
   height?: number;
   styles?: string;
+  effect?: Effect;
 }
 
 export interface ImgUploaderParams {}

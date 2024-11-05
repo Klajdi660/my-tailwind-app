@@ -9,7 +9,7 @@ export const SmallModal: FC<SmallModalProps> = (props) => {
     width,
     title,
     footer,
-    height,
+    // height,
     styles,
     children,
     isMobile,

@@ -8,45 +8,54 @@ export interface FetchResponse<T> {
   results: T[];
 }
 
-interface UseGamesParams {
-  gameId?: string | any;
-}
+export const useGameHook = () => {
+  const { getGames, getGameDetail, getGamesSlider, getGameGenreList } =
+    useGamesService();
 
-export const useGames = () => {
-  const { getGames } = useGamesService();
-  const {
-    data: gameList,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-  } = useInfiniteQuery<FetchResponse<GameParams>, Error>({
-    queryKey: ["games"],
-    queryFn: async ({ pageParam = 1 }) => await getGames(pageParam),
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage.next ? allPages.length + 1 : undefined;
-    },
-    initialPageParam: 1,
-  });
+  const useGameList = () => {
+    const {
+      data: gameList,
+      isLoading,
+      fetchNextPage,
+      hasNextPage,
+    } = useInfiniteQuery<FetchResponse<GameParams>, Error>({
+      queryKey: ["games"],
+      queryFn: async ({ pageParam = 1 }) => await getGames(pageParam),
+      getNextPageParam: (lastPage, allPages) => {
+        return lastPage.next ? allPages.length + 1 : undefined;
+      },
+      initialPageParam: 1,
+    });
 
-  return { gameList, isLoading, fetchNextPage, hasNextPage };
-};
+    return { gameList, isLoading, fetchNextPage, hasNextPage };
+  };
 
-export const useGame = (gameId: number | any) => {
-  const { getGameDetail } = useGamesService();
-  const { data: gameDetail } = useQuery({
-    queryKey: ["games", gameId],
-    queryFn: async () => await getGameDetail(gameId),
-  });
+  const useGameDetail = (gameId: number | any) => {
+    const { data: gameDetail } = useQuery({
+      queryKey: ["games", gameId],
+      queryFn: async () => await getGameDetail(gameId),
+    });
 
-  return { gameDetail };
-};
+    return { gameDetail };
+  };
 
-export const useGameSlider = () => {
-  const { getGamesSlider } = useGamesService();
-  const { data: gamesSlider } = useQuery({
-    queryKey: ["games-slider"],
-    queryFn: async () => await getGamesSlider(),
-  });
+  const useGameSlider = () => {
+    const { data: gamesSlider } = useQuery({
+      queryKey: ["games-slider"],
+      queryFn: async () => await getGamesSlider(),
+    });
 
-  return { gamesSlider };
+    return { gamesSlider };
+  };
+
+  const useGameGenreList = () => {
+    const { data: gameGenreList } = useQuery({
+      queryKey: ["genres"],
+      queryFn: async () => await getGameGenreList(),
+    });
+
+    return { gameGenreList };
+  };
+
+  return { useGameGenreList, useGameSlider, useGameDetail, useGameList };
 };

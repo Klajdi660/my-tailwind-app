@@ -1,4 +1,4 @@
-import { CurrencyProperties } from "../types";
+// import { CurrencyProperties } from "../types";
 
 // export const currencyList: CurrencyProperties = {
 //   1: "ALL",

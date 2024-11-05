@@ -21,7 +21,7 @@ export const SettingsModal: FC<SettingsModalProps> = () => {
 
   const renderSettingsContent = () => {
     switch (selectedSetting) {
-      case "general":
+      case "general-settings":
         return <GeneralSetting />;
       case "shipping":
         return <ShippingAddrSetting />;

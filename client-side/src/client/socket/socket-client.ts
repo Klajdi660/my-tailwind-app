@@ -1,10 +1,10 @@
 import { io /*Socket*/ } from "socket.io-client";
 import { SOCKET_URL } from "../../configs";
-import { store } from "../../store";
+// import { store } from "../../store";
 
 const instance = io(SOCKET_URL, {
   query: {
-    token: store.getState().auth.accessToken,
+    // token: store.getState().auth.accessToken,
   },
 });
 

@@ -6,7 +6,7 @@ import { useAppModal, useProfilePhoto } from "../../../utils";
 
 export const ChangeProfilePhotoModal: FC<any> = () => {
   const { modals, setModalOpen } = useAppModal();
-  const { setIsUpdatingProfileImg } = useProfilePhoto();
+  const { setIsUpdatingProfileImg, photoType } = useProfilePhoto();
   const { updateDisplayPicture, removeDisplayPicture } = useProfileService();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -30,7 +30,7 @@ export const ChangeProfilePhotoModal: FC<any> = () => {
         const formData = new FormData();
         formData.append("displayPicture", file);
 
-        await updateDisplayPicture(formData);
+        await updateDisplayPicture(formData, photoType);
 
         setIsUpdatingProfileImg(false);
       }
@@ -41,7 +41,7 @@ export const ChangeProfilePhotoModal: FC<any> = () => {
 
   const removeProfileImg = async () => {
     try {
-      await removeDisplayPicture();
+      await removeDisplayPicture(photoType);
 
       handleModalClose();
     } catch (error) {
@@ -60,7 +60,7 @@ export const ChangeProfilePhotoModal: FC<any> = () => {
         Choose profile picture
       </div>
 
-      <div className="modal-body mt-5 flex flex-col gap-1">
+      <div className="modal-body mt-4 flex flex-col gap-1">
         <hr className="w-full border-t border-divider" />
 
         <input
@@ -74,26 +74,27 @@ export const ChangeProfilePhotoModal: FC<any> = () => {
           type="submit"
           label="Upload Photo"
           variant="none"
+          className="text-onNeutralBg hover:bg-primary-opacity"
           onClick={handleFileClick}
         />
 
-        <hr className="w-full border-t border-divider" />
+        {/* <hr className="w-full border-t border-divider" /> */}
 
         <Button
           type="submit"
           label="Remove Current Photo"
           variant="none"
-          className="text-red-500"
+          className="text-red-500 hover:bg-red-100"
           onClick={removeProfileImg}
         />
 
-        <hr className="w-full border-t border-divider" />
+        {/* <hr className="w-full border-t border-divider" /> */}
 
         <Button
           type="submit"
           label="Cancel"
           variant="none"
-          className=""
+          className="text-onNeutralBg hover:bg-primary-opacity"
           onClick={handleModalClose}
         />
       </div>

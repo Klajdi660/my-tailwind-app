@@ -60,12 +60,6 @@ export interface NotifyParams {
 // }
 
 // Store
-export interface RememberMeState {
-  password: string;
-  identifier: string;
-  remember?: boolean;
-  rememberType?: string;
-}
 
 // Utils
 export interface AppUtilState {
@@ -90,6 +84,8 @@ export interface AppModalState {
 export interface ProfilePhotoState {
   files: any;
   isUpdatingProfileImg: boolean;
+  photoType: string;
+  setPhotoType: (value: string) => void;
   setFiles: (value: any) => void;
   setIsUpdatingProfileImg: (value: boolean) => void;
 }
@@ -97,6 +93,13 @@ export interface ProfilePhotoState {
 export interface SubmittingState {
   isSubmitting: boolean;
   setIsSubmitting: (value: boolean) => void;
+}
+
+export interface SelectedSettingsState {
+  selectedSetting: string;
+  selectedEditProfileName: string;
+  setSelectedSetting: (value: string) => void;
+  setSelectedEditProfileName: (value: string) => void;
 }
 
 // Component

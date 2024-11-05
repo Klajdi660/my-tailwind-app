@@ -28,6 +28,8 @@ import {
   BiSearch,
   BiChevronsRight,
   BiSelectMultiple,
+  BiSend,
+  BiPencil,
 } from "react-icons/bi";
 import {
   BsGlobe,
@@ -37,6 +39,9 @@ import {
   BsFillPlayFill,
   BsNintendoSwitch,
   BsFillArrowUpCircleFill,
+  BsSignpostSplit,
+  BsGenderAmbiguous,
+  BsThreeDotsVertical,
 } from "react-icons/bs";
 import { CiShoppingTag } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
@@ -50,16 +55,24 @@ import {
   FaAndroid,
   FaWindows,
   FaRegUser,
+  FaRegUserCircle,
   FaFacebook,
   FaOpencart,
   FaWpexplorer,
   FaPlaystation,
   FaClock,
+  FaStreetView,
 } from "react-icons/fa";
+import { FaCirclePlus } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { FiAlertTriangle, FiUpload } from "react-icons/fi";
+import { FiAlertTriangle, FiUpload, FiEdit } from "react-icons/fi";
 import { GoDotFill } from "react-icons/go";
-import { HiMenuAlt2, HiCheck } from "react-icons/hi";
+import {
+  HiMenuAlt2,
+  HiCheck,
+  HiOutlineUpload,
+  HiOutlineLocationMarker,
+} from "react-icons/hi";
 import { HiChartBar } from "react-icons/hi2";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { LiaSignOutAltSolid, LiaCarSideSolid } from "react-icons/lia";
@@ -79,12 +92,25 @@ import {
   MdCurrencyBitcoin,
   MdOutlineDeleteOutline,
   MdOutlineAddCircleOutline,
+  MdOutlineEmail,
+  MdOutlinePhoneEnabled,
+  MdOutlineLocationSearching,
+  MdOutlineSwitchAccount,
+  MdOutlineCameraAlt,
+  MdOutlineEdit,
+  MdOutlineVerifiedUser,
+  MdCalendarMonth,
+  MdOutlineKeyboardDoubleArrowRight,
+  MdKeyboardArrowRight,
+  MdKeyboardArrowLeft,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
+import { LiaCoinsSolid } from "react-icons/lia";
 import {
   PiWarningCircle,
   PiWarningCircleBold,
   PiArrowFatLinesUp,
+  PiKeyholeThin,
 } from "react-icons/pi";
 import {
   RiFirefoxLine,
@@ -99,7 +125,8 @@ import {
   SlGameController,
 } from "react-icons/sl";
 import { SiNintendo } from "react-icons/si";
-import { TiTimes } from "react-icons/ti";
+import { TiTimes, TiLocationArrowOutline } from "react-icons/ti";
+import { TbUserSquare, TbBuildingWarehouse } from "react-icons/tb";
 import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
 
@@ -130,6 +157,8 @@ const icons: IconsMap = {
   BiSearch,
   BiChevronsRight,
   BiSelectMultiple,
+  BiSend,
+  BiPencil,
   BsGlobe,
   BsThreeDots,
   BsMoonStars,
@@ -137,6 +166,9 @@ const icons: IconsMap = {
   BsFillPlayFill,
   BsNintendoSwitch,
   BsFillArrowUpCircleFill,
+  BsSignpostSplit,
+  BsGenderAmbiguous,
+  BsThreeDotsVertical,
   CiShoppingTag,
   CgGames,
   FaUser,
@@ -148,17 +180,24 @@ const icons: IconsMap = {
   FaAndroid,
   FaWindows,
   FaRegUser,
+  FaRegUserCircle,
   FaFacebook,
   FaOpencart,
   FaWpexplorer,
   FaPlaystation,
+  FaStreetView,
+  FaCirclePlus,
   FcGoogle,
   FiUpload,
   FiAlertTriangle,
+  FiEdit,
   GoDotFill,
+  LiaCoinsSolid,
   HiCheck,
+  HiOutlineUpload,
   HiMenuAlt2,
   HiChartBar,
+  HiOutlineLocationMarker,
   IoMdNotificationsOutline,
   LiaCarSideSolid,
   LiaSignOutAltSolid,
@@ -177,10 +216,22 @@ const icons: IconsMap = {
   MdCurrencyBitcoin,
   MdOutlineDeleteOutline,
   MdOutlineAddCircleOutline,
+  MdOutlineEmail,
+  MdOutlinePhoneEnabled,
+  MdOutlineLocationSearching,
+  MdOutlineSwitchAccount,
+  MdOutlineCameraAlt,
+  MdOutlineEdit,
+  MdOutlineVerifiedUser,
+  MdCalendarMonth,
+  MdOutlineKeyboardDoubleArrowRight,
+  MdKeyboardArrowRight,
+  MdKeyboardArrowLeft,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,
   PiArrowFatLinesUp,
+  PiKeyholeThin,
   RiFirefoxLine,
   RiInstagramFill,
   RiSecurePaymentLine,
@@ -191,6 +242,9 @@ const icons: IconsMap = {
   SlGameController,
   SiNintendo,
   TiTimes,
+  TiLocationArrowOutline,
+  TbUserSquare,
+  TbBuildingWarehouse,
 };
 
 export const Icon: FC<IconParams> = ({

@@ -74,6 +74,7 @@ export const StylesProvider: FC = () => {
       --sidebar-horizontal-width: ${sidebarWidth}px;
       --onNeutralBgSecondary: ${onNeutralBgSecondary};
       --sidebar-width: ${isMobile ? sidebars["full"] : sT}px;
+      --other-main-width: calc(100% - ${sidebarWidth}px);
       --main-width: calc(100% - ${sidebarWidth}px - ${asideMobile}px);
     }
   `;

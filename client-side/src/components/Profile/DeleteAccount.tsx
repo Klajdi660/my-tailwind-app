@@ -22,10 +22,8 @@ export const DeleteAccount: FC<DeleteAccountProps> = () => {
   };
 
   return (
-    <div className="relative p-4 rounded xs:p-6 bg-card">
-      <div className="mb-4 header">
-        <h5 className="text-lg font-semibold">Delete Account</h5>
-      </div>
+    <div className="bg-card p-8 rounded">
+      <h5 className="text-lg font-semibold pb-6">Delete Account</h5>
       {isAccountDelete ? (
         <>
           <span className="flex items-center gap-1 text-sm text-secondary">
@@ -49,15 +47,25 @@ export const DeleteAccount: FC<DeleteAccountProps> = () => {
         </>
       ) : (
         <>
-          <span className="flex items-center gap-1 text-sm text-red-500 ">
-            <Icon name="FiAlertTriangle" className="!text-red-500" size={16} />
-            Once you delete account, there is no going back. Please be certain.
-          </span>
-          <div className="flex justify-end mt-2">
+          <p className="text-sm text-onNeutralBg text-justify">
+            Click DELETE ACCOUNT to start the process of permanently deleting
+            your GrooveIT Games account including all personal information,
+            purchases, game progress, in-game content and GrooveIT Games Wallet
+            account. Once your GrooveIT Games account is deleted, your wallet
+            balance will be permanently deleted as well.
+          </p>
+          <p className="text-sm text-onNeutralBg text-justify font-bold">
+            If you request to delete your account, your account will be deleted
+            in 14 days. During this time, you can login to reactivate your
+            account, which will cancel your deletion. After 14 days deletion
+            will be irreversible.
+          </p>
+          <div className="flex justify-end mt-6">
             <Button
               type="submit"
               label="Delete Account"
               variant="delete"
+              className="h-10"
               onClick={() => setModalOpen("deleteProfileModal", true)}
             />
           </div>

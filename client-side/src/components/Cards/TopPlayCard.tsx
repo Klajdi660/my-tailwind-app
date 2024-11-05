@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { PlatformIconList } from "../Common";
 import { paths } from "../../data";
 import { TopPlayCardProps } from "../../types";
-import { classNames, gameNameTruncate } from "../../utils";
+import { classNames, nameTruncate } from "../../utils";
 
 export const TopPlayCard: FC<TopPlayCardProps> = (props) => {
   const { item, listDivider } = props;
@@ -35,7 +35,7 @@ export const TopPlayCard: FC<TopPlayCardProps> = (props) => {
             />
           </div>
           <div className="flex flex-col flex-1 w-full gap-1 text-onNeutralBg group-hover:text-primary">
-            <span className="text-sm">{gameNameTruncate(item.name, 25)}</span>
+            <span className="text-sm">{nameTruncate(item.name, 25)}</span>
             <div className="flex flex-col gap-3 xs:flex-row">
               <PlatformIconList
                 platforms={item.parent_platforms.map((p: any) => p.platform)}

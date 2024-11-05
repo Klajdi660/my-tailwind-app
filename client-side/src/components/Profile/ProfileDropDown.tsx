@@ -4,10 +4,10 @@ import { Popover } from "antd";
 import { Image, Icon, Button } from "../UI";
 import { userIcon } from "../../assets";
 import { profileMenuItems } from "../../data";
-import { useAuth } from "../../hooks";
 import { useAuthService } from "../../services";
 import { UserMenuProps, ProfileDropdownProps } from "../../types";
 import { classNames, useAppModal } from "../../utils";
+import { useAppSelector } from "../../store";
 
 const UserMenu: FC<UserMenuProps> = (props) => {
   const { user, hidden } = props;
@@ -35,15 +35,17 @@ const UserMenu: FC<UserMenuProps> = (props) => {
         >
           {extra?.avatar ? (
             <Image
-              imgUrl={extra.avatar}
+              imgUrl={extra.avatar || userIcon}
               styles="w-12 h-12 p-1 rounded-full object-cover"
               name="sidebar user"
+              effect="blur"
             />
           ) : (
             <Image
               imgUrl={userIcon}
               styles="w-11 h-11 p-1 rounded-full bg-sidebar"
               name="sidebar user"
+              effect="blur"
             />
           )}
           <div className="flex flex-col flex-1 text-sm text-secondary hover:text-primary">
@@ -87,8 +89,9 @@ const UserMenu: FC<UserMenuProps> = (props) => {
 };
 
 export const ProfileDropdown: FC<ProfileDropdownProps> = () => {
-  const { user } = useAuth();
   const [open, setOpen] = useState(false);
+
+  const { user } = useAppSelector((state) => state.user);
 
   const hidden = () => {
     setOpen(false);
@@ -97,8 +100,6 @@ export const ProfileDropdown: FC<ProfileDropdownProps> = () => {
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
   };
-
-  if (!user) return null;
 
   return (
     <div className="flex items-center h-full profile cursor-pointer">
@@ -110,27 +111,16 @@ export const ProfileDropdown: FC<ProfileDropdownProps> = () => {
         onOpenChange={handleOpenChange}
         placement="topRight"
       >
-        <>
-          {user?.extra?.avatar ? (
-            <Image
-              imgUrl={user.extra.avatar}
-              styles={classNames(
-                "w-10 h-10 rounded-full p-0.5 ring-2 object-cover",
-                open ? "ring-primary" : "ring-gray-300"
-              )}
-              name="User Img"
-            />
-          ) : (
-            <Image
-              imgUrl={userIcon}
-              name="Profile Img"
-              styles={classNames(
-                "w-10 h-10 rounded-full p-0.5 ring-2 bg-main",
-                open ? "ring-primary" : "ring-gray-300"
-              )}
-            />
-          )}
-        </>
+        <button type="button">
+          <Image
+            imgUrl={user.extra.avatar ? user.extra.avatar : userIcon}
+            styles={classNames(
+              "w-10 h-10 rounded-full p-0.5 ring-2 object-cover",
+              open ? "ring-primary" : "ring-gray-300"
+            )}
+            name="user_img"
+          />
+        </button>
       </Popover>
     </div>
   );

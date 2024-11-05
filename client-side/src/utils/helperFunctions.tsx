@@ -1,99 +1,28 @@
 import dayjs from "dayjs";
-import moment from "moment";
-import { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import { noGameImg } from "../assets";
 import { GameParams } from "../types";
-
-dayjs.extend(customParseFormat);
-
-export const convertTZ = (rawDate: string, selectedTimeZone: string) => {
-  const dateFormat = "DD-MM-YYYY HH:mm:ss";
-  let [date, time] = moment
-    .tz(rawDate, selectedTimeZone)
-    .format(dateFormat)
-    .split(" ");
-  return { date, time };
-};
 
 export const classNames = (...classes: any) => {
   return classes.filter(Boolean).join(" ");
 };
 
-export const getTimeOfDay = () => {
-  const currentTime = dayjs();
-  const hour = currentTime.hour();
+export const isTokenExpired = (token: string): boolean => {
+  const tokenData = JSON.parse(atob(token.split(".")[1]));
 
-  switch (true) {
-    case hour >= 5 && hour < 12:
-      return "Good Morning";
-    case hour >= 12 && hour < 18:
-      return "Good Afternoon";
-    default:
-      return "Good Evening";
-  }
+  // const expiryTime = tokenData.exp * 1000;
+  // return Date.now() > expiryTime;
+
+  const currentTime = dayjs().unix();
+  const tokenExpirationTime = tokenData.exp;
+
+  return currentTime > parseInt(tokenExpirationTime);
 };
 
-const getStorageValue = (key: string, defaultValue: any) => {
-  const saved = localStorage.getItem(key) as any;
-  const initial = JSON.parse(saved);
-  return initial || defaultValue;
-};
-
-export const useLocalStorage = (key: string, defaultValue: any) => {
-  const [value, setValue] = useState(() => {
-    return getStorageValue(key, defaultValue);
-  });
-
-  useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
-
-  return [value, setValue];
-};
-
-export const isRTokenExpired = () => {
-  if (localStorage.rtoken) {
-    const currentTime = dayjs().unix();
-    const rTokenExpTime = JSON.parse(localStorage.rtoken).exp;
-    return parseInt(rTokenExpTime) > currentTime;
-  }
-  return false;
-};
-
-export const isATokenExpired = () => {
-  const atoken = atob(localStorage.atoken.split(".")[1]);
-
-  if (atoken) {
-    const currentTime = dayjs().unix();
-    const tokenExpirationTime = JSON.parse(atoken).exp;
-    return currentTime > parseInt(tokenExpirationTime);
+export const nameTruncate = (str: string, len?: number) => {
+  if (!len) {
+    const namePart = str.split("@")[0];
+    return `${namePart}...`;
   }
 
-  return false;
-};
-
-export const fileBlob = (files: File[] | null) => {
-  if (files?.[0]) {
-    return {
-      blobName: files[0]?.name,
-      blobUrl: URL.createObjectURL(files[0]),
-    };
-  } else {
-    return {};
-  }
-};
-
-const IMAGE_URL = "https://image.tmdb.org/t/p";
-export const resizeImage = (
-  imgUrl: string,
-  width: string = "original"
-): string => {
-  return `${IMAGE_URL}/${width}${imgUrl}`;
-};
-
-export const gameNameTruncate = (str: string, len: number) => {
   return str?.length
     ? str.length <= len
       ? `${str.slice(0, len)}`
@@ -177,19 +106,14 @@ export const calculateTotalPrice = (
   };
 };
 
-export const getRandomDiscoverGames = (games: unknown[], length: number) => {
-  const randomGames = new Set();
-
-  while (randomGames.size < length) {
-    const index = Math.floor(Math.random() * games?.length);
-    randomGames.add(games[index]);
-  }
-
-  return { ...randomGames };
+export const maskCardNumber = (cardNumber: string) => {
+  const last4Digits = cardNumber.slice(-4);
+  const maskedNumber = cardNumber.slice(0, -4).replace(/\d/g, "*");
+  return maskedNumber + last4Digits;
 };
 
-export const cycleDiscoverGameArray = (array: unknown[]) => {
-  const newArray = [...array];
-  newArray.push(newArray.shift());
-  return newArray;
+export const getAside = (pathname: string) => {
+  const key = pathname.split("/")[1];
+  const hasAside = ["browse"]?.includes(key);
+  return hasAside;
 };

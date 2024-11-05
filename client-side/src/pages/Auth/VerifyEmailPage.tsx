@@ -7,14 +7,14 @@ import { VerifyEmailPagePorps, VerifyEmailValues } from "../../types";
 
 export const VerifyEmailPage: FC<VerifyEmailPagePorps> = () => {
   const location = useLocation();
-  const { verifyEmail, register } = useAuthService();
+  const { emailVerify, register } = useAuthService();
 
   const { registerData } = location.state || {};
 
   const onSubmitVerifyEmailHandler = async (values: VerifyEmailValues) => {
     try {
       const { code } = values;
-      await verifyEmail({
+      await emailVerify({
         code,
         email: registerData?.email,
       });

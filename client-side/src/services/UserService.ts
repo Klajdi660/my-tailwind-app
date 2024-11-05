@@ -1,14 +1,28 @@
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { UserDetailsResponse } from "../types";
-import { useAuth, useNotification, useStore } from "../hooks";
+import { useNotification, useStore } from "../hooks";
+import {
+  setUser,
+  setRemember,
+  useAppSelector,
+  setSavedAuthUser,
+} from "../store";
+import { paths } from "../data";
 
-const { GET_USER_DETAILS_API } = userEndpoints;
+const { GET_USER_DETAILS_API, SAVE_AUTH_USER_API } = userEndpoints;
 
 export const useUserService = () => {
-  const { user, setUser } = useAuth();
+  const { discover } = paths;
+
   const { setLoading } = useStore();
   const [notify] = useNotification();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { user } = useAppSelector((state) => state.user);
 
   const getUsers = async () => {};
 
@@ -26,7 +40,6 @@ export const useUserService = () => {
       setLoading(false);
 
       const { error, message, data } = userDetailsResp;
-
       if (error) {
         notify({
           variant: "error",
@@ -38,10 +51,56 @@ export const useUserService = () => {
         ...JSON.parse(data.extra),
       };
 
-      setUser(data);
+      dispatch(setUser(data));
     } catch (error) {
       setLoading(false);
       console.error(`Get user details failed: ${error} `);
+      throw error;
+    }
+  };
+
+  const saveAuthUser = async (values: any): Promise<void> => {
+    try {
+      // const { id, username, email, extra } = user;
+      // const { avatar } = extra;
+
+      const saveAuthUserResp = await HttpClient.post<any>(
+        SAVE_AUTH_USER_API,
+        values
+      );
+
+      const { error, message, data } = saveAuthUserResp;
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      const { saveAuthUserToken } = data;
+      console.log("data :>> ", data);
+      data.user.extra = {
+        ...JSON.parse(data.user.extra),
+      };
+
+      const { id, username, email, extra } = data.user;
+      const { avatar } = extra;
+
+      dispatch(setRemember(true));
+      dispatch(
+        setSavedAuthUser({
+          id,
+          username,
+          email,
+          photo: avatar,
+          saveAuthUserToken,
+        })
+      );
+
+      navigate(discover);
+    } catch (error) {
+      console.error(`Save auth user failed: ${error} `);
       throw error;
     }
   };
@@ -56,10 +115,11 @@ export const useUserService = () => {
 
   return {
     getUsers,
-    getUserDetails,
-    confirmUser,
     editUser,
+    confirmUser,
     exportUsers,
     dowbloadFile,
+    saveAuthUser,
+    getUserDetails,
   };
 };

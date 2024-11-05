@@ -1,16 +1,16 @@
 import { useRoutes } from "react-router-dom";
 import {
   HomePage,
-  StorePage,
-  ErrorPage,
+  // StorePage,
+  // ErrorPage,
   LoginPage,
   BrowsePage,
   ProfilePage,
-  MyGamesPage,
-  WishlistPage,
+  // MyGamesPage,
+  // WishlistPage,
   DiscoverPage,
   RegisterPage,
-  CollectionPage,
+  // CollectionPage,
   GameDetailPage,
   ComingSoonPage,
   EditProfilePage,
@@ -18,15 +18,16 @@ import {
   ResetPasswordPage,
   ForgotPasswordPage,
   PasswordConfirmCodePage,
+  SaveDataAuthPage,
 } from "../pages";
 import { paths } from "../data";
-import { SocialAuth } from "../components";
+import { SocialAuth, UserSaveForm } from "../components";
 import { PrivateGuard, PublicGuard } from "../guards";
 import { PrivateLayout, PublicLayout } from "../layouts";
 
 const {
   home,
-  login,
+  logIn,
   browse,
   profile,
   discover,
@@ -38,10 +39,32 @@ const {
   passwordCode,
   resetPassword,
   forgotPassword,
+  saveAuthData,
+  accountSaved,
 } = paths;
 
 export const Routes = () =>
   useRoutes([
+    {
+      path: saveAuthData,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <SaveDataAuthPage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
+    {
+      path: accountSaved,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <UserSaveForm />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
     {
       path: browse,
       element: (
@@ -94,7 +117,7 @@ export const Routes = () =>
       index: true,
     },
     {
-      path: login,
+      path: logIn,
       element: (
         <PublicGuard>
           <PublicLayout>

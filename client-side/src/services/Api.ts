@@ -1,12 +1,13 @@
 // AUTH ENDPOINTS
 export const endpoints = {
   LOGIN_API: "/auth/login",
+  LOGIN_SAVED_USER_API: "/auth/login-saved-user",
   LOGOUT_API: "/auth/logout",
   REGISTER_API: "/auth/register",
   OAUTH_GOOGLE_API: "/auth/google",
   VERIFY_EMAIL_API: "/auth/verify-email",
-  RESETPASSWORD_API: "/auth/reset-password",
-  FORGOTPASSWORD_API: "/auth/forgot-password",
+  RESET_PASSWORD_API: "/auth/reset-password",
+  FORGOT_PASSWORD_API: "/auth/forgot-password",
 };
 
 // USER ENDPOINTS
@@ -15,9 +16,10 @@ export const userEndpoints = {
   DELETE_USER_API: "",
   UPDATE_USER_API: "",
   UPDATE_USER_PHOTO_API: "",
-  CHANGEPASSWORD_API: "",
+  CHANGE_PASSWORD_API: "",
   CONTACT_API: "",
   GET_USER_DETAILS_API: "/user",
+  SAVE_AUTH_USER_API: "/user/save-auth-user",
 };
 
 // PROFILE ENDPOINTS
@@ -36,6 +38,7 @@ export const gameEndpoints = {
   GET_GAME_LIST_API: "/games",
   GET_GAME_DETAIL_API: "/games/game-detail",
   GET_GAME_VIDEOS_API: "/games/game-videos",
-  GET_GAME_Reviews_API: "/games/game-reviews",
+  GET_GAME_REVIEWS_API: "/games/game-reviews",
   GET_GAME_SLIDER_API: "/games/game-slider",
+  GET_GAME_GENRE_LIST_API: "/games/game-genre-list",
 };

@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Tooltip } from "antd";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { FC, useMemo, useState, useEffect } from "react";
-import { navlinks } from "../../data";
+import { navlinks, paths } from "../../data";
 import { SidebarPorps } from "../../types";
 import { Icon, Overlay, Image } from "../UI";
 import { useAuth, useNotification, useMediaResponsive } from "../../hooks";
@@ -10,14 +11,16 @@ import { classNames, useAppUtil } from "../../utils";
 import { useAppSelector } from "../../store";
 
 const User = () => {
-  const { user } = useAuth();
+  const { profile } = paths;
+
+  const { user } = useAppSelector((state) => state.user);
 
   const { email, username, avatar, extra } = user || {};
 
   return (
     <Link
       className="gap-2 p-2 rounded flex_justify_between bg-main hover:bg-primary-opacity"
-      to="/profile"
+      to={profile}
     >
       <div className="w-10 h-10 rounded-full flex_justify_center bg-sidebar">
         {avatar ? (
@@ -25,6 +28,7 @@ const User = () => {
             imgUrl={avatar}
             styles="w-full h-full rounded-full"
             name="sidebar user"
+            effect="blur"
           />
         ) : (
           <Icon name="FaRegUser" size={16} />
@@ -45,7 +49,6 @@ const User = () => {
 
 export const Sidebar: FC<SidebarPorps> = () => {
   const { pathname } = useLocation();
-  const [notify] = useNotification();
   const { isAuthenticated } = useAuth();
   const { isMobile } = useMediaResponsive();
 
@@ -60,22 +63,22 @@ export const Sidebar: FC<SidebarPorps> = () => {
   const isFolded = sidebar === "folded";
 
   const handleLinkClick = (link: any) => {
-    if (!isAuthenticated && link.name !== "Discover") {
-      const description = (
-        <span>
-          Please login to access{" "}
-          <span className="text-primary">{link.name}</span> page.
-        </span>
-      );
+    // if (!isAuthenticated && link.name !== "Discover") {
+    //   const description = (
+    //     <span>
+    //       Please login to access{" "}
+    //       <span className="text-primary">{link.name}</span> page.
+    //     </span>
+    //   );
 
-      return notify({
-        variant: "warning",
-        description,
-      });
-    }
+    //   return notify({
+    //     variant: "warning",
+    //     description,
+    //   });
+    // }
 
     navigate(link.to);
-    localStorage.lastLocation = link.name.toLowerCase();
+    // localStorage.lastLocation = link.name.toLowerCase();
   };
 
   useEffect(() => {

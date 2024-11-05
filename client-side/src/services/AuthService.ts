@@ -2,6 +2,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { endpoints } from "./Api";
 import {
+  setAToken,
+  setRToken,
+  setUser,
+  setLoading,
+  setIsAuthenticated,
+} from "../store";
+import {
   AuthService,
   AuthResponse,
   LoginUserValues,
@@ -11,35 +18,32 @@ import {
 } from "../types";
 import { paths } from "../data";
 import { HttpClient } from "../client";
-import { globalObject } from "../utils";
-import { useAuth, useNotification, useStore } from "../hooks";
-import { clearRememberMeData, saveRememberMeData } from "../store";
+import { useNotification } from "../hooks";
 
 const {
   LOGIN_API,
   LOGOUT_API,
   REGISTER_API,
   VERIFY_EMAIL_API,
-  RESETPASSWORD_API,
-  FORGOTPASSWORD_API,
+  RESET_PASSWORD_API,
+  FORGOT_PASSWORD_API,
+  LOGIN_SAVED_USER_API,
 } = endpoints;
 
 export const useAuthService = (): AuthService => {
-  const { discover } = paths;
+  const { verifyEmail, logIn } = paths;
 
-  const { authenticateUser, unAuthenticateUser, setLToken } = useAuth();
-  const { setLoading } = useStore();
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const login = async (values: LoginUserValues): Promise<void> => {
     try {
-      setLoading(true);
+      dispatch(setLoading(true));
 
       const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, values);
 
-      setLoading(false);
+      dispatch(setLoading(false));
 
       const { error, message, data } = loginResp;
       if (error) {
@@ -54,35 +58,17 @@ export const useAuthService = (): AuthService => {
       user.extra = {
         ...JSON.parse(user.extra),
       };
-      // const user = JSON.parse(atob(aToken.split(".")[1]));
 
-      const rtoken = JSON.parse(atob(rToken.split(".")[1]));
+      dispatch(setAToken(aToken));
+      dispatch(setRToken(rToken));
+      dispatch(setUser(user));
+      dispatch(setIsAuthenticated(true));
 
       localStorage.atoken = aToken;
+      localStorage.rtoken = rToken;
       localStorage.user = JSON.stringify(user);
-      localStorage.rtoken = JSON.stringify(rtoken);
-
-      if (values.remember) {
-        const rememberType = values.identifier.includes("@")
-          ? "email"
-          : "username";
-
-        dispatch(
-          saveRememberMeData({
-            ...values,
-            rememberType,
-          })
-        );
-      } else {
-        dispatch(clearRememberMeData());
-      }
-
-      setLToken(aToken);
-      globalObject.lToken = data.aToken;
-      authenticateUser({ id: user.id });
-      navigate(`${discover}`);
     } catch (error) {
-      setLoading(false);
+      dispatch(setLoading(false));
       notify({
         variant: "error",
         description: "Login failed. Incorrect email/username or password",
@@ -92,19 +78,72 @@ export const useAuthService = (): AuthService => {
     }
   };
 
+  const loginSavedUser = async (): Promise<void> => {
+    try {
+      dispatch(setLoading(true));
+
+      const loginSavedUserResp =
+        await HttpClient.get<AuthResponse>(LOGIN_SAVED_USER_API);
+
+      dispatch(setLoading(false));
+
+      const { error, message, data } = loginSavedUserResp;
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      const { aToken, rToken, user } = data;
+      user.extra = {
+        ...JSON.parse(user.extra),
+      };
+
+      dispatch(setAToken(aToken));
+      dispatch(setRToken(rToken));
+      dispatch(setUser(user));
+      dispatch(setIsAuthenticated(true));
+
+      localStorage.atoken = aToken;
+      localStorage.rtoken = rToken;
+      localStorage.user = JSON.stringify(user);
+    } catch (error) {
+      dispatch(setLoading(false));
+      notify({
+        variant: "error",
+        description: "Login failed. Try again later.",
+      });
+      console.error(`Login failed: ${error}`);
+      throw error;
+    }
+  };
+
   const socialAuth = async (tokenParam: string) => {
     try {
-      const token = tokenParam
-        .slice(tokenParam.indexOf("=") + 1)
-        .replace("%20", " ");
+      const query = new URLSearchParams(tokenParam);
 
-      const user = JSON.parse(atob(token.split(".")[1]));
+      const tokens = query.get("token");
+      const queryUser = query.get("user");
 
-      localStorage.atoken = token;
+      const user = JSON.parse(queryUser || "");
+      const token = JSON.parse(tokens || "");
+
+      const { aToken, rToken } = token;
+
+      user.extra = {
+        ...JSON.parse(user.extra),
+      };
+
+      dispatch(setAToken(aToken));
+      dispatch(setRToken(rToken));
+      dispatch(setUser(user));
+      dispatch(setIsAuthenticated(true));
+
+      localStorage.atoken = aToken;
+      localStorage.rtoken = rToken;
       localStorage.user = JSON.stringify(user);
-
-      authenticateUser({ id: user.id });
-      dispatch(clearRememberMeData());
     } catch (error) {
       console.error(`SocialAuth login failed: ${error}`);
       throw error;
@@ -139,7 +178,7 @@ export const useAuthService = (): AuthService => {
 
       const registerData = { ...values, codeExpire: data.codeExpire };
 
-      navigate("/verify-email", { state: { registerData } });
+      navigate(verifyEmail, { state: { registerData } });
     } catch (error) {
       setLoading(false);
       console.error(`Signup failed: ${error}`);
@@ -147,7 +186,7 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const verifyEmail = async (values: any): Promise<void> => {
+  const emailVerify = async (values: any): Promise<void> => {
     try {
       setLoading(true);
 
@@ -173,7 +212,7 @@ export const useAuthService = (): AuthService => {
         description: message,
       });
 
-      navigate("/login");
+      navigate(logIn);
     } catch (error) {
       setLoading(false);
       console.error(`Verify email failed: ${error}`);
@@ -185,11 +224,16 @@ export const useAuthService = (): AuthService => {
     try {
       await HttpClient.get<AuthResponse>(LOGOUT_API);
 
-      unAuthenticateUser();
+      dispatch(setAToken(null));
+      dispatch(setRToken(null));
+      dispatch(setUser(null));
+      dispatch(setIsAuthenticated(false));
+
       delete localStorage.atoken;
       delete localStorage.user;
-      delete localStorage.lastLocation;
-      navigate("/");
+      delete localStorage.rtoken;
+
+      // delete localStorage.lastLocation;
     } catch (error) {
       notify({
         variant: "error",
@@ -205,7 +249,7 @@ export const useAuthService = (): AuthService => {
   ): Promise<void> => {
     try {
       const forgotPasswordResp = await HttpClient.post<AuthResponse>(
-        FORGOTPASSWORD_API,
+        FORGOT_PASSWORD_API,
         values
       );
 
@@ -223,8 +267,6 @@ export const useAuthService = (): AuthService => {
         variant: "info",
         description: message,
       });
-
-      // navigate("/password-code", { state: { passData: values } });
     } catch (error) {
       console.error(`Forgot Pass Failed: ${error}`);
       throw error;
@@ -238,7 +280,7 @@ export const useAuthService = (): AuthService => {
   ): Promise<void> => {
     try {
       const params = new URLSearchParams({ email, hash }).toString();
-      const url = `${RESETPASSWORD_API}?${params}`;
+      const url = `${RESET_PASSWORD_API}?${params}`;
 
       const resetPasswordResp = await HttpClient.post<AuthResponse>(
         url,
@@ -260,7 +302,7 @@ export const useAuthService = (): AuthService => {
         description: message,
       });
 
-      navigate("/login");
+      navigate(logIn);
     } catch (error) {
       console.error(`Reset password failed: ${error}`);
       throw error;
@@ -269,11 +311,12 @@ export const useAuthService = (): AuthService => {
 
   return {
     login,
-    socialAuth,
-    register,
-    verifyEmail,
     logout,
-    forgotPassword,
+    register,
+    socialAuth,
+    emailVerify,
     resetPassword,
+    forgotPassword,
+    loginSavedUser,
   };
 };

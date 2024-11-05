@@ -32,7 +32,12 @@ export const CheckoutPaymentMethod: FC<CheckoutPaymentMethodProps> = (
           paymentMethod === "mobile_money" && "bg-primary-opacity"
         )}
       >
-        <Image imgUrl={mobileMoneyImg} name="momo_img" width={150} />
+        <Image
+          imgUrl={mobileMoneyImg}
+          name="momo_img"
+          width={150}
+          effect="opacity"
+        />
       </Radio>
       <Radio
         value="bank"
@@ -41,7 +46,7 @@ export const CheckoutPaymentMethod: FC<CheckoutPaymentMethodProps> = (
           paymentMethod === "bank" && "bg-primary-opacity"
         )}
       >
-        <Image imgUrl={bankImg} name="bank_img" width={150} />
+        <Image imgUrl={bankImg} name="bank_img" width={150} effect="opacity" />
       </Radio>
     </Radio.Group>
   );

@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { ProfilePageProps } from "../../types";
-import { Title, Profile } from "../../components";
+import { Profile } from "../../components";
 
 export const ProfilePage: FC<ProfilePageProps> = () => {
   return (
-    <section className="account_page">
-      <Title name="Profile" type="large" />
+    <section className="account_page flex flex-col gap-4">
       <Profile />
     </section>
   );

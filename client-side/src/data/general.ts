@@ -16,20 +16,22 @@ import { alFlag, shFlag } from "../assets";
 
 export const paths: PathProperties = {
   home: "/",
-  login: "/login",
+  logIn: "/login",
   browse: "/browse",
   profile: "/profile",
-  register: "register",
+  register: "/register",
   discover: "/discover",
-  socialAuth: "social-auth",
+  socialAuth: "/social-auth",
   gameDetail: "/game-detail",
-  verifyEmail: "verify-email",
+  verifyEmail: "/verify-email",
   editProfile: "/edit-profile",
-  passwordCode: "password-code",
-  forgotPassword: "forgot-password",
+  passwordCode: "/password-code",
+  forgotPassword: "/forgot-password",
   // resetPassword: "/reset-password",
-  resetPassword: "reset-password/:email/:hash",
+  resetPassword: "/reset-password/:email/:hash",
   // changePassword: "update-password/:email/:username/:h/:exp",
+  saveAuthData: "/save-auth",
+  accountSaved: "/account-saved",
 };
 
 export const logo: LogoProperties = {
@@ -194,21 +196,27 @@ export const navLists: NavListsParams[] = [
 
 export const settingsLinks: SettingsLinksParams[] = [
   {
-    id: "general",
+    id: "account-settings",
+    to: "/edit-profile",
+    name: "Account Settings",
+    icon: "MdOutlineSwitchAccount",
+  },
+  {
+    id: "general-settings",
     to: "/general",
-    name: "General",
+    name: "General Settings",
     icon: "AiOutlineSetting",
   },
   {
-    id: "shipping",
+    id: "shipping-settings",
     to: "/shipping",
-    name: "Shipping address",
+    name: "Shipping Address Settings",
     icon: "LuShip",
   },
   {
-    id: "payment",
+    id: "payment-settings",
     to: "/payment",
-    name: "Payment",
+    name: "Payment Settings",
     icon: "MdOutlinePayment",
   },
 ];

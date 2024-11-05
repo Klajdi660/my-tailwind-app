@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from "react";
 import { Image } from "../UI";
 import { userIcon } from "../../assets";
@@ -18,6 +19,7 @@ const ReviewContent: FC<ReviewContentProps> = (props) => {
                 imgUrl={review.user ? review.user.avatar : userIcon}
                 name="user_review"
                 styles="w-[60px] h-[60px] rounded-full object-cover"
+                effect="blur"
               />
             </div>
             <div className="flex-grow">

@@ -1,20 +1,19 @@
 import { useDispatch } from "react-redux";
 import { profileEndpoints } from "./Api";
 import {
+  setUser,
   setIsAccountDelete,
-  updateRememberMeData,
   setAccountDeleteDaysDifference,
-  useAppSelector,
 } from "../store";
 import {
   EditProfileValues,
   DeleteProfileValues,
-  ChangePasswordValues,
   UserDetailsResponse,
+  ChangePasswordValues,
   // PersonalDetailsInput,
 } from "../types";
 import { HttpClient } from "../client";
-import { useAuth, useNotification, useStore } from "../hooks";
+import { useNotification, useStore } from "../hooks";
 
 const {
   UPDATE_PROFILE_API,
@@ -27,12 +26,9 @@ const {
 } = profileEndpoints;
 
 export const useProfileService = () => {
-  const { user, setUser } = useAuth();
   const { setLoading } = useStore();
   const [notify] = useNotification();
   const dispatch = useDispatch();
-
-  const rememberMe = useAppSelector((state) => state.rememberMe);
 
   const changeUsername = async (values: EditProfileValues): Promise<void> => {
     try {
@@ -59,19 +55,7 @@ export const useProfileService = () => {
       };
 
       localStorage.user = JSON.stringify(data);
-      setUser(data);
-
-      if (
-        (values.username && rememberMe.rememberType === "username",
-        user?.provider === "Email")
-      ) {
-        dispatch(
-          updateRememberMeData({
-            identifier: data.username,
-            password: rememberMe.password,
-          })
-        );
-      }
+      dispatch(setUser(data));
 
       notify({
         variant: "success",
@@ -111,7 +95,7 @@ export const useProfileService = () => {
       };
 
       localStorage.user = JSON.stringify(data);
-      setUser(data);
+      dispatch(setUser(data));
 
       notify({
         variant: "success",
@@ -124,15 +108,19 @@ export const useProfileService = () => {
     }
   };
 
-  const updateDisplayPicture = async (values: any) => {
+  const updateDisplayPicture = async (formData: any, photoType: string) => {
     try {
       const headers = {
         "Content-Type": "multipart/form-data",
       };
 
+      const params = new URLSearchParams({ photoType }).toString();
+
+      const url = `${UPDATE_PROFILE_PICTURE_API}?${params}`;
+
       const profilePhotoResp = await HttpClient.put<UserDetailsResponse>(
-        UPDATE_PROFILE_PICTURE_API,
-        values,
+        url,
+        formData,
         { headers }
       );
 
@@ -146,13 +134,13 @@ export const useProfileService = () => {
       }
 
       const extra = JSON.parse(data.extra);
-
       data.extra = {
         ...extra,
       };
 
       localStorage.user = JSON.stringify(data);
-      setUser(data);
+
+      dispatch(setUser(data));
 
       notify({
         variant: "success",
@@ -163,12 +151,14 @@ export const useProfileService = () => {
     }
   };
 
-  const removeDisplayPicture = async () => {
+  const removeDisplayPicture = async (photoType: string) => {
     try {
+      const params = new URLSearchParams({ photoType }).toString();
+
+      const url = `${DELETE_PROFILE_PICTURE_API}?${params}`;
+
       const removeProfilePhotoResp =
-        await HttpClient.delete<UserDetailsResponse>(
-          DELETE_PROFILE_PICTURE_API
-        );
+        await HttpClient.delete<UserDetailsResponse>(url);
 
       const { error, message, data } = removeProfilePhotoResp;
       if (error) {
@@ -180,13 +170,13 @@ export const useProfileService = () => {
       }
 
       const extra = JSON.parse(data.extra);
-
       data.extra = {
         ...extra,
       };
 
       localStorage.user = JSON.stringify(data);
-      setUser(data);
+
+      dispatch(setUser(data));
 
       notify({
         variant: "success",
@@ -223,6 +213,7 @@ export const useProfileService = () => {
           accoundDeleteDaysDifference: data.daysDifference,
         })
       );
+
       notify({
         variant: "success",
         description: message,
@@ -243,7 +234,7 @@ export const useProfileService = () => {
 
       setLoading(false);
 
-      const { error, message, data } = cancelDeleteProfileResp;
+      const { error, message } = cancelDeleteProfileResp;
       if (error) {
         notify({
           variant: "error",
@@ -287,12 +278,6 @@ export const useProfileService = () => {
         return;
       }
 
-      dispatch(
-        updateRememberMeData({
-          identifier: rememberMe.identifier,
-          password: values.newPassword,
-        })
-      );
       notify({
         variant: "success",
         description: message,
@@ -305,12 +290,12 @@ export const useProfileService = () => {
   };
 
   return {
-    changeUsername,
     updateProfile,
+    deleteProfile,
+    changePassword,
+    changeUsername,
+    cancelDeleteProfile,
     updateDisplayPicture,
     removeDisplayPicture,
-    deleteProfile,
-    cancelDeleteProfile,
-    changePassword,
   };
 };

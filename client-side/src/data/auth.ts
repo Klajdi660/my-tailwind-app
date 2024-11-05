@@ -1,4 +1,8 @@
+import { APP_URL } from "../configs";
+import { endpoints } from "../services";
 import { FormTitleList, SocialAuthList, FormItemList } from "../types";
+
+const { OAUTH_GOOGLE_API } = endpoints;
 
 export const titles: FormTitleList = {
   login: "Sign In",
@@ -13,7 +17,7 @@ export const socialAuthList: SocialAuthList[] = [
     id: 1,
     name: "Google",
     icon: "FcGoogle",
-    link: "http://localhost:8080/api/auth/google",
+    link: `${APP_URL}${OAUTH_GOOGLE_API}`,
   },
 ];
 

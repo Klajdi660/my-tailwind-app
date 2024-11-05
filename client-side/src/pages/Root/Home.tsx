@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { FC, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { paths } from "../../data";
 import { iconName } from "../../assets";
-import { HomePageProps } from "../../types";
-import { Image, Button, HomeFooter, PlatformIconList } from "../../components";
-import { useGame, useGameSlider } from "../../hooks";
 import { classNames } from "../../utils";
+import { useGameHook } from "../../hooks";
+import { HomePageProps } from "../../types";
+import { useAppSelector } from "../../store";
+import { Image, Button, PlatformIconList } from "../../components";
 
 const getBackgroundStyle = (imageUrl: string | undefined) => ({
   backgroundImage: `url(${imageUrl})`,
@@ -15,6 +17,9 @@ const getBackgroundStyle = (imageUrl: string | undefined) => ({
 });
 
 export const HomePage: FC<HomePageProps> = () => {
+  const { logIn, accountSaved, home } = paths;
+
+  const { useGameSlider, useGameDetail } = useGameHook();
   const { gamesSlider } = useGameSlider();
 
   const navigate = useNavigate();
@@ -23,7 +28,11 @@ export const HomePage: FC<HomePageProps> = () => {
   const [selectedGameId, setSelectedGameId] = useState<number | undefined>();
   const [platformsIcon, setPlatformsIcon] = useState([]);
 
-  const { gameDetail } = useGame(selectedGameId) as any;
+  const { gameDetail } = useGameDetail(selectedGameId) as any;
+
+  const { saveAuthUserData } = useAppSelector((state) => state.user);
+
+  const navigateTo = saveAuthUserData.length > 0 ? accountSaved : logIn;
 
   useEffect(() => {
     if (gamesSlider && gamesSlider.length > 0) {
@@ -63,9 +72,14 @@ export const HomePage: FC<HomePageProps> = () => {
         }}
       >
         <div className="flex items-center justify-between">
-          <Link to="/">
+          <Link to={home}>
             <motion.div whileHover={{ scale: 1.1 }}>
-              <Image imgUrl={iconName} name="App Logo" width={150} />
+              <Image
+                imgUrl={iconName}
+                name="App Logo"
+                width={150}
+                effect="opacity"
+              />
             </motion.div>
           </Link>
           <motion.div
@@ -79,7 +93,7 @@ export const HomePage: FC<HomePageProps> = () => {
               variant="none"
               label="Login"
               labelIcon="MdLogin"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate(navigateTo)}
             />
           </motion.div>
         </div>
@@ -104,13 +118,14 @@ export const HomePage: FC<HomePageProps> = () => {
                         ? "w-36 h-36 shadow-lg border-2 border-white p-1"
                         : "w-24 h-24 opacity-80"
                     )}
+                    effect="opacity"
                   />
                 </button>
                 {selectedGameId === game.id && (
                   <div className="flex flex-row gap-2 items-center fixed ml-40">
                     <div className="flex gap-2 p-2 bg-white rounded-md">
                       <PlatformIconList
-                        className="text-onNeutralBg"
+                        className="text-secondary"
                         platforms={platformsIcon.map((p: any) => p.platform)}
                       />
                     </div>
@@ -155,6 +170,7 @@ export const HomePage: FC<HomePageProps> = () => {
                 styles={classNames(
                   "w-52 h-60 rounded-lg object-cover transition-all duration-300"
                 )}
+                effect="blur"
               />
               <div className="flex justify-between">
                 <Button

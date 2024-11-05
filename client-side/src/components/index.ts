@@ -4,6 +4,7 @@ export { FormTemplate } from "./Auth/FormTemplate";
 // export { OTPCodeForm } from "./Auth/OTPCodeForm";
 export { ProfileForm } from "./Auth/ProfileForm";
 export { SocialAuth } from "./Auth/SocialAuth";
+export * from "./Auth/UserSaveForm";
 
 // CARDS
 export { MediaCard } from "./Cards/MediaCard";
@@ -22,7 +23,13 @@ export { CartSwitcher } from "./Cart/CartSwitcher";
 // GAME DETAIL
 // HOME
 export { SliderGames } from "./Home/SliderGames";
+
 // PROFILE
+export { AccountSettings } from "./Profile/ProfileEdit/AccountSettings";
+export { GeneralSettings } from "./Profile/ProfileEdit/GeneralSettings";
+export { PaymentSettings } from "./Profile/ProfileEdit/PaymentSettings";
+export { ShippingAddressSettings } from "./Profile/ProfileEdit/ShippingAddressSettings";
+
 // SECTIONS
 // SETTINGS
 // SIDEBAR
@@ -50,9 +57,9 @@ export { Profile } from "./Profile/Profile";
 export { ReadMore } from "./Common/ReadMore";
 export { UserInfo } from "./Profile/UserInfo";
 export { Notification } from "./Notification";
-
+export { AccountSettingSidebar } from "./Profile/AccountSettingSidebar";
 export { EditProfile } from "./Profile/EditProfile";
-
+export { AddressDetails } from "./Profile/AddressDetails";
 export { GameDetail } from "./GameDetail/GameDetail";
 export { MediaSection } from "./Sections/MediaSection";
 export { DeleteAccount } from "./Profile/DeleteAccount";

@@ -1,4 +1,5 @@
-import { FC, useEffect, useMemo } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { FC, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 interface TabTitleProps {}
@@ -14,5 +15,6 @@ export const TabTitle: FC<TabTitleProps> = () => {
   useEffect(() => {
     document.title = capitalizedPathKey;
   }, [pathname]);
+
   return <></>;
 };
