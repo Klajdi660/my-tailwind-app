@@ -62,7 +62,12 @@ export const resizeImage = (
   return `${IMAGE_URL}/${width}${imgUrl}`;
 };
 
-export const nameTruncate = (str: string, len: number) => {
+export const nameTruncate = (str: string, len?: number) => {
+  if (!len) {
+    const namePart = str.split("@")[0];
+    return `${namePart}...`;
+  }
+
   return str?.length
     ? str.length <= len
       ? `${str.slice(0, len)}`

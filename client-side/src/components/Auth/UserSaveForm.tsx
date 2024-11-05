@@ -109,7 +109,7 @@ export const UserSaveForm: FC = () => {
                 placement="bottom"
                 title={saveAuthUser.email}
               >
-                <p>{nameTruncate(saveAuthUser.email, 19)}</p>
+                <p>{nameTruncate(saveAuthUser.email)}</p>
               </Tooltip>
               {saveAuthUser.photo ? (
                 <Image

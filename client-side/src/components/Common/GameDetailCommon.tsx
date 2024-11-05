@@ -7,7 +7,7 @@ import {
   PlatformIconListProps,
   GameGenreListProps,
 } from "../../types";
-import { classNames } from "../../utils";
+import { classNames, nameTruncate } from "../../utils";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
@@ -107,7 +107,7 @@ export const GameGenreList: FC<GameGenreListProps> = (props) => {
                   selectedGenreId === genre.id && "text-white"
                 )}
               >
-                {genre.name} Games
+                {nameTruncate(genre.name, 14)} Games
               </span>
             </button>
           </SwiperSlide>
