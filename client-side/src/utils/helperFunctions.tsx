@@ -1,65 +1,20 @@
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
 import { GameParams } from "../types";
 
 export const classNames = (...classes: any) => {
   return classes.filter(Boolean).join(" ");
 };
 
-const getStorageValue = (key: string, defaultValue: any) => {
-  const saved = localStorage.getItem(key) as any;
-  const initial = JSON.parse(saved);
-  return initial || defaultValue;
-};
-
-export const useLocalStorage = (key: string, defaultValue: any) => {
-  const [value, setValue] = useState(() => {
-    return getStorageValue(key, defaultValue);
-  });
-
-  useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
-
-  return [value, setValue];
-};
-
-export const isATokenExpired = () => {
-  const atoken = atob(localStorage.atoken.split(".")[1]);
-
-  if (atoken) {
-    const currentTime = dayjs().unix();
-    const tokenExpirationTime = JSON.parse(atoken).exp;
-    return currentTime > parseInt(tokenExpirationTime);
-  }
-
-  return false;
-};
-
 export const isTokenExpired = (token: string): boolean => {
   const tokenData = JSON.parse(atob(token.split(".")[1]));
-  const expiryTime = tokenData.exp * 1000;
-  return Date.now() > expiryTime;
-};
 
-export const fileBlob = (files: File[] | null) => {
-  if (files?.[0]) {
-    return {
-      blobName: files[0]?.name,
-      blobUrl: URL.createObjectURL(files[0]),
-    };
-  } else {
-    return {};
-  }
-};
+  // const expiryTime = tokenData.exp * 1000;
+  // return Date.now() > expiryTime;
 
-const IMAGE_URL = "https://image.tmdb.org/t/p";
+  const currentTime = dayjs().unix();
+  const tokenExpirationTime = tokenData.exp;
 
-export const resizeImage = (
-  imgUrl: string,
-  width: string = "original"
-): string => {
-  return `${IMAGE_URL}/${width}${imgUrl}`;
+  return currentTime > parseInt(tokenExpirationTime);
 };
 
 export const nameTruncate = (str: string, len?: number) => {
@@ -149,23 +104,6 @@ export const calculateTotalPrice = (
     shipping: shipping.toFixed(2),
     totalPrice,
   };
-};
-
-export const getRandomDiscoverGames = (games: unknown[], length: number) => {
-  const randomGames = new Set();
-
-  while (randomGames.size < length) {
-    const index = Math.floor(Math.random() * games?.length);
-    randomGames.add(games[index]);
-  }
-
-  return { ...randomGames };
-};
-
-export const cycleDiscoverGameArray = (array: unknown[]) => {
-  const newArray = [...array];
-  newArray.push(newArray.shift());
-  return newArray;
 };
 
 export const maskCardNumber = (cardNumber: string) => {

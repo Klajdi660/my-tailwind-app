@@ -22,12 +22,12 @@ import { useNotification } from "../hooks";
 
 const {
   LOGIN_API,
-  LOGIN_SAVED_USER_API,
   LOGOUT_API,
   REGISTER_API,
   VERIFY_EMAIL_API,
   RESET_PASSWORD_API,
   FORGOT_PASSWORD_API,
+  LOGIN_SAVED_USER_API,
 } = endpoints;
 
 export const useAuthService = (): AuthService => {
@@ -59,16 +59,14 @@ export const useAuthService = (): AuthService => {
         ...JSON.parse(user.extra),
       };
 
-      const rtoken = JSON.parse(atob(rToken.split(".")[1]));
-
       dispatch(setAToken(aToken));
       dispatch(setRToken(rToken));
       dispatch(setUser(user));
       dispatch(setIsAuthenticated(true));
 
       localStorage.atoken = aToken;
+      localStorage.rtoken = rToken;
       localStorage.user = JSON.stringify(user);
-      localStorage.rtoken = JSON.stringify(rtoken);
     } catch (error) {
       dispatch(setLoading(false));
       notify({
@@ -102,7 +100,6 @@ export const useAuthService = (): AuthService => {
       user.extra = {
         ...JSON.parse(user.extra),
       };
-      const rtoken = JSON.parse(atob(rToken.split(".")[1]));
 
       dispatch(setAToken(aToken));
       dispatch(setRToken(rToken));
@@ -110,8 +107,8 @@ export const useAuthService = (): AuthService => {
       dispatch(setIsAuthenticated(true));
 
       localStorage.atoken = aToken;
+      localStorage.rtoken = rToken;
       localStorage.user = JSON.stringify(user);
-      localStorage.rtoken = JSON.stringify(rtoken);
     } catch (error) {
       dispatch(setLoading(false));
       notify({
@@ -145,7 +142,7 @@ export const useAuthService = (): AuthService => {
       dispatch(setIsAuthenticated(true));
 
       localStorage.atoken = aToken;
-      localStorage.rtoken = JSON.stringify(rToken);
+      localStorage.rtoken = rToken;
       localStorage.user = JSON.stringify(user);
     } catch (error) {
       console.error(`SocialAuth login failed: ${error}`);

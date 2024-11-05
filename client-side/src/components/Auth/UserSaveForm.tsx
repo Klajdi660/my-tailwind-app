@@ -79,6 +79,9 @@ export const UserSaveForm: FC = () => {
             type="button"
             key={saveAuthUser.id}
             className="relative flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2 group"
+            onClick={() =>
+              onSubmitLoginSavedUserHandler(saveAuthUser.saveAuthUserToken)
+            }
           >
             <div className="absolute top-2 left-2 hidden group-hover:flex">
               <Tooltip
@@ -87,7 +90,10 @@ export const UserSaveForm: FC = () => {
               >
                 <div
                   className="flex_justify_center bg-card h-6 w-6 rounded-full cursor-pointer"
-                  onClick={() => handleRemoveUser(saveAuthUser.id)}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    handleRemoveUser(saveAuthUser.id);
+                  }}
                 >
                   <Icon
                     name="MdClear"
@@ -98,12 +104,7 @@ export const UserSaveForm: FC = () => {
               </Tooltip>
             </div>
 
-            <div
-              className="flex_justify_center flex-col gap-4"
-              onClick={() =>
-                onSubmitLoginSavedUserHandler(saveAuthUser.saveAuthUserToken)
-              }
-            >
+            <div className="flex_justify_center flex-col gap-4">
               <Tooltip
                 arrow={false}
                 placement="bottom"
@@ -115,7 +116,6 @@ export const UserSaveForm: FC = () => {
                 <Image
                   imgUrl={saveAuthUser.photo}
                   name="Profile Img"
-                  // styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg object-cover"
                   styles="w-20 h-20 rounded-full object-cover"
                   effect="blur"
                 />

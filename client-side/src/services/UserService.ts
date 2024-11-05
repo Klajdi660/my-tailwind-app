@@ -5,9 +5,9 @@ import { HttpClient } from "../client";
 import { UserDetailsResponse } from "../types";
 import { useNotification, useStore } from "../hooks";
 import {
-  useAppSelector,
   setUser,
   setRemember,
+  useAppSelector,
   setSavedAuthUser,
 } from "../store";
 import { paths } from "../data";
@@ -40,7 +40,6 @@ export const useUserService = () => {
       setLoading(false);
 
       const { error, message, data } = userDetailsResp;
-
       if (error) {
         notify({
           variant: "error",
@@ -69,6 +68,7 @@ export const useUserService = () => {
         SAVE_AUTH_USER_API,
         values
       );
+
       const { error, message, data } = saveAuthUserResp;
       if (error) {
         notify({

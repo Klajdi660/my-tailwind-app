@@ -1,15 +1,15 @@
 import { useDispatch } from "react-redux";
 import { profileEndpoints } from "./Api";
 import {
+  setUser,
   setIsAccountDelete,
   setAccountDeleteDaysDifference,
-  setUser,
 } from "../store";
 import {
   EditProfileValues,
   DeleteProfileValues,
-  ChangePasswordValues,
   UserDetailsResponse,
+  ChangePasswordValues,
   // PersonalDetailsInput,
 } from "../types";
 import { HttpClient } from "../client";
@@ -115,6 +115,7 @@ export const useProfileService = () => {
       };
 
       const params = new URLSearchParams({ photoType }).toString();
+
       const url = `${UPDATE_PROFILE_PICTURE_API}?${params}`;
 
       const profilePhotoResp = await HttpClient.put<UserDetailsResponse>(
@@ -133,12 +134,12 @@ export const useProfileService = () => {
       }
 
       const extra = JSON.parse(data.extra);
-
       data.extra = {
         ...extra,
       };
 
       localStorage.user = JSON.stringify(data);
+
       dispatch(setUser(data));
 
       notify({
@@ -153,6 +154,7 @@ export const useProfileService = () => {
   const removeDisplayPicture = async (photoType: string) => {
     try {
       const params = new URLSearchParams({ photoType }).toString();
+
       const url = `${DELETE_PROFILE_PICTURE_API}?${params}`;
 
       const removeProfilePhotoResp =
@@ -168,12 +170,12 @@ export const useProfileService = () => {
       }
 
       const extra = JSON.parse(data.extra);
-
       data.extra = {
         ...extra,
       };
 
       localStorage.user = JSON.stringify(data);
+
       dispatch(setUser(data));
 
       notify({
@@ -211,6 +213,7 @@ export const useProfileService = () => {
           accoundDeleteDaysDifference: data.daysDifference,
         })
       );
+
       notify({
         variant: "success",
         description: message,
