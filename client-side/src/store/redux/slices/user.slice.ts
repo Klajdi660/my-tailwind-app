@@ -14,7 +14,6 @@ interface UserState {
   saveAuthUserData: SaveAuthUserData[];
   currency: string;
   remember: boolean;
-  activeUserId: string | null;
 }
 
 const initialState: UserState = {
@@ -22,7 +21,6 @@ const initialState: UserState = {
   saveAuthUserData: [],
   currency: "L",
   remember: false,
-  activeUserId: null,
 };
 
 const slice = createSlice({
@@ -58,12 +56,6 @@ const slice = createSlice({
     setRemember(state, action) {
       state.remember = action.payload;
     },
-    setActiveUser(state, action) {
-      state.activeUserId = action.payload;
-    },
-    clearActiveUser(state) {
-      state.activeUserId = null;
-    },
   },
 });
 
@@ -74,6 +66,4 @@ export const {
   setRemember,
   setSavedAuthUser,
   clearSavedAuthUser,
-  clearActiveUser,
-  setActiveUser,
 } = slice.actions;

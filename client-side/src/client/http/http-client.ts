@@ -17,12 +17,11 @@ const instance = axios.create({
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     const state = store.getState();
-    const { activeUserId, saveAuthUserData } = state.user;
+
+    const { currentAuthUserToken } = state.auth;
 
     if (config.url?.includes("auth/login-saved-user")) {
-      const savedUser = saveAuthUserData.find(({ id }) => id === activeUserId);
-      console.log("savedUser :>> ", savedUser);
-      config.headers.Authorization = `Bearer ${savedUser?.saveAuthUserToken}`;
+      config.headers.Authorization = `Bearer ${currentAuthUserToken}`;
       return config;
     }
 

@@ -6,6 +6,7 @@ const initialState = {
   loading: false,
   atoken: localStorage.atoken ? localStorage.atoken : null,
   rtoken: localStorage.rtoken ? JSON.parse(localStorage.rtoken) : null,
+  currentAuthUserToken: null,
 };
 
 const slice = createSlice({
@@ -27,6 +28,9 @@ const slice = createSlice({
     setRToken(state, action) {
       state.rtoken = action.payload;
     },
+    setCurrentAuthUserToken(state, action) {
+      state.currentAuthUserToken = action.payload;
+    },
   },
 });
 
@@ -37,4 +41,5 @@ export const {
   setAToken,
   setRToken,
   setIsAuthenticated,
+  setCurrentAuthUserToken,
 } = slice.actions;

@@ -2,7 +2,11 @@ import { FC, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { useAppSelector, clearSavedAuthUser } from "../../store";
+import {
+  useAppSelector,
+  clearSavedAuthUser,
+  setCurrentAuthUserToken,
+} from "../../store";
 import { Icon, Image } from "../UI";
 import { userIcon, iconName } from "../../assets";
 import { paths } from "../../data";
@@ -33,8 +37,9 @@ export const UserSaveForm: FC = () => {
     });
   };
 
-  const onSubmitLoginSavedUserHandler = async () => {
+  const onSubmitLoginSavedUserHandler = async (token: string) => {
     try {
+      dispatch(setCurrentAuthUserToken(token));
       await loginSavedUser();
     } catch (error) {
       console.error(`Failed to login! ${error}`);
@@ -95,7 +100,9 @@ export const UserSaveForm: FC = () => {
 
             <div
               className="flex_justify_center flex-col gap-4"
-              onClick={onSubmitLoginSavedUserHandler}
+              onClick={() =>
+                onSubmitLoginSavedUserHandler(saveAuthUser.saveAuthUserToken)
+              }
             >
               <Tooltip
                 arrow={false}

@@ -9,7 +9,6 @@ import {
   setUser,
   setRemember,
   setSavedAuthUser,
-  setActiveUser,
 } from "../store";
 import { paths } from "../data";
 
@@ -63,8 +62,8 @@ export const useUserService = () => {
 
   const saveAuthUser = async (values: any): Promise<void> => {
     try {
-      const { id, username, email, extra } = user;
-      const { avatar } = extra;
+      // const { id, username, email, extra } = user;
+      // const { avatar } = extra;
 
       const saveAuthUserResp = await HttpClient.post<any>(
         SAVE_AUTH_USER_API,
@@ -79,7 +78,14 @@ export const useUserService = () => {
         return;
       }
 
-      const { saveAuthUserToken, newUser } = data;
+      const { saveAuthUserToken } = data;
+      console.log("data :>> ", data);
+      data.user.extra = {
+        ...JSON.parse(data.user.extra),
+      };
+
+      const { id, username, email, extra } = data.user;
+      const { avatar } = extra;
 
       dispatch(setRemember(true));
       dispatch(
@@ -91,7 +97,6 @@ export const useUserService = () => {
           saveAuthUserToken,
         })
       );
-      dispatch(setActiveUser(id));
 
       navigate(discover);
     } catch (error) {
