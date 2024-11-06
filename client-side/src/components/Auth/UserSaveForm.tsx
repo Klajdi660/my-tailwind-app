@@ -1,5 +1,8 @@
 import { FC, useEffect } from "react";
 import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
@@ -13,7 +16,11 @@ import { userIcon, iconName } from "../../assets";
 import { paths } from "../../data";
 import { Tooltip } from "antd";
 import { useAuthService } from "../../services";
-import { isTokenExpired, nameTruncate } from "../../utils";
+import { classNames, isTokenExpired, nameTruncate } from "../../utils";
+
+dayjs.extend(relativeTime);
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export const UserSaveForm: FC = () => {
   const { logIn, home } = paths;
@@ -29,7 +36,7 @@ export const UserSaveForm: FC = () => {
   const handleRemoveUser = (id: string) => {
     dispatch(clearSavedAuthUser(id));
   };
-  console.log("userLastLogin :>> ", userLastLogin);
+
   const getValidUsers = () => {
     return saveAuthUserData.filter((user) => {
       if (isTokenExpired(user.saveAuthUserToken)) {
@@ -40,11 +47,58 @@ export const UserSaveForm: FC = () => {
     });
   };
 
-  const getLastLogin = (userId: string) => {
+  // const getLastLoginText = (userId: string) => {
+  //   const userLogin = userLastLogin.find((login) => login.id === userId);
+  //   if (userLogin) {
+  //     const lastLoginTime = dayjs(userLogin.lastLogin);
+  //     const durationMinutes = dayjs().diff(lastLoginTime, "minute"); // Calculate the time difference in minutes
+  //     const durationHours = dayjs().diff(lastLoginTime, "hour"); // Calculate the time difference in hours
+
+  //     if (durationMinutes < 60) {
+  //       return `${durationMinutes} minutes ago`; // Less than 1 hour ago
+  //     } else {
+  //       return `${durationHours} hours ago`; // More than 1 hour ago
+  //     }
+  //   }
+  //   return "Not available";
+  // };
+
+  const getLastLoginText = (userId: string) => {
     const userLogin = userLastLogin.find((login) => login.id === userId);
-    return userLogin
-      ? dayjs(userLogin.lastLogin).format("YYYY-MM-DD HH:mm:ss")
-      : "Not available";
+    if (userLogin) {
+      const lastLoginTime = dayjs(userLogin.lastLogin).tz(dayjs.tz.guess()); // Get the user's local timezone
+      const formattedLastLogin = lastLoginTime.format("YYYY-MM-DD HH:mm:ss"); // Format the date
+
+      const durationMinutes = dayjs().diff(lastLoginTime, "minute"); // Calculate the time difference in minutes
+      const durationHours = dayjs().diff(lastLoginTime, "hour"); // Calculate the time difference in hours
+      console.log("formattedLastLogin :>> ", formattedLastLogin);
+      console.log("durationMinutes  :>> ", durationMinutes);
+      console.log("durationHours :>> ", durationHours);
+      console.log("userLogin.lastLogin :>> ", userLogin.lastLogin);
+      if (durationMinutes < 60) {
+        return `${durationMinutes} minutes ago (Last login: ${formattedLastLogin})`; // Less than 1 hour ago
+      } else {
+        return `${durationHours} hours ago (Last login: ${formattedLastLogin})`; // More than 1 hour ago
+      }
+    }
+    return "Not available";
+  };
+
+  const getLastLoginColor = (userId: string) => {
+    const userLogin = userLastLogin.find((login) => login.id === userId);
+    if (userLogin) {
+      const lastLoginTime = dayjs(userLogin.lastLogin);
+      const duration = dayjs().diff(lastLoginTime, "hour"); // Calculate the time difference in hours
+
+      if (duration < 1) {
+        return "bg-green-500";
+      } else if (duration < 24) {
+        return "bg-yellow-500";
+      } else if (duration < 168) {
+        return "bg-red-500";
+      }
+    }
+    return "bg-gray-500";
   };
 
   const onSubmitLoginSavedUserHandler = async (token: string) => {
@@ -80,64 +134,75 @@ export const UserSaveForm: FC = () => {
         <p className="text-4xl">Choose Account to continue to GrooveIT.</p>
       </div>
       <div className="flex_justify_center gap-6">
-        {validUsers.map((saveAuthUser) => (
-          <button
-            type="button"
-            key={saveAuthUser.id}
-            className="relative flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2 group"
-            onClick={() =>
-              onSubmitLoginSavedUserHandler(saveAuthUser.saveAuthUserToken)
-            }
-          >
-            <div className="absolute top-2 left-2 hidden group-hover:flex">
-              <Tooltip
-                title="Remove account from this page"
-                placement="topLeft"
-              >
-                <div
-                  className="flex_justify_center bg-card h-6 w-6 rounded-full cursor-pointer"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    handleRemoveUser(saveAuthUser.id);
-                  }}
-                >
-                  <Icon
-                    name="MdClear"
-                    size={14}
-                    className="hover:text-primary"
-                  />
-                </div>
-              </Tooltip>
-            </div>
+        {validUsers.map((saveAuthUser) => {
+          const lastLoginUser = getLastLoginText(saveAuthUser.id);
+          const badgeColor = getLastLoginColor(saveAuthUser.id);
 
-            <div className="flex_justify_center flex-col gap-4">
-              <Tooltip
-                arrow={false}
-                placement="bottom"
-                title={saveAuthUser.email}
-              >
-                <p>{nameTruncate(saveAuthUser.email)}</p>
-              </Tooltip>
-              {saveAuthUser.photo ? (
-                <Image
-                  imgUrl={saveAuthUser.photo}
-                  name="Profile Img"
-                  styles="w-20 h-20 rounded-full object-cover"
-                  effect="blur"
-                />
-              ) : (
-                <Image
-                  imgUrl={userIcon}
-                  name="Profile Img"
-                  styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg bg-main"
-                  effect="blur"
-                />
-              )}
-              <p className="h-4">{saveAuthUser.username}</p>
-              <p className="text-xs text-red-500">{`Last login: ${getLastLogin(saveAuthUser.id)}`}</p>
-            </div>
-          </button>
-        ))}
+          return (
+            <button
+              type="button"
+              key={saveAuthUser.id}
+              className="relative flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2 group"
+              onClick={() =>
+                onSubmitLoginSavedUserHandler(saveAuthUser.saveAuthUserToken)
+              }
+            >
+              <div className="absolute top-2 left-2 hidden group-hover:flex">
+                <Tooltip
+                  title="Remove account from this page"
+                  placement="topLeft"
+                >
+                  <div
+                    className="flex_justify_center bg-card h-6 w-6 rounded-full cursor-pointer"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleRemoveUser(saveAuthUser.id);
+                    }}
+                  >
+                    <Icon
+                      name="MdClear"
+                      size={14}
+                      className="hover:text-primary"
+                    />
+                  </div>
+                </Tooltip>
+              </div>
+              <div className="relative flex_justify_center flex-col gap-4">
+                <Tooltip
+                  arrow={false}
+                  placement="bottom"
+                  title={saveAuthUser.email}
+                >
+                  <p>{nameTruncate(saveAuthUser.email)}</p>
+                </Tooltip>
+                {saveAuthUser.photo ? (
+                  <Image
+                    imgUrl={saveAuthUser.photo}
+                    name="Profile Img"
+                    styles="w-20 h-20 rounded-full object-cover"
+                    effect="blur"
+                  />
+                ) : (
+                  <Image
+                    imgUrl={userIcon}
+                    name="Profile Img"
+                    styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg bg-main"
+                    effect="blur"
+                  />
+                )}
+                <div
+                  className={classNames(
+                    "badge absolute bottom-8 right-0 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs",
+                    badgeColor
+                  )}
+                >
+                  {lastLoginUser.slice(0, 1)}
+                </div>
+                <p className="h-4">{saveAuthUser.username}</p>
+              </div>
+            </button>
+          );
+        })}
         <button
           className="flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2"
           onClick={() => navigate(logIn)}

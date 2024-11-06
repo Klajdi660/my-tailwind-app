@@ -108,7 +108,6 @@ export const useAuthService = (): AuthService => {
       dispatch(setRToken(rToken));
       dispatch(setUser(user));
       dispatch(setIsAuthenticated(true));
-      console.log("user.lastLogin :>> ", user.lastLogin);
       dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
 
       localStorage.atoken = aToken;

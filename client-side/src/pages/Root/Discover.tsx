@@ -4,16 +4,11 @@ import { GameGenreList, Title } from "../../components";
 import { useGameHook } from "../../hooks";
 import { Icon } from "../../components/UI";
 import { classNames } from "../../utils";
-import { useAppSelector } from "../../store";
 
 export const DiscoverPage: FC<DiscoverPageProps> = () => {
   const { useGameGenreList } = useGameHook();
 
   const { gameGenreList } = useGameGenreList();
-
-  const { userLastLogin } = useAppSelector((state) => state.user);
-
-  console.log("userLastLogin 222 :>> ", userLastLogin);
 
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
