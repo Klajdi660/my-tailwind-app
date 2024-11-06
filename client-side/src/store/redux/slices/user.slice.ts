@@ -9,11 +9,16 @@ interface SaveAuthUserData {
   photo: any;
 }
 
+interface UserLastLoginData {
+  id: string;
+  lastLogin: string;
+}
 interface UserState {
   user: User;
   saveAuthUserData: SaveAuthUserData[];
   currency: string;
   remember: boolean;
+  userLastLogin: UserLastLoginData[];
 }
 
 const initialState: UserState = {
@@ -21,6 +26,7 @@ const initialState: UserState = {
   saveAuthUserData: [],
   currency: "L",
   remember: false,
+  userLastLogin: [],
 };
 
 const slice = createSlice({
@@ -50,6 +56,20 @@ const slice = createSlice({
         (user) => user.id !== userIdToRemove
       );
     },
+    setUserLastLogin(state, action) {
+      const { id, lastLogin } = action.payload;
+      const existingLogin = state.userLastLogin.find(
+        (login) => login.id === id
+      );
+
+      if (existingLogin) {
+        // If the user already has a lastLogin entry, update it
+        existingLogin.lastLogin = lastLogin;
+      } else {
+        // Otherwise, add a new entry
+        state.userLastLogin.push({ id, lastLogin });
+      }
+    },
     setCurrency(state, action) {
       state.currency = action.payload;
     },
@@ -66,4 +86,5 @@ export const {
   setRemember,
   setSavedAuthUser,
   clearSavedAuthUser,
+  setUserLastLogin,
 } = slice.actions;

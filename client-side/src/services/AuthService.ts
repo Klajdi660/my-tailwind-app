@@ -7,6 +7,8 @@ import {
   setUser,
   setLoading,
   setIsAuthenticated,
+  setUserLastLogin,
+  useAppSelector,
 } from "../store";
 import {
   AuthService,
@@ -63,6 +65,7 @@ export const useAuthService = (): AuthService => {
       dispatch(setRToken(rToken));
       dispatch(setUser(user));
       dispatch(setIsAuthenticated(true));
+      dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
 
       localStorage.atoken = aToken;
       localStorage.rtoken = rToken;
@@ -105,6 +108,8 @@ export const useAuthService = (): AuthService => {
       dispatch(setRToken(rToken));
       dispatch(setUser(user));
       dispatch(setIsAuthenticated(true));
+      console.log("user.lastLogin :>> ", user.lastLogin);
+      dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
 
       localStorage.atoken = aToken;
       localStorage.rtoken = rToken;
@@ -226,7 +231,8 @@ export const useAuthService = (): AuthService => {
 
       dispatch(setAToken(null));
       dispatch(setRToken(null));
-      dispatch(setUser(null));
+      // dispatch(setUser(null));
+      // dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
       dispatch(setIsAuthenticated(false));
 
       delete localStorage.atoken;

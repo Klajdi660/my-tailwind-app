@@ -79,7 +79,6 @@ export const useUserService = () => {
       }
 
       const { saveAuthUserToken } = data;
-      console.log("data :>> ", data);
       data.user.extra = {
         ...JSON.parse(data.user.extra),
       };

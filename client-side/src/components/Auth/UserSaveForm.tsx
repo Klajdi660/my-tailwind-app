@@ -1,4 +1,5 @@
 import { FC, useEffect } from "react";
+import dayjs from "dayjs";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
@@ -21,12 +22,14 @@ export const UserSaveForm: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { saveAuthUserData } = useAppSelector((state) => state.user);
+  const { saveAuthUserData, userLastLogin } = useAppSelector(
+    (state) => state.user
+  );
 
   const handleRemoveUser = (id: string) => {
     dispatch(clearSavedAuthUser(id));
   };
-
+  console.log("userLastLogin :>> ", userLastLogin);
   const getValidUsers = () => {
     return saveAuthUserData.filter((user) => {
       if (isTokenExpired(user.saveAuthUserToken)) {
@@ -35,6 +38,13 @@ export const UserSaveForm: FC = () => {
       }
       return true;
     });
+  };
+
+  const getLastLogin = (userId: string) => {
+    const userLogin = userLastLogin.find((login) => login.id === userId);
+    return userLogin
+      ? dayjs(userLogin.lastLogin).format("YYYY-MM-DD HH:mm:ss")
+      : "Not available";
   };
 
   const onSubmitLoginSavedUserHandler = async (token: string) => {
@@ -124,6 +134,7 @@ export const UserSaveForm: FC = () => {
                 />
               )}
               <p className="h-4">{saveAuthUser.username}</p>
+              <p className="text-xs text-red-500">{`Last login: ${getLastLogin(saveAuthUser.id)}`}</p>
             </div>
           </button>
         ))}
