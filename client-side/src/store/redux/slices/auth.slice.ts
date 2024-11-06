@@ -5,7 +5,8 @@ const initialState = {
   signupData: null,
   loading: false,
   atoken: localStorage.atoken ? localStorage.atoken : null,
-  rtoken: localStorage.rtoken ? JSON.parse(localStorage.rtoken) : null,
+  // rtoken: localStorage.rtoken ? JSON.parse(localStorage.rtoken) : null,
+  rtoken: localStorage.rtoken ? localStorage.rtoken : null,
   currentAuthUserToken: null,
 };
 

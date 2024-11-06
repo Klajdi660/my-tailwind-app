@@ -67,11 +67,7 @@ export const UserSaveForm: FC = () => {
             />
           </motion.div>
         </Link>
-        <p className="text-4xl">Who's using GrooveIT?</p>
-        <p className="text-base text-center text-secondary">
-          With GrooveIT profiles you can separate all your GrooveIT stuff.
-          Create profiles for friends and family, or split between work and fun.
-        </p>
+        <p className="text-4xl">Choose Account to continue to GrooveIT.</p>
       </div>
       <div className="flex_justify_center gap-6">
         {validUsers.map((saveAuthUser) => (

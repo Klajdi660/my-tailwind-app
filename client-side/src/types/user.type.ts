@@ -8,4 +8,5 @@ export interface User {
   provider?: string;
   username?: string;
   verified: any;
+  lastLogin?: string;
 }
