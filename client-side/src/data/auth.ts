@@ -2,6 +2,11 @@ import { APP_URL } from "../configs";
 import { endpoints } from "../services";
 import { FormTitleList, SocialAuthList, FormItemList } from "../types";
 
+interface ThresholdsLastLognBadgeColor {
+  limit: number | any;
+  color: string;
+}
+
 const { OAUTH_GOOGLE_API } = endpoints;
 
 export const titles: FormTitleList = {
@@ -217,3 +222,12 @@ export const formList: FormItemList = {
     },
   ],
 };
+
+export const thresholdsLastLognBadgeColor: ThresholdsLastLognBadgeColor[] = [
+  { limit: 30, color: "green" }, // Less than 30 minutes
+  { limit: 60, color: "yellow" }, // More than 30 minutes but less than 1 hour
+  { limit: 24 * 60, color: "orange" }, // More than 1 hour but less than 24 hours
+  { limit: 24 * 60 * 7, color: "red" }, // More than a day but less than a week
+  { limit: 24 * 60 * 30, color: "purple" }, // More than a week but less than a month
+  { limit: Infinity, color: "gray" }, // More than a month
+];

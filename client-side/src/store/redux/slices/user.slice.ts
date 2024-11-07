@@ -70,6 +70,12 @@ const slice = createSlice({
         state.userLastLogin.push({ id, lastLogin });
       }
     },
+    clearUserLastLogin(state, action) {
+      const userId = action.payload;
+      state.userLastLogin = state.userLastLogin.filter(
+        (user) => user.id === userId
+      );
+    },
     setCurrency(state, action) {
       state.currency = action.payload;
     },
@@ -87,4 +93,5 @@ export const {
   setSavedAuthUser,
   clearSavedAuthUser,
   setUserLastLogin,
+  clearUserLastLogin,
 } = slice.actions;

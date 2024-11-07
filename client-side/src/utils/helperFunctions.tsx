@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import moment from "moment";
 import { GameParams } from "../types";
 
 export const classNames = (...classes: any) => {
@@ -7,9 +8,6 @@ export const classNames = (...classes: any) => {
 
 export const isTokenExpired = (token: string): boolean => {
   const tokenData = JSON.parse(atob(token.split(".")[1]));
-
-  // const expiryTime = tokenData.exp * 1000;
-  // return Date.now() > expiryTime;
 
   const currentTime = dayjs().unix();
   const tokenExpirationTime = tokenData.exp;
@@ -116,4 +114,36 @@ export const getAside = (pathname: string) => {
   const key = pathname.split("/")[1];
   const hasAside = ["browse"]?.includes(key);
   return hasAside;
+};
+
+export const convertTZ = (
+  currDate: string,
+  selectedTimeZone: string = "Europe/Tirane"
+) => {
+  const dateFormat = "DD-MM-YYYY HH:mm:ss";
+  let [date, time] = moment
+    .tz(currDate, selectedTimeZone)
+    .format(dateFormat)
+    .split(" ");
+  return { date, time };
+};
+
+export const convertDayName = (timeAgo: string) => {
+  if (timeAgo === "a minute" || timeAgo === "a few seconds") {
+    return "0m";
+  }
+
+  return timeAgo
+    .replace(" minutes", "m")
+    .replace(" minute", "m")
+    .replace(" hours", "h")
+    .replace(" hour", "h")
+    .replace(" days", "d")
+    .replace(" day", "d")
+    .replace(" weeks", "w")
+    .replace(" week", "w")
+    .replace(" months", "mo")
+    .replace(" month", "mo")
+    .replace(" years", "y")
+    .replace(" year", "y");
 };

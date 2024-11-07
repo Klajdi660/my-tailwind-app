@@ -39,6 +39,8 @@ export const useAuthService = (): AuthService => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { user } = useAppSelector((state) => state.user);
+
   const login = async (values: LoginUserValues): Promise<void> => {
     try {
       dispatch(setLoading(true));
@@ -65,7 +67,7 @@ export const useAuthService = (): AuthService => {
       dispatch(setRToken(rToken));
       dispatch(setUser(user));
       dispatch(setIsAuthenticated(true));
-      dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
+      // dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
 
       localStorage.atoken = aToken;
       localStorage.rtoken = rToken;
@@ -108,7 +110,7 @@ export const useAuthService = (): AuthService => {
       dispatch(setRToken(rToken));
       dispatch(setUser(user));
       dispatch(setIsAuthenticated(true));
-      dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
+      // dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
 
       localStorage.atoken = aToken;
       localStorage.rtoken = rToken;
@@ -231,7 +233,7 @@ export const useAuthService = (): AuthService => {
       dispatch(setAToken(null));
       dispatch(setRToken(null));
       // dispatch(setUser(null));
-      // dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
+      dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
       dispatch(setIsAuthenticated(false));
 
       delete localStorage.atoken;

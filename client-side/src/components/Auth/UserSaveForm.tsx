@@ -1,8 +1,7 @@
-import { FC, useEffect } from "react";
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
+import moment from "moment";
+import { FC, useEffect } from "react";
+import { Tooltip, Badge } from "antd";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
@@ -10,20 +9,22 @@ import {
   useAppSelector,
   clearSavedAuthUser,
   setCurrentAuthUserToken,
+  clearUserLastLogin,
 } from "../../store";
 import { Icon, Image } from "../UI";
 import { userIcon, iconName } from "../../assets";
-import { paths } from "../../data";
-import { Tooltip } from "antd";
+import { paths, thresholdsLastLognBadgeColor } from "../../data";
 import { useAuthService } from "../../services";
-import { classNames, isTokenExpired, nameTruncate } from "../../utils";
-
-dayjs.extend(relativeTime);
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { convertDayName, isTokenExpired, nameTruncate } from "../../utils";
 
 export const UserSaveForm: FC = () => {
   const { logIn, home } = paths;
+
+  let timeZones = moment.tz.names();
+  let usersTimeZone = moment.tz.guess();
+
+  console.log("timeZones :>> ", timeZones);
+  console.log("usersTimeZone :>> ", usersTimeZone);
 
   const { loginSavedUser } = useAuthService();
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ export const UserSaveForm: FC = () => {
 
   const handleRemoveUser = (id: string) => {
     dispatch(clearSavedAuthUser(id));
+    dispatch(clearUserLastLogin(id));
   };
 
   const getValidUsers = () => {
@@ -47,58 +49,31 @@ export const UserSaveForm: FC = () => {
     });
   };
 
-  // const getLastLoginText = (userId: string) => {
-  //   const userLogin = userLastLogin.find((login) => login.id === userId);
-  //   if (userLogin) {
-  //     const lastLoginTime = dayjs(userLogin.lastLogin);
-  //     const durationMinutes = dayjs().diff(lastLoginTime, "minute"); // Calculate the time difference in minutes
-  //     const durationHours = dayjs().diff(lastLoginTime, "hour"); // Calculate the time difference in hours
-
-  //     if (durationMinutes < 60) {
-  //       return `${durationMinutes} minutes ago`; // Less than 1 hour ago
-  //     } else {
-  //       return `${durationHours} hours ago`; // More than 1 hour ago
-  //     }
-  //   }
-  //   return "Not available";
-  // };
-
   const getLastLoginText = (userId: string) => {
     const userLogin = userLastLogin.find((login) => login.id === userId);
-    if (userLogin) {
-      const lastLoginTime = dayjs(userLogin.lastLogin).tz(dayjs.tz.guess()); // Get the user's local timezone
-      const formattedLastLogin = lastLoginTime.format("YYYY-MM-DD HH:mm:ss"); // Format the date
 
-      const durationMinutes = dayjs().diff(lastLoginTime, "minute"); // Calculate the time difference in minutes
-      const durationHours = dayjs().diff(lastLoginTime, "hour"); // Calculate the time difference in hours
-      console.log("formattedLastLogin :>> ", formattedLastLogin);
-      console.log("durationMinutes  :>> ", durationMinutes);
-      console.log("durationHours :>> ", durationHours);
-      console.log("userLogin.lastLogin :>> ", userLogin.lastLogin);
-      if (durationMinutes < 60) {
-        return `${durationMinutes} minutes ago (Last login: ${formattedLastLogin})`; // Less than 1 hour ago
-      } else {
-        return `${durationHours} hours ago (Last login: ${formattedLastLogin})`; // More than 1 hour ago
-      }
-    }
-    return "Not available";
+    if (!userLogin) return "Not available";
+
+    const lastLoginTime = dayjs(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
+    const timeAgo = lastLoginTime.fromNow(true);
+    return convertDayName(timeAgo);
   };
 
   const getLastLoginColor = (userId: string) => {
     const userLogin = userLastLogin.find((login) => login.id === userId);
-    if (userLogin) {
-      const lastLoginTime = dayjs(userLogin.lastLogin);
-      const duration = dayjs().diff(lastLoginTime, "hour"); // Calculate the time difference in hours
 
-      if (duration < 1) {
-        return "bg-green-500";
-      } else if (duration < 24) {
-        return "bg-yellow-500";
-      } else if (duration < 168) {
-        return "bg-red-500";
-      }
-    }
-    return "bg-gray-500";
+    if (!userLogin) return "gray";
+
+    const lastLoginTime = dayjs(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
+    const now = dayjs();
+    const durationInMinutes = now.diff(lastLoginTime, "minute");
+
+    const lastLoginBadgeColor =
+      thresholdsLastLognBadgeColor.find(
+        (threshold) => durationInMinutes < threshold.limit
+      )?.color || "gray";
+
+    return lastLoginBadgeColor;
   };
 
   const onSubmitLoginSavedUserHandler = async (token: string) => {
@@ -175,29 +150,23 @@ export const UserSaveForm: FC = () => {
                 >
                   <p>{nameTruncate(saveAuthUser.email)}</p>
                 </Tooltip>
-                {saveAuthUser.photo ? (
-                  <Image
-                    imgUrl={saveAuthUser.photo}
-                    name="Profile Img"
-                    styles="w-20 h-20 rounded-full object-cover"
-                    effect="blur"
-                  />
-                ) : (
-                  <Image
-                    imgUrl={userIcon}
-                    name="Profile Img"
-                    styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg bg-main"
-                    effect="blur"
-                  />
-                )}
-                <div
-                  className={classNames(
-                    "badge absolute bottom-8 right-0 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs",
-                    badgeColor
+                <Badge count={`${lastLoginUser}`} color={badgeColor}>
+                  {saveAuthUser.photo ? (
+                    <Image
+                      imgUrl={saveAuthUser.photo}
+                      name="Profile Img"
+                      styles="w-20 h-20 rounded-full object-cover"
+                      effect="blur"
+                    />
+                  ) : (
+                    <Image
+                      imgUrl={userIcon}
+                      name="Profile Img"
+                      styles="w-20 h-20 rounded-full p-1 ring-1 ring-onNeutralBg bg-main"
+                      effect="blur"
+                    />
                   )}
-                >
-                  {lastLoginUser.slice(0, 1)}
-                </div>
+                </Badge>
                 <p className="h-4">{saveAuthUser.username}</p>
               </div>
             </button>

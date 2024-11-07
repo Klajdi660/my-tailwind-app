@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { ConfigProvider, theme, App } from "antd";
@@ -12,6 +13,10 @@ import { persistor, store } from "./store";
 import { StylesProvider } from "./providers";
 import { AuthProvider, FormProvider, StoreProvider } from "./contexts";
 
+import relativeTime from "dayjs/plugin/relativeTime";
+import updateLocale from "dayjs/plugin/updateLocale";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
 import "./index.css";
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -20,6 +25,10 @@ import "swiper/swiper-bundle.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "react-lazy-load-image-component/src/effects/opacity.css";
+
+dayjs.extend(customParseFormat);
+dayjs.extend(relativeTime);
+dayjs.extend(updateLocale);
 
 const themeConfig = {
   algorithm: theme.defaultAlgorithm,

@@ -371,6 +371,13 @@ input[type="checkbox"] {
   margin-inline-end: 0 !important;
 }
 
+/* Badge */
+.ant-badge .ant-badge-count {
+  top: 70px;
+  right: 20px;
+  color: #404040;
+  font-weight: 700;
+}
 /* CUSTOM SLIDER */
 :root {
   --swiper-theme-color: white !important;
