@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import moment from "moment";
 import { FC, useEffect } from "react";
 import { Tooltip, Badge } from "antd";
@@ -20,11 +20,11 @@ import { convertDayName, isTokenExpired, nameTruncate } from "../../utils";
 export const UserSaveForm: FC = () => {
   const { logIn, home } = paths;
 
-  let timeZones = moment.tz.names();
-  let usersTimeZone = moment.tz.guess();
+  // let timeZones = moment.tz.names();
+  // let usersTimeZone = moment.tz.guess();
 
-  console.log("timeZones :>> ", timeZones);
-  console.log("usersTimeZone :>> ", usersTimeZone);
+  // console.log("timeZones :>> ", timeZones);
+  // console.log("usersTimeZone :>> ", usersTimeZone);
 
   const { loginSavedUser } = useAuthService();
   const dispatch = useDispatch();
@@ -49,13 +49,22 @@ export const UserSaveForm: FC = () => {
     });
   };
 
+  // const getLastLoginText = (userId: string) => {
+  //   const userLogin = userLastLogin.find((login) => login.id === userId);
+
+  //   if (!userLogin) return "Not available";
+
+  //   const lastLoginTime = dayjs(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
+  //   const timeAgo = lastLoginTime.fromNow(true);
+  //   return convertDayName(timeAgo);
+  // };
   const getLastLoginText = (userId: string) => {
     const userLogin = userLastLogin.find((login) => login.id === userId);
 
     if (!userLogin) return "Not available";
 
-    const lastLoginTime = dayjs(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
-    const timeAgo = lastLoginTime.fromNow(true);
+    const lastLoginTime = moment(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
+    const timeAgo = lastLoginTime.fromNow(true); // `true` removes the "ago" suffix
     return convertDayName(timeAgo);
   };
 
