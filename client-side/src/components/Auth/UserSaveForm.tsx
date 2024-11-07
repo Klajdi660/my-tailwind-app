@@ -64,9 +64,9 @@ export const UserSaveForm: FC = () => {
 
     if (!userLogin) return "gray";
 
-    const lastLoginTime = dayjs(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
-    const now = dayjs();
-    const durationInMinutes = now.diff(lastLoginTime, "minute");
+    const lastLoginTime = moment(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
+    const now = moment();
+    const durationInMinutes = now.diff(lastLoginTime, "minutes");
 
     const lastLoginBadgeColor =
       thresholdsLastLognBadgeColor.find(
@@ -75,6 +75,23 @@ export const UserSaveForm: FC = () => {
 
     return lastLoginBadgeColor;
   };
+
+  // const getLastLoginColor = (userId: string) => {
+  //   const userLogin = userLastLogin.find((login) => login.id === userId);
+
+  //   if (!userLogin) return "gray";
+
+  //   const lastLoginTime = dayjs(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
+  //   const now = dayjs();
+  //   const durationInMinutes = now.diff(lastLoginTime, "minute");
+
+  //   const lastLoginBadgeColor =
+  //     thresholdsLastLognBadgeColor.find(
+  //       (threshold) => durationInMinutes < threshold.limit
+  //     )?.color || "gray";
+
+  //   return lastLoginBadgeColor;
+  // };
 
   const onSubmitLoginSavedUserHandler = async (token: string) => {
     try {
