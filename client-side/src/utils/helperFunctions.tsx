@@ -129,8 +129,10 @@ export const convertTZ = (
 };
 
 export const convertDayName = (timeAgo: string) => {
-  if (timeAgo === "a minute" || timeAgo === "a few seconds") {
+  if (timeAgo === "a few seconds") {
     return "0m";
+  } else if (timeAgo === "a minute") {
+    return "1m";
   }
 
   return timeAgo
