@@ -5,6 +5,7 @@ import {
   GameVideosParams,
   GameReviewsParams,
 } from "./general.type";
+
 export interface FormListItem {
   name: string;
   iconName: string;
@@ -211,26 +212,15 @@ export interface ReviewContentProps {
 }
 
 // Profile
-export interface ChangePasswordProps {
-  // provider: string | any;
-}
-
 export interface ChangePasswordValues {
   newPassword: string;
   currentPassword: string;
   confirmNewPassword: string;
 }
 
-export interface DeleteAccountProps {}
-
-export interface EditProfileProps {}
-
 export interface EditProfileValues {
   username: string;
 }
-
-export interface PersonalDetailsProps {}
-export interface AddressDetailsProps {}
 
 export interface PersonalDetailsValues {
   name?: string;
@@ -239,8 +229,6 @@ export interface PersonalDetailsValues {
   birthday?: string;
   phoneNumber?: string;
 }
-
-export interface UserInfoProps {}
 
 // Section
 export interface MediaSectionProps {
@@ -262,8 +250,6 @@ export interface TopPlaySectionProps {
 }
 
 // Sidebar
-export interface SidebarPorps {}
-
 export interface SideMenuListPorps {
   iconRef: any;
   sidebarLinks: any;
@@ -280,8 +266,6 @@ export interface MediaCardSkeletonProps {
   type: string;
   number: number;
 }
-
-export interface NavlistSkeletonProps {}
 
 export interface SkeletonProps {
   className: string;
@@ -310,22 +294,10 @@ export interface DesktopToggleButtonProps {
   dispatch: any;
 }
 
-export interface LanguageButtonProps {}
-
-export interface MobileToggleButtonProps {}
-
-export interface NotificationButtonProps {}
-
 export interface ThemeButtonProps {
   mode: string;
   dispatch: any;
 }
-
-export interface SessionExpiredProps {}
-
-export interface DeleteProfileProps {}
-export interface SettingsModalProps {}
-export interface PaymentCardProps {}
 
 export interface DeleteProfileValues {
   confirmDelete: string;
@@ -384,8 +356,6 @@ export interface CustomButtonProps {
   handleLinkClick: any;
 }
 
-export interface GlobalLoadingProps {}
-
 export interface IconParams {
   props?: any;
   name: string;
@@ -417,8 +387,6 @@ export interface ImageProps {
   effect?: Effect;
 }
 
-export interface ImgUploaderParams {}
-
 export interface OverlayProps {
   isOpen: boolean;
   handleIsOpen: any;
@@ -427,10 +395,6 @@ export interface OverlayProps {
   transparent?: boolean;
   // handleIsOpen: (value: boolean) => void;
 }
-
-export interface PatternBgProps {}
-
-export interface SocialAuthButtonProps {}
 
 export interface TabProps {
   // tabData: any;
@@ -460,10 +424,6 @@ export interface ShowMoreButtonProps {
 }
 
 // Other Component
-export interface CartSwitcherProps {}
-
-export interface FooterProps {}
-
 export interface FormFieldPorps {
   value: string;
   handleChange: any;
@@ -473,16 +433,10 @@ export interface FormFieldPorps {
   isTextArea: boolean;
 }
 
-export interface HomeFooterProps {}
-
 export interface LanguageProps {
   onSelectLanguage: (language: string) => void;
   setOpen: (open: boolean) => void;
 }
-
-export interface LoadingPorps {}
-
-export interface NavbarProps {}
 
 export interface NotificationProps {
   id: number;
@@ -496,12 +450,7 @@ export interface SearchbarProps {
   setToggleSearch: (value: boolean) => void;
 }
 
-export interface ShowAppProps {}
-
-export interface TopPlayProps {}
-
 // page profile
-export interface ProfileDropdownProps {}
 
 interface Extra {
   gender: string;

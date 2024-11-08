@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { MyGamesPageProps } from "../../types";
 
-export const MyGamesPage: FC<MyGamesPageProps> = () => {
+export const MyGamesPage: FC = () => {
   return (
     <>
       <h1 className="text-onNeutralBg">My Games Page</h1>;

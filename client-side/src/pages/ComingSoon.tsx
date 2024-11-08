@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { FC } from "react";
 import { paths } from "../data";
-import { ComingSoonPageProps } from "../types";
 
-export const ComingSoonPage: FC<ComingSoonPageProps> = () => {
+export const ComingSoonPage: FC = () => {
   const { discover } = paths;
 
   return (

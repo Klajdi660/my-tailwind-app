@@ -5,7 +5,7 @@ import { Image, Icon, Button } from "../UI";
 import { userIcon } from "../../assets";
 import { profileMenuItems } from "../../data";
 import { useAuthService } from "../../services";
-import { UserMenuProps, ProfileDropdownProps } from "../../types";
+import { UserMenuProps } from "../../types";
 import { classNames, useAppModal } from "../../utils";
 import { useAppSelector } from "../../store";
 
@@ -88,7 +88,7 @@ const UserMenu: FC<UserMenuProps> = (props) => {
   );
 };
 
-export const ProfileDropdown: FC<ProfileDropdownProps> = () => {
+export const ProfileDropdown: FC = () => {
   const [open, setOpen] = useState(false);
 
   const { user } = useAppSelector((state) => state.user);

@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { FormTemplate } from "../../components";
 import { useAuthService } from "../../services";
-import { LoginUserValues, LoginPageProps } from "../../types";
+import { LoginUserValues } from "../../types";
 import { loginValidation, useSubmitting } from "../../utils";
 
-export const LoginPage: FC<LoginPageProps> = () => {
+export const LoginPage: FC = () => {
   const { login } = useAuthService();
   const { setIsSubmitting } = useSubmitting();
 

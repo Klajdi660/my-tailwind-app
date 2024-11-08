@@ -45,22 +45,6 @@ export interface NotifyParams {
   description: string | any;
 }
 
-// Provider
-// interface ThemeState {
-//   mode: string;
-//   color: string;
-//   layout: string;
-//   fontFamily: string;
-//   borderRadius: number;
-//   sidebar: "folded" | "full";
-// }
-
-// export interface RootState {
-//   theme: ThemeState;
-// }
-
-// Store
-
 // Utils
 export interface AppUtilState {
   openSwitch: boolean;

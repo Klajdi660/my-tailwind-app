@@ -2,7 +2,6 @@ import {
   LoginUserValues,
   VerifyEmailValues,
   RegisterUserValues,
-  ResetPasswordValues,
   ForgotPasswordValues,
 } from "./page.type";
 
@@ -10,7 +9,7 @@ export interface AuthService {
   resetPassword: (
     hash: string | any,
     email: string | any,
-    data: ResetPasswordValues | any
+    data: any
   ) => Promise<void>;
   logout: () => Promise<void>;
   login: (data: LoginUserValues) => Promise<void>;

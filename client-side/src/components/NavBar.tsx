@@ -13,7 +13,6 @@ import {
   DesktopToggleButton,
 } from "./UI";
 import { paths } from "../data";
-import { NavbarProps } from "../types";
 import { useAppSelector } from "../store";
 import { icon, iconName } from "../assets";
 import { useMediaResponsive } from "../hooks";
@@ -21,7 +20,7 @@ import { defaultThemeConfig } from "../configs";
 import { Searchbar, ProfileDropdown } from "../components";
 import { useAppUtil, classNames, getAside } from "../utils";
 
-export const Navbar: FC<NavbarProps> = () => {
+export const Navbar: FC = () => {
   const { logIn, discover } = paths;
 
   const { isMobile } = useMediaResponsive();

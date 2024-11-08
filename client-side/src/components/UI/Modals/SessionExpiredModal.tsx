@@ -6,7 +6,6 @@ import { Icon } from "../Icon";
 import { Button } from "../Button";
 // import { paths } from "../../../data";
 import { useAppModal } from "../../../utils";
-import { SessionExpiredProps } from "../../../types";
 import {
   setAToken,
   setIsAuthenticated,
@@ -14,7 +13,7 @@ import {
   setUser,
 } from "../../../store";
 
-export const SessionExpiredModal: FC<SessionExpiredProps> = () => {
+export const SessionExpiredModal: FC = () => {
   // const { home, logIn } = paths;
   const { modals, setModalOpen } = useAppModal();
   // const navigate = useNavigate();

@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { StorePageProps } from "../../types";
 
-export const StorePage: FC<StorePageProps> = () => {
+export const StorePage: FC = () => {
   return (
     <>
       <h1 className="text-onNeutralBg">Store Page</h1>;

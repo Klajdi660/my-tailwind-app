@@ -1,12 +1,11 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Button, Icon } from "../UI";
 import { paths } from "../../data";
 import { useAppSelector } from "../../store";
-import { AddressDetailsProps } from "../../types";
 
-export const AddressDetails: FunctionComponent<AddressDetailsProps> = () => {
+export const AddressDetails: FC = () => {
   const { profile } = paths;
 
   const { user } = useAppSelector((state) => state.user);

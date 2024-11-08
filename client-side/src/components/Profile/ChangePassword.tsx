@@ -4,10 +4,10 @@ import { Icon } from "../UI";
 import { changePasswordList } from "../../data";
 import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
-import { ChangePasswordProps, ChangePasswordValues } from "../../types";
+import { ChangePasswordValues } from "../../types";
 import { updatePasswordValidation } from "../../utils";
 
-export const ChangePassword: FC<ChangePasswordProps> = () => {
+export const ChangePassword: FC = () => {
   const { user } = useAppSelector((state) => state.user);
   const { changePassword } = useProfileService();
 

@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FC, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import dayjs from "dayjs";
 import { DatePicker, Select } from "antd";
@@ -7,9 +7,8 @@ import { Button } from "../UI";
 import { genderList, dateFormatList } from "../../data";
 import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
-import { PersonalDetailsProps } from "../../types";
 
-export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
+export const PersonalDetails: FC = () => {
   const { updateProfile } = useProfileService();
 
   const { user } = useAppSelector((state) => state.user);

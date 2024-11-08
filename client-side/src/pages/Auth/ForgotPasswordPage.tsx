@@ -2,9 +2,9 @@ import { FC, useState } from "react";
 import { FormTemplate } from "../../components";
 import { useAuthService } from "../../services";
 import { forgotPassValidation } from "../../utils";
-import { ForgotPasswordValues, ForgotPasswordPagePropes } from "../../types";
+import { ForgotPasswordValues } from "../../types";
 
-export const ForgotPasswordPage: FC<ForgotPasswordPagePropes> = () => {
+export const ForgotPasswordPage: FC = () => {
   const { forgotPassword } = useAuthService();
 
   const [resetPassEmail, setResetEmail] = useState<string>("");

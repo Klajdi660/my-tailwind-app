@@ -7,10 +7,9 @@ import {
   ShippingAddressSettings,
   PaymentSettings,
 } from "../../components";
-import { ProfilePageProps } from "../../types";
 import { useSelectedSettings } from "../../utils";
 
-export const EditProfilePage: FC<ProfilePageProps> = () => {
+export const EditProfilePage: FC = () => {
   const { selectedEditProfileName, selectedSetting } = useSelectedSettings();
 
   const renderEditSettingsContent = () => {

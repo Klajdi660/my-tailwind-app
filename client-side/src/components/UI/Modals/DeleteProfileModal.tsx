@@ -12,9 +12,9 @@ import {
   deleteProfileValidation,
   classNames,
 } from "../../../utils";
-import { DeleteProfileProps, DeleteProfileValues } from "../../../types";
+import { DeleteProfileValues } from "../../../types";
 
-export const DeleteProfileModal: FC<DeleteProfileProps> = () => {
+export const DeleteProfileModal: FC = () => {
   const { user } = useAppSelector((state) => state.user);
   const { deleteProfile } = useProfileService();
   const { modals, setModalOpen } = useAppModal();

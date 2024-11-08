@@ -2,9 +2,8 @@ import { Link } from "react-router-dom";
 import { FC } from "react";
 import { Icon } from "./Icon";
 import { socialAuthList } from "../../data";
-import { SocialAuthButtonProps } from "../../types";
 
-export const SocialAuthButton: FC<SocialAuthButtonProps> = () => {
+export const SocialAuthButton: FC = () => {
   return (
     <div className="flex flex-col gap-3 social_medium_buttons">
       {socialAuthList.map((item) => (

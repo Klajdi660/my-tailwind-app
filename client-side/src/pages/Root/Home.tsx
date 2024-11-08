@@ -5,7 +5,6 @@ import { paths } from "../../data";
 import { iconName } from "../../assets";
 import { classNames } from "../../utils";
 import { useGameHook } from "../../hooks";
-import { HomePageProps } from "../../types";
 import { useAppSelector } from "../../store";
 import { Image, Button, PlatformIconList } from "../../components";
 
@@ -16,7 +15,7 @@ const getBackgroundStyle = (imageUrl: string | undefined) => ({
   backgroundRepeat: "no-repeat",
 });
 
-export const HomePage: FC<HomePageProps> = () => {
+export const HomePage: FC = () => {
   const { logIn, accountSaved, home } = paths;
 
   const { useGameSlider, useGameDetail } = useGameHook();

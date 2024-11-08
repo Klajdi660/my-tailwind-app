@@ -4,10 +4,9 @@ import { CartBody, CartEmpty, CartHeader } from "../Cart";
 import { Checkout } from "../Checkout/Checkout";
 import { useCart } from "../../hooks";
 import { useAppSelector } from "../../store";
-import { CartSwitcherProps } from "../../types";
 import { useAppUtil } from "../../utils";
 
-export const CartSwitcher: FC<CartSwitcherProps> = () => {
+export const CartSwitcher: FC = () => {
   const { setOpenSwitch } = useAppUtil();
   const { removeGameSelected } = useCart();
 

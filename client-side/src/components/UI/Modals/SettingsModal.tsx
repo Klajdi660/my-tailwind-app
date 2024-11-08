@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 import { SmallModal } from "./ModalContent";
 import { useAppModal, classNames } from "../../../utils";
-import { SettingsModalProps } from "../../../types";
 import { settingsLinks } from "../../../data";
 import { Icon } from "../Icon";
 import {
@@ -10,7 +9,7 @@ import {
   ShippingAddrSetting,
 } from "../../Settings";
 
-export const SettingsModal: FC<SettingsModalProps> = () => {
+export const SettingsModal: FC = () => {
   const { modals, setModalOpen } = useAppModal();
 
   const [selectedSetting, setSelectedSetting] = useState(settingsLinks[0].id);

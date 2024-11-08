@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import { FormTemplate } from "../../components";
 import { verifyValidation } from "../../utils";
 import { useAuthService } from "../../services";
-import { VerifyEmailPagePorps, VerifyEmailValues } from "../../types";
+import { VerifyEmailValues } from "../../types";
 
-export const VerifyEmailPage: FC<VerifyEmailPagePorps> = () => {
+export const VerifyEmailPage: FC = () => {
   const location = useLocation();
   const { emailVerify, register } = useAuthService();
 

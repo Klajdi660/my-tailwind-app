@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import { FC } from "react";
 import { Icon } from "./UI";
-import { FooterProps } from "../types";
 import { pageLink, downloadBtnList } from "../data";
 
-export const Footer: FC<FooterProps> = () => {
+export const Footer: FC = () => {
   return (
     <div className="footer">
       <div className="py-4 border-t border-divider">

@@ -9,7 +9,6 @@ import { Image } from "../Image";
 import { Button } from "../Button";
 import { addNewCard } from "../../../store";
 import { useAppModal } from "../../../utils";
-import { PaymentCardProps } from "../../../types";
 import {
   cardMonthList,
   cardYearList,
@@ -51,7 +50,7 @@ const cvvContent = (
   </div>
 );
 
-export const PaymentCardModal: FC<PaymentCardProps> = () => {
+export const PaymentCardModal: FC = () => {
   const { modals, setModalOpen } = useAppModal();
 
   const dispatch = useDispatch();

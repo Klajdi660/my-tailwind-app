@@ -1,11 +1,10 @@
-import { FC, Fragment } from "react";
+import { FC } from "react";
 import { Button, Image } from "../UI";
-import { EditProfileProps } from "../../types";
 import { useAppModal, useProfilePhoto } from "../../utils";
 import { useAppSelector } from "../../store";
 import { userIcon, iconName } from "../../assets";
 
-export const EditProfile: FC<EditProfileProps> = () => {
+export const EditProfile: FC = () => {
   const { setModalOpen } = useAppModal();
   const { isUpdatingProfileImg, setPhotoType } = useProfilePhoto();
 

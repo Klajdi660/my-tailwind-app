@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { CollectionPageProps } from "../../types";
 
-export const CollectionPage: FC<CollectionPageProps> = () => {
+export const CollectionPage: FC = () => {
   return (
     <>
       <h1 className="text-onNeutralBg">Collection Page</h1>;

@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { FC } from "react";
 import { paths } from "../data";
-import { ErrorPageProps } from "../types";
 
-export const ErrorPage: FC<ErrorPageProps> = () => {
+export const ErrorPage: FC = () => {
   const { home } = paths;
 
   return (

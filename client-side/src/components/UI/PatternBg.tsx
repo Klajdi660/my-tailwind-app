@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { PatternBgProps } from "../../types";
 
-export const PatternBg: FC<PatternBgProps> = () => {
+export const PatternBg: FC = () => {
   const gradientClass = "bg-gradient-to-l from-card to-primary";
 
   return (

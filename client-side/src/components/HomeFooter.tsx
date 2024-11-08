@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import { FC } from "react";
 import { Image, Icon } from "./UI";
 import { icon } from "../assets";
-import { HomeFooterProps } from "../types";
 import { topFooter, bottomFooter } from "../data";
 
-export const HomeFooter: FC<HomeFooterProps> = () => {
+export const HomeFooter: FC = () => {
   return (
     <div
       className=""

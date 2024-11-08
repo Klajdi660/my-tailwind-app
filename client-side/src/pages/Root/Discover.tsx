@@ -1,11 +1,10 @@
 import { FC, useRef, useState } from "react";
-import { DiscoverPageProps } from "../../types";
 import { GameGenreList, Title } from "../../components";
 import { useGameHook } from "../../hooks";
 import { Icon } from "../../components/UI";
 import { classNames } from "../../utils";
 
-export const DiscoverPage: FC<DiscoverPageProps> = () => {
+export const DiscoverPage: FC = () => {
   const { useGameGenreList } = useGameHook();
 
   const { gameGenreList } = useGameGenreList();

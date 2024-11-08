@@ -3,7 +3,6 @@ import { Tooltip } from "antd";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { FC, useMemo, useState, useEffect } from "react";
 import { navlinks, paths } from "../../data";
-import { SidebarPorps } from "../../types";
 import { Icon, Overlay, Image } from "../UI";
 import { useAuth, useNotification, useMediaResponsive } from "../../hooks";
 import { defaultThemeConfig, themeConfig } from "../../configs";
@@ -47,7 +46,7 @@ const User = () => {
   );
 };
 
-export const Sidebar: FC<SidebarPorps> = () => {
+export const Sidebar: FC = () => {
   const { pathname } = useLocation();
   const { isAuthenticated } = useAuth();
   const { isMobile } = useMediaResponsive();

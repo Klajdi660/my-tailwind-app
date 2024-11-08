@@ -3,10 +3,10 @@ import { FC, useState } from "react";
 import { Icon } from "../Icon";
 import { useAppSelector } from "../../../store";
 import { Language } from "../../Language";
-import { LanguageButtonProps } from "../../../types";
 
-export const LanguageButton: FC<LanguageButtonProps> = (props) => {
+export const LanguageButton: FC = () => {
   const { user } = useAppSelector((state) => state.user);
+
   const [open, setOpen] = useState(false);
 
   const hide = () => {

@@ -3,9 +3,8 @@ import { FC, useState } from "react";
 import { Icon } from "../Icon";
 import { notificationList } from "../../../data";
 import { Notification } from "../../Notification";
-import { NotificationButtonProps } from "../../../types";
 
-export const NotificationButton: FC<NotificationButtonProps> = () => {
+export const NotificationButton: FC = () => {
   const [open, setOpen] = useState(false);
 
   // const hide = () => {

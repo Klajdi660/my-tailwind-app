@@ -6,9 +6,7 @@ import { Button } from "../UI";
 import { useAppModal } from "../../utils";
 import { recommendedCountries } from "../../data";
 
-interface ShippingAddrSettingProps {}
-
-export const ShippingAddrSetting: FC<ShippingAddrSettingProps> = (props) => {
+export const ShippingAddrSetting: FC = (props) => {
   const { setModalOpen } = useAppModal();
 
   const allCountries = Country.getAllCountries();

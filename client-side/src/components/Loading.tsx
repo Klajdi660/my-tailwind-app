@@ -1,11 +1,10 @@
 import { FC, useEffect, useState } from "react";
 import { Image } from "./UI";
-import { useStore } from "../hooks";
+// import { useStore } from "../hooks";
 import { iconName } from "../assets";
-import { LoadingPorps } from "../types";
 import { useAppSelector } from "../store";
 
-export const Loading: FC<LoadingPorps> = () => {
+export const Loading: FC = () => {
   // const { loading } = useStore();
   const { loading } = useAppSelector((state) => state.auth);
 
