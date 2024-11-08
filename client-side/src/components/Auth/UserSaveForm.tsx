@@ -12,19 +12,13 @@ import {
   clearUserLastLogin,
 } from "../../store";
 import { Icon, Image } from "../UI";
-import { userIcon, iconName } from "../../assets";
-import { paths, thresholdsLastLognBadgeColor } from "../../data";
 import { useAuthService } from "../../services";
-import { convertDayName, isTokenExpired, nameTruncate } from "../../utils";
+import { userIcon, iconName } from "../../assets";
+import { paths, thresholdsLastLognBadgeColor, dateFormat } from "../../data";
+import { convertTimeAgoName, isTokenExpired, nameTruncate } from "../../utils";
 
 export const UserSaveForm: FC = () => {
   const { logIn, home } = paths;
-
-  // let timeZones = moment.tz.names();
-  // let usersTimeZone = moment.tz.guess();
-
-  // console.log("timeZones :>> ", timeZones);
-  // console.log("usersTimeZone :>> ", usersTimeZone);
 
   const { loginSavedUser } = useAuthService();
   const dispatch = useDispatch();
@@ -49,23 +43,15 @@ export const UserSaveForm: FC = () => {
     });
   };
 
-  // const getLastLoginText = (userId: string) => {
-  //   const userLogin = userLastLogin.find((login) => login.id === userId);
-
-  //   if (!userLogin) return "Not available";
-
-  //   const lastLoginTime = dayjs(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
-  //   const timeAgo = lastLoginTime.fromNow(true);
-  //   return convertDayName(timeAgo);
-  // };
   const getLastLoginText = (userId: string) => {
     const userLogin = userLastLogin.find((login) => login.id === userId);
 
     if (!userLogin) return "Not available";
 
-    const lastLoginTime = moment(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
-    const timeAgo = lastLoginTime.fromNow(true); // `true` removes the "ago" suffix
-    return convertDayName(timeAgo);
+    const lastLoginTime = moment(userLogin.lastLogin, dateFormat);
+    const timeAgo = lastLoginTime.fromNow(true);
+    console.log("timeAgo :>> ", timeAgo);
+    return convertTimeAgoName(timeAgo);
   };
 
   const getLastLoginColor = (userId: string) => {
@@ -73,7 +59,7 @@ export const UserSaveForm: FC = () => {
 
     if (!userLogin) return "gray";
 
-    const lastLoginTime = moment(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
+    const lastLoginTime = moment(userLogin.lastLogin, dateFormat);
     const now = moment();
     const durationInMinutes = now.diff(lastLoginTime, "minutes");
 
@@ -84,23 +70,6 @@ export const UserSaveForm: FC = () => {
 
     return lastLoginBadgeColor;
   };
-
-  // const getLastLoginColor = (userId: string) => {
-  //   const userLogin = userLastLogin.find((login) => login.id === userId);
-
-  //   if (!userLogin) return "gray";
-
-  //   const lastLoginTime = dayjs(userLogin.lastLogin, "DD-MM-YYYY HH:mm:ss");
-  //   const now = dayjs();
-  //   const durationInMinutes = now.diff(lastLoginTime, "minute");
-
-  //   const lastLoginBadgeColor =
-  //     thresholdsLastLognBadgeColor.find(
-  //       (threshold) => durationInMinutes < threshold.limit
-  //     )?.color || "gray";
-
-  //   return lastLoginBadgeColor;
-  // };
 
   const onSubmitLoginSavedUserHandler = async (token: string) => {
     try {

@@ -38,7 +38,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
     address: address,
     postalCode: postalCode,
   };
-
+  console.log("defaultValues :>> ", defaultValues);
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
     label: `${country.flag} ${country.name}`,
@@ -146,7 +146,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <Controller
               name="dateOfBirth"
               control={control}
-              defaultValue={defaultValues.dateOfBirth}
+              // defaultValue={defaultValues.dateOfBirth || null}
               render={({ field }) => (
                 <DatePicker
                   {...field}
@@ -169,7 +169,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <Controller
               name="gender"
               control={control}
-              defaultValue={defaultValues.gender}
+              defaultValue={defaultValues.gender || null}
               render={({ field }) => (
                 <Select
                   {...field}
@@ -231,9 +231,7 @@ export const PersonalDetails: FunctionComponent<PersonalDetailsProps> = () => {
             <Controller
               name="country"
               control={control}
-              defaultValue={
-                defaultValues.country ? defaultValues.country : null
-              }
+              defaultValue={defaultValues.country || null}
               render={({ field }) => (
                 <Select
                   {...field}

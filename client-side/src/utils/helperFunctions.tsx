@@ -128,14 +128,15 @@ export const convertTZ = (
   return { date, time };
 };
 
-export const convertDayName = (timeAgo: string) => {
-  if (timeAgo === "a few seconds") {
-    return "0m";
-  } else if (timeAgo === "a minute") {
-    return "1m";
-  }
-
+export const convertTimeAgoName = (timeAgo: string) => {
   return timeAgo
+    .replace("a few seconds", "0m")
+    .replace("a minute", "1m")
+    .replace("an hour", "1h")
+    .replace("a day", "1d")
+    .replace("a week", "1w")
+    .replace("a month", "mo")
+    .replace("a year", "1y")
     .replace(" minutes", "m")
     .replace(" minute", "m")
     .replace(" hours", "h")

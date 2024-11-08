@@ -117,6 +117,7 @@ import {
   RiInstagramFill,
   RiSecurePaymentLine,
   RiArrowUpLine,
+  RiTimeZoneLine,
 } from "react-icons/ri";
 import {
   SlArrowUp,
@@ -236,6 +237,7 @@ const icons: IconsMap = {
   RiInstagramFill,
   RiSecurePaymentLine,
   RiArrowUpLine,
+  RiTimeZoneLine,
   SlArrowUp,
   SlLocationPin,
   SlSocialDropbox,

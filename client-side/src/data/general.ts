@@ -14,6 +14,8 @@ import {
 } from "../types";
 import { alFlag, shFlag } from "../assets";
 
+export const dateFormat = "DD-MM-YYYY HH:mm:ss";
+
 export const paths: PathProperties = {
   home: "/",
   logIn: "/login",

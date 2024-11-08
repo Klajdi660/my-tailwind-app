@@ -22,8 +22,8 @@ export const themeList: SettingListParams[] = [
 ];
 
 export const languageList: SettingListParams[] = [
-  { value: "Albanian", label: "Albanian" },
-  { value: "English", label: "English" },
+  { value: "al", label: "Albanian" },
+  { value: "en", label: "English" },
 ];
 
 export const currencyList: CurrListParams = {

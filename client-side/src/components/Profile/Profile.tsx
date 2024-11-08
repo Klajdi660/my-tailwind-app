@@ -125,21 +125,21 @@ export const Profile: FC<ProfileProps> = () => {
               className={classNames(
                 "flex items-center px-3 py-0.5 text-primary rounded-full border border-dashed",
                 isVerify
-                  ? "border-green-700 text-green-700"
+                  ? "border-green-600 text-green-600"
                   : "border border-primary"
               )}
               disabled={isVerify}
             >
-              <Icon
+              {/* <Icon
                 name="MdOutlineVerifiedUser"
                 className={classNames(
-                  isVerify ? "text-green-700" : "text-primary"
+                  isVerify ? "text-green-600" : "text-primary"
                 )}
                 size={18}
-              />
+              /> */}
               <p
                 className={classNames(
-                  isVerify ? "text-green-700" : "text-primary"
+                  isVerify ? "text-green-600" : "text-primary"
                 )}
               >
                 {verifyType}
@@ -158,6 +158,7 @@ export const Profile: FC<ProfileProps> = () => {
           </div>
         </div>
       </div>
+
       <div className="flex flex-col gap-6 bg-card rounded p-8 text-onNeutralBg">
         <div className="flex flex_justify_between">
           <h5 className="text-xl font-semibold">Personal Details</h5>
@@ -171,14 +172,14 @@ export const Profile: FC<ProfileProps> = () => {
             <Icon name="MdOutlineEdit" size={28} />
           </button>
         </div>
-        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+        <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-6">
           <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="FaRegUser" />
             </button>
             <div>
               <p className="text-secondary">First Name</p>
-              <p>{firstName}</p>
+              <p>{firstName || "Your first name"}</p>
             </div>
           </div>
           <div className="flex w-full gap-4 ">
@@ -187,18 +188,16 @@ export const Profile: FC<ProfileProps> = () => {
             </button>
             <div>
               <p className="text-secondary">Last Name</p>
-              <p>{lastName}</p>
+              <p>{lastName || "Your last name"}</p>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
           <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="MdCalendarMonth" />
             </button>
             <div>
               <p className="text-secondary">Birthday</p>
-              <p>{dateOfBirth}</p>
+              <p>{dateOfBirth || "Your birthday"}</p>
             </div>
           </div>
           <div className="flex w-full gap-4">
@@ -207,35 +206,29 @@ export const Profile: FC<ProfileProps> = () => {
             </button>
             <div>
               <p className="text-secondary">Gender</p>
-              <p>{gender}</p>
+              <p>{gender || "Your gender"}</p>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
           <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="MdPhoneIphone" />
             </button>
             <div>
               <p className="text-secondary">Contact Number</p>
-              <p>
-                {phonePrefix}
-                {phoneNumber}
-              </p>
+              <p>{`${phonePrefix} ${phoneNumber}` || "Your contact number"}</p>
             </div>
           </div>
-          <div className="w-full"></div>
         </div>
 
         <h5 className="text-xl font-semibold pt-6">Address Details</h5>
-        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+        <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-6">
           <div className="flex w-full gap-4 ">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="MdOutlineLocationSearching" />
             </button>
             <div>
               <p className="text-secondary">Country</p>
-              <p>{country}</p>
+              <p>{country || "Your country name"}</p>
             </div>
           </div>
           <div className="flex w-full gap-4">
@@ -244,18 +237,16 @@ export const Profile: FC<ProfileProps> = () => {
             </button>
             <div>
               <p className="text-secondary">City</p>
-              <p>{city}</p>
+              <p>{city || "Your city name"}</p>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
           <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="SlLocationPin" />
             </button>
             <div>
               <p className="text-secondary">Address Line</p>
-              <p>{address}</p>
+              <p>{address || "Your address line"}</p>
             </div>
           </div>
           <div className="flex w-full gap-4">
@@ -264,7 +255,7 @@ export const Profile: FC<ProfileProps> = () => {
             </button>
             <div>
               <p className="text-secondary">Postal Code</p>
-              <p>{postalCode}</p>
+              <p>{postalCode || "Your postal code"}</p>
             </div>
           </div>
         </div>
@@ -283,14 +274,14 @@ export const Profile: FC<ProfileProps> = () => {
             <Icon name="MdOutlineEdit" size={28} />
           </button>
         </div>
-        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+        <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-6">
           <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="FaRegUser" />
             </button>
             <div>
               <p className="text-secondary">Full Name</p>
-              <p>Full Name</p>
+              <p>Your full name</p>
             </div>
           </div>
           <div className="flex w-full gap-4">
@@ -299,18 +290,17 @@ export const Profile: FC<ProfileProps> = () => {
             </button>
             <div>
               <p className="text-secondary">Contact Number</p>
-              <p>Contact Number</p>
+              <p>Your contact number</p>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+
           <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="MdOutlineLocationSearching" />
             </button>
             <div>
               <p className="text-secondary">Counrty</p>
-              <p>Country Name</p>
+              <p>Your country name</p>
             </div>
           </div>
           <div className="flex w-full gap-4">
@@ -319,18 +309,16 @@ export const Profile: FC<ProfileProps> = () => {
             </button>
             <div>
               <p className="text-secondary">State</p>
-              <p>State Name</p>
+              <p>Your state name</p>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
           <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="SlLocationPin" />
             </button>
             <div>
               <p className="text-secondary">City</p>
-              <p>City Name</p>
+              <p>Your city name</p>
             </div>
           </div>
           <div className="flex w-full gap-4">
@@ -339,18 +327,16 @@ export const Profile: FC<ProfileProps> = () => {
             </button>
             <div>
               <p className="text-secondary">Street</p>
-              <p>Street Name</p>
+              <p>Your street name</p>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
           <div className="flex w-full gap-4">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="TbBuildingWarehouse" />
             </button>
             <div>
               <p className="text-secondary">Build Number</p>
-              <p>Build Number</p>
+              <p>Your build number</p>
             </div>
           </div>
           <div className="flex w-full gap-4">
@@ -359,7 +345,7 @@ export const Profile: FC<ProfileProps> = () => {
             </button>
             <div>
               <p className="text-secondary">Zip Code</p>
-              <p>Zip Code</p>
+              <p>Your zip code</p>
             </div>
           </div>
         </div>
@@ -378,14 +364,23 @@ export const Profile: FC<ProfileProps> = () => {
             <Icon name="MdOutlineEdit" size={28} />
           </button>
         </div>
-        <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+        <div className="grid grid-cols-2 gap-6">
           <div className="flex w-full gap-4 ">
             <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
               <Icon name="BiWorld" />
             </button>
             <div>
               <p className="text-secondary">Language</p>
-              <p>Language Type</p>
+              <p>Language type</p>
+            </div>
+          </div>
+          <div className="flex w-full gap-4 ">
+            <button className="w-12 h-12 rounded-full flex_justify_center border border-gray-300">
+              <Icon name="RiTimeZoneLine" size={22} />
+            </button>
+            <div>
+              <p className="text-secondary">Time Zones</p>
+              <p>Your time zones</p>
             </div>
           </div>
           <div className="flex w-full gap-4 ">
@@ -394,7 +389,7 @@ export const Profile: FC<ProfileProps> = () => {
             </button>
             <div>
               <p className="text-secondary">Currency</p>
-              <p>Currency Type</p>
+              <p>Currency type</p>
             </div>
           </div>
         </div>
