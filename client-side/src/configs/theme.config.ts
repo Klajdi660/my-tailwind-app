@@ -10,7 +10,8 @@ export const themeConfig: ThemeConfig = {
   },
   sidebars: {
     folded: "80",
-    full: "200",
+    // full: "200"
+    full: "240",
   },
   modes: ["light", "dark"],
   players: ["lined", "boxed"],

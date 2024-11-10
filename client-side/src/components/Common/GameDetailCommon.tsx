@@ -92,7 +92,7 @@ export const GameGenreList: FC<GameGenreListProps> = (props) => {
               className={classNames(
                 "flex_justify_center flex-col w-full h-full gap-2 p-4 rounded-xl transition duration-300 relative group",
                 selectedGenreId === genre.id
-                  ? "bg-primary"
+                  ? "bg-primary-opacity"
                   : "bg-card hover:bg-primary-opacity hover:brightness-110"
               )}
             >
@@ -104,7 +104,8 @@ export const GameGenreList: FC<GameGenreListProps> = (props) => {
               />
               <span
                 className={classNames(
-                  selectedGenreId === genre.id && "text-white"
+                  selectedGenreId === genre.id && "text-primary",
+                  "hover:text-primary"
                 )}
               >
                 {nameTruncate(genre.name, 14)} Games

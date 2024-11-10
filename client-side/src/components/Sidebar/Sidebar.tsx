@@ -113,9 +113,7 @@ export const Sidebar: FC = () => {
         //   onMouseOut: () => setToggleNav(false),
         // }}
         {...(toggleNav && { style: { width: `${hoverWidth}px` } })}
-        className={classNames(
-          "nav-list overflow-auto hide_scrollbar relative top-navbar sidebar_height w-sidebar duration-500 transition-all pb-[100px] bg-sidebar"
-        )}
+        className="nav-list overflow-auto hide_scrollbar relative top-navbar sidebar_height w-sidebar duration-500 transition-all pb-[100px] bg-sidebar"
       >
         <div
           className={classNames(
@@ -162,7 +160,7 @@ export const Sidebar: FC = () => {
                         <Icon
                           name={link.icon}
                           className={classNames(
-                            "group-hover:!text-primary",
+                            "text-onNeutralBg group-hover:!text-primary",
                             pathname.includes(link.to) && "!text-primary"
                           )}
                           size={20}

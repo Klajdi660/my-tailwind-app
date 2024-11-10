@@ -84,7 +84,7 @@ export const Navbar: FC = () => {
             <MobileToggleButton />
           </div>
           {!isMobile && (
-            <div className="flex items-center h-full gap-4 nav-icons">
+            <div className="flex items-center h-full gap-2 nav-icons">
               {atoken !== null ? (
                 <>
                   <CartButton />

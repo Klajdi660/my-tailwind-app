@@ -22,8 +22,8 @@ export const CartButton: FC<CartButtonProps> = () => {
             </span>
           </div>
         )}
-        <div className="w-12 h-12 transition-colors duration-500 rounded flex_justify_center bg-primary-opacity group-hover:bg-primary">
-          <Icon name="FaOpencart" className="group-hover:!text-white" />
+        <div className="w-10 h-10 transition-colors duration-500 rounded-full flex_justify_center group-hover:bg-primary-opacity">
+          <Icon name="FaOpencart" className="group-hover:text-primary" />
         </div>
       </div>
     </div>

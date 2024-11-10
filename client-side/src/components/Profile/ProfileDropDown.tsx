@@ -30,7 +30,7 @@ const UserMenu: FC<UserMenuProps> = (props) => {
     <div className="p-2 space-y-2 min-w-[300px]">
       {email && (
         <div
-          className="gap-2 p-3 rounded flex_justify_between hover:bg-primary-opacity cursor-pointer"
+          className="gap-2 p-3 rounded flex_justify_between hover:bg-primary-opacity cursor-pointer group"
           onClick={menuItems[0].onClick}
         >
           {extra?.avatar ? (
@@ -48,16 +48,18 @@ const UserMenu: FC<UserMenuProps> = (props) => {
               effect="blur"
             />
           )}
-          <div className="flex flex-col flex-1 text-sm text-secondary hover:text-primary">
-            <span className="break-all text-onNeutralBg">
+          <div className="flex flex-col flex-1 text-sm text-secondary">
+            <span className="break-all text-onNeutralBg group-hover:text-primary">
               {extra?.firstName} {extra?.lastName}
             </span>
-            <span className="text-secondary">@{username}</span>
+            <span className="text-secondary group-hover:text-primary">
+              @{username}
+            </span>
           </div>
         </div>
       )}
 
-      <hr className="w-full border-t border-divider" />
+      {/* <hr className="w-full border-t border-divider" /> */}
 
       <div className="text-onNeutralBg relative flex flex-col gap-3 p-4 overflow-hidden rounded bg-main">
         <h5 className="text-lg font-semibold">Upgrade your plan</h5>
@@ -67,7 +69,7 @@ const UserMenu: FC<UserMenuProps> = (props) => {
         <div className="absolute w-[200px] h-[200px] border-[3px] rounded-full border-primary top-[135px] right-[-70px]" />
       </div>
 
-      <hr className="w-full border-t border-divider" />
+      {/* <hr className="w-full border-t border-divider" /> */}
 
       <ul className="list-none divide divide-divider">
         {menuItems.map((item) => (

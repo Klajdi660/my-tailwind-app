@@ -55,7 +55,7 @@ export const UserDetails: FC = () => {
         </div>
       </div>
       <div className="relative flex justify-between items-center px-8 mt-[-50px]">
-        <div className="relative w-40 h-40 rounded-full ring-2 ring-white bg-white">
+        <button className="relative w-40 h-40 rounded-full ring-2 ring-white bg-white">
           {avatar ? (
             <Image
               imgUrl={avatar}
@@ -84,7 +84,7 @@ export const UserDetails: FC = () => {
               <div className="absolute inset-1 bg-gray-400 backdrop-filter backdrop-blur-md bg-opacity-10 rounded-full" />
             </>
           )}
-        </div>
+        </button>
         <button
           className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity"
           onClick={() => {
@@ -97,25 +97,25 @@ export const UserDetails: FC = () => {
       </div>
       <div className="flex flex-col gap-4 p-8 text-onNeutralBg">
         <div className="flex items-center gap-2">
-          <p className="text-2xl font-semibold">
+          <button className="text-2xl font-semibold rounded hover:bg-primary-opacity">
             {firstName} {lastName}
-          </p>
+          </button>
           <button
             className={classNames(
-              "flex items-center px-3 py-0.5 text-primary rounded-full border border-dashed",
+              "flex items-center gap-1 px-4 text-primary rounded-full border border-dashed",
               isVerify
                 ? "border-green-600 text-green-600"
                 : "border border-primary"
             )}
             disabled={isVerify}
           >
-            {/* <Icon
-          name="MdOutlineVerifiedUser"
-          className={classNames(
-            isVerify ? "text-green-600" : "text-primary"
-          )}
-          size={18}
-        /> */}
+            <Icon
+              name="MdOutlineVerifiedUser"
+              className={classNames(
+                isVerify ? "text-green-600" : "text-primary"
+              )}
+              size={16}
+            />
             <p
               className={classNames(
                 isVerify ? "text-green-600" : "text-primary"

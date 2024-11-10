@@ -252,7 +252,7 @@ const icons: IconsMap = {
 export const Icon: FC<IconParams> = ({
   name = "MdHome",
   size = 20,
-  className = "",
+  className = "text-onNeutralBg",
   onClick,
   ...props
 }) => {
@@ -261,8 +261,8 @@ export const Icon: FC<IconParams> = ({
   return (
     <IconContext.Provider
       value={{
-        // className: classNames("text-onNeutralBg", className),
-        className: classNames(className, "text-onNeutralBg"),
+        className: classNames(className),
+        // className: classNames(className),
         ...props,
       }}
     >
