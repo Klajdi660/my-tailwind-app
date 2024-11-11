@@ -1,4 +1,3 @@
-// import dayjs from "dayjs";
 import moment from "moment";
 import { FC, useEffect } from "react";
 import { Tooltip, Badge } from "antd";
@@ -50,7 +49,7 @@ export const UserSaveForm: FC = () => {
 
     const lastLoginTime = moment(userLogin.lastLogin, dateFormat);
     const timeAgo = lastLoginTime.fromNow(true);
-    console.log("timeAgo :>> ", timeAgo);
+
     return convertTimeAgoName(timeAgo);
   };
 

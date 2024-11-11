@@ -27,8 +27,13 @@ export const UserDetails: FC = () => {
   const verifyType = verified === "1" ? "Verified" : "Verify now";
   const isVerify = verified === "1";
 
-  const handleModalOpen = () => {
+  const handleCoverModalOpen = () => {
     setPhotoType("cover");
+    setModalOpen("changeProfilePhotoModal", true);
+  };
+
+  const handleProfileModalOpen = () => {
+    setPhotoType("profilPhoto");
     setModalOpen("changeProfilePhotoModal", true);
   };
 
@@ -50,12 +55,15 @@ export const UserDetails: FC = () => {
             labelIcon="MdOutlineCameraAlt"
             className="text-onNeutralBg bg-primary-opacity group-hover:bg-primary group-hover:text-white"
             iconClassName="group-hover:text-white"
-            onClick={handleModalOpen}
+            onClick={handleCoverModalOpen}
           />
         </div>
       </div>
       <div className="relative flex justify-between items-center px-8 mt-[-50px]">
-        <button className="relative w-40 h-40 rounded-full ring-2 ring-white bg-white">
+        <button
+          className="relative w-40 h-40 rounded-full ring-0 ring-white bg-white"
+          onClick={handleProfileModalOpen}
+        >
           {avatar ? (
             <Image
               imgUrl={avatar}
@@ -97,7 +105,10 @@ export const UserDetails: FC = () => {
       </div>
       <div className="flex flex-col gap-4 p-8 text-onNeutralBg">
         <div className="flex items-center gap-2">
-          <button className="text-2xl font-semibold rounded hover:bg-primary-opacity">
+          <button
+            className="text-2xl font-semibold rounded hover:bg-primary-opacity"
+            onClick={() => setModalOpen("profileNameModal", true)}
+          >
             {firstName} {lastName}
           </button>
           <button

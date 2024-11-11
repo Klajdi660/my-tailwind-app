@@ -1,7 +1,21 @@
 import { paths } from "./general";
 import { ProfileItemList, GenderProperties, ProfileMenuItems } from "../types";
+import { avatar1, avatar2, avatar3, avatar4 } from "../assets";
+
+interface AvatarProfileList {
+  id: number;
+  name: string;
+  size: string;
+}
 
 const { profile, editProfile } = paths;
+
+export const avatarProfileList: AvatarProfileList[] = [
+  { id: 1, name: avatar1, size: "w-28 h-28" },
+  { id: 2, name: avatar2, size: "w-24 h-24" },
+  { id: 3, name: avatar3, size: "w-20 h-20" },
+  { id: 4, name: avatar4, size: "w-16 h-16" },
+];
 
 export const profileList: ProfileItemList[] = [
   {

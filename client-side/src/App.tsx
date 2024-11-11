@@ -13,6 +13,8 @@ import { persistor, store } from "./store";
 import { StylesProvider } from "./providers";
 import { AuthProvider, FormProvider, StoreProvider } from "./contexts";
 
+// import utc from "dayjs/plugin/utc";
+// import timezone from "dayjs/plugin/timezone";
 // import relativeTime from "dayjs/plugin/relativeTime";
 // import updateLocale from "dayjs/plugin/updateLocale";
 // import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -26,9 +28,11 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "react-lazy-load-image-component/src/effects/opacity.css";
 
-// dayjs.extend(customParseFormat);
+// dayjs.extend(utc);
+// dayjs.extend(timezone);
 // dayjs.extend(relativeTime);
 // dayjs.extend(updateLocale);
+// dayjs.extend(customParseFormat);
 
 const themeConfig = {
   algorithm: theme.defaultAlgorithm,

@@ -5,6 +5,7 @@ import { DeleteProfileModal } from "./DeleteProfileModal";
 import { SessionExpiredModal } from "./SessionExpiredModal";
 import { ChangeProfilePhotoModal } from "./ChangeProfilePhotoModal";
 import { ChangeUsernameModal } from "./ChangeUsernameModal";
+import { ProfileNameModal } from "./ProfileNameModal";
 
 export const Modal: FC = () => {
   return (
@@ -15,6 +16,7 @@ export const Modal: FC = () => {
       <SettingsModal />
       <PaymentCardModal />
       <ChangeUsernameModal />
+      <ProfileNameModal />
     </>
   );
 };

@@ -25,6 +25,10 @@ import discoverCardImg from "./DiscoverCard.png";
 import gadOfWarImg from "./god-of-war.jpg";
 import gadOfWar2Img from "./gad-of-war-2.webp";
 import noCardTypeImg from "./no-card-type.png";
+import avatar1 from "./avatar1.png";
+import avatar2 from "./avatar2.png";
+import avatar3 from "./avatar3.png";
+import avatar4 from "./avatar4.png";
 
 export {
   icon,
@@ -54,4 +58,8 @@ export {
   gadOfWarImg,
   gadOfWar2Img,
   noCardTypeImg,
+  avatar1,
+  avatar2,
+  avatar3,
+  avatar4,
 };

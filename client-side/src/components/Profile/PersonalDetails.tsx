@@ -37,7 +37,7 @@ export const PersonalDetails: FC = () => {
     address: address,
     postalCode: postalCode,
   };
-  console.log("defaultValues :>> ", defaultValues);
+
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
     label: `${country.flag} ${country.name}`,

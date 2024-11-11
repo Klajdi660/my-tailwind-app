@@ -12,7 +12,8 @@ export const Searchbar: FC<SearchbarProps> = (props) => {
     <>
       <div
         className={classNames(
-          "w-full h-full",
+          "w-1/2 h-full",
+          "focus-within:w-full",
           isMobile
             ? classNames(
                 "absolute p-3 duration-300 transition-all left-0",

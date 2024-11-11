@@ -293,6 +293,11 @@ input[type="checkbox"] {
 /* Ant Modal */
 .ant-modal .ant-modal-content {
   background-color: var(--cardBg);
+  padding: 24px;
+}
+
+.ant-modal .ant-modal-body {
+  width: 100%;
 }
 
 .ant-modal .ant-modal-footer {
@@ -301,10 +306,13 @@ input[type="checkbox"] {
 
 .ant-modal .ant-modal-close {
   color: var(--onNeutralBgSecondary);
+  border-radius: 50%;
+  top: 18px;
 }
 .ant-modal .ant-modal-close:hover {
   color: var(--onNeutralBg);
   background: var(--primary-opacity);
+  border-radius: 50%;
 }
 
 /* Popover */

@@ -16,6 +16,7 @@ export const Button: FC<ButtonProps> = forwardRef(
       labelIcon,
       tooltipTitle,
       iconClassName,
+      labelIconClassName = "flex-row gap-2",
       onClick,
       ...props
     },
@@ -47,7 +48,12 @@ export const Button: FC<ButtonProps> = forwardRef(
       >
         {!isSubmitting ? (
           <Tooltip arrow={false} title={tooltipTitle} trigger={["hover"]}>
-            <div className="flex flex-row items-center justify-center gap-2">
+            <div
+              className={classNames(
+                "flex items-center justify-center",
+                labelIconClassName
+              )}
+            >
               {labelIcon && (
                 <Icon
                   name={labelIcon}

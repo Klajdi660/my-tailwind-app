@@ -9,4 +9,5 @@ export interface User {
   username?: string;
   verified: any;
   lastLogin?: string;
+  createdAt?: string;
 }
