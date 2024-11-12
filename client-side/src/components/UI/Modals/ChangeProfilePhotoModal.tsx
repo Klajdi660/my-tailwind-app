@@ -77,7 +77,10 @@ export const ChangeProfilePhotoModal: FC = () => {
           </p>
 
           <div className="flex_justify_center">
-            <Image imgUrl={avatar} styles="w-40 h-40 rounded-full " />
+            <Image
+              imgUrl={avatar}
+              styles="w-40 h-40 rounded-full object-cover"
+            />
           </div>
 
           <p className="text-center text-secondary">
