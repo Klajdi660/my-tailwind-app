@@ -29,7 +29,7 @@ export const UserDetails: FC = () => {
 
   const handleCoverModalOpen = () => {
     setPhotoType("cover");
-    setModalOpen("changeProfilePhotoModal", true);
+    setModalOpen("changeCoverPhotoModal", true);
   };
 
   const handleProfileModalOpen = () => {

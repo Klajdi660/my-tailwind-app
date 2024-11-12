@@ -1,13 +1,13 @@
 import { FC, ChangeEvent, useRef } from "react";
 import { SmallModal } from "./ModalContent";
-// import { Button } from "../Button";
 import { useAppSelector } from "../../../store";
 import { useProfileService } from "../../../services";
 import { useAppModal, useProfilePhoto } from "../../../utils";
-import { Image, Button } from "../../UI";
 import { avatarProfileList } from "../../../data";
+import { Image, Button } from "../../UI";
+import { defaultCoverPhoto } from "../../../assets";
 
-export const ChangeProfilePhotoModal: FC = () => {
+export const ChangeCoverPhotoModal: FC = () => {
   const { modals, setModalOpen } = useAppModal();
   const { setIsUpdatingProfileImg, photoType } = useProfilePhoto();
   const { updateDisplayPicture, removeDisplayPicture } = useProfileService();
@@ -16,12 +16,10 @@ export const ChangeProfilePhotoModal: FC = () => {
 
   const { user } = useAppSelector((state) => state.user);
 
-  const { avatar, firstName } = user.extra;
-
-  const profilePhotoHeaderTitle = avatar ? "Profile photo" : "Add photo";
+  const { avatar } = user.extra;
 
   const handleModalClose = () => {
-    setModalOpen("changeProfilePhotoModal", false);
+    setModalOpen("changeCoverPhotoModal", false);
   };
 
   const handleFileClick = () => {
@@ -60,12 +58,12 @@ export const ChangeProfilePhotoModal: FC = () => {
 
   return (
     <SmallModal
-      open={modals["changeProfilePhotoModal"]}
+      open={modals["changeCoverPhotoModal"]}
       onCancel={handleModalClose}
       width={500}
     >
       <div className="modal-header w-full text-xl text-onNeutralBg font-semibold flex items-center">
-        {profilePhotoHeaderTitle}
+        Add cover photo
       </div>
 
       {avatar ? (
@@ -73,16 +71,16 @@ export const ChangeProfilePhotoModal: FC = () => {
           <hr className="w-full border-t border-divider" />
 
           <p className="text-base text-center">
-            {firstName}, help others recognize you!
+            A good background photo will help you stand out
           </p>
 
           <div className="flex_justify_center">
-            <Image imgUrl={avatar} styles="w-40 h-40 rounded-full " />
+            <Image imgUrl={defaultCoverPhoto} styles="w-80 rounded-xl" />
           </div>
 
           <p className="text-center text-secondary">
-            On GrooveIT, we require members to use their real identities, so
-            take or upload a photo of yourself or any other photo.
+            Showcase your personality, interests, team moments or notable
+            milestones.
           </p>
 
           <hr className="w-full border-t border-divider" />

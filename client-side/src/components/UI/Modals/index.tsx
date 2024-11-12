@@ -6,6 +6,7 @@ import { SessionExpiredModal } from "./SessionExpiredModal";
 import { ChangeProfilePhotoModal } from "./ChangeProfilePhotoModal";
 import { ChangeUsernameModal } from "./ChangeUsernameModal";
 import { ProfileNameModal } from "./ProfileNameModal";
+import { ChangeCoverPhotoModal } from "./ChangeCoverPhotoModal";
 
 export const Modal: FC = () => {
   return (
@@ -17,6 +18,7 @@ export const Modal: FC = () => {
       <PaymentCardModal />
       <ChangeUsernameModal />
       <ProfileNameModal />
+      <ChangeCoverPhotoModal />
     </>
   );
 };
