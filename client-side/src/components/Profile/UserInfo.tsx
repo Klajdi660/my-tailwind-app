@@ -90,6 +90,7 @@ export const UserInfo: FC = () => {
                   type="text"
                   placeholder="Enter username"
                   autoComplete="username"
+                  disabled={true}
                   defaultValue={username}
                 />
                 <Tooltip title={usernameTooltipTitle} trigger={["hover"]}>

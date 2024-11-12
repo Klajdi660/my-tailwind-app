@@ -53,7 +53,7 @@ export const UserDetails: FC = () => {
             variant="none"
             label="Add cover photo"
             labelIcon="MdOutlineCameraAlt"
-            className="bg-white group-hover:text-primary"
+            className="text-[#404040] bg-white group-hover:text-primary"
             iconClassName="group-hover:text-primary"
             onClick={handleCoverModalOpen}
           />
