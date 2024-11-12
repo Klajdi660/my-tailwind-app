@@ -351,12 +351,6 @@ export interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export interface CustomButtonProps {
-  activeLink: any;
-  sidebarLinks: any;
-  handleLinkClick: any;
-}
-
 export interface IconParams {
   props?: any;
   name: string;

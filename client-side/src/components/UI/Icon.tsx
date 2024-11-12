@@ -262,7 +262,6 @@ export const Icon: FC<IconParams> = ({
     <IconContext.Provider
       value={{
         className: classNames(className),
-        // className: classNames(className),
         ...props,
       }}
     >

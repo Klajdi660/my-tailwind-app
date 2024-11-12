@@ -38,13 +38,11 @@ export const SaveDataAuthPage: FC = () => {
         </p>
         <div className="flex flex-col mt-2 w-full gap-2">
           <Button
-            type="button"
             label="Save info"
             variant="contained"
             onClick={onSubmitSaveAuthUserHandler}
           />
           <Button
-            type="button"
             label="Not now"
             variant="none"
             className="text-primary hover:text-onNeutralBg"

@@ -42,13 +42,31 @@ const slice = createSlice({
         : false;
     },
     setSavedAuthUser(state, action) {
-      const exists = state.saveAuthUserData.some(
-        (user) => user.id === action.payload.id
+      const { id, ...updatedFields } = action.payload;
+
+      const existingUser = state.saveAuthUserData.find(
+        (user) => user.id === id
       );
 
-      if (!exists) {
+      if (!existingUser) {
         state.saveAuthUserData.push(action.payload);
+      } else {
+        Object.assign(existingUser, updatedFields);
       }
+
+      // const userIndex = state.saveAuthUserData.findIndex(
+      //   (user) => user.id === action.payload.id
+      // );
+      // if (userIndex === -1) {
+      //   // If user does not exist, add new entry
+      //   state.saveAuthUserData.push(action.payload);
+      // } else {
+      //   // Update only the photo field while keeping other properties intact
+      //   state.saveAuthUserData[userIndex] = {
+      //     ...state.saveAuthUserData[userIndex],
+      //     ...action.payload,
+      //   };
+      // }
     },
     clearSavedAuthUser(state, action) {
       const userIdToRemove = action.payload;

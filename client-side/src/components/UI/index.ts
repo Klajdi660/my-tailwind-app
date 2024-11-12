@@ -7,7 +7,6 @@ export { Overlay } from "./Overlay";
 export * from "./Modals/ModalContent";
 export { PatternBg } from "./PatternBg";
 export { IconButton } from "./IconButton";
-export { CustomButton } from "./CustomButton";
 export { CartButton } from "./Buttons/CartButton";
 export { ThemeButton } from "./Buttons/ThemeButton";
 export { SocialAuthButton } from "./SocialAuthButtons";

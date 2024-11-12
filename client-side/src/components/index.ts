@@ -35,6 +35,8 @@ export { ShippingAddressSettings } from "./Profile/ProfileEdit/ShippingAddressSe
 // SIDEBAR
 // SKELETON
 // UI
+export { Icon } from "./UI/Icon";
+export { IconButton } from "./UI/IconButton";
 export { Tab } from "./UI/Tab";
 export { Footer } from "./Footer";
 export { Navbar } from "./NavBar";

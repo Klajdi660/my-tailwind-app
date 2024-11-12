@@ -39,7 +39,7 @@ export const UserDetails: FC = () => {
 
   return (
     <div className="relative bg-card rounded">
-      <div className="relative h-52 bg-gray-200 rounded">
+      <div className="relative h-52 bg-neutral-300 rounded">
         {cover && (
           <Image
             imgUrl={cover}
@@ -53,15 +53,15 @@ export const UserDetails: FC = () => {
             variant="none"
             label="Add cover photo"
             labelIcon="MdOutlineCameraAlt"
-            className="text-onNeutralBg bg-primary-opacity group-hover:bg-primary group-hover:text-white"
-            iconClassName="group-hover:text-white"
+            className="bg-white group-hover:text-primary"
+            iconClassName="group-hover:text-primary"
             onClick={handleCoverModalOpen}
           />
         </div>
       </div>
       <div className="relative flex justify-between items-center px-8 mt-[-50px]">
         <button
-          className="relative w-40 h-40 rounded-full ring-0 ring-white bg-white"
+          className="relative w-40 h-40 rounded-full ring-1 ring-white bg-white"
           onClick={handleProfileModalOpen}
         >
           {avatar ? (
@@ -72,12 +72,20 @@ export const UserDetails: FC = () => {
               effect="blur"
             />
           ) : (
-            <Image
-              imgUrl={userIcon}
-              name="Profile Img"
-              styles="w-40 h-40 rounded-full p-1 ring-1 ring-white bg-main"
-              effect="blur"
-            />
+            <div className="relative">
+              <Image
+                imgUrl={userIcon}
+                name="Profile Img"
+                styles="w-40 h-40 rounded-full p-1 ring-1 ring-white bg-main"
+                effect="blur"
+              />
+              {/* <button className="flex_justify_center absolute bottom-2 right-2 w-10 h-10 rounded-full bg-card border border-divider group z-[10]">
+                <Icon
+                  name="MdOutlineCameraAlt"
+                  className="group-hover:text-primary"
+                />
+              </button> */}
+            </div>
           )}
           {isUpdatingProfileImg && (
             <>
@@ -94,7 +102,7 @@ export const UserDetails: FC = () => {
           )}
         </button>
         <button
-          className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity"
+          className="flex flex_justify_center w-8 h-8 rounded-full cursor-pointer hover:bg-primary-opacity"
           onClick={() => {
             navigate(editProfile);
             setSelectedSetting("account-settings");

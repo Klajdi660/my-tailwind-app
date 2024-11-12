@@ -1,8 +1,7 @@
 import { FC, useRef, useState } from "react";
-import { GameGenreList, Title } from "../../components";
 import { useGameHook } from "../../hooks";
-import { Icon } from "../../components/UI";
 import { classNames } from "../../utils";
+import { GameGenreList, Title, Icon } from "../../components";
 
 export const DiscoverPage: FC = () => {
   const { useGameGenreList } = useGameHook();

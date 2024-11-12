@@ -7,7 +7,7 @@ import { classNames, useSubmitting } from "../../utils";
 export const Button: FC<ButtonProps> = forwardRef(
   (
     {
-      type,
+      type = "button",
       size,
       label,
       variant,
@@ -49,10 +49,7 @@ export const Button: FC<ButtonProps> = forwardRef(
         {!isSubmitting ? (
           <Tooltip arrow={false} title={tooltipTitle} trigger={["hover"]}>
             <div
-              className={classNames(
-                "flex items-center justify-center",
-                labelIconClassName
-              )}
+              className={classNames("flex_justify_center", labelIconClassName)}
             >
               {labelIcon && (
                 <Icon

@@ -61,9 +61,6 @@ export const useUserService = () => {
 
   const saveAuthUser = async (values: any): Promise<void> => {
     try {
-      // const { id, username, email, extra } = user;
-      // const { avatar } = extra;
-
       const saveAuthUserResp = await HttpClient.post<any>(
         SAVE_AUTH_USER_API,
         values

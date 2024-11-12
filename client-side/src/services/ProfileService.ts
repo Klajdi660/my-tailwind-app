@@ -4,6 +4,7 @@ import {
   setUser,
   setIsAccountDelete,
   setAccountDeleteDaysDifference,
+  setSavedAuthUser,
 } from "../store";
 import {
   EditProfileValues,
@@ -141,6 +142,12 @@ export const useProfileService = () => {
       localStorage.user = JSON.stringify(data);
 
       dispatch(setUser(data));
+      dispatch(
+        setSavedAuthUser({
+          id: data.id,
+          photo: data.extra.avatar,
+        })
+      );
 
       notify({
         variant: "success",
@@ -177,6 +184,12 @@ export const useProfileService = () => {
       localStorage.user = JSON.stringify(data);
 
       dispatch(setUser(data));
+      dispatch(
+        setSavedAuthUser({
+          id: data.id,
+          photo: data.extra.avatar,
+        })
+      );
 
       notify({
         variant: "success",

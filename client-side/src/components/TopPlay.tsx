@@ -1,5 +1,4 @@
 import { FC } from "react";
-// import { useQuery } from "@tanstack/react-query";
 import { Footer } from "./Footer";
 // import { TopPlaySection } from "./Sections";
 // import { useGamesService } from "../services";
