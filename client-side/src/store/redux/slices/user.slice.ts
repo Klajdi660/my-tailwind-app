@@ -53,20 +53,6 @@ const slice = createSlice({
       } else {
         Object.assign(existingUser, updatedFields);
       }
-
-      // const userIndex = state.saveAuthUserData.findIndex(
-      //   (user) => user.id === action.payload.id
-      // );
-      // if (userIndex === -1) {
-      //   // If user does not exist, add new entry
-      //   state.saveAuthUserData.push(action.payload);
-      // } else {
-      //   // Update only the photo field while keeping other properties intact
-      //   state.saveAuthUserData[userIndex] = {
-      //     ...state.saveAuthUserData[userIndex],
-      //     ...action.payload,
-      //   };
-      // }
     },
     clearSavedAuthUser(state, action) {
       const userIdToRemove = action.payload;
@@ -76,15 +62,14 @@ const slice = createSlice({
     },
     setUserLastLogin(state, action) {
       const { id, lastLogin } = action.payload;
+
       const existingLogin = state.userLastLogin.find(
         (login) => login.id === id
       );
 
       if (existingLogin) {
-        // If the user already has a lastLogin entry, update it
         existingLogin.lastLogin = lastLogin;
       } else {
-        // Otherwise, add a new entry
         state.userLastLogin.push({ id, lastLogin });
       }
     },
