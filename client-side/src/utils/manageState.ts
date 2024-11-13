@@ -30,6 +30,10 @@ export const useAppModal = create<AppModalState>((set) => ({
     set((state) => ({
       modals: { ...state.modals, [key]: value },
     })),
+  closeAllModals: () =>
+    set(() => ({
+      modals: {},
+    })),
 }));
 
 export const useProfilePhoto = create<ProfilePhotoState>((set) => ({

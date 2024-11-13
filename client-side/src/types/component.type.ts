@@ -375,9 +375,9 @@ export interface IconButtonProps {
 
 export interface ImageProps {
   name?: string;
-  width?: number;
+  width?: number | string;
   imgUrl: string;
-  height?: number;
+  height?: number | string;
   styles?: string;
   effect?: Effect;
 }

@@ -1,6 +1,7 @@
 import { FC } from "react";
+import { Tooltip } from "antd";
 import { useNavigate } from "react-router-dom";
-import { Image, Button, Icon } from "../../UI";
+import { Image, Icon, IconButton } from "../../UI";
 import {
   useProfilePhoto,
   useAppModal,
@@ -24,6 +25,9 @@ export const UserDetails: FC = () => {
   const { verified, email, username } = user;
   const { firstName, lastName, avatar, cover } = user.extra;
 
+  const coverTooltipTitle = cover ? "Edit cover photo" : "Add cover photo";
+  const coverIconName = cover ? "MdOutlineEdit" : "MdOutlineCameraAlt";
+
   const verifyType = verified === "1" ? "Verified" : "Verify now";
   const isVerify = verified === "1";
 
@@ -33,30 +37,32 @@ export const UserDetails: FC = () => {
   };
 
   const handleProfileModalOpen = () => {
-    setPhotoType("profilPhoto");
+    setPhotoType("profilePhoto");
     setModalOpen("changeProfilePhotoModal", true);
   };
 
   return (
     <div className="relative bg-card rounded">
-      <div className="relative h-52 bg-neutral-300 rounded">
+      <div className="relative w-full h-52 bg-neutral-300 rounded">
         {cover && (
           <Image
             imgUrl={cover}
             name="Cover Photo"
             styles="w-full h-full object-cover rounded-t"
+            width="100%"
+            height={208}
             effect="blur"
           />
         )}
         <div className="absolute top-8 right-8 group">
-          <Button
-            variant="none"
-            label="Add cover photo"
-            labelIcon="MdOutlineCameraAlt"
-            className="text-[#404040] bg-white group-hover:text-primary"
-            iconClassName="group-hover:text-primary"
-            onClick={handleCoverModalOpen}
-          />
+          <Tooltip title={coverTooltipTitle} arrow={false}>
+            <IconButton
+              name={coverIconName}
+              className="bg-white w-10 h-10 group"
+              iconClassName="text-[#404040] group-hover:text-primary"
+              onClick={handleCoverModalOpen}
+            />
+          </Tooltip>
         </div>
       </div>
       <div className="relative flex justify-between items-center px-8 mt-[-50px]">
@@ -102,13 +108,17 @@ export const UserDetails: FC = () => {
           )}
         </button>
         <button
-          className="flex flex_justify_center w-8 h-8 rounded-full cursor-pointer hover:bg-primary-opacity"
+          className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity group"
           onClick={() => {
             navigate(editProfile);
             setSelectedSetting("account-settings");
           }}
         >
-          <Icon name="MdOutlineEdit" size={28} />
+          <Icon
+            name="MdOutlineEdit"
+            size={25}
+            className="group-hover:text-primary"
+          />
         </button>
       </div>
       <div className="flex flex-col gap-4 p-8 text-onNeutralBg">

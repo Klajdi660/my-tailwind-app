@@ -100,7 +100,7 @@ export const UserSaveForm: FC = () => {
             />
           </motion.div>
         </Link>
-        <p className="text-4xl">Choose Account to continue to GrooveIT.</p>
+        <p className="text-4xl">Choose account to continue to GrooveIT</p>
       </div>
       <div className="flex_justify_center gap-6">
         {validUsers.map((saveAuthUser) => {

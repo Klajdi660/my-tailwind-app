@@ -63,6 +63,7 @@ export interface NavScrollTriggerState {
 export interface AppModalState {
   modals: { [key: string]: boolean };
   setModalOpen: (key: string, value: boolean) => void;
+  closeAllModals: () => void;
 }
 
 export interface ProfilePhotoState {

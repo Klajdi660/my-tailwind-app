@@ -1,6 +1,5 @@
 import { FC, ChangeEvent, useRef } from "react";
 import { SmallModal } from "./ModalContent";
-// import { Button } from "../Button";
 import { useAppSelector } from "../../../store";
 import { useProfileService } from "../../../services";
 import { useAppModal, useProfilePhoto } from "../../../utils";
@@ -10,7 +9,7 @@ import { avatarProfileList } from "../../../data";
 export const ChangeProfilePhotoModal: FC = () => {
   const { modals, setModalOpen } = useAppModal();
   const { setIsUpdatingProfileImg, photoType } = useProfilePhoto();
-  const { updateDisplayPicture, removeDisplayPicture } = useProfileService();
+  const { updateDisplayPicture } = useProfileService();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -48,16 +47,6 @@ export const ChangeProfilePhotoModal: FC = () => {
     }
   };
 
-  const removeProfileImg = async () => {
-    try {
-      await removeDisplayPicture(photoType);
-
-      handleModalClose();
-    } catch (error) {
-      console.error(`Failed to remove profile photo! ${error}`);
-    }
-  };
-
   return (
     <SmallModal
       open={modals["changeProfilePhotoModal"]}
@@ -90,27 +79,33 @@ export const ChangeProfilePhotoModal: FC = () => {
 
           <hr className="w-full border-t border-divider" />
 
-          <div className="flex justify-end gap-2">
-            <input
-              className="hidden"
-              type="file"
-              ref={fileInputRef}
-              accept="image/*"
-              onChange={changeProfileImg}
-            />
+          <div className="flex_justify_end">
+            <div className="group">
+              <input
+                className="hidden"
+                type="file"
+                ref={fileInputRef}
+                accept="image/*"
+                onChange={changeProfileImg}
+              />
+              <Button
+                type="submit"
+                variant="none"
+                label="Change Photo"
+                labelIcon="HiOutlineUpload"
+                className="text-onNeutralBg rounded-3xl hover:bg-primary-opacity group-hover:text-primary"
+                iconClassName="group-hover:text-primary"
+                onClick={handleFileClick}
+              />
+            </div>
+
             <Button
               type="submit"
-              label="Upload Photo"
-              variant="contained"
-              // className="text-onNeutralBg hover:bg-primary-opacity"
-              onClick={handleFileClick}
-            />
-            <Button
-              type="submit"
-              label="Remove photo"
               variant="none"
-              className="text-red-500 bg-primary-opacity hover:bg-red-100"
-              onClick={removeProfileImg}
+              label="Remove photo"
+              labelIcon="AiOutlineDelete"
+              className="text-red-500 rounded-3xl hover:bg-primary-opacity"
+              onClick={() => setModalOpen("removePhotoModal", true)}
             />
           </div>
         </div>
@@ -135,14 +130,7 @@ export const ChangeProfilePhotoModal: FC = () => {
 
           <hr className="w-full border-t border-divider" />
 
-          <div className="modal-footer flex items-end justify-end gap-2">
-            <Button
-              type="button"
-              label="Cancel"
-              variant="outlined"
-              className="hover:bg-primary-opacity"
-              onClick={handleModalClose}
-            />
+          <div className="modal-footer flex_justify_end group">
             <input
               className="hidden"
               type="file"
@@ -151,9 +139,10 @@ export const ChangeProfilePhotoModal: FC = () => {
               onChange={changeProfileImg}
             />
             <Button
-              type="button"
+              variant="none"
               label="Upload photo"
-              variant="contained"
+              labelIcon="FiUpload"
+              className="text-onNeutralBg rounded-3xl hover:bg-primary-opacity group-hover:text-primary"
               onClick={handleFileClick}
             />
           </div>

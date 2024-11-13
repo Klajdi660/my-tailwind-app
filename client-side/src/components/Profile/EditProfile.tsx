@@ -13,7 +13,7 @@ export const EditProfile: FC = () => {
   const { avatar } = user.extra;
 
   const handleModalOpen = () => {
-    setPhotoType("profilPhoto");
+    setPhotoType("profilePhoto");
     setModalOpen("changeProfilePhotoModal", true);
   };
 
