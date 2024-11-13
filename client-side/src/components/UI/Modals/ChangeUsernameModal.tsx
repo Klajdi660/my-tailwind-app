@@ -11,9 +11,11 @@ import { Icon } from "../Icon";
 import { useAppSelector } from "../../../store";
 import { Button } from "../Button";
 import { ErrorFormMessage } from "../../Common";
+import { useProfileService } from "../../../services";
 
 export const ChangeUsernameModal: FC = () => {
   const { modals, setModalOpen } = useAppModal();
+  const { changeUsername } = useProfileService();
 
   const { user } = useAppSelector((state) => state.user);
 
@@ -24,7 +26,15 @@ export const ChangeUsernameModal: FC = () => {
     setModalOpen("changeUsernameModal", false);
   };
 
-  const handleOnSubmit = async (values: any) => {};
+  const handleOnSubmit = async (values: any) => {
+    console.log("values :>> ", values);
+    try {
+      await changeUsername(values);
+      handleModalClose();
+    } catch (error) {
+      console.error(`Failed to change username! ${error}`);
+    }
+  };
 
   const {
     register: form,
@@ -95,14 +105,13 @@ export const ChangeUsernameModal: FC = () => {
           </ul>
           <div className="flex items-center justify-end gap-4">
             <Button
-              type="button"
               label="Cancel"
               variant="outlined"
               className="h-10"
               onClick={handleModalClose}
             />
             <Button
-              type="button"
+              type="submit"
               label="Confirm"
               variant="contained"
               className="h-10"
