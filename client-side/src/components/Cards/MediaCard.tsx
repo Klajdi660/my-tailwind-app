@@ -20,10 +20,24 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
 
   return (
     <div
+      // className="shadow-sm p-3 rounded bg-card duration-300 ease-in cursor-pointer text-onNeutralBg hover:bg-card-hover"
       className="shadow-sm p-3 rounded bg-card duration-300 ease-in cursor-pointer text-onNeutralBg hover:bg-card-hover"
       onClick={() => navigate(`${gameDetail}/${id}`)}
     >
-      <div className="relative">
+      {background_image && (
+        <Image
+          // styles={classNames(
+          //   "object-cover aspect-square w-full h-full",
+          //   type === "artist" ? "rounded-full" : "rounded"
+          // )}
+          styles={classNames("h-32 object-cover aspect-square rounded")}
+          width="100%"
+          imgUrl={background_image}
+          name="image"
+          effect="blur"
+        />
+      )}
+      {/* <div className="relative">
         <div
           className={classNames(
             "relative h-full w-full overflow-hidden",
@@ -42,10 +56,11 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
             />
           )}
         </div>
-      </div>
+      </div> */}
       <div className="flex flex-col gap-2 desc mt-4 text-left">
         <h6 className="text-sm font-semibold text-onNeutralBg">
-          {nameTruncate(name, 18)}
+          {/* {nameTruncate(name, 18)} */}
+          {name}
         </h6>
         <p className="flex flex-col gap-2 text-xs font-normal text-secondary">
           <span className="flex gap-2">
@@ -56,10 +71,10 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
                 .map((p: any) => p.platform)}
             />
           </span>
-          <span>
+          {/* <span>
             {currency}
             {gamePrice}
-          </span>
+          </span> */}
         </p>
       </div>
     </div>
