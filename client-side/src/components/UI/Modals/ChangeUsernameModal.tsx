@@ -27,7 +27,6 @@ export const ChangeUsernameModal: FC = () => {
   };
 
   const handleOnSubmit = async (values: any) => {
-    console.log("values :>> ", values);
     try {
       await changeUsername(values);
       handleModalClose();

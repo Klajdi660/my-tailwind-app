@@ -7,7 +7,7 @@ import {
   PlatformIconListProps,
   GameGenreListProps,
 } from "../../types";
-import { classNames, nameTruncate } from "../../utils";
+import { classNames, nameTruncate, formatGenreName } from "../../utils";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
@@ -81,7 +81,8 @@ export const GameGenreList: FC<GameGenreListProps> = (props) => {
         }}
         onReachBeginning={() => setIsBeginning(true)}
         onReachEnd={() => setIsEnd(true)}
-        slidesPerView={6}
+        slidesPerView={5}
+        // slidesPerView="auto"
         spaceBetween={10}
       >
         {gameGenres.map((genre) => (
@@ -90,7 +91,7 @@ export const GameGenreList: FC<GameGenreListProps> = (props) => {
               type="button"
               onClick={() => handleGenreClick(genre.id)}
               className={classNames(
-                "flex_justify_center flex-col w-full h-full gap-2 p-4 rounded-xl transition duration-300 relative group",
+                "flex items-center gap-4 bg-card rounded-xl p-4 w-full group",
                 selectedGenreId === genre.id
                   ? "bg-primary-opacity"
                   : "bg-card hover:bg-primary-opacity hover:brightness-110"
@@ -99,17 +100,22 @@ export const GameGenreList: FC<GameGenreListProps> = (props) => {
               <Image
                 name={genre.name}
                 imgUrl={genre.image_background}
-                styles="w-40 h-28 rounded object-cover"
+                styles="w-20 h-16 rounded object-cover"
                 effect="blur"
               />
-              <span
-                className={classNames(
-                  selectedGenreId === genre.id && "text-primary",
-                  "hover:text-primary"
-                )}
-              >
-                {nameTruncate(genre.name, 14)} Games
-              </span>
+              <div className="flex flex-col items-start">
+                <span
+                  className={classNames(
+                    selectedGenreId === genre.id && "text-primary",
+                    "font-semibold group-hover:text-primary"
+                  )}
+                >
+                  {nameTruncate(formatGenreName(genre.name), 8)} Games
+                </span>
+                <span className="text-secondary">
+                  {genre.games_count} games
+                </span>
+              </div>
             </button>
           </SwiperSlide>
         ))}

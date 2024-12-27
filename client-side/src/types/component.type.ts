@@ -236,8 +236,8 @@ export interface MediaSectionProps {
   title: string;
   subTitle: string;
   enableTitle?: boolean;
-  gridNumber?: 2 | 3 | 4 | 5;
-  skeletonItemNumber: number;
+  gridNumber?: 2 | 3 | 4 | 5 | 6;
+  skeletonItemNumber?: number;
   gameList?: GameParams[] | any;
 }
 

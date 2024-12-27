@@ -28,6 +28,10 @@ export const nameTruncate = (str: string, len?: number) => {
     : null;
 };
 
+export const formatGenreName = (name: string) => {
+  return name.replace(/Games$/, "").trim();
+};
+
 export const calculateTimePassed = (time: number): string => {
   const unit = {
     year: 12 * 30 * 24 * 60 * 60 * 1000,
@@ -112,7 +116,7 @@ export const maskCardNumber = (cardNumber: string) => {
 
 export const getAside = (pathname: string) => {
   const key = pathname.split("/")[1];
-  const hasAside = ["browse"]?.includes(key);
+  const hasAside = ["test"]?.includes(key);
   return hasAside;
 };
 

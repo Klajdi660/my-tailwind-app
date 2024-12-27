@@ -6,7 +6,7 @@ import { GameGenreList, Title, Icon } from "../../components";
 export const DiscoverPage: FC = () => {
   const { useGameGenreList } = useGameHook();
 
-  const { gameGenreList } = useGameGenreList();
+  const { gameGenreList }: any = useGameGenreList();
 
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);

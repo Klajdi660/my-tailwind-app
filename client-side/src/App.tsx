@@ -41,7 +41,7 @@ const themeConfig = {
   },
 };
 
-const reactQueryClient = new QueryClient();
+const queryClient = new QueryClient();
 
 const Application = () => {
   return (
@@ -49,7 +49,7 @@ const Application = () => {
       <Provider store={store}>
         <PersistGate /*loading={<Loading />}*/ persistor={persistor}>
           <AuthProvider>
-            <QueryClientProvider client={reactQueryClient}>
+            <QueryClientProvider client={queryClient}>
               <StoreProvider>
                 <ConfigProvider theme={themeConfig}>
                   <App>

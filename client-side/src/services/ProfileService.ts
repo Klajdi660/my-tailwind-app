@@ -31,8 +31,6 @@ export const useProfileService = () => {
   const [notify] = useNotification();
   const dispatch = useDispatch();
 
-  console.log("TEST");
-
   const changeUsername = async (values: EditProfileValues): Promise<void> => {
     try {
       setLoading(true);
@@ -142,7 +140,6 @@ export const useProfileService = () => {
       };
 
       localStorage.user = JSON.stringify(data);
-      console.log("data :>> ", data);
       dispatch(setUser(data));
       dispatch(
         setSavedAuthUser({
