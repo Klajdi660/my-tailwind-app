@@ -49,12 +49,12 @@ export const useGameHook = () => {
   };
 
   const useGameGenreList = () => {
-    const { data: gameGenreList } = useQuery({
+    const { data: gameGenreList, isLoading } = useQuery({
       queryKey: ["genres"],
       queryFn: async () => await getGameGenreList(),
     });
 
-    return { gameGenreList };
+    return { gameGenreList, isLoading };
   };
 
   return { useGameGenreList, useGameSlider, useGameDetail, useGameList };

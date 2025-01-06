@@ -6,7 +6,7 @@ import { GameGenreList, Title, Icon } from "../../components";
 export const DiscoverPage: FC = () => {
   const { useGameGenreList } = useGameHook();
 
-  const { gameGenreList }: any = useGameGenreList();
+  const { gameGenreList, isLoading }: any = useGameGenreList();
 
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -14,7 +14,9 @@ export const DiscoverPage: FC = () => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
-  if (!gameGenreList) return;
+  // if (!gameGenreList) return;
+
+  if (isLoading) return <p className="text-primary">Loading...</p>;
 
   return (
     <section className="discover_page flex flex-col gap-6">

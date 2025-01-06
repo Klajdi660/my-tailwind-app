@@ -33,6 +33,7 @@ import {
   BsShieldLock,
   BsSignpostSplit,
   BsGenderAmbiguous,
+  BsArrowDownUp,
 } from "react-icons/bs";
 import { CiShoppingTag } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
@@ -65,7 +66,7 @@ import {
 import { HiChartBar } from "react-icons/hi2";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { LiaSignOutAltSolid, LiaCarSideSolid } from "react-icons/lia";
-import { LuShip } from "react-icons/lu";
+import { LuShip, LuArrowDownUp } from "react-icons/lu";
 import {
   MdHome,
   MdClear,
@@ -87,6 +88,7 @@ import {
   MdCalendarMonth,
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
+  MdOutlineSort,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import { LiaCoinsSolid } from "react-icons/lia";
@@ -144,6 +146,7 @@ const icons: IconsMap = {
   BsShieldLock,
   BsSignpostSplit,
   BsGenderAmbiguous,
+  BsArrowDownUp,
   CiShoppingTag,
   CgGames,
   FaXbox,
@@ -175,6 +178,7 @@ const icons: IconsMap = {
   LiaCarSideSolid,
   LiaSignOutAltSolid,
   LuShip,
+  LuArrowDownUp,
   MdHome,
   MdClear,
   MdLogin,
@@ -195,6 +199,7 @@ const icons: IconsMap = {
   MdCalendarMonth,
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
+  MdOutlineSort,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,
