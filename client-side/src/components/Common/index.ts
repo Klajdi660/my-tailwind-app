@@ -3,3 +3,4 @@ export { ReadMore } from "./ReadMore";
 export { StarRating } from "./StarRating";
 export { ErrorFormMessage } from "./ErrorFormMessage";
 export { TabTitle } from "./TabTittle";
+export { GameFilter } from "./GameFilter";

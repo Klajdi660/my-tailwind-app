@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { MediaSection, Button, Title, Icon } from "../../components";
+import { MediaSection, Button, GameFilter } from "../../components";
 import { useScrollPosition } from "../../hooks";
 
 export const BrowsePage: FC = () => {
@@ -27,46 +27,7 @@ export const BrowsePage: FC = () => {
         </div>
       )}
       <div className="browse_page flex flex-col gap-4">
-        <div className="flex_justify_between">
-          {/* <Title name="Game Genres" type="large" divider={false} /> */}
-          <div></div>
-          <div className="flex gap-20">
-            <div className="flex gap-6">
-              <div className="flex_justify_center gap-2">
-                Platforms
-                <Icon name="MdOutlineSort" />
-              </div>
-              <div className="flex_justify_center gap-2">
-                Genres
-                <Icon name="MdOutlineSort" />
-              </div>
-              <div className="flex_justify_center gap-2">
-                Name
-                <Icon name="MdOutlineSort" />
-              </div>
-              <div className="flex_justify_center gap-2">
-                Relevance
-                <Icon name="MdOutlineSort" />
-              </div>
-              <div className="flex_justify_center gap-2">
-                Popularity
-                <Icon name="MdOutlineSort" />
-              </div>
-              <div className="flex_justify_center gap-2">
-                Rating
-                <Icon name="MdOutlineSort" />
-              </div>
-              <div className="flex_justify_center gap-2">
-                Release date
-                <Icon name="MdOutlineSort" />
-              </div>
-            </div>
-            <div className="flex_justify_center gap-2">
-              New
-              <Icon name="LuArrowDownUp" />
-            </div>
-          </div>
-        </div>
+        <GameFilter />
         <MediaSection
           type="album"
           title="Discover"

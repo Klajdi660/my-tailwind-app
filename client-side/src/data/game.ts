@@ -1,5 +1,10 @@
 import { GameIconMapsProperties, ImageDimsOptions } from "../types";
 
+interface GameFilterListProperties {
+  id: number;
+  name: string;
+}
+
 export const gameIconMap: GameIconMapsProperties = {
   xbox: "FaXbox",
   mac: "FaApple",
@@ -24,4 +29,14 @@ export const gameTabsButton = [
   { id: "overall", name: "Overall" },
   { id: "reviews", name: "Reviews" },
   { id: "seasons", name: "Seasons" },
+];
+
+export const gameFilterList: GameFilterListProperties[] = [
+  { id: 1, name: "Platforms" },
+  { id: 2, name: "Genres" },
+  { id: 3, name: "Name" },
+  { id: 4, name: "Relevance" },
+  { id: 5, name: "Popularity" },
+  { id: 6, name: "Rating" },
+  { id: 7, name: "Release date" },
 ];

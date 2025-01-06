@@ -20,6 +20,7 @@ export { CartSwitcher } from "./Cart/CartSwitcher";
 
 // CHECKOUT
 // COMMON
+export { GameFilter } from "./Common/GameFilter";
 // GAME DETAIL
 // HOME
 export { SliderGames } from "./Home/SliderGames";
