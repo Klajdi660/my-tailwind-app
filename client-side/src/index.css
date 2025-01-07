@@ -313,7 +313,7 @@ input[type="checkbox"] {
   z-index: 999;
 }
 .ant-popover .ant-popover-content {
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 .ant-popover-inner {
   background-color: var(--neutralBgAlt) !important;

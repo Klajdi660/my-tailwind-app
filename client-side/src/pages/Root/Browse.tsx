@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { MediaSection, Button, GameFilter } from "../../components";
+import { MediaSection, Button, BrowseFilter } from "../../components";
 import { useScrollPosition } from "../../hooks";
 
 export const BrowsePage: FC = () => {
@@ -27,7 +27,7 @@ export const BrowsePage: FC = () => {
         </div>
       )}
       <div className="browse_page flex flex-col gap-4">
-        <GameFilter />
+        <BrowseFilter />
         <MediaSection
           type="album"
           title="Discover"

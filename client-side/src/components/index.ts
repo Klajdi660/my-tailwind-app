@@ -6,6 +6,10 @@ export { ProfileForm } from "./Auth/ProfileForm";
 export { SocialAuth } from "./Auth/SocialAuth";
 export * from "./Auth/UserSaveForm";
 
+// Browse
+export { BrowseFilter } from "./Browse/BrowseFilter";
+export { FilterBy } from "./Browse/FilterBy";
+
 // CARDS
 export { MediaCard } from "./Cards/MediaCard";
 export { TopPlayCard } from "./Cards/TopPlayCard";
@@ -20,7 +24,6 @@ export { CartSwitcher } from "./Cart/CartSwitcher";
 
 // CHECKOUT
 // COMMON
-export { GameFilter } from "./Common/GameFilter";
 // GAME DETAIL
 // HOME
 export { SliderGames } from "./Home/SliderGames";

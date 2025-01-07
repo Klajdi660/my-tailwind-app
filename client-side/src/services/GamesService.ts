@@ -10,6 +10,7 @@ const {
   GET_GAME_SLIDER_API,
   GET_GAME_REVIEWS_API,
   GET_GAME_GENRE_LIST_API,
+  GET_GAME_PLATFORM_LIST_API,
 } = gameEndpoints;
 
 export const useGamesService = () => {
@@ -183,6 +184,28 @@ export const useGamesService = () => {
     }
   };
 
+  const getGamePlatformList = async (): Promise<void> => {
+    try {
+      const url = `${GET_GAME_PLATFORM_LIST_API}`;
+
+      const getGamePlatformListResp = await HttpClient.get<ServerResponse>(url);
+
+      const { error, message, data } = getGamePlatformListResp;
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      return data;
+    } catch (error) {
+      console.error(`Get game platform list field: ${error}`);
+      throw error;
+    }
+  };
+
   return {
     getGames,
     // getGameList,
@@ -191,5 +214,6 @@ export const useGamesService = () => {
     getGameReviews,
     getGamesSlider,
     getGameGenreList,
+    getGamePlatformList,
   };
 };

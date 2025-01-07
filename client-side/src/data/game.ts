@@ -3,6 +3,9 @@ import { GameIconMapsProperties, ImageDimsOptions } from "../types";
 interface GameFilterListProperties {
   id: number;
   name: string;
+  value: string;
+  filterList?: any[];
+  width: string;
 }
 
 export const gameIconMap: GameIconMapsProperties = {
@@ -32,11 +35,12 @@ export const gameTabsButton = [
 ];
 
 export const gameFilterList: GameFilterListProperties[] = [
-  { id: 1, name: "Platforms" },
-  { id: 2, name: "Genres" },
-  { id: 3, name: "Name" },
-  { id: 4, name: "Relevance" },
-  { id: 5, name: "Popularity" },
-  { id: 6, name: "Rating" },
-  { id: 7, name: "Release date" },
+  { id: 1, name: "Platforms", value: "platforms", width: "400px" },
+  { id: 2, name: "Genres", value: "genres", width: "520px" },
+  { id: 3, name: "Rating", value: "rating", width: "520px" },
+  // { id: 3, name: "Name" },
+  // { id: 4, name: "Relevance" },
+  // { id: 5, name: "Popularity" },
+  // { id: 6, name: "Rating" },
+  // { id: 7, name: "Release date" },
 ];

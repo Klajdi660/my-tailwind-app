@@ -4,4 +4,3 @@ export * from "./footer";
 export * from "./setting";
 export * from "./general";
 export * from "./profile";
-// export { currencyList } from "./currency";

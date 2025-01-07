@@ -41,4 +41,5 @@ export const gameEndpoints = {
   GET_GAME_REVIEWS_API: "/games/game-reviews",
   GET_GAME_SLIDER_API: "/games/game-slider",
   GET_GAME_GENRE_LIST_API: "/games/game-genre-list",
+  GET_GAME_PLATFORM_LIST_API: "/games/game-platform-list",
 };

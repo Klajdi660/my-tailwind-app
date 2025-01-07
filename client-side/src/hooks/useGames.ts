@@ -1,6 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useGamesService } from "../services";
 import { GameParams } from "../types";
+import { gameFilterList } from "../data";
 
 export interface FetchResponse<T> {
   count: number;
@@ -9,8 +10,13 @@ export interface FetchResponse<T> {
 }
 
 export const useGameHook = () => {
-  const { getGames, getGameDetail, getGamesSlider, getGameGenreList } =
-    useGamesService();
+  const {
+    getGames,
+    getGameDetail,
+    getGamesSlider,
+    getGameGenreList,
+    getGamePlatformList,
+  } = useGamesService();
 
   const useGameList = () => {
     const {
@@ -57,5 +63,49 @@ export const useGameHook = () => {
     return { gameGenreList, isLoading };
   };
 
-  return { useGameGenreList, useGameSlider, useGameDetail, useGameList };
+  const useGamePlatformList = () => {
+    const {
+      data: gamePlatformList,
+      isLoading,
+      isError,
+    } = useQuery({
+      queryKey: ["platform"],
+      queryFn: async () => await getGamePlatformList(),
+    });
+
+    return { gamePlatformList, isLoading, isError };
+  };
+
+  const useGameFilterList = () => {
+    const { useGameGenreList, useGamePlatformList } = useGameHook();
+
+    const { gameGenreList } = useGameGenreList() as any;
+    const { gamePlatformList } = useGamePlatformList() as any;
+
+    // Create a mapping of value to the corresponding list
+    const filterListMapping: any = {
+      platforms: gamePlatformList,
+      genres: gameGenreList,
+    };
+
+    // Update the filter list dynamically based on the value
+    const updatedGameFilterList = gameFilterList.map((filter) => {
+      const filterList = filterListMapping[filter.value];
+      if (filterList) {
+        return { ...filter, filterList };
+      }
+      return filter;
+    });
+
+    return updatedGameFilterList;
+  };
+
+  return {
+    useGameGenreList,
+    useGameSlider,
+    useGameDetail,
+    useGameList,
+    useGamePlatformList,
+    useGameFilterList,
+  };
 };
