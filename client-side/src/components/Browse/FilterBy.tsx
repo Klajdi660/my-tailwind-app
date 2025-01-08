@@ -7,8 +7,8 @@ interface FilterByProps {
   filterName: string;
   searchParamName: string;
   filterList: any;
-  onClosePopover: () => void;
   width: string;
+  onClosePopover: () => void;
 }
 
 export const FilterBy: FC<FilterByProps> = (props) => {

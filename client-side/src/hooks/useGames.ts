@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useGamesService } from "../services";
 import { GameParams } from "../types";
-import { gameFilterList } from "../data";
+import { gameFilterList, gameRatingList } from "../data";
 
 export interface FetchResponse<T> {
   count: number;
@@ -86,6 +86,7 @@ export const useGameHook = () => {
     const filterListMapping: any = {
       platforms: gamePlatformList,
       genres: gameGenreList,
+      rating: gameRatingList,
     };
 
     // Update the filter list dynamically based on the value

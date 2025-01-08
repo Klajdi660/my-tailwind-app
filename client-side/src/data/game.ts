@@ -4,8 +4,14 @@ interface GameFilterListProperties {
   id: number;
   name: string;
   value: string;
-  filterList?: any[];
   width: string;
+  filterList?: any[];
+}
+
+interface GameRatingListProperties {
+  id: number;
+  value: number;
+  name: string;
 }
 
 export const gameIconMap: GameIconMapsProperties = {
@@ -36,11 +42,18 @@ export const gameTabsButton = [
 
 export const gameFilterList: GameFilterListProperties[] = [
   { id: 1, name: "Platforms", value: "platforms", width: "400px" },
-  { id: 2, name: "Genres", value: "genres", width: "520px" },
-  { id: 3, name: "Rating", value: "rating", width: "520px" },
-  // { id: 3, name: "Name" },
-  // { id: 4, name: "Relevance" },
-  // { id: 5, name: "Popularity" },
-  // { id: 6, name: "Rating" },
+  { id: 2, name: "Genres", value: "genres", width: "400px" },
+  { id: 3, name: "Rating", value: "rating", width: "0px" },
+  // { id: 4, name: "Name" },
+  // { id: 5, name: "Relevance" },
+  // { id: 6, name: "Popularity" },
   // { id: 7, name: "Release date" },
+];
+
+export const gameRatingList: GameRatingListProperties[] = [
+  { id: 1, name: "1", value: 1 },
+  { id: 2, name: "2", value: 2 },
+  { id: 3, name: "3", value: 3 },
+  { id: 4, name: "4", value: 4 },
+  { id: 5, name: "5", value: 5 },
 ];
