@@ -1,6 +1,6 @@
 import { gameEndpoints } from "./Api";
 import { HttpClient } from "../client";
-import { ServerResponse } from "../types";
+import { ParamsList, ServerResponse } from "../types";
 import { useNotification, useStore } from "../hooks";
 
 const {
@@ -17,14 +17,14 @@ export const useGamesService = () => {
   const { setLoading } = useStore();
   const [notify] = useNotification();
 
-  const getGames = async (pageParam: number | any) => {
-    const params = new URLSearchParams({
-      page: pageParam.toString(),
-    }).toString();
-
-    const url = `${GET_GAME_LIST_API}?${params}`;
-
-    const getGameListResp = await HttpClient.get<ServerResponse>(url);
+  const getGames = async (pageParam: number | any, paramsList: ParamsList) => {
+    const getGameListResp = await HttpClient.get<ServerResponse>(
+      GET_GAME_LIST_API,
+      {
+        page: pageParam,
+        genres: paramsList.genres,
+      }
+    );
 
     const { error, message, data } = getGameListResp;
     if (error) {
@@ -39,9 +39,8 @@ export const useGamesService = () => {
   };
 
   const getGamesSlider = async () => {
-    const url = `${GET_GAME_SLIDER_API}`;
-
-    const getGameSliderResp = await HttpClient.get<ServerResponse>(url);
+    const getGameSliderResp =
+      await HttpClient.get<ServerResponse>(GET_GAME_SLIDER_API);
 
     const { error, message, data } = getGameSliderResp;
     if (error) {
@@ -55,45 +54,14 @@ export const useGamesService = () => {
     return data;
   };
 
-  // const getGameList = async (values: any): Promise<void> => {
-  //   try {
-  //     const params = new URLSearchParams(values).toString();
-  //     const url = `${GET_GAME_LIST_API}?${params}`;
-
-  //     setLoading(true);
-
-  //     const getGameListResp = await HttpClient.get<ServerResponse>(url);
-
-  //     setLoading(false);
-
-  //     const { error, message, data } = getGameListResp;
-  //     if (error) {
-  //       notify({
-  //         variant: "error",
-  //         description: message,
-  //       });
-  //       return;
-  //     }
-
-  //     return data.results;
-  //   } catch (error) {
-  //     setLoading(false);
-  //     console.error(`Get games list field: ${error}`);
-  //     throw error;
-  //   }
-  // };
-
   const getGameDetail = async (gameId: string): Promise<void> => {
     try {
-      const params = new URLSearchParams({
-        gameId: gameId,
-      })?.toString();
-
-      const url = `${GET_GAME_DETAIL_API}?${params}`;
-
       setLoading(true);
 
-      const getGameDetailResp = await HttpClient.get<ServerResponse>(url);
+      const getGameDetailResp = await HttpClient.get<ServerResponse>(
+        GET_GAME_DETAIL_API,
+        { gameId }
+      );
 
       setLoading(false);
 
@@ -114,13 +82,12 @@ export const useGamesService = () => {
     }
   };
 
-  const getGameVideos = async (values: any): Promise<void> => {
+  const getGameVideos = async (params: any): Promise<void> => {
     try {
-      const params = new URLSearchParams(values).toString();
-
-      const url = `${GET_GAME_VIDEOS_API}?${params}`;
-
-      const getGameVideosResp = await HttpClient.get<ServerResponse>(url);
+      const getGameVideosResp = await HttpClient.get<ServerResponse>(
+        GET_GAME_VIDEOS_API,
+        params
+      );
 
       const { error, message, data } = getGameVideosResp;
       if (error) {
@@ -138,13 +105,12 @@ export const useGamesService = () => {
     }
   };
 
-  const getGameReviews = async (values: any): Promise<void> => {
+  const getGameReviews = async (params: any): Promise<void> => {
     try {
-      const params = new URLSearchParams(values).toString();
-
-      const url = `${GET_GAME_REVIEWS_API}?${params}`;
-
-      const getGameReviewsResp = await HttpClient.get<ServerResponse>(url);
+      const getGameReviewsResp = await HttpClient.get<ServerResponse>(
+        GET_GAME_REVIEWS_API,
+        params
+      );
 
       const { error, message, data } = getGameReviewsResp;
       if (error) {
@@ -164,9 +130,9 @@ export const useGamesService = () => {
 
   const getGameGenreList = async (): Promise<void> => {
     try {
-      const url = `${GET_GAME_GENRE_LIST_API}`;
-
-      const getGameGenreListResp = await HttpClient.get<ServerResponse>(url);
+      const getGameGenreListResp = await HttpClient.get<ServerResponse>(
+        GET_GAME_GENRE_LIST_API
+      );
 
       const { error, message, data } = getGameGenreListResp;
       if (error) {
@@ -186,9 +152,9 @@ export const useGamesService = () => {
 
   const getGamePlatformList = async (): Promise<void> => {
     try {
-      const url = `${GET_GAME_PLATFORM_LIST_API}`;
-
-      const getGamePlatformListResp = await HttpClient.get<ServerResponse>(url);
+      const getGamePlatformListResp = await HttpClient.get<ServerResponse>(
+        GET_GAME_PLATFORM_LIST_API
+      );
 
       const { error, message, data } = getGamePlatformListResp;
       if (error) {

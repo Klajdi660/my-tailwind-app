@@ -3,12 +3,12 @@ import { useSearchParams } from "react-router-dom";
 import { Popover } from "antd";
 import { Icon, Title } from "../UI";
 import { classNames } from "../../utils";
-import { useGameHook } from "../../hooks";
+import { useGames } from "../../hooks";
 import { FilterBy } from "../../components";
 
 export const BrowseFilter: FC = () => {
   const [searchParam, setSearchParam] = useSearchParams();
-  const { useGameFilterList } = useGameHook();
+  const { useGameFilterList } = useGames();
 
   const gameFilterList = useGameFilterList();
 

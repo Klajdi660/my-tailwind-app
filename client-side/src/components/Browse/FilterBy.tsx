@@ -22,9 +22,11 @@ export const FilterBy: FC<FilterByProps> = (props) => {
     width,
   } = props;
 
-  const handleFilterList = (name: string) => {
+  const handleFilterList = (name: string, id: string) => {
     searchParam.delete(searchParamName);
+    searchParam.delete(`${searchParamName}Id`);
     searchParam.append(searchParamName, name);
+    searchParam.append(`${searchParamName}Id`, id);
     setSearchParam(searchParam);
     onClosePopover();
   };
@@ -32,21 +34,23 @@ export const FilterBy: FC<FilterByProps> = (props) => {
   return (
     <div className={classNames("flex flex-col", `w-[${width}]`)}>
       <div className="flex flex-wrap gap-2">
-        {filterList?.map((filter: any) => (
-          <button
-            type="button"
-            className={classNames(
-              "px-4 py-2 rounded-full",
-              filterName.includes(filter.name)
-                ? "bg-primary text-white"
-                : "bg-main hover:bg-primary-opacity hover:text-primary transition-all"
-            )}
-            key={filter.id}
-            onClick={() => handleFilterList(filter.name)}
-          >
-            {filter.name}
-          </button>
-        ))}
+        {filterList?.map((filter: any) => {
+          return (
+            <button
+              type="button"
+              className={classNames(
+                "px-4 py-2 rounded-full",
+                filterName.includes(filter.name)
+                  ? "bg-primary text-white"
+                  : "bg-main hover:bg-primary-opacity hover:text-primary transition-all"
+              )}
+              key={filter.id}
+              onClick={() => handleFilterList(filter.name, filter.id)}
+            >
+              {filter.name}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

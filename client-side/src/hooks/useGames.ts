@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useGamesService } from "../services";
-import { GameParams } from "../types";
+import { GameParams, ParamsList } from "../types";
 import { gameFilterList, gameRatingList } from "../data";
 
 export interface FetchResponse<T> {
@@ -9,7 +9,7 @@ export interface FetchResponse<T> {
   results: T[];
 }
 
-export const useGameHook = () => {
+export const useGames = () => {
   const {
     getGames,
     getGameDetail,
@@ -18,15 +18,16 @@ export const useGameHook = () => {
     getGamePlatformList,
   } = useGamesService();
 
-  const useGameList = () => {
+  const useGameList = (params: ParamsList) => {
     const {
       data: gameList,
       isLoading,
       fetchNextPage,
       hasNextPage,
     } = useInfiniteQuery<FetchResponse<GameParams>, Error>({
-      queryKey: ["games"],
-      queryFn: async ({ pageParam = 1 }) => await getGames(pageParam),
+      queryKey: ["games", params],
+      queryFn: async ({ pageParam = 1 }) =>
+        await getGames(pageParam, params as ParamsList),
       getNextPageParam: (lastPage, allPages) => {
         return lastPage.next ? allPages.length + 1 : undefined;
       },
@@ -77,15 +78,15 @@ export const useGameHook = () => {
   };
 
   const useGameFilterList = () => {
-    const { useGameGenreList, useGamePlatformList } = useGameHook();
+    const { useGameGenreList, useGamePlatformList } = useGames();
 
     const { gameGenreList } = useGameGenreList() as any;
     const { gamePlatformList } = useGamePlatformList() as any;
 
     // Create a mapping of value to the corresponding list
     const filterListMapping: any = {
-      platforms: gamePlatformList,
-      genres: gameGenreList,
+      platform: gamePlatformList,
+      genre: gameGenreList,
       rating: gameRatingList,
     };
 

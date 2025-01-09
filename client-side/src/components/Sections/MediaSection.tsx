@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { MediaCard } from "../Cards";
 import { classNames } from "../../utils";
-import { MediaSectionProps } from "../../types";
+import { MediaSectionProps, ParamsList } from "../../types";
 import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
-import { useGameHook } from "../../hooks";
+import { useGames } from "../../hooks";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useSearchParams } from "react-router-dom";
 
 const grid = {
   2: "grid-cols-2",
@@ -25,9 +26,18 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
     // subTitle,
   } = props;
   const [parent] = useAutoAnimate();
-  const { useGameList } = useGameHook();
+  const { useGameList } = useGames();
 
-  const { gameList, isLoading, fetchNextPage, hasNextPage } = useGameList();
+  const [searchParam] = useSearchParams();
+
+  const genreId = searchParam.get("genreId") || undefined;
+
+  const params = {
+    genres: genreId,
+  };
+
+  const { gameList, isLoading, fetchNextPage, hasNextPage } =
+    useGameList(params);
   if (!gameList) return;
 
   const dataLength = gameList.pages.reduce(
