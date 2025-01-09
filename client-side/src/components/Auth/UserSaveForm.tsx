@@ -106,7 +106,7 @@ export const UserSaveForm: FC = () => {
         {validUsers.map((saveAuthUser) => {
           const lastLoginUser = getLastLoginText(saveAuthUser.id);
           const badgeColor = getLastLoginColor(saveAuthUser.id);
-
+          console.log("lastLoginUser :>> ", lastLoginUser);
           return (
             <button
               type="button"
