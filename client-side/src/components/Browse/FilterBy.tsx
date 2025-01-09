@@ -36,9 +36,9 @@ export const FilterBy: FC<FilterByProps> = (props) => {
           <button
             type="button"
             className={classNames(
-              "px-4 py-2 rounded-full",
+              "px-4 py-2 rounded-full text-onNeutralBg",
               filterName.includes(filter.name)
-                ? "bg-primary text-white"
+                ? "bg-primary text-onNeutralBg"
                 : "bg-main hover:bg-primary-opacity hover:text-primary transition-all"
             )}
             key={filter.id}
