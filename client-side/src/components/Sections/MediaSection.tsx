@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { MediaCard } from "../Cards";
 import { classNames } from "../../utils";
-import { MediaSectionProps, ParamsList } from "../../types";
+import { MediaSectionProps } from "../../types";
 import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
 import { useGames } from "../../hooks";
 import InfiniteScroll from "react-infinite-scroll-component";

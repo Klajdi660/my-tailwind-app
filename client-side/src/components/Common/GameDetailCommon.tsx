@@ -1,15 +1,16 @@
-import { FC, useState } from "react";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 import { Icon, Image } from "../UI";
-import { gameIconMap } from "../../data";
+import { gameIconMap, paths } from "../../data";
 import {
   DeveloperListProps,
   PublisherListPorps,
   PlatformIconListProps,
   GameGenreListProps,
 } from "../../types";
-import { classNames, nameTruncate, formatGenreName } from "../../utils";
-import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { nameTruncate, formatGenreName } from "../../utils";
 
 export const PlatformIconList: FC<PlatformIconListProps> = ({
   platforms,
@@ -56,11 +57,21 @@ export const PublisherList: FC<PublisherListPorps> = ({ publishers }) => {
 
 export const GameGenreList: FC<GameGenreListProps> = (props) => {
   const { gameGenres, prevRef, nextRef, setIsBeginning, setIsEnd } = props;
+  const { browse } = paths;
 
-  const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null);
+  const navigate = useNavigate();
 
-  const handleGenreClick = (id: number) => {
-    setSelectedGenreId(id);
+  const handleGenreClick = (
+    id: number,
+    name: string,
+    filterName: string,
+    filterId: string
+  ) => {
+    const params = new URLSearchParams();
+    params.set(filterName, name);
+    params.set(filterId, id.toString());
+
+    navigate(`${browse}?${params.toString()}`);
   };
 
   return (
@@ -89,13 +100,10 @@ export const GameGenreList: FC<GameGenreListProps> = (props) => {
           <SwiperSlide key={genre.id}>
             <button
               type="button"
-              onClick={() => handleGenreClick(genre.id)}
-              className={classNames(
-                "flex items-center gap-4 bg-card rounded-xl p-4 w-full group",
-                selectedGenreId === genre.id
-                  ? "bg-primary-opacity"
-                  : "bg-card hover:bg-primary-opacity hover:brightness-110"
-              )}
+              onClick={() =>
+                handleGenreClick(genre.id, genre.name, "genre", "genreId")
+              }
+              className="flex items-center gap-4 bg-card rounded-xl p-4 w-full hover:bg-primary-opacity hover:brightness-110 group"
             >
               <Image
                 name={genre.name}
@@ -104,12 +112,7 @@ export const GameGenreList: FC<GameGenreListProps> = (props) => {
                 effect="blur"
               />
               <div className="flex flex-col items-start">
-                <span
-                  className={classNames(
-                    selectedGenreId === genre.id && "text-primary",
-                    "font-semibold group-hover:text-primary"
-                  )}
-                >
+                <span className="font-semibold group-hover:text-primary">
                   {nameTruncate(formatGenreName(genre.name), 8)} Games
                 </span>
                 <span className="text-secondary">
