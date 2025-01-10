@@ -20,4 +20,5 @@ export interface ForgotPasswordValues {
 
 export interface ParamsList {
   genres: string | undefined;
+  parent_platforms: string | undefined;
 }

@@ -12,6 +12,8 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
 
   const navigate = useNavigate();
 
+  console.log("game :>> ", game);
+
   return (
     <div
       className="shadow-sm p-3 rounded bg-card duration-300 ease-in cursor-pointer text-onNeutralBg hover:bg-card-hover"

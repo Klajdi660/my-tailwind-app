@@ -1,6 +1,7 @@
+import { useSearchParams } from "react-router-dom";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useGamesService } from "../services";
-import { GameParams, ParamsList } from "../types";
+import { GameParams } from "../types";
 import { gameFilterList, gameRatingList } from "../data";
 
 export interface FetchResponse<T> {
@@ -18,7 +19,17 @@ export const useGames = () => {
     getGamePlatformList,
   } = useGamesService();
 
-  const useGameList = (params: ParamsList) => {
+  const [searchParam] = useSearchParams();
+  // const par = Object.fromEntries(
+  //   Array.from(searchParam.entries()).filter(([_, value]) => value)
+  // );
+
+  const params = {
+    genres: searchParam.get("genreId") || undefined,
+    parent_platforms: searchParam.get("platformId") || undefined,
+  };
+
+  const useGameList = () => {
     const {
       data: gameList,
       isLoading,
@@ -26,8 +37,7 @@ export const useGames = () => {
       hasNextPage,
     } = useInfiniteQuery<FetchResponse<GameParams>, Error>({
       queryKey: ["games", params],
-      queryFn: async ({ pageParam = 1 }) =>
-        await getGames(pageParam, params as ParamsList),
+      queryFn: async ({ pageParam = 1 }) => await getGames(pageParam, params),
       getNextPageParam: (lastPage, allPages) => {
         return lastPage.next ? allPages.length + 1 : undefined;
       },

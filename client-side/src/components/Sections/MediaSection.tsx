@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useSearchParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { MediaCard } from "../Cards";
@@ -19,20 +18,7 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
   const [parent] = useAutoAnimate();
   const { useGameList } = useGames();
 
-  const [searchParam] = useSearchParams();
-
-  const par = Object.fromEntries(
-    Array.from(searchParam.entries()).filter(([_, value]) => value)
-  );
-
-  const genreId = searchParam.get("genreId") || undefined;
-
-  const params = {
-    genres: genreId,
-  };
-
-  const { gameList, isLoading, fetchNextPage, hasNextPage } =
-    useGameList(params);
+  const { gameList, isLoading, fetchNextPage, hasNextPage } = useGameList();
   if (!gameList) return;
 
   const dataLength = gameList.pages.reduce(
