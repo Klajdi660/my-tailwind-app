@@ -4,64 +4,30 @@ import { PlatformIconList } from "../Common";
 import { Image } from "../UI";
 import { paths } from "../../data";
 import { MediaCardProps } from "../../types";
-import { classNames, nameTruncate, getGamePrice } from "../../utils";
-import { useAppSelector } from "../../store";
 
 export const MediaCard: FC<MediaCardProps> = (props) => {
-  const { game, type } = props;
+  const { game } = props;
   const { id, background_image, name, parent_platforms } = game;
   const { gameDetail } = paths;
 
   const navigate = useNavigate();
 
-  const { currency } = useAppSelector((state) => state.user);
-
-  const gamePrice = getGamePrice(game);
-
   return (
     <div
-      // className="shadow-sm p-3 rounded bg-card duration-300 ease-in cursor-pointer text-onNeutralBg hover:bg-card-hover"
       className="shadow-sm p-3 rounded bg-card duration-300 ease-in cursor-pointer text-onNeutralBg hover:bg-card-hover"
       onClick={() => navigate(`${gameDetail}/${id}`)}
     >
       {background_image && (
         <Image
-          // styles={classNames(
-          //   "object-cover aspect-square w-full h-full",
-          //   type === "artist" ? "rounded-full" : "rounded"
-          // )}
-          styles={classNames("h-32 object-cover aspect-square rounded")}
+          styles={"h-32 object-cover aspect-square rounded"}
           width="100%"
           imgUrl={background_image}
           name="image"
           effect="blur"
         />
       )}
-      {/* <div className="relative">
-        <div
-          className={classNames(
-            "relative h-full w-full overflow-hidden",
-            type === "artist" ? "rounded-full" : "rounded"
-          )}
-        >
-          {background_image && (
-            <Image
-              styles={classNames(
-                "object-cover aspect-square w-full h-full",
-                type === "artist" ? "rounded-full" : "rounded"
-              )}
-              imgUrl={background_image}
-              name="image"
-              effect="blur"
-            />
-          )}
-        </div>
-      </div> */}
       <div className="flex flex-col gap-2 desc mt-4 text-left">
-        <h6 className="text-sm font-semibold text-onNeutralBg">
-          {/* {nameTruncate(name, 18)} */}
-          {name}
-        </h6>
+        <h6 className="text-sm font-semibold text-onNeutralBg">{name}</h6>
         <p className="flex flex-col gap-2 text-xs font-normal text-secondary">
           <span className="flex gap-2">
             <PlatformIconList
@@ -71,10 +37,6 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
                 .map((p: any) => p.platform)}
             />
           </span>
-          {/* <span>
-            {currency}
-            {gamePrice}
-          </span> */}
         </p>
       </div>
     </div>

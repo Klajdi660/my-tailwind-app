@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import { gameEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import { ParamsList, ServerResponse } from "../types";
@@ -16,6 +17,14 @@ const {
 export const useGamesService = () => {
   const { setLoading } = useStore();
   const [notify] = useNotification();
+
+  const [searchParam] = useSearchParams();
+
+  const par = Object.fromEntries(
+    Array.from(searchParam.entries()).filter(([_, value]) => value)
+  );
+
+  console.log("par :>> ", par);
 
   const getGames = async (pageParam: number | any, paramsList: ParamsList) => {
     const getGameListResp = await HttpClient.get<ServerResponse>(

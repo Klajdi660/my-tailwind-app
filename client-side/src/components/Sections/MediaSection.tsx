@@ -1,34 +1,29 @@
 import { FC } from "react";
+import { useSearchParams } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { MediaCard } from "../Cards";
+import { grid } from "../../data";
+import { useGames } from "../../hooks";
 import { classNames } from "../../utils";
 import { MediaSectionProps } from "../../types";
 import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
-import { useGames } from "../../hooks";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { useSearchParams } from "react-router-dom";
-
-const grid = {
-  2: "grid-cols-2",
-  3: "grid-cols-2 xs:grid-cols-3",
-  4: "grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4",
-  5: "grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5",
-  6: "grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8",
-};
 
 export const MediaSection: FC<MediaSectionProps> = (props) => {
   const {
     enableTitle = true,
-    type,
     gridNumber = 5,
     skeletonItemNumber = gridNumber * 2,
-    // title,
-    // subTitle,
   } = props;
+
   const [parent] = useAutoAnimate();
   const { useGameList } = useGames();
 
   const [searchParam] = useSearchParams();
+
+  const par = Object.fromEntries(
+    Array.from(searchParam.entries()).filter(([_, value]) => value)
+  );
 
   const genreId = searchParam.get("genreId") || undefined;
 
@@ -58,7 +53,7 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
           <div className="animate_skeleton">
             {enableTitle && <TitleSkeleton />}
             <div className={classNames("grid gap-4", grid?.[gridNumber])}>
-              <MediaCardSkeleton number={skeletonItemNumber} type={type} />
+              <MediaCardSkeleton number={skeletonItemNumber} />
             </div>
           </div>
         )}
@@ -71,7 +66,7 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
                 className={classNames("grid gap-4 mb-4", grid?.[gridNumber])}
               >
                 {page.results.map((game) => (
-                  <MediaCard key={game.id} game={game} type={type} />
+                  <MediaCard key={game.id} game={game} />
                 ))}
               </div>
             );

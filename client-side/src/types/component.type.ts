@@ -56,7 +56,6 @@ export interface FormTemplateProps {
 
 // Card
 export interface MediaCardProps {
-  type: string;
   game: GameParams;
 }
 
@@ -232,7 +231,6 @@ export interface PersonalDetailsValues {
 
 // Section
 export interface MediaSectionProps {
-  type: string;
   title: string;
   subTitle: string;
   enableTitle?: boolean;
@@ -263,7 +261,6 @@ export interface HeaderBannerSkeletonProps {
 }
 
 export interface MediaCardSkeletonProps {
-  type: string;
   number: number;
 }
 

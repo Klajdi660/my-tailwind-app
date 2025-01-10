@@ -4,7 +4,7 @@ import { classNames } from "../../utils";
 import { MediaCardSkeletonProps } from "../../types";
 
 export const MediaCardSkeleton: FC<MediaCardSkeletonProps> = (props) => {
-  const { type, number } = props;
+  const { number } = props;
 
   const gradientClass = "bg-gradient-to-l from-main to-card";
 
@@ -15,11 +15,7 @@ export const MediaCardSkeleton: FC<MediaCardSkeletonProps> = (props) => {
           <Skeleton className="w-full p-4 rounded bg-card-skeleton">
             <div className="aspect-square">
               <Skeleton
-                className={classNames(
-                  "w-full h-full",
-                  gradientClass,
-                  type === "artist" ? "rounded-full" : "rounded"
-                )}
+                className={classNames("w-full h-full rounded", gradientClass)}
               />
             </div>
             <div className="flex justify-center">

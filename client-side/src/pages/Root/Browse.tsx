@@ -29,10 +29,9 @@ export const BrowsePage: FC = () => {
       <div className="browse_page flex flex-col gap-4">
         <BrowseFilter />
         <MediaSection
-          type="album"
           title="Discover"
-          skeletonItemNumber={5}
           subTitle="Explore sonic realms with our Discover feature."
+          skeletonItemNumber={5}
         />
       </div>
     </>
