@@ -121,7 +121,12 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
               ))
             : gameGenreList.map((genre: any) => (
                 <SwiperSlide key={genre.id}>
-                  <GenreCard genreId={genre.id} genreImg={genre} />
+                  <GenreCard
+                    genreId={genre.id}
+                    genreName={genre.name}
+                    genreImg={genre.image_background}
+                    genreCount={genre.games_count}
+                  />
                 </SwiperSlide>
               ))}
         </SwiperComponent>
