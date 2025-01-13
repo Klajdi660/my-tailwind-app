@@ -17,8 +17,3 @@ export interface LoginUserValues {
 export interface ForgotPasswordValues {
   email: string;
 }
-
-export interface ParamsList {
-  genres: string | undefined;
-  parent_platforms: string | undefined;
-}

@@ -1,4 +1,3 @@
-import { useSearchParams } from "react-router-dom";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useGamesService } from "../services";
 import { GameParams } from "../types";
@@ -19,17 +18,7 @@ export const useGames = () => {
     getGamePlatformList,
   } = useGamesService();
 
-  const [searchParam] = useSearchParams();
-  // const par = Object.fromEntries(
-  //   Array.from(searchParam.entries()).filter(([_, value]) => value)
-  // );
-
-  const params = {
-    genres: searchParam.get("genreId") || undefined,
-    parent_platforms: searchParam.get("platformId") || undefined,
-  };
-
-  const useGameList = () => {
+  const useGameList = (params: object) => {
     const {
       data: gameList,
       isLoading,

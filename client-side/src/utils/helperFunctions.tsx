@@ -154,3 +154,11 @@ export const convertTimeAgoName = (timeAgo: string) => {
     .replace(" years", "y")
     .replace(" year", "y");
 };
+
+export const getDataPeriod = () => {
+  const currentDate = moment().format("YYYY-MM-DD");
+  const lastYear = moment().subtract(1, "year").format("YYYY-MM-DD");
+  const nextYear = moment().add(1, "year").format("YYYY-MM-DD");
+
+  return { currentDate, lastYear, nextYear };
+};

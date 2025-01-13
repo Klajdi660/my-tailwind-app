@@ -10,6 +10,9 @@ export * from "./Auth/UserSaveForm";
 export { BrowseFilter } from "./Browse/BrowseFilter";
 export { FilterBy } from "./Browse/FilterBy";
 
+// Discover
+export { GamesSwiper } from "./Discover/GamesSwiper";
+
 // CARDS
 export { MediaCard } from "./Cards/MediaCard";
 export { TopPlayCard } from "./Cards/TopPlayCard";

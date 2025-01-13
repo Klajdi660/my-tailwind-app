@@ -1,6 +1,6 @@
 import { gameEndpoints } from "./Api";
 import { HttpClient } from "../client";
-import { ParamsList, ServerResponse } from "../types";
+import { ServerResponse } from "../types";
 import { useNotification, useStore } from "../hooks";
 
 const {
@@ -17,7 +17,7 @@ export const useGamesService = () => {
   const { setLoading } = useStore();
   const [notify] = useNotification();
 
-  const getGames = async (pageParam: number | any, params: ParamsList) => {
+  const getGames = async (pageParam: number | any, params: object) => {
     const getGameListResp = await HttpClient.get<ServerResponse>(
       GET_GAME_LIST_API,
       {
