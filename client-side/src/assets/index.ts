@@ -30,6 +30,7 @@ import avatar2 from "./avatar2.png";
 import avatar3 from "./avatar3.png";
 import avatar4 from "./avatar4.png";
 import defaultCoverPhoto from "./coverPhoto.avif";
+import noImg from "./noImg.jpg";
 
 export {
   icon,
@@ -64,4 +65,5 @@ export {
   avatar3,
   avatar4,
   defaultCoverPhoto,
+  noImg,
 };
