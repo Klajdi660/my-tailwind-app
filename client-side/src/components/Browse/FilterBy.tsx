@@ -25,6 +25,7 @@ export const FilterBy: FC<FilterByProps> = (props) => {
   const handleFilterList = (name: string, id: string) => {
     searchParam.delete(searchParamName);
     searchParam.delete(`${searchParamName}Id`);
+    searchParam.delete("gameName");
     searchParam.append(searchParamName, name);
     searchParam.append(`${searchParamName}Id`, id);
     setSearchParam(searchParam);

@@ -7,6 +7,7 @@ import { useGames } from "../../hooks";
 import { classNames } from "../../utils";
 import { MediaCard, GenreCard } from "../Cards";
 import { paths } from "../../data";
+import { motion } from "framer-motion";
 
 interface GamesSwiperProps {
   sectionName: string;
@@ -26,19 +27,20 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
 
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
   const navigate = useNavigate();
 
-  const paramsToSend = {
+  const params = {
     dates: dateParam,
     ordering: orderingParam,
     page_size: 20,
   };
 
-  const { gameList } = useGameList(paramsToSend);
+  const { gameList } = useGameList(params);
   const { gameGenreList }: any = useGameGenreList();
   if (!gameList) return;
 
@@ -49,9 +51,21 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
           type="button"
           className="flex_justify_center"
           onClick={() => navigate(browse)}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          <Title name={titleName} type="small" divider={false} />
-          <Icon name="MdKeyboardArrowRight" size={30} />
+          <motion.div
+            whileHover={{ color: "#1f9bee" }}
+            transition={{ type: "tween", duration: 0.3 }}
+          >
+            <Title name={titleName} type="small" divider={false} />
+          </motion.div>
+          <motion.div
+            animate={isHovered ? { x: 5 } : { x: 0 }}
+            transition={{ type: "tween", duration: 0.3 }}
+          >
+            <Icon name="MdKeyboardArrowRight" size={30} />
+          </motion.div>
         </button>
         <div className="flex gap-2">
           <button

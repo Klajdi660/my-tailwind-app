@@ -1,19 +1,72 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect, useRef } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Icon } from "./UI";
+import { paths } from "../data";
+import { useGames } from "../hooks";
 import { classNames } from "../utils";
 import { SearchbarProps } from "../types";
 
 export const Searchbar: FC<SearchbarProps> = (props) => {
   const { isMobile, toggleSearch, setToggleSearch } = props;
+  const { browse } = paths;
+
+  const { useGameList } = useGames();
+  const [searchParam] = useSearchParams();
 
   const [input, setInput] = useState("");
+  const [debouncedInput, setDebouncedInput] = useState(input);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  const searchbarRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  const params = {
+    search: debouncedInput,
+    page_size: 10,
+  };
+
+  useEffect(() => {
+    const gameNameFromUrl = searchParam.get("gameName");
+
+    if (gameNameFromUrl) {
+      setInput(gameNameFromUrl);
+    }
+  }, [searchParam]);
+
+  useEffect(() => {
+    setDebouncedInput(input);
+  }, [input]);
+
+  const { gameList } = useGameList(params) as any;
+
+  const shouldShowDropdown = input.length >= 3 && gameList?.pages?.length > 0;
+
+  const handleClear = () => {
+    setInput("");
+    setIsDropdownVisible(false);
+    const params = new URLSearchParams();
+    params.delete("gameName");
+    params.delete("genre");
+    navigate(`${browse}?${params.toString()}`, { replace: true });
+  };
+
+  const handleSearchSeleted = (game: any) => {
+    setInput(game.name);
+    setIsDropdownVisible(false);
+
+    const params = new URLSearchParams();
+    params.set("gameName", game.name);
+    params.set("genre", game.genres[0]?.name || "");
+
+    navigate(`${browse}?${params.toString()}`);
+  };
 
   return (
     <>
       <div
+        ref={searchbarRef}
         className={classNames(
-          "w-1/2 h-full",
-          "focus-within:w-full",
+          "w-[500px] h-full",
           isMobile
             ? classNames(
                 "absolute p-3 duration-300 transition-all left-0",
@@ -35,17 +88,46 @@ export const Searchbar: FC<SearchbarProps> = (props) => {
             placeholder="Search for games..."
             className="flex-1 w-full h-12 px-4 text-sm bg-transparent outline-0 text-onNeutralBg"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => {
+              setInput(e.target.value);
+              setIsDropdownVisible(true);
+            }}
           />
+          {input.length > 0 && (
+            <button
+              className="w-8 h-8 mr-3 transition-colors duration-500 rounded-full flex_justify_center hover:bg-primary-opacity group"
+              onClick={handleClear}
+            >
+              <Icon name="MdClear" className="group-hover:text-primary" />
+            </button>
+          )}
           {isMobile && (
             <button
-              className="w-8 h-8 transition-colors duration-500 rounded flex_justify_center bg-sidebar hover:bg-red-500"
+              className="w-8 h-8 transition-colors duration-500 rounded flex_justify_center hover:bg-red-500"
               onClick={() => setToggleSearch(false)}
             >
               <Icon name="MdCancel" />
             </button>
           )}
         </div>
+
+        {isDropdownVisible && shouldShowDropdown && (
+          <div className="w-[500px] absolute top-20 bg-sidebar rounded shadow-lg p-2">
+            {gameList?.pages.map((page: any, index: string) => (
+              <ul key={index}>
+                {page.results.map((game: any, index: string) => (
+                  <li
+                    key={index}
+                    className="px-4 py-2 hover:bg-primary-opacity cursor-pointer rounded"
+                    onClick={() => handleSearchSeleted(game)}
+                  >
+                    {game.name}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        )}
       </div>
       <div className="flex items-center h-full lg:hidden">
         <button
