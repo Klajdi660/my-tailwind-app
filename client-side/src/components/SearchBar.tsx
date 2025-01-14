@@ -46,6 +46,7 @@ export const Searchbar: FC<SearchbarProps> = (props) => {
     setIsDropdownVisible(false);
     const params = new URLSearchParams();
     params.delete("gameName");
+    params.delete("gameId");
     params.delete("genre");
     navigate(`${browse}?${params.toString()}`, { replace: true });
   };
@@ -56,6 +57,7 @@ export const Searchbar: FC<SearchbarProps> = (props) => {
 
     const params = new URLSearchParams();
     params.set("gameName", game.name);
+    params.set("gameId", game.id);
     params.set("genre", game.genres[0]?.name || "");
 
     navigate(`${browse}?${params.toString()}`);
