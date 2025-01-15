@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Icon } from "../UI";
+import { Icon, Image } from "../UI";
 import { gameIconMap } from "../../data";
 import {
   DeveloperListProps,
@@ -25,16 +25,41 @@ export const PlatformIconList: FC<PlatformIconListProps> = ({
   );
 };
 
-export const DeveloperList: FC<DeveloperListProps> = ({ developers }) => {
+export const DeveloperList: FC<DeveloperListProps> = ({
+  developers,
+  publishers,
+}) => {
   return (
-    <>
-      {developers.map((dev, index) => (
-        <span className="text-secondary capitalize" key={dev.id}>
-          {dev.name.toLowerCase()}
-          {index < developers.length - 1 ? " | " : ""}
-        </span>
+    <div className="grid grid-cols-2 gap-y-6">
+      {developers.map((dev) => (
+        <div key={dev.id} className="flex_justify_start gap-2">
+          <Image
+            imgUrl={dev.image_background}
+            styles="w-16 h-16 rounded-full"
+          />
+          <p className="flex flex-col">
+            <span>{dev.name}</span>
+            <span className="text-secondary text-base">
+              {dev.games_count} games
+            </span>
+          </p>
+        </div>
       ))}
-    </>
+      {publishers.map((pub: any) => (
+        <div key={pub.id} className="flex_justify_start gap-2">
+          <Image
+            imgUrl={pub.image_background}
+            styles="w-16 h-16 rounded-full"
+          />
+          <p className="flex flex-col">
+            <span>{pub.name}</span>
+            <span className="text-secondary text-base">
+              {pub.games_count} games
+            </span>
+          </p>
+        </div>
+      ))}
+    </div>
   );
 };
 

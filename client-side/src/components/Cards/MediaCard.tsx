@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PlatformIconList } from "../Common";
 import { Image } from "../UI";
 import { paths } from "../../data";
+import { nameTruncate } from "../../utils";
 import { MediaCardProps } from "../../types";
-import { classNames, nameTruncate } from "../../utils";
 
 export const MediaCard: FC<MediaCardProps> = (props) => {
   const { game } = props;
@@ -12,18 +12,10 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
   const { gameDetail } = paths;
 
   const navigate = useNavigate();
-  const [searchParam] = useSearchParams();
-
-  const gameId = searchParam.get("gameId");
 
   return (
     <div
-      className={classNames(
-        "shadow-sm rounded duration-300 ease-in cursor-pointer text-onNeutralBg group",
-        gameId?.includes(id.toString())
-          ? "bg-primary-opacity opacity-75"
-          : "bg-card"
-      )}
+      className="shadow-sm gb-card rounded duration-300 ease-in cursor-pointer text-onNeutralBg group"
       onClick={() => navigate(`${gameDetail}/${id}`)}
     >
       {background_image && (

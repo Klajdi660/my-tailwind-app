@@ -77,7 +77,9 @@ body,
   .flex_justify_between {
     @apply flex items-center justify-between;
   }
-
+  .flex_justify_start {
+    @apply flex items-center justify-start;
+  }
   .flex_justify_end {
     @apply flex items-center justify-end;
   }

@@ -32,7 +32,7 @@ const ReviewContent: FC<ReviewContentProps> = (props) => {
               </div>
               <ReadMore
                 className="text-secondary text-justify"
-                limitTextLength={150}
+                limitTextLength={50}
               >
                 {review.text}
               </ReadMore>
@@ -51,11 +51,10 @@ export const GameTabReviews: FC<GameTabReviewsProps> = (props) => {
   const { gameReviews } = props;
 
   const [reviewSortType, setReviewSortType] = useState("desc");
-
   return (
     <>
       <ul className="flex gap-10 text-onNeutralBg text-lg justify-center">
-        {/* <div className="flex gap-4 justify-end -mt-5 mb-10">
+        <div className="flex gap-4 justify-end -mt-5 mb-10">
           <p>Sort Rating: </p>
           <select
             className="outline-none bg-inherit"
@@ -69,7 +68,7 @@ export const GameTabReviews: FC<GameTabReviewsProps> = (props) => {
               Descending
             </option>
           </select>
-        </div> */}
+        </div>
         <div>
           {gameReviews.length === 0 && (
             <p className="text-center text-white text-lg">

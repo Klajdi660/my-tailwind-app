@@ -1,46 +1,51 @@
 import { FC } from "react";
-import { Tooltip } from "antd";
-// import { GameTabDetail } from "./GameTabDetail";
+import { useNavigate } from "react-router-dom";
+import { Tooltip, Progress } from "antd";
+import { GameTabDetail } from "./GameTabDetail";
 import { HeaderBannerSkeleton } from "../Skeleton";
 import { Button, Icon, Image } from "../UI";
 import { useStore, useCart, useMediaResponsive } from "../../hooks";
 import { GameDetailProps } from "../../types";
 import { classNames } from "../../utils";
 import { useAppSelector } from "../../store";
+import { paths } from "../../data";
 
 export const GameDetail: FC<GameDetailProps> = (props) => {
-  const { gameDetail /*gameVideos, gameReviews*/ } = props;
-
+  const { gameDetail, gameReviews, gameVideos } = props;
+  const { browse } = paths;
   const {
     id,
     name,
     genres,
-    // rating,
-    // playtime,
+    rating,
+    playtime,
     background_image,
     background_image_additional,
   } = gameDetail;
 
-  // const { results: gameVideoResults } = gameVideos;
-
   const { loading } = useStore();
   const { isMobile } = useMediaResponsive();
   const { addGameToCart } = useCart();
+  const navigate = useNavigate();
 
   const cart = useAppSelector((state) => state.cart.items);
 
   const gameInCart = cart.find((item: any) => item.id === id);
 
-  // const getColor = (rating: number) => {
-  //   if (rating >= 4) return "green";
-  //   if (rating >= 2) return "#0077B5";
-  //   return "red";
-  // };
+  const getColor = (rating: number) => {
+    if (rating >= 4) return "green";
+    if (rating >= 2) return "#0077B5";
+    return "red";
+  };
 
   const addToCartHandler = () => {
     addGameToCart(gameDetail);
   };
 
+  if (!gameVideos) return null;
+  const { results: gameVideoResults } = gameVideos;
+
+  console.log("gameVideoResults :>> ", gameVideoResults);
   return (
     <div className="game_detail flex flex-col md:flex-row">
       <div className="flex-grow min-h-screen">
@@ -57,7 +62,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
             className="bg-cover bg-center bg-no-repeat md:h-[400px] h-[300px] rounded-2xl relative"
           >
             <div className="bg-gradient-to-br from-transparent to-black/70 h-full rounded-2xl">
-              <div className="flex flex-col items-center md:flex-row absolute bottom-[-85%] md:bottom-[-20%] left-[10%] right-[3%]">
+              <div className="flex flex-col items-center md:flex-row absolute bottom-[-85%] md:bottom-[-20%] left-[5%] right-[5%]">
                 <div className="flex gap-5 items-center">
                   <div className="shrink-0">
                     <Image
@@ -77,17 +82,23 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
                   )}
                 </div>
                 <div className="flex-grow md:ml-10 ml-6 mt-6 md:mt-0 mb-10">
-                  <h1 className="text-primary text-4xl font-bold leading-tight">
+                  <h1 className="text-white text-4xl font-bold leading-tight">
                     {name}
                   </h1>
 
                   <div className="flex gap-3 flex-wrap mt-3">
-                    {genres.slice(0, 3).map((genre: any) => (
+                    {/* .slice(0, 3) */}
+                    {genres.map((genre: any) => (
                       <Button
                         key={genre.id}
                         label={genre.name}
                         variant="outlined"
-                        className="rounded-full border-primary text-primary hover:brightness-75 transition duration-300"
+                        className="rounded-full border-white text-white hover:brightness-75 transition duration-300"
+                        onClick={() =>
+                          navigate(
+                            `${browse}?genreId=${genre.id}&genre=${genre.name}`
+                          )
+                        }
                       />
                     ))}
                   </div>
@@ -101,7 +112,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
                   />
                 )}
               </div>
-              <div className="flex gap-3 absolute top-[5%] right-[3%]">
+              <div className="flex gap-3 absolute top-[5%] right-[5%]">
                 <Tooltip title="Add to Wishlist" trigger={["hover"]}>
                   <button
                     // onClick={bookmarkedHandler}
@@ -142,7 +153,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
             </div>
           </div>
         )}
-        {/* <div className="flex z-20 relative flex-col md:flex-row mt-32 md:mt-0">
+        <div className="flex z-20 relative flex-col md:flex-row mt-32 md:mt-0">
           {!isMobile && (
             <div className="shrink-0 md:max-w-[150px] w-full flex items-center md:flex-col justify-center flex-row gap-20 mt-20 md:border-r border-divider pt-16">
               <div className="flex flex-col gap-6 items-center">
@@ -173,7 +184,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
           <div className="flex-grow min-h-[500px] md:border-r border-divider md:px-16 px-5 md:py-7 pt-40">
             <GameTabDetail gameDetail={gameDetail} gameReviews={gameReviews} />
           </div>
-          <div className="shrink-0 md:max-w-[300px] w-full px-6 pt-6">
+          <div className="shrink-0 md:max-w-[500px] w-full px-6 pt-6">
             <p className="text-onNeutralBg font-medium text-lg mb-5">MEDIA</p>
             <ul className="flex flex-col md:gap-[30px] gap-6">
               {gameVideoResults.length > 0 &&
@@ -207,7 +218,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
               )}
             </ul>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { useGames } from "../../hooks";
 import { FilterBy } from "../../components";
 
 export const BrowseFilter: FC = () => {
-  const [searchParam, setSearchParam] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { useGameFilterList } = useGames();
 
   const gameFilterList = useGameFilterList();
@@ -35,7 +35,7 @@ export const BrowseFilter: FC = () => {
         <div className="flex gap-6">
           {gameFilterList.map((gameFilter) => {
             const { id, name, value, filterList, width } = gameFilter;
-            const filterName = searchParam.get(value) || "";
+            const filterName = searchParams.get(value) || "";
 
             return (
               <button
@@ -51,8 +51,8 @@ export const BrowseFilter: FC = () => {
                   arrow={false}
                   content={
                     <FilterBy
-                      searchParam={searchParam}
-                      setSearchParam={setSearchParam}
+                      searchParams={searchParams}
+                      setSearchParams={setSearchParams}
                       searchParamName={value}
                       filterName={filterName}
                       filterList={filterList}

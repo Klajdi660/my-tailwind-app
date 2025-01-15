@@ -34,8 +34,8 @@ export const imageDimsOpt: ImageDimsOptions = {
 };
 
 export const gameTabsButton = [
-  { id: "cast", name: "Cast" },
   { id: "overall", name: "Overall" },
+  { id: "developer", name: "Developer" },
   { id: "reviews", name: "Reviews" },
   { id: "seasons", name: "Seasons" },
 ];

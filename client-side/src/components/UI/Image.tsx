@@ -1,14 +1,17 @@
 import { FC } from "react";
-import { ImageProps } from "../../types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { noImg } from "../../assets";
+import { ImageProps } from "../../types";
 
 export const Image: FC<ImageProps> = (props) => {
   const { imgUrl, name, width, height, styles, effect } = props;
 
+  const img = imgUrl ? imgUrl : noImg;
+
   return (
     <LazyLoadImage
       alt={name}
-      src={imgUrl}
+      src={img}
       width={width}
       height={height}
       className={styles}

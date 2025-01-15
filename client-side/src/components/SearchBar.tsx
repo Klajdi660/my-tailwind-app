@@ -2,7 +2,6 @@ import { FC, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Icon, Image } from "./UI";
 import { paths } from "../data";
-import { noImg } from "../assets";
 import { useGames } from "../hooks";
 import { classNames } from "../utils";
 import { SearchbarProps } from "../types";
@@ -96,9 +95,7 @@ export const Searchbar: FC<SearchbarProps> = (props) => {
                     onClick={() => handleSearchSeleted(game.id, "search")}
                   >
                     <Image
-                      imgUrl={
-                        game.background_image ? game.background_image : noImg
-                      }
+                      imgUrl={game.background_image}
                       styles="w-10 h-12 rounded object-cover"
                     />
                     <span>{game.name}</span>

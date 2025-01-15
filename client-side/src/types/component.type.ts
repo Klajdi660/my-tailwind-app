@@ -143,6 +143,7 @@ interface DeveloperList {
 }
 export interface DeveloperListProps {
   developers: DeveloperList[];
+  publishers: any;
 }
 
 interface PublisherList {
@@ -198,7 +199,7 @@ export interface GameDetailProps {
 
 export interface GameTabDetailProps {
   gameDetail: GameParams;
-  gameReviews: GameReviewsParams[];
+  gameReviews: GameReviewsParams[] | any;
 }
 
 export interface GameTabReviewsProps {

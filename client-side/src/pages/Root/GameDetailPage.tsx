@@ -8,11 +8,17 @@ export const GameDetailPage: FC = () => {
 
   const { gameId } = useParams<{ gameId: string | any }>();
 
-  const { gameDetail } = useGameDetail(gameId) as any;
+  const { gameDetail, gameReviews, gameVideos } = useGameDetail(gameId) as any;
 
   return (
     <section className="game_detail_page">
-      {gameDetail && <GameDetail gameDetail={gameDetail} />}
+      {gameDetail && (
+        <GameDetail
+          gameDetail={gameDetail}
+          gameReviews={gameReviews}
+          gameVideos={gameVideos}
+        />
+      )}
     </section>
   );
 };

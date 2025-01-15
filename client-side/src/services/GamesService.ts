@@ -82,11 +82,11 @@ export const useGamesService = () => {
     }
   };
 
-  const getGameVideos = async (params: any): Promise<void> => {
+  const getGameVideos = async (gameId: string): Promise<void> => {
     try {
       const getGameVideosResp = await HttpClient.get<ServerResponse>(
         GET_GAME_VIDEOS_API,
-        params
+        { gameId }
       );
 
       const { error, message, data } = getGameVideosResp;
@@ -105,11 +105,11 @@ export const useGamesService = () => {
     }
   };
 
-  const getGameReviews = async (params: any): Promise<void> => {
+  const getGameReviews = async (gameId: string): Promise<void> => {
     try {
       const getGameReviewsResp = await HttpClient.get<ServerResponse>(
         GET_GAME_REVIEWS_API,
-        params
+        { gameId }
       );
 
       const { error, message, data } = getGameReviewsResp;
@@ -123,7 +123,7 @@ export const useGamesService = () => {
 
       return data;
     } catch (error) {
-      console.error(`Get game videos field: ${error}`);
+      console.error(`Get game revies field: ${error}`);
       throw error;
     }
   };
@@ -174,7 +174,6 @@ export const useGamesService = () => {
 
   return {
     getGames,
-    // getGameList,
     getGameDetail,
     getGameVideos,
     getGameReviews,

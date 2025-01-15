@@ -2,8 +2,8 @@ import { FC } from "react";
 import { classNames } from "../../utils";
 
 interface FilterByProps {
-  searchParam: URLSearchParams;
-  setSearchParam: React.Dispatch<React.SetStateAction<URLSearchParams>>;
+  searchParams: URLSearchParams;
+  setSearchParams: React.Dispatch<React.SetStateAction<URLSearchParams>>;
   filterName: string;
   searchParamName: string;
   filterList: any;
@@ -13,8 +13,8 @@ interface FilterByProps {
 
 export const FilterBy: FC<FilterByProps> = (props) => {
   const {
-    searchParam,
-    setSearchParam,
+    searchParams,
+    setSearchParams,
     filterName,
     onClosePopover,
     searchParamName,
@@ -23,12 +23,11 @@ export const FilterBy: FC<FilterByProps> = (props) => {
   } = props;
 
   const handleFilterList = (name: string, id: string) => {
-    searchParam.delete(searchParamName);
-    searchParam.delete(`${searchParamName}Id`);
-    searchParam.delete("gameName");
-    searchParam.append(searchParamName, name);
-    searchParam.append(`${searchParamName}Id`, id);
-    setSearchParam(searchParam);
+    searchParams.delete(searchParamName);
+    searchParams.delete(`${searchParamName}Id`);
+    searchParams.append(`${searchParamName}Id`, id);
+    searchParams.append(searchParamName, name);
+    setSearchParams(searchParams);
     onClosePopover();
   };
 

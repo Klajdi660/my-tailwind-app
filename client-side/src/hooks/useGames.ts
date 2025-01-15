@@ -16,6 +16,8 @@ export const useGames = () => {
     getGamesSlider,
     getGameGenreList,
     getGamePlatformList,
+    getGameReviews,
+    getGameVideos,
   } = useGamesService();
 
   const useGameList = (params: object) => {
@@ -42,7 +44,17 @@ export const useGames = () => {
       queryFn: async () => await getGameDetail(gameId),
     });
 
-    return { gameDetail };
+    const { data: gameReviews } = useQuery({
+      queryKey: ["games-reviews", gameId],
+      queryFn: async () => await getGameReviews(gameId),
+    });
+
+    const { data: gameVideos } = useQuery({
+      queryKey: ["games-videos", gameId],
+      queryFn: async () => await getGameVideos(gameId),
+    });
+
+    return { gameDetail, gameReviews, gameVideos };
   };
 
   const useGameSlider = () => {

@@ -19,14 +19,14 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
   const [parent] = useAutoAnimate();
   const { useGameList } = useGames();
 
-  const [searchParam] = useSearchParams();
+  const [searchParams] = useSearchParams();
   // const par = Object.fromEntries(
-  //   Array.from(searchParam.entries()).filter(([_, value]) => value)
+  //   Array.from(searchParams.entries()).filter(([_, value]) => value)
   // );
 
   const params = {
-    genres: searchParam.get("genreId") || undefined,
-    parent_platforms: searchParam.get("platformId") || undefined,
+    genres: searchParams.get("genreId") || undefined,
+    parent_platforms: searchParams.get("platformId") || undefined,
   };
 
   const { gameList, isLoading, fetchNextPage, hasNextPage } =

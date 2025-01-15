@@ -43,9 +43,9 @@ export const GameTabDetail: FC<GameTabDetailProps> = (props) => {
               {description_raw}
             </ReadMore>
             <p className="font-medium mt-8 mb-3">DETAILS</p>
-            <p className="flex gap-1">
+            {/* <p className="flex gap-1">
               Developer: <DeveloperList developers={developers} />
-            </p>
+            </p> */}
             <p className="flex gap-1">
               Publisher: <PublisherList publishers={publishers} />
             </p>
@@ -63,6 +63,9 @@ export const GameTabDetail: FC<GameTabDetailProps> = (props) => {
         )}
         {currentTab === "reviews" && (
           <GameTabReviews gameReviews={gameReviews} />
+        )}
+        {currentTab === "developer" && (
+          <DeveloperList developers={developers} publishers={publishers} />
         )}
       </div>
     </>
