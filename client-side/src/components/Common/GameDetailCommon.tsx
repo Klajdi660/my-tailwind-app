@@ -59,6 +59,11 @@ export const DeveloperList: FC<DeveloperListProps> = ({
           </p>
         </div>
       ))}
+      {!developers.length && (
+        <p className="text-primary text-xl font-bold text-center">
+          No developers found
+        </p>
+      )}
     </div>
   );
 };
