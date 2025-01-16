@@ -74,13 +74,13 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
             type="button"
             className={classNames(
               "w-8 h-8 flex_justify_center transition-colors duration-500 rounded-full group",
-              isBeginning ? "bg-card" : "bg-card hover:bg-primary"
+              isBeginning ? "bg-card" : "bg-card hover:bg-primary-opacity"
             )}
           >
             <Icon
               name="MdKeyboardArrowLeft"
               className={classNames(
-                isBeginning ? "!text-gray-400" : "group-hover:!text-white"
+                isBeginning ? "text-secondary" : "group-hover:text-primary"
               )}
             />
           </button>
@@ -90,13 +90,13 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
             type="button"
             className={classNames(
               "w-8 h-8 flex_justify_center transition-colors duration-500 rounded-full group",
-              isEnd ? "bg-card" : "bg-card hover:bg-primary"
+              isEnd ? "bg-card" : "bg-card hover:bg-primary-opacity"
             )}
           >
             <Icon
               name="MdKeyboardArrowRight"
               className={classNames(
-                isEnd ? "!text-gray-400" : "group-hover:!text-white"
+                isEnd ? "text-secondary" : "group-hover:text-primary"
               )}
             />
           </button>
