@@ -74,7 +74,7 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
             type="button"
             className={classNames(
               "w-8 h-8 flex_justify_center transition-colors duration-500 rounded-full group",
-              isBeginning ? "bg-gray-200" : "bg-card hover:bg-primary"
+              isBeginning ? "bg-card" : "bg-card hover:bg-primary"
             )}
           >
             <Icon
@@ -90,7 +90,7 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
             type="button"
             className={classNames(
               "w-8 h-8 flex_justify_center transition-colors duration-500 rounded-full group",
-              isEnd ? "bg-gray-200" : "bg-card hover:bg-primary"
+              isEnd ? "bg-card" : "bg-card hover:bg-primary"
             )}
           >
             <Icon
@@ -124,16 +124,16 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
           spaceBetween={10}
         >
           {swiperType !== "genre"
-            ? gameList.pages.map((page, index) => (
+            ? gameList?.pages?.map((page, index) => (
                 <div key={index}>
-                  {page.results.map((game) => (
+                  {page?.results?.map((game) => (
                     <SwiperSlide key={game.id}>
                       <MediaCard key={game.id} game={game} />
                     </SwiperSlide>
                   ))}
                 </div>
               ))
-            : gameGenreList.map((genre: any) => (
+            : gameGenreList?.map((genre: any) => (
                 <SwiperSlide key={genre.id}>
                   <GenreCard
                     genreId={genre.id}
