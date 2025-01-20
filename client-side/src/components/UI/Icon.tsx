@@ -52,7 +52,10 @@ import {
   FaPlaystation,
   FaClock,
   FaStreetView,
+  FaCreditCard,
+  FaCheck,
 } from "react-icons/fa";
+import { FaCcPaypal } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiUpload, FiEdit } from "react-icons/fi";
@@ -163,6 +166,9 @@ const icons: IconsMap = {
   FaPlaystation,
   FaStreetView,
   FaCirclePlus,
+  FaCreditCard,
+  FaCcPaypal,
+  FaCheck,
   FcGoogle,
   FiUpload,
   FiAlertTriangle,

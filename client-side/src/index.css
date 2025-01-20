@@ -371,6 +371,26 @@ input[type="checkbox"] {
 /* Radio Button */
 .ant-radio-wrapper {
   margin-inline-end: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ant-radio-wrapper .ant-radio-inner {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.ant-radio-wrapper span.ant-radio + * {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+  background-color: #0077b5;
+  border-color: #0077b5;
 }
 
 /* Badge */

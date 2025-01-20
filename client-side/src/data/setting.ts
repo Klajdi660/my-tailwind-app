@@ -96,8 +96,8 @@ export const cardImgList: CardImgListParams[] = [
   { id: 1, name: "visa_card", img: visaCardImg, width: 50 },
   { id: 2, name: "master_card", img: masterCardImg, width: 40 },
   { id: 3, name: "maestro_card", img: maestroCardImg, width: 40 },
-  { id: 4, name: "paysera_card", img: payseraCardImg, width: 60 },
-  { id: 5, name: "paypal_card", img: paypalCardImg, width: 60 },
+  // { id: 4, name: "paysera_card", img: payseraCardImg, width: 60 },
+  // { id: 5, name: "paypal_card", img: paypalCardImg, width: 60 },
   { id: 6, name: "discover_card", img: discoverCardImg, width: 35 },
   {
     id: 7,
