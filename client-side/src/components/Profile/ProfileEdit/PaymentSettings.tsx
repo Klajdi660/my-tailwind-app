@@ -189,7 +189,7 @@ export const PaymentSettings: FC<PaymentSettingsProps> = () => {
                       <input
                         {...form("cardName")}
                         name="cardName"
-                        className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                        className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
                         type="text"
                         placeholder="Name on Card"
                         autoComplete="cardName"
@@ -198,40 +198,21 @@ export const PaymentSettings: FC<PaymentSettingsProps> = () => {
                   </div>
                   <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
                     <div className="w-full">
-                      <div className="flex_justify_between gap-2">
-                        <Controller
-                          name="cardMonth"
-                          control={control}
-                          render={({ field }) => (
-                            <Select
-                              {...field}
-                              className="w-full h-12 text-sm"
-                              placeholder="MM"
-                              options={cardMonthList}
-                            />
-                          )}
-                        />
-                        /
-                        <Controller
-                          name="cardYear"
-                          control={control}
-                          render={({ field }) => (
-                            <Select
-                              {...field}
-                              className="w-full h-12 text-sm"
-                              placeholder="YYYY"
-                              options={cardYearList}
-                            />
-                          )}
-                        />
-                      </div>
+                      <input
+                        {...form("cardExp")}
+                        name="cardExp"
+                        className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                        type="text"
+                        placeholder="Expiration"
+                        autoComplete="cardExp"
+                      />
                     </div>
                     <div className="w-full">
                       <div className="relative">
                         <input
                           {...form("cardCvvNumber")}
                           name="cardCvvNumber"
-                          className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-divider rounded px-2 focus-within:border-primary outline-0"
+                          className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0"
                           type="text"
                           placeholder="CVV"
                           autoComplete="cardCvvNumber"
@@ -247,16 +228,10 @@ export const PaymentSettings: FC<PaymentSettingsProps> = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center justify-end gap-4">
-                    <Button
-                      type="button"
-                      label="Cancel"
-                      variant="outlined"
-                      className="h-10"
-                    />
+                  <div className="flex_justify_end">
                     <Button
                       type="submit"
-                      label="Add new card"
+                      label="Save billing account"
                       variant="contained"
                       className="h-10"
                       disabled={isValid}
