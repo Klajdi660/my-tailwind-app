@@ -7,12 +7,11 @@ import { NewCardContent } from "../Settings";
 import { paths, cardImg } from "../../data";
 import { useAppSelector } from "../../store";
 import { noCardTypeImg } from "../../assets";
-import { maskCardNumber, useSelectedSettings } from "../../utils";
+import { maskCardNumber } from "../../utils";
 
 export const Profile: FC = () => {
   const { editProfile } = paths;
 
-  const { setSelectedSetting } = useSelectedSettings();
   const navigate = useNavigate();
 
   const { user } = useAppSelector((state) => state.user);
@@ -35,17 +34,12 @@ export const Profile: FC = () => {
   return (
     <>
       <UserDetails />
-
-      {/* Personal Details */}
       <div className="flex flex-col gap-6 bg-card rounded p-8 text-onNeutralBg">
         <div className="flex flex_justify_between">
           <h5 className="text-xl font-semibold">Personal Details</h5>
           <button
             className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity group"
-            onClick={() => {
-              navigate(editProfile);
-              setSelectedSetting("account-settings");
-            }}
+            onClick={() => navigate(`${editProfile}/account`)}
           >
             <Icon
               name="MdOutlineEdit"
@@ -101,7 +95,6 @@ export const Profile: FC = () => {
             </div>
           </div>
         </div>
-
         <h5 className="text-xl font-semibold pt-6">Address Details</h5>
         <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-6">
           <div className="flex w-full gap-4 ">
@@ -142,17 +135,12 @@ export const Profile: FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Shipping Details */}
       <div className="flex flex-col gap-6 bg-card rounded p-8 text-onNeutralBg">
         <div className="flex flex_justify_between">
           <h5 className="text-xl font-semibold">Shipping Details</h5>
           <button
             className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity group"
-            onClick={() => {
-              navigate(editProfile);
-              setSelectedSetting("shipping-settings");
-            }}
+            onClick={() => navigate(`${editProfile}/shipping`)}
           >
             <Icon
               name="MdOutlineEdit"
@@ -237,17 +225,12 @@ export const Profile: FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Payment Details */}
       <div className="flex flex-col gap-6 bg-card rounded p-8 text-onNeutralBg">
         <div className="flex flex_justify_between">
           <h5 className="text-xl font-semibold">Payment Details</h5>
           <button
             className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity group"
-            onClick={() => {
-              navigate(editProfile);
-              setSelectedSetting("payment-settings");
-            }}
+            onClick={() => navigate(`${editProfile}/payments`)}
           >
             <Icon
               name="MdOutlineEdit"

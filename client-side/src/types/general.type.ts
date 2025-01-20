@@ -80,13 +80,6 @@ export interface SubmittingState {
   setIsSubmitting: (value: boolean) => void;
 }
 
-export interface SelectedSettingsState {
-  selectedSetting: string;
-  selectedEditProfileName: string;
-  setSelectedSetting: (value: string) => void;
-  setSelectedEditProfileName: (value: string) => void;
-}
-
 // Component
 export interface NotificationItemList {
   id: number;

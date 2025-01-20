@@ -45,8 +45,6 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
   if (!gameVideos) return null;
   const { results: gameVideoResults } = gameVideos;
 
-  console.log("gameDetail :>> ", gameDetail);
-
   return (
     <div className="game_detail flex flex-col md:flex-row">
       <div className="flex-grow min-h-screen">

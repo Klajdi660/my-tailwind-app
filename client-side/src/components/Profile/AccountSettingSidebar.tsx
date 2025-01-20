@@ -1,16 +1,15 @@
 import { FC } from "react";
-import { settingsLinks } from "../../data";
+import { useNavigate, useParams } from "react-router-dom";
 import { Icon } from "../UI";
-import { classNames, useSelectedSettings } from "../../utils";
+import { settingsLinks, paths } from "../../data";
+import { classNames } from "../../utils";
 
 export const AccountSettingSidebar: FC = () => {
-  const { setSelectedEditProfileName, selectedSetting, setSelectedSetting } =
-    useSelectedSettings();
+  const { editProfile } = paths;
 
-  const handleLinkClick = (id: string, name: string) => {
-    setSelectedSetting(id);
-    setSelectedEditProfileName(name);
-  };
+  const { editProfileId } = useParams<{ editProfileId: string | any }>();
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -26,22 +25,22 @@ export const AccountSettingSidebar: FC = () => {
             <button
               className={classNames(
                 "flex flex-row items-center gap-2 p-5 h-12 w-full outline-0 border-none hover:bg-primary-opacity rounded",
-                selectedSetting.includes(settingLink.id) && "bg-primary-opacity"
+                editProfileId.includes(settingLink.id) && "bg-primary-opacity"
               )}
-              onClick={() => handleLinkClick(settingLink.id, settingLink.name)}
+              onClick={() => navigate(`${editProfile}/${settingLink.id}`)}
             >
               <Icon
                 name={settingLink.icon}
                 className={classNames(
                   "group-hover:!text-primary",
-                  selectedSetting.includes(settingLink.id) && "text-primary"
+                  editProfileId.includes(settingLink.id) && "text-primary"
                 )}
                 size={20}
               />
               <div
                 className={classNames(
                   "group-hover:text-primary text-sm flex items-center gap-3 whitespace-nowrap",
-                  selectedSetting.includes(settingLink.id)
+                  editProfileId.includes(settingLink.id)
                     ? "text-primary"
                     : "text-onNeutralBg"
                 )}

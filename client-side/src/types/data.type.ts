@@ -91,7 +91,6 @@ export interface NavLinkList {
 
 export interface SettingsLinksParams {
   id: string;
-  to: string;
   name: string;
   icon: string;
 }

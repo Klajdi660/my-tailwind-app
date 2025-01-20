@@ -1,23 +1,28 @@
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Popover } from "antd";
-import { Image, Icon, Button } from "../UI";
+import { Image, Icon } from "../UI";
 import { userIcon } from "../../assets";
-import { profileMenuItems } from "../../data";
+import { profileMenuItems, paths } from "../../data";
 import { useAuthService } from "../../services";
 import { UserMenuProps } from "../../types";
 import { classNames, useAppModal } from "../../utils";
 import { useAppSelector } from "../../store";
 
 const UserMenu: FC<UserMenuProps> = (props) => {
-  const { user, hidden } = props;
+  const { hidden } = props;
+
+  const { profile } = paths;
 
   const { setModalOpen } = useAppModal();
   const { logout } = useAuthService();
 
   const navigate = useNavigate();
 
+  const { user } = useAppSelector((state) => state.user);
+
   const { email, username, extra } = user;
+  const { firstName, lastName, avatar } = extra;
 
   const menuItems = profileMenuItems({
     navigate,
@@ -26,16 +31,21 @@ const UserMenu: FC<UserMenuProps> = (props) => {
     setModalOpen,
   });
 
+  const navigateToProfile = () => {
+    hidden();
+    navigate(profile);
+  };
+
   return (
     <div className="p-2 space-y-2 min-w-[300px]">
       {email && (
         <div
           className="gap-2 p-3 rounded flex_justify_between hover:bg-primary-opacity cursor-pointer group"
-          onClick={menuItems[0].onClick}
+          onClick={navigateToProfile}
         >
-          {extra?.avatar ? (
+          {avatar ? (
             <Image
-              imgUrl={extra.avatar || userIcon}
+              imgUrl={avatar || userIcon}
               styles="w-12 h-12 p-1 rounded-full object-cover"
               name="sidebar user"
               effect="blur"
@@ -50,7 +60,7 @@ const UserMenu: FC<UserMenuProps> = (props) => {
           )}
           <div className="flex flex-col flex-1 text-sm text-secondary">
             <span className="break-all text-onNeutralBg group-hover:text-primary">
-              {extra?.firstName} {extra?.lastName}
+              {firstName} {lastName}
             </span>
             <span className="text-secondary group-hover:text-primary">
               @{username}
@@ -58,19 +68,7 @@ const UserMenu: FC<UserMenuProps> = (props) => {
           </div>
         </div>
       )}
-
-      {/* <hr className="w-full border-t border-divider" /> */}
-
-      <div className="text-onNeutralBg relative flex flex-col gap-3 p-4 overflow-hidden rounded bg-main">
-        <h5 className="text-lg font-semibold">Upgrade your plan</h5>
-        <p>70% discount for 1 years subscriptions.</p>
-        <Button label="Go Premium" variant="contained" className="w-fit" />
-        <div className="absolute w-[200px] h-[200px] border-[19px] rounded-full border-primary top-[65px] right-[-150px]" />
-        <div className="absolute w-[200px] h-[200px] border-[3px] rounded-full border-primary top-[135px] right-[-70px]" />
-      </div>
-
-      {/* <hr className="w-full border-t border-divider" /> */}
-
+      <hr className="w-full border-t border-divider" />
       <ul className="list-none divide divide-divider">
         {menuItems.map((item) => (
           <li
@@ -94,6 +92,7 @@ export const ProfileDropdown: FC = () => {
   const [open, setOpen] = useState(false);
 
   const { user } = useAppSelector((state) => state.user);
+  const { avatar } = user.extra;
 
   const hidden = () => {
     setOpen(false);
@@ -108,14 +107,14 @@ export const ProfileDropdown: FC = () => {
       <Popover
         trigger="click"
         arrow={false}
-        content={<UserMenu user={user} hidden={hidden} />}
+        content={<UserMenu hidden={hidden} />}
         open={open}
         onOpenChange={handleOpenChange}
         placement="topRight"
       >
         <button type="button">
           <Image
-            imgUrl={user.extra.avatar ? user.extra.avatar : userIcon}
+            imgUrl={avatar ? avatar : userIcon}
             styles={classNames(
               "w-10 h-10 rounded-full p-0.5 ring-2 object-cover",
               open ? "ring-primary" : "ring-gray-300"

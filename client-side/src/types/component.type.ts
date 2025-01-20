@@ -444,24 +444,22 @@ export interface SearchbarProps {
 }
 
 // page profile
+// interface Extra {
+//   gender: string;
+//   avatar: string;
+//   lastName: string;
+//   firstName: string;
+//   dateOfBirth: string;
+// }
 
-interface Extra {
-  gender: string;
-  avatar: string;
-  lastName: string;
-  firstName: string;
-  dateOfBirth: string;
-}
-
-interface User {
-  id: string;
-  extra?: Extra;
-  email?: string;
-  avatar?: string;
-  username?: string;
-}
+// interface User {
+//   id: string;
+//   extra?: Extra;
+//   email?: string;
+//   avatar?: string;
+//   username?: string;
+// }
 
 export interface UserMenuProps {
-  user: User;
   hidden: () => void;
 }

@@ -148,7 +148,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: editProfile,
+      path: `${editProfile}/:editProfileId`,
       element: (
         <PrivateGuard>
           <PrivateLayout>

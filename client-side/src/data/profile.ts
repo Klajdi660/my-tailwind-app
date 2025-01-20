@@ -8,7 +8,7 @@ interface AvatarProfileList {
   size: string;
 }
 
-const { profile, editProfile } = paths;
+const { editProfile } = paths;
 
 export const avatarProfileList: AvatarProfileList[] = [
   { id: 1, name: avatar1, size: "w-28 h-28" },
@@ -217,25 +217,31 @@ export const profileMenuItems = ({
   hidden,
   logout,
   navigate,
-  setModalOpen,
 }: ProfileMenuItems) => [
   {
-    id: "profile",
-    icon: "BiUser",
-    name: "Profile",
-    onClick: () => {
-      hidden();
-      navigate(profile);
-    },
-  },
-  {
-    id: "settings",
-    name: "Settings",
+    id: "general",
+    name: "Account Settings",
     icon: "AiOutlineSetting",
     onClick: () => {
       hidden();
-      navigate(editProfile);
-      // setModalOpen("settingsModal", true);
+      navigate(`${editProfile}/general`);
+    },
+  },
+  {
+    id: "wallet",
+    icon: "MdOutlinePayment",
+    name: "GrooveIT Wallet",
+    onClick: () => {
+      hidden();
+      navigate(`${editProfile}/payments`);
+    },
+  },
+  {
+    id: "wishlist",
+    icon: "SlSocialDropbox",
+    name: "Wishlist",
+    onClick: () => {
+      hidden();
     },
   },
   {

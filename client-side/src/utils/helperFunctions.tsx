@@ -162,3 +162,7 @@ export const getDataPeriod = () => {
 
   return { currentDate, lastYear, nextYear };
 };
+
+export const firstLetterToUpperCase = (name: string) => {
+  return `${name[0].toLocaleUpperCase()}${name.slice(1)}`;
+};

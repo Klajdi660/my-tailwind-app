@@ -1,21 +1,14 @@
 import { FC } from "react";
-import { Tooltip } from "antd";
 import { useNavigate } from "react-router-dom";
-import { Image, Icon, IconButton } from "../../UI";
-import {
-  useProfilePhoto,
-  useAppModal,
-  classNames,
-  useSelectedSettings,
-} from "../../../utils";
+import { Image, Icon } from "../../UI";
 import { paths } from "../../../data";
 import { useAppSelector } from "../../../store";
 import { userIcon, iconName } from "../../../assets";
+import { useProfilePhoto, useAppModal, classNames } from "../../../utils";
 
 export const UserDetails: FC = () => {
   const { editProfile } = paths;
 
-  const { setSelectedSetting } = useSelectedSettings();
   const { isUpdatingProfileImg, setPhotoType } = useProfilePhoto();
   const { setModalOpen } = useAppModal();
   const navigate = useNavigate();
@@ -23,18 +16,10 @@ export const UserDetails: FC = () => {
   const { user } = useAppSelector((state) => state.user);
 
   const { verified, email, username } = user;
-  const { firstName, lastName, avatar, cover } = user.extra;
-
-  const coverTooltipTitle = cover ? "Edit cover photo" : "Add cover photo";
-  const coverIconName = cover ? "MdOutlineEdit" : "MdOutlineCameraAlt";
+  const { firstName, lastName, avatar } = user.extra;
 
   const verifyType = verified === "1" ? "Verified" : "Verify now";
   const isVerify = verified === "1";
-
-  const handleCoverModalOpen = () => {
-    setPhotoType("cover");
-    setModalOpen("changeCoverPhotoModal", true);
-  };
 
   const handleProfileModalOpen = () => {
     setPhotoType("profilePhoto");
@@ -42,32 +27,23 @@ export const UserDetails: FC = () => {
   };
 
   return (
-    <div className="relative bg-card rounded">
-      <div className="relative w-full h-52 bg-neutral-300 rounded">
-        {cover && (
-          <Image
-            imgUrl={cover}
-            name="Cover Photo"
-            styles="w-full h-full object-cover rounded-t"
-            width="100%"
-            height={208}
-            effect="blur"
-          />
-        )}
-        <div className="absolute top-8 right-8 group">
-          <Tooltip title={coverTooltipTitle} arrow={false}>
-            <IconButton
-              name={coverIconName}
-              className="bg-white w-10 h-10 group"
-              iconClassName="text-[#404040] group-hover:text-primary"
-              onClick={handleCoverModalOpen}
-            />
-          </Tooltip>
-        </div>
-      </div>
-      <div className="relative flex justify-between items-center px-8 mt-[-50px]">
+    <div className="flex flex-col gap-6 bg-card rounded p-8 text-onNeutralBg">
+      <div className="flex flex_justify_between">
+        <h5 className="text-xl font-semibold">Profile</h5>
         <button
-          className="relative w-40 h-40 rounded-full ring-1 ring-white bg-white"
+          className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity group"
+          onClick={() => navigate(`${editProfile}/account`)}
+        >
+          <Icon
+            name="MdOutlineEdit"
+            size={25}
+            className="group-hover:text-primary"
+          />
+        </button>
+      </div>
+      <div className="flex_justify_start">
+        <button
+          className="w-40 h-40 rounded-full"
           onClick={handleProfileModalOpen}
         >
           {avatar ? (
@@ -85,12 +61,6 @@ export const UserDetails: FC = () => {
                 styles="w-40 h-40 rounded-full p-1 ring-1 ring-white bg-main"
                 effect="blur"
               />
-              {/* <button className="flex_justify_center absolute bottom-2 right-2 w-10 h-10 rounded-full bg-card border border-divider group z-[10]">
-                <Icon
-                  name="MdOutlineCameraAlt"
-                  className="group-hover:text-primary"
-                />
-              </button> */}
             </div>
           )}
           {isUpdatingProfileImg && (
@@ -107,62 +77,49 @@ export const UserDetails: FC = () => {
             </>
           )}
         </button>
-        <button
-          className="flex flex_justify_center w-10 h-10 rounded-full cursor-pointer hover:bg-primary-opacity group"
-          onClick={() => {
-            navigate(editProfile);
-            setSelectedSetting("account-settings");
-          }}
-        >
-          <Icon
-            name="MdOutlineEdit"
-            size={25}
-            className="group-hover:text-primary"
-          />
-        </button>
-      </div>
-      <div className="flex flex-col gap-4 p-8 text-onNeutralBg">
-        <div className="flex items-center gap-2">
-          <button
-            className="text-2xl font-semibold rounded hover:bg-primary-opacity"
-            onClick={() => setModalOpen("profileNameModal", true)}
-          >
-            {firstName} {lastName}
-          </button>
-          <button
-            className={classNames(
-              "flex items-center gap-1 px-4 text-primary rounded-full border border-dashed",
-              isVerify
-                ? "border-green-600 text-green-600"
-                : "border border-primary"
-            )}
-            disabled={isVerify}
-          >
-            <Icon
-              name="MdOutlineVerifiedUser"
-              className={classNames(
-                isVerify ? "text-green-600" : "text-primary"
-              )}
-              size={16}
-            />
-            <p
-              className={classNames(
-                isVerify ? "text-green-600" : "text-primary"
-              )}
+        <div className="flex flex-col gap-4 p-8 text-onNeutralBg">
+          <div className="flex items-center gap-2">
+            <button
+              className="text-2xl font-semibold rounded hover:bg-primary-opacity"
+              onClick={() => setModalOpen("profileNameModal", true)}
             >
-              {verifyType}
+              {firstName} {lastName}
+            </button>
+            <button
+              className={classNames(
+                "flex items-center gap-1 px-4 text-primary rounded-full border border-dashed",
+                isVerify
+                  ? "border-green-600 text-green-600"
+                  : "border border-primary"
+              )}
+              disabled={isVerify}
+            >
+              <Icon
+                name="MdOutlineVerifiedUser"
+                className={classNames(
+                  isVerify ? "text-green-600" : "text-primary"
+                )}
+                size={16}
+              />
+              <p
+                className={classNames(
+                  isVerify ? "text-green-600" : "text-primary"
+                )}
+              >
+                {verifyType}
+              </p>
+            </button>
+          </div>
+          <div className="flex gap-4">
+            <p className="flex gap-2">
+              <Icon name="AiOutlineMail" />
+              {email}
             </p>
-          </button>
-        </div>
-        <div className="flex gap-4">
-          <p className="flex gap-2">
-            <Icon name="AiOutlineMail" />
-            {email}
-          </p>
-          <p className="flex gap-2">
-            <Icon name="TbUserSquare" />
-            {username}
-          </p>
+            <p className="flex gap-2">
+              <Icon name="TbUserSquare" />
+              {username}
+            </p>
+          </div>
         </div>
       </div>
     </div>

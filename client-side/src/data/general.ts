@@ -198,26 +198,22 @@ export const navLists: NavListsParams[] = [
 
 export const settingsLinks: SettingsLinksParams[] = [
   {
-    id: "account-settings",
-    to: "/edit-profile",
-    name: "Account Settings",
-    icon: "MdOutlineSwitchAccount",
-  },
-  {
-    id: "general-settings",
-    to: "/general",
+    id: "general",
     name: "General Settings",
     icon: "AiOutlineSetting",
   },
   {
-    id: "shipping-settings",
-    to: "/shipping",
+    id: "account",
+    name: "Account Settings",
+    icon: "MdOutlineSwitchAccount",
+  },
+  {
+    id: "shipping",
     name: "Shipping Address Settings",
     icon: "LuShip",
   },
   {
-    id: "payment-settings",
-    to: "/payment",
+    id: "payments",
     name: "Payment Settings",
     icon: "MdOutlinePayment",
   },
