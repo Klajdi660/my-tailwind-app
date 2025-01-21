@@ -144,6 +144,7 @@ export interface CardImgListParams {
   name: string;
   img: string;
   width: number;
+  height: number;
 }
 export interface CardImgParams {
   [key: string]: string;

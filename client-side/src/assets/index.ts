@@ -17,10 +17,9 @@ import facebookIcon from "./facebook-icon.svg";
 import linkedinIcon from "./linkedin-icon.svg";
 import masterCardImg from "./MasterCard.png";
 import noGameImg from "./no-image-placeholder.webp";
-import cvvNumberImg from "./cvvImg.jpg";
 import payseraCardImg from "./PayseraCard.png";
 import paypalCardImg from "./PaypalCard.png";
-import americanExpressCardImg from "./AmericanExpressCard.png";
+import usaExpCardImg from "./AmericanExpressCard.png";
 import discoverCardImg from "./DiscoverCard.png";
 import gadOfWarImg from "./god-of-war.jpg";
 import gadOfWar2Img from "./gad-of-war-2.webp";
@@ -52,10 +51,9 @@ export {
   masterCardImg,
   mobileMoneyImg,
   maestroCardImg,
-  cvvNumberImg,
   payseraCardImg,
   paypalCardImg,
-  americanExpressCardImg,
+  usaExpCardImg,
   discoverCardImg,
   gadOfWarImg,
   gadOfWar2Img,
