@@ -54,6 +54,7 @@ import {
   FaStreetView,
   FaCreditCard,
   FaCheck,
+  FaRegEdit,
 } from "react-icons/fa";
 import { FaCcPaypal } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
@@ -92,6 +93,7 @@ import {
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
   MdOutlineSort,
+  MdDeleteOutline,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import { LiaCoinsSolid } from "react-icons/lia";
@@ -169,6 +171,7 @@ const icons: IconsMap = {
   FaCreditCard,
   FaCcPaypal,
   FaCheck,
+  FaRegEdit,
   FcGoogle,
   FiUpload,
   FiAlertTriangle,
@@ -206,6 +209,7 @@ const icons: IconsMap = {
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
   MdOutlineSort,
+  MdDeleteOutline,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,

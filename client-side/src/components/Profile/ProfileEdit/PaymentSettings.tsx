@@ -3,10 +3,12 @@ import { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import creditCardType from "credit-card-type";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Icon, Image, Button } from "../../UI";
 import { removeSelectedCard, addNewCard } from "../../../store";
 import { cardImgList } from "../../../data";
-import { classNames } from "../../../utils";
+import { classNames, creditCardValidation } from "../../../utils";
+import { ErrorFormMessage } from "../../Common";
 
 interface NewCardContentProps {
   cardId: number;
@@ -62,7 +64,6 @@ export const PaymentSettings: FC = () => {
       "width=600,height=700,scrollbars=yes,resizable=yes"
     );
 
-    // Optionally, you can listen for changes in the popup window
     const popupInterval = setInterval(() => {
       if (popup && popup.closed) {
         clearInterval(popupInterval);
@@ -72,7 +73,7 @@ export const PaymentSettings: FC = () => {
   };
 
   const handleMenuClick = async (data: any) => {
-    const cardType = creditCardType(data.cardNumber);
+    const cardType = creditCardType(data.cardNr);
 
     dispatch(
       addNewCard({
@@ -84,13 +85,21 @@ export const PaymentSettings: FC = () => {
     reset();
   };
 
+  const handleCardInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value.replace(/[^0-9]/g, "");
+    event.target.value = value;
+  };
+
   const {
     register: form,
     handleSubmit,
-    formState: { isValid },
+    formState: { errors, isValid },
     reset,
   } = useForm({
     mode: "onTouched",
+    resolver: yupResolver(creditCardValidation),
   });
 
   return (
@@ -103,9 +112,9 @@ export const PaymentSettings: FC = () => {
           and mobile, including purchases on the GrooveIT Games Store.
         </p>
         <div className="flex flex-col gap-2">
-          <button
+          <div
             className={classNames(
-              "bg-primary-opacity rounded p-4",
+              "bg-primary-opacity rounded p-4 cursor-pointer",
               value === 1 && "flex flex-col gap-4 border border-primary"
             )}
             onClick={() => setValue(1)}
@@ -125,7 +134,7 @@ export const PaymentSettings: FC = () => {
                 )}
               </button>
               <Icon name="FaCreditCard" size={30} />
-              <p>Credit Card</p>
+              <p>Credit or Debit Card</p>
             </div>
             {value === 1 && (
               <div className="w-full flex flex-col gap-2">
@@ -146,22 +155,39 @@ export const PaymentSettings: FC = () => {
                   <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
                     <div className="w-full">
                       <input
-                        {...form("cardNumber")}
-                        name="cardNumber"
-                        className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                        {...form("cardName")}
+                        name="cardName"
+                        className={classNames(
+                          "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
+                          errors["cardName"]
+                            ? "border border-red-500 hover:border-red-500"
+                            : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                        )}
                         type="text"
-                        placeholder="Card number"
-                        autoComplete="cardNumber"
+                        placeholder="Name on Card"
+                        autoComplete="cardName"
+                      />
+                      <ErrorFormMessage
+                        errorMessage={errors["cardName"]?.message}
                       />
                     </div>
                     <div className="w-full">
                       <input
-                        {...form("cardName")}
-                        name="cardName"
-                        className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                        {...form("cardNr")}
+                        name="cardNr"
+                        className={classNames(
+                          "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
+                          errors["cardNr"]
+                            ? "border border-red-500 hover:border-red-500"
+                            : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                        )}
                         type="text"
-                        placeholder="Name on Card"
-                        autoComplete="cardName"
+                        placeholder="Card number"
+                        autoComplete="cardNr"
+                        onChange={handleCardInputChange}
+                      />
+                      <ErrorFormMessage
+                        errorMessage={errors["cardNr"]?.message}
                       />
                     </div>
                   </div>
@@ -170,21 +196,35 @@ export const PaymentSettings: FC = () => {
                       <input
                         {...form("cardExp")}
                         name="cardExp"
-                        className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                        className={classNames(
+                          "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
+                          errors["cardExp"]
+                            ? "border border-red-500 hover:border-red-500"
+                            : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                        )}
                         type="text"
                         placeholder="Expiration"
                         autoComplete="cardExp"
+                      />
+                      <ErrorFormMessage
+                        errorMessage={errors["cardExp"]?.message}
                       />
                     </div>
                     <div className="w-full">
                       <div className="relative">
                         <input
-                          {...form("cardCvvNumber")}
-                          name="cardCvvNumber"
-                          className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0"
+                          {...form("cardCvvNr")}
+                          name="cardCvvNr"
+                          className={classNames(
+                            "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
+                            errors["cardCvvNr"]
+                              ? "border border-red-500 hover:border-red-500"
+                              : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                          )}
                           type="text"
                           placeholder="CVV"
-                          autoComplete="cardCvvNumber"
+                          autoComplete="cardCvvNr"
+                          onChange={handleCardInputChange}
                         />
                         <Popover
                           placement="topLeft"
@@ -199,6 +239,9 @@ export const PaymentSettings: FC = () => {
                           </button>
                         </Popover>
                       </div>
+                      <ErrorFormMessage
+                        errorMessage={errors["cardCvvNr"]?.message}
+                      />
                     </div>
                   </div>
                   <div className="flex_justify_end">
@@ -207,17 +250,20 @@ export const PaymentSettings: FC = () => {
                       label="Save billing account"
                       variant="contained"
                       className="h-10"
-                      disabled={isValid}
+                      disabled={!isValid}
                     />
                   </div>
                 </form>
               </div>
             )}
-          </button>
-          <button
-            onClick={() => setValue(2)}
+          </div>
+          <div
+            onClick={() => {
+              setValue(2);
+              reset();
+            }}
             className={classNames(
-              "bg-primary-opacity rounded p-4",
+              "bg-primary-opacity rounded p-4 cursor-pointer",
               value === 2 && "flex flex-col gap-4 border border-primary"
             )}
           >
@@ -255,7 +301,7 @@ export const PaymentSettings: FC = () => {
                 </div>
               </div>
             )}
-          </button>
+          </div>
         </div>
       </div>
     </div>

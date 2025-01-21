@@ -59,3 +59,47 @@ export const cardImg: CardImgParams = {
   discover: discoverCardImg,
   noCardType: noCardTypeImg,
 };
+
+export const creditCardList = [
+  {
+    btnTxt: "Save billing account",
+    formName: "creditCard",
+    formTitle: "Your payment method",
+  },
+  {
+    type: "input",
+    name: "cardName",
+    label: "",
+    props: {
+      placeholder: "Name on crad",
+      type: "text",
+    },
+  },
+  {
+    type: "input",
+    name: "cardNr",
+    label: "",
+    props: {
+      placeholder: "Card number",
+      type: "text",
+    },
+  },
+  {
+    type: "input",
+    name: "cardExp",
+    label: "",
+    props: {
+      placeholder: "Expiration",
+      type: "text",
+    },
+  },
+  {
+    type: "input",
+    name: "cardCvvNr",
+    label: "",
+    props: {
+      placeholder: "CVV",
+      type: "text",
+    },
+  },
+];

@@ -3,10 +3,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Card {
   id: number;
-  cardNumber: string;
+  cardNr: string;
   cardName: string;
   cardValidThru: string;
-  cardCvvNumber: string;
+  cardCvvNr: string;
 }
 
 interface CardState {
@@ -23,7 +23,7 @@ const slice = createSlice({
   reducers: {
     addNewCard: (state, action: PayloadAction<Card>) => {
       const existingCard = state.cardItems.find(
-        (item) => item.cardNumber === action.payload.cardNumber
+        (item) => item.cardNr === action.payload.cardNr
       );
       if (existingCard) {
         toast.error("Card already exists.");

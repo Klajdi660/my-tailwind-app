@@ -63,3 +63,13 @@ export const deleteProfileValidation = yup
       .required({ message: "Type delete in the field below to confirm!" }),
   })
   .required();
+
+export const creditCardValidation = yup.object({
+  cardName: yup.string().required("Card name is required"),
+  cardNr: yup.string().required("Card number is required"),
+  cardExp: yup.string().required("Expiration date is required"),
+  cardCvvNr: yup
+    .string()
+    .required("CVV is required")
+    .matches(/^[0-9]{3,4}$/, "Invalid CVV"),
+});

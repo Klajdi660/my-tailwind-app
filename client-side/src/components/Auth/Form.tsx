@@ -26,7 +26,7 @@ export const Form: FC<FormProps> = (props) => {
 
   const btnTitle = data?.resetPassEmailSent ? "Resend Email" : btnTxt;
 
-  const handelFormCancle = () => {
+  const handelFormCancel = () => {
     reset();
   };
 
@@ -124,7 +124,7 @@ export const Form: FC<FormProps> = (props) => {
             variant="outlined"
             label="Cancel"
             className="h-10"
-            onClick={handelFormCancle}
+            onClick={handelFormCancel}
           />
         )}
         <Button
