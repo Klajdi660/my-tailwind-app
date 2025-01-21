@@ -55,6 +55,22 @@ export const PaymentSettings: FC = () => {
 
   const [value, setValue] = useState<number>();
 
+  const openPayPalPopup = () => {
+    const popup = window.open(
+      "https://www.paypal.com/signin",
+      "PayPal Login",
+      "width=600,height=700,scrollbars=yes,resizable=yes"
+    );
+
+    // Optionally, you can listen for changes in the popup window
+    const popupInterval = setInterval(() => {
+      if (popup && popup.closed) {
+        clearInterval(popupInterval);
+        alert("PayPal login process completed or window closed.");
+      }
+    }, 500);
+  };
+
   const handleMenuClick = async (data: any) => {
     const cardType = creditCardType(data.cardNumber);
 
@@ -120,7 +136,6 @@ export const PaymentSettings: FC = () => {
                       imgUrl={cardImg.img}
                       name={cardImg.name}
                       styles={`w-${cardImg.width} h-${cardImg.height}`}
-                      effect="blur"
                     />
                   ))}
                 </div>
@@ -235,6 +250,7 @@ export const PaymentSettings: FC = () => {
                     label="PayPal"
                     variant="contained"
                     className="w-40 h-10"
+                    onClick={openPayPalPopup}
                   />
                 </div>
               </div>
