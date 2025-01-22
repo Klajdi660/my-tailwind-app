@@ -73,3 +73,15 @@ export const creditCardValidation = yup.object({
     .required("CVV is required")
     .matches(/^[0-9]{3,4}$/, "Invalid CVV"),
 });
+
+export const shippingAddressValidation = yup.object({
+  contactName: yup.string().required("Contact name is required"),
+  prefix: yup.string().optional(),
+  contactNr: yup.string().required("Contact number is required"),
+  street: yup.string().required("Street address is required"),
+  buildNr: yup.string().optional(),
+  state: yup.string().required("State is required"),
+  city: yup.string().required("City is required"),
+  zip: yup.string().required("Zip code is required"),
+  country: yup.string().required("Country is required"),
+});

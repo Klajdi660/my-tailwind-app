@@ -1,9 +1,11 @@
 import { Select } from "antd";
 import { FC, useState } from "react";
 import { Country } from "country-state-city";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Icon } from "../UI";
-import { classNames } from "../../utils";
+import { ErrorFormMessage } from "../Common";
+import { classNames, shippingAddressValidation } from "../../utils";
 
 export const ShippingAddressSettings: FC = () => {
   const [openShippingSection, setOpenShippingSection] =
@@ -29,10 +31,10 @@ export const ShippingAddressSettings: FC = () => {
     register: form,
     // handleSubmit,
     control,
-    // setValue,
-    // formState: { isValid },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onTouched",
+    resolver: yupResolver(shippingAddressValidation),
   });
 
   return (
@@ -82,7 +84,12 @@ export const ShippingAddressSettings: FC = () => {
                     render={({ field }) => (
                       <Select
                         {...field}
-                        className="w-full h-12 text-sm border border-onNeutralBg rounded"
+                        className={classNames(
+                          "w-full h-12 text-sm rounded",
+                          errors["country"]
+                            ? "border border-red-500 hover:border-red-500"
+                            : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                        )}
                         placeholder="Select country"
                         optionLabelProp="label"
                         options={allCountries}
@@ -93,6 +100,7 @@ export const ShippingAddressSettings: FC = () => {
                       />
                     )}
                   />
+                  <ErrorFormMessage errorMessage={errors["country"]?.message} />
                 </div>
                 <div className="w-full"></div>
               </div>
@@ -104,17 +112,34 @@ export const ShippingAddressSettings: FC = () => {
               <div className="flex flex-col md:flex-row gap-6 md:gap-4">
                 <div className="w-full">
                   <input
-                    {...form("name")}
-                    name="name"
-                    className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                    {...form("contactName")}
+                    name="contactName"
+                    className={classNames(
+                      "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
+                      errors["contactName"]
+                        ? "border border-red-500 hover:border-red-500"
+                        : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                    )}
                     type="text"
                     placeholder="Contact name"
-                    autoComplete="name"
+                    autoComplete="contactName"
+                  />
+                  <ErrorFormMessage
+                    errorMessage={errors["contactName"]?.message}
                   />
                 </div>
                 <div className="w-full">
-                  <div className="flex items-center w-full h-12 text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 hover:border-primary">
+                  <div
+                    className={classNames(
+                      "flex items-center w-full h-12 text-sm text-onNeutralBg rounded px-2",
+                      errors["contactNr"]
+                        ? "border border-red-500 hover:border-red-500"
+                        : "border border-onNeutralBg hover:border-primary"
+                    )}
+                  >
                     <input
+                      {...form("prefix")}
+                      name="prefix"
                       className="w-14 bg-transparent focus-within:none outline-0 border-r border-onNeutralBg"
                       type="text"
                       readOnly
@@ -122,13 +147,17 @@ export const ShippingAddressSettings: FC = () => {
                       value={phonePrefix}
                     />
                     <input
-                      name="contactNumber"
+                      {...form("contactNr")}
+                      name="contactNr"
                       className="w-full h-12 bg-transparent px-2 focus-within:none outline-0"
                       type="text"
                       placeholder="Phone Number"
-                      autoComplete="contactNumber"
+                      autoComplete="contactNr"
                     />
                   </div>
+                  <ErrorFormMessage
+                    errorMessage={errors["contactNr"]?.message}
+                  />
                 </div>
               </div>
             </div>
@@ -139,17 +168,23 @@ export const ShippingAddressSettings: FC = () => {
                   <input
                     {...form("street")}
                     name="street"
-                    className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                    className={classNames(
+                      "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
+                      errors["street"]
+                        ? "border border-red-500 hover:border-red-500"
+                        : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                    )}
                     type="text"
                     placeholder="Street address"
                     autoComplete="street"
                   />
+                  <ErrorFormMessage errorMessage={errors["street"]?.message} />
                 </div>
                 <div className="w-full">
                   <input
                     {...form("buildNr")}
                     name="buildNr"
-                    className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                    className="w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0 border border-onNeutralBg focus-within:border-primary hover:border-primary"
                     type="text"
                     placeholder="Apt, suite, unit, etc (optional)"
                     autoComplete="buildNr"
@@ -161,40 +196,59 @@ export const ShippingAddressSettings: FC = () => {
                   <input
                     {...form("state")}
                     name="state"
-                    className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                    className={classNames(
+                      "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
+                      errors["state"]
+                        ? "border border-red-500 hover:border-red-500"
+                        : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                    )}
                     type="text"
                     placeholder="State/Province"
-                    autoComplete="buildNr"
+                    autoComplete="state"
                   />
+                  <ErrorFormMessage errorMessage={errors["state"]?.message} />
                 </div>
                 <div className="w-full">
                   <input
                     {...form("city")}
                     name="city"
-                    className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                    className={classNames(
+                      "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
+                      errors["city"]
+                        ? "border border-red-500 hover:border-red-500"
+                        : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                    )}
                     type="text"
                     placeholder="City"
                     autoComplete="city"
                   />
+                  <ErrorFormMessage errorMessage={errors["city"]?.message} />
                 </div>
                 <div className="w-full">
                   <input
                     {...form("zip")}
                     name="zip"
-                    className="w-full h-12 bg-transparent text-sm text-onNeutralBg border border-onNeutralBg rounded px-2 focus-within:border-primary outline-0 hover:border-primary"
+                    className={classNames(
+                      "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
+                      errors["zip"]
+                        ? "border border-red-500 hover:border-red-500"
+                        : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                    )}
                     type="text"
                     placeholder="ZIP code"
                     autoComplete="zip"
                   />
+                  <ErrorFormMessage errorMessage={errors["zip"]?.message} />
                 </div>
               </div>
             </div>
             <div className="flex_justify_end">
               <Button
-                type="button"
+                type="submit"
                 label="Add Shipping Address"
                 variant="contained"
                 className="h-10"
+                disabled={!isValid}
               />
             </div>
           </form>
