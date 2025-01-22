@@ -4,8 +4,8 @@ import {
   PersonalDetails,
   ChangePassword,
   DeleteAccount,
-  EditProfile,
-} from "../../../components";
+  ProfilePhoto,
+} from "..";
 
 export const AccountSettings: FC = () => {
   return (
@@ -16,7 +16,7 @@ export const AccountSettings: FC = () => {
         <ChangePassword />
         <DeleteAccount />
       </div>
-      <EditProfile />
+      <ProfilePhoto />
     </>
   );
 };

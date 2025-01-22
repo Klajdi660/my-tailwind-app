@@ -13,7 +13,6 @@ import {
   // CollectionPage,
   GameDetailPage,
   ComingSoonPage,
-  EditProfilePage,
   VerifyEmailPage,
   ResetPasswordPage,
   ForgotPasswordPage,
@@ -34,7 +33,6 @@ const {
   register,
   gameDetail,
   socialAuth,
-  editProfile,
   verifyEmail,
   passwordCode,
   resetPassword,
@@ -138,21 +136,11 @@ export const Routes = () =>
       ),
     },
     {
-      path: profile,
+      path: `${profile}/:profileId`,
       element: (
         <PrivateGuard>
           <PrivateLayout>
             <ProfilePage />
-          </PrivateLayout>
-        </PrivateGuard>
-      ),
-    },
-    {
-      path: `${editProfile}/:editProfileId`,
-      element: (
-        <PrivateGuard>
-          <PrivateLayout>
-            <EditProfilePage />
           </PrivateLayout>
         </PrivateGuard>
       ),

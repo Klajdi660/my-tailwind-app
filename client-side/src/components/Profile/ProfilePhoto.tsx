@@ -4,7 +4,7 @@ import { useAppModal, useProfilePhoto } from "../../utils";
 import { useAppSelector } from "../../store";
 import { userIcon, iconName } from "../../assets";
 
-export const EditProfile: FC = () => {
+export const ProfilePhoto: FC = () => {
   const { setModalOpen } = useAppModal();
   const { isUpdatingProfileImg, setPhotoType } = useProfilePhoto();
 

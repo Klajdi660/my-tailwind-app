@@ -9,7 +9,6 @@ export { PasswordConfirmCodePage } from "./Auth/PasswordConfirmCodePage";
 // Profile
 export { LoginPage } from "./Auth/LoginPage";
 export { ProfilePage } from "./Profile/Profile";
-export { EditProfilePage } from "./Profile/EditProfile";
 
 // Root
 export { HomePage } from "./Root/Home";

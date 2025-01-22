@@ -8,7 +8,7 @@ import { Button } from "./UI";
 import { LanguageProps } from "../types";
 import { useProfileService } from "../services";
 import { useAppSelector } from "../store";
-import { currencyList, recommendedCountries, languageMaps } from "../data";
+import { currencyList, languageMaps } from "../data";
 
 export const Language: FC<LanguageProps> = (props) => {
   const { setOpen } = props;
@@ -20,13 +20,13 @@ export const Language: FC<LanguageProps> = (props) => {
 
   const allCountries = Country.getAllCountries();
 
-  const recommendedCountriesList = allCountries.filter((country) =>
-    recommendedCountries.includes(country.name)
-  );
+  // const recommendedCountriesList = allCountries.filter((country) =>
+  //   recommendedCountries.includes(country.name)
+  // );
 
-  const otherCountries = allCountries.filter(
-    (country) => !recommendedCountries.includes(country.name)
-  );
+  // const otherCountries = allCountries.filter(
+  //   (country) => !recommendedCountries.includes(country.name)
+  // );
 
   const languageOptions = Object.keys(languageMaps).map((lang) => ({
     label: languageMaps[lang].label,
@@ -43,26 +43,26 @@ export const Language: FC<LanguageProps> = (props) => {
     displayValue: `${state.name} - ${state.isoCode}`,
   }));
 
-  const combinedCountries = [
-    {
-      label: (
-        <span className="text-onNeutralBg font-semibold">Recommended</span>
-      ),
-      options: recommendedCountriesList.map((country) => ({
-        label: `${country.flag} ${country.name}`,
-        value: country.isoCode,
-      })),
-    },
-    {
-      label: (
-        <span className="text-onNeutralBg font-semibold">All Countries</span>
-      ),
-      options: otherCountries.map((country) => ({
-        label: `${country.flag} ${country.name}`,
-        value: country.isoCode,
-      })),
-    },
-  ];
+  // const combinedCountries = [
+  //   {
+  //     label: (
+  //       <span className="text-onNeutralBg font-semibold">Recommended</span>
+  //     ),
+  //     options: recommendedCountriesList.map((country) => ({
+  //       label: `${country.flag} ${country.name}`,
+  //       value: country.isoCode,
+  //     })),
+  //   },
+  //   {
+  //     label: (
+  //       <span className="text-onNeutralBg font-semibold">All Countries</span>
+  //     ),
+  //     options: otherCountries.map((country) => ({
+  //       label: `${country.flag} ${country.name}`,
+  //       value: country.isoCode,
+  //     })),
+  //   },
+  // ];
 
   const handleCountryChange = (countryCode: string) => {
     const selectedCountry = allCountries.find(
@@ -134,7 +134,7 @@ export const Language: FC<LanguageProps> = (props) => {
               {...field}
               className="w-full h-10 text-sm"
               placeholder="Select ship country"
-              options={combinedCountries}
+              // options={combinedCountries}
               onChange={handleCountryChange}
               showSearch
               defaultValue={

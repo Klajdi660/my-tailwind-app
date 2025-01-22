@@ -32,10 +32,10 @@ export { CartSwitcher } from "./Cart/CartSwitcher";
 export { SliderGames } from "./Home/SliderGames";
 
 // PROFILE
-export { AccountSettings } from "./Profile/ProfileEdit/AccountSettings";
-export { GeneralSettings } from "./Profile/ProfileEdit/GeneralSettings";
-export { PaymentSettings } from "./Profile/ProfileEdit/PaymentSettings";
-export { ShippingAddressSettings } from "./Profile/ProfileEdit/ShippingAddressSettings";
+export { AccountSettings } from "./Profile/AccountSettings";
+export { GeneralSettings } from "./Profile/GeneralSettings";
+export { PaymentSettings } from "./Profile/PaymentSettings";
+export { ShippingAddressSettings } from "./Profile/ShippingAddressSettings";
 
 // SECTIONS
 // SETTINGS
@@ -55,20 +55,17 @@ export { TopPlay } from "./TopPlay";
 export { Modal } from "./UI/Modals";
 export { Button } from "./UI/Button";
 export { Language } from "./Language";
-export { FormField } from "./FormField";
 export { Searchbar } from "./SearchBar";
 export * from "./UI/Modals/ModalContent";
 export * from "./Common/GameDetailCommon";
 export { HomeFooter } from "./HomeFooter";
 
 export { Sidebar } from "./Sidebar/Sidebar";
-export { Profile } from "./Profile/Profile";
+export { ProfilePhoto } from "./Profile/ProfilePhoto";
 export { ReadMore } from "./Common/ReadMore";
 export { UserInfo } from "./Profile/UserInfo";
 export { Notification } from "./Notification";
 export { AccountSettingSidebar } from "./Profile/AccountSettingSidebar";
-export { EditProfile } from "./Profile/EditProfile";
-export { AddressDetails } from "./Profile/AddressDetails";
 export { GameDetail } from "./GameDetail/GameDetail";
 export { MediaSection } from "./Sections/MediaSection";
 export { DeleteAccount } from "./Profile/DeleteAccount";

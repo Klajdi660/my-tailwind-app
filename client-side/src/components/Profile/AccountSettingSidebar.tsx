@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Icon } from "../UI";
-import { settingsLinks, paths } from "../../data";
 import { classNames } from "../../utils";
+import { settingsLinks, paths } from "../../data";
 
 export const AccountSettingSidebar: FC = () => {
-  const { editProfile } = paths;
+  const { profile } = paths;
 
-  const { editProfileId } = useParams<{ editProfileId: string | any }>();
+  const { profileId } = useParams<{ profileId: string | any }>();
 
   const navigate = useNavigate();
 
@@ -25,22 +25,22 @@ export const AccountSettingSidebar: FC = () => {
             <button
               className={classNames(
                 "flex flex-row items-center gap-2 p-5 h-12 w-full outline-0 border-none hover:bg-primary-opacity rounded",
-                editProfileId.includes(settingLink.id) && "bg-primary-opacity"
+                profileId.includes(settingLink.id) && "bg-primary-opacity"
               )}
-              onClick={() => navigate(`${editProfile}/${settingLink.id}`)}
+              onClick={() => navigate(`${profile}/${settingLink.id}`)}
             >
               <Icon
                 name={settingLink.icon}
                 className={classNames(
                   "group-hover:!text-primary",
-                  editProfileId.includes(settingLink.id) && "text-primary"
+                  profileId.includes(settingLink.id) && "text-primary"
                 )}
                 size={20}
               />
               <div
                 className={classNames(
                   "group-hover:text-primary text-sm flex items-center gap-3 whitespace-nowrap",
-                  editProfileId.includes(settingLink.id)
+                  profileId.includes(settingLink.id)
                     ? "text-primary"
                     : "text-onNeutralBg"
                 )}

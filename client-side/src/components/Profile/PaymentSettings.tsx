@@ -4,15 +4,11 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import creditCardType from "credit-card-type";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Icon, Image, Button } from "../../UI";
-import { removeSelectedCard, addNewCard } from "../../../store";
-import { cardImgList } from "../../../data";
-import { classNames, creditCardValidation } from "../../../utils";
-import { ErrorFormMessage } from "../../Common";
-
-interface NewCardContentProps {
-  cardId: number;
-}
+import { Button, Icon, Image } from "../UI";
+import { ErrorFormMessage } from "../Common";
+import { cardImgList } from "../../data";
+import { addNewCard } from "../../store";
+import { classNames, creditCardValidation } from "../../utils";
 
 const cvvContent = (
   <div className="flex flex-col text-onNeutralBg p-2 gap-4">
@@ -27,30 +23,6 @@ const cvvContent = (
     </p>
   </div>
 );
-
-export const NewCardContent: FC<NewCardContentProps> = (props) => {
-  const { cardId } = props;
-
-  const dispatch = useDispatch();
-
-  const handleRemoveCard = () => {
-    dispatch(removeSelectedCard(cardId));
-  };
-
-  return (
-    <div
-      className="flex_justify_center flex-row cursor-pointer gap-1 group"
-      onClick={handleRemoveCard}
-    >
-      <Icon
-        name="AiOutlineDelete"
-        size={16}
-        className="group-hover:text-primary"
-      />
-      <p className="text-secondary group-hover:text-primary">Remove card</p>
-    </div>
-  );
-};
 
 export const PaymentSettings: FC = () => {
   const dispatch = useDispatch();
@@ -83,6 +55,7 @@ export const PaymentSettings: FC = () => {
     );
 
     reset();
+    setValue(undefined);
   };
 
   const handleCardInputChange = (

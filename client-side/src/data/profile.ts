@@ -8,7 +8,7 @@ interface AvatarProfileList {
   size: string;
 }
 
-const { editProfile } = paths;
+const { profile } = paths;
 
 export const avatarProfileList: AvatarProfileList[] = [
   { id: 1, name: avatar1, size: "w-28 h-28" },
@@ -219,12 +219,21 @@ export const profileMenuItems = ({
   navigate,
 }: ProfileMenuItems) => [
   {
+    id: "profile",
+    name: "Profile",
+    icon: "AiOutlineUser",
+    onClick: () => {
+      hidden();
+      navigate(`${profile}/account`);
+    },
+  },
+  {
     id: "general",
     name: "Account Settings",
     icon: "AiOutlineSetting",
     onClick: () => {
       hidden();
-      navigate(`${editProfile}/general`);
+      navigate(`${profile}/general`);
     },
   },
   {
@@ -233,7 +242,7 @@ export const profileMenuItems = ({
     name: "GrooveIT Wallet",
     onClick: () => {
       hidden();
-      navigate(`${editProfile}/payments`);
+      navigate(`${profile}/payments`);
     },
   },
   {

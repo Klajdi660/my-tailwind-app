@@ -33,7 +33,7 @@ const UserMenu: FC<UserMenuProps> = (props) => {
 
   const navigateToProfile = () => {
     hidden();
-    navigate(profile);
+    navigate(`${profile}/account`);
   };
 
   return (

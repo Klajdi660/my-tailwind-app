@@ -6,9 +6,9 @@ import {
   languageList,
   currencyList,
   currencySymbolList,
-} from "../../../data";
-import { useStore } from "../../../hooks";
-import { useAppSelector, updateThemeConfig, setCurrency } from "../../../store";
+} from "../../data";
+import { useStore } from "../../hooks";
+import { useAppSelector, updateThemeConfig, setCurrency } from "../../store";
 
 export const GeneralSettings: FC = () => {
   const { lang, currency, timeZones, usersTimeZone } = useStore();
