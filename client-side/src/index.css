@@ -340,7 +340,7 @@ input[type="checkbox"] {
   border: 1px solid var(--onNeutralBgDivider) !important;
 }
 .ant-select-outlined .ant-select-selector:hover {
-  border: 1px solid var(--primary) !important;
+  /* border: 1px solid var(--primary) !important; */
 }
 .ant-select-outlined .ant-select-selector:focus-within {
   outline: 1px solid var(--primary) !important;
