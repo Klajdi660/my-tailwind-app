@@ -58,13 +58,6 @@ export const PaymentSettings: FC = () => {
     setValue(undefined);
   };
 
-  const handleCardInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = event.target.value.replace(/[^0-9]/g, "");
-    event.target.value = value;
-  };
-
   const {
     register: form,
     handleSubmit,
@@ -157,7 +150,11 @@ export const PaymentSettings: FC = () => {
                         type="text"
                         placeholder="Card number"
                         autoComplete="cardNr"
-                        onChange={handleCardInputChange}
+                        onInput={(e) => {
+                          let value = e.currentTarget.value.replace(/\D/g, "");
+                          value = value.replace(/(\d{4})(?=\d)/g, "$1-");
+                          e.currentTarget.value = value;
+                        }}
                       />
                       <ErrorFormMessage
                         errorMessage={errors["cardNr"]?.message}
@@ -178,6 +175,23 @@ export const PaymentSettings: FC = () => {
                         type="text"
                         placeholder="Expiration"
                         autoComplete="cardExp"
+                        onInput={(e) => {
+                          let value = e.currentTarget.value.replace(/\D/g, "");
+                          if (value.length > 2) {
+                            value =
+                              value.substring(0, 2) +
+                              "/" +
+                              value.substring(2, 4);
+                          }
+
+                          e.currentTarget.value = value;
+                        }}
+                        onFocus={(e) => {
+                          e.currentTarget.placeholder = "MM/YY";
+                        }}
+                        onBlur={(e) => {
+                          e.currentTarget.placeholder = "Expiration";
+                        }}
                       />
                       <ErrorFormMessage
                         errorMessage={errors["cardExp"]?.message}
@@ -197,7 +211,10 @@ export const PaymentSettings: FC = () => {
                           type="text"
                           placeholder="CVV"
                           autoComplete="cardCvvNr"
-                          onChange={handleCardInputChange}
+                          onInput={(e) => {
+                            e.currentTarget.value =
+                              e.currentTarget.value.replace(/\D/g, "");
+                          }}
                         />
                         <Popover
                           placement="topLeft"
