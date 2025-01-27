@@ -1,15 +1,16 @@
 import { FC, useMemo } from "react";
 import { Form } from "../Auth";
 import { Icon } from "../UI";
-import { changePasswordList } from "../../data";
 import { useAppSelector } from "../../store";
+import { changePasswordList } from "../../data";
 import { useProfileService } from "../../services";
 import { ChangePasswordValues } from "../../types";
 import { updatePasswordValidation } from "../../utils";
 
 export const ChangePassword: FC = () => {
-  const { user } = useAppSelector((state) => state.user);
   const { changePassword } = useProfileService();
+
+  const { user } = useAppSelector((state) => state.user);
 
   let isPasswordEnabled = user?.provider === "Email";
 

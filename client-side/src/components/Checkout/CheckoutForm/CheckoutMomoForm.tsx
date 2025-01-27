@@ -1,11 +1,8 @@
 import { FC } from "react";
-import { useForm, Controller } from "react-hook-form";
 import { Select } from "antd";
+import { useForm, Controller } from "react-hook-form";
 import { Button } from "../../UI";
-
-interface CheckoutMomoFormPorps {
-  totalPrice: string;
-}
+import { CheckoutMomoFormPorps } from "../../../types";
 
 const providerList = [
   {

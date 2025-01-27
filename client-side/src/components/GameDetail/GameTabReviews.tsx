@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from "react";
 import { Image } from "../UI";
-import { userIcon } from "../../assets";
 import { ReadMore, StarRating } from "../Common";
-import { ReviewContentProps, GameTabReviewsProps } from "../../types";
+import { userIcon } from "../../assets";
 import { calculateTimePassed } from "../../utils";
+import { ReviewContentProps, GameTabReviewsProps } from "../../types";
 
 const ReviewContent: FC<ReviewContentProps> = (props) => {
   const { gameReviews } = props;

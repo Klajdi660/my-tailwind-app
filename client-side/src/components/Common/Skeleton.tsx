@@ -1,5 +1,4 @@
 import { FC, HTMLProps } from "react";
-
 interface SkeletonProps {
   className?: string;
   children?: React.ReactNode;

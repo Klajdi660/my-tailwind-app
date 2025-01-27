@@ -1,10 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../../UI";
-
-interface CheckoutCardFormProps {
-  totalPrice: string;
-}
+import { CheckoutCardFormProps } from "../../../types";
 
 export const CheckoutCardForm: FC<CheckoutCardFormProps> = (props) => {
   const { totalPrice } = props;

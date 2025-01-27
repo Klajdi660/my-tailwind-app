@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 import { motion } from "framer-motion";
-import { CartBody, CartEmpty, CartHeader } from "../Cart";
 import { Checkout } from "../Checkout/Checkout";
-import { useCart, useStore } from "../../hooks";
+import { CartBody, CartEmpty, CartHeader } from "../Cart";
 import { useAppSelector } from "../../store";
+import { useCart, useStore } from "../../hooks";
 
 export const CartSwitcher: FC = () => {
   const { setOpenSwitch } = useStore();

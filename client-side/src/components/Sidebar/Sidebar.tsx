@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Tooltip } from "antd";
 import { FC, useMemo, useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Icon, Overlay, Image } from "../UI";
+import { classNames } from "../../utils";
 import { navlinks, paths } from "../../data";
 import { useAppSelector } from "../../store";
-import { classNames } from "../../utils";
-import { useAuth, useMediaResponsive, useStore } from "../../hooks";
 import { defaultThemeConfig, themeConfig } from "../../configs";
+import { useAuth, useMediaResponsive, useStore } from "../../hooks";
 
 const User = () => {
   const { profile } = paths;
@@ -67,7 +68,6 @@ export const Sidebar: FC = () => {
 
   useEffect(() => {
     setToggleMenu && setToggleMenu(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const navLists = useMemo(() => {

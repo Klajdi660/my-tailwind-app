@@ -2,14 +2,7 @@ import { FC, useState } from "react";
 import { motion } from "framer-motion";
 import { CheckoutBody, CheckoutHeader } from "../Checkout";
 import { calculateTotalPrice } from "../../utils";
-import { GameParams } from "../../types";
-
-interface CartCheckoutPorps {
-  cartItems: GameParams[];
-  quantities: { [id: string]: number };
-  setOpenSwitch: (openSwitch: boolean) => void;
-  setCheckoutOpen: (checkoutOpen: boolean) => void;
-}
+import { CartCheckoutPorps } from "../../types";
 
 export const Checkout: FC<CartCheckoutPorps> = (props) => {
   const { setOpenSwitch, setCheckoutOpen, cartItems, quantities } = props;

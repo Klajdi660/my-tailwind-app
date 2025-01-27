@@ -2,10 +2,9 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../UI";
 import { paths } from "../../data";
-import { useCart, useNotification } from "../../hooks";
 import { CartItemProps } from "../../types";
+import { useCart, useNotification } from "../../hooks";
 import { classNames, nameTruncate, calculateTotalPrice } from "../../utils";
-import { HiCheck } from "react-icons/hi";
 
 export const CartItem: FC<CartItemProps> = (props) => {
   const {
@@ -137,7 +136,9 @@ export const CartItem: FC<CartItemProps> = (props) => {
                 className="w-5 h-5 flex_justify_center bg-none border border-primary rounded hover:opacity-80"
                 onClick={oneSelectGame}
               >
-                {hasOneSelect && <HiCheck size={16} className="text-primary" />}
+                {hasOneSelect && (
+                  <Icon name="HiCheck" size={16} className="text-primary" />
+                )}
               </button>
             )}
           </div>

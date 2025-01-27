@@ -11,7 +11,6 @@ import {
   DeleteProfileValues,
   UserDetailsResponse,
   ChangePasswordValues,
-  // PersonalDetailsInput,
 } from "../types";
 import { HttpClient } from "../client";
 import { useNotification, useStore } from "../hooks";

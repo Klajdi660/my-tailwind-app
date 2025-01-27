@@ -1,21 +1,21 @@
+import { Popover } from "antd";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Popover } from "antd";
 import { Image, Icon } from "../UI";
-import { userIcon } from "../../assets";
-import { profileMenuItems, paths } from "../../data";
-import { useAuthService } from "../../services";
-import { UserMenuProps } from "../../types";
-import { classNames, useAppModal } from "../../utils";
-import { useAppSelector } from "../../store";
 import { useStore } from "../../hooks";
+import { userIcon } from "../../assets";
+import { classNames } from "../../utils";
+import { UserMenuProps } from "../../types";
+import { useAppSelector } from "../../store";
+import { useAuthService } from "../../services";
+import { profileMenuItems, paths } from "../../data";
 
 const UserMenu: FC<UserMenuProps> = (props) => {
   const { hidden } = props;
 
   const { profile } = paths;
 
-  const { setModalOpen } = useAppModal();
+  const { setModalOpen } = useStore();
   const { logout } = useAuthService();
 
   const navigate = useNavigate();

@@ -1,13 +1,11 @@
 import { FC } from "react";
 import { Button, Image } from "../UI";
-import { useAppModal } from "../../utils";
+import { useStore } from "../../hooks";
 import { useAppSelector } from "../../store";
 import { userIcon, iconName } from "../../assets";
-import { useStore } from "../../hooks";
 
 export const ProfilePhoto: FC = () => {
-  const { setModalOpen } = useAppModal();
-  const { isUpdatingProfileImg } = useStore();
+  const { isUpdatingProfileImg, setModalOpen } = useStore();
 
   const { user } = useAppSelector((state) => state.user);
 

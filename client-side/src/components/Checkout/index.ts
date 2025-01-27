@@ -1,4 +1,3 @@
-// export { Checkout } from "./Checkout";
 export { CheckoutBody } from "./CheckoutBody";
 export { CheckoutFooter } from "./CheckoutFooter";
 export { CheckoutHeader } from "./CheckoutHeader";

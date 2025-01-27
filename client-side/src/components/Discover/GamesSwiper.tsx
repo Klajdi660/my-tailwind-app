@@ -1,21 +1,14 @@
+import { motion } from "framer-motion";
+import { Navigation } from "swiper/modules";
 import { FC, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import { Title, Icon } from "../UI";
-import { useGames } from "../../hooks";
-import { classNames } from "../../utils";
 import { MediaCard, GenreCard } from "../Cards";
 import { paths } from "../../data";
-import { motion } from "framer-motion";
-
-interface GamesSwiperProps {
-  sectionName: string;
-  titleName: string;
-  dateParam?: string;
-  orderingParam?: string;
-  swiperType?: string;
-}
+import { useGames } from "../../hooks";
+import { classNames } from "../../utils";
+import { GamesSwiperProps } from "../../types";
 
 export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
   const { sectionName, titleName, dateParam, orderingParam, swiperType } =

@@ -2,19 +2,16 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SmallModal } from "./ModalContent";
-import {
-  useAppModal,
-  classNames,
-  editUsernameValidation,
-} from "../../../utils";
 import { Icon } from "../Icon";
-import { useAppSelector } from "../../../store";
 import { Button } from "../Button";
+import { useStore } from "../../../hooks";
+import { useAppSelector } from "../../../store";
 import { ErrorFormMessage } from "../../Common";
 import { useProfileService } from "../../../services";
+import { classNames, editUsernameValidation } from "../../../utils";
 
 export const ChangeUsernameModal: FC = () => {
-  const { modals, setModalOpen } = useAppModal();
+  const { modals, setModalOpen } = useStore();
   const { changeUsername } = useProfileService();
 
   const { user } = useAppSelector((state) => state.user);

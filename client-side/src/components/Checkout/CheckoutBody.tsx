@@ -1,12 +1,7 @@
 import { FC } from "react";
 import { CheckoutPaymentMethod, CheckoutFooter } from "../Checkout";
 import { CheckoutCardForm, CheckoutMomoForm } from "./CheckoutForm";
-
-interface CheckoutBodyProps {
-  totalPrice: string;
-  paymentMethod: string;
-  setPaymentMethod: (paymentMethod: string) => void;
-}
+import { CheckoutBodyProps } from "../../types";
 
 export const CheckoutBody: FC<CheckoutBodyProps> = (props) => {
   const { paymentMethod, setPaymentMethod, totalPrice } = props;

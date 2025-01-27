@@ -1,15 +1,9 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { Image } from "../UI";
-import { nameTruncate, formatGenreName } from "../../utils";
 import { paths } from "../../data";
-
-interface GenreCardProps {
-  genreId: number;
-  genreName: string;
-  genreImg: string;
-  genreCount: string;
-}
+import { GenreCardProps } from "../../types";
+import { nameTruncate, formatGenreName } from "../../utils";
 
 export const GenreCard: FC<GenreCardProps> = (props) => {
   const { genreId, genreName, genreImg, genreCount } = props;
@@ -27,9 +21,9 @@ export const GenreCard: FC<GenreCardProps> = (props) => {
     const params = new URLSearchParams();
     params.set(filterName, name);
     params.set(filterId, id.toString());
-
     navigate(`${browse}?${params.toString()}`);
   };
+
   return (
     <button
       type="button"

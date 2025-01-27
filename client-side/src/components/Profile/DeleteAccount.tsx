@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { Button, Icon } from "../UI";
-import { useProfileService } from "../../services";
-import { useAppModal } from "../../utils";
+import { useStore } from "../../hooks";
 import { useAppSelector } from "../../store";
+import { useProfileService } from "../../services";
 
 export const DeleteAccount: FC = () => {
   const { cancelDeleteProfile } = useProfileService();
-  const { setModalOpen } = useAppModal();
+  const { setModalOpen } = useStore();
 
   const { isAccountDelete, accoundDeleteDaysDifference } = useAppSelector(
     (state) => state.cancelDeleteAccount

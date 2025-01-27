@@ -1,13 +1,13 @@
+import { Popover } from "antd";
 import { FC, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Popover } from "antd";
 import { Icon, Title } from "../UI";
-import { classNames } from "../../utils";
 import { useGames } from "../../hooks";
+import { classNames } from "../../utils";
 import { FilterBy } from "../../components";
 
 export const BrowseFilter: FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const { useGameFilterList } = useGames();
 
   const gameFilterList = useGameFilterList();
@@ -51,8 +51,6 @@ export const BrowseFilter: FC = () => {
                   arrow={false}
                   content={
                     <FilterBy
-                      searchParams={searchParams}
-                      setSearchParams={setSearchParams}
                       searchParamName={value}
                       filterName={filterName}
                       filterList={filterList}

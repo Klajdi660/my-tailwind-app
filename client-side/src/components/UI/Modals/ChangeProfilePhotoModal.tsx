@@ -1,16 +1,14 @@
 import { FC, ChangeEvent, useRef } from "react";
 import { SmallModal } from "./ModalContent";
-import { useAppSelector } from "../../../store";
-import { useProfileService } from "../../../services";
-import { useAppModal } from "../../../utils";
 import { Image, Button } from "../../UI";
-import { avatarProfileList } from "../../../data";
 import { useStore } from "../../../hooks";
+import { useAppSelector } from "../../../store";
+import { avatarProfileList } from "../../../data";
+import { useProfileService } from "../../../services";
 
 export const ChangeProfilePhotoModal: FC = () => {
-  const { setIsUpdatingProfileImg } = useStore();
-  const { modals, setModalOpen } = useAppModal();
   const { updateDisplayPicture } = useProfileService();
+  const { setIsUpdatingProfileImg, setModalOpen, modals } = useStore();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 

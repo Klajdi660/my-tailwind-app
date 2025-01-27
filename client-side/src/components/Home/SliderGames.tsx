@@ -1,7 +1,5 @@
 import { FC } from "react";
 
-interface SliderGamesProps {}
-
-export const SliderGames: FC<SliderGamesProps> = (props) => {
+export const SliderGames: FC = (props) => {
   return <></>;
 };

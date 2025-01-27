@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Icon } from "../Icon";
-import { useAppSelector } from "../../../store";
 import { useStore } from "../../../hooks";
+import { useAppSelector } from "../../../store";
 
 export const CartButton: FC = () => {
   const { setOpenSwitch } = useStore();

@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { Tooltip } from "antd";
 import { Icon, Button } from "../UI";
+import { useStore } from "../../hooks";
+import { classNames } from "../../utils";
 import { useAppSelector } from "../../store";
-import { classNames, useAppModal } from "../../utils";
 
 export const UserInfo: FC = () => {
-  const { setModalOpen } = useAppModal();
+  const { setModalOpen } = useStore();
 
   const { user } = useAppSelector((state) => state.user);
 

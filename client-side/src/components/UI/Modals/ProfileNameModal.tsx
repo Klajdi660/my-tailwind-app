@@ -2,12 +2,10 @@ import { FC } from "react";
 import moment from "moment";
 import { SmallModal } from "./ModalContent";
 import { useStore } from "../../../hooks";
-import { useAppModal } from "../../../utils";
 import { useAppSelector } from "../../../store";
 
 export const ProfileNameModal: FC = () => {
-  const { modals, setModalOpen } = useAppModal();
-  const { lang, selectedTimeZone, currency } = useStore();
+  const { lang, selectedTimeZone, currency, modals, setModalOpen } = useStore();
 
   const { user } = useAppSelector((state) => state.user);
 

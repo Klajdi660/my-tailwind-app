@@ -1,12 +1,12 @@
-import { FC, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
 import dayjs from "dayjs";
+import { FC, useState } from "react";
 import { DatePicker, Select } from "antd";
 import { Country } from "country-state-city";
+import { useForm, Controller } from "react-hook-form";
 import { Button } from "../UI";
-import { genderList, dateFormatList } from "../../data";
 import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
+import { genderList, dateFormatList } from "../../data";
 
 export const PersonalDetails: FC = () => {
   const { updateProfile } = useProfileService();

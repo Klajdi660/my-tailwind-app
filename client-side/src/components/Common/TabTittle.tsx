@@ -2,9 +2,7 @@
 import { FC, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-interface TabTitleProps {}
-
-export const TabTitle: FC<TabTitleProps> = () => {
+export const TabTitle: FC = () => {
   const { pathname } = useLocation();
   const pathKey = pathname.split("/")[1];
 

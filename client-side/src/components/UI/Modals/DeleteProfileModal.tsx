@@ -4,20 +4,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SmallModal } from "./ModalContent";
 import { Icon } from "../Icon";
 import { Button } from "../Button";
-import { useAppSelector } from "../../../store";
 import { ErrorFormMessage } from "../../Common";
-import { useProfileService } from "../../../services";
-import {
-  useAppModal,
-  deleteProfileValidation,
-  classNames,
-} from "../../../utils";
+import { useStore } from "../../../hooks";
+import { useAppSelector } from "../../../store";
 import { DeleteProfileValues } from "../../../types";
+import { useProfileService } from "../../../services";
+import { deleteProfileValidation, classNames } from "../../../utils";
 
 export const DeleteProfileModal: FC = () => {
-  const { user } = useAppSelector((state) => state.user);
   const { deleteProfile } = useProfileService();
-  const { modals, setModalOpen } = useAppModal();
+  const { modals, setModalOpen } = useStore();
+
+  const { user } = useAppSelector((state) => state.user);
 
   const {
     register: form,

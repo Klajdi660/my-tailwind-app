@@ -2,14 +2,15 @@
 import { FC, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { paths } from "../data";
+import { useStore } from "../hooks";
 import { ProviderProps } from "../types";
 import { useAppSelector } from "../store";
-import { isTokenExpired, useAppModal } from "../utils";
+import { isTokenExpired } from "../utils";
 
 export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
   const { home } = paths;
 
-  const { setModalOpen, closeAllModals } = useAppModal();
+  const { setModalOpen, closeAllModals } = useStore();
 
   useEffect(() => {
     const checkATokenExpiry = () => {

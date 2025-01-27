@@ -20,9 +20,6 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
   const { useGameList } = useGames();
 
   const [searchParams] = useSearchParams();
-  // const par = Object.fromEntries(
-  //   Array.from(searchParams.entries()).filter(([_, value]) => value)
-  // );
 
   const params = {
     genres: searchParams.get("genreId") || undefined,

@@ -1,12 +1,12 @@
-import { FC, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import dayjs from "dayjs";
-import OtpInput from "react18-input-otp";
 import { Form, Progress } from "antd";
+import { Link } from "react-router-dom";
+import OtpInput from "react18-input-otp";
+import { FC, useState, useEffect } from "react";
 import { Button } from "../UI";
 import { useForm } from "../../hooks";
-import { OTPCodeFormProps } from "../../types";
 import { classNames } from "../../utils";
+import { OTPCodeFormProps } from "../../types";
 
 export const OTPCodeForm: FC<OTPCodeFormProps> = (props) => {
   const { data, onSubmit, resendCodeHandler } = props;

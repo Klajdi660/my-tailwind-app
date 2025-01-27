@@ -1,28 +1,23 @@
 import { FC } from "react";
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
 import { SmallModal } from "./ModalContent";
 import { Icon } from "../Icon";
 import { Button } from "../Button";
-// import { paths } from "../../../data";
-import { useAppModal } from "../../../utils";
 import {
   setAToken,
   setIsAuthenticated,
   setRToken,
   setUser,
 } from "../../../store";
+import { useStore } from "../../../hooks";
 
 export const SessionExpiredModal: FC = () => {
-  // const { home, logIn } = paths;
-  const { modals, setModalOpen } = useAppModal();
-  // const navigate = useNavigate();
+  const { modals, setModalOpen } = useStore();
+
   const dispatch = useDispatch();
 
   const handleModalClose = () => {
     setModalOpen("sessionExpiredModal", false);
-    // navigate(home);
-
     dispatch(setAToken(null));
     dispatch(setRToken(null));
     dispatch(setUser(null));
@@ -31,7 +26,6 @@ export const SessionExpiredModal: FC = () => {
     delete localStorage.atoken;
     delete localStorage.user;
     delete localStorage.rtoken;
-    // delete localStorage.lastLocation;
   };
 
   return (

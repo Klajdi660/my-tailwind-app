@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Badge } from "antd";
 import { Button, Icon } from "../UI";
-import { CartHeaderProps } from "../../types";
 import { classNames } from "../../utils";
+import { CartHeaderProps } from "../../types";
 
 export const CartHeader: FC<CartHeaderProps> = (props) => {
   const {

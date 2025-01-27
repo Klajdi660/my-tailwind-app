@@ -8,8 +8,8 @@ import {
   PlatformIconList,
 } from "../Common";
 import { Tab } from "../UI";
-import { dateFormatList, gameTabsButton } from "../../data";
 import { GameTabDetailProps } from "../../types";
+import { dateFormatList, gameTabsButton } from "../../data";
 
 export const GameTabDetail: FC<GameTabDetailProps> = (props) => {
   const { gameDetail, gameReviews } = props;

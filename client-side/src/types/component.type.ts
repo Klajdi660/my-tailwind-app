@@ -54,6 +54,15 @@ export interface FormTemplateProps {
   resendCodeHandler?: any;
 }
 
+// Browse
+export interface FilterByProps {
+  filterName: string;
+  searchParamName: string;
+  filterList: any;
+  width: string;
+  onClosePopover: () => void;
+}
+
 // Card
 export interface MediaCardProps {
   game: GameParams;
@@ -64,6 +73,13 @@ export interface TopPlayCardProps {
   item: GameParams;
   imageDims: string;
   listDivider: boolean;
+}
+
+export interface GenreCardProps {
+  genreId: number;
+  genreName: string;
+  genreImg: string;
+  genreCount: string;
 }
 
 // Cart
@@ -112,6 +128,37 @@ export interface CartItemProps {
   quantities: { [id: string]: number };
   setSelections: (selections: number[]) => void;
   setSelectedHeaderOpen: (selectedHeaderOpen: boolean) => void;
+}
+
+// Checkout
+export interface CheckoutPaymentMethodProps {
+  paymentMethod: string;
+  setPaymentMethod: (paymentMethod: string) => void;
+}
+
+export interface CheckoutHeaderPorps {
+  closeCheckoutHandler: any;
+}
+
+export interface CheckoutBodyProps {
+  totalPrice: string;
+  paymentMethod: string;
+  setPaymentMethod: (paymentMethod: string) => void;
+}
+
+export interface CartCheckoutPorps {
+  cartItems: GameParams[];
+  quantities: { [id: string]: number };
+  setOpenSwitch: (openSwitch: boolean) => void;
+  setCheckoutOpen: (checkoutOpen: boolean) => void;
+}
+
+export interface CheckoutMomoFormPorps {
+  totalPrice: string;
+}
+
+export interface CheckoutCardFormProps {
+  totalPrice: string;
 }
 
 // Common
@@ -188,6 +235,15 @@ export interface ReadMoreProps {
 export interface StarRatingProps {
   star: number;
   maxStar: number;
+}
+
+// Discover
+export interface GamesSwiperProps {
+  sectionName: string;
+  titleName: string;
+  dateParam?: string;
+  orderingParam?: string;
+  swiperType?: string;
 }
 
 // GameDetail

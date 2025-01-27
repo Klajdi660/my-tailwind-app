@@ -1,26 +1,13 @@
 import { FC } from "react";
+import { useSearchParams } from "react-router-dom";
 import { classNames } from "../../utils";
-
-interface FilterByProps {
-  searchParams: URLSearchParams;
-  setSearchParams: React.Dispatch<React.SetStateAction<URLSearchParams>>;
-  filterName: string;
-  searchParamName: string;
-  filterList: any;
-  width: string;
-  onClosePopover: () => void;
-}
+import { FilterByProps } from "../../types";
 
 export const FilterBy: FC<FilterByProps> = (props) => {
-  const {
-    searchParams,
-    setSearchParams,
-    filterName,
-    onClosePopover,
-    searchParamName,
-    filterList,
-    width,
-  } = props;
+  const { filterName, onClosePopover, searchParamName, filterList, width } =
+    props;
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleFilterList = (name: string, id: string) => {
     searchParams.delete(searchParamName);

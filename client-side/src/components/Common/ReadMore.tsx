@@ -1,6 +1,6 @@
 import { FC, HTMLProps, useState } from "react";
-import { ReadMoreProps } from "../../types";
 import { classNames } from "../../utils";
+import { ReadMoreProps } from "../../types";
 
 export const ReadMore: FC<ReadMoreProps & HTMLProps<HTMLSpanElement>> = (
   props

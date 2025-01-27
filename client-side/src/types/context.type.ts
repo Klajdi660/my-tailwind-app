@@ -36,8 +36,10 @@ export interface StoreContextType {
   usersTimeZone: string;
   selectedTimeZone: string;
   isUpdatingProfileImg: boolean;
+  modals: Record<string, boolean>;
   translations: TranslationsResponse;
   userLangData: { [key: string]: string };
+  closeAllModals: () => void;
   setLang: (lang: string) => void;
   setLoading: (loading: boolean) => void;
   setCurrency: (currency: string) => void;
@@ -46,11 +48,9 @@ export interface StoreContextType {
   setToggleMenu: (toggleMenu: boolean) => void;
   setOpenSwitch: (openSwitch: boolean) => void;
   setToggleSearch: (toggleSearch: boolean) => void;
+  setModalOpen: (key: string, value: boolean) => void;
   setSelectedTimeZone: (selectedTImeZone: string) => void;
   setTranslations: (translations: TranslationsResponse) => void;
   setIsUpdatingProfileImg: (isUpdatingProfileImg: boolean) => void;
   setUserLangData: (userLangData: { [key: string]: string }) => void;
-  modals: Record<string, boolean>;
-  setModalOpen: (key: string, value: boolean) => void;
-  closeAllModals: () => void;
 }

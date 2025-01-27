@@ -2,13 +2,13 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tooltip, Progress } from "antd";
 import { GameTabDetail } from "./GameTabDetail";
-import { HeaderBannerSkeleton } from "../Skeleton";
 import { Button, Icon, Image } from "../UI";
-import { useStore, useCart, useMediaResponsive } from "../../hooks";
-import { GameDetailProps } from "../../types";
+import { HeaderBannerSkeleton } from "../Skeleton";
+import { paths } from "../../data";
 import { classNames } from "../../utils";
 import { useAppSelector } from "../../store";
-import { paths } from "../../data";
+import { GameDetailProps } from "../../types";
+import { useStore, useCart, useMediaResponsive } from "../../hooks";
 
 export const GameDetail: FC<GameDetailProps> = (props) => {
   const { gameDetail, gameReviews, gameVideos } = props;

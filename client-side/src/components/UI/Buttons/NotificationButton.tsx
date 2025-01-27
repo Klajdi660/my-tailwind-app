@@ -8,10 +8,6 @@ import { Notification } from "../../Notification";
 export const NotificationButton: FC = () => {
   const [openNotifyPopover, setOpenNotifyPopover] = useState<boolean>(false);
 
-  // const notifyPopoverHideHandler = () => {
-  //   setOpenNotifyPopover(false);
-  // };
-
   const notifyPopoverChangeHandler = (newOpen: boolean) => {
     setOpenNotifyPopover(newOpen);
   };

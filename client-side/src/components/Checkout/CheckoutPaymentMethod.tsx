@@ -1,14 +1,10 @@
 import { FC } from "react";
-import { mobileMoneyImg, bankImg } from "../../assets";
-import { classNames } from "../../utils";
 import { Radio } from "antd";
 import type { RadioChangeEvent } from "antd";
 import { Image } from "../UI";
-
-interface CheckoutPaymentMethodProps {
-  paymentMethod: string;
-  setPaymentMethod: (paymentMethod: string) => void;
-}
+import { classNames } from "../../utils";
+import { mobileMoneyImg, bankImg } from "../../assets";
+import { CheckoutPaymentMethodProps } from "../../types";
 
 export const CheckoutPaymentMethod: FC<CheckoutPaymentMethodProps> = (
   props

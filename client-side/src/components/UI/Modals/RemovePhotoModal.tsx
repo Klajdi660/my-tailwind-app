@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { SmallModal } from "./ModalContent";
-import { useProfileService } from "../../../services";
-import { useAppModal } from "../../../utils";
 import { Button } from "../Button";
+import { useStore } from "../../../hooks";
+import { useProfileService } from "../../../services";
 
 export const RemovePhotoModal: FC = () => {
-  const { modals, setModalOpen } = useAppModal();
+  const { modals, setModalOpen } = useStore();
   const { removeDisplayPicture } = useProfileService();
 
   const handleModalClose = () => {

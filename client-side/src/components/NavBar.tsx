@@ -12,10 +12,10 @@ import {
 import { paths } from "../data";
 import { useAppSelector } from "../store";
 import { icon, iconName } from "../assets";
-import { useMediaResponsive, useStore } from "../hooks";
 import { defaultThemeConfig } from "../configs";
-import { Searchbar, ProfileDropdown } from "../components";
 import { classNames, getAside } from "../utils";
+import { useMediaResponsive, useStore } from "../hooks";
+import { Searchbar, ProfileDropdown } from "../components";
 
 export const Navbar: FC = () => {
   const { logIn, discover } = paths;

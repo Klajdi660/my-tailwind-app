@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { Form } from "./Form";
 import { OTPCodeForm } from "./OTPCodeForm";
 import { SocialAuthButton, Title, Image } from "../UI";
-import { iconName } from "../../assets";
+import { paths } from "../../data";
 import { useForm } from "../../hooks";
+import { iconName } from "../../assets";
 import { classNames } from "../../utils";
 import { FormTemplateProps, FormListItem } from "../../types";
-import { paths } from "../../data";
 
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { schema, onSubmit, defaultValues, resendCodeHandler, data } = props;
