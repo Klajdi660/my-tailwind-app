@@ -12,16 +12,16 @@ import {
 import { paths } from "../data";
 import { useAppSelector } from "../store";
 import { icon, iconName } from "../assets";
-import { useMediaResponsive } from "../hooks";
+import { useMediaResponsive, useStore } from "../hooks";
 import { defaultThemeConfig } from "../configs";
 import { Searchbar, ProfileDropdown } from "../components";
-import { useAppUtil, classNames, getAside } from "../utils";
+import { classNames, getAside } from "../utils";
 
 export const Navbar: FC = () => {
   const { logIn, discover } = paths;
 
   const { isMobile } = useMediaResponsive();
-  const { toggleSearch, setToggleSearch } = useAppUtil();
+  const { toggleSearch, setToggleSearch } = useStore();
   const { pathname } = useLocation();
 
   const navigate = useNavigate();

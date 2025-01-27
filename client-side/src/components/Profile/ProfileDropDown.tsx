@@ -8,6 +8,7 @@ import { useAuthService } from "../../services";
 import { UserMenuProps } from "../../types";
 import { classNames, useAppModal } from "../../utils";
 import { useAppSelector } from "../../store";
+import { useStore } from "../../hooks";
 
 const UserMenu: FC<UserMenuProps> = (props) => {
   const { hidden } = props;

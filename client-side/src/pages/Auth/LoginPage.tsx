@@ -1,22 +1,18 @@
 import { FC } from "react";
+import { LoginUserValues } from "../../types";
+import { loginValidation } from "../../utils";
 import { FormTemplate } from "../../components";
 import { useAuthService } from "../../services";
-import { LoginUserValues } from "../../types";
-import { loginValidation, useSubmitting } from "../../utils";
 
 export const LoginPage: FC = () => {
   const { login } = useAuthService();
-  const { setIsSubmitting } = useSubmitting();
 
   const onSubmitLoginHandler = async (values: LoginUserValues) => {
-    setIsSubmitting(true);
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       await login(values);
     } catch (error) {
       console.error(`Failed to login! ${error}`);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 

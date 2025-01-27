@@ -10,11 +10,12 @@ import {
   CartSwitcher,
   TabTitle,
 } from "../components";
-import { useAppUtil, classNames, getAside } from "../utils";
+import { useStore } from "../hooks";
 import { ProviderProps } from "../types";
+import { classNames, getAside } from "../utils";
 
 export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
-  const { openSwitch } = useAppUtil();
+  const { openSwitch } = useStore();
   const [parent] = useAutoAnimate();
   const { pathname } = useLocation();
 

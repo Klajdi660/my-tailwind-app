@@ -15,17 +15,28 @@ const initialState: StoreContextType = {
   shippingTo: "",
   loading: false,
   translations: {},
+  userLangData: {},
+  openSwitch: false,
+  toggleMenu: false,
   usersTimeZone: "",
+  toggleSearch: false,
   selectedTimeZone: "",
+  isUpdatingProfileImg: false,
   setLang: (lang) => {},
   setLoading: (loading) => {},
   setCurrency: (currency) => {},
   setUserStore: (userStore) => {},
   setShippingTo: (shippingTo) => {},
+  setOpenSwitch: (openSwitch) => {},
+  setToggleMenu: (toggleMenu) => {},
   setTranslations: (translations) => {},
-  setSelectedTimeZone: (selectedTimeZone) => {},
   setUserLangData: (userLangData) => {},
-  userLangData: {},
+  setToggleSearch: (toggleSearch) => {},
+  setSelectedTimeZone: (selectedTimeZone) => {},
+  setIsUpdatingProfileImg: (isUpdatingProfileImg) => {},
+  setModalOpen: () => {},
+  closeAllModals: () => {},
+  modals: {},
 };
 
 const StoreContext = createContext(initialState);
@@ -40,9 +51,26 @@ const StoreProvider: FC<ProviderProps> = ({ children }) => {
   const [selectedTimeZone, setSelectedTimeZone] = useState<string>("");
   const [translations, setTranslations] = useState<TranslationsResponse>({});
   const [userLangData, setUserLangData] = useState({});
+  const [isUpdatingProfileImg, setIsUpdatingProfileImg] =
+    useState<boolean>(false);
+  const [openSwitch, setOpenSwitch] = useState<boolean>(false);
+  const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+  const [toggleSearch, setToggleSearch] = useState<boolean>(false);
+  const [modals, setModals] = useState<Record<string, boolean>>({});
 
   let timeZones = moment.tz.names();
   let usersTimeZone = moment.tz.guess();
+
+  const setModalOpen = (key: string, value: boolean) => {
+    setModals((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
+  const closeAllModals = () => {
+    setModals({});
+  };
 
   return (
     <StoreContext.Provider
@@ -67,6 +95,16 @@ const StoreProvider: FC<ProviderProps> = ({ children }) => {
         setSelectedTimeZone,
         userLangData,
         setUserLangData,
+        isUpdatingProfileImg,
+        setIsUpdatingProfileImg,
+        openSwitch,
+        setOpenSwitch,
+        toggleMenu,
+        toggleSearch,
+        setToggleMenu,
+        setToggleSearch,
+        setModalOpen,
+        closeAllModals,
       }}
     >
       {children}

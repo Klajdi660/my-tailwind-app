@@ -2,13 +2,14 @@ import { FC, ChangeEvent, useRef } from "react";
 import { SmallModal } from "./ModalContent";
 import { useAppSelector } from "../../../store";
 import { useProfileService } from "../../../services";
-import { useAppModal, useProfilePhoto } from "../../../utils";
+import { useAppModal } from "../../../utils";
 import { Image, Button } from "../../UI";
 import { avatarProfileList } from "../../../data";
+import { useStore } from "../../../hooks";
 
 export const ChangeProfilePhotoModal: FC = () => {
+  const { setIsUpdatingProfileImg } = useStore();
   const { modals, setModalOpen } = useAppModal();
-  const { setIsUpdatingProfileImg, photoType } = useProfilePhoto();
   const { updateDisplayPicture } = useProfileService();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -38,7 +39,7 @@ export const ChangeProfilePhotoModal: FC = () => {
         const formData = new FormData();
         formData.append("displayPicture", file);
 
-        await updateDisplayPicture(formData, photoType);
+        await updateDisplayPicture(formData);
 
         setIsUpdatingProfileImg(false);
       }

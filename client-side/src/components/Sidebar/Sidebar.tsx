@@ -5,8 +5,8 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Icon, Overlay, Image } from "../UI";
 import { navlinks, paths } from "../../data";
 import { useAppSelector } from "../../store";
-import { classNames, useAppUtil } from "../../utils";
-import { useAuth, useMediaResponsive } from "../../hooks";
+import { classNames } from "../../utils";
+import { useAuth, useMediaResponsive, useStore } from "../../hooks";
 import { defaultThemeConfig, themeConfig } from "../../configs";
 
 const User = () => {
@@ -52,7 +52,7 @@ export const Sidebar: FC = () => {
   const { isMobile } = useMediaResponsive();
 
   const [toggleNav, setToggleNav] = useState(false);
-  const { toggleMenu, setToggleMenu } = useAppUtil();
+  const { toggleMenu, setToggleMenu } = useStore();
 
   const navigate = useNavigate();
 

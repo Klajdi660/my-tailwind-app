@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Icon } from "../Icon";
 import { useAppSelector } from "../../../store";
-import { useAppUtil } from "../../../utils";
+import { useStore } from "../../../hooks";
 
 export const CartButton: FC = () => {
-  const { setOpenSwitch } = useAppUtil();
+  const { setOpenSwitch } = useStore();
 
   const cart = useAppSelector((state) => state.cart.items);
 

@@ -46,38 +46,11 @@ export interface NotifyParams {
 }
 
 // Utils
-export interface AppUtilState {
-  openSwitch: boolean;
-  toggleMenu: boolean;
-  toggleSearch: boolean;
-  setOpenSwitch: (value: boolean) => void;
-  setToggleMenu: (value: boolean) => void;
-  setToggleSearch: (value: boolean) => void;
-}
-
-export interface NavScrollTriggerState {
-  navScrollTrigger: boolean;
-  setNavScrollTrigger: (value: boolean) => void;
-}
 
 export interface AppModalState {
   modals: { [key: string]: boolean };
   setModalOpen: (key: string, value: boolean) => void;
   closeAllModals: () => void;
-}
-
-export interface ProfilePhotoState {
-  files: any;
-  isUpdatingProfileImg: boolean;
-  photoType: string;
-  setPhotoType: (value: string) => void;
-  setFiles: (value: any) => void;
-  setIsUpdatingProfileImg: (value: boolean) => void;
-}
-
-export interface SubmittingState {
-  isSubmitting: boolean;
-  setIsSubmitting: (value: boolean) => void;
 }
 
 // Component

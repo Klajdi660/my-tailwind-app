@@ -2,12 +2,11 @@ import { FC, useState } from "react";
 import { motion } from "framer-motion";
 import { CartBody, CartEmpty, CartHeader } from "../Cart";
 import { Checkout } from "../Checkout/Checkout";
-import { useCart } from "../../hooks";
+import { useCart, useStore } from "../../hooks";
 import { useAppSelector } from "../../store";
-import { useAppUtil } from "../../utils";
 
 export const CartSwitcher: FC = () => {
-  const { setOpenSwitch } = useAppUtil();
+  const { setOpenSwitch } = useStore();
   const { removeGameSelected } = useCart();
 
   const cart = useAppSelector((state) => state.cart.items);

@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { Icon } from "../Icon";
-import { useAppUtil } from "../../../utils";
+import { useStore } from "../../../hooks";
 
 export const MobileToggleButton: FC = () => {
-  const { toggleMenu, setToggleMenu } = useAppUtil();
+  const { toggleMenu, setToggleMenu } = useStore();
 
   return (
     <div className="flex items-center h-full lg:hidden">

@@ -1,19 +1,19 @@
 import { FC } from "react";
 import { Button, Image } from "../UI";
-import { useAppModal, useProfilePhoto } from "../../utils";
+import { useAppModal } from "../../utils";
 import { useAppSelector } from "../../store";
 import { userIcon, iconName } from "../../assets";
+import { useStore } from "../../hooks";
 
 export const ProfilePhoto: FC = () => {
   const { setModalOpen } = useAppModal();
-  const { isUpdatingProfileImg, setPhotoType } = useProfilePhoto();
+  const { isUpdatingProfileImg } = useStore();
 
   const { user } = useAppSelector((state) => state.user);
 
   const { avatar } = user.extra;
 
   const handleModalOpen = () => {
-    setPhotoType("profilePhoto");
     setModalOpen("changeProfilePhotoModal", true);
   };
 
