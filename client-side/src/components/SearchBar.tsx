@@ -2,15 +2,15 @@ import { FC, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Icon, Image } from "./UI";
 import { paths } from "../data";
-import { useGames } from "../hooks";
-import { classNames } from "../utils";
-import { SearchbarProps } from "../types";
+import { useGames, useMediaResponsive } from "../hooks";
+import { classNames, useAppUtil } from "../utils";
 
-export const Searchbar: FC<SearchbarProps> = (props) => {
-  const { isMobile, toggleSearch, setToggleSearch } = props;
+export const Searchbar: FC = () => {
   const { gameDetail, browse } = paths;
 
   const { useGameList } = useGames();
+  const { isMobile } = useMediaResponsive();
+  const { toggleSearch, setToggleSearch } = useAppUtil();
 
   const [input, setInput] = useState("");
   const [debouncedInput, setDebouncedInput] = useState(input);

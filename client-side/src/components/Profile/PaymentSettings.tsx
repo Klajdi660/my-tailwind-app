@@ -189,9 +189,9 @@ export const PaymentSettings: FC = () => {
                         onFocus={(e) => {
                           e.currentTarget.placeholder = "MM/YY";
                         }}
-                        onBlur={(e) => {
-                          e.currentTarget.placeholder = "Expiration";
-                        }}
+                        // onBlur={(e) => {
+                        //   e.currentTarget.placeholder = "Expiration";
+                        // }}
                       />
                       <ErrorFormMessage
                         errorMessage={errors["cardExp"]?.message}

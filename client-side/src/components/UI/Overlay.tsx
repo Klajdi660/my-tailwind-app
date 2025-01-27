@@ -3,7 +3,7 @@ import { classNames } from "../../utils";
 import { OverlayProps } from "../../types";
 
 export const Overlay: FC<OverlayProps> = (props) => {
-  const { /*isMobile,*/ isOpen, handleIsOpen, className } = props;
+  const { isOpen, handleIsOpen, className } = props;
 
   useEffect(() => {
     isOpen
@@ -18,7 +18,6 @@ export const Overlay: FC<OverlayProps> = (props) => {
           className={classNames(
             "fixed top-0 left-0 h-screen w-screen",
             !isOpen ? "bg-transparent" : "bg-glassmorphism",
-            // !isMobile ? "bg-transparent" : "bg-glassmorphism",
             className
           )}
           onClick={handleIsOpen}

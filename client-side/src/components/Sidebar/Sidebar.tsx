@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Tooltip } from "antd";
-import { useNavigate, useLocation, Link } from "react-router-dom";
 import { FC, useMemo, useState, useEffect } from "react";
-import { navlinks, paths } from "../../data";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Icon, Overlay, Image } from "../UI";
-import { useAuth, useNotification, useMediaResponsive } from "../../hooks";
-import { defaultThemeConfig, themeConfig } from "../../configs";
-import { classNames, useAppUtil } from "../../utils";
+import { navlinks, paths } from "../../data";
 import { useAppSelector } from "../../store";
+import { classNames, useAppUtil } from "../../utils";
+import { useAuth, useMediaResponsive } from "../../hooks";
+import { defaultThemeConfig, themeConfig } from "../../configs";
 
 const User = () => {
   const { profile } = paths;
@@ -62,22 +62,7 @@ export const Sidebar: FC = () => {
   const isFolded = sidebar === "folded";
 
   const handleLinkClick = (link: any) => {
-    // if (!isAuthenticated && link.name !== "Discover") {
-    //   const description = (
-    //     <span>
-    //       Please login to access{" "}
-    //       <span className="text-primary">{link.name}</span> page.
-    //     </span>
-    //   );
-
-    //   return notify({
-    //     variant: "warning",
-    //     description,
-    //   });
-    // }
-
     navigate(link.to);
-    // localStorage.lastLocation = link.name.toLowerCase();
   };
 
   useEffect(() => {
@@ -87,7 +72,7 @@ export const Sidebar: FC = () => {
 
   const navLists = useMemo(() => {
     return navlinks;
-  }, []); // user
+  }, []);
 
   const hoverWidth = themeConfig.sidebars.full;
 
@@ -102,16 +87,8 @@ export const Sidebar: FC = () => {
           )
       )}
     >
-      <Overlay
-        isOpen={toggleMenu}
-        handleIsOpen={setToggleMenu}
-        isMobile={isMobile}
-      />
+      <Overlay isOpen={toggleMenu} handleIsOpen={setToggleMenu} />
       <div
-        // {...{
-        //   onMouseOver: () => setToggleNav(true),
-        //   onMouseOut: () => setToggleNav(false),
-        // }}
         {...(toggleNav && { style: { width: `${hoverWidth}px` } })}
         className="nav-list overflow-auto hide_scrollbar relative top-navbar sidebar_height w-sidebar duration-500 transition-all pb-[100px] bg-sidebar"
       >
@@ -139,7 +116,6 @@ export const Sidebar: FC = () => {
                     className={classNames(
                       `dropdown_${link.id}`,
                       "relative px-[10px] group pb-1"
-                      // (!isFolded || toggleNav) && "pb-2"
                     )}
                   >
                     <Tooltip
@@ -178,13 +154,6 @@ export const Sidebar: FC = () => {
                         >
                           {link.name}
                         </div>
-                        {/* <div
-                          className={classNames(
-                            pathname.includes(link.to) &&
-                              isFolded &&
-                              "w-1 h-1 absolute left-3 top-2/2 bg-primary rounded-sm"
-                          )}
-                        /> // for dot */}
                       </button>
                     </Tooltip>
                   </li>

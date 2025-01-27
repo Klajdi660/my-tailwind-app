@@ -1,13 +1,10 @@
 import { FC } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import {
   Image,
   Button,
   Overlay,
   CartButton,
-  // ThemeButton,
-  // LanguageButton,
   MobileToggleButton,
   NotificationButton,
   DesktopToggleButton,
@@ -27,11 +24,9 @@ export const Navbar: FC = () => {
   const { toggleSearch, setToggleSearch } = useAppUtil();
   const { pathname } = useLocation();
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const theme = useAppSelector((state) => state.theme);
-  // const { user } = useAppSelector((state) => state.user);
   const { atoken } = useAppSelector((state) => state.auth);
 
   const hasAside = getAside(pathname);
@@ -47,11 +42,7 @@ export const Navbar: FC = () => {
         hasAside ? "sidebar_horizontal_width" : "w-full"
       )}
     >
-      <Overlay
-        isOpen={toggleSearch}
-        handleIsOpen={setToggleSearch}
-        isMobile={isMobile}
-      />
+      <Overlay isOpen={toggleSearch} handleIsOpen={setToggleSearch} />
       <div
         className={classNames(
           "relative flex h-full items-center justify-between"
@@ -62,7 +53,6 @@ export const Navbar: FC = () => {
             "flex relative p-3 z-20 w-sidebar h-navbar duration-500",
             isMobile ? "justify-left" : "justify-center",
             showFull ? "bg-primary-opacity" : "lg:bg-sidebar"
-            // !isMobile && "w-sidebar"
           )}
         >
           <Link to={discover} className="flex items-center h-full gap-2 logo">
@@ -75,12 +65,8 @@ export const Navbar: FC = () => {
         </div>
         <div className="flex items-center gap-4 px-3 sm:px-6 lg:flex-1">
           <div className="z-20 flex items-center flex-1 h-full gap-4">
-            <DesktopToggleButton theme={theme} dispatch={dispatch} />
-            <Searchbar
-              isMobile={isMobile}
-              toggleSearch={toggleSearch}
-              setToggleSearch={setToggleSearch}
-            />
+            <DesktopToggleButton />
+            <Searchbar />
             <MobileToggleButton />
           </div>
           {!isMobile && (
@@ -89,8 +75,6 @@ export const Navbar: FC = () => {
                 <>
                   <CartButton />
                   <NotificationButton />
-                  {/* <LanguageButton /> */}
-                  {/* <ThemeButton mode={theme.mode} dispatch={dispatch} /> */}
                   <ProfileDropdown />
                 </>
               ) : (

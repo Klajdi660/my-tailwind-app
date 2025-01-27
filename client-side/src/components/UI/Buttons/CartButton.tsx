@@ -2,9 +2,8 @@ import { FC } from "react";
 import { Icon } from "../Icon";
 import { useAppSelector } from "../../../store";
 import { useAppUtil } from "../../../utils";
-import { CartButtonProps } from "../../../types";
 
-export const CartButton: FC<CartButtonProps> = () => {
+export const CartButton: FC = () => {
   const { setOpenSwitch } = useAppUtil();
 
   const cart = useAppSelector((state) => state.cart.items);

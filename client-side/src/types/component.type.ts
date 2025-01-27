@@ -285,13 +285,6 @@ export interface TrackCardSkeletonProps {
 }
 
 // UI
-export interface CartButtonProps {}
-
-export interface DesktopToggleButtonProps {
-  theme: any;
-  dispatch: any;
-}
-
 export interface ThemeButtonProps {
   mode: string;
   dispatch: any;
@@ -384,9 +377,6 @@ export interface OverlayProps {
   isOpen: boolean;
   handleIsOpen: any;
   className?: string;
-  isMobile?: boolean;
-  transparent?: boolean;
-  // handleIsOpen: (value: boolean) => void;
 }
 
 export interface TabProps {
@@ -435,12 +425,6 @@ export interface NotificationProps {
   id: number;
   time: string;
   content: string;
-}
-
-export interface SearchbarProps {
-  isMobile: boolean;
-  toggleSearch: boolean;
-  setToggleSearch: (value: boolean) => void;
 }
 
 // page profile
