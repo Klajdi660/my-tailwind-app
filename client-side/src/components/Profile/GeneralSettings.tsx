@@ -78,6 +78,7 @@ export const GeneralSettings: FC = () => {
             </span>
           </label>
           <Select
+            showSearch
             className="w-1/2 h-12 text-sm"
             placeholder="Select currency"
             options={timezoneOptions}
