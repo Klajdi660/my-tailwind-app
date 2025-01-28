@@ -32,86 +32,82 @@ export const Form: FC<FormProps> = (props) => {
   return (
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
       {!data?.resetPassEmailSent &&
-        listForm.map((list: FormListItem, index: number) => {
-          return (
-            <Fragment key={index}>
-              {["input", "textarea"].includes(list.type) && (
-                <fieldset>
-                  <div
-                    className={classNames(
-                      "relative rounded",
-                      errors[list.name]
-                        ? "border border-red-500 hover:border-red-500"
-                        : "border border-divider focus-within:border-primary",
-                      !list.props.disabled
-                        ? "hover:border-primary"
-                        : "bg-main border-transparent"
-                    )}
-                  >
-                    {list.type === "input" && (
-                      <div className="flex items-center justify-between">
-                        <input
-                          {...form(list.name)}
-                          className={classNames(
-                            "w-full h-12 px-2 text-sm text-onNeutralBg bg-transparent no-focus outline-0 disabled:text-secondary"
-                          )}
-                          {...list.props}
-                          placeholder={list.props.placeholder || list.label}
-                          disabled={list.props.disabled}
-                          type={
+        listForm.map((list: FormListItem, index: number) => (
+          <Fragment key={index}>
+            {["input", "textarea"].includes(list.type) && (
+              <fieldset>
+                <div
+                  className={classNames(
+                    "relative rounded",
+                    errors[list.name]
+                      ? "border border-red-500 hover:border-red-500"
+                      : "border border-divider focus-within:border-primary",
+                    !list.props.disabled
+                      ? "hover:border-primary"
+                      : "bg-main border-transparent"
+                  )}
+                >
+                  {list.type === "input" && (
+                    <div className="flex items-center justify-between">
+                      <input
+                        {...form(list.name)}
+                        className={classNames(
+                          "w-full h-12 px-2 text-sm text-onNeutralBg bg-transparent no-focus outline-0 disabled:text-secondary"
+                        )}
+                        {...list.props}
+                        placeholder={list.props.placeholder || list.label}
+                        disabled={list.props.disabled}
+                        type={
+                          ["password", "confirmPassword"]?.includes(
+                            list.props.type
+                          )
+                            ? showPass?.[list.name]
+                              ? "text"
+                              : "password"
+                            : list.props.type
+                        }
+                        autoComplete={formName !== "login" ? "off" : "on"}
+                      />
+                      <span className="absolute right-2 top-[50%] translate-y-[-50%]">
+                        <IconButton
+                          name={
                             ["password", "confirmPassword"]?.includes(
                               list.props.type
                             )
                               ? showPass?.[list.name]
-                                ? "text"
-                                : "password"
-                              : list.props.type
+                                ? "AiOutlineEyeInvisible"
+                                : "AiOutlineEye"
+                              : `${list.iconName}`
                           }
-                          autoComplete={formName !== "login" ? "off" : "on"}
+                          // iconClassName={`text-secondary ${
+                          //   ["password", "confirmPassword"]?.includes(
+                          //     list.props.type
+                          //   ) && "hover:text-onNeutralBg hover:scale-[1.1]"
+                          // }`}
+                          iconClassName={classNames(
+                            "text-secondary",
+                            ["password", "confirmPassword"]?.includes(
+                              list.props.type
+                            ) &&
+                              !list.props.disabled &&
+                              "hover:text-onNeutralBg hover:scale-[1.1]"
+                          )}
+                          onClick={() =>
+                            setShowPass((prevS: any) => ({
+                              ...prevS,
+                              [list.name]: !prevS?.[list.name],
+                            }))
+                          }
                         />
-                        <span className="absolute right-2 top-[50%] translate-y-[-50%]">
-                          <IconButton
-                            name={
-                              ["password", "confirmPassword"]?.includes(
-                                list.props.type
-                              )
-                                ? showPass?.[list.name]
-                                  ? "AiOutlineEyeInvisible"
-                                  : "AiOutlineEye"
-                                : `${list.iconName}`
-                            }
-                            // iconClassName={`text-secondary ${
-                            //   ["password", "confirmPassword"]?.includes(
-                            //     list.props.type
-                            //   ) && "hover:text-onNeutralBg hover:scale-[1.1]"
-                            // }`}
-                            iconClassName={classNames(
-                              "text-secondary",
-                              ["password", "confirmPassword"]?.includes(
-                                list.props.type
-                              ) &&
-                                !list.props.disabled &&
-                                "hover:text-onNeutralBg hover:scale-[1.1]"
-                            )}
-                            onClick={() =>
-                              setShowPass((prevS: any) => ({
-                                ...prevS,
-                                [list.name]: !prevS?.[list.name],
-                              }))
-                            }
-                          />
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <ErrorFormMessage
-                    errorMessage={errors?.[list.name]?.message}
-                  />
-                </fieldset>
-              )}
-            </Fragment>
-          );
-        })}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <ErrorFormMessage errorMessage={errors?.[list.name]?.message} />
+              </fieldset>
+            )}
+          </Fragment>
+        ))}
       {data?.resetPassEmailSent && (
         <p className="text-base font-normal tracking-wider text-secondary text-center">
           We have sent the reset email to your email
