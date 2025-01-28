@@ -11,7 +11,9 @@ export const ChangePassword: FC = () => {
 
   const { user } = useAppSelector((state) => state.user);
 
-  let isPasswordEnabled = user?.provider === "Email";
+  const { provider } = user;
+
+  let isPasswordEnabled = provider === "Email";
 
   const listForm = useMemo(() => {
     return changePasswordList(isPasswordEnabled);
@@ -36,8 +38,7 @@ export const ChangePassword: FC = () => {
               className="!text-yellow-500"
               size={16}
             />
-            Accounts authenticated with {user?.provider} Oauth cannot update
-            password!
+            Accounts authenticated with {provider} Oauth cannot update password!
           </span>
         )}
       </div>

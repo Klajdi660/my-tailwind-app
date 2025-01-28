@@ -12,11 +12,14 @@ import { currencyList, languageMaps } from "../data";
 
 export const Language: FC<LanguageProps> = (props) => {
   const { setOpen } = props;
-  const { user } = useAppSelector((state) => state.user);
   const { updateProfile } = useProfileService();
+
+  const { user } = useAppSelector((state) => state.user);
 
   // const [selectedCurrency, setSelectedCurrency] = useState<string>("ALL");
   const [selectedIsoCode, setSelectedIsoCode] = useState<string>("AL");
+
+  const { flag, shipTo, lang, currency } = user.extra;
 
   const allCountries = Country.getAllCountries();
 
@@ -137,10 +140,7 @@ export const Language: FC<LanguageProps> = (props) => {
               // options={combinedCountries}
               onChange={handleCountryChange}
               showSearch
-              defaultValue={
-                user?.extra?.shipTo &&
-                `${user?.extra?.flag} ${user?.extra?.shipTo}`
-              }
+              defaultValue={shipTo && `${flag} ${shipTo}`}
             />
           )}
         />
@@ -176,7 +176,7 @@ export const Language: FC<LanguageProps> = (props) => {
               className="w-full h-10 text-sm"
               placeholder="Select language"
               options={languageOptions}
-              defaultValue={user?.extra?.lang}
+              defaultValue={lang}
             />
           )}
         />
@@ -197,7 +197,7 @@ export const Language: FC<LanguageProps> = (props) => {
               className="w-full h-10 text-sm"
               placeholder="Select currency"
               options={currencyOptions}
-              defaultValue={user?.extra?.currency}
+              defaultValue={currency}
             />
           )}
         />
