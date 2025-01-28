@@ -33,6 +33,7 @@ export const Form: FC<FormProps> = (props) => {
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
       {!data?.resetPassEmailSent &&
         listForm.map((list: FormListItem, index: number) => {
+          console.log("list :>> ", list);
           return (
             <Fragment key={index}>
               {["input", "textarea"].includes(list.type) && (
@@ -42,7 +43,10 @@ export const Form: FC<FormProps> = (props) => {
                       "relative rounded",
                       errors[list.name]
                         ? "border border-red-500 hover:border-red-500"
-                        : "border border-divider focus-within:border-primary hover:border-primary"
+                        : "border border-divider focus-within:border-primary",
+                      !list.props.disabled
+                        ? "hover:border-primary"
+                        : "bg-main border-transparent"
                     )}
                   >
                     {list.type === "input" && (
@@ -77,11 +81,19 @@ export const Form: FC<FormProps> = (props) => {
                                   : "AiOutlineEye"
                                 : `${list.iconName}`
                             }
-                            iconClassName={`text-secondary ${
+                            // iconClassName={`text-secondary ${
+                            //   ["password", "confirmPassword"]?.includes(
+                            //     list.props.type
+                            //   ) && "hover:text-onNeutralBg hover:scale-[1.1]"
+                            // }`}
+                            iconClassName={classNames(
+                              "text-secondary",
                               ["password", "confirmPassword"]?.includes(
                                 list.props.type
-                              ) && "hover:text-onNeutralBg hover:scale-[1.1]"
-                            }`}
+                              ) &&
+                                !list.props.disabled &&
+                                "hover:text-onNeutralBg hover:scale-[1.1]"
+                            )}
                             onClick={() =>
                               setShowPass((prevS: any) => ({
                                 ...prevS,
