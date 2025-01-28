@@ -23,7 +23,7 @@ export const ChangeUsernameModal: FC = () => {
     setModalOpen("changeUsernameModal", false);
   };
 
-  const handleOnSubmit = async (values: any) => {
+  const handleOnSubmit = async (values: { username: string }) => {
     try {
       await changeUsername(values);
       handleModalClose();

@@ -33,7 +33,6 @@ export const Form: FC<FormProps> = (props) => {
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
       {!data?.resetPassEmailSent &&
         listForm.map((list: FormListItem, index: number) => {
-          console.log("list :>> ", list);
           return (
             <Fragment key={index}>
               {["input", "textarea"].includes(list.type) && (
