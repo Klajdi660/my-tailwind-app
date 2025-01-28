@@ -10,7 +10,7 @@ import {
   setCurrentAuthUserToken,
   clearUserLastLogin,
 } from "../../store";
-import { Icon, Image } from "../UI";
+import { Icon, Image } from "../../components";
 import { useAuthService } from "../../services";
 import { userIcon, iconName } from "../../assets";
 import { paths, thresholdsLastLognBadgeColor, dateFormat } from "../../data";

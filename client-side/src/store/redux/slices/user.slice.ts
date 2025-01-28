@@ -1,25 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User } from "../../../types";
-
-interface SaveAuthUserData {
-  id: string;
-  username: string;
-  email: string;
-  saveAuthUserToken: string;
-  photo: any;
-}
-
-interface UserLastLoginData {
-  id: string;
-  lastLogin: string;
-}
-interface UserState {
-  user: User;
-  saveAuthUserData: SaveAuthUserData[];
-  currency: string;
-  remember: boolean;
-  userLastLogin: UserLastLoginData[];
-}
+import { UserState } from "../../../types";
 
 const initialState: UserState = {
   user: localStorage.user ? JSON.parse(localStorage.user) : null,

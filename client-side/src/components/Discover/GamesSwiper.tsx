@@ -3,12 +3,11 @@ import { Navigation } from "swiper/modules";
 import { FC, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
-import { Title, Icon } from "../UI";
-import { MediaCard, GenreCard } from "../Cards";
 import { paths } from "../../data";
 import { useGames } from "../../hooks";
 import { classNames } from "../../utils";
 import { GamesSwiperProps } from "../../types";
+import { MediaCard, GenreCard, Title, Icon } from "../../components";
 
 export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
   const { sectionName, titleName, dateParam, orderingParam, swiperType } =

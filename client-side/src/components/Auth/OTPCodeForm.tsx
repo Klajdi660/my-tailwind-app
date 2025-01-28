@@ -3,9 +3,9 @@ import { Form, Progress } from "antd";
 import { Link } from "react-router-dom";
 import OtpInput from "react18-input-otp";
 import { FC, useState, useEffect } from "react";
-import { Button } from "../UI";
 import { useForm } from "../../hooks";
 import { classNames } from "../../utils";
+import { Button } from "../../components";
 import { OTPCodeFormProps } from "../../types";
 
 export const OTPCodeForm: FC<OTPCodeFormProps> = (props) => {

@@ -6,8 +6,8 @@ import { Icon } from "../Icon";
 import { Button } from "../Button";
 import { useStore } from "../../../hooks";
 import { useAppSelector } from "../../../store";
-import { ErrorFormMessage } from "../../Common";
 import { useProfileService } from "../../../services";
+import { ErrorFormMessage } from "../../../components";
 import { classNames, editUsernameValidation } from "../../../utils";
 
 export const ChangeUsernameModal: FC = () => {

@@ -1,8 +1,8 @@
+import { FC } from "react";
 import { startCase } from "lodash";
-import { themeConfig, defaultThemeConfig } from "../configs";
 import { useAppSelector } from "../store";
 import { useMediaResponsive } from "../hooks";
-import { FC } from "react";
+import { themeConfig, defaultThemeConfig } from "../configs";
 
 export const StylesProvider: FC = () => {
   const { isMobile, isLargeScreen, isExtraLargeScreen } = useMediaResponsive();

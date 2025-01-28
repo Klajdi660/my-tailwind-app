@@ -5,7 +5,7 @@ import {
   ChangePassword,
   DeleteAccount,
   ProfilePhoto,
-} from "..";
+} from "../../components";
 
 export const AccountSettings: FC = () => {
   return (

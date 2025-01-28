@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FC } from "react";
-import { Icon } from "./UI";
+import { Icon } from "../components";
 import { pageLink, downloadBtnList } from "../data";
 
 export const Footer: FC = () => {

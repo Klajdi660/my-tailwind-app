@@ -3,8 +3,8 @@ import axios, {
   // AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-import { APP_URL, AXIOS_TIMEOUT_DURATION } from "../../configs";
 import { store } from "../../store";
+import { APP_URL, AXIOS_TIMEOUT_DURATION } from "../../configs";
 
 const instance = axios.create({
   baseURL: APP_URL,

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { Button } from "../../UI";
+import { Button } from "../../../components";
 import { CheckoutCardFormProps } from "../../../types";
 
 export const CheckoutCardForm: FC<CheckoutCardFormProps> = (props) => {

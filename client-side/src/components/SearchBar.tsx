@@ -1,8 +1,8 @@
 import { FC, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Icon, Image } from "./UI";
 import { paths } from "../data";
 import { classNames } from "../utils";
+import { Icon, Image } from "../components";
 import { useGames, useMediaResponsive, useStore } from "../hooks";
 
 export const Searchbar: FC = () => {

@@ -1,12 +1,12 @@
 import { Popover } from "antd";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Image, Icon } from "../UI";
 import { useStore } from "../../hooks";
 import { userIcon } from "../../assets";
 import { classNames } from "../../utils";
 import { UserMenuProps } from "../../types";
 import { useAppSelector } from "../../store";
+import { Image, Icon } from "../../components";
 import { useAuthService } from "../../services";
 import { profileMenuItems, paths } from "../../data";
 

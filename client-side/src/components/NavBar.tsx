@@ -4,18 +4,19 @@ import {
   Image,
   Button,
   Overlay,
+  Searchbar,
   CartButton,
+  ProfileDropdown,
   MobileToggleButton,
   NotificationButton,
   DesktopToggleButton,
-} from "./UI";
+} from "../components";
 import { paths } from "../data";
 import { useAppSelector } from "../store";
 import { icon, iconName } from "../assets";
 import { defaultThemeConfig } from "../configs";
 import { classNames, getAside } from "../utils";
 import { useMediaResponsive, useStore } from "../hooks";
-import { Searchbar, ProfileDropdown } from "../components";
 
 export const Navbar: FC = () => {
   const { logIn, discover } = paths;

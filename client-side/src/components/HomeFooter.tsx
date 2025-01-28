@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FC } from "react";
-import { Image, Icon } from "./UI";
 import { icon } from "../assets";
+import { Image, Icon } from "../components";
 import { topFooter, bottomFooter } from "../data";
 
 export const HomeFooter: FC = () => {

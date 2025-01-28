@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { Icon, Image } from "../UI";
-import { gameIconMap } from "../../data";
 import {
   DeveloperListProps,
   PublisherListPorps,
   PlatformIconListProps,
 } from "../../types";
+import { gameIconMap } from "../../data";
+import { Icon, Image } from "../../components";
 
 export const PlatformIconList: FC<PlatformIconListProps> = ({
   platforms,

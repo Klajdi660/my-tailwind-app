@@ -6,6 +6,18 @@ import {
   GameReviewsParams,
 } from "./general.type";
 
+// Auth
+export interface FormProps {
+  listForm: FormListItem[] | any;
+  onSubmit?: any;
+  schema?: any;
+  defaultValues?: any;
+  data?: any;
+  files?: any;
+  setFiles?: any;
+  hasProvider?: boolean;
+}
+
 export interface FormListItem {
   name: string;
   iconName: string;
@@ -27,25 +39,6 @@ export interface FormListItem {
   };
 }
 
-export interface FormProps {
-  listForm: FormListItem[] | any;
-  onSubmit?: any;
-  schema?: any;
-  defaultValues?: any;
-  data?: any;
-  files?: any;
-  setFiles?: any;
-  hasProvider?: boolean;
-}
-
-export interface OTPCodeFormProps {
-  data: any;
-  onSubmit: any;
-  resendCodeHandler: any;
-}
-
-export interface SocialAuthProps {}
-
 export interface FormTemplateProps {
   data?: any;
   schema: any;
@@ -54,16 +47,53 @@ export interface FormTemplateProps {
   resendCodeHandler?: any;
 }
 
+export interface OTPCodeFormProps {
+  data: any;
+  onSubmit: any;
+  resendCodeHandler: any;
+}
+
 // Browse
+interface FilterListParams {
+  id: string;
+  name: string;
+  slug?: string;
+  platforms?: {
+    id: number;
+    name: string;
+    slug: string;
+    games_count: string;
+    image_background: string;
+    image: string | null;
+    year_end: string | null;
+    year_start: string | null;
+  }[];
+  image_background?: string;
+  games_count?: number;
+  games?: {
+    added: number;
+    id: number;
+    name: string;
+    slug: string;
+  }[];
+  value?: number;
+}
 export interface FilterByProps {
   filterName: string;
   searchParamName: string;
-  filterList: any;
+  filterList: FilterListParams[];
   width: string;
   onClosePopover: () => void;
 }
 
 // Card
+export interface GenreCardProps {
+  genreId: number;
+  genreName: string;
+  genreImg: string;
+  genreCount: string;
+}
+
 export interface MediaCardProps {
   game: GameParams;
 }
@@ -73,13 +103,6 @@ export interface TopPlayCardProps {
   item: GameParams;
   imageDims: string;
   listDivider: boolean;
-}
-
-export interface GenreCardProps {
-  genreId: number;
-  genreName: string;
-  genreImg: string;
-  genreCount: string;
 }
 
 // Cart
@@ -329,10 +352,6 @@ export interface SkeletonProps {
 export interface TitleSkeletonProps {
   type?: string;
 }
-
-export type ImageDimsOptions = {
-  [key: number]: string;
-};
 
 export interface TrackCardSkeletonProps {
   type?: string;

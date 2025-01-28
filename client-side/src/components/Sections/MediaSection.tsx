@@ -2,12 +2,11 @@ import { FC } from "react";
 import { useSearchParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { MediaCard } from "../Cards";
 import { grid } from "../../data";
 import { useGames } from "../../hooks";
 import { classNames } from "../../utils";
 import { MediaSectionProps } from "../../types";
-import { TitleSkeleton, MediaCardSkeleton } from "../Skeleton";
+import { MediaCard, MediaCardSkeleton, TitleSkeleton } from "../../components";
 
 export const MediaSection: FC<MediaSectionProps> = (props) => {
   const {

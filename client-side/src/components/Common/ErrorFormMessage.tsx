@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Icon } from "../UI";
+import { Icon } from "../../components";
 import { ErrorFormMessageProps } from "../../types";
 
 export const ErrorFormMessage: FC<ErrorFormMessageProps> = ({

@@ -1,17 +1,6 @@
 import { toast } from "react-toastify";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Card {
-  id: number;
-  cardNr: string;
-  cardName: string;
-  cardValidThru: string;
-  cardCvvNr: string;
-}
-
-interface CardState {
-  cardItems: Card[];
-}
+import { Card, CardState } from "../../../types";
 
 const initialState: CardState = {
   cardItems: [],

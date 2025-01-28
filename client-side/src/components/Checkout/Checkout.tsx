@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import { motion } from "framer-motion";
-import { CheckoutBody, CheckoutHeader } from "../Checkout";
-import { calculateTotalPrice } from "../../utils";
 import { CartCheckoutPorps } from "../../types";
+import { calculateTotalPrice } from "../../utils";
+import { CheckoutBody, CheckoutHeader } from "../../components";
 
 export const Checkout: FC<CartCheckoutPorps> = (props) => {
   const { setOpenSwitch, setCheckoutOpen, cartItems, quantities } = props;

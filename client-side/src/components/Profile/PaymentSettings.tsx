@@ -4,11 +4,10 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import creditCardType from "credit-card-type";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Icon, Image } from "../UI";
-import { ErrorFormMessage } from "../Common";
 import { cardImgList } from "../../data";
 import { addNewCard } from "../../store";
 import { classNames, creditCardValidation } from "../../utils";
+import { ErrorFormMessage, Button, Image, Icon } from "../../components";
 
 const cvvContent = (
   <div className="flex flex-col text-onNeutralBg p-2 gap-4">

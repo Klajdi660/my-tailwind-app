@@ -1,7 +1,6 @@
 import { FC, useMemo } from "react";
-import { Form } from "../Auth";
-import { Icon } from "../UI";
 import { useAppSelector } from "../../store";
+import { Form, Icon } from "../../components";
 import { changePasswordList } from "../../data";
 import { useProfileService } from "../../services";
 import { ChangePasswordValues } from "../../types";

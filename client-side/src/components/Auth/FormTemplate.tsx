@@ -1,8 +1,12 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { Form } from "./Form";
-import { OTPCodeForm } from "./OTPCodeForm";
-import { SocialAuthButton, Title, Image } from "../UI";
+import {
+  Title,
+  Image,
+  Form,
+  OTPCodeForm,
+  SocialAuthButton,
+} from "../../components";
 import { paths } from "../../data";
 import { useForm } from "../../hooks";
 import { iconName } from "../../assets";

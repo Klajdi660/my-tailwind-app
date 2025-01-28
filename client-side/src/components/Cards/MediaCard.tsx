@@ -1,10 +1,9 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { PlatformIconList } from "../Common";
-import { Image } from "../UI";
 import { paths } from "../../data";
 import { nameTruncate } from "../../utils";
 import { MediaCardProps } from "../../types";
+import { PlatformIconList, Image } from "../../components";
 
 export const MediaCard: FC<MediaCardProps> = (props) => {
   const { game } = props;

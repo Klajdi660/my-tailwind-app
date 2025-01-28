@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Button, Image } from "../UI";
 import { useStore } from "../../hooks";
 import { useAppSelector } from "../../store";
+import { Button, Image } from "../../components";
 import { userIcon, iconName } from "../../assets";
 
 export const ProfilePhoto: FC = () => {

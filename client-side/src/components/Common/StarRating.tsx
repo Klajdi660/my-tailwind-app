@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Icon } from "../UI";
+import { Icon } from "../../components";
 import { classNames } from "../../utils";
 import { StarRatingProps } from "../../types";
 

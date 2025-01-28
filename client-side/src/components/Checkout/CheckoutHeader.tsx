@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Icon } from "../UI";
+import { Icon } from "../../components";
 import { CheckoutHeaderPorps } from "../../types";
 
 export const CheckoutHeader: FC<CheckoutHeaderPorps> = (props) => {

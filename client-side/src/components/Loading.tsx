@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
-import { Image } from "./UI";
-// import { useStore } from "../hooks";
 import { iconName } from "../assets";
+import { Image } from "../components";
+// import { useStore } from "../hooks";
 import { useAppSelector } from "../store";
 
 export const Loading: FC = () => {

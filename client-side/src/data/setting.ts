@@ -1,9 +1,10 @@
 import {
-  SettingListParams,
-  CurrListParams,
   CardImgParams,
+  CurrListParams,
   CardImgListParams,
+  SettingListParams,
   CurrencySymbolProperties,
+  CreditCatdListProperties,
 } from "../types";
 import {
   usaExpCardImg,
@@ -60,7 +61,7 @@ export const cardImg: CardImgParams = {
   noCardType: noCardTypeImg,
 };
 
-export const creditCardList = [
+export const creditCardList: CreditCatdListProperties[] = [
   {
     btnTxt: "Save billing account",
     formName: "creditCard",

@@ -4,6 +4,7 @@ import {
   PageLinkItem,
   LangMenuItem,
   LangMapParams,
+  NavListsParams,
   PathProperties,
   LogoProperties,
   AccountTypeList,
@@ -14,15 +15,7 @@ import {
 } from "../types";
 import { alFlag, shFlag } from "../assets";
 
-interface NavListsParams {
-  id: string;
-  tooltip: string;
-  to: string;
-  name: string;
-  icon: string;
-}
-
-export const dateFormat = "DD-MM-YYYY HH:mm:ss";
+export const dateFormat: string = "DD-MM-YYYY HH:mm:ss";
 
 export const paths: PathProperties = {
   home: "/",

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Button } from "../UI";
+import { Button } from "../../components";
 import { CartFooterProps } from "../../types";
 import { calculateTotalPrice } from "../../utils";
 

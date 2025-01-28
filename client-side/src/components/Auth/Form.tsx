@@ -1,10 +1,9 @@
 import { FC, Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, IconButton } from "../UI";
-import { ErrorFormMessage } from "../Common";
 import { classNames } from "../../utils";
 import { FormProps, FormListItem } from "../../types";
+import { ErrorFormMessage, Button, IconButton } from "../../components";
 
 export const Form: FC<FormProps> = (props) => {
   const { listForm, onSubmit, schema, defaultValues, data } = props;

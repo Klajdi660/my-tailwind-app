@@ -1,9 +1,9 @@
 import { FC, ChangeEvent, useRef } from "react";
 import { SmallModal } from "./ModalContent";
-import { Image, Button } from "../../UI";
 import { useStore } from "../../../hooks";
 import { useAppSelector } from "../../../store";
 import { avatarProfileList } from "../../../data";
+import { Image, Button } from "../../../components";
 import { useProfileService } from "../../../services";
 
 export const ChangeProfilePhotoModal: FC = () => {

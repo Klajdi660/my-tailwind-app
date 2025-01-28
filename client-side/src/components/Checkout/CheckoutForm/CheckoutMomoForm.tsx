@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Select } from "antd";
 import { useForm, Controller } from "react-hook-form";
-import { Button } from "../../UI";
+import { Button } from "../../../components";
 import { CheckoutMomoFormPorps } from "../../../types";
 
 const providerList = [

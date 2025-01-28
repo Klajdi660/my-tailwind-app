@@ -53,36 +53,6 @@ export interface AppModalState {
   closeAllModals: () => void;
 }
 
-// Component
-export interface NotificationItemList {
-  id: number;
-  time: string;
-  content: string;
-}
-
-export interface PageLinkItem {
-  name: string;
-  link: string;
-}
-
-export interface LangMenuItem {
-  onSelectLanguage: (language: string) => void;
-}
-
-export interface DownloadBtnList {
-  id: number;
-  name: string;
-  icon: string;
-}
-
-export type GridList = {
-  [key: number]: string;
-};
-
-export type LangMapParams = {
-  [key: string]: { label: string; value: string };
-};
-
 // Game
 export interface GameParams {
   id: number;

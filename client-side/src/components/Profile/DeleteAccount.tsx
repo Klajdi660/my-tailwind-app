@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Button, Icon } from "../UI";
 import { useStore } from "../../hooks";
 import { useAppSelector } from "../../store";
+import { Button, Icon } from "../../components";
 import { useProfileService } from "../../services";
 
 export const DeleteAccount: FC = () => {

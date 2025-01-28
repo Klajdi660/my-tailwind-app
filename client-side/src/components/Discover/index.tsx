@@ -1,1 +1,0 @@
-export { GamesSwiper } from "./GamesSwiper";

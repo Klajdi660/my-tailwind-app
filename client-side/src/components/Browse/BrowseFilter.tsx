@@ -1,10 +1,9 @@
 import { Popover } from "antd";
 import { FC, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Icon, Title } from "../UI";
 import { useGames } from "../../hooks";
 import { classNames } from "../../utils";
-import { FilterBy } from "../../components";
+import { FilterBy, Icon, Title } from "../../components";
 
 export const BrowseFilter: FC = () => {
   const [searchParams] = useSearchParams();

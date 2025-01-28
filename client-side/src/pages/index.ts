@@ -1,4 +1,5 @@
 // Auth
+export { LoginPage } from "./Auth/LoginPage";
 export { RegisterPage } from "./Auth/RegisterPage";
 export { VerifyEmailPage } from "./Auth/VerifyEmailPage";
 export { SaveDataAuthPage } from "./Auth/SaveDataAuthPage";
@@ -7,19 +8,18 @@ export { ForgotPasswordPage } from "./Auth/ForgotPasswordPage";
 export { PasswordConfirmCodePage } from "./Auth/PasswordConfirmCodePage";
 
 // Profile
-export { LoginPage } from "./Auth/LoginPage";
-export { ProfilePage } from "./Profile/Profile";
+export { ProfilePage } from "./Profile/ProfilePage";
 
 // Root
-export { HomePage } from "./Root/Home";
-export { StorePage } from "./Root/Store";
-export { BrowsePage } from "./Root/Browse";
-export { MyGamesPage } from "./Root/MyGames";
-export { WishlistPage } from "./Root/Wishlist";
-export { DiscoverPage } from "./Root/Discover";
-export { CollectionPage } from "./Root/Collections";
+export { HomePage } from "./Root/HomePage";
+export { StorePage } from "./Root/StorePage";
+export { BrowsePage } from "./Root/BrowsePage";
+export { MyGamesPage } from "./Root/MyGamesPage";
+export { WishlistPage } from "./Root/WishlistPage";
+export { DiscoverPage } from "./Root/DiscoverPage";
+export { CollectionPage } from "./Root/CollectionsPage";
 export { GameDetailPage } from "./Root/GameDetailPage";
 
 // Others
-export { ErrorPage } from "./Error";
-export { ComingSoonPage } from "./ComingSoon";
+export { ErrorPage } from "./ErrorPage";
+export { ComingSoonPage } from "./ComingSoonPage";

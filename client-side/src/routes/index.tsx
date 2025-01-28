@@ -20,8 +20,8 @@ import {
   SaveDataAuthPage,
 } from "../pages";
 import { paths } from "../data";
-import { SocialAuth, UserSaveForm } from "../components";
 import { PrivateGuard, PublicGuard } from "../guards";
+import { SocialAuth, UserSaveForm } from "../components";
 import { PrivateLayout, PublicLayout } from "../layouts";
 
 const {

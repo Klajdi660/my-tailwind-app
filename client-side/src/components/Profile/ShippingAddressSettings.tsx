@@ -3,8 +3,7 @@ import { FC, useState } from "react";
 import { Country } from "country-state-city";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
-import { Button, Icon } from "../UI";
-import { ErrorFormMessage } from "../Common";
+import { ErrorFormMessage, Button, Icon } from "../../components";
 import { classNames, shippingAddressValidation } from "../../utils";
 
 export const ShippingAddressSettings: FC = () => {

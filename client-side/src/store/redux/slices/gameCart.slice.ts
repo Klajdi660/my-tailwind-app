@@ -1,10 +1,6 @@
 import { toast } from "react-toastify";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GameParams } from "../../../types";
-
-interface CartState {
-  items: GameParams[];
-}
+import { GameParams, CartState } from "../../../types";
 
 const initialState: CartState = {
   items: [],

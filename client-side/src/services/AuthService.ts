@@ -2,13 +2,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { endpoints } from "./Api";
 import {
+  setUser,
   setAToken,
   setRToken,
-  setUser,
   setLoading,
-  setIsAuthenticated,
-  setUserLastLogin,
   useAppSelector,
+  setUserLastLogin,
+  setIsAuthenticated,
 } from "../store";
 import {
   AuthService,

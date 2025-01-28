@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import { profileEndpoints } from "./Api";
 import {
   setUser,
+  setSavedAuthUser,
   setIsAccountDelete,
   setAccountDeleteDaysDifference,
-  setSavedAuthUser,
 } from "../store";
 import {
   EditProfileValues,

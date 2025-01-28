@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { Image } from "../UI";
 import { paths } from "../../data";
+import { Image } from "../../components";
 import { GenreCardProps } from "../../types";
 import { nameTruncate, formatGenreName } from "../../utils";
 

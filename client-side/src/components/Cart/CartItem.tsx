@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { Icon } from "../UI";
 import { paths } from "../../data";
+import { Icon } from "../../components";
 import { CartItemProps } from "../../types";
 import { useCart, useNotification } from "../../hooks";
 import { classNames, nameTruncate, calculateTotalPrice } from "../../utils";

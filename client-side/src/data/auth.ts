@@ -1,11 +1,11 @@
 import { APP_URL } from "../configs";
 import { endpoints } from "../services";
-import { FormTitleList, SocialAuthList, FormItemList } from "../types";
-
-interface ThresholdsLastLognBadgeColor {
-  limit: number | any;
-  color: string;
-}
+import {
+  FormItemList,
+  FormTitleList,
+  SocialAuthList,
+  ThresholdsLastLognBadgeColor,
+} from "../types";
 
 const { OAUTH_GOOGLE_API } = endpoints;
 

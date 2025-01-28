@@ -3,10 +3,10 @@
 import { Tooltip } from "antd";
 import { FC, useMemo, useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { Icon, Overlay, Image } from "../UI";
 import { classNames } from "../../utils";
 import { navlinks, paths } from "../../data";
 import { useAppSelector } from "../../store";
+import { Icon, Overlay, Image } from "../../components";
 import { defaultThemeConfig, themeConfig } from "../../configs";
 import { useAuth, useMediaResponsive, useStore } from "../../hooks";
 

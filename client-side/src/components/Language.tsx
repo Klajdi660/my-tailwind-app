@@ -4,10 +4,10 @@ import { State } from "country-state-city";
 import { Country } from "country-state-city";
 import { useForm, Controller } from "react-hook-form";
 import React, { FC, useState } from "react";
-import { Button } from "./UI";
+import { Button } from "../components";
 import { LanguageProps } from "../types";
-import { useProfileService } from "../services";
 import { useAppSelector } from "../store";
+import { useProfileService } from "../services";
 import { currencyList, languageMaps } from "../data";
 
 export const Language: FC<LanguageProps> = (props) => {

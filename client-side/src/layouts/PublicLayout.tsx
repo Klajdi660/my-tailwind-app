@@ -1,12 +1,12 @@
 import { FC } from "react";
-import { ProviderProps } from "../types";
 import { Loading } from "../components";
+import { ProviderProps } from "../types";
 
 export const PublicLayout: FC<ProviderProps> = ({ children }) => {
   return (
-    <div>
+    <>
       <Loading />
       {children}
-    </div>
+    </>
   );
 };

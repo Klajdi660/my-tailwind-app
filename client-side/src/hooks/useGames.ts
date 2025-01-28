@@ -1,13 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useGamesService } from "../services";
-import { GameParams } from "../types";
+import { GameParams, FetchResponse } from "../types";
 import { gameFilterList, gameRatingList } from "../data";
-
-export interface FetchResponse<T> {
-  count: number;
-  next: string | null;
-  results: T[];
-}
 
 export const useGames = () => {
   const {

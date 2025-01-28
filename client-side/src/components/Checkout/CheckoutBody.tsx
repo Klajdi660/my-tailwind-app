@@ -1,6 +1,10 @@
 import { FC } from "react";
-import { CheckoutPaymentMethod, CheckoutFooter } from "../Checkout";
-import { CheckoutCardForm, CheckoutMomoForm } from "./CheckoutForm";
+import {
+  CheckoutFooter,
+  CheckoutMomoForm,
+  CheckoutCardForm,
+  CheckoutPaymentMethod,
+} from "../../components";
 import { CheckoutBodyProps } from "../../types";
 
 export const CheckoutBody: FC<CheckoutBodyProps> = (props) => {

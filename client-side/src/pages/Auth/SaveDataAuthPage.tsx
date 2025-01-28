@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Button, Icon } from "../../components/UI";
+import { Button, Icon } from "../../components";
 import { useUserService } from "../../services";
 import { paths } from "../../data";
 import { setRemember } from "../../store";

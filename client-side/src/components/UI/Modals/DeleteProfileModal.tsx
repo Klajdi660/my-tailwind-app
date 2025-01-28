@@ -4,11 +4,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SmallModal } from "./ModalContent";
 import { Icon } from "../Icon";
 import { Button } from "../Button";
-import { ErrorFormMessage } from "../../Common";
 import { useStore } from "../../../hooks";
 import { useAppSelector } from "../../../store";
 import { DeleteProfileValues } from "../../../types";
 import { useProfileService } from "../../../services";
+import { ErrorFormMessage } from "../../../components";
 import { deleteProfileValidation, classNames } from "../../../utils";
 
 export const DeleteProfileModal: FC = () => {

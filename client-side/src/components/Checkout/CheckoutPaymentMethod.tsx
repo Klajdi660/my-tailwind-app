@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Radio } from "antd";
 import type { RadioChangeEvent } from "antd";
-import { Image } from "../UI";
+import { Image } from "../../components";
 import { classNames } from "../../utils";
 import { mobileMoneyImg, bankImg } from "../../assets";
 import { CheckoutPaymentMethodProps } from "../../types";

@@ -1,23 +1,23 @@
 // AUTH ENDPOINTS
 export const endpoints = {
   LOGIN_API: "/auth/login",
-  LOGIN_SAVED_USER_API: "/auth/login-saved-user",
   LOGOUT_API: "/auth/logout",
   REGISTER_API: "/auth/register",
   OAUTH_GOOGLE_API: "/auth/google",
   VERIFY_EMAIL_API: "/auth/verify-email",
   RESET_PASSWORD_API: "/auth/reset-password",
   FORGOT_PASSWORD_API: "/auth/forgot-password",
+  LOGIN_SAVED_USER_API: "/auth/login-saved-user",
 };
 
 // USER ENDPOINTS
 export const userEndpoints = {
-  GET_ALL_USER_API: "",
+  CONTACT_API: "",
   DELETE_USER_API: "",
   UPDATE_USER_API: "",
-  UPDATE_USER_PHOTO_API: "",
+  GET_ALL_USER_API: "",
   CHANGE_PASSWORD_API: "",
-  CONTACT_API: "",
+  UPDATE_USER_PHOTO_API: "",
   GET_USER_DETAILS_API: "/user",
   SAVE_AUTH_USER_API: "/user/save-auth-user",
 };
@@ -38,8 +38,8 @@ export const gameEndpoints = {
   GET_GAME_LIST_API: "/games",
   GET_GAME_DETAIL_API: "/games/game-detail",
   GET_GAME_VIDEOS_API: "/games/game-videos",
-  GET_GAME_REVIEWS_API: "/games/game-reviews",
   GET_GAME_SLIDER_API: "/games/game-slider",
+  GET_GAME_REVIEWS_API: "/games/game-reviews",
   GET_GAME_GENRE_LIST_API: "/games/game-genre-list",
   GET_GAME_PLATFORM_LIST_API: "/games/game-platform-list",
 };

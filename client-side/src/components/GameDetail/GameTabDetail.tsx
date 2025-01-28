@@ -2,12 +2,12 @@ import { FC, useState } from "react";
 import dayjs from "dayjs";
 import { GameTabReviews } from "./GameTabReviews";
 import {
+  Tab,
   ReadMore,
   DeveloperList,
   PublisherList,
   PlatformIconList,
-} from "../Common";
-import { Tab } from "../UI";
+} from "../../components";
 import { GameTabDetailProps } from "../../types";
 import { dateFormatList, gameTabsButton } from "../../data";
 

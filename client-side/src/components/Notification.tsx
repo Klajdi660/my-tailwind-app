@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FC } from "react";
-import { Icon } from "./UI";
+import { Icon } from "../components";
 import { NotificationProps } from "../types";
 
 export const Notification: FC<NotificationProps[]> = (notificationList) => {

@@ -21,7 +21,7 @@ export const FilterBy: FC<FilterByProps> = (props) => {
   return (
     <div className={classNames("flex flex-col", `w-[${width}]`)}>
       <div className="flex flex-wrap gap-2">
-        {filterList?.map((filter: any) => {
+        {filterList?.map((filter) => {
           return (
             <button
               type="button"

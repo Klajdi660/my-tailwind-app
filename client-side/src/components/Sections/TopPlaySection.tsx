@@ -1,12 +1,16 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { TopPlayCard } from "../Cards";
-import { ShowMoreButton, Title } from "../UI";
+import {
+  Title,
+  TopPlayCard,
+  TitleSkeleton,
+  ShowMoreButton,
+  TrackCardSkeleton,
+} from "../../components";
 import { paths } from "../../data";
 import { useStore } from "../../hooks";
 import { classNames } from "../../utils";
 import { TopPlaySectionProps } from "../../types";
-import { TrackCardSkeleton, TitleSkeleton } from "../Skeleton";
 
 export const TopPlaySection: FC<TopPlaySectionProps> = (props) => {
   const {

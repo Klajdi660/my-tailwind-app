@@ -1,6 +1,6 @@
 import { io /*Socket*/ } from "socket.io-client";
-import { SOCKET_URL } from "../../configs";
 // import { store } from "../../store";
+import { SOCKET_URL } from "../../configs";
 
 const instance = io(SOCKET_URL, {
   query: {

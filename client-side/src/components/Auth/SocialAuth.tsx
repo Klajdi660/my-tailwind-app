@@ -2,9 +2,8 @@
 import { FC, useEffect } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import { useAuthService } from "../../services";
-import { SocialAuthProps } from "../../types";
 
-export const SocialAuth: FC<SocialAuthProps> = () => {
+export const SocialAuth: FC = () => {
   const { socialAuth } = useAuthService();
 
   const location = useLocation();
