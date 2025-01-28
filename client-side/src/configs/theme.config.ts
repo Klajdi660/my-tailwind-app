@@ -77,6 +77,6 @@ export const defaultThemeConfig = {
   player: themeConfig?.players?.[1],
   fontFamily: themeConfig?.fontFamilies?.[0],
   color: Object.keys(themeConfig?.colors)?.[0],
-  mode: themeConfig?.modes?.[prefersDark ? 1 : 0],
-  sidebar: Object.keys(themeConfig?.sidebars)?.[1],
+  mode: themeConfig?.modes?.[prefersDark ? 0 : 1],
+  sidebar: Object.keys(themeConfig?.sidebars)?.[0],
 };
