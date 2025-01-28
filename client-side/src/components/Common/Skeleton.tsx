@@ -1,12 +1,11 @@
-import { FC, HTMLProps } from "react";
+import { FC } from "react";
+
 interface SkeletonProps {
   className?: string;
   children?: React.ReactNode;
 }
 
-export const Skeleton: FC<HTMLProps<HTMLDivElement> & SkeletonProps> = (
-  props
-) => {
+export const Skeleton: FC<SkeletonProps> = (props) => {
   const { className, children, ...others } = props;
 
   return (

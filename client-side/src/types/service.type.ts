@@ -5,6 +5,8 @@ import {
   ForgotPasswordValues,
 } from "./page.type";
 
+// Auth
+
 export interface AuthService {
   resetPassword: (
     hash: string | any,
@@ -43,18 +45,16 @@ export interface RegisterResponse {
   lToken(lToken: any): unknown;
 }
 
-export interface UserDetailsResponse {
-  data?: any;
-  error: boolean;
-  message: string;
-}
-
+// Games
 export interface ServerResponse {
   data?: any;
   error: boolean;
   message: string;
 }
 
-export interface TranslationsResponse {
-  [key: string]: string;
+// Profile/User
+export interface UserDetailsResponse {
+  data?: any;
+  error: boolean;
+  message: string;
 }

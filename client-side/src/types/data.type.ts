@@ -86,17 +86,15 @@ export interface AccountTypeList {
   tabName: string;
 }
 
-interface SubLinkList {
-  id: string;
-  to: string;
-  name: string;
-  icon: string;
-  tooltip: string;
-}
-
 export interface NavLinkList {
   name: string;
-  subLinks: SubLinkList[];
+  subLinks: {
+    id: string;
+    to: string;
+    name: string;
+    icon: string;
+    tooltip: string;
+  }[];
 }
 
 export interface NavListsParams {

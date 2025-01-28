@@ -45,7 +45,7 @@ export const DeveloperList: FC<DeveloperListProps> = ({
           </p>
         </div>
       ))}
-      {publishers.map((pub: any) => (
+      {publishers.map((pub) => (
         <div key={pub.id} className="flex_justify_start gap-2">
           <Image
             imgUrl={pub.image_background}

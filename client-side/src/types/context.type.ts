@@ -1,9 +1,4 @@
-import {
-  User,
-  FormItem,
-  RegisterUserValues,
-  TranslationsResponse,
-} from "../types";
+import { User, FormItem, RegisterUserValues } from "../types";
 
 export interface AuthContextType {
   setUser?: any;
@@ -22,6 +17,9 @@ export interface FormContextType {
   listForm: FormItem[];
 }
 
+export interface TranslationsResponse {
+  [key: string]: string;
+}
 export interface StoreContextType {
   lang: string;
   loading: boolean;

@@ -54,34 +54,33 @@ export interface OTPCodeFormProps {
 }
 
 // Browse
-interface FilterListParams {
-  id: string;
-  name: string;
-  slug?: string;
-  platforms?: {
-    id: number;
-    name: string;
-    slug: string;
-    games_count: string;
-    image_background: string;
-    image: string | null;
-    year_end: string | null;
-    year_start: string | null;
-  }[];
-  image_background?: string;
-  games_count?: number;
-  games?: {
-    added: number;
-    id: number;
-    name: string;
-    slug: string;
-  }[];
-  value?: number;
-}
 export interface FilterByProps {
   filterName: string;
   searchParamName: string;
-  filterList: FilterListParams[];
+  filterList: {
+    id: string;
+    name: string;
+    slug?: string;
+    platforms?: {
+      id: number;
+      name: string;
+      slug: string;
+      games_count: string;
+      image_background: string;
+      image: string | null;
+      year_end: string | null;
+      year_start: string | null;
+    }[];
+    image_background?: string;
+    games_count?: number;
+    games?: {
+      added: number;
+      id: number;
+      name: string;
+      slug: string;
+    }[];
+    value?: number;
+  }[];
   width: string;
   onClosePopover: () => void;
 }
@@ -106,10 +105,16 @@ export interface TopPlayCardProps {
 }
 
 // Cart
+type SetQuantitiesType = (
+  value:
+    | { [id: string]: number }
+    | ((prev: { [id: string]: number }) => { [id: string]: number })
+) => void;
+
 export interface CartBodyProps {
   cart: GameParams[];
   isEditing: boolean;
-  setQuantities: any;
+  setQuantities: SetQuantitiesType;
   selections: number[];
   selectedHeaderOpen: boolean;
   quantities: { [id: string]: number };
@@ -145,7 +150,7 @@ export interface CartItemProps {
   item: GameParams;
   imageDims: string;
   isEditing: boolean;
-  setQuantities: any;
+  setQuantities: SetQuantitiesType;
   selections: number[];
   cartItems: GameParams[];
   quantities: { [id: string]: number };
@@ -160,7 +165,7 @@ export interface CheckoutPaymentMethodProps {
 }
 
 export interface CheckoutHeaderPorps {
-  closeCheckoutHandler: any;
+  closeCheckoutHandler: () => void;
 }
 
 export interface CheckoutBodyProps {
@@ -185,35 +190,17 @@ export interface CheckoutCardFormProps {
 }
 
 // Common
-interface ErrorFormMessageParams {
-  message: string;
-}
-
 export interface ErrorFormMessageProps {
-  errorMessage?: ErrorFormMessageParams | any;
-}
-
-interface PlatformIconList {
-  id: number;
-  name: string;
-  slug: string;
+  errorMessage?: { message: string } | any;
 }
 
 export interface PlatformIconListProps {
   className?: string;
-  platforms: PlatformIconList[];
-}
-
-interface DeveloperList {
-  id: number;
-  name: string;
-  slug: string;
-  games_count: number;
-  image_background: string;
-}
-export interface DeveloperListProps {
-  developers: DeveloperList[];
-  publishers: any;
+  platforms: {
+    id: number;
+    name: string;
+    slug: string;
+  }[];
 }
 
 interface PublisherList {
@@ -223,36 +210,25 @@ interface PublisherList {
   games_count: number;
   image_background: string;
 }
-export interface PublisherListPorps {
+export interface DeveloperListProps {
+  developers: {
+    id: number;
+    name: string;
+    slug: string;
+    games_count: number;
+    image_background: string;
+  }[];
   publishers: PublisherList[];
 }
 
-interface GameGenreList {
-  id: number;
-  name: string;
-  slug: string;
-  games_count: number;
-  image_background: string;
-  games: {
-    id: number;
-    added: number;
-    name: string;
-    slug: string;
-  }[];
-}
-
-export interface GameGenreListProps {
-  gameGenres: GameGenreList[];
-  prevRef: React.RefObject<HTMLButtonElement>;
-  nextRef: React.RefObject<HTMLButtonElement>;
-  setIsBeginning: (value: boolean) => void;
-  setIsEnd: (value: boolean) => void;
+export interface PublisherListPorps {
+  publishers: PublisherList[];
 }
 
 export interface ReadMoreProps {
   className?: string;
   limitTextLength: number;
-  children: React.ReactNode;
+  children: string;
 }
 
 export interface StarRatingProps {
@@ -309,6 +285,10 @@ export interface PersonalDetailsValues {
   phoneNumber?: string;
 }
 
+export interface UserMenuProps {
+  hidden: () => void;
+}
+
 // Section
 export interface MediaSectionProps {
   title: string;
@@ -325,14 +305,6 @@ export interface TopPlaySectionProps {
   listDivider?: boolean;
   skeletonItemNumber?: number;
   gameList: GameParams[] | any;
-}
-
-// Sidebar
-export interface SideMenuListPorps {
-  iconRef: any;
-  sidebarLinks: any;
-  activeLink: string;
-  handleLinkClick: any;
 }
 
 // Skeleton
@@ -360,13 +332,9 @@ export interface TrackCardSkeletonProps {
 }
 
 // UI
-export interface ThemeButtonProps {
-  mode: string;
-  dispatch: any;
-}
-
-export interface DeleteProfileValues {
-  confirmDelete: string;
+export interface ShowMoreButtonProps {
+  className?: string;
+  onClick?: () => void;
 }
 
 export interface SmallModalProps {
@@ -388,13 +356,6 @@ export interface SmallModalProps {
   destroyOnClose?: boolean;
 }
 
-export type ModalDefaultStyles = {
-  body?: object;
-  mask?: object;
-  footer?: object;
-  header?: object;
-};
-
 export interface ButtonProps {
   variant:
     | "outlined"
@@ -406,7 +367,7 @@ export interface ButtonProps {
     | "upload";
   size?: number;
   label?: string;
-  labelIcon?: any;
+  labelIcon?: string;
   className?: string;
   disabled?: boolean;
   tooltipTitle?: string;
@@ -417,17 +378,17 @@ export interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export interface IconParams {
-  props?: any;
-  name: string;
-  onClick?: any;
-  size?: number;
-  className?: string;
-}
-
 export type IconsMap = {
   [key: string]: any;
 };
+
+export interface IconParams {
+  props?: any;
+  name: string;
+  onClick?: () => void;
+  size?: number;
+  className?: string;
+}
 
 export interface IconButtonProps {
   size?: number;
@@ -461,12 +422,6 @@ export interface TabProps {
   setCurrentTab: (currentTab: string) => void;
 }
 
-export interface TabMap {
-  id: number;
-  type: string;
-  tabName: string;
-}
-
 export interface TitleProps {
   name: string;
   type: string;
@@ -476,21 +431,24 @@ export interface TitleProps {
   className?: string;
 }
 
-export interface ShowMoreButtonProps {
-  className?: string;
-  onClick?: () => void;
+export interface DeleteProfileValues {
+  confirmDelete: string;
+}
+
+export type ModalDefaultStyles = {
+  body?: object;
+  mask?: object;
+  footer?: object;
+  header?: object;
+};
+
+export interface TabMap {
+  id: number;
+  type: string;
+  tabName: string;
 }
 
 // Other Component
-export interface FormFieldPorps {
-  value: string;
-  handleChange: any;
-  inputType: string;
-  labelName: string;
-  placeholder: string;
-  isTextArea: boolean;
-}
-
 export interface LanguageProps {
   onSelectLanguage: (language: string) => void;
   setOpen: (open: boolean) => void;
@@ -500,25 +458,4 @@ export interface NotificationProps {
   id: number;
   time: string;
   content: string;
-}
-
-// page profile
-// interface Extra {
-//   gender: string;
-//   avatar: string;
-//   lastName: string;
-//   firstName: string;
-//   dateOfBirth: string;
-// }
-
-// interface User {
-//   id: string;
-//   extra?: Extra;
-//   email?: string;
-//   avatar?: string;
-//   username?: string;
-// }
-
-export interface UserMenuProps {
-  hidden: () => void;
 }

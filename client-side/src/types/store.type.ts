@@ -1,5 +1,4 @@
-import { GameParams } from "./general.type";
-import { User } from "./user.type";
+import { GameParams, User } from "./general.type";
 
 // gameCart
 export interface CartState {
@@ -20,23 +19,19 @@ export interface CardState {
 }
 
 // user
-interface SaveAuthUserData {
-  id: string;
-  username: string;
-  email: string;
-  saveAuthUserToken: string;
-  photo: any;
-}
-
-interface UserLastLoginData {
-  id: string;
-  lastLogin: string;
-}
-
 export interface UserState {
   user: User;
-  saveAuthUserData: SaveAuthUserData[];
+  saveAuthUserData: {
+    id: string;
+    username: string;
+    email: string;
+    saveAuthUserToken: string;
+    photo: any;
+  }[];
   currency: string;
   remember: boolean;
-  userLastLogin: UserLastLoginData[];
+  userLastLogin: {
+    id: string;
+    lastLogin: string;
+  }[];
 }

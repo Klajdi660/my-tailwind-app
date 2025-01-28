@@ -45,12 +45,10 @@ export interface NotifyParams {
   description: string | any;
 }
 
-// Utils
-
-export interface AppModalState {
-  modals: { [key: string]: boolean };
-  setModalOpen: (key: string, value: boolean) => void;
-  closeAllModals: () => void;
+export interface FetchResponse<T> {
+  count: number;
+  next: string | null;
+  results: T[];
 }
 
 // Game
@@ -194,4 +192,18 @@ export interface GameReviewsParams {
     games_count: number;
     image_background: string;
   };
+}
+
+export interface User {
+  // auths?: string;
+  avatar?: string;
+  email?: string;
+  extra?: any;
+  id: string;
+  name?: string;
+  provider?: string;
+  username?: string;
+  verified: any;
+  lastLogin?: string;
+  createdAt?: string;
 }

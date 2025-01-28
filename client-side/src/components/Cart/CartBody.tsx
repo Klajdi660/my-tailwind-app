@@ -10,9 +10,9 @@ export const CartBody: FC<CartBodyProps> = (props) => {
     isEditing,
     selections,
     quantities,
-    setQuantities,
     selectedHeaderOpen,
     setSelections,
+    setQuantities,
     setCheckoutOpen,
     setSelectedHeaderOpen,
   } = props;
