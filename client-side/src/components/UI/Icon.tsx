@@ -96,6 +96,7 @@ import {
   MdKeyboardArrowLeft,
   MdOutlineSort,
   MdDeleteOutline,
+  MdOutlineCheckBoxOutlineBlank,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import { LiaCoinsSolid } from "react-icons/lia";
@@ -215,6 +216,7 @@ const icons: IconsMap = {
   MdKeyboardArrowLeft,
   MdOutlineSort,
   MdDeleteOutline,
+  MdOutlineCheckBoxOutlineBlank,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,

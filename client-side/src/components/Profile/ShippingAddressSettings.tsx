@@ -44,11 +44,10 @@ export const ShippingAddressSettings: FC = () => {
         set as the default for all purchases made using your Epic Games Account
         on PC and mobile, including purchases on the GrooveIT Games Store.
       </p>
-
       <div
         className={classNames(
-          "p-4 rounded cursor-pointer group",
-          !openShippingSection && "hover:bg-primary-opacity",
+          "p-4 rounded cursor-pointer",
+          !openShippingSection && "hover:bg-primary-opacity group",
           openShippingSection && "flex flex-col gap-4 border border-primary"
         )}
         onClick={() => setOpenShippingSection(true)}
@@ -259,6 +258,10 @@ export const ShippingAddressSettings: FC = () => {
                   <ErrorFormMessage errorMessage={errors["zip"]?.message} />
                 </div>
               </div>
+            </div>
+            <div className="flex gap-2">
+              <Icon name="MdOutlineCheckBoxOutlineBlank" />
+              <p>As the Default</p>
             </div>
             <div className="flex_justify_end">
               <Button

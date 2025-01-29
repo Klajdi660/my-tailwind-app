@@ -143,17 +143,14 @@ export const PaymentSettings: FC = () => {
             )}
             onClick={() => setValue(1)}
           >
-            <div className="flex_justify_start gap-2">
+            <div className="flex_justify_start gap-2 group">
               <button className="w-10 h-10 transition-colors duration-500 rounded-full flex_justify_center hover:bg-primary-opacity group">
                 <Icon
                   name={value === 1 ? "FaDotCircle" : "FaRegCircle"}
-                  className={classNames(
-                    "group-hover:text-primary",
-                    value === 1 && "text-primary"
-                  )}
+                  className={classNames(value === 1 && "text-primary")}
                 />
               </button>
-              <div className="flex_justify_center group gap-4">
+              <div className="flex_justify_center gap-4">
                 <Icon
                   name="FaCreditCard"
                   size={30}
