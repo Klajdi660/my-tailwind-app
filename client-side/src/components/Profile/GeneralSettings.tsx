@@ -1,21 +1,21 @@
 import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { Select } from "antd";
-import {
-  themeList,
-  languageList,
-  currencyList,
-  currencySymbolList,
-} from "../../data";
 import { useStore } from "../../hooks";
-import { useAppSelector, updateThemeConfig, setCurrency } from "../../store";
+import { useProfileService } from "../../services";
+import { themeList, languageList, currencyList } from "../../data";
+import { useAppSelector, updateThemeConfig } from "../../store";
 
 export const GeneralSettings: FC = () => {
-  const { lang, currency, timeZones, usersTimeZone } = useStore();
+  const { timeZones } = useStore();
+  const { updateProfile } = useProfileService();
 
   const dispatch = useDispatch();
 
+  const { user } = useAppSelector((state) => state.user);
   const theme = useAppSelector((state) => state.theme);
+
+  const { curr, lang, GMT } = user.extra;
 
   const currencyOptions = Object.keys(currencyList).map((curr) => ({
     label: currencyList[curr].label,
@@ -31,8 +31,17 @@ export const GeneralSettings: FC = () => {
     dispatch(updateThemeConfig({ mode: value }));
   };
 
-  const handleCurrencyChange = (value: string) => {
-    dispatch(setCurrency(currencySymbolList[value]));
+  const handleGeneralSettingChange = async (values: object) => {
+    try {
+      const extraVal = {
+        extra: {
+          ...values,
+        },
+      };
+      await updateProfile(extraVal);
+    } catch (error) {
+      console.error(`Failed to update general details setting! ${error}`);
+    }
   };
 
   return (
@@ -67,7 +76,7 @@ export const GeneralSettings: FC = () => {
             placeholder="Select language"
             options={languageList}
             defaultValue={lang}
-            // onChange={handleLangChange}
+            onChange={(value) => handleGeneralSettingChange({ lang: value })}
           />
         </div>
         <div className="flex_justify_between">
@@ -80,10 +89,10 @@ export const GeneralSettings: FC = () => {
           <Select
             showSearch
             className="w-1/2 h-12 text-sm"
-            placeholder="Select currency"
+            placeholder="Select timezone"
             options={timezoneOptions}
-            defaultValue={usersTimeZone}
-            onChange={handleCurrencyChange}
+            defaultValue={GMT}
+            onChange={(value) => handleGeneralSettingChange({ GMT: value })}
           />
         </div>
         <div className="flex_justify_between">
@@ -97,8 +106,8 @@ export const GeneralSettings: FC = () => {
             className="w-1/2 h-12 text-sm"
             placeholder="Select currency"
             options={currencyOptions}
-            defaultValue={currency}
-            onChange={handleCurrencyChange}
+            defaultValue={curr}
+            onChange={(value) => handleGeneralSettingChange(value)}
           />
         </div>
       </div>
