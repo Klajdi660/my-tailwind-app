@@ -23,6 +23,7 @@ const {
   UPDATE_PROFILE_PICTURE_API,
   DELETE_PROFILE_PICTURE_API,
   CANCEL_DELETION_ACCOUNT_API,
+  ADD_NEW_CREDIR_CARD_API,
 } = profileEndpoints;
 
 export const useProfileService = () => {
@@ -294,6 +295,32 @@ export const useProfileService = () => {
     }
   };
 
+  const addNewCreditCard = async (values: object): Promise<void> => {
+    try {
+      const newCreditCardResp = await HttpClient.post<UserDetailsResponse>(
+        ADD_NEW_CREDIR_CARD_API,
+        values
+      );
+
+      const { error, message } = newCreditCardResp;
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      notify({
+        variant: "success",
+        description: message,
+      });
+    } catch (error) {
+      console.error(`Get user details failed: ${error} `);
+      throw error;
+    }
+  };
+
   return {
     updateProfile,
     deleteProfile,
@@ -302,5 +329,6 @@ export const useProfileService = () => {
     cancelDeleteProfile,
     updateDisplayPicture,
     removeDisplayPicture,
+    addNewCreditCard,
   };
 };

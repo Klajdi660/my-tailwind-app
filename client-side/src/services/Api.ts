@@ -31,6 +31,7 @@ export const profileEndpoints = {
   CANCEL_DELETION_ACCOUNT_API: "/profile/cancel-deletion",
   UPDATE_PROFILE_PICTURE_API: "/profile/update-display-picture",
   DELETE_PROFILE_PICTURE_API: "/profile/remove-display-picture",
+  ADD_NEW_CREDIR_CARD_API: "/profile/add-credit-card",
 };
 
 // GAMES ENDPOINTS

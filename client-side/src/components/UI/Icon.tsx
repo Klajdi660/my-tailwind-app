@@ -55,6 +55,8 @@ import {
   FaCreditCard,
   FaCheck,
   FaRegEdit,
+  FaRegCircle,
+  FaDotCircle,
 } from "react-icons/fa";
 import { FaCcPaypal } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
@@ -108,6 +110,7 @@ import {
   RiSecurePaymentLine,
   RiArrowUpLine,
   RiTimeZoneLine,
+  RiDeleteBinLine,
 } from "react-icons/ri";
 import {
   SlArrowUp,
@@ -172,6 +175,8 @@ const icons: IconsMap = {
   FaCcPaypal,
   FaCheck,
   FaRegEdit,
+  FaRegCircle,
+  FaDotCircle,
   FcGoogle,
   FiUpload,
   FiAlertTriangle,
@@ -219,6 +224,7 @@ const icons: IconsMap = {
   RiSecurePaymentLine,
   RiArrowUpLine,
   RiTimeZoneLine,
+  RiDeleteBinLine,
   SlArrowUp,
   SlLocationPin,
   SlSocialDropbox,

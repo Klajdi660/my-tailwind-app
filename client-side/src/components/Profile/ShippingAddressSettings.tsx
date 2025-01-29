@@ -47,7 +47,8 @@ export const ShippingAddressSettings: FC = () => {
 
       <div
         className={classNames(
-          "bg-primary-opacity p-4 rounded cursor-pointer",
+          "p-4 rounded cursor-pointer group",
+          !openShippingSection && "hover:bg-primary-opacity",
           openShippingSection && "flex flex-col gap-4 border border-primary"
         )}
         onClick={() => setOpenShippingSection(true)}
@@ -66,8 +67,20 @@ export const ShippingAddressSettings: FC = () => {
               <Icon name="FaCheck" className="text-white" size={15} />
             )}
           </button>
-          <Icon name="LuShip" size={30} />
-          <p>Add new shipping address</p>
+          <Icon
+            name="LuShip"
+            size={30}
+            className={classNames(
+              !openShippingSection && "group-hover:text-primary"
+            )}
+          />
+          <p
+            className={classNames(
+              !openShippingSection && "group-hover:text-primary"
+            )}
+          >
+            Add new shipping address
+          </p>
         </div>
         {openShippingSection && (
           <form className="w-full flex flex-col gap-8">
@@ -82,12 +95,13 @@ export const ShippingAddressSettings: FC = () => {
                     control={control}
                     render={({ field }) => (
                       <Select
+                        showSearch
                         {...field}
                         className={classNames(
                           "w-full h-12 text-sm rounded",
                           errors["country"]
                             ? "border border-red-500 hover:border-red-500"
-                            : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                            : "border border-divider focus-within:border-primary hover:border-primary"
                         )}
                         placeholder="Select country"
                         optionLabelProp="label"
@@ -117,7 +131,7 @@ export const ShippingAddressSettings: FC = () => {
                       "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
                       errors["contactName"]
                         ? "border border-red-500 hover:border-red-500"
-                        : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                        : "border border-divider focus-within:border-primary hover:border-primary"
                     )}
                     type="text"
                     placeholder="Contact name"
@@ -127,19 +141,24 @@ export const ShippingAddressSettings: FC = () => {
                     errorMessage={errors["contactName"]?.message}
                   />
                 </div>
-                <div className="w-full">
+                <div className="w-full group">
                   <div
                     className={classNames(
                       "flex items-center w-full h-12 text-sm text-onNeutralBg rounded px-2",
                       errors["contactNr"]
                         ? "border border-red-500 hover:border-red-500"
-                        : "border border-onNeutralBg hover:border-primary"
+                        : "border border-divider group-hover:border-primary"
                     )}
                   >
                     <input
                       {...form("prefix")}
                       name="prefix"
-                      className="w-14 bg-transparent focus-within:none outline-0 border-r border-onNeutralBg"
+                      className={classNames(
+                        "w-14 bg-transparent focus-within:none outline-0",
+                        errors["contactNr"]
+                          ? "border-r border-red-500 hover:border-r-red-500"
+                          : "border-r border-divider group-hover:border-r-primary"
+                      )}
                       type="text"
                       readOnly
                       placeholder="Prefix"
@@ -171,7 +190,7 @@ export const ShippingAddressSettings: FC = () => {
                       "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
                       errors["street"]
                         ? "border border-red-500 hover:border-red-500"
-                        : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                        : "border border-divider focus-within:border-primary hover:border-primary"
                     )}
                     type="text"
                     placeholder="Street address"
@@ -183,7 +202,7 @@ export const ShippingAddressSettings: FC = () => {
                   <input
                     {...form("buildNr")}
                     name="buildNr"
-                    className="w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0 border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                    className="w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0 border border-divider focus-within:border-primary hover:border-primary"
                     type="text"
                     placeholder="Apt, suite, unit, etc (optional)"
                     autoComplete="buildNr"
@@ -199,7 +218,7 @@ export const ShippingAddressSettings: FC = () => {
                       "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
                       errors["state"]
                         ? "border border-red-500 hover:border-red-500"
-                        : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                        : "border border-divider focus-within:border-primary hover:border-primary"
                     )}
                     type="text"
                     placeholder="State/Province"
@@ -215,7 +234,7 @@ export const ShippingAddressSettings: FC = () => {
                       "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
                       errors["city"]
                         ? "border border-red-500 hover:border-red-500"
-                        : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                        : "border border-divider focus-within:border-primary hover:border-primary"
                     )}
                     type="text"
                     placeholder="City"
@@ -231,7 +250,7 @@ export const ShippingAddressSettings: FC = () => {
                       "w-full h-12 bg-transparent text-sm text-onNeutralBg rounded px-2 outline-0",
                       errors["zip"]
                         ? "border border-red-500 hover:border-red-500"
-                        : "border border-onNeutralBg focus-within:border-primary hover:border-primary"
+                        : "border border-divider focus-within:border-primary hover:border-primary"
                     )}
                     type="text"
                     placeholder="ZIP code"

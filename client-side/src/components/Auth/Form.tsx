@@ -52,7 +52,7 @@ export const Form: FC<FormProps> = (props) => {
                       <input
                         {...form(list.name)}
                         className={classNames(
-                          "w-full h-12 px-2 text-sm text-onNeutralBg bg-transparent no-focus outline-0 disabled:text-secondary"
+                          "w-full h-12 px-2 text-sm text-onNeutralBg bg-transparent no-focus outline-0 disabled:text-secondary rounded"
                         )}
                         {...list.props}
                         placeholder={list.props.placeholder || list.label}
