@@ -31,7 +31,7 @@ export const useProfileService = () => {
   const [notify] = useNotification();
   const dispatch = useDispatch();
 
-  const changeUsername = async (values: EditProfileValues): Promise<void> => {
+  const changeUsername = async (values: EditProfileValues) => {
     try {
       setLoading(true);
 
@@ -48,7 +48,7 @@ export const useProfileService = () => {
           variant: "error",
           description: message,
         });
-        return;
+        return { error: true, message: false };
       }
 
       data.extra = {
@@ -62,6 +62,7 @@ export const useProfileService = () => {
         variant: "success",
         description: message,
       });
+      return { error: false, message };
     } catch (error) {
       setLoading(false);
       console.error(`Get user details failed: ${error} `);
