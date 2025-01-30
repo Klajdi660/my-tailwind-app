@@ -30,16 +30,6 @@ export const UserInfo: FC = () => {
     </>
   );
 
-  const usernameTooltipTitle = (
-    <p>
-      <span className="font-bold mr-2">Please note:</span>
-      <span className="text-justify">
-        If you changed your GrooveIT Games Username, you can't change it again
-        for 2 weeks after you confirm this change.
-      </span>
-    </p>
-  );
-
   return (
     <div className="bg-card p-8 rounded">
       <h5 className="text-lg font-semibold pb-6">Account Information</h5>
@@ -63,16 +53,8 @@ export const UserInfo: FC = () => {
             Username
           </label>
           <div className="flex_justify_between flex-row w-full gap-2">
-            <div className="flex_justify_between w-full h-12 px-2 bg-main rounded">
+            <div className="flex_justify_start w-full h-12 px-2 bg-main rounded">
               <p className="text-secondary">{username}</p>
-              <Tooltip title={usernameTooltipTitle} trigger={["hover"]}>
-                <button>
-                  <Icon
-                    name="PiWarningCircle"
-                    className="text-secondary hover:text-primary"
-                  />
-                </button>
-              </Tooltip>
             </div>
             <Button
               type="button"

@@ -66,7 +66,7 @@ export const ChangeUsernameModal: FC = () => {
       <div className="modal-body w-full mt-6 flex flex-col gap-6 text-onNeutralBg">
         <p className="">
           If you changed your GrooveIT Games Username, you can’t change it again
-          for 2 weeks after you confirm this change
+          after you confirm this change
         </p>
         <p className="flex gap-2 font-bold">
           Current Username:
@@ -99,7 +99,7 @@ export const ChangeUsernameModal: FC = () => {
               Never use information that identifies you such as your real name,
               address, social media handle or phone number
             </li>
-            <li>Display Names must be at least 3 characters long</li>
+            <li>Display Names must be at least 8 characters long</li>
           </ul>
           <div className="flex items-center justify-end gap-4">
             <Button
