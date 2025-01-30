@@ -143,7 +143,7 @@ export const PersonalDetails: FC = () => {
             <Controller
               name="dateOfBirth"
               control={control}
-              // defaultValue={defaultValues.dateOfBirth || null}
+              defaultValue={defaultValues.dateOfBirth || null}
               render={({ field }) => (
                 <DatePicker
                   {...field}
@@ -196,10 +196,9 @@ export const PersonalDetails: FC = () => {
                 onChange={onPhonePrefixChange}
                 optionLabelProp="selected"
                 className="contactNr-select bg-primary-opacity"
+                placeholder="Prefix"
                 dropdownStyle={{ width: 250 }}
-                defaultValue={
-                  phonePrefix ? phonePrefix : phonePrefixData[2].selected
-                }
+                defaultValue={phonePrefix ? phonePrefix : null}
               />
               <input
                 name="contactNumber"
@@ -315,10 +314,3 @@ export const PersonalDetails: FC = () => {
     </form>
   );
 };
-
-// if value is empty
-// if (!value) {
-//   setIsFormChanged(false);
-// } else {
-//   setIsFormChanged(true);
-// }
