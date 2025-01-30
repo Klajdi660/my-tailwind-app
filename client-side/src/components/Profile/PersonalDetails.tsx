@@ -46,6 +46,7 @@ export const PersonalDetails: FC = () => {
     const prefix = phonecode.startsWith("+") ? phonecode : `+${phonecode}`;
     return {
       key: `${prefix}-${isoCode}`,
+      name,
       value: prefix,
       selected: `${item.flag} ${prefix}`,
       label: `${flag} ${name} ${prefix}`,
@@ -63,6 +64,10 @@ export const PersonalDetails: FC = () => {
     if (field === "contactNumber") {
       setContactNr(value);
     }
+  };
+
+  const filterPhonePrefix = (input: string, option: any) => {
+    return option?.name.toLowerCase().includes(input.toLowerCase());
   };
 
   const handleMenuClick = async (data: any) => {
@@ -194,6 +199,8 @@ export const PersonalDetails: FC = () => {
                 placeholder="Prefix"
                 dropdownStyle={{ width: 250 }}
                 defaultValue={phonePrfx ? phonePrfx : null}
+                showSearch
+                filterOption={filterPhonePrefix}
               />
               <input
                 name="contactNumber"
