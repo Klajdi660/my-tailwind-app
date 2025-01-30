@@ -129,7 +129,6 @@ export const Form: FC<FormProps> = (props) => {
             type="button"
             variant="outlined"
             label="Cancel"
-            className="h-10"
             onClick={handelFormCancel}
           />
         )}
@@ -138,7 +137,7 @@ export const Form: FC<FormProps> = (props) => {
           label={btnTitle}
           variant="contained"
           className={classNames(
-            "flex items-center justify-center gap-2 h-10",
+            "flex items-center justify-center gap-2",
             formType === "auth" ? "w-full" : "w-fit"
           )}
           disabled={!isValid}

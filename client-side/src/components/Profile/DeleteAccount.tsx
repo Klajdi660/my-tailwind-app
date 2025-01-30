@@ -64,7 +64,6 @@ export const DeleteAccount: FC = () => {
               type="submit"
               label="Delete Account"
               variant="delete"
-              className="h-10"
               onClick={() => setModalOpen("deleteProfileModal", true)}
             />
           </div>

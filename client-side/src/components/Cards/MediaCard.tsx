@@ -14,7 +14,7 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
 
   return (
     <div
-      className="shadow-sm gb-card rounded duration-300 ease-in cursor-pointer text-onNeutralBg group"
+      className="shadow-sm bg-card rounded duration-300 ease-in cursor-pointer text-onNeutralBg group"
       onClick={() => navigate(`${gameDetail}/${id}`)}
     >
       {background_image && (

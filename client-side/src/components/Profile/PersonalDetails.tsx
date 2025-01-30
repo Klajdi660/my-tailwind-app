@@ -309,7 +309,6 @@ export const PersonalDetails: FC = () => {
           type="submit"
           label="Save Changes"
           variant="contained"
-          className="h-10"
           disabled={!isFormChanged}
         />
       </div>
