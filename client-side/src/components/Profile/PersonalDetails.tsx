@@ -71,18 +71,16 @@ export const PersonalDetails: FC = () => {
     try {
       const { dateOfBirth } = data;
       const values = {
-        extra: {
-          ...data,
-          dateOfBirth: dateOfBirth
-            ? dateOfBirth.format(dateFormatList[2])
-            : null,
-          contactNumber: {
-            phonePrefix: phonePrefix,
-            phoneNumber: contactNumber,
-          },
+        // extra: {
+        ...data,
+        dateOfBirth: dateOfBirth ? dateOfBirth.format(dateFormatList[2]) : null,
+        contactNumber: {
+          phonePrefix: phonePrefix,
+          phoneNumber: contactNumber,
         },
+        // },
       };
-
+      console.log("values :>> ", values);
       await updateProfile(values);
       setIsFormChanged(false);
     } catch (error) {

@@ -33,12 +33,7 @@ export const GeneralSettings: FC = () => {
 
   const handleGeneralSettingChange = async (values: object) => {
     try {
-      const extraVal = {
-        extra: {
-          ...values,
-        },
-      };
-      await updateProfile(extraVal);
+      await updateProfile(values);
     } catch (error) {
       console.error(`Failed to update general details setting! ${error}`);
     }
@@ -107,7 +102,7 @@ export const GeneralSettings: FC = () => {
             placeholder="Select currency"
             options={currencyOptions}
             defaultValue={curr}
-            onChange={(value) => handleGeneralSettingChange(value)}
+            onChange={(value) => handleGeneralSettingChange({ curr: value })}
           />
         </div>
       </div>

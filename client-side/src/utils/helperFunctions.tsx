@@ -7,7 +7,7 @@ export const classNames = (...classes: any) => {
 };
 
 export const isTokenExpired = (token: string): boolean => {
-  const tokenData = JSON.parse(atob(token.split(".")[1]));
+  const tokenData = JSON.parse(atob(token?.split(".")[1]));
 
   const currentTime = dayjs().unix();
   const tokenExpirationTime = tokenData.exp;
