@@ -12,31 +12,29 @@ export const PersonalDetails: FC = () => {
   const { updateProfile } = useProfileService();
 
   const { user } = useAppSelector((state) => state.user);
-  const { address, country, city, postalCode } = user.extra;
+  const {
+    city,
+    gender,
+    address,
+    country,
+    lastName,
+    firstName,
+    postalCode,
+    dateOfBirth,
+    contactNumber,
+  } = user.extra;
+  const { phonePrefix, phoneNumber } = contactNumber || {};
 
-  const [phonePrefix, setPhonePrefix] = useState<string>(
-    user?.extra?.contactNumber?.phonePrefix || ""
-  );
-
-  const phoneNumber = user?.extra?.contactNumber?.phoneNumber
-    .replace(phonePrefix, "")
-    .trim();
-  const [contactNumber, setContactNumber] = useState<string>(phoneNumber || "");
-
+  const [phonePrfx, setPhonePrfx] = useState<string>(phonePrefix || "");
+  const phoneNr = phoneNumber
+    ? phoneNumber.replace(phonePrfx, "").trim()
+    : null;
+  const [contactNr, setContactNr] = useState<string>(phoneNr || "");
   const [isFormChanged, setIsFormChanged] = useState(false);
 
-  const defaultValues = {
-    firstName: user?.extra?.firstName,
-    lastName: user?.extra?.lastName,
-    dateOfBirth: user?.extra.dateOfBirth
-      ? dayjs(user?.extra.dateOfBirth, dateFormatList[2])
-      : null,
-    gender: user?.extra?.gender,
-    country: country,
-    city: city,
-    address: address,
-    postalCode: postalCode,
-  };
+  const birthdayDate = dateOfBirth
+    ? dayjs(dateOfBirth, dateFormatList[2])
+    : null;
 
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
@@ -55,7 +53,7 @@ export const PersonalDetails: FC = () => {
   });
 
   const onPhonePrefixChange = (value: string) => {
-    setPhonePrefix(value);
+    setPhonePrfx(value);
     setIsFormChanged(true);
   };
 
@@ -63,7 +61,7 @@ export const PersonalDetails: FC = () => {
     setIsFormChanged(true);
 
     if (field === "contactNumber") {
-      setContactNumber(value);
+      setContactNr(value);
     }
   };
 
@@ -71,16 +69,13 @@ export const PersonalDetails: FC = () => {
     try {
       const { dateOfBirth } = data;
       const values = {
-        // extra: {
         ...data,
         dateOfBirth: dateOfBirth ? dateOfBirth.format(dateFormatList[2]) : null,
         contactNumber: {
-          phonePrefix: phonePrefix,
-          phoneNumber: contactNumber,
+          phonePrefix: phonePrfx,
+          phoneNumber: contactNr,
         },
-        // },
       };
-      console.log("values :>> ", values);
       await updateProfile(values);
       setIsFormChanged(false);
     } catch (error) {
@@ -115,7 +110,7 @@ export const PersonalDetails: FC = () => {
               type="text"
               placeholder="First Name"
               autoComplete="firstName"
-              defaultValue={defaultValues.firstName}
+              defaultValue={firstName}
               onChange={(e) => handleInputChange("firstName", e.target.value)}
             />
           </div>
@@ -130,7 +125,7 @@ export const PersonalDetails: FC = () => {
               type="text"
               placeholder="Last Name"
               autoComplete="lastName"
-              defaultValue={defaultValues.lastName}
+              defaultValue={lastName}
               onChange={(e) => handleInputChange("lastName", e.target.value)}
             />
           </div>
@@ -143,7 +138,7 @@ export const PersonalDetails: FC = () => {
             <Controller
               name="dateOfBirth"
               control={control}
-              defaultValue={defaultValues.dateOfBirth || null}
+              defaultValue={birthdayDate}
               render={({ field }) => (
                 <DatePicker
                   {...field}
@@ -166,7 +161,7 @@ export const PersonalDetails: FC = () => {
             <Controller
               name="gender"
               control={control}
-              defaultValue={defaultValues.gender || null}
+              defaultValue={gender || null}
               render={({ field }) => (
                 <Select
                   {...field}
@@ -198,7 +193,7 @@ export const PersonalDetails: FC = () => {
                 className="contactNr-select bg-primary-opacity"
                 placeholder="Prefix"
                 dropdownStyle={{ width: 250 }}
-                defaultValue={phonePrefix ? phonePrefix : null}
+                defaultValue={phonePrfx ? phonePrfx : null}
               />
               <input
                 name="contactNumber"
@@ -209,7 +204,7 @@ export const PersonalDetails: FC = () => {
                 type="text"
                 placeholder="Phone Number"
                 autoComplete="contactNumber"
-                defaultValue={phoneNumber}
+                defaultValue={phoneNr}
               />
             </div>
           </div>
@@ -227,7 +222,7 @@ export const PersonalDetails: FC = () => {
             <Controller
               name="country"
               control={control}
-              defaultValue={defaultValues.country || null}
+              defaultValue={country || null}
               render={({ field }) => (
                 <Select
                   {...field}
@@ -254,7 +249,7 @@ export const PersonalDetails: FC = () => {
               type="text"
               placeholder="Enter city"
               autoComplete="city"
-              defaultValue={defaultValues.city}
+              defaultValue={city}
               onChange={(e) => handleInputChange("city", e.target.value)}
             />
           </div>
@@ -271,7 +266,7 @@ export const PersonalDetails: FC = () => {
               type="text"
               placeholder="Enter address"
               autoComplete="address"
-              defaultValue={defaultValues.address}
+              defaultValue={address}
               onChange={(e) => handleInputChange("address", e.target.value)}
             />
           </div>
@@ -286,7 +281,7 @@ export const PersonalDetails: FC = () => {
               type="text"
               placeholder="Enter postal code"
               autoComplete="postalCode"
-              defaultValue={defaultValues.postalCode}
+              defaultValue={postalCode}
               onChange={(e) => handleInputChange("postalCode", e.target.value)}
             />
           </div>

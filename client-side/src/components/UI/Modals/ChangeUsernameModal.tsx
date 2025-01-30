@@ -25,8 +25,10 @@ export const ChangeUsernameModal: FC = () => {
 
   const handleOnSubmit = async (values: { username: string }) => {
     try {
-      await changeUsername(values);
-      handleModalClose();
+      const changeUsernameRes = (await changeUsername(values)) as any;
+      if (changeUsernameRes) {
+        handleModalClose();
+      }
     } catch (error) {
       console.error(`Failed to change username! ${error}`);
     }

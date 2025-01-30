@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Tooltip } from "antd";
 import { useStore } from "../../hooks";
-import { classNames } from "../../utils";
 import { useAppSelector } from "../../store";
 import { Icon, Button } from "../../components";
 
@@ -41,35 +40,16 @@ export const UserInfo: FC = () => {
     </p>
   );
 
-  const handleMenuClick = async () => {
-    setModalOpen("changeUsernameModal", true);
-  };
-
   return (
     <div className="bg-card p-8 rounded">
       <h5 className="text-lg font-semibold pb-6">Account Information</h5>
       <div className="flex flex-col gap-6">
-        <div>
-          <label className="block text-secondary text-xs font-semibold mb-2">
-            Email
-          </label>
-          <div className="relative">
-            <input
-              name="email"
-              className={classNames(
-                "w-full h-12 text-sm rounded px-2 focus-within:border-primary outline-0",
-                email
-                  ? "bg-main text-secondary"
-                  : "bg-transparent text-onNeutralBg border border-divider"
-              )}
-              type="text"
-              placeholder="Enter email"
-              autoComplete="email"
-              defaultValue={email}
-              disabled={true}
-            />
+        <div className="flex_justify_between flex-col items-start gap-2">
+          <label className="text-xs text-secondary font-semibold">Email</label>
+          <div className="flex_justify_between w-full h-12 px-2 bg-main rounded">
+            <p className="text-secondary">{email}</p>
             <Tooltip title={emailTooltipTitle} trigger={["hover"]}>
-              <button className="absolute right-2 top-1/2 transform -translate-y-1/2">
+              <button>
                 <Icon
                   name="PiWarningCircle"
                   className="text-secondary hover:text-primary"
@@ -78,37 +58,28 @@ export const UserInfo: FC = () => {
             </Tooltip>
           </div>
         </div>
-        <div>
-          <label className="block text-secondary text-xs font-semibold mb-2">
+        <div className="flex_justify_between flex-col items-start gap-2">
+          <label className="text-xs text-secondary font-semibold">
             Username
           </label>
-          <div className="flex justify-between gap-2">
-            <div className="flex flex-col w-full">
-              <div className="relative">
-                <input
-                  name="username"
-                  className="w-full h-12 text-sm text-onNeutralBg rounded px-2 focus-within:border-primary outline-0 bg-main text-secondary"
-                  type="text"
-                  placeholder="Enter username"
-                  autoComplete="username"
-                  disabled={true}
-                  defaultValue={username}
-                />
-                <Tooltip title={usernameTooltipTitle} trigger={["hover"]}>
-                  <button className="absolute right-2 top-1/2 transform -translate-y-1/2">
-                    <Icon
-                      name="PiWarningCircle"
-                      className="text-secondary hover:text-primary"
-                    />
-                  </button>
-                </Tooltip>
-              </div>
+          <div className="flex_justify_between flex-row w-full gap-2">
+            <div className="flex_justify_between w-full h-12 px-2 bg-main rounded">
+              <p className="text-secondary">{username}</p>
+              <Tooltip title={usernameTooltipTitle} trigger={["hover"]}>
+                <button>
+                  <Icon
+                    name="PiWarningCircle"
+                    className="text-secondary hover:text-primary"
+                  />
+                </button>
+              </Tooltip>
             </div>
             <Button
               type="button"
               labelIcon="FiEdit"
               variant="contained"
-              onClick={handleMenuClick}
+              className="h-12"
+              onClick={() => setModalOpen("changeUsernameModal", true)}
             />
           </div>
         </div>
