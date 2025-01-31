@@ -16,7 +16,7 @@ const getBackgroundStyle = (imageUrl: string | undefined) => ({
 });
 
 export const HomePage: FC = () => {
-  const { logIn, accountSaved, home } = paths;
+  const { logIn, /*accountSaved,*/ home } = paths;
 
   const { useGameSlider, useGameDetail } = useGames();
   const { gamesSlider } = useGameSlider();
@@ -30,8 +30,9 @@ export const HomePage: FC = () => {
   const { gameDetail } = useGameDetail(selectedGameId) as any;
 
   const { saveAuthUserData } = useAppSelector((state) => state.user);
-
-  const navigateTo = saveAuthUserData.length > 0 ? accountSaved : logIn;
+  console.log("saveAuthUserData :>> ", saveAuthUserData);
+  // const navigateTo = saveAuthUserData.length > 0 ? accountSaved : logIn;
+  const navigateTo = logIn;
 
   useEffect(() => {
     if (gamesSlider && gamesSlider.length > 0) {

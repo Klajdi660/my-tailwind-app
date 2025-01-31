@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { profileEndpoints } from "./Api";
 import {
   setUser,
-  setSavedAuthUser,
+  // setSavedAuthUser,
   setIsAccountDelete,
   setAccountDeleteDaysDifference,
 } from "../store";
@@ -138,12 +138,12 @@ export const useProfileService = () => {
 
       localStorage.user = JSON.stringify(data);
       dispatch(setUser(data));
-      dispatch(
-        setSavedAuthUser({
-          id: data.id,
-          photo: data.extra.avatar,
-        })
-      );
+      // dispatch(
+      //   setSavedAuthUser({
+      //     id: data.id,
+      //     photo: data.extra.avatar,
+      //   })
+      // );
 
       notify({
         variant: "success",
@@ -178,12 +178,12 @@ export const useProfileService = () => {
       localStorage.user = JSON.stringify(data);
 
       dispatch(setUser(data));
-      dispatch(
-        setSavedAuthUser({
-          id: data.id,
-          photo: data.extra.avatar,
-        })
-      );
+      // dispatch(
+      //   setSavedAuthUser({
+      //     id: data.id,
+      //     photo: data.extra.avatar,
+      //   })
+      // );
 
       notify({
         variant: "success",
