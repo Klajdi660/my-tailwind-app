@@ -28,7 +28,7 @@ export const ChangePassword: FC = () => {
   };
 
   return (
-    <div className="bg-card p-8 rounded">
+    <div className="bg-card md:p-8 p-4 rounded">
       <div className="pb-6">
         <h5 className="text-lg font-semibold">Change Password</h5>
         {!isPasswordEnabled && (

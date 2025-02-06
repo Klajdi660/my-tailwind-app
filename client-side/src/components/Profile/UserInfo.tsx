@@ -31,7 +31,7 @@ export const UserInfo: FC = () => {
   );
 
   return (
-    <div className="bg-card p-8 rounded">
+    <div className="bg-card md:p-8 p-4 rounded">
       <h5 className="text-lg font-semibold pb-6">Account Information</h5>
       <div className="flex flex-col gap-6">
         <div className="flex_justify_between flex-col items-start gap-2">

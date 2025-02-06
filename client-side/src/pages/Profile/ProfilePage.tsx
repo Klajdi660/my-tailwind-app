@@ -8,6 +8,7 @@ import {
   PaymentSettings,
   Title,
 } from "../../components";
+import { useMediaResponsive } from "../../hooks";
 import { firstLetterToUpperCase } from "../../utils";
 
 const profileComponents: Record<string, JSX.Element> = {
@@ -18,6 +19,7 @@ const profileComponents: Record<string, JSX.Element> = {
 };
 
 export const ProfilePage: FC = () => {
+  const { isMobile } = useMediaResponsive();
   const { profileId } = useParams<{ profileId: string | any }>();
 
   const profileSectionName = `${firstLetterToUpperCase(profileId)} Settings`;
@@ -28,10 +30,10 @@ export const ProfilePage: FC = () => {
         name={profileSectionName}
         type="large"
         divider={false}
-        className="bg-card p-8 rounded"
+        className="bg-card md:p-8 p-4 rounded"
       />
       <div className="flex flex-col md:flex-row justify-between text-onNeutralBg gap-6">
-        <AccountSettingSidebar />
+        {isMobile ? "" : <AccountSettingSidebar />}
         {profileComponents[profileId] ? (
           profileComponents[profileId]
         ) : (

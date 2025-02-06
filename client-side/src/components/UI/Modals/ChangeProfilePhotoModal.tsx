@@ -3,7 +3,7 @@ import { SmallModal } from "./ModalContent";
 import { useStore } from "../../../hooks";
 import { useAppSelector } from "../../../store";
 import { avatarProfileList } from "../../../data";
-import { Image, Button } from "../../../components";
+import { Image, Button, Icon } from "../../../components";
 import { useProfileService } from "../../../services";
 
 export const ChangeProfilePhotoModal: FC = () => {
@@ -49,35 +49,35 @@ export const ChangeProfilePhotoModal: FC = () => {
   return (
     <SmallModal
       open={modals["changeProfilePhotoModal"]}
-      onCancel={handleModalClose}
-      width={500}
+      closable={false}
+      width={600}
     >
-      <div className="modal-header w-full text-xl text-onNeutralBg font-semibold flex items-center">
+      <div className="modal-header flex_justify_between w-full text-xl text-onNeutralBg font-semibold">
         {profilePhotoHeaderTitle}
+        <button
+          type="button"
+          className="p-2 rounded-full hover:bg-primary-opacity group"
+          onClick={handleModalClose}
+        >
+          <Icon name="MdClear" className="group-hover:text-primary" />
+        </button>
       </div>
-
       {avatar ? (
         <div className="modal-body flex flex-col pt-4 gap-6 text-onNeutralBg">
-          <hr className="w-full border-t border-divider" />
-
+          {/* <hr className="w-full border-t border-divider" /> */}
           <p className="text-base text-center">
             {firstName}, help others recognize you!
           </p>
-
           <div className="flex_justify_center">
             <Image
               imgUrl={avatar}
               styles="w-40 h-40 rounded-full object-cover"
             />
           </div>
-
           <p className="text-center text-secondary">
             On GrooveIT, we require members to use their real identities, so
             take or upload a photo of yourself or any other photo.
           </p>
-
-          <hr className="w-full border-t border-divider" />
-
           <div className="flex_justify_end">
             <div className="group">
               <input
@@ -110,25 +110,18 @@ export const ChangeProfilePhotoModal: FC = () => {
         </div>
       ) : (
         <div className="modal-body flex flex-col pt-4 gap-6">
-          <hr className="w-full border-t border-divider" />
-
           <p className="text-base text-center">
             Having a profile picture helps others recognize you!
           </p>
-
           <div className="flex_justify_center gap-4">
             {avatarProfileList.map((img) => (
               <Image key={img.id} imgUrl={img.name} styles={img.size} />
             ))}
           </div>
-
           <p className="text-center text-secondary">
             On GrooveIT, we require members to use their real identities, so
             take or upload a photo of yourself or any other photo.
           </p>
-
-          <hr className="w-full border-t border-divider" />
-
           <div className="modal-footer flex_justify_end group">
             <input
               className="hidden"

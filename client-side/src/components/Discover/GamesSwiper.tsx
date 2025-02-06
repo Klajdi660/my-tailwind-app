@@ -4,7 +4,7 @@ import { FC, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
 import { paths } from "../../data";
-import { useGames } from "../../hooks";
+import { useGames, useMediaResponsive } from "../../hooks";
 import { classNames } from "../../utils";
 import { GamesSwiperProps } from "../../types";
 import { MediaCard, GenreCard, Title, Icon } from "../../components";
@@ -15,6 +15,7 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
 
   const { browse } = paths;
 
+  const { isMobile } = useMediaResponsive();
   const { useGameList, useGameGenreList } = useGames();
 
   const [isBeginning, setIsBeginning] = useState(true);
@@ -111,7 +112,7 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
           }}
           onReachBeginning={() => setIsBeginning(true)}
           onReachEnd={() => setIsEnd(true)}
-          slidesPerView={5}
+          slidesPerView={isMobile ? 2 : 5}
           // slidesPerView="auto"
           spaceBetween={10}
         >

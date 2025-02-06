@@ -21,7 +21,7 @@ export const DeleteAccount: FC = () => {
   };
 
   return (
-    <div className="bg-card p-8 rounded">
+    <div className="bg-card md:p-8 p-4 rounded">
       <h5 className="text-lg font-semibold pb-6">Delete Account</h5>
       {isAccountDelete ? (
         <>

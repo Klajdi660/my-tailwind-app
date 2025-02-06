@@ -45,7 +45,7 @@ export const GeneralSettings: FC = () => {
         <h5 className="text-lg font-semibold">Display</h5>
         <div className="flex_justify_between">
           <label className="flex flex-col font-semibold text-md">
-            Theme
+            Dark mode
             <span className="text-secondary">
               Choose how your GrooveIT experience looks for this device.
             </span>

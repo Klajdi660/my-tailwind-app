@@ -16,8 +16,9 @@ import {
 } from "../assets";
 
 export const themeList: SettingListParams[] = [
-  { value: "dark", label: "Dark" },
-  { value: "light", label: "Light" },
+  { value: "default", label: "System default" },
+  { value: "dark", label: "Always on" },
+  { value: "light", label: "Always off" },
 ];
 
 export const languageList: SettingListParams[] = [

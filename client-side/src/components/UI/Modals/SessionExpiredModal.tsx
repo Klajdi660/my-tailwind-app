@@ -53,11 +53,12 @@ export const SessionExpiredModal: FC = () => {
           </span>
         </div>
       </div>
-      <div className="flex items-center justify-end w-full mt-8">
+      <div className="flex_justify_end mt-6">
         <Button
           type="submit"
           label="Log in"
           variant="contained"
+          className="rounded-full"
           onClick={handleModalClose}
         />
       </div>

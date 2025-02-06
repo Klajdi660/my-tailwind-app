@@ -54,13 +54,10 @@ export const ChangeUsernameModal: FC = () => {
         Change your username
         <button
           type="button"
-          className="p-2 rounded hover:bg-primary-opacity group"
+          className="p-2 rounded-full hover:bg-primary-opacity group"
           onClick={handleModalClose}
         >
-          <Icon
-            name="MdClear"
-            className="text-secondary group-hover:text-onNeutralBg"
-          />
+          <Icon name="MdClear" className="group-hover:text-primary" />
         </button>
       </div>
       <div className="modal-body w-full mt-6 flex flex-col gap-6 text-onNeutralBg">
@@ -101,18 +98,18 @@ export const ChangeUsernameModal: FC = () => {
             </li>
             <li>Display Names must be at least 8 characters long</li>
           </ul>
-          <div className="flex items-center justify-end gap-4">
+          <div className="flex_justify_end gap-2">
             <Button
               label="Cancel"
               variant="outlined"
-              className="h-10"
+              className="rounded-full"
               onClick={handleModalClose}
             />
             <Button
               type="submit"
               label="Confirm"
               variant="contained"
-              className="h-10"
+              className="rounded-full"
               disabled={!isValid}
             />
           </div>
