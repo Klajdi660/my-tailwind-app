@@ -33,8 +33,8 @@ export const gameTabsButton: GameTabsButtonProperties[] = [
 ];
 
 export const gameFilterList: GameFilterListProperties[] = [
-  { id: 1, name: "Platforms", value: "platform", width: "400px" },
-  { id: 2, name: "Genres", value: "genre", width: "400px" },
+  { id: 1, name: "Platforms", value: "platform", width: "300px" },
+  { id: 2, name: "Genres", value: "genre", width: "300px" },
   { id: 3, name: "Rating", value: "rating", width: "0px" },
   // { id: 4, name: "Name" },
   // { id: 5, name: "Relevance" },

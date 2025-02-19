@@ -135,18 +135,6 @@ export interface GameParams {
   };
 }
 
-export interface GameVideosParams {
-  count: number;
-  next: any | null;
-  previous: any | null;
-  results: {
-    id: number;
-    name: string;
-    data: object;
-    preview: string;
-  }[];
-}
-
 export interface GameReviewsParams {
   id: number;
   game: number;

@@ -28,10 +28,10 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
     <div
       className={classNames(
         `${formName}_section`,
-        "flex_justify_center absolute_center"
+        "h-screen flex_justify_center px-2"
       )}
     >
-      <div className="flex flex-col w-[25rem] max-w-[calc(100vw)] lg:max-w-[calc(100vw-5rem)] p-8 gap-6 bg-card rounded">
+      <div className="flex flex-col p-8 gap-6 bg-card rounded w-[400px] max-w-[100vw] lg:max-w-[calc(100vw-80px)]">
         <Link to={home} className="flex_justify_center">
           <Image imgUrl={iconName} name="template_logo" width={140} />
         </Link>

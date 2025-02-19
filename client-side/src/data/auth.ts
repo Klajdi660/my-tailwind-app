@@ -42,18 +42,18 @@ export const formList: FormItemList = {
       type: "input",
       props: {
         type: "text",
-        placeholder: "",
+        placeholder: "Email address or Username",
       },
       name: "identifier",
       iconName: "AiOutlineUser",
-      label: "Email address or Username",
+      label: "",
     },
     {
       type: "input",
       name: "password",
-      label: "Password",
+      label: "",
       props: {
-        placeholder: "",
+        placeholder: "Password",
         type: "password",
       },
     },
@@ -84,9 +84,18 @@ export const formList: FormItemList = {
       iconName: "AiOutlineMail",
       props: {
         type: "email",
-        placeholder: "",
+        placeholder: "Email Address",
       },
-      label: "Email Address",
+      label: "",
+    },
+    {
+      type: "input",
+      name: "password",
+      props: {
+        type: "password",
+        placeholder: "Password",
+      },
+      label: "",
     },
     {
       type: "input",
@@ -94,9 +103,9 @@ export const formList: FormItemList = {
       iconName: "AiOutlineUser",
       props: {
         type: "text",
-        placeholder: "",
+        placeholder: "Full Name",
       },
-      label: "Full Name",
+      label: "",
     },
     {
       type: "input",
@@ -104,18 +113,9 @@ export const formList: FormItemList = {
       iconName: "AiOutlineUser",
       props: {
         type: "text",
-        placeholder: "",
+        placeholder: "Username",
       },
-      label: "Username",
-    },
-    {
-      type: "input",
-      name: "password",
-      props: {
-        type: "password",
-        placeholder: "",
-      },
-      label: "Password",
+      label: "",
     },
   ],
   "verify-email": [
@@ -148,9 +148,9 @@ export const formList: FormItemList = {
       iconName: "AiOutlineMail",
       props: {
         type: "email",
-        placeholder: "",
+        placeholder: "Email Address",
       },
-      label: "Email Address",
+      label: "",
     },
   ],
   "reset-password": [
@@ -168,19 +168,19 @@ export const formList: FormItemList = {
       type: "input",
       name: "password",
       props: {
-        placeholder: "",
+        placeholder: "New Password",
         type: "password",
       },
-      label: "New Password",
+      label: "",
     },
     {
       type: "input",
       name: "confirmPassword",
       props: {
-        placeholder: "",
         type: "confirmPassword",
+        placeholder: "Confirm New Password",
       },
-      label: "Confirm New Password",
+      label: "",
     },
   ],
   "password-code": [
@@ -204,20 +204,20 @@ export const formList: FormItemList = {
     {
       type: "input",
       name: "username",
-      label: "Username",
+      label: "",
       props: {
         type: "text",
-        placeholder: "",
+        placeholder: "Username",
       },
     },
     {
       type: "input",
       name: "email",
-      label: "Email",
+      label: "",
       props: {
         disabled: true,
         type: "text",
-        placeholder: "",
+        placeholder: "Email",
       },
     },
   ],

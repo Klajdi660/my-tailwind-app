@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import moment from "moment";
+import { theme } from "antd";
 import { GameParams } from "../types";
 
 export const classNames = (...classes: any) => {
@@ -165,4 +166,11 @@ export const getDataPeriod = () => {
 
 export const firstLetterToUpperCase = (name: string) => {
   return `${name[0].toLocaleUpperCase()}${name.slice(1)}`;
+};
+
+export const themeConfig = {
+  algorithm: theme.defaultAlgorithm,
+  token: {
+    colorPrimary: "#0077B5",
+  },
 };

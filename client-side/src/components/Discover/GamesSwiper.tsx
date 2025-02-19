@@ -34,7 +34,7 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
   };
 
   const { gameList } = useGameList(params);
-  const { gameGenreList }: any = useGameGenreList();
+  const { gameGenreList } = useGameGenreList();
   if (!gameList) return;
 
   return (

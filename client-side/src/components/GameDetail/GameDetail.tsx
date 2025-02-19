@@ -1,17 +1,19 @@
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Tooltip, Progress } from "antd";
 import { GameTabDetail } from "./GameTabDetail";
 import { paths } from "../../data";
 import { classNames } from "../../utils";
 import { useAppSelector } from "../../store";
-import { GameDetailProps } from "../../types";
-import { useStore, useCart, useMediaResponsive } from "../../hooks";
+import { useStore, useCart, useMediaResponsive, useGames } from "../../hooks";
 import { HeaderBannerSkeleton, Button, Image, Icon } from "../../components";
 
-export const GameDetail: FC<GameDetailProps> = (props) => {
-  const { gameDetail, gameReviews, gameVideos } = props;
+export const GameDetail: FC = () => {
+  const { useGameDetail } = useGames();
+  const { gameId } = useParams<{ gameId: string | any }>();
+  const { gameDetail, gameReviews, gameVideos } = useGameDetail(gameId);
   const { browse } = paths;
+
   const {
     id,
     name,
@@ -42,7 +44,6 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
   };
 
   if (!gameVideos) return null;
-  const { results: gameVideoResults } = gameVideos;
 
   return (
     <div className="game_detail flex flex-col md:flex-row">
@@ -185,8 +186,8 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
           <div className="shrink-0 md:max-w-[500px] w-full px-6 pt-6">
             <p className="text-onNeutralBg font-medium text-lg mb-5">MEDIA</p>
             <ul className="flex flex-col md:gap-[30px] gap-6">
-              {gameVideoResults.length > 0 &&
-                gameVideoResults.slice(0, 2).map((video: any) => {
+              {gameVideos.length > 0 &&
+                gameVideos.slice(0, 2).map((video: any) => {
                   return (
                     <li key={video.id}>
                       <div className="relative h-0 pb-[56.25%]">
@@ -209,7 +210,7 @@ export const GameDetail: FC<GameDetailProps> = (props) => {
                     </li>
                   );
                 })}
-              {!gameVideoResults.length && (
+              {!gameVideos.length && (
                 <p className="text-primary text-xl font-bold text-center">
                   No media found
                 </p>

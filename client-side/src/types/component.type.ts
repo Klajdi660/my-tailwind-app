@@ -1,10 +1,6 @@
 import { ReactNode } from "react";
 import { Effect } from "react-lazy-load-image-component";
-import {
-  GameParams,
-  GameVideosParams,
-  GameReviewsParams,
-} from "./general.type";
+import { GameParams, GameReviewsParams } from "./general.type";
 
 // Auth
 export interface FormProps {
@@ -246,12 +242,6 @@ export interface GamesSwiperProps {
 }
 
 // GameDetail
-export interface GameDetailProps {
-  gameDetail: GameParams;
-  gameVideos?: GameVideosParams;
-  gameReviews?: GameReviewsParams[];
-}
-
 export interface GameTabDetailProps {
   gameDetail: GameParams;
   gameReviews: GameReviewsParams[] | any;

@@ -9,7 +9,7 @@ export const LoginPage: FC = () => {
 
   const onSubmitLoginHandler = async (values: LoginUserValues) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
       await login(values);
     } catch (error) {
       console.error(`Failed to login! ${error}`);

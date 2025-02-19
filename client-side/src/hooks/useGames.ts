@@ -85,17 +85,15 @@ export const useGames = () => {
   const useGameFilterList = () => {
     const { useGameGenreList, useGamePlatformList } = useGames();
 
-    const { gameGenreList } = useGameGenreList() as any;
-    const { gamePlatformList } = useGamePlatformList() as any;
+    const { gameGenreList } = useGameGenreList();
+    const { gamePlatformList } = useGamePlatformList();
 
-    // Create a mapping of value to the corresponding list
-    const filterListMapping: any = {
+    const filterListMapping: Record<string, any> = {
       platform: gamePlatformList,
       genre: gameGenreList,
       rating: gameRatingList,
     };
 
-    // Update the filter list dynamically based on the value
     const updatedGameFilterList = gameFilterList.map((filter) => {
       const filterList = filterListMapping[filter.value];
       if (filterList) {
