@@ -41,9 +41,9 @@ export const GeneralSettings: FC = () => {
 
   return (
     <div className="w-full text-onNeutralBg">
-      <div className="flex flex-col bg-card p-8 rounded gap-6">
+      <div className="flex flex-col bg-card p-6 md:p-8 rounded gap-6">
         <h5 className="text-lg font-semibold">Display</h5>
-        <div className="flex_justify_between">
+        <div className="flex flex-col justify-between md:flex-row gap-2">
           <label className="flex flex-col font-semibold text-md">
             Dark mode
             <span className="text-secondary">
@@ -51,7 +51,7 @@ export const GeneralSettings: FC = () => {
             </span>
           </label>
           <Select
-            className="w-1/2 h-12 text-sm"
+            className="w-full md:w-1/2 h-12 text-sm"
             placeholder="Select theme"
             options={themeList}
             defaultValue={theme.mode}
@@ -59,7 +59,7 @@ export const GeneralSettings: FC = () => {
           />
         </div>
         <h5 className="text-lg font-semibold">General preferences</h5>
-        <div className="flex_justify_between">
+        <div className="flex flex-col justify-between md:flex-row gap-2">
           <label className="flex flex-col font-semibold text-md">
             Language
             <span className="text-secondary">
@@ -67,14 +67,14 @@ export const GeneralSettings: FC = () => {
             </span>
           </label>
           <Select
-            className="w-1/2 h-12 text-sm"
+            className="w-full md:w-1/2 h-12 text-sm"
             placeholder="Select language"
             options={languageList}
             defaultValue={lang}
             onChange={(value) => handleGeneralSettingChange({ lang: value })}
           />
         </div>
-        <div className="flex_justify_between">
+        <div className="flex flex-col justify-between md:flex-row gap-2">
           <label className="flex flex-col font-semibold text-md">
             Timezone
             <span className="text-secondary">
@@ -83,14 +83,14 @@ export const GeneralSettings: FC = () => {
           </label>
           <Select
             showSearch
-            className="w-1/2 h-12 text-sm"
+            className="w-full md:w-1/2 h-12 text-sm"
             placeholder="Select timezone"
             options={timezoneOptions}
             defaultValue={GMT}
             onChange={(value) => handleGeneralSettingChange({ GMT: value })}
           />
         </div>
-        <div className="flex_justify_between">
+        <div className="flex flex-col justify-between md:flex-row gap-2">
           <label className="flex flex-col font-semibold text-md">
             Currency
             <span className="text-secondary">
@@ -98,7 +98,7 @@ export const GeneralSettings: FC = () => {
             </span>
           </label>
           <Select
-            className="w-1/2 h-12 text-sm"
+            className="w-full md:w-1/2 h-12 text-sm"
             placeholder="Select currency"
             options={currencyOptions}
             defaultValue={curr}

@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
 import {
-  AccountSettingSidebar,
+  ProfileSidebar,
+  ProfileSidebarMobile,
   AccountSettings,
   GeneralSettings,
   ShippingAddressSettings,
@@ -33,7 +34,7 @@ export const ProfilePage: FC = () => {
         className="bg-card md:p-8 p-4 rounded"
       />
       <div className="flex flex-col md:flex-row justify-between text-onNeutralBg gap-6">
-        {isMobile ? "" : <AccountSettingSidebar />}
+        {isMobile ? <ProfileSidebarMobile /> : <ProfileSidebar />}
         {profileComponents[profileId] ? (
           profileComponents[profileId]
         ) : (

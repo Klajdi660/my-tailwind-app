@@ -60,7 +60,8 @@ export { GeneralSettings } from "./Profile/GeneralSettings";
 export { PaymentSettings } from "./Profile/PaymentSettings";
 export { PersonalDetails } from "./Profile/PersonalDetails";
 export { ProfileDropdown } from "./Profile/ProfileDropDown";
-export { AccountSettingSidebar } from "./Profile/AccountSettingSidebar";
+export { ProfileSidebar } from "./Profile/ProfileSidebar";
+export { ProfileSidebarMobile } from "./Profile/ProfileSidebarMobile";
 export { ShippingAddressSettings } from "./Profile/ShippingAddressSettings";
 
 // SECTIONS

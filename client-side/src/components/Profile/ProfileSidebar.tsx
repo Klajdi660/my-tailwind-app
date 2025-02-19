@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Icon } from "../../components";
+import { Icon } from "..";
 import { classNames } from "../../utils";
 import { settingsLinks, paths } from "../../data";
 
-export const AccountSettingSidebar: FC = () => {
+export const ProfileSidebar: FC = () => {
   const { profile } = paths;
 
   const { profileId } = useParams<{ profileId: string | any }>();
