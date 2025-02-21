@@ -35,7 +35,7 @@ export const Form: FC<FormProps> = (props) => {
         listForm.map((list: FormListItem, index: number) => (
           <Fragment key={index}>
             {["input", "textarea"].includes(list.type) && (
-              <>
+              <fieldset>
                 <div
                   className={classNames(
                     "relative rounded",
@@ -104,7 +104,7 @@ export const Form: FC<FormProps> = (props) => {
                   )}
                 </div>
                 <ErrorFormMessage errorMessage={errors?.[list.name]?.message} />
-              </>
+              </fieldset>
             )}
           </Fragment>
         ))}
