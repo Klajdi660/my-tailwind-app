@@ -39,7 +39,12 @@ export const ProfilePhoto: FC = () => {
         <div>
           <p className="text-onNeutralBg">{username}</p>
           {isMobile ? (
-            <p className="text-primary">Change photo</p>
+            <p
+              className="text-primary"
+              onClick={() => setModalOpen("changeProfilePhotoModal", true)}
+            >
+              Change photo
+            </p>
           ) : (
             <p className="text-secondary">
               {firstName} {lastName}
