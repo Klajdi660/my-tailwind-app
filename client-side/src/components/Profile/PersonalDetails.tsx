@@ -218,7 +218,7 @@ export const PersonalDetails: FC = () => {
           <div className="w-full"></div>
         </div>
       </div>
-      <h5 className="text-lg font-semibold py-6">Address Details</h5>
+      {/* <h5 className="text-lg font-semibold py-6">Address Details</h5>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
           <div className="w-full">
@@ -292,7 +292,7 @@ export const PersonalDetails: FC = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="flex items-center justify-end gap-4 mt-6">
         {/* <Button
           type="button"

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { MediaSection, Button, BrowseFilter } from "../../components";
+import { MediaSection, BrowseFilter, Icon } from "../../components";
 import { useScrollPosition } from "../../hooks";
 
 export const BrowsePage: FC = () => {
@@ -15,16 +15,12 @@ export const BrowsePage: FC = () => {
   return (
     <>
       {isShowScrollUpBtn && (
-        <div className="group">
-          <Button
-            iconClassName="group-hover:text-white"
-            variant="none"
-            labelIcon="RiArrowUpLine"
-            size={22}
-            onClick={scrollToTop}
-            className="fixed bottom-40 right-60 z-50 py-4 rounded-full bg-primary-opacity group-hover:bg-primary"
-          />
-        </div>
+        <button
+          className="flex_justify_center w-10 h-10 fixed bottom-6 right-6 bg-card hover:bg-primary z-50 rounded-full shadow-lg group"
+          onClick={scrollToTop}
+        >
+          <Icon name="MdKeyboardArrowUp" className="group-hover:text-white" />
+        </button>
       )}
       <div className="browse_page flex flex-col gap-4">
         <BrowseFilter />

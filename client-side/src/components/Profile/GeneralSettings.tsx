@@ -5,6 +5,7 @@ import { useStore } from "../../hooks";
 import { useProfileService } from "../../services";
 import { themeList, languageList, currencyList } from "../../data";
 import { useAppSelector, updateThemeConfig } from "../../store";
+import { countriesList } from "../../utils";
 
 export const GeneralSettings: FC = () => {
   const { timeZones } = useStore();
@@ -15,7 +16,7 @@ export const GeneralSettings: FC = () => {
   const { user } = useAppSelector((state) => state.user);
   const theme = useAppSelector((state) => state.theme);
 
-  const { curr, lang, GMT } = user.extra;
+  const { country, curr, lang, GMT } = user.extra;
 
   const currencyOptions = Object.keys(currencyList).map((curr) => ({
     label: currencyList[curr].label,
@@ -61,9 +62,24 @@ export const GeneralSettings: FC = () => {
         <h5 className="text-lg font-semibold">General preferences</h5>
         <div className="flex flex-col justify-between md:flex-row gap-2">
           <label className="flex flex-col font-semibold text-md">
+            Country
+            <span className="text-secondary">
+              Select the country you will use on GrooveIT
+            </span>
+          </label>
+          <Select
+            className="w-full md:w-1/2 h-12 text-sm"
+            placeholder="Select country"
+            options={countriesList}
+            defaultValue={country}
+            onChange={(value) => handleGeneralSettingChange({ country: value })}
+          />
+        </div>
+        <div className="flex flex-col justify-between md:flex-row gap-2">
+          <label className="flex flex-col font-semibold text-md">
             Language
             <span className="text-secondary">
-              Select the language you use on GrooveIT
+              Select the language you will use on GrooveIT
             </span>
           </label>
           <Select
@@ -78,7 +94,7 @@ export const GeneralSettings: FC = () => {
           <label className="flex flex-col font-semibold text-md">
             Timezone
             <span className="text-secondary">
-              Select the timezone you use on GrooveIT
+              Select the timezone you will use on GrooveIT
             </span>
           </label>
           <Select
@@ -94,7 +110,7 @@ export const GeneralSettings: FC = () => {
           <label className="flex flex-col font-semibold text-md">
             Currency
             <span className="text-secondary">
-              Select the currency you use on GrooveIT
+              Select the currency you will use on GrooveIT
             </span>
           </label>
           <Select

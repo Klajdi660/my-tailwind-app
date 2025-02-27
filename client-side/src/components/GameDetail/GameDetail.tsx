@@ -14,16 +14,6 @@ export const GameDetail: FC = () => {
   const { gameDetail, gameReviews, gameVideos } = useGameDetail(gameId);
   const { browse } = paths;
 
-  const {
-    id,
-    name,
-    genres,
-    rating,
-    playtime,
-    background_image,
-    background_image_additional,
-  } = gameDetail;
-
   const { loading } = useStore();
   const { isMobile } = useMediaResponsive();
   const { addGameToCart } = useCart();
@@ -43,7 +33,18 @@ export const GameDetail: FC = () => {
     addGameToCart(gameDetail);
   };
 
+  if (!gameDetail) return null;
   if (!gameVideos) return null;
+
+  const {
+    id,
+    name,
+    genres,
+    rating,
+    playtime,
+    background_image,
+    background_image_additional,
+  } = gameDetail;
 
   return (
     <div className="game_detail flex flex-col md:flex-row">

@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import moment from "moment";
 import { theme } from "antd";
+import { Country } from "country-state-city";
 import { GameParams } from "../types";
 
 export const classNames = (...classes: any) => {
@@ -174,3 +175,10 @@ export const themeConfig = {
     colorPrimary: "#0077B5",
   },
 };
+
+// Setttings
+export const countriesList = Country.getAllCountries().map((country) => ({
+  label: `${country.flag} ${country.name}`,
+  value: country.isoCode,
+  dialCode: country.phonecode,
+}));

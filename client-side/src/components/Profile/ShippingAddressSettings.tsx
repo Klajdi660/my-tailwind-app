@@ -1,24 +1,21 @@
 import { Select } from "antd";
 import { FC, useState } from "react";
-import { Country } from "country-state-city";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
 import { ErrorFormMessage, Button, Icon } from "../../components";
-import { classNames, shippingAddressValidation } from "../../utils";
+import {
+  classNames,
+  shippingAddressValidation,
+  countriesList,
+} from "../../utils";
 
 export const ShippingAddressSettings: FC = () => {
   const [openShippingSection, setOpenShippingSection] =
     useState<boolean>(false);
   const [phonePrefix, setPhonePrefix] = useState<string>("");
 
-  const allCountries = Country.getAllCountries().map((country) => ({
-    label: `${country.flag} ${country.name}`,
-    value: country.isoCode,
-    dialCode: country.phonecode,
-  }));
-
   const handleCountryChange = (selectedCountryCode: string) => {
-    const selectedCountry = allCountries.find(
+    const selectedCountry = countriesList.find(
       (country) => country.value === selectedCountryCode
     );
     if (selectedCountry) {
@@ -104,7 +101,7 @@ export const ShippingAddressSettings: FC = () => {
                         )}
                         placeholder="Select country"
                         optionLabelProp="label"
-                        options={allCountries}
+                        options={countriesList}
                         onChange={(value) => {
                           field.onChange(value);
                           handleCountryChange(value);

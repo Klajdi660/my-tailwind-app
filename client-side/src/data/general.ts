@@ -201,12 +201,12 @@ export const settingsLinks: SettingsLinksParams[] = [
   },
   {
     id: "shipping",
-    name: "Shipping Address Settings",
+    name: "Shipping Address",
     icon: "LuShip",
   },
   {
     id: "payments",
-    name: "Payment Settings",
+    name: "Payment Methods",
     icon: "MdOutlinePayment",
   },
 ];

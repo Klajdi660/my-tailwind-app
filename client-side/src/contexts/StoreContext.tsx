@@ -44,7 +44,7 @@ const StoreContext = createContext(initialState);
 const StoreProvider: FC<ProviderProps> = ({ children }) => {
   const { user } = useAppSelector((state) => state.user);
   const [lang, setLang] = useState<string>("en");
-  const [currency, setCurrency] = useState<string>("EUR");
+  const [currency, setCurrency] = useState<string | null>(null);
   const [userStore, setUserStore] = useState<Object>({});
   const [loading, setLoading] = useState<boolean>(false);
   const [shippingTo, setShippingTo] = useState<string>("Albania");

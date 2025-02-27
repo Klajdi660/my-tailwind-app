@@ -23,7 +23,7 @@ export interface TranslationsResponse {
 export interface StoreContextType {
   lang: string;
   loading: boolean;
-  currency: string;
+  currency: string | null;
   userStore: object;
   user?: User | null;
   shippingTo: string;
