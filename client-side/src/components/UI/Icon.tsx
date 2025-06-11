@@ -246,7 +246,8 @@ export const Icon: FC<IconParams> = ({
   onClick,
   ...props
 }) => {
-  const Icons = icons?.[name] || icons?.["MdHome"];
+  // const Icons = icons?.[name] || icons?.["MdHome"];
+  const Icons = name in icons ? icons[name] : icons["MdHome"];
 
   return (
     <IconContext.Provider
