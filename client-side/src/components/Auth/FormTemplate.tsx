@@ -16,7 +16,7 @@ import { FormTemplateProps, FormListItem } from "../../types";
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { schema, onSubmit, defaultValues, resendCodeHandler, data } = props;
 
-  const { home, forgotPassword } = paths;
+  const { HOME, FORGOT_PASSWORD } = paths;
 
   const { listForm } = useForm();
 
@@ -32,7 +32,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
       )}
     >
       <div className="flex flex-col p-8 gap-6 bg-card rounded w-[400px] max-w-[100vw] lg:max-w-[calc(100vw-80px)]">
-        <Link to={home} className="flex_justify_center">
+        <Link to={HOME} className="flex_justify_center">
           <Image imgUrl={iconName} name="template_logo" width={140} />
         </Link>
         {!data?.resetPassEmailSent ? (
@@ -76,7 +76,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
               {formName === "login" && (
                 <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
                   Forgot Password!
-                  <Link to={forgotPassword}>
+                  <Link to={FORGOT_PASSWORD}>
                     <p className="text-primary hover:underline underline-offset-2">
                       Reset
                     </p>

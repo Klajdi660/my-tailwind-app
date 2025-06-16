@@ -8,14 +8,14 @@ import { PlatformIconList, Image } from "../../components";
 export const MediaCard: FC<MediaCardProps> = (props) => {
   const { game } = props;
   const { id, background_image, name, parent_platforms } = game;
-  const { gameDetail } = paths;
+  const { GAME_DETAILS } = paths;
 
   const navigate = useNavigate();
 
   return (
     <div
       className="shadow-sm bg-card rounded duration-300 ease-in cursor-pointer text-onNeutralBg group"
-      onClick={() => navigate(`${gameDetail}/${id}`)}
+      onClick={() => navigate(`${GAME_DETAILS}/${id}`)}
     >
       {background_image && (
         <div className="transition-opacity duration-300 ease-in-out group-hover:opacity-75">

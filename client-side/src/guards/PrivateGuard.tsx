@@ -8,13 +8,14 @@ import { useAppSelector } from "../store";
 import { isTokenExpired } from "../utils";
 
 export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
-  const { home } = paths;
+  const { HOME } = paths;
 
   const { setModalOpen, closeAllModals } = useStore();
 
   useEffect(() => {
     const checkATokenExpiry = () => {
-      if (isTokenExpired(localStorage.atoken)) {
+      const token = localStorage.getItem("atoken");
+      if (token && isTokenExpired(token)) {
         closeAllModals();
         setModalOpen("sessionExpiredModal", true);
       }
@@ -29,5 +30,5 @@ export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
 
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-  return isAuthenticated ? children : <Navigate to={home} />;
+  return isAuthenticated ? children : <Navigate to={HOME} />;
 };

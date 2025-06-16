@@ -13,7 +13,7 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
   const { sectionName, titleName, dateParam, orderingParam, swiperType } =
     props;
 
-  const { browse } = paths;
+  const { BROWSE } = paths;
 
   const { isMobile } = useMediaResponsive();
   const { useGameList, useGameGenreList } = useGames();
@@ -43,7 +43,7 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
         <button
           type="button"
           className="flex_justify_center"
-          onClick={() => navigate(browse)}
+          onClick={() => navigate(BROWSE)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >

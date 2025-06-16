@@ -23,9 +23,9 @@ export const SessionExpiredModal: FC = () => {
     dispatch(setUser(null));
     dispatch(setIsAuthenticated(false));
 
-    delete localStorage.atoken;
-    delete localStorage.user;
-    delete localStorage.rtoken;
+    localStorage.removeItem("atoken");
+    localStorage.removeItem("user");
+    localStorage.removeItem("rtoken");
   };
 
   return (

@@ -2,43 +2,33 @@ import {
   GridList,
   NavLinkList,
   PageLinkItem,
-  LangMenuItem,
   LangMapParams,
-  NavListsParams,
   PathProperties,
-  LogoProperties,
-  AccountTypeList,
   DownloadBtnList,
   SettingsLinksParams,
   FontSizesProperties,
   NotificationItemList,
 } from "../types";
-import { alFlag, shFlag } from "../assets";
 
 export const dateFormat: string = "DD-MM-YYYY HH:mm:ss";
 
 export const paths: PathProperties = {
-  home: "/",
-  logIn: "/login",
-  browse: "/browse",
-  profile: "/profile",
-  register: "/register",
-  discover: "/discover",
-  socialAuth: "/social-auth",
-  gameDetail: "/game-detail",
-  verifyEmail: "/verify-email",
-  passwordCode: "/password-code",
-  forgotPassword: "/forgot-password",
-  // resetPassword: "/reset-password",
-  resetPassword: "/reset-password/:email/:hash",
-  // changePassword: "update-password/:email/:username/:h/:exp",
-  saveAuthData: "/save-auth",
-  accountSaved: "/account-saved",
-};
-
-export const logo: LogoProperties = {
-  name: "GrooveIT",
-  icon: "SlGameController",
+  HOME: "/",
+  LOGIN: "/login",
+  BROWSE: "/browse",
+  PROFILE: "/profile",
+  REGISTER: "/register",
+  DISCOVER: "/discover",
+  SOCIAL_AUTH: "/social-auth",
+  GAME_DETAILS: "/game-detail",
+  VERIFY_EMAIL: "/verify-email",
+  PASSWORD_CODE: "/password-code",
+  FORGOT_PASSWORD: "/forgot-password",
+  // RESET_PASSWORD: "/reset-password",
+  RESET_PASSWORD: "/reset-password/:email/:hash",
+  // CHANGE_PASSWORD: "update-password/:email/:username/:h/:exp",
+  SAVE_AUTH_DATA: "/save-auth",
+  ACCOUNT_SAVED: "/account-saved",
 };
 
 export const fontSizes: FontSizesProperties = {
@@ -48,11 +38,6 @@ export const fontSizes: FontSizesProperties = {
   "extra-small": "text-sm",
   "extra-large": "text-3xl",
 };
-
-export const accountTypes: AccountTypeList[] = [
-  { id: 1, tabName: "User", type: "User" },
-  { id: 2, tabName: "Admin", type: "Admin" },
-];
 
 export const navlinks: NavLinkList[] = [
   {
@@ -128,66 +113,6 @@ export const navlinks: NavLinkList[] = [
   },
 ];
 
-export const navLists: NavListsParams[] = [
-  {
-    tooltip: "hover",
-    id: "discover",
-    to: "/discover",
-    name: "Discover",
-    icon: "FaWpexplorer",
-  },
-  {
-    id: "browse",
-    to: "/browse",
-    name: "Browse",
-    tooltip: "hover",
-    icon: "MdOutlineExplore",
-  },
-
-  {
-    id: "my_games",
-    to: "/my-games",
-    name: "My Games",
-    tooltip: "hover",
-    icon: "MdOutlineGames",
-  },
-  {
-    id: "wishlist",
-    to: "/wishlist",
-    name: "Wishlist",
-    tooltip: "hover",
-    icon: "SlSocialDropbox",
-  },
-  {
-    id: "store",
-    to: "/store",
-    name: "Store",
-    tooltip: "hover",
-    icon: "MdStorefront",
-  },
-  {
-    id: "collection",
-    tooltip: "hover",
-    to: "/collection",
-    name: "Collections",
-    icon: "RiFirefoxLine",
-  },
-  {
-    id: "platforms",
-    icon: "CgGames",
-    to: "/platforms",
-    tooltip: "hover",
-    name: "Platforms",
-  },
-  {
-    id: "genres",
-    to: "/genres",
-    icon: "BiGame",
-    name: "Genres",
-    tooltip: "hover",
-  },
-];
-
 export const settingsLinks: SettingsLinksParams[] = [
   {
     id: "general",
@@ -236,25 +161,6 @@ export const pageLink: PageLinkItem[] = [
   { name: "Legal", link: "/" },
   { name: "Policy", link: "/" },
   { name: "Contact", link: "/" },
-];
-
-export const langMenuItem = ({ onSelectLanguage }: LangMenuItem) => [
-  {
-    id: "al",
-    icon: alFlag,
-    name: "Albanian",
-    onClick: () => {
-      onSelectLanguage("al");
-    },
-  },
-  {
-    id: "en",
-    icon: shFlag,
-    name: "English",
-    onClick: () => {
-      onSelectLanguage("en");
-    },
-  },
 ];
 
 export const downloadBtnList: DownloadBtnList[] = [

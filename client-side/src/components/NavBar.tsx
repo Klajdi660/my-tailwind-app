@@ -19,7 +19,7 @@ import { classNames, getAside } from "../utils";
 import { useMediaResponsive, useStore } from "../hooks";
 
 export const Navbar: FC = () => {
-  const { logIn, discover } = paths;
+  const { LOGIN, DISCOVER } = paths;
 
   const { isMobile } = useMediaResponsive();
   const { toggleSearch, setToggleSearch } = useStore();
@@ -56,7 +56,7 @@ export const Navbar: FC = () => {
             showFull ? "bg-primary-opacity" : "lg:bg-sidebar"
           )}
         >
-          <Link to={discover} className="flex items-center h-full gap-2 logo">
+          <Link to={DISCOVER} className="flex items-center h-full gap-2 logo">
             {!showFull ? (
               <Image imgUrl={iconName} name="App Logo" width={100} />
             ) : (
@@ -83,7 +83,7 @@ export const Navbar: FC = () => {
                   <Button
                     variant="contained"
                     label="Login"
-                    onClick={() => navigate(logIn)}
+                    onClick={() => navigate(LOGIN)}
                   />
                 </div>
               )}

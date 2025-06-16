@@ -7,7 +7,7 @@ import { classNames, nameTruncate } from "../../utils";
 
 export const TopPlayCard: FC<TopPlayCardProps> = (props) => {
   const { item, listDivider } = props;
-  const { gameDetail } = paths;
+  const { GAME_DETAILS } = paths;
 
   return (
     <li
@@ -18,7 +18,7 @@ export const TopPlayCard: FC<TopPlayCardProps> = (props) => {
       )}
     >
       <Link
-        to={`${gameDetail}/${item.id}`}
+        to={`${GAME_DETAILS}/${item.id}`}
         className="relative flex justify-center w-full items-center group"
       >
         <div className="flex items-center justify-start flex-1 gap-2 xs:gap-4">

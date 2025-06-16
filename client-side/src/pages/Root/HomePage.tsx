@@ -5,7 +5,7 @@ import { paths } from "../../data";
 import { iconName } from "../../assets";
 import { classNames } from "../../utils";
 import { useGames } from "../../hooks";
-import { useAppSelector } from "../../store";
+// import { useAppSelector } from "../../store";
 import { Image, Button, PlatformIconList } from "../../components";
 
 const getBackgroundStyle = (imageUrl: string | undefined) => ({
@@ -16,7 +16,7 @@ const getBackgroundStyle = (imageUrl: string | undefined) => ({
 });
 
 export const HomePage: FC = () => {
-  const { logIn, /*accountSaved,*/ home } = paths;
+  const { LOGIN, /*ACCOUNT_SAVED,*/ HOME } = paths;
 
   const { useGameSlider, useGameDetail } = useGames();
   const { gamesSlider } = useGameSlider();
@@ -29,10 +29,10 @@ export const HomePage: FC = () => {
 
   const { gameDetail } = useGameDetail(selectedGameId) as any;
 
-  const { saveAuthUserData } = useAppSelector((state) => state.user);
+  // const { saveAuthUserData } = useAppSelector((state) => state.user);
 
-  // const navigateTo = saveAuthUserData.length > 0 ? accountSaved : logIn;
-  const navigateTo = logIn;
+  // const navigateTo = saveAuthUserData.length > 0 ? ACOUNT_SAVED : LOGIN;
+  const navigateTo = LOGIN;
 
   useEffect(() => {
     if (gamesSlider && gamesSlider.length > 0) {
@@ -72,7 +72,7 @@ export const HomePage: FC = () => {
         }}
       >
         <div className="flex items-center justify-between">
-          <Link to={home}>
+          <Link to={HOME}>
             <motion.div whileHover={{ scale: 1.1 }}>
               <Image
                 imgUrl={iconName}

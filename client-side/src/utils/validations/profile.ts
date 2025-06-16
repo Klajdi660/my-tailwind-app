@@ -11,16 +11,6 @@ export const editUsernameValidation = yup.object({
     .required(),
 });
 
-export const personalDetailsValidation = yup.object({
-  firstName: yup
-    .string()
-    .required({ message: "Please input your First Name." }),
-  lastName: yup.string().required({ message: "Please input your Last Name." }),
-  dateOfBirth: yup
-    .string()
-    .required({ message: "Please input your Birthday." }),
-});
-
 export const updatePasswordValidation = yup.object({
   currentPassword: yup.string().required("Current Password is required!"),
   newPassword: yup

@@ -32,6 +32,8 @@ const AuthProvider: FC<ProviderProps> = ({ children }) => {
   // const [user, setUser] = useState<User | null>(null);
   const [user, setUser] = useState<User | null>(getUserFromLocalStorage());
 
+  // const atoken = localStorage.getItem("atoken");
+
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user]);
 
   // useEffect(() => {
@@ -40,7 +42,7 @@ const AuthProvider: FC<ProviderProps> = ({ children }) => {
   //     setUser(storedUser);
   //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [localStorage.atoken]);
+  // }, [atoken]);
 
   const authenticateUser = (user: User) => {
     setUser(user);

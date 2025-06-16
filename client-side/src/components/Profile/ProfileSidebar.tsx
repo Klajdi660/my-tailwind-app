@@ -5,7 +5,7 @@ import { classNames } from "../../utils";
 import { settingsLinks, paths } from "../../data";
 
 export const ProfileSidebar: FC = () => {
-  const { profile } = paths;
+  const { PROFILE } = paths;
 
   const { profileId } = useParams<{ profileId: string | any }>();
 
@@ -27,7 +27,7 @@ export const ProfileSidebar: FC = () => {
                 "flex flex-row items-center gap-2 p-5 h-12 w-full outline-0 border-none hover:bg-primary-opacity rounded",
                 profileId.includes(settingLink.id) && "bg-primary-opacity"
               )}
-              onClick={() => navigate(`${profile}/${settingLink.id}`)}
+              onClick={() => navigate(`${PROFILE}/${settingLink.id}`)}
             >
               <Icon
                 name={settingLink.icon}

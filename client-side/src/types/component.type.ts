@@ -267,14 +267,6 @@ export interface EditProfileValues {
   username: string;
 }
 
-export interface PersonalDetailsValues {
-  name?: string;
-  gender?: string;
-  address?: string;
-  birthday?: string;
-  phoneNumber?: string;
-}
-
 export interface UserMenuProps {
   hidden: () => void;
 }
@@ -431,12 +423,6 @@ export type ModalDefaultStyles = {
   footer?: object;
   header?: object;
 };
-
-export interface TabMap {
-  id: number;
-  type: string;
-  tabName: string;
-}
 
 // Other Component
 export interface LanguageProps {

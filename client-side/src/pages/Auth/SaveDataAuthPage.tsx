@@ -7,7 +7,7 @@ import { paths } from "../../data";
 import { setRemember } from "../../store";
 
 export const SaveDataAuthPage: FC = () => {
-  const { discover } = paths;
+  const { DISCOVER } = paths;
 
   const { saveAuthUser } = useUserService();
 
@@ -24,7 +24,7 @@ export const SaveDataAuthPage: FC = () => {
 
   const onCancelSaveAuthUserHandler = async () => {
     dispatch(setRemember(false));
-    navigate(discover);
+    navigate(DISCOVER);
   };
 
   return (

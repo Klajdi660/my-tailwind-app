@@ -13,7 +13,7 @@ import { profileMenuItems, paths } from "../../data";
 const UserMenu: FC<UserMenuProps> = (props) => {
   const { hidden } = props;
 
-  const { profile } = paths;
+  const { PROFILE } = paths;
 
   const { setModalOpen } = useStore();
   const { logout } = useAuthService();
@@ -34,7 +34,7 @@ const UserMenu: FC<UserMenuProps> = (props) => {
 
   const navigateToProfile = () => {
     hidden();
-    navigate(`${profile}/account`);
+    navigate(`${PROFILE}/account`);
   };
 
   return (

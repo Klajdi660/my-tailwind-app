@@ -55,33 +55,6 @@ export const calculateTimePassed = (time: number): string => {
   return "Just now";
 };
 
-export const getGamePrice = (game: GameParams) => {
-  const { released, genres } = game;
-
-  const isIndie = !!genres.find((genre) => genre.name !== "Indie");
-
-  const releaseYear = new Date(released).getFullYear();
-  const currentYear = new Date().getFullYear();
-  const differenceYear = currentYear - releaseYear;
-
-  const minPrice = 1;
-  let discountPerYear = 0.35;
-  let newPrice = isIndie ? 5 : 10;
-
-  for (let i = 0; i < differenceYear; i++) {
-    newPrice += 1 - discountPerYear;
-    if (differenceYear > 0.1) {
-      discountPerYear -= 0.08;
-    } else {
-      discountPerYear = 0.1;
-    }
-  }
-
-  newPrice = Math.ceil(newPrice);
-  newPrice = newPrice < minPrice ? minPrice : newPrice;
-  return newPrice - 0.01;
-};
-
 const calculateShippingCost = (price: number | any) => {
   if (price <= 10.99) {
     return 0;
@@ -110,28 +83,10 @@ export const calculateTotalPrice = (
   };
 };
 
-export const maskCardNumber = (cardNumber: string) => {
-  const last4Digits = cardNumber.slice(-4);
-  const maskedNumber = cardNumber.slice(0, -4).replace(/\d/g, "*");
-  return maskedNumber + last4Digits;
-};
-
 export const getAside = (pathname: string) => {
   const key = pathname.split("/")[1];
   const hasAside = ["test"]?.includes(key);
   return hasAside;
-};
-
-export const convertTZ = (
-  currDate: string,
-  selectedTimeZone: string = "Europe/Tirane"
-) => {
-  const dateFormat = "DD-MM-YYYY HH:mm:ss";
-  let [date, time] = moment
-    .tz(currDate, selectedTimeZone)
-    .format(dateFormat)
-    .split(" ");
-  return { date, time };
 };
 
 export const convertTimeAgoName = (timeAgo: string) => {

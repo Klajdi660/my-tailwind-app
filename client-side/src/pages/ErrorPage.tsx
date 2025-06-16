@@ -3,7 +3,7 @@ import { FC } from "react";
 import { paths } from "../data";
 
 export const ErrorPage: FC = () => {
-  const { home } = paths;
+  const { HOME } = paths;
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -16,7 +16,7 @@ export const ErrorPage: FC = () => {
           The page you are looking for might be in another universe.
         </p>
         <div className="mt-6">
-          <Link to={home} className="text-primary hover:underline">
+          <Link to={HOME} className="text-primary hover:underline">
             Go back home
           </Link>
         </div>

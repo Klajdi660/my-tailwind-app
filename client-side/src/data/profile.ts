@@ -1,15 +1,12 @@
 import { paths } from "./general";
 import {
-  ProfileItemList,
   GenderProperties,
   ProfileMenuItems,
   AvatarProfileList,
-  PersonalDetailsList,
   SettingListParams,
   CurrListParams,
   CardImgParams,
   CardImgListParams,
-  CreditCatdListProperties,
 } from "../types";
 import {
   avatar1,
@@ -24,7 +21,7 @@ import {
   noCardTypeImg,
 } from "../assets";
 
-const { profile } = paths;
+const { PROFILE } = paths;
 
 // General
 export const themeList: SettingListParams[] = [
@@ -47,148 +44,11 @@ export const currencyList: CurrListParams = {
 };
 
 // Account
-
 export const avatarProfileList: AvatarProfileList[] = [
   { id: 1, name: avatar1, size: "w-28 h-28" },
   { id: 2, name: avatar2, size: "w-24 h-24" },
   { id: 3, name: avatar3, size: "w-20 h-20" },
   { id: 4, name: avatar4, size: "w-16 h-16" },
-];
-
-export const profileList: ProfileItemList[] = [
-  {
-    type: "input",
-    name: "username",
-    label: "Username",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-  },
-  {
-    type: "input",
-    name: "email",
-    label: "Email",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-  },
-];
-
-export const personalDetailsList: PersonalDetailsList[] = [
-  {
-    type: "input",
-    name: "firstName",
-    label: "First Name",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-  },
-  {
-    type: "input",
-    name: "lastName",
-    label: "Last Name",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-  },
-  {
-    type: "input",
-    label: "Birthday",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-    name: "dateOfBirth",
-  },
-  {
-    type: "input",
-    name: "gender",
-    label: "Gender",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-  },
-  {
-    type: "input",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-    name: "contactNumber",
-    label: "Contact Number",
-  },
-  {
-    type: "input",
-    name: "country",
-    label: "Country",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-  },
-  {
-    name: "city",
-    type: "input",
-    label: "City",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-  },
-  {
-    type: "input",
-    name: "address",
-    label: "Address",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-  },
-];
-
-export const editProfileList: ProfileItemList[] = [
-  {
-    btnTxt: "Save",
-    formName: "profile",
-    formTitle: "Profile",
-  },
-  {
-    label: "",
-    props: {
-      type: "file",
-      placeholder: "",
-    },
-    name: "imageUrl",
-    type: "image_dropzone",
-    containerDims: "h-32 w-32",
-    borderType: "rounded-full",
-  },
-  {
-    type: "input",
-    props: {
-      type: "text",
-      placeholder: "",
-    },
-    name: "username",
-    iconName: "AiOutlineUser",
-    label: "Username",
-  },
-  {
-    type: "input",
-    name: "email",
-    iconName: "AiOutlineMail",
-    label: "Email",
-    props: {
-      type: "text",
-      disabled: true,
-      placeholder: "",
-    },
-  },
 ];
 
 export const genderList: GenderProperties[] = [
@@ -262,7 +122,7 @@ export const profileMenuItems = ({
     icon: "AiOutlineUser",
     onClick: () => {
       hidden();
-      navigate(`${profile}/account`);
+      navigate(`${PROFILE}/account`);
     },
   },
   {
@@ -271,7 +131,7 @@ export const profileMenuItems = ({
     icon: "AiOutlineSetting",
     onClick: () => {
       hidden();
-      navigate(`${profile}/general`);
+      navigate(`${PROFILE}/general`);
     },
   },
   {
@@ -280,7 +140,7 @@ export const profileMenuItems = ({
     name: "GrooveIT Wallet",
     onClick: () => {
       hidden();
-      navigate(`${profile}/payments`);
+      navigate(`${PROFILE}/payments`);
     },
   },
   {
@@ -303,11 +163,6 @@ export const profileMenuItems = ({
 ];
 
 // Payment
-export const cardTypList: SettingListParams[] = [
-  { value: "debit", label: "Debit" },
-  { value: "credit", label: "Credit" },
-];
-
 export const cardImgList: CardImgListParams[] = [
   { id: 1, name: "visa_card", img: visaCardImg, width: 10, height: 4 },
   { id: 2, name: "master_card", img: masterCardImg, width: 10, height: 5 },
@@ -322,47 +177,3 @@ export const cardImg: CardImgParams = {
   discover: discoverCardImg,
   noCardType: noCardTypeImg,
 };
-
-export const creditCardList: CreditCatdListProperties[] = [
-  {
-    btnTxt: "Save billing account",
-    formName: "creditCard",
-    formTitle: "Your payment method",
-  },
-  {
-    type: "input",
-    name: "cardName",
-    label: "",
-    props: {
-      placeholder: "Name on crad",
-      type: "text",
-    },
-  },
-  {
-    type: "input",
-    name: "cardNr",
-    label: "",
-    props: {
-      placeholder: "Card number",
-      type: "text",
-    },
-  },
-  {
-    type: "input",
-    name: "cardExp",
-    label: "",
-    props: {
-      placeholder: "Expiration",
-      type: "text",
-    },
-  },
-  {
-    type: "input",
-    name: "cardCvvNr",
-    label: "",
-    props: {
-      placeholder: "CVV",
-      type: "text",
-    },
-  },
-];

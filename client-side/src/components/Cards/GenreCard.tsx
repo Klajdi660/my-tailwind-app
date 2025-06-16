@@ -8,7 +8,7 @@ import { nameTruncate, formatGenreName } from "../../utils";
 export const GenreCard: FC<GenreCardProps> = (props) => {
   const { genreId, genreName, genreImg, genreCount } = props;
 
-  const { browse } = paths;
+  const { BROWSE } = paths;
 
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export const GenreCard: FC<GenreCardProps> = (props) => {
     const params = new URLSearchParams();
     params.set(filterName, name);
     params.set(filterId, id.toString());
-    navigate(`${browse}?${params.toString()}`);
+    navigate(`${BROWSE}?${params.toString()}`);
   };
 
   return (

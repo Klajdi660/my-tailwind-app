@@ -11,7 +11,7 @@ import { defaultThemeConfig, themeConfig } from "../../configs";
 import { useAuth, useMediaResponsive, useStore } from "../../hooks";
 
 const User = () => {
-  const { profile } = paths;
+  const { PROFILE } = paths;
 
   const { user } = useAppSelector((state) => state.user);
 
@@ -20,7 +20,7 @@ const User = () => {
   return (
     <Link
       className="gap-2 p-2 rounded flex_justify_between bg-main hover:bg-primary-opacity"
-      to={profile}
+      to={PROFILE}
     >
       <div className="w-10 h-10 rounded-full flex_justify_center bg-sidebar">
         {avatar ? (

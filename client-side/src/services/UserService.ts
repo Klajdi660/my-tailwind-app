@@ -15,7 +15,7 @@ import { paths } from "../data";
 const { GET_USER_DETAILS_API, SAVE_AUTH_USER_API } = userEndpoints;
 
 export const useUserService = () => {
-  const { discover } = paths;
+  const { DISCOVER } = paths;
 
   const { setLoading } = useStore();
   const [notify] = useNotification();
@@ -94,7 +94,7 @@ export const useUserService = () => {
         })
       );
 
-      navigate(discover);
+      navigate(DISCOVER);
     } catch (error) {
       console.error(`Save auth user failed: ${error} `);
       throw error;

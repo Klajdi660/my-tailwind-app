@@ -25,26 +25,26 @@ import { SocialAuth, UserSaveForm } from "../components";
 import { PrivateLayout, PublicLayout } from "../layouts";
 
 const {
-  home,
-  logIn,
-  browse,
-  profile,
-  discover,
-  register,
-  gameDetail,
-  socialAuth,
-  verifyEmail,
-  passwordCode,
-  resetPassword,
-  forgotPassword,
-  saveAuthData,
-  accountSaved,
+  HOME,
+  LOGIN,
+  BROWSE,
+  PROFILE,
+  DISCOVER,
+  REGISTER,
+  GAME_DETAILS,
+  SOCIAL_AUTH,
+  VERIFY_EMAIL,
+  PASSWORD_CODE,
+  RESET_PASSWORD,
+  FORGOT_PASSWORD,
+  SAVE_AUTH_DATA,
+  ACCOUNT_SAVED,
 } = paths;
 
 export const Routes = () =>
   useRoutes([
     {
-      path: saveAuthData,
+      path: SAVE_AUTH_DATA,
       element: (
         <PrivateGuard>
           <PrivateLayout>
@@ -54,7 +54,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: accountSaved,
+      path: ACCOUNT_SAVED,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -64,7 +64,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: browse,
+      path: BROWSE,
       element: (
         <PrivateGuard>
           <PrivateLayout>
@@ -74,7 +74,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: discover,
+      path: DISCOVER,
       element: (
         <PrivateGuard>
           <PrivateLayout>
@@ -84,7 +84,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: `${gameDetail}/:gameId`,
+      path: `${GAME_DETAILS}/:gameId`,
       element: (
         <PrivateGuard>
           <PrivateLayout>
@@ -94,7 +94,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: forgotPassword,
+      path: FORGOT_PASSWORD,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -104,7 +104,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: home,
+      path: HOME,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -115,7 +115,7 @@ export const Routes = () =>
       index: true,
     },
     {
-      path: logIn,
+      path: LOGIN,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -126,7 +126,7 @@ export const Routes = () =>
       index: true,
     },
     {
-      path: passwordCode,
+      path: PASSWORD_CODE,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -136,7 +136,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: `${profile}/:profileId`,
+      path: `${PROFILE}/:profileId`,
       element: (
         <PrivateGuard>
           <PrivateLayout>
@@ -146,7 +146,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: register,
+      path: REGISTER,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -156,7 +156,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: resetPassword,
+      path: RESET_PASSWORD,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -166,7 +166,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: socialAuth,
+      path: SOCIAL_AUTH,
       element: (
         <PublicGuard>
           <PublicLayout>
@@ -176,7 +176,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: verifyEmail,
+      path: VERIFY_EMAIL,
       element: (
         <PublicGuard>
           <PublicLayout>

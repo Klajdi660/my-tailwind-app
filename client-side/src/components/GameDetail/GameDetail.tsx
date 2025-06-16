@@ -12,7 +12,7 @@ export const GameDetail: FC = () => {
   const { useGameDetail } = useGames();
   const { gameId } = useParams<{ gameId: string | any }>();
   const { gameDetail, gameReviews, gameVideos } = useGameDetail(gameId);
-  const { browse } = paths;
+  const { BROWSE } = paths;
 
   const { loading } = useStore();
   const { isMobile } = useMediaResponsive();
@@ -96,7 +96,7 @@ export const GameDetail: FC = () => {
                         className="rounded-full border-white text-white hover:brightness-75 transition duration-300"
                         onClick={() =>
                           navigate(
-                            `${browse}?genreId=${genre.id}&genre=${genre.name}`
+                            `${BROWSE}?genreId=${genre.id}&genre=${genre.name}`
                           )
                         }
                       />

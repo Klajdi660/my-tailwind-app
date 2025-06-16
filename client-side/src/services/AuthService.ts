@@ -33,7 +33,7 @@ const {
 } = endpoints;
 
 export const useAuthService = (): AuthService => {
-  const { verifyEmail, logIn } = paths;
+  const { VERIFY_EMAIL, LOGIN } = paths;
 
   const [notify] = useNotification();
   const navigate = useNavigate();
@@ -69,9 +69,9 @@ export const useAuthService = (): AuthService => {
       dispatch(setIsAuthenticated(true));
       // dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
 
-      localStorage.atoken = aToken;
-      localStorage.rtoken = rToken;
-      localStorage.user = JSON.stringify(user);
+      localStorage.setItem("atoken", aToken);
+      localStorage.setItem("rtoken", rToken);
+      localStorage.setItem("user", JSON.stringify(user));
     } catch (error) {
       dispatch(setLoading(false));
       notify({
@@ -184,7 +184,7 @@ export const useAuthService = (): AuthService => {
 
       const registerData = { ...values, codeExpire: data.codeExpire };
 
-      navigate(verifyEmail, { state: { registerData } });
+      navigate(VERIFY_EMAIL, { state: { registerData } });
     } catch (error) {
       setLoading(false);
       console.error(`Signup failed: ${error}`);
@@ -218,7 +218,7 @@ export const useAuthService = (): AuthService => {
         description: message,
       });
 
-      navigate(logIn);
+      navigate(LOGIN);
     } catch (error) {
       setLoading(false);
       console.error(`Verify email failed: ${error}`);
@@ -236,11 +236,10 @@ export const useAuthService = (): AuthService => {
       dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
       dispatch(setIsAuthenticated(false));
 
-      delete localStorage.atoken;
-      delete localStorage.user;
-      delete localStorage.rtoken;
-
-      // delete localStorage.lastLocation;
+      localStorage.removeItem("atoken");
+      localStorage.removeItem("user");
+      localStorage.removeItem("rtoken");
+      // localStorage.removeItem("lastLocation");
     } catch (error) {
       notify({
         variant: "error",
@@ -309,7 +308,7 @@ export const useAuthService = (): AuthService => {
         description: message,
       });
 
-      navigate(logIn);
+      navigate(LOGIN);
     } catch (error) {
       console.error(`Reset password failed: ${error}`);
       throw error;

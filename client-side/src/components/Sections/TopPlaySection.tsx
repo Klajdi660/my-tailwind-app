@@ -21,7 +21,7 @@ export const TopPlaySection: FC<TopPlaySectionProps> = (props) => {
     skeletonItemNumber = 5,
   } = props;
 
-  const { browse } = paths;
+  const { BROWSE } = paths;
 
   const { loading } = useStore();
 
@@ -63,7 +63,7 @@ export const TopPlaySection: FC<TopPlaySectionProps> = (props) => {
             </div>
           </div>
           <div className="flex items-center justify-center group">
-            <ShowMoreButton onClick={() => navigate(browse)} />
+            <ShowMoreButton onClick={() => navigate(BROWSE)} />
           </div>
         </div>
       )}

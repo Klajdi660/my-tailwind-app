@@ -1,8 +1,4 @@
 // Auth
-export type FormTitleList = {
-  [key: string]: string;
-};
-
 export interface SocialAuthList {
   id: number;
   name: string;
@@ -72,19 +68,9 @@ export type PathProperties = {
   [key: string]: string;
 };
 
-export type LogoProperties = {
-  [key: string]: string;
-};
-
 export type FontSizesProperties = {
   [key: string]: string;
 };
-
-export interface AccountTypeList {
-  id: number;
-  type: string;
-  tabName: string;
-}
 
 export interface NavLinkList {
   name: string;
@@ -95,14 +81,6 @@ export interface NavLinkList {
     icon: string;
     tooltip: string;
   }[];
-}
-
-export interface NavListsParams {
-  id: string;
-  tooltip: string;
-  to: string;
-  name: string;
-  icon: string;
 }
 
 export interface SettingsLinksParams {
@@ -120,10 +98,6 @@ export interface NotificationItemList {
 export interface PageLinkItem {
   name: string;
   link: string;
-}
-
-export interface LangMenuItem {
-  onSelectLanguage: (language: string) => void;
 }
 
 export interface DownloadBtnList {
@@ -145,33 +119,6 @@ export interface AvatarProfileList {
   id: number;
   name: string;
   size: string;
-}
-
-export interface ProfileItemList {
-  type?: string;
-  name?: string;
-  iconName?: string;
-  label?: string;
-  btnTxt?: string;
-  formName?: string;
-  formTitle?: string;
-  borderType?: string;
-  containerDims?: string;
-  props?: {
-    type?: string;
-    disabled?: boolean;
-    placeholder?: string;
-  };
-}
-
-export interface PersonalDetailsList {
-  type: string;
-  name: string;
-  label: string;
-  props: {
-    type: string;
-    placeholder: string;
-  };
 }
 
 export interface GenderProperties {
@@ -196,10 +143,6 @@ export type CurrListParams = {
   [key: string]: { label: string; value: string };
 };
 
-export type CurrencySymbolProperties = {
-  [key: string]: string;
-};
-
 export interface CardImgListParams {
   id: number;
   name: string;
@@ -209,17 +152,4 @@ export interface CardImgListParams {
 }
 export interface CardImgParams {
   [key: string]: string;
-}
-
-export interface CreditCatdListProperties {
-  btnTxt?: string;
-  formName?: string;
-  formTitle?: string;
-  type?: "input";
-  name?: string;
-  label?: string;
-  props?: {
-    placeholder?: string;
-    type?: string;
-  };
 }

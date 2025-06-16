@@ -110,5 +110,4 @@ export { Loading } from "./Loading";
 export { TopPlay } from "./TopPlay";
 export { Language } from "./Language";
 export { Searchbar } from "./SearchBar";
-export { HomeFooter } from "./HomeFooter";
 export { Notification } from "./Notification";

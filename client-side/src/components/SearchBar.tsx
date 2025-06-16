@@ -6,7 +6,7 @@ import { Icon, Image } from "../components";
 import { useGames, useMediaResponsive, useStore } from "../hooks";
 
 export const Searchbar: FC = () => {
-  const { gameDetail, browse } = paths;
+  const { GAME_DETAILS, BROWSE } = paths;
 
   const { useGameList } = useGames();
   const { isMobile } = useMediaResponsive();
@@ -32,7 +32,7 @@ export const Searchbar: FC = () => {
   const shouldShowDropdown = input.length >= 3 && gameList?.pages?.length > 0;
 
   const handleSearchSeleted = (id: string, type: string) => {
-    const nav = type === "search" ? `${gameDetail}/${id}` : browse;
+    const nav = type === "search" ? `${GAME_DETAILS}/${id}` : BROWSE;
     setInput("");
     navigate(nav);
   };

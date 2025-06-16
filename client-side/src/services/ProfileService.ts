@@ -55,7 +55,7 @@ export const useProfileService = () => {
         ...JSON.parse(data.extra),
       };
 
-      localStorage.user = JSON.stringify(data);
+      localStorage.setItem("user", JSON.stringify(data));
       dispatch(setUser(data));
 
       notify({
@@ -96,7 +96,7 @@ export const useProfileService = () => {
         ...extra,
       };
 
-      localStorage.user = JSON.stringify(data);
+      localStorage.setItem("user", JSON.stringify(data));
       dispatch(setUser(data));
 
       notify({
@@ -136,7 +136,7 @@ export const useProfileService = () => {
         ...extra,
       };
 
-      localStorage.user = JSON.stringify(data);
+      localStorage.setItem("user", JSON.stringify(data));
       dispatch(setUser(data));
       // dispatch(
       //   setSavedAuthUser({
@@ -175,7 +175,7 @@ export const useProfileService = () => {
         ...extra,
       };
 
-      localStorage.user = JSON.stringify(data);
+      localStorage.setItem("user", JSON.stringify(data));
 
       dispatch(setUser(data));
       // dispatch(

@@ -1,6 +1,6 @@
 import axios, {
   AxiosError,
-  // AxiosResponse,
+  AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
 import { store } from "../../store";
@@ -25,8 +25,8 @@ instance.interceptors.request.use(
       return config;
     }
 
-    const token =
-      config.method === "get" ? localStorage.atoken : localStorage.atoken;
+    const atoken = localStorage.getItem("atoken");
+    const token = config.method === "get" ? atoken : atoken;
 
     config.headers.Authorization = `Bearer ${token}`;
 
@@ -35,30 +35,30 @@ instance.interceptors.request.use(
   (error: AxiosError) => Promise.reject(error)
 );
 
-// instance.interceptors.response.use(
-//   (response: AxiosResponse) => response,
-//   async (error: AxiosError) => {
-//     const originalRequest: any = error.config;
+instance.interceptors.response.use(
+  (response: AxiosResponse) => response,
+  async (error: AxiosError) => {
+    const originalRequest: any = error.config;
 
-//     if (error.response && error.response.status === 401) {
-//       try {
-//         store.dispatch(deleteUser());
-//         const rToken = localStorage.rtoken;
-//         const response = await instance.post("/refresh", { rToken });
-//         const { atoken } = response.data;
+    if (error.response && error.response.status === 401) {
+      try {
+        // store.dispatch(deleteUser());
+        const rToken = localStorage.get("rtoken");
+        const response = await instance.post("/refresh", { rToken });
+        const { atoken } = response.data;
 
-//         localStorage.atoken = atoken;
+        localStorage.setItem("atoken", atoken);
 
-//         originalRequest.headers["Authorization"] = `Bearer ${atoken}`;
-//         return axios(originalRequest);
-//       } catch (error) {
-//         console.error(`Axios Response Error: ${error}`);
-//       }
-//     }
+        originalRequest.headers["Authorization"] = `Bearer ${atoken}`;
+        return axios(originalRequest);
+      } catch (error) {
+        console.error(`Axios Response Error: ${error}`);
+      }
+    }
 
-//     return Promise.reject(error);
-//   }
-// );
+    return Promise.reject(error);
+  }
+);
 
 export class HttpClient {
   static instance = instance;

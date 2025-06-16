@@ -17,7 +17,7 @@ import { paths, thresholdsLastLognBadgeColor, dateFormat } from "../../data";
 import { convertTimeAgoName, isTokenExpired, nameTruncate } from "../../utils";
 
 export const UserSaveForm: FC = () => {
-  const { logIn, home } = paths;
+  const { LOGIN, HOME } = paths;
 
   const { loginSavedUser } = useAuthService();
   const dispatch = useDispatch();
@@ -81,16 +81,16 @@ export const UserSaveForm: FC = () => {
 
   useEffect(() => {
     if (saveAuthUserData.length === 0) {
-      navigate(logIn);
+      navigate(LOGIN);
     }
-  }, [saveAuthUserData, navigate, logIn]);
+  }, [saveAuthUserData, navigate, LOGIN]);
 
   const validUsers = getValidUsers();
 
   return (
     <div className="flex_justify_between flex-col text-onNeutralBg md:py-20 py-40 h-screen">
       <div className="flex_justify_center flex-col gap-4">
-        <Link to={home}>
+        <Link to={HOME}>
           <motion.div whileHover={{ scale: 1.1 }}>
             <Image
               imgUrl={iconName}
@@ -168,7 +168,7 @@ export const UserSaveForm: FC = () => {
         })}
         <button
           className="flex_justify_center flex-col text-onNeutralBg bg-card rounded-xl hover:bg-primary-opacity w-44 h-52 p-2"
-          onClick={() => navigate(logIn)}
+          onClick={() => navigate(LOGIN)}
         >
           <div className="flex_justify_center flex-col gap-4">
             <p>Switch accounts</p>

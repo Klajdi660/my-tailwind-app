@@ -2,20 +2,11 @@ import { APP_URL } from "../configs";
 import { endpoints } from "../services";
 import {
   FormItemList,
-  FormTitleList,
   SocialAuthList,
   ThresholdsLastLognBadgeColor,
 } from "../types";
 
 const { OAUTH_GOOGLE_API } = endpoints;
-
-export const titles: FormTitleList = {
-  login: "Sign In",
-  register: "Create your account",
-  "/verify-email": "Verify Email",
-  "/reset-password": "Reset Password",
-  "/verify-reset-password": "Complete Reset Password",
-};
 
 export const socialAuthList: SocialAuthList[] = [
   {

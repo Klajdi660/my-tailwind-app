@@ -18,7 +18,7 @@ export const CartItem: FC<CartItemProps> = (props) => {
     setSelectedHeaderOpen,
   } = props;
   const { id, name, slug, background_image, price } = item;
-  const { gameDetail } = paths;
+  const { GAME_DETAILS } = paths;
 
   const { removeGameFromCart } = useCart();
   const [notify] = useNotification();
@@ -70,7 +70,7 @@ export const CartItem: FC<CartItemProps> = (props) => {
       )}
     >
       <Link
-        to={`${gameDetail}/${id}`}
+        to={`${GAME_DETAILS}/${id}`}
         className="relative flex justify-center w-full items-center group"
       >
         <div className="flex items-center justify-start flex-1 gap-2 xs:gap-4">

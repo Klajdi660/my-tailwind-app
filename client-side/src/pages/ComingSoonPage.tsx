@@ -3,7 +3,7 @@ import { FC } from "react";
 import { paths } from "../data";
 
 export const ComingSoonPage: FC = () => {
-  const { discover } = paths;
+  const { DISCOVER } = paths;
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -13,7 +13,7 @@ export const ComingSoonPage: FC = () => {
           The page you are looking for might be coming soon.
         </p>
         <div className="mt-6">
-          <Link to={discover} className="text-primary hover:underline">
+          <Link to={DISCOVER} className="text-primary hover:underline">
             Go back home
           </Link>
         </div>
