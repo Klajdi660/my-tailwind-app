@@ -6,6 +6,12 @@ export interface SocialAuthList {
   link: string;
 }
 
+export interface RegisterButtonList {
+  id: number;
+  label: string;
+  name: string;
+}
+
 export interface FormItem {
   type?: string;
   name?: string;

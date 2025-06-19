@@ -7,6 +7,7 @@ import { Button } from "../../components";
 import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
 import { genderList, dateFormatList } from "../../data";
+import { phonePrefixData, filterPhonePrefix } from "../../utils";
 
 export const PersonalDetails: FC = () => {
   const { updateProfile } = useProfileService();
@@ -41,18 +42,6 @@ export const PersonalDetails: FC = () => {
     label: `${country.flag} ${country.name}`,
   }));
 
-  const phonePrefixData = Country.getAllCountries().map((item) => {
-    const { phonecode, flag, name, isoCode } = item;
-    const prefix = phonecode.startsWith("+") ? phonecode : `+${phonecode}`;
-    return {
-      key: `${prefix}-${isoCode}`,
-      name,
-      value: prefix,
-      selected: `${item.flag} ${prefix}`,
-      label: `${flag} ${name} ${prefix}`,
-    };
-  });
-
   const onPhonePrefixChange = (value: string) => {
     setPhonePrfx(value);
     setIsFormChanged(true);
@@ -64,10 +53,6 @@ export const PersonalDetails: FC = () => {
     if (field === "contactNumber") {
       setContactNr(value);
     }
-  };
-
-  const filterPhonePrefix = (input: string, option: any) => {
-    return option?.name.toLowerCase().includes(input.toLowerCase());
   };
 
   const handleMenuClick = async (data: any) => {

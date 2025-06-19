@@ -31,7 +31,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
         "h-screen flex_justify_center px-2"
       )}
     >
-      <div className="flex flex-col p-8 gap-6 bg-card rounded w-[400px] max-w-[100vw] lg:max-w-[calc(100vw-80px)]">
+      <div className="flex flex-col p-8 gap-6 bg-card rounded w-[430px] max-w-[100vw] lg:max-w-[calc(100vw-80px)]">
         <Link to={HOME} className="flex_justify_center">
           <Image imgUrl={iconName} name="template_logo" width={140} />
         </Link>
@@ -50,9 +50,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
             <SocialAuthButton />
             <div className="flex_justify_center gap-4 divider">
               <div className="h-[1px] bg-divider flex-1" />
-              <span className="text-sm text-onNeutralBg">
-                or use your email account
-              </span>
+              <span className="text-sm text-onNeutralBg">OR</span>
               <div className="h-[1px] bg-divider flex-1" />
             </div>
           </>

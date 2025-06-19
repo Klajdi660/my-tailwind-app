@@ -4,36 +4,36 @@ export const editUsernameValidation = yup.object({
   username: yup
     .string()
     .trim()
-    .required({ message: "Please input your new Username." })
-    .min(8, { message: "Minimum 8 characters." })
-    .max(50, { message: "Maximum 50 caracters." })
-    .matches(/^[^@]+$/, "Input should not contain symbols.")
+    .required({ message: "Please input your new username" })
+    .min(8, { message: "Minimum 8 characters" })
+    .max(50, { message: "Maximum 50 caracters" })
+    .matches(/^[^@]+$/, "Input should not contain symbols")
     .required(),
 });
 
 export const updatePasswordValidation = yup.object({
-  currentPassword: yup.string().required("Current Password is required!"),
+  currentPassword: yup.string().required("Current password is required"),
   newPassword: yup
     .string()
-    .required("New Password is required!")
-    .min(8, { message: "Minimum 8 characters." })
-    .max(250, { message: "Maximum 250 caracters." })
+    .required("New password is required")
+    .min(8, { message: "Minimum 8 characters" })
+    .max(250, { message: "Maximum 250 caracters" })
     .matches(/[A-Z]/, {
-      message: "Must contain at least one capital letter.",
+      message: "Must contain at least one capital letter",
     })
     .matches(/[!@#$%^&*(),.?":{}|<>]/, {
-      message: "Must contain at least one symbol.",
+      message: "Must contain at least one symbol",
     }),
   confirmNewPassword: yup
     .string()
-    .required("Confirm Password is required")
-    .min(8, { message: "Minimum 8 characters." })
-    .max(250, { message: "Maximum 250 caracters." })
+    .required("Confirm password is required")
+    .min(8, { message: "Minimum 8 characters" })
+    .max(250, { message: "Maximum 250 caracters" })
     .matches(/[A-Z]/, {
-      message: "Must contain at least one capital letter.",
+      message: "Must contain at least one capital letter",
     })
     .matches(/[!@#$%^&*(),.?":{}|<>]/, {
-      message: "Must contain at least one symbol.",
+      message: "Must contain at least one symbol",
     })
     .oneOf([yup.ref("newPassword")], "Passwords do not match"),
 });
@@ -41,7 +41,7 @@ export const updatePasswordValidation = yup.object({
 export const deleteProfileValidation = yup.object({
   confirmDelete: yup
     .string()
-    .required({ message: "Type delete in the field below to confirm!" }),
+    .required({ message: "Type delete in the field below to confirm" }),
 });
 
 export const creditCardValidation = yup.object({

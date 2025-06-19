@@ -92,6 +92,7 @@ export { CartButton } from "./UI/Buttons/CartButton";
 export { SmallModal } from "./UI/Modals/ModalContent";
 export { SocialAuthButton } from "./UI/SocialAuthButtons";
 export { ShowMoreButton } from "./UI/Buttons/ShowMoreButton";
+export { RegisterButton } from "./UI/Buttons/RegisterButton";
 export { ProfileNameModal } from "./UI/Modals/ProfileNameModal";
 export { RemovePhotoModal } from "./UI/Modals/RemovePhotoModal";
 export { DeleteProfileModal } from "./UI/Modals/DeleteProfileModal";

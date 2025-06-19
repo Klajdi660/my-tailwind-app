@@ -2,6 +2,7 @@ import { APP_URL } from "../configs";
 import { endpoints } from "../services";
 import {
   FormItemList,
+  RegisterButtonList,
   SocialAuthList,
   ThresholdsLastLognBadgeColor,
 } from "../types";
@@ -17,32 +18,35 @@ export const socialAuthList: SocialAuthList[] = [
   },
 ];
 
+export const registerButtonList: RegisterButtonList[] = [
+  { id: 1, label: "email", name: "Email" },
+  { id: 2, label: "mobile", name: "Phone Number" },
+];
+
 export const formList: FormItemList = {
   login: [
     {
-      btnTxt: "Login",
+      btnTxt: "Log in",
       formType: "auth",
       formName: "login",
       formTitle: "Login",
       linkTo: "/register",
       footerLink: "Sign up",
       description: "to continue to Groove",
-      footerTitle: "Don't have an Account?",
+      footerTitle: "Don't have an account?",
     },
     {
       type: "input",
       props: {
         type: "text",
-        placeholder: "Email address or Username",
+        placeholder: "Email, phone number or username",
       },
       name: "identifier",
       iconName: "AiOutlineUser",
-      label: "",
     },
     {
       type: "input",
       name: "password",
-      label: "",
       props: {
         placeholder: "Password",
         type: "password",
@@ -62,12 +66,12 @@ export const formList: FormItemList = {
     {
       formType: "auth",
       linkTo: "/login",
-      btnTxt: "Register",
+      btnTxt: "Sign up",
       formName: "register",
-      footerLink: "Sign in",
+      footerLink: "Log in",
       formTitle: "Create your account",
       description: "to continue to Groove",
-      footerTitle: "Already have an account?",
+      footerTitle: "Have an account?",
     },
     {
       type: "input",
@@ -77,7 +81,15 @@ export const formList: FormItemList = {
         type: "email",
         placeholder: "Email Address",
       },
-      label: "",
+    },
+    {
+      type: "input",
+      name: "mobile",
+      iconName: "AiOutlinePhone",
+      props: {
+        type: "text",
+        placeholder: "Phone number",
+      },
     },
     {
       type: "input",
@@ -86,7 +98,6 @@ export const formList: FormItemList = {
         type: "password",
         placeholder: "Password",
       },
-      label: "",
     },
     {
       type: "input",
@@ -96,7 +107,6 @@ export const formList: FormItemList = {
         type: "text",
         placeholder: "Full Name",
       },
-      label: "",
     },
     {
       type: "input",
@@ -106,7 +116,6 @@ export const formList: FormItemList = {
         type: "text",
         placeholder: "Username",
       },
-      label: "",
     },
   ],
   "verify-email": [

@@ -14,6 +14,7 @@ import {
   AiOutlineInstagram,
   AiOutlineEyeInvisible,
   AiOutlineExclamationCircle,
+  AiOutlinePhone,
 } from "react-icons/ai";
 import {
   BiPlus,
@@ -140,6 +141,7 @@ const icons: IconsMap = {
   AiOutlineInstagram,
   AiOutlineEyeInvisible,
   AiOutlineExclamationCircle,
+  AiOutlinePhone,
   FaClock,
   BiPlus,
   BiLock,

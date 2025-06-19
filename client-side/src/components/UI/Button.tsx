@@ -25,7 +25,6 @@ export const Button: FC<ButtonProps> = forwardRef(
     return (
       <button
         className={classNames(
-          // variant === "none" && "text-primary hover:bg-primary-opacity",
           variant === "none" && className,
           variant === "outlined" &&
             "border border-primary text-primary hover:bg-primary-opacity",
@@ -34,7 +33,7 @@ export const Button: FC<ButtonProps> = forwardRef(
             "bg-primary text-white hover:brightness-110",
           variant === "gradient" &&
             "bg-gradient-to-r from-button_gradient_from to-button_gradient_to text-white",
-          "rounded font-semibold text-sm py-2 px-4 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none",
+          "rounded font-semibold text-sm p-3 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none",
           className
         )}
         disabled={disabled}
@@ -62,7 +61,9 @@ export const Button: FC<ButtonProps> = forwardRef(
               />
             )}
             {label && (
-              <div className="text-center whitespace-nowrap">{label}</div>
+              <div className="text-center font-normal whitespace-nowrap">
+                {label}
+              </div>
             )}
           </div>
         </Tooltip>

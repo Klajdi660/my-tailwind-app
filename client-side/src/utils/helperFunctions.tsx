@@ -137,3 +137,20 @@ export const countriesList = Country.getAllCountries().map((country) => ({
   value: country.isoCode,
   dialCode: country.phonecode,
 }));
+
+// Component
+export const phonePrefixData = Country.getAllCountries().map((item) => {
+  const { phonecode, flag, name, isoCode } = item;
+  const prefix = phonecode.startsWith("+") ? phonecode : `+${phonecode}`;
+  return {
+    key: `${prefix}-${isoCode}`,
+    name,
+    value: prefix,
+    selected: `${item.flag} ${prefix}`,
+    label: `${flag} ${name} ${prefix}`,
+  };
+});
+
+export const filterPhonePrefix = (input: string, option: any) => {
+  return option?.name.toLowerCase().includes(input.toLowerCase());
+};
