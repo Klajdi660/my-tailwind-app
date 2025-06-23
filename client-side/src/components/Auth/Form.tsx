@@ -31,6 +31,7 @@ export const Form: FC<FormProps> = (props) => {
     mode: "onTouched",
     resolver: yupResolver(schema),
     defaultValues,
+    context: { selectedMethod },
   });
 
   const btnTitle = data?.resetPassEmailSent ? "Resend Email" : btnTxt;
@@ -42,7 +43,7 @@ export const Form: FC<FormProps> = (props) => {
   const isPhoneNumberValid = phone(`${phonePrefix}${phoneNumber}`).isValid;
 
   return (
-    <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
       {formName === "register" && (
         <RegisterButton
           selectedMethod={selectedMethod}
@@ -190,7 +191,7 @@ export const Form: FC<FormProps> = (props) => {
 
       <div
         className={classNames(
-          "flex items-center justify-end w-full",
+          "flex items-center justify-end w-full mt-6",
           isValid && "hover:brightness-110",
           formName === "password" && "gap-4"
         )}

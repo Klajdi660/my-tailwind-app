@@ -9,6 +9,7 @@ export const RegisterPage: FC = () => {
 
   const onSubmitRegisterHandler = async (values: RegisterUserValues) => {
     try {
+      console.log("values :>> ", values);
       await register(values);
     } catch (error) {
       console.error(`Failed to register! ${error}`);
