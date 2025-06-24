@@ -160,15 +160,22 @@ export const useAuthService = (): AuthService => {
     try {
       setLoading(true);
 
+      const { identifier, email, mobile, ...rest } = values;
+
+      const payload: RegisterUserValues = email
+        ? { ...rest, email }
+        : mobile
+          ? { ...rest, mobile }
+          : rest;
+
       const registerResp = await HttpClient.post<RegisterResponse>(
         REGISTER_API,
-        values
+        payload
       );
 
       setLoading(false);
 
       const { error, message, data } = registerResp;
-
       if (error) {
         notify({
           variant: "error",
@@ -182,7 +189,7 @@ export const useAuthService = (): AuthService => {
         description: `${message}`,
       });
 
-      const registerData = { ...values, codeExpire: data.codeExpire };
+      const registerData = { ...payload, codeExpire: data.codeExpire };
 
       navigate(VERIFY_EMAIL, { state: { registerData } });
     } catch (error) {

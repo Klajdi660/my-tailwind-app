@@ -24,8 +24,9 @@ export const Form: FC<FormProps> = (props) => {
     handleSubmit,
     reset,
     setValue,
+    getValues,
   } = useForm({
-    mode: "onTouched",
+    mode: "all",
     resolver: yupResolver(schema),
     defaultValues,
     shouldUnregister: false,
@@ -70,7 +71,9 @@ export const Form: FC<FormProps> = (props) => {
               "relative rounded",
               errors.identifier || errors.email || errors.mobile
                 ? "border border-red-500 hover:border-red-500"
-                : "border border-divider focus-within:border-primary hover:border-primary"
+                : identifier
+                  ? "border border-green-500 hover:border-green-500"
+                  : "border border-divider focus-within:border-primary hover:border-primary"
             )}
           >
             <input
@@ -82,7 +85,20 @@ export const Form: FC<FormProps> = (props) => {
               autoComplete="off"
             />
             <span className="absolute right-2 top-[50%] translate-y-[-50%]">
-              <IconButton name="AiOutlineUser" iconClassName="text-secondary" />
+              {identifier &&
+              !errors.identifier &&
+              !errors.email &&
+              !errors.mobile ? (
+                <IconButton
+                  name="MdOutlineCheckCircleOutline"
+                  iconClassName="text-green-500"
+                />
+              ) : (
+                <IconButton
+                  name="AiOutlineUser"
+                  iconClassName="text-secondary"
+                />
+              )}
             </span>
           </div>
           <ErrorFormMessage
@@ -112,7 +128,9 @@ export const Form: FC<FormProps> = (props) => {
                     "relative rounded",
                     errors[list.name]
                       ? "border border-red-500 hover:border-red-500"
-                      : "border border-divider focus-within:border-primary",
+                      : formName === "register" && getValues(list.name)
+                        ? "border border-green-500 hover:border-green-500"
+                        : "border border-divider focus-within:border-primary hover:border-primary",
                     !list.props.disabled
                       ? "hover:border-primary"
                       : "bg-main border-transparent"
@@ -143,31 +161,40 @@ export const Form: FC<FormProps> = (props) => {
                         autoComplete={formName !== "login" ? "off" : "on"}
                       />
                       <span className="absolute right-2 top-[50%] translate-y-[-50%]">
-                        <IconButton
-                          name={
-                            ["password", "confirmPassword"].includes(
-                              list.props.type
-                            )
-                              ? showPass?.[list.name]
-                                ? "AiOutlineEyeInvisible"
-                                : "AiOutlineEye"
-                              : `${list.iconName}`
-                          }
-                          iconClassName={classNames(
-                            "text-secondary",
-                            ["password", "confirmPassword"].includes(
-                              list.props.type
-                            ) &&
-                              !list.props.disabled &&
-                              "hover:text-onNeutralBg hover:scale-[1.1]"
-                          )}
-                          onClick={() =>
-                            setShowPass((prev: any) => ({
-                              ...prev,
-                              [list.name]: !prev?.[list.name],
-                            }))
-                          }
-                        />
+                        {formName === "register" &&
+                        !errors[list.name] &&
+                        getValues(list.name) ? (
+                          <IconButton
+                            name="MdOutlineCheckCircleOutline"
+                            iconClassName="text-green-500"
+                          />
+                        ) : (
+                          <IconButton
+                            name={
+                              ["password", "confirmPassword"].includes(
+                                list.props.type
+                              )
+                                ? showPass?.[list.name]
+                                  ? "AiOutlineEyeInvisible"
+                                  : "AiOutlineEye"
+                                : `${list.iconName}`
+                            }
+                            iconClassName={classNames(
+                              "text-secondary",
+                              ["password", "confirmPassword"].includes(
+                                list.props.type
+                              ) &&
+                                !list.props.disabled &&
+                                "hover:text-onNeutralBg hover:scale-[1.1]"
+                            )}
+                            onClick={() =>
+                              setShowPass((prev: any) => ({
+                                ...prev,
+                                [list.name]: !prev?.[list.name],
+                              }))
+                            }
+                          />
+                        )}
                       </span>
                     </div>
                   )}

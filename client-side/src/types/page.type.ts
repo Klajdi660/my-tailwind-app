@@ -10,11 +10,12 @@ export interface LoginUserValues {
 }
 
 export interface RegisterUserValues {
-  email: string;
+  email?: string;
   fullname: string;
   password: string;
   username: string;
-  // passwordConfirm: string;
+  mobile?: string;
+  identifier?: string;
 }
 
 export interface VerifyEmailValues {

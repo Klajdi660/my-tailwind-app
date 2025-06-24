@@ -30,8 +30,22 @@ export const registerValidation = yup.object({
         return true;
       }
     ),
-  identifier: yup.string().required("Please enter your email or phone number"),
-  fullName: yup.string().required("Please input your full name"),
+  identifier: yup
+    .string()
+    .required("Please enter your email or phone number")
+    .test(
+      "is-valid-identifier",
+      "Please enter a valid email or phone number",
+      function (value) {
+        const isPhone = /^[\d+]/.test(value || "");
+        const isEmail = (value || "").includes("@");
+        return isPhone || isEmail;
+      }
+    ),
+  fullName: yup
+    .string()
+    .required("Please input your full name")
+    .min(4, "Please enter your correct full name"),
   username: yup
     .string()
     .required("Please input your username")
