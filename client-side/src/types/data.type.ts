@@ -6,10 +6,30 @@ export interface SocialAuthList {
   link: string;
 }
 
-export interface RegisterButtonList {
-  id: number;
-  label: string;
-  name: string;
+interface InputFieldMetadata<Name extends string> {
+  name: Name;
+  placeholder: string;
+  type: string;
+  icon?: string;
+  iconVisible?: string;
+  iconHidden?: string;
+}
+
+export type LoginInputMetadata = InputFieldMetadata<"identifier" | "password">;
+export type RegisterInputMetadata = InputFieldMetadata<
+  "identifier" | "password" | "username" | "fullname"
+>;
+
+export interface FormDataType<T extends { name: string }> {
+  metadata: {
+    formName: string;
+    formTitle: string;
+    description: string;
+    footerTitle: string;
+    footerLink: string;
+    buttonName: string;
+  };
+  inputMetadata: T[];
 }
 
 export interface FormItem {

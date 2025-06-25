@@ -3,7 +3,7 @@ import { Form, Progress } from "antd";
 import { Link } from "react-router-dom";
 import OtpInput from "react18-input-otp";
 import { FC, useState, useEffect } from "react";
-import { useForm } from "../../hooks";
+import { useForms } from "../../hooks";
 import { classNames } from "../../utils";
 import { Button } from "../../components";
 import { OTPCodeFormProps } from "../../types";
@@ -11,7 +11,7 @@ import { OTPCodeFormProps } from "../../types";
 export const OTPCodeForm: FC<OTPCodeFormProps> = (props) => {
   const { data, onSubmit, resendCodeHandler } = props;
 
-  const { listForm } = useForm();
+  const { listForm } = useForms();
 
   const [otpFilled, setOtpFilled] = useState<boolean>(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number>(0);

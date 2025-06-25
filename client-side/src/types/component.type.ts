@@ -15,7 +15,7 @@ export interface FormProps {
 }
 
 export interface FormListItem {
-  name: string;
+  name: string | any;
   iconName: string;
   type: string;
   label: string;

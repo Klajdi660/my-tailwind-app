@@ -5,10 +5,12 @@ import {
   Image,
   Form,
   OTPCodeForm,
+  FormRedirect,
   SocialAuthButton,
+  FormDivider,
 } from "../../components";
 import { paths } from "../../data";
-import { useForm } from "../../hooks";
+import { useForms } from "../../hooks";
 import { iconName } from "../../assets";
 import { classNames } from "../../utils";
 import { FormTemplateProps, FormListItem } from "../../types";
@@ -16,9 +18,9 @@ import { FormTemplateProps, FormListItem } from "../../types";
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { schema, onSubmit, defaultValues, resendCodeHandler, data } = props;
 
-  const { HOME, FORGOT_PASSWORD } = paths;
+  const { HOME } = paths;
 
-  const { listForm } = useForm();
+  const { listForm } = useForms();
 
   const [
     { linkTo, formName, formTitle, footerLink, description, footerTitle },
@@ -48,11 +50,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
         {["login", "register"]?.includes(formName) && (
           <>
             <SocialAuthButton />
-            <div className="flex_justify_center gap-4 divider">
-              <div className="h-[1px] bg-divider flex-1" />
-              <span className="text-sm text-onNeutralBg">OR</span>
-              <div className="h-[1px] bg-divider flex-1" />
-            </div>
+            <FormDivider />
           </>
         )}
         {["verify-email", "password-code"]?.includes(formName) ? (
@@ -70,26 +68,12 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
               defaultValues={defaultValues}
               data={data}
             />
-            <div className="flex flex-col gap-4">
-              {formName === "login" && (
-                <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
-                  Forgot Password!
-                  <Link to={FORGOT_PASSWORD}>
-                    <p className="text-primary hover:underline underline-offset-2">
-                      Reset
-                    </p>
-                  </Link>
-                </div>
-              )}
-              <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
-                {footerTitle}
-                <Link to={linkTo}>
-                  <p className="text-primary hover:underline underline-offset-2">
-                    {footerLink}
-                  </p>
-                </Link>
-              </div>
-            </div>
+            <FormRedirect
+              formName={formName}
+              footerTitle={footerTitle}
+              footerLink={footerLink}
+              linkTo={linkTo}
+            />
           </>
         )}
       </div>

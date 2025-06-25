@@ -92,7 +92,6 @@ export { CartButton } from "./UI/Buttons/CartButton";
 export { SmallModal } from "./UI/Modals/ModalContent";
 export { SocialAuthButton } from "./UI/SocialAuthButtons";
 export { ShowMoreButton } from "./UI/Buttons/ShowMoreButton";
-export { RegisterButton } from "./UI/Buttons/RegisterButton";
 export { ProfileNameModal } from "./UI/Modals/ProfileNameModal";
 export { RemovePhotoModal } from "./UI/Modals/RemovePhotoModal";
 export { DeleteProfileModal } from "./UI/Modals/DeleteProfileModal";
@@ -102,6 +101,8 @@ export { ChangeUsernameModal } from "./UI/Modals/ChangeUsernameModal";
 export { SessionExpiredModal } from "./UI/Modals/SessionExpiredModal";
 export { DesktopToggleButton } from "./UI/Buttons/DesktopToggleButton";
 export { ChangeProfilePhotoModal } from "./UI/Modals/ChangeProfilePhotoModal";
+export { FormDivider } from "./UI/FormDivider";
+export { FormRedirect } from "./UI/FormRedirect";
 
 // Others Component
 export { Footer } from "./Footer";

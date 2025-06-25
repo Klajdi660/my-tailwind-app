@@ -2,9 +2,11 @@ import { APP_URL } from "../configs";
 import { endpoints } from "../services";
 import {
   FormItemList,
-  RegisterButtonList,
+  FormDataType,
   SocialAuthList,
   ThresholdsLastLognBadgeColor,
+  LoginInputMetadata,
+  RegisterInputMetadata,
 } from "../types";
 
 const { OAUTH_GOOGLE_API } = endpoints;
@@ -18,10 +20,69 @@ export const socialAuthList: SocialAuthList[] = [
   },
 ];
 
-export const registerButtonList: RegisterButtonList[] = [
-  { id: 1, label: "email", name: "Email" },
-  { id: 2, label: "mobile", name: "Phone Number" },
-];
+export const loginFormData: FormDataType<LoginInputMetadata> = {
+  metadata: {
+    formName: "login",
+    formTitle: "Log in",
+    description: "to continue to Groove",
+    footerTitle: "Don't have an account?",
+    footerLink: "Sign up",
+    buttonName: "Logi in",
+  },
+  inputMetadata: [
+    {
+      name: "identifier",
+      placeholder: "Email, username or phone number",
+      type: "text",
+      icon: "AiOutlineUser",
+    },
+    {
+      name: "password",
+      placeholder: "Password",
+      type: "password",
+      iconVisible: "AiOutlineEye",
+      iconHidden: "AiOutlineEyeInvisible",
+    },
+  ],
+};
+
+export const registerFormData: FormDataType<RegisterInputMetadata> = {
+  metadata: {
+    formName: "register",
+    formTitle: "Create your account",
+    description: "to continue to Groove",
+    footerLink: "Log in",
+    footerTitle: "Have an account?",
+    buttonName: "Sign up",
+  },
+  inputMetadata: [
+    {
+      name: "identifier",
+      placeholder: "Email, username or phone number",
+      type: "text",
+      icon: "AiOutlineUser",
+    },
+    {
+      name: "username",
+      placeholder: "Username",
+      type: "text",
+      icon: "AiOutlineUser",
+    },
+    {
+      name: "fullname",
+      placeholder: "Full Name",
+      type: "text",
+      icon: "AiOutlineUser",
+    },
+    {
+      name: "password",
+      placeholder: "Password",
+      type: "password",
+      iconVisible: "AiOutlineEye",
+      iconHidden: "AiOutlineEyeInvisible",
+    },
+  ],
+};
 
 export const formList: FormItemList = {
   login: [
@@ -29,7 +90,7 @@ export const formList: FormItemList = {
       btnTxt: "Log in",
       formType: "auth",
       formName: "login",
-      formTitle: "Login",
+      formTitle: "Log in",
       linkTo: "/register",
       footerLink: "Sign up",
       description: "to continue to Groove",

@@ -3,13 +3,13 @@ import { LoginUserValues } from "../../types";
 import { loginValidation } from "../../utils";
 import { FormTemplate } from "../../components";
 import { useAuthService } from "../../services";
+import { LoginForm } from "../../components/Auth/LoginForm";
 
 export const LoginPage: FC = () => {
   const { login } = useAuthService();
 
   const onSubmitLoginHandler = async (values: LoginUserValues) => {
     try {
-      // await new Promise((resolve) => setTimeout(resolve, 1000));
       await login(values);
     } catch (error) {
       console.error(`Failed to login! ${error}`);
@@ -17,6 +17,7 @@ export const LoginPage: FC = () => {
   };
 
   return (
-    <FormTemplate schema={loginValidation} onSubmit={onSubmitLoginHandler} />
+    // <FormTemplate schema={loginValidation} onSubmit={onSubmitLoginHandler} />
+    <LoginForm onSubmit={onSubmitLoginHandler} />
   );
 };

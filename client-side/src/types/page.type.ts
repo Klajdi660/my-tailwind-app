@@ -5,7 +5,7 @@ export interface ForgotPasswordValues {
 
 export interface LoginUserValues {
   password: string;
-  remember: boolean;
+  remember?: boolean;
   identifier: string;
 }
 
