@@ -16,7 +16,7 @@ export const LoginPage: FC = () => {
   };
 
   return (
-    <FormTemplate schema={loginValidation} onSubmit={onSubmitLoginHandler} />
-    // <LoginForm onSubmit={onSubmitLoginHandler} />
+    // <FormTemplate schema={loginValidation} onSubmit={onSubmitLoginHandler} />
+    <LoginForm onSubmit={onSubmitLoginHandler} />
   );
 };
