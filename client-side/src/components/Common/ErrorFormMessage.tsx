@@ -12,7 +12,8 @@ export const ErrorFormMessage: FC<ErrorFormMessageProps> = ({
       {message && (
         <p className="text-xs text-red-500 flex flex-row items-center mt-2">
           <Icon
-            name="PiWarningCircleBold"
+            // name="PiWarningCircleBold"
+            name="IoCloseCircleOutline"
             size={18}
             className="mr-1 text-red-500"
           />

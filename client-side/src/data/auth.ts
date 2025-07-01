@@ -11,6 +11,12 @@ import {
 
 const { OAUTH_GOOGLE_API } = endpoints;
 
+export const userRegex = {
+  emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  mobileRegex: /^\+?\d{7,15}$/,
+  usernameRegex: /^[a-zA-Z0-9_]{3,30}$/,
+};
+
 export const socialAuthList: SocialAuthList[] = [
   {
     id: 1,
@@ -58,7 +64,7 @@ export const registerFormData: FormDataType<RegisterInputMetadata> = {
   inputMetadata: [
     {
       name: "identifier",
-      placeholder: "Email, username or phone number",
+      placeholder: "Email or phone number",
       type: "text",
       icon: "AiOutlineUser",
     },

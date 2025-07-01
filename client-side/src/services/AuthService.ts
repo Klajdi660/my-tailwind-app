@@ -18,7 +18,7 @@ import {
   RegisterUserValues,
   ForgotPasswordValues,
 } from "../types";
-import { paths } from "../data";
+import { paths, userRegex } from "../data";
 import { HttpClient } from "../client";
 import { useNotification } from "../hooks";
 
@@ -32,6 +32,27 @@ const {
   LOGIN_SAVED_USER_API,
 } = endpoints;
 
+const { emailRegex, mobileRegex } = userRegex;
+
+const parseIdentifier = (
+  identifier: string,
+  phonePrefix?: string
+): Record<string, string> => {
+  if (mobileRegex.test(identifier)) {
+    return {
+      mobile: phonePrefix ? `${phonePrefix}${identifier}` : identifier,
+      email: "",
+      username: "",
+    };
+  }
+
+  if (emailRegex.test(identifier)) {
+    return { email: identifier, mobile: "", username: "" };
+  }
+
+  return { username: identifier, email: "", mobile: "" };
+};
+
 export const useAuthService = (): AuthService => {
   const { VERIFY_EMAIL, LOGIN } = paths;
 
@@ -43,20 +64,18 @@ export const useAuthService = (): AuthService => {
 
   const login = async (values: LoginUserValues): Promise<void> => {
     try {
-      dispatch(setLoading(true));
+      // dispatch(setLoading(true));
 
-      const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, values);
+      const { identifier, password, phonePrefix } = values;
+      const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
+      const payload = { ...parsedIdentifier, password };
 
-      dispatch(setLoading(false));
+      const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, payload);
 
-      const { error, message, data } = loginResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+      // dispatch(setLoading(false));
+
+      const { error, data } = loginResp;
+      if (error) throw loginResp;
 
       const { aToken, rToken, user } = data;
       user.extra = {
@@ -72,13 +91,12 @@ export const useAuthService = (): AuthService => {
       localStorage.setItem("atoken", aToken);
       localStorage.setItem("rtoken", rToken);
       localStorage.setItem("user", JSON.stringify(user));
-    } catch (error) {
-      dispatch(setLoading(false));
+    } catch (error: any) {
+      // dispatch(setLoading(false));
       notify({
         variant: "error",
-        description: "Login failed. Incorrect email/username or password",
+        description: error.message,
       });
-      console.error(`Login failed: ${error}`);
       throw error;
     }
   };
@@ -160,13 +178,11 @@ export const useAuthService = (): AuthService => {
     try {
       setLoading(true);
 
-      const { identifier, email, mobile, ...rest } = values;
+      const { identifier, phonePrefix, ...rest } = values;
+      const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
+      const payload = { ...parsedIdentifier, ...rest };
 
-      const payload: RegisterUserValues = email
-        ? { ...rest, email }
-        : mobile
-          ? { ...rest, mobile }
-          : rest;
+      console.log("payload :>> ", payload);
 
       const registerResp = await HttpClient.post<RegisterResponse>(
         REGISTER_API,

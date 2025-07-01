@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FormTemplate } from "../../components";
+import { FormTemplate, RegisterForm } from "../../components";
 import { useAuthService } from "../../services";
 import { registerValidation } from "../../utils";
 import { RegisterUserValues } from "../../types";
@@ -16,9 +16,10 @@ export const RegisterPage: FC = () => {
   };
 
   return (
-    <FormTemplate
-      schema={registerValidation}
-      onSubmit={onSubmitRegisterHandler}
-    />
+    // <FormTemplate
+    //   schema={registerValidation}
+    //   onSubmit={onSubmitRegisterHandler}
+    // />
+    <RegisterForm onSubmit={onSubmitRegisterHandler} />
   );
 };

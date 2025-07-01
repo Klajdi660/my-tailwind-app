@@ -1,9 +1,8 @@
 import { FC } from "react";
 import { LoginUserValues } from "../../types";
 import { loginValidation } from "../../utils";
-import { FormTemplate } from "../../components";
+import { FormTemplate, LoginForm } from "../../components";
 import { useAuthService } from "../../services";
-import { LoginForm } from "../../components/Auth/LoginForm";
 
 export const LoginPage: FC = () => {
   const { login } = useAuthService();
@@ -12,12 +11,12 @@ export const LoginPage: FC = () => {
     try {
       await login(values);
     } catch (error) {
-      console.error(`Failed to login! ${error}`);
+      console.error("Failed to login");
     }
   };
 
   return (
-    // <FormTemplate schema={loginValidation} onSubmit={onSubmitLoginHandler} />
-    <LoginForm onSubmit={onSubmitLoginHandler} />
+    <FormTemplate schema={loginValidation} onSubmit={onSubmitLoginHandler} />
+    // <LoginForm onSubmit={onSubmitLoginHandler} />
   );
 };

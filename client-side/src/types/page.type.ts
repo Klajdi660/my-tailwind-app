@@ -7,15 +7,15 @@ export interface LoginUserValues {
   password: string;
   remember?: boolean;
   identifier: string;
+  phonePrefix?: string;
 }
 
 export interface RegisterUserValues {
-  email?: string;
   fullname: string;
   password: string;
   username: string;
-  mobile?: string;
-  identifier?: string;
+  identifier: string;
+  phonePrefix?: string;
 }
 
 export interface VerifyEmailValues {

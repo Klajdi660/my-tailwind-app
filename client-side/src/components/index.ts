@@ -4,6 +4,8 @@ export { SocialAuth } from "./Auth/SocialAuth";
 export { OTPCodeForm } from "./Auth/OTPCodeForm";
 export { FormTemplate } from "./Auth/FormTemplate";
 export { UserSaveForm } from "./Auth/UserSaveForm";
+export { LoginForm } from "./Auth/LoginForm";
+export { RegisterForm } from "./Auth/RegisterForm";
 
 // Browse
 export { FilterBy } from "./Browse/FilterBy";

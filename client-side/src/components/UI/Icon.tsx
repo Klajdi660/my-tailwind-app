@@ -72,6 +72,7 @@ import {
 } from "react-icons/hi";
 import { HiChartBar } from "react-icons/hi2";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { IoCloseCircleOutline } from "react-icons/io5";
 import { LiaSignOutAltSolid, LiaCarSideSolid } from "react-icons/lia";
 import { LuShip, LuArrowDownUp } from "react-icons/lu";
 import {
@@ -241,6 +242,7 @@ const icons: IconsMap = {
   TiLocationArrowOutline,
   TbUserSquare,
   TbBuildingWarehouse,
+  IoCloseCircleOutline,
 };
 
 export const Icon: FC<IconParams> = ({

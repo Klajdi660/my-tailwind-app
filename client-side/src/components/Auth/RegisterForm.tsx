@@ -14,19 +14,19 @@ import {
   Title,
 } from "../../components";
 import { iconName } from "../../assets";
-import { LoginUserValues } from "../../types";
-import { loginFormData, paths } from "../../data";
-import { classNames, loginValidation, phonePrefixData } from "../../utils";
+import { RegisterUserValues } from "../../types";
+import { registerFormData, paths } from "../../data";
+import { classNames, phonePrefixData, registerValidation } from "../../utils";
 
-interface LoginFormProps {
-  onSubmit: (values: LoginUserValues) => Promise<void>;
+interface RegisterFormProps {
+  onSubmit: (values: RegisterUserValues) => Promise<void>;
 }
 
-export const LoginForm: FC<LoginFormProps> = (props) => {
+export const RegisterForm: FC<RegisterFormProps> = (props) => {
   const { onSubmit } = props;
 
-  const { HOME, REGISTER } = paths;
-  const { metadata, inputMetadata } = loginFormData;
+  const { HOME, LOGIN } = paths;
+  const { metadata, inputMetadata } = registerFormData;
   const {
     formName,
     formTitle,
@@ -35,7 +35,6 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
     footerLink,
     buttonName,
   } = metadata;
-
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [identifierValue, setIdentifierValue] = useState<string>("");
@@ -48,7 +47,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
     handleSubmit,
   } = useForm({
     mode: "all",
-    resolver: yupResolver(loginValidation),
+    resolver: yupResolver(registerValidation),
   });
 
   return (
@@ -145,7 +144,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
           formName={formName}
           footerTitle={footerTitle}
           footerLink={footerLink}
-          linkTo={REGISTER}
+          linkTo={LOGIN}
         />
       </div>
     </div>

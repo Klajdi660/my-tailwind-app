@@ -17,7 +17,7 @@ interface InputFieldMetadata<Name extends string> {
 
 export type LoginInputMetadata = InputFieldMetadata<"identifier" | "password">;
 export type RegisterInputMetadata = InputFieldMetadata<
-  "identifier" | "password" | "username" | "fullname"
+  "identifier" | "username" | "fullname" | "password"
 >;
 
 export interface FormDataType<T extends { name: string }> {

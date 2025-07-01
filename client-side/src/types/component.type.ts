@@ -38,7 +38,7 @@ export interface FormListItem {
 export interface FormTemplateProps {
   data?: any;
   schema: any;
-  onSubmit: any;
+  onSubmit: (values: any) => Promise<void>;
   defaultValues?: any;
   resendCodeHandler?: any;
 }
