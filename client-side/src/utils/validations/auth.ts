@@ -1,8 +1,9 @@
 import * as yup from "yup";
 
-const userRegex = {
+const userRegex: Record<string, RegExp> = {
   emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  mobileRegex: /^\+?\d{7,15}$/,
+  phoneNumberRegex: /^\+?\d{7,15}$/,
+  isPhoneNumberRegex: /^\d/,
   usernameRegex: /^[a-zA-Z0-9_]{3,30}$/,
 };
 
@@ -18,10 +19,10 @@ export const registerValidation = yup.object({
 
         if (!value) return false;
 
-        const { emailRegex, mobileRegex } = userRegex;
+        const { emailRegex, phoneNumberRegex, isPhoneNumberRegex } = userRegex;
 
         if (emailRegex.test(value)) return true;
-        if (mobileRegex.test(value)) return true;
+        if (phoneNumberRegex.test(value)) return true;
 
         if (value.includes("@") && !emailRegex.test(value)) {
           return createError({
@@ -30,8 +31,8 @@ export const registerValidation = yup.object({
           });
         }
 
-        if (/^\d/.test(value)) {
-          if (mobileRegex.test(value)) {
+        if (isPhoneNumberRegex.test(value)) {
+          if (phoneNumberRegex.test(value)) {
             return true;
           } else {
             return createError({
@@ -77,10 +78,15 @@ export const loginValidation = yup.object({
 
         if (!value) return false;
 
-        const { emailRegex, mobileRegex, usernameRegex } = userRegex;
+        const {
+          emailRegex,
+          phoneNumberRegex,
+          isPhoneNumberRegex,
+          usernameRegex,
+        } = userRegex;
 
         if (emailRegex.test(value)) return true;
-        if (mobileRegex.test(value)) return true;
+        if (phoneNumberRegex.test(value)) return true;
         if (usernameRegex.test(value)) return true;
 
         if (value.includes("@") && !emailRegex.test(value)) {
@@ -90,8 +96,8 @@ export const loginValidation = yup.object({
           });
         }
 
-        if (/^\d/.test(value)) {
-          if (mobileRegex.test(value)) {
+        if (isPhoneNumberRegex.test(value)) {
+          if (phoneNumberRegex.test(value)) {
             return true;
           } else {
             return createError({

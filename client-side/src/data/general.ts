@@ -21,7 +21,7 @@ export const paths: PathProperties = {
   DISCOVER: "/discover",
   SOCIAL_AUTH: "/social-auth",
   GAME_DETAILS: "/game-detail",
-  VERIFY_EMAIL: "/verify-email",
+  VERIFY_EMAIL: "/register-confirm",
   PASSWORD_CODE: "/password-code",
   FORGOT_PASSWORD: "/forgot-password",
   // RESET_PASSWORD: "/reset-password",

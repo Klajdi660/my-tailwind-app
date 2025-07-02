@@ -1,5 +1,3 @@
-import { APP_URL } from "../configs";
-import { endpoints } from "../services";
 import {
   FormItemList,
   FormDataType,
@@ -10,11 +8,13 @@ import {
   ForgotPasswordButtonType,
 } from "../types";
 import { paths } from "./general";
+import { APP_URL } from "../configs";
+import { endpoints } from "../services";
 
 const { REGISTER, LOGIN } = paths;
 const { OAUTH_GOOGLE_API } = endpoints;
 
-export const userRegex = {
+export const userRegex: Record<string, RegExp> = {
   emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   phoneNumberRegex: /^\+?\d{7,15}$/,
   isPhoneNumberRegex: /^\d+$/,
