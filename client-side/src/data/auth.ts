@@ -208,12 +208,12 @@ export const formList: FormItemList = {
       },
     },
   ],
-  "verify-email": [
+  "register-confirm": [
     {
       formType: "auth",
       linkTo: "/login",
       footerLink: "Go back",
-      btnTxt: "Verify Email",
+      btnTxt: "Verify Account",
       formName: "verify-email",
       formTitle: "Verify your account",
       footerTitle: "Remember Password?",
