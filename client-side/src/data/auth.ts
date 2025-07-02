@@ -7,13 +7,17 @@ import {
   ThresholdsLastLognBadgeColor,
   LoginInputMetadata,
   RegisterInputMetadata,
+  ForgotPasswordButtonType,
 } from "../types";
+import { paths } from "./general";
 
+const { REGISTER, LOGIN } = paths;
 const { OAUTH_GOOGLE_API } = endpoints;
 
 export const userRegex = {
   emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  mobileRegex: /^\+?\d{7,15}$/,
+  phoneNumberRegex: /^\+?\d{7,15}$/,
+  isPhoneNumberRegex: /^\d+$/,
   usernameRegex: /^[a-zA-Z0-9_]{3,30}$/,
 };
 
@@ -26,6 +30,11 @@ export const socialAuthList: SocialAuthList[] = [
   },
 ];
 
+export const forgotPasswordButtonList: ForgotPasswordButtonType[] = [
+  { id: 1, label: "email", name: "Email" },
+  { id: 2, label: "sms", name: "SMS" },
+];
+
 export const loginFormData: FormDataType<LoginInputMetadata> = {
   metadata: {
     formName: "login",
@@ -34,13 +43,13 @@ export const loginFormData: FormDataType<LoginInputMetadata> = {
     footerTitle: "Don't have an account?",
     footerLink: "Sign up",
     buttonName: "Logi in",
+    linkTo: REGISTER,
   },
   inputMetadata: [
     {
       name: "identifier",
       placeholder: "Email, username or phone number",
       type: "text",
-      icon: "AiOutlineUser",
     },
     {
       name: "password",
@@ -60,25 +69,23 @@ export const registerFormData: FormDataType<RegisterInputMetadata> = {
     footerLink: "Log in",
     footerTitle: "Have an account?",
     buttonName: "Sign up",
+    linkTo: LOGIN,
   },
   inputMetadata: [
     {
       name: "identifier",
       placeholder: "Email or phone number",
       type: "text",
-      icon: "AiOutlineUser",
     },
     {
       name: "username",
       placeholder: "Username",
       type: "text",
-      icon: "AiOutlineUser",
     },
     {
       name: "fullname",
       placeholder: "Full Name",
       type: "text",
-      icon: "AiOutlineUser",
     },
     {
       name: "password",
@@ -88,6 +95,22 @@ export const registerFormData: FormDataType<RegisterInputMetadata> = {
       iconHidden: "AiOutlineEyeInvisible",
     },
   ],
+};
+
+export const forgotPasswordFormData: Record<string, string> = {
+  formName: "forgot-password",
+  formTitle: "Reset Password",
+  description: "to continue to Groove",
+  footerTitle: "Remember Password?",
+  footerLink: "Go back",
+  linkTo: LOGIN,
+  emailText:
+    " We will send you an email with instructions on how to reset your password",
+  smsText: "We will text you a verification code to reset your password",
+  emailPlaceholder: "Email",
+  smsPlaceholder: "Phone number",
+  emailButtonName: "Email Me",
+  smsButtonName: "Text Me",
 };
 
 export const formList: FormItemList = {

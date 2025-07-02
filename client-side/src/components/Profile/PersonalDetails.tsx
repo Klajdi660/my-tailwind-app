@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { FC, useState } from "react";
 import { DatePicker, Select } from "antd";
-import { Country } from "country-state-city";
+// import { Country } from "country-state-city";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "../../components";
 import { useAppSelector } from "../../store";
@@ -13,17 +13,8 @@ export const PersonalDetails: FC = () => {
   const { updateProfile } = useProfileService();
 
   const { user } = useAppSelector((state) => state.user);
-  const {
-    city,
-    gender,
-    address,
-    country,
-    lastName,
-    firstName,
-    postalCode,
-    dateOfBirth,
-    contactNumber,
-  } = user.extra;
+  const { gender, lastName, firstName, dateOfBirth, contactNumber } =
+    user.extra;
   const { phonePrefix, phoneNumber } = contactNumber || {};
 
   const [phonePrfx, setPhonePrfx] = useState<string>(phonePrefix || "");
@@ -37,10 +28,10 @@ export const PersonalDetails: FC = () => {
     ? dayjs(dateOfBirth, dateFormatList[2])
     : null;
 
-  const countryData = Country.getAllCountries().map((country) => ({
-    value: country.name,
-    label: `${country.flag} ${country.name}`,
-  }));
+  // const countryData = Country.getAllCountries().map((country) => ({
+  //   value: country.name,
+  //   label: `${country.flag} ${country.name}`,
+  // }));
 
   const onPhonePrefixChange = (value: string) => {
     setPhonePrfx(value);

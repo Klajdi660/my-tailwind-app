@@ -15,7 +15,7 @@ import {
 } from "../../components";
 import { iconName } from "../../assets";
 import { RegisterUserValues } from "../../types";
-import { registerFormData, paths } from "../../data";
+import { registerFormData, paths, userRegex } from "../../data";
 import { classNames, phonePrefixData, registerValidation } from "../../utils";
 
 interface RegisterFormProps {
@@ -25,7 +25,8 @@ interface RegisterFormProps {
 export const RegisterForm: FC<RegisterFormProps> = (props) => {
   const { onSubmit } = props;
 
-  const { HOME, LOGIN } = paths;
+  const { HOME } = paths;
+  const { isPhoneNumberRegex } = userRegex;
   const { metadata, inputMetadata } = registerFormData;
   const {
     formName,
@@ -34,7 +35,9 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
     footerTitle,
     footerLink,
     buttonName,
+    linkTo,
   } = metadata;
+
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [identifierValue, setIdentifierValue] = useState<string>("");
@@ -81,7 +84,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
                 )}
               >
                 {item.name === "identifier" &&
-                  /^\d+$/.test(identifierValue) && (
+                  isPhoneNumberRegex.test(identifierValue) && (
                     <Select
                       options={phonePrefixData.map(({ key, ...rest }) => ({
                         key,
@@ -144,7 +147,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
           formName={formName}
           footerTitle={footerTitle}
           footerLink={footerLink}
-          linkTo={LOGIN}
+          linkTo={linkTo}
         />
       </div>
     </div>

@@ -32,13 +32,13 @@ const {
   LOGIN_SAVED_USER_API,
 } = endpoints;
 
-const { emailRegex, mobileRegex } = userRegex;
+const { emailRegex, phoneNumberRegex } = userRegex;
 
 const parseIdentifier = (
   identifier: string,
   phonePrefix?: string
 ): Record<string, string> => {
-  if (mobileRegex.test(identifier)) {
+  if (phoneNumberRegex.test(identifier)) {
     return {
       mobile: phonePrefix ? `${phonePrefix}${identifier}` : identifier,
       email: "",
@@ -182,8 +182,6 @@ export const useAuthService = (): AuthService => {
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
       const payload = { ...parsedIdentifier, ...rest };
 
-      console.log("payload :>> ", payload);
-
       const registerResp = await HttpClient.post<RegisterResponse>(
         REGISTER_API,
         payload
@@ -277,13 +275,18 @@ export const useAuthService = (): AuthService => {
     values: ForgotPasswordValues
   ): Promise<void> => {
     try {
+      const { email, phoneNumber, phonePrefix } = values;
+
+      const payload = phoneNumber
+        ? { email: "", phoneNumber: `${phonePrefix}${phoneNumber}` }
+        : { email, phoneNumber: "" };
+
       const forgotPasswordResp = await HttpClient.post<AuthResponse>(
         FORGOT_PASSWORD_API,
-        values
+        payload
       );
 
       const { error, message } = forgotPasswordResp;
-
       if (error) {
         notify({
           variant: "error",

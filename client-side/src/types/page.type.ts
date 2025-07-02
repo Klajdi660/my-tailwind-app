@@ -1,6 +1,8 @@
 // Auth
 export interface ForgotPasswordValues {
-  email: string;
+  email?: string;
+  phoneNumber?: string;
+  phonePrefix?: string;
 }
 
 export interface LoginUserValues {

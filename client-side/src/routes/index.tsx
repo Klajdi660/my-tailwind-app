@@ -43,56 +43,56 @@ const {
 
 export const Routes = () =>
   useRoutes([
-    // {
-    //   path: SAVE_AUTH_DATA,
-    //   element: (
-    //     <PrivateGuard>
-    //       <PrivateLayout>
-    //         <SaveDataAuthPage />
-    //       </PrivateLayout>
-    //     </PrivateGuard>
-    //   ),
-    // },
-    // {
-    //   path: ACCOUNT_SAVED,
-    //   element: (
-    //     <PublicGuard>
-    //       <PublicLayout>
-    //         <UserSaveForm />
-    //       </PublicLayout>
-    //     </PublicGuard>
-    //   ),
-    // },
-    // {
-    //   path: BROWSE,
-    //   element: (
-    //     <PrivateGuard>
-    //       <PrivateLayout>
-    //         <BrowsePage />
-    //       </PrivateLayout>
-    //     </PrivateGuard>
-    //   ),
-    // },
-    // {
-    //   path: DISCOVER,
-    //   element: (
-    //     <PrivateGuard>
-    //       <PrivateLayout>
-    //         <DiscoverPage />
-    //       </PrivateLayout>
-    //     </PrivateGuard>
-    //   ),
-    // },
-    // {
-    //   path: `${GAME_DETAILS}/:gameId`,
-    //   element: (
-    //     <PrivateGuard>
-    //       <PrivateLayout>
-    //         <GameDetailPage />
-    //       </PrivateLayout>
-    //     </PrivateGuard>
-    //   ),
-    // },
+    {
+      path: SAVE_AUTH_DATA,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <SaveDataAuthPage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
+    {
+      path: ACCOUNT_SAVED,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <UserSaveForm />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
+    {
+      path: BROWSE,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <BrowsePage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
+    {
+      path: DISCOVER,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <DiscoverPage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
+    {
+      path: `${GAME_DETAILS}/:gameId`,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <GameDetailPage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
     {
       path: FORGOT_PASSWORD,
       element: (
@@ -103,17 +103,17 @@ export const Routes = () =>
         </PublicGuard>
       ),
     },
-    // {
-    //   path: HOME,
-    //   element: (
-    //     <PublicGuard>
-    //       <PublicLayout>
-    //         <HomePage />
-    //       </PublicLayout>
-    //     </PublicGuard>
-    //   ),
-    //   index: true,
-    // },
+    {
+      path: HOME,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <HomePage />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+      index: true,
+    },
     {
       path: LOGIN,
       element: (
@@ -135,16 +135,16 @@ export const Routes = () =>
         </PublicGuard>
       ),
     },
-    // {
-    //   path: `${PROFILE}/:profileId`,
-    //   element: (
-    //     <PrivateGuard>
-    //       <PrivateLayout>
-    //         <ProfilePage />
-    //       </PrivateLayout>
-    //     </PrivateGuard>
-    //   ),
-    // },
+    {
+      path: `${PROFILE}/:profileId`,
+      element: (
+        <PrivateGuard>
+          <PrivateLayout>
+            <ProfilePage />
+          </PrivateLayout>
+        </PrivateGuard>
+      ),
+    },
     {
       path: REGISTER,
       element: (

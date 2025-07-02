@@ -1,30 +1,18 @@
-import { FC, useState } from "react";
-import { FormTemplate } from "../../components";
+import { FC } from "react";
 import { useAuthService } from "../../services";
-import { forgotPassValidation } from "../../utils";
 import { ForgotPasswordValues } from "../../types";
+import { ForgotPasswordForm } from "../../components";
 
 export const ForgotPasswordPage: FC = () => {
   const { forgotPassword } = useAuthService();
 
-  const [resetPassEmail, setResetEmail] = useState<string>("");
-  const [resetPassEmailSent, setResetPassEmailSent] = useState<boolean>(false);
-
   const onSubmitForgotPassHandler = async (values: ForgotPasswordValues) => {
     try {
       await forgotPassword(values);
-      setResetEmail(values.email);
-      setResetPassEmailSent(true);
     } catch (error) {
       console.error(`Failed to verify email! ${error}`);
     }
   };
 
-  return (
-    <FormTemplate
-      onSubmit={onSubmitForgotPassHandler}
-      schema={forgotPassValidation}
-      data={{ resetPassEmailSent, resetPassEmail }}
-    />
-  );
+  return <ForgotPasswordForm onSubmit={onSubmitForgotPassHandler} />;
 };

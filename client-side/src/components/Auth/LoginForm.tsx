@@ -15,7 +15,7 @@ import {
 } from "../../components";
 import { iconName } from "../../assets";
 import { LoginUserValues } from "../../types";
-import { loginFormData, paths } from "../../data";
+import { loginFormData, paths, userRegex } from "../../data";
 import { classNames, loginValidation, phonePrefixData } from "../../utils";
 
 interface LoginFormProps {
@@ -25,7 +25,8 @@ interface LoginFormProps {
 export const LoginForm: FC<LoginFormProps> = (props) => {
   const { onSubmit } = props;
 
-  const { HOME, REGISTER } = paths;
+  const { HOME } = paths;
+  const { isPhoneNumberRegex } = userRegex;
   const { metadata, inputMetadata } = loginFormData;
   const {
     formName,
@@ -34,6 +35,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
     footerTitle,
     footerLink,
     buttonName,
+    linkTo,
   } = metadata;
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
@@ -82,7 +84,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
                 )}
               >
                 {item.name === "identifier" &&
-                  /^\d+$/.test(identifierValue) && (
+                  isPhoneNumberRegex.test(identifierValue) && (
                     <Select
                       options={phonePrefixData.map(({ key, ...rest }) => ({
                         key,
@@ -145,7 +147,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
           formName={formName}
           footerTitle={footerTitle}
           footerLink={footerLink}
-          linkTo={REGISTER}
+          linkTo={linkTo}
         />
       </div>
     </div>

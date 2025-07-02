@@ -6,6 +6,7 @@ export { FormTemplate } from "./Auth/FormTemplate";
 export { UserSaveForm } from "./Auth/UserSaveForm";
 export { LoginForm } from "./Auth/LoginForm";
 export { RegisterForm } from "./Auth/RegisterForm";
+export { ForgotPasswordForm } from "./Auth/ForgotPasswordForm";
 
 // Browse
 export { FilterBy } from "./Browse/FilterBy";
@@ -105,6 +106,7 @@ export { DesktopToggleButton } from "./UI/Buttons/DesktopToggleButton";
 export { ChangeProfilePhotoModal } from "./UI/Modals/ChangeProfilePhotoModal";
 export { FormDivider } from "./UI/FormDivider";
 export { FormRedirect } from "./UI/FormRedirect";
+export { ForgotPasswordButton } from "./UI/Buttons/ForgotPasswordButton";
 
 // Others Component
 export { Footer } from "./Footer";

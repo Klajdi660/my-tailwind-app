@@ -6,11 +6,16 @@ export interface SocialAuthList {
   link: string;
 }
 
+export interface ForgotPasswordButtonType {
+  id: number;
+  label: string;
+  name: string;
+}
+
 interface InputFieldMetadata<Name extends string> {
   name: Name;
   placeholder: string;
   type: string;
-  icon?: string;
   iconVisible?: string;
   iconHidden?: string;
 }
@@ -28,6 +33,7 @@ export interface FormDataType<T extends { name: string }> {
     footerTitle: string;
     footerLink: string;
     buttonName: string;
+    linkTo: string;
   };
   inputMetadata: T[];
 }

@@ -1,7 +1,6 @@
 import { FC } from "react";
+import { LoginForm } from "../../components";
 import { LoginUserValues } from "../../types";
-import { loginValidation } from "../../utils";
-import { FormTemplate, LoginForm } from "../../components";
 import { useAuthService } from "../../services";
 
 export const LoginPage: FC = () => {
@@ -15,8 +14,5 @@ export const LoginPage: FC = () => {
     }
   };
 
-  return (
-    // <FormTemplate schema={loginValidation} onSubmit={onSubmitLoginHandler} />
-    <LoginForm onSubmit={onSubmitLoginHandler} />
-  );
+  return <LoginForm onSubmit={onSubmitLoginHandler} />;
 };
