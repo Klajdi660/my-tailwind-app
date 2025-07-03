@@ -208,13 +208,13 @@ export const formList: FormItemList = {
       },
     },
   ],
-  "register-confirm": [
+  "verify-account": [
     {
       formType: "auth",
       linkTo: "/login",
       footerLink: "Go back",
       btnTxt: "Verify Account",
-      formName: "verify-email",
+      formName: "verify-account",
       formTitle: "Verify your account",
       footerTitle: "Remember Password?",
       description: "to continue to Groove",

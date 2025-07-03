@@ -97,7 +97,21 @@ export interface GameRatingListProperties {
 
 // General
 export type PathProperties = {
-  [key: string]: string;
+  // [key: string]: string;
+  HOME: string;
+  LOGIN: string;
+  BROWSE: string;
+  PROFILE: string;
+  REGISTER: string;
+  DISCOVER: string;
+  SOCIAL_AUTH: string;
+  GAME_DETAILS: string;
+  VERIFY_ACCOUNT: string;
+  PASSWORD_CODE: string;
+  FORGOT_PASSWORD: string;
+  RESET_PASSWORD: string;
+  SAVE_AUTH_DATA: string;
+  ACCOUNT_SAVED: string;
 };
 
 export type FontSizesProperties = {

@@ -53,7 +53,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
             <FormDivider />
           </>
         )}
-        {["verify-email", "password-code"]?.includes(formName) ? (
+        {["verify-account", "password-code"]?.includes(formName) ? (
           <OTPCodeForm
             onSubmit={onSubmit}
             resendCodeHandler={resendCodeHandler}

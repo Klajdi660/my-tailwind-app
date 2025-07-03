@@ -33,7 +33,7 @@ const {
   REGISTER,
   GAME_DETAILS,
   SOCIAL_AUTH,
-  VERIFY_EMAIL,
+  VERIFY_ACCOUNT,
   PASSWORD_CODE,
   RESET_PASSWORD,
   FORGOT_PASSWORD,
@@ -176,7 +176,7 @@ export const Routes = () =>
       ),
     },
     {
-      path: VERIFY_EMAIL,
+      path: VERIFY_ACCOUNT,
       element: (
         <PublicGuard>
           <PublicLayout>

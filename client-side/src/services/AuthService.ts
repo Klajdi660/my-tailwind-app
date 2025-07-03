@@ -54,7 +54,7 @@ const parseIdentifier = (
 };
 
 export const useAuthService = (): AuthService => {
-  const { VERIFY_EMAIL, LOGIN } = paths;
+  const { VERIFY_ACCOUNT, LOGIN } = paths;
 
   const [notify] = useNotification();
   const navigate = useNavigate();
@@ -205,7 +205,7 @@ export const useAuthService = (): AuthService => {
 
       const registerData = { ...payload, codeExpire: data.codeExpire };
 
-      navigate(VERIFY_EMAIL, { state: { registerData } });
+      navigate(VERIFY_ACCOUNT, { state: { registerData } });
     } catch (error) {
       setLoading(false);
       console.error(`Signup failed: ${error}`);
