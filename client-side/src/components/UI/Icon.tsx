@@ -4,38 +4,23 @@ import {
   AiFillStar,
   AiFillHeart,
   AiOutlineEye,
-  AiOutlineMail,
   AiOutlineEdit,
-  AiOutlinePlus,
   AiOutlineUser,
   AiOutlineDelete,
   AiOutlineSetting,
-  AiOutlineYoutube,
-  AiOutlineInstagram,
   AiOutlineEyeInvisible,
   AiOutlineExclamationCircle,
-  AiOutlinePhone,
 } from "react-icons/ai";
 import {
   BiPlus,
   BiLock,
   BiGame,
-  BiUser,
   BiMinus,
-  BiWorld,
   BiSearch,
   BiChevronsRight,
   BiSelectMultiple,
 } from "react-icons/bi";
-import {
-  BsGlobe,
-  BsThreeDots,
-  BsMoonStars,
-  BsShieldLock,
-  BsSignpostSplit,
-  BsGenderAmbiguous,
-  BsArrowDownUp,
-} from "react-icons/bs";
+import { BsGlobe, BsThreeDots, BsShieldLock } from "react-icons/bs";
 import { CiShoppingTag } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
 import {
@@ -52,10 +37,8 @@ import {
   FaWpexplorer,
   FaPlaystation,
   FaClock,
-  FaStreetView,
   FaCreditCard,
   FaCheck,
-  FaRegEdit,
   FaRegCircle,
   FaDotCircle,
 } from "react-icons/fa";
@@ -63,13 +46,7 @@ import { FaCcPaypal } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiUpload, FiEdit } from "react-icons/fi";
-import { GoDotFill } from "react-icons/go";
-import {
-  HiMenuAlt2,
-  HiCheck,
-  HiOutlineUpload,
-  HiOutlineLocationMarker,
-} from "react-icons/hi";
+import { HiMenuAlt2, HiCheck, HiOutlineUpload } from "react-icons/hi";
 import { HiChartBar } from "react-icons/hi2";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoCloseCircleOutline } from "react-icons/io5";
@@ -85,25 +62,16 @@ import {
   MdOutlineGames,
   MdOutlineCancel,
   MdOutlinePayment,
-  MdOutlineWbSunny,
   MdOutlineExplore,
-  MdOutlineAddCircleOutline,
-  MdOutlineLocationSearching,
   MdOutlineSwitchAccount,
-  MdOutlineCameraAlt,
-  MdOutlineEdit,
-  MdOutlineVerifiedUser,
-  MdCalendarMonth,
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
   MdKeyboardArrowUp,
   MdOutlineSort,
-  MdDeleteOutline,
   MdOutlineCheckBoxOutlineBlank,
   MdOutlineCheckCircleOutline,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
-import { LiaCoinsSolid } from "react-icons/lia";
 import {
   PiWarningCircle,
   PiWarningCircleBold,
@@ -113,19 +81,10 @@ import {
   RiFirefoxLine,
   RiInstagramFill,
   RiSecurePaymentLine,
-  RiArrowUpLine,
-  RiTimeZoneLine,
   RiDeleteBinLine,
 } from "react-icons/ri";
-import {
-  SlArrowUp,
-  SlLocationPin,
-  SlSocialDropbox,
-  SlGameController,
-} from "react-icons/sl";
+import { SlLocationPin, SlSocialDropbox } from "react-icons/sl";
 import { SiNintendo } from "react-icons/si";
-import { TiLocationArrowOutline } from "react-icons/ti";
-import { TbUserSquare, TbBuildingWarehouse } from "react-icons/tb";
 import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
 
@@ -133,34 +92,23 @@ const icons: IconsMap = {
   AiFillStar,
   AiFillHeart,
   AiOutlineEye,
-  AiOutlineMail,
   AiOutlineEdit,
-  AiOutlinePlus,
   AiOutlineUser,
   AiOutlineDelete,
   AiOutlineSetting,
-  AiOutlineYoutube,
-  AiOutlineInstagram,
   AiOutlineEyeInvisible,
   AiOutlineExclamationCircle,
-  AiOutlinePhone,
   FaClock,
   BiPlus,
   BiLock,
   BiGame,
-  BiUser,
   BiMinus,
-  BiWorld,
   BiSearch,
   BiChevronsRight,
   BiSelectMultiple,
   BsGlobe,
   BsThreeDots,
-  BsMoonStars,
   BsShieldLock,
-  BsSignpostSplit,
-  BsGenderAmbiguous,
-  BsArrowDownUp,
   CiShoppingTag,
   CgGames,
   FaXbox,
@@ -175,25 +123,20 @@ const icons: IconsMap = {
   FaOpencart,
   FaWpexplorer,
   FaPlaystation,
-  FaStreetView,
   FaCirclePlus,
   FaCreditCard,
   FaCcPaypal,
   FaCheck,
-  FaRegEdit,
   FaRegCircle,
   FaDotCircle,
   FcGoogle,
   FiUpload,
   FiAlertTriangle,
   FiEdit,
-  GoDotFill,
-  LiaCoinsSolid,
   HiCheck,
   HiOutlineUpload,
   HiMenuAlt2,
   HiChartBar,
-  HiOutlineLocationMarker,
   IoMdNotificationsOutline,
   LiaCarSideSolid,
   LiaSignOutAltSolid,
@@ -208,20 +151,12 @@ const icons: IconsMap = {
   MdOutlineGames,
   MdOutlineCancel,
   MdOutlinePayment,
-  MdOutlineWbSunny,
   MdOutlineExplore,
-  MdOutlineAddCircleOutline,
-  MdOutlineLocationSearching,
   MdOutlineSwitchAccount,
-  MdOutlineCameraAlt,
-  MdOutlineEdit,
-  MdOutlineVerifiedUser,
-  MdCalendarMonth,
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
   MdKeyboardArrowUp,
   MdOutlineSort,
-  MdDeleteOutline,
   MdOutlineCheckCircleOutline,
   MdOutlineCheckBoxOutlineBlank,
   GoArrowLeft,
@@ -231,17 +166,10 @@ const icons: IconsMap = {
   RiFirefoxLine,
   RiInstagramFill,
   RiSecurePaymentLine,
-  RiArrowUpLine,
-  RiTimeZoneLine,
   RiDeleteBinLine,
-  SlArrowUp,
   SlLocationPin,
   SlSocialDropbox,
-  SlGameController,
   SiNintendo,
-  TiLocationArrowOutline,
-  TbUserSquare,
-  TbBuildingWarehouse,
   IoCloseCircleOutline,
 };
 

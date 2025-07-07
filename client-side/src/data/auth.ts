@@ -132,7 +132,6 @@ export const formList: FormItemList = {
         placeholder: "Email, phone number or username",
       },
       name: "identifier",
-      iconName: "AiOutlineUser",
     },
     {
       type: "input",
@@ -166,7 +165,6 @@ export const formList: FormItemList = {
     {
       type: "input",
       name: "email",
-      iconName: "AiOutlineMail",
       props: {
         type: "email",
         placeholder: "Email Address",
@@ -175,7 +173,6 @@ export const formList: FormItemList = {
     {
       type: "input",
       name: "mobile",
-      iconName: "AiOutlinePhone",
       props: {
         type: "text",
         placeholder: "Phone number",
@@ -192,7 +189,6 @@ export const formList: FormItemList = {
     {
       type: "input",
       name: "fullName",
-      iconName: "AiOutlineUser",
       props: {
         type: "text",
         placeholder: "Full Name",
@@ -201,7 +197,6 @@ export const formList: FormItemList = {
     {
       type: "input",
       name: "username",
-      iconName: "AiOutlineUser",
       props: {
         type: "text",
         placeholder: "Username",
@@ -235,12 +230,10 @@ export const formList: FormItemList = {
     {
       type: "input",
       name: "email",
-      iconName: "AiOutlineMail",
       props: {
         type: "email",
         placeholder: "Email Address",
       },
-      label: "",
     },
   ],
   "reset-password": [
@@ -261,7 +254,6 @@ export const formList: FormItemList = {
         placeholder: "New Password",
         type: "password",
       },
-      label: "",
     },
     {
       type: "input",
@@ -270,7 +262,6 @@ export const formList: FormItemList = {
         type: "confirmPassword",
         placeholder: "Confirm New Password",
       },
-      label: "",
     },
   ],
   "password-code": [
@@ -294,7 +285,6 @@ export const formList: FormItemList = {
     {
       type: "input",
       name: "username",
-      label: "",
       props: {
         type: "text",
         placeholder: "Username",
@@ -303,7 +293,6 @@ export const formList: FormItemList = {
     {
       type: "input",
       name: "email",
-      label: "",
       props: {
         disabled: true,
         type: "text",

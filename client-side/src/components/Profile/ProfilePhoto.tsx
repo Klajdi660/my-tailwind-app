@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { useStore, useMediaResponsive } from "../../hooks";
 import { userIcon } from "../../assets";
 import { useAppSelector } from "../../store";
 import { Button, Image } from "../../components";
+import { useStore, useMediaResponsive } from "../../hooks";
 
 export const ProfilePhoto: FC = () => {
   const { isMobile } = useMediaResponsive();

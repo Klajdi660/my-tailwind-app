@@ -3,14 +3,15 @@ import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import creditCardType from "credit-card-type";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { cardImgList } from "../../data";
-import { useAppSelector } from "../../store";
-import { useProfileService } from "../../services";
 import {
   classNames,
   creditCardValidation,
   firstLetterToUpperCase,
 } from "../../utils";
+import { cardImgList } from "../../data";
+import { useAppSelector } from "../../store";
+import { useProfileService } from "../../services";
+
 import { ErrorFormMessage, Button, Image, Icon } from "../../components";
 
 const cvvContent = (

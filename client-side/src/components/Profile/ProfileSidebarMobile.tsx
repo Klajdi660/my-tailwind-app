@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Icon } from "..";
+import { Icon } from "../../components";
 import { classNames } from "../../utils";
 import { settingsLinks, paths } from "../../data";
 

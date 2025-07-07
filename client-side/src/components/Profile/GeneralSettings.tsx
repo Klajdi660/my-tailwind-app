@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { useDispatch } from "react-redux";
 import { Select } from "antd";
+import { useDispatch } from "react-redux";
 import { useStore } from "../../hooks";
-import { useProfileService } from "../../services";
-import { themeList, languageList, currencyList } from "../../data";
-import { useAppSelector, updateThemeConfig } from "../../store";
 import { countriesList } from "../../utils";
+import { useProfileService } from "../../services";
+import { useAppSelector, updateThemeConfig } from "../../store";
+import { themeList, languageList, currencyList } from "../../data";
 
 export const GeneralSettings: FC = () => {
   const { timeZones } = useStore();

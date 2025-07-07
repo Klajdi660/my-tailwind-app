@@ -41,7 +41,6 @@ export interface FormDataType<T extends { name: string }> {
 export interface FormItem {
   type?: string;
   name?: string;
-  iconName?: string;
   label?: string;
   linkTo?: string;
   btnTxt?: string;
