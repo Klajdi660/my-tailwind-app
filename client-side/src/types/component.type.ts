@@ -385,10 +385,11 @@ export interface IconButtonProps {
 export interface ImageProps {
   name?: string;
   width?: number | string;
-  imgUrl: string;
+  imgUrl?: string;
   height?: number | string;
   styles?: string;
   effect?: Effect;
+  onClick?: () => void;
 }
 
 export interface OverlayProps {

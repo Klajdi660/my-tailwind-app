@@ -4,7 +4,7 @@ import { noImg } from "../../assets";
 import { ImageProps } from "../../types";
 
 export const Image: FC<ImageProps> = (props) => {
-  const { imgUrl, name, width, height, styles, effect } = props;
+  const { imgUrl, name, width, height, styles, effect, onClick } = props;
 
   const img = imgUrl ? imgUrl : noImg;
 
@@ -16,6 +16,7 @@ export const Image: FC<ImageProps> = (props) => {
       height={height}
       className={styles}
       effect={effect}
+      onClick={onClick}
     />
   );
 };

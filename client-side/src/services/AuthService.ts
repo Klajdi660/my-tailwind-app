@@ -40,17 +40,17 @@ const parseIdentifier = (
 ): Record<string, string> => {
   if (phoneNumberRegex.test(identifier)) {
     return {
-      phoneNumber: phonePrefix ? `${phonePrefix}${identifier}` : identifier,
+      phoneNr: phonePrefix ? `${phonePrefix}${identifier}` : identifier,
       email: "",
       username: "",
     };
   }
 
   if (emailRegex.test(identifier)) {
-    return { email: identifier, phoneNumber: "", username: "" };
+    return { email: identifier, phoneNr: "", username: "" };
   }
 
-  return { username: identifier, email: "", phoneNumber: "" };
+  return { username: identifier, email: "", phoneNr: "" };
 };
 
 export const useAuthService = (): AuthService => {

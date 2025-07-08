@@ -34,9 +34,9 @@ const Application = () => {
                     <StylesProvider />
                     <ToastContainer />
                     <Router>
-                      <FormProvider>
-                        <Routes />
-                      </FormProvider>
+                      {/* <FormProvider> */}
+                      <Routes />
+                      {/* </FormProvider> */}
                     </Router>
                   </App>
                 </ConfigProvider>
