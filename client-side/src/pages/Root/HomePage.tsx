@@ -55,7 +55,7 @@ export const HomePage: FC = () => {
   return (
     <div className="w-full h-screen">
       <Image
-        styles="hidden sm:block absolute h-full w-full object-cover"
+        styles="fixed h-screen w-full object-cover"
         imgUrl={backgroundImage}
         name="/"
       />
