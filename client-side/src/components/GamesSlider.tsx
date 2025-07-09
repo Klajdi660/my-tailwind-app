@@ -12,12 +12,11 @@ export const GamesSlider: FC = () => {
 
   const [selectedGameId, setSelectedGameId] = useState<number | undefined>();
   const [backgroundImage, setBackgroundImage] = useState<string | undefined>();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [, setCurrentIndex] = useState(0);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const { gameDetail } = useGameDetail(selectedGameId) as any;
 
-  // Set initial game
   useEffect(() => {
     if (gamesSlider && gamesSlider.length > 0) {
       const initialGame = gamesSlider[0];
@@ -27,7 +26,6 @@ export const GamesSlider: FC = () => {
     }
   }, [gamesSlider]);
 
-  // Auto swipe logic
   useEffect(() => {
     if (!gamesSlider || gamesSlider.length === 0) return;
 
@@ -39,7 +37,7 @@ export const GamesSlider: FC = () => {
         setBackgroundImage(nextGame.background_image);
         return nextIndex;
       });
-    }, 5000); // Change every 5 seconds
+    }, 5000);
 
     return () => clearInterval(intervalRef.current!);
   }, [gamesSlider]);
@@ -53,7 +51,6 @@ export const GamesSlider: FC = () => {
     setBackgroundImage(imgUrl);
     setCurrentIndex(index);
 
-    // Reset auto swipe timer
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
