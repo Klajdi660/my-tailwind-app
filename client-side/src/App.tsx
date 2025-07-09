@@ -9,15 +9,22 @@ import { Routes } from "./routes";
 import { persistor, store } from "./store";
 import { StylesProvider } from "./providers";
 import { themeConfig } from "./utils";
-import { AuthProvider, FormProvider, StoreProvider } from "./contexts";
+import {
+  AuthProvider,
+  //  FormProvider,
+  StoreProvider,
+} from "./contexts";
 import "./index.css";
 import "swiper/css";
+import "swiper/css/thumbs";
 import "swiper/css/autoplay";
+import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/swiper-bundle.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "react-lazy-load-image-component/src/effects/opacity.css";
+import { ScrollToTop } from "./components";
 
 const queryClient = new QueryClient();
 
@@ -33,10 +40,13 @@ const Application = () => {
                   <App>
                     <StylesProvider />
                     <ToastContainer />
+
                     <Router>
-                      {/* <FormProvider> */}
-                      <Routes />
-                      {/* </FormProvider> */}
+                      <ScrollToTop>
+                        {/* <FormProvider> */}
+                        <Routes />
+                        {/* </FormProvider> */}
+                      </ScrollToTop>
                     </Router>
                   </App>
                 </ConfigProvider>

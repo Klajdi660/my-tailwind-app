@@ -82,6 +82,7 @@ export { TrackCardSkeleton } from "./Skeleton/TrackCardSkeleton";
 export { HeaderBannerSkeleton } from "./Skeleton/HeaderBannerSkeleton";
 
 // UI
+export { ScrollToTop } from "./UI/ScrollToTop";
 export { Tab } from "./UI/Tab";
 export { Icon } from "./UI/Icon";
 export { Image } from "./UI/Image";
@@ -110,6 +111,7 @@ export { ForgotPasswordButton } from "./UI/Buttons/ForgotPasswordButton";
 
 // Others Component
 export { Footer } from "./Footer";
+export { Header } from "./Header";
 export { Navbar } from "./NavBar";
 export { ShowApp } from "./ShowApp";
 export { Loading } from "./Loading";
@@ -117,3 +119,4 @@ export { TopPlay } from "./TopPlay";
 export { Language } from "./Language";
 export { Searchbar } from "./SearchBar";
 export { Notification } from "./Notification";
+export { GamesSlider } from "./GamesSlider";
