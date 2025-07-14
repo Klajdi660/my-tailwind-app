@@ -13,7 +13,7 @@ import {
   // CollectionPage,
   GameDetailPage,
   ComingSoonPage,
-  VerifyEmailPage,
+  VerifyAccountPage,
   ResetPasswordPage,
   ForgotPasswordPage,
   PasswordConfirmCodePage,
@@ -180,7 +180,7 @@ export const Routes = () =>
       element: (
         <PublicGuard>
           <PublicLayout>
-            <VerifyEmailPage />
+            <VerifyAccountPage />
           </PublicLayout>
         </PublicGuard>
       ),

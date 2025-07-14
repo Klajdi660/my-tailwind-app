@@ -17,6 +17,7 @@ import {
   RegisterResponse,
   RegisterUserValues,
   ForgotPasswordValues,
+  VerifyAccountValues,
 } from "../types";
 import { paths, userRegex } from "../data";
 import { HttpClient } from "../client";
@@ -213,7 +214,7 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const emailVerify = async (values: any): Promise<void> => {
+  const verifyAccount = async (values: VerifyAccountValues): Promise<void> => {
     try {
       setLoading(true);
 
@@ -346,7 +347,7 @@ export const useAuthService = (): AuthService => {
     logout,
     register,
     socialAuth,
-    emailVerify,
+    verifyAccount,
     resetPassword,
     forgotPassword,
     loginSavedUser,

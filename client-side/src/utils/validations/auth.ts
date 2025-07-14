@@ -164,3 +164,10 @@ export const resetPassValidation = yup.object({
     })
     .required({ message: "Please enter password again" }),
 });
+
+export const verifyAccountValidation = yup.object({
+  code: yup
+    .string()
+    .required("Please enter 6 digit code")
+    .matches(/^\d{6}$/, "Code must be exactly 6 digits"),
+});

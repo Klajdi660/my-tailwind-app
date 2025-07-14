@@ -1,21 +1,19 @@
 import { FC } from "react";
 import { useLocation } from "react-router-dom";
-import { FormTemplate } from "../../components";
-import { verifyValidation } from "../../utils";
 import { useAuthService } from "../../services";
-import { VerifyEmailValues } from "../../types";
+import { VerifyAccountValues } from "../../types";
+import { VerifyAccountForm } from "../../components";
 
-export const VerifyEmailPage: FC = () => {
+export const VerifyAccountPage: FC = () => {
   const location = useLocation();
-  const { emailVerify, register } = useAuthService();
+  const { verifyAccount, register } = useAuthService();
 
   const { registerData } = location.state || {};
 
-  const onSubmitVerifyEmailHandler = async (values: VerifyEmailValues) => {
+  const onSubmitVerifyAccountHandler = async (values: VerifyAccountValues) => {
     try {
-      const { code } = values;
-      await emailVerify({
-        code,
+      await verifyAccount({
+        code: values.code,
         email: registerData?.email,
       });
     } catch (error) {
@@ -32,11 +30,9 @@ export const VerifyEmailPage: FC = () => {
   };
 
   return (
-    <FormTemplate
-      schema={verifyValidation}
-      onSubmit={onSubmitVerifyEmailHandler}
+    <VerifyAccountForm
+      onSubmit={onSubmitVerifyAccountHandler}
       resendCodeHandler={resendCodeHandler}
-      data={registerData}
     />
   );
 };

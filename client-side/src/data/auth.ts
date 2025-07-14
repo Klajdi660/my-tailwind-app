@@ -6,6 +6,7 @@ import {
   LoginInputMetadata,
   RegisterInputMetadata,
   ForgotPasswordButtonType,
+  VerifyAccountInputMetadata,
 } from "../types";
 import { paths } from "./general";
 import { APP_URL } from "../configs";
@@ -111,6 +112,25 @@ export const forgotPasswordFormData: Record<string, string> = {
   smsPlaceholder: "Phone number",
   emailButtonName: "Email Me",
   smsButtonName: "Text Me",
+};
+
+export const verifyAccountFormData: FormDataType<VerifyAccountInputMetadata> = {
+  metadata: {
+    formName: "verify-account",
+    formTitle: "Verify your account",
+    description: "to continue to Groove",
+    footerTitle: "Remember Password?",
+    footerLink: "Go back",
+    buttonName: "Verify Account",
+    linkTo: LOGIN,
+  },
+  inputMetadata: [
+    {
+      name: "code",
+      placeholder: "Enter 6 digit code",
+      type: "text",
+    },
+  ],
 };
 
 export const formList: FormItemList = {

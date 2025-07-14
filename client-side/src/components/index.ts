@@ -7,6 +7,7 @@ export { UserSaveForm } from "./Auth/UserSaveForm";
 export { LoginForm } from "./Auth/LoginForm";
 export { RegisterForm } from "./Auth/RegisterForm";
 export { ForgotPasswordForm } from "./Auth/ForgotPasswordForm";
+export { VerifyAccountForm } from "./Auth/VerifyAccountForm";
 
 // Browse
 export { FilterBy } from "./Browse/FilterBy";

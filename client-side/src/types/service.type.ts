@@ -1,6 +1,6 @@
 import {
   LoginUserValues,
-  VerifyEmailValues,
+  VerifyAccountValues,
   RegisterUserValues,
   ForgotPasswordValues,
 } from "./page.type";
@@ -18,7 +18,7 @@ export interface AuthService {
   loginSavedUser: () => Promise<void>;
   socialAuth: (tokenParam: string) => Promise<void>;
   register: (data: RegisterUserValues) => Promise<void>;
-  emailVerify: (data: VerifyEmailValues) => Promise<void>;
+  verifyAccount: (data: VerifyAccountValues) => Promise<void>;
   forgotPassword: (data: ForgotPasswordValues) => Promise<void>;
 }
 

@@ -21,6 +21,7 @@ interface InputFieldMetadata<Name extends string> {
 }
 
 export type LoginInputMetadata = InputFieldMetadata<"identifier" | "password">;
+export type VerifyAccountInputMetadata = InputFieldMetadata<"code">;
 export type RegisterInputMetadata = InputFieldMetadata<
   "identifier" | "username" | "fullname" | "password"
 >;
