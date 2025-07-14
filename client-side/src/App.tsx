@@ -40,7 +40,6 @@ const Application = () => {
                   <App>
                     <StylesProvider />
                     <ToastContainer />
-
                     <Router>
                       <ScrollToTop>
                         {/* <FormProvider> */}
