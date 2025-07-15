@@ -12,15 +12,15 @@ interface FormRedirectProps {
 export const FormRedirect: FC<FormRedirectProps> = (props) => {
   const { formName, footerTitle, footerLink, linkTo } = props;
 
-  const { FORGOT_PASSWORD } = paths;
+  const { LOGIN_HELP } = paths;
 
   return (
     <div className="flex flex-col gap-4">
       {formName === "login" && (
         <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
           Forgot Password?
-          <Link to={FORGOT_PASSWORD}>
-            <p className="text-primary hover:underline underline-offset-2">
+          <Link to={LOGIN_HELP} state={{ nameForm: "forgotPassword" }}>
+            <p className="text-primary hover:underline underline-offset-2 cursor-pointer">
               Reset
             </p>
           </Link>

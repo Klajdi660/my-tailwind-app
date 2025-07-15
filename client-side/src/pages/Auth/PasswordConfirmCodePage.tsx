@@ -3,12 +3,12 @@ import { FormTemplate } from "../../components";
 import { verifyValidation } from "../../utils";
 
 export const PasswordConfirmCodePage: FC = () => {
-  const onSubmitPassConfirmCodeHandler = async () => {};
+  const onSubmitPassConfirmCode = async () => {};
 
   return (
     <FormTemplate
       schema={verifyValidation}
-      onSubmit={onSubmitPassConfirmCodeHandler}
+      onSubmit={onSubmitPassConfirmCode}
     />
   );
 };

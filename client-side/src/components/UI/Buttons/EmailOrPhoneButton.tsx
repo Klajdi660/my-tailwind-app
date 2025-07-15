@@ -1,19 +1,19 @@
 import { FC, Fragment } from "react";
 import { Button } from "../Button";
 import { classNames } from "../../../utils";
-import { forgotPasswordButtonList } from "../../../data";
+import { emailOrPhoneButtonList } from "../../../data";
 
-interface ForgotPasswordButtonProps {
+interface EmailOrPhoneButtonProps {
   selectedMethod: string;
   setSelectedMethod: (method: string) => void;
 }
 
-export const ForgotPasswordButton: FC<ForgotPasswordButtonProps> = (props) => {
+export const EmailOrPhoneButton: FC<EmailOrPhoneButtonProps> = (props) => {
   const { selectedMethod, setSelectedMethod } = props;
 
   return (
     <div className="flex_justify_center gap-4">
-      {forgotPasswordButtonList.map((item, index) => (
+      {emailOrPhoneButtonList.map((item, index) => (
         <Fragment key={item.name}>
           <Button
             type="button"
@@ -26,7 +26,7 @@ export const ForgotPasswordButton: FC<ForgotPasswordButtonProps> = (props) => {
             onClick={() => setSelectedMethod(item.label)}
           />
 
-          {index < forgotPasswordButtonList.length - 1 && (
+          {index < emailOrPhoneButtonList.length - 1 && (
             <span className="text-onNeutralBg text-sm">OR</span>
           )}
         </Fragment>

@@ -15,7 +15,7 @@ import {
   ComingSoonPage,
   VerifyAccountPage,
   ResetPasswordPage,
-  ForgotPasswordPage,
+  LoginHelpPage,
   PasswordConfirmCodePage,
   SaveDataAuthPage,
 } from "../pages";
@@ -36,13 +36,49 @@ const {
   VERIFY_ACCOUNT,
   PASSWORD_CODE,
   RESET_PASSWORD,
-  FORGOT_PASSWORD,
   SAVE_AUTH_DATA,
   ACCOUNT_SAVED,
+  LOGIN_HELP,
 } = paths;
 
 export const Routes = () =>
   useRoutes([
+    {
+      path: HOME,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <HomePage />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+      index: true,
+    },
+    {
+      path: LOGIN,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <LoginPage />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+      index: true,
+    },
+    {
+      path: REGISTER,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <RegisterPage />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
+    {
+      path: "*",
+      element: <ComingSoonPage />,
+    },
     {
       path: SAVE_AUTH_DATA,
       element: (
@@ -94,36 +130,14 @@ export const Routes = () =>
       ),
     },
     {
-      path: FORGOT_PASSWORD,
+      path: LOGIN_HELP,
       element: (
         <PublicGuard>
           <PublicLayout>
-            <ForgotPasswordPage />
+            <LoginHelpPage />
           </PublicLayout>
         </PublicGuard>
       ),
-    },
-    {
-      path: HOME,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <HomePage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-      index: true,
-    },
-    {
-      path: LOGIN,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <LoginPage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-      index: true,
     },
     {
       path: PASSWORD_CODE,
@@ -143,16 +157,6 @@ export const Routes = () =>
             <ProfilePage />
           </PrivateLayout>
         </PrivateGuard>
-      ),
-    },
-    {
-      path: REGISTER,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <RegisterPage />
-          </PublicLayout>
-        </PublicGuard>
       ),
     },
     {
@@ -184,9 +188,5 @@ export const Routes = () =>
           </PublicLayout>
         </PublicGuard>
       ),
-    },
-    {
-      path: "*",
-      element: <ComingSoonPage />,
     },
   ]);

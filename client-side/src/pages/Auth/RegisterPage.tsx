@@ -6,7 +6,7 @@ import { RegisterUserValues } from "../../types";
 export const RegisterPage: FC = () => {
   const { register } = useAuthService();
 
-  const onSubmitRegisterHandler = async (values: RegisterUserValues) => {
+  const onSubmitRegister = async (values: RegisterUserValues) => {
     try {
       await register(values);
     } catch (error) {
@@ -14,5 +14,5 @@ export const RegisterPage: FC = () => {
     }
   };
 
-  return <RegisterForm onSubmit={onSubmitRegisterHandler} />;
+  return <RegisterForm onSubmit={onSubmitRegister} />;
 };

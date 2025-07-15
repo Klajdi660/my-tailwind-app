@@ -5,8 +5,9 @@ import {
   ThresholdsLastLognBadgeColor,
   LoginInputMetadata,
   RegisterInputMetadata,
-  ForgotPasswordButtonType,
+  EmailOrPhoneButtonType,
   VerifyAccountInputMetadata,
+  LoginHelpDataType,
 } from "../types";
 import { paths } from "./general";
 import { APP_URL } from "../configs";
@@ -31,7 +32,7 @@ export const socialAuthList: SocialAuthList[] = [
   },
 ];
 
-export const forgotPasswordButtonList: ForgotPasswordButtonType[] = [
+export const emailOrPhoneButtonList: EmailOrPhoneButtonType[] = [
   { id: 1, label: "email", name: "Email" },
   { id: 2, label: "sms", name: "SMS" },
 ];
@@ -98,20 +99,39 @@ export const registerFormData: FormDataType<RegisterInputMetadata> = {
   ],
 };
 
-export const forgotPasswordFormData: Record<string, string> = {
-  formName: "forgot-password",
-  formTitle: "Reset Password",
-  description: "to continue to Groove",
-  footerTitle: "Remember Password?",
-  footerLink: "Go back",
-  linkTo: LOGIN,
-  emailText:
-    " We will send you an email with instructions on how to reset your password",
-  smsText: "We will text you a verification code to reset your password",
-  emailPlaceholder: "Email",
-  smsPlaceholder: "Phone number",
-  emailButtonName: "Email Me",
-  smsButtonName: "Text Me",
+export const loginHelpFormData: Record<string, LoginHelpDataType> = {
+  forgotPassword: {
+    formName: "forgot-password",
+    formTitle: "Reset Password",
+    formDescription: "How would you like to reset your password?",
+    description: "to continue to Groove",
+    footerTitle: "Remember Password?",
+    footerLink: "Go back",
+    linkTo: LOGIN,
+    emailText:
+      "We will send you an email with instructions on how to reset your password",
+    smsText: "We will text you a verification code to reset your password",
+    emailPlaceholder: "Email",
+    smsPlaceholder: "Phone number",
+    emailButtonName: "Email Me",
+    smsButtonName: "Text Me",
+  },
+  preVerifyAcount: {
+    formName: "pre-verify-account",
+    formTitle: "Verify Account",
+    formDescription: "How would you like to verify your account?",
+    description: "to continue to Groove",
+    footerTitle: "Cancel verify account?",
+    footerLink: "Go back",
+    linkTo: LOGIN,
+    emailText:
+      "We will send you an email with instructions on how to verify your account",
+    smsText: "We will text you a verification code to verify your account",
+    emailPlaceholder: "Email",
+    smsPlaceholder: "Phone number",
+    emailButtonName: "Email Me",
+    smsButtonName: "Text Me",
+  },
 };
 
 export const verifyAccountFormData: FormDataType<VerifyAccountInputMetadata> = {

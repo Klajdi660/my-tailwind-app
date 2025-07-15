@@ -13,10 +13,10 @@ import {
 import {
   AuthService,
   AuthResponse,
-  LoginUserValues,
+  LoginValues,
   RegisterResponse,
   RegisterUserValues,
-  ForgotPasswordValues,
+  LoginHelpValues,
   VerifyAccountValues,
 } from "../types";
 import { paths, userRegex } from "../data";
@@ -32,7 +32,7 @@ const {
   FORGOT_PASSWORD_API,
   LOGIN_SAVED_USER_API,
 } = endpoints;
-
+const { LOGIN_HELP } = paths;
 const { emailRegex, phoneNumberRegex } = userRegex;
 
 const parseIdentifier = (
@@ -63,7 +63,7 @@ export const useAuthService = (): AuthService => {
 
   const { user } = useAppSelector((state) => state.user);
 
-  const login = async (values: LoginUserValues): Promise<void> => {
+  const login = async (values: LoginValues): Promise<void> => {
     try {
       // dispatch(setLoading(true));
 
@@ -93,6 +93,14 @@ export const useAuthService = (): AuthService => {
       localStorage.setItem("rtoken", rToken);
       localStorage.setItem("user", JSON.stringify(user));
     } catch (error: any) {
+      if (!error?.data?.verified) {
+        console.log("error :>> ", error);
+        navigate(LOGIN_HELP, {
+          state: { nameForm: "preVerifyAcount" },
+        });
+        return;
+      }
+      console.log("error 2 :>> ", error);
       // dispatch(setLoading(false));
       notify({
         variant: "error",
@@ -272,9 +280,7 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const forgotPassword = async (
-    values: ForgotPasswordValues
-  ): Promise<void> => {
+  const loginHelp = async (values: LoginHelpValues): Promise<void> => {
     try {
       const { email, phoneNumber, phonePrefix } = values;
 
@@ -349,7 +355,7 @@ export const useAuthService = (): AuthService => {
     socialAuth,
     verifyAccount,
     resetPassword,
-    forgotPassword,
+    loginHelp,
     loginSavedUser,
   };
 };

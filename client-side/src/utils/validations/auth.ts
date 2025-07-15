@@ -126,7 +126,7 @@ export const verifyValidation = yup.object({
   code1: yup.number().required(),
 });
 
-export const forgotPasswordValidation = yup.object().shape({
+export const emailOrPhoneValidation = yup.object().shape({
   email: yup.string().when("$selectedMethod", {
     is: "email",
     then: (schema) =>

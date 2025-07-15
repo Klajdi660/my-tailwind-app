@@ -1,12 +1,12 @@
 import { FC } from "react";
+import { LoginValues } from "../../types";
 import { LoginForm } from "../../components";
-import { LoginUserValues } from "../../types";
 import { useAuthService } from "../../services";
 
 export const LoginPage: FC = () => {
   const { login } = useAuthService();
 
-  const onSubmitLoginHandler = async (values: LoginUserValues) => {
+  const onSubmitLogin = async (values: LoginValues) => {
     try {
       await login(values);
     } catch (error) {
@@ -14,5 +14,5 @@ export const LoginPage: FC = () => {
     }
   };
 
-  return <LoginForm onSubmit={onSubmitLoginHandler} />;
+  return <LoginForm onSubmit={onSubmitLogin} />;
 };

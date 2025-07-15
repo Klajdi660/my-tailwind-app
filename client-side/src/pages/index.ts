@@ -4,7 +4,7 @@ export { RegisterPage } from "./Auth/RegisterPage";
 export { VerifyAccountPage } from "./Auth/VerifyAccountPage";
 export { SaveDataAuthPage } from "./Auth/SaveDataAuthPage";
 export { ResetPasswordPage } from "./Auth/ResetPasswordPage";
-export { ForgotPasswordPage } from "./Auth/ForgotPasswordPage";
+export { LoginHelpPage } from "./Auth/LoginHelpPage";
 export { PasswordConfirmCodePage } from "./Auth/PasswordConfirmCodePage";
 
 // Profile

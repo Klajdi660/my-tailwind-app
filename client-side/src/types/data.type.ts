@@ -6,10 +6,26 @@ export interface SocialAuthList {
   link: string;
 }
 
-export interface ForgotPasswordButtonType {
+export interface EmailOrPhoneButtonType {
   id: number;
   label: string;
   name: string;
+}
+
+export interface LoginHelpDataType {
+  formName: string;
+  formTitle: string;
+  formDescription: string;
+  description: string;
+  footerTitle: string;
+  footerLink: string;
+  linkTo: string;
+  emailText: string;
+  smsText: string;
+  emailPlaceholder: string;
+  smsPlaceholder: string;
+  emailButtonName: string;
+  smsButtonName: string;
 }
 
 interface InputFieldMetadata<Name extends string> {
@@ -112,6 +128,7 @@ export type PathProperties = {
   RESET_PASSWORD: string;
   SAVE_AUTH_DATA: string;
   ACCOUNT_SAVED: string;
+  LOGIN_HELP: string;
 };
 
 export type FontSizesProperties = {

@@ -1,11 +1,11 @@
 // Auth
-export interface ForgotPasswordValues {
+export interface LoginHelpValues {
   email?: string;
   phoneNumber?: string;
   phonePrefix?: string;
 }
 
-export interface LoginUserValues {
+export interface LoginValues {
   password: string;
   remember?: boolean;
   identifier: string;

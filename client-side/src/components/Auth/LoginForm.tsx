@@ -14,12 +14,12 @@ import {
   Title,
 } from "../../components";
 import { iconName } from "../../assets";
-import { LoginUserValues } from "../../types";
+import { LoginValues } from "../../types";
 import { loginFormData, paths, userRegex } from "../../data";
 import { classNames, loginValidation, phonePrefixData } from "../../utils";
 
 interface LoginFormProps {
-  onSubmit: (values: LoginUserValues) => Promise<void>;
+  onSubmit: (values: LoginValues) => Promise<void>;
 }
 
 export const LoginForm: FC<LoginFormProps> = (props) => {

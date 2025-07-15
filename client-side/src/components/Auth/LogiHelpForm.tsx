@@ -5,32 +5,32 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   classNames,
-  forgotPasswordValidation,
+  emailOrPhoneValidation,
   phonePrefixData,
 } from "../../utils";
 import {
+  Button,
+  EmailOrPhoneButton,
+  ErrorFormMessage,
   FormRedirect,
   Image,
-  ErrorFormMessage,
-  Button,
   Title,
-  ForgotPasswordButton,
 } from "../../components";
+import { paths } from "../../data";
 import { iconName } from "../../assets";
-import { ForgotPasswordValues } from "../../types";
-import { forgotPasswordFormData, paths } from "../../data";
+import { LoginHelpDataType, LoginHelpValues } from "../../types";
 
-interface ForgotPasswordFormProps {
-  onSubmit: (values: ForgotPasswordValues) => Promise<void>;
+export interface LoginHelpFormProps {
+  metadata: LoginHelpDataType;
+  onSubmit: (values: LoginHelpValues) => Promise<void>;
 }
 
-export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = (props) => {
-  const { onSubmit } = props;
-
-  const { HOME } = paths;
+export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
+  const { metadata, onSubmit } = props;
   const {
     formName,
     formTitle,
+    formDescription,
     description,
     footerTitle,
     footerLink,
@@ -41,7 +41,8 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = (props) => {
     smsPlaceholder,
     emailButtonName,
     smsButtonName,
-  } = forgotPasswordFormData;
+  } = metadata;
+  const { HOME } = paths;
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [selectedMethod, setSelectedMethod] = useState<string>("email");
@@ -52,7 +53,7 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = (props) => {
     handleSubmit,
   } = useForm({
     mode: "all",
-    resolver: yupResolver(forgotPasswordValidation),
+    resolver: yupResolver(emailOrPhoneValidation),
     context: { selectedMethod },
   });
 
@@ -68,8 +69,8 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = (props) => {
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
         <Title name={formTitle} desc={description} type="medium" />
-        <p className="text-md">How would you like to reset your password?</p>
-        <ForgotPasswordButton
+        <p className="text-md">{formDescription}</p>
+        <EmailOrPhoneButton
           selectedMethod={selectedMethod}
           setSelectedMethod={setSelectedMethod}
         />
