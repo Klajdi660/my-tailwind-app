@@ -17,7 +17,7 @@ import {
   RegisterResponse,
   RegisterUserValues,
   LoginHelpValues,
-  VerifyAccountValues,
+  VerifyCodeValues,
 } from "../types";
 import { paths, userRegex } from "../data";
 import { HttpClient } from "../client";
@@ -32,7 +32,7 @@ const {
   FORGOT_PASSWORD_API,
   LOGIN_SAVED_USER_API,
 } = endpoints;
-const { LOGIN_HELP } = paths;
+
 const { emailRegex, phoneNumberRegex } = userRegex;
 
 const parseIdentifier = (
@@ -55,7 +55,7 @@ const parseIdentifier = (
 };
 
 export const useAuthService = (): AuthService => {
-  const { VERIFY_ACCOUNT, LOGIN } = paths;
+  const { VERIFY_CODE, LOGIN, LOGIN_HELP } = paths;
 
   const [notify] = useNotification();
   const navigate = useNavigate();
@@ -212,9 +212,13 @@ export const useAuthService = (): AuthService => {
         description: `${message}`,
       });
 
-      const registerData = { ...payload, codeExpire: data.codeExpire };
+      const verifyCodeData = {
+        ...payload,
+        codeExpire: data.codeExpire,
+        nameForm: "verify-account",
+      };
 
-      navigate(VERIFY_ACCOUNT, { state: { registerData } });
+      navigate(VERIFY_CODE, { state: { verifyCodeData } });
     } catch (error) {
       setLoading(false);
       console.error(`Signup failed: ${error}`);
@@ -222,7 +226,7 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const verifyAccount = async (values: VerifyAccountValues): Promise<void> => {
+  const verifyCode = async (values: VerifyCodeValues): Promise<void> => {
     try {
       setLoading(true);
 
@@ -353,7 +357,7 @@ export const useAuthService = (): AuthService => {
     logout,
     register,
     socialAuth,
-    verifyAccount,
+    verifyCode,
     resetPassword,
     loginHelp,
     loginSavedUser,

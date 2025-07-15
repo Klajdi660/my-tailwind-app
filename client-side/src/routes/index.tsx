@@ -1,23 +1,19 @@
 import { useRoutes } from "react-router-dom";
 import {
   HomePage,
-  // StorePage,
-  // ErrorPage,
   LoginPage,
   BrowsePage,
   ProfilePage,
-  // MyGamesPage,
-  // WishlistPage,
   DiscoverPage,
   RegisterPage,
-  // CollectionPage,
   GameDetailPage,
   ComingSoonPage,
-  VerifyAccountPage,
+  VerifyCodePage,
   ResetPasswordPage,
   LoginHelpPage,
   PasswordConfirmCodePage,
   SaveDataAuthPage,
+  ErrorPage,
 } from "../pages";
 import { paths } from "../data";
 import { PrivateGuard, PublicGuard } from "../guards";
@@ -33,12 +29,13 @@ const {
   REGISTER,
   GAME_DETAILS,
   SOCIAL_AUTH,
-  VERIFY_ACCOUNT,
+  VERIFY_CODE,
   PASSWORD_CODE,
   RESET_PASSWORD,
   SAVE_AUTH_DATA,
   ACCOUNT_SAVED,
   LOGIN_HELP,
+  MY_GAMES,
 } = paths;
 
 export const Routes = () =>
@@ -74,10 +71,6 @@ export const Routes = () =>
           </PublicLayout>
         </PublicGuard>
       ),
-    },
-    {
-      path: "*",
-      element: <ComingSoonPage />,
     },
     {
       path: SAVE_AUTH_DATA,
@@ -118,6 +111,10 @@ export const Routes = () =>
           </PrivateLayout>
         </PrivateGuard>
       ),
+    },
+    {
+      path: MY_GAMES,
+      element: <ComingSoonPage />,
     },
     {
       path: `${GAME_DETAILS}/:gameId`,
@@ -180,13 +177,18 @@ export const Routes = () =>
       ),
     },
     {
-      path: VERIFY_ACCOUNT,
+      path: VERIFY_CODE,
       element: (
         <PublicGuard>
           <PublicLayout>
-            <VerifyAccountPage />
+            <VerifyCodePage />
           </PublicLayout>
         </PublicGuard>
       ),
+    },
+    {
+      path: "*",
+      // element: <ComingSoonPage />,
+      element: <ErrorPage />,
     },
   ]);

@@ -3,27 +3,32 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
+  FormDataType,
+  VerifyCodeInputMetadata,
+  VerifyCodeValues,
+} from "../../types";
+import {
   Button,
   ErrorFormMessage,
   FormRedirect,
   Image,
   Title,
 } from "../../components";
+import { paths } from "../../data";
 import { iconName } from "../../assets";
-import { VerifyAccountValues } from "../../types";
-import { paths, verifyAccountFormData } from "../../data";
-import { classNames, verifyAccountValidation } from "../../utils";
+import { classNames, verifyCodeValidation } from "../../utils";
 
-interface VerifyAccountFormProps {
-  onSubmit: (values: VerifyAccountValues) => Promise<void>;
+interface VerifyCodeFormProps {
+  onSubmit: (values: VerifyCodeValues) => Promise<void>;
   resendCodeHandler: () => Promise<void>;
+  data: FormDataType<VerifyCodeInputMetadata>;
 }
 
-export const VerifyAccountForm: FC<VerifyAccountFormProps> = (props) => {
-  const { onSubmit, resendCodeHandler } = props;
+export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
+  const { onSubmit, resendCodeHandler, data } = props;
 
   const { HOME } = paths;
-  const { metadata, inputMetadata } = verifyAccountFormData;
+  const { metadata, inputMetadata } = data;
   const {
     formName,
     formTitle,
@@ -40,7 +45,7 @@ export const VerifyAccountForm: FC<VerifyAccountFormProps> = (props) => {
     handleSubmit,
   } = useForm({
     mode: "all",
-    resolver: yupResolver(verifyAccountValidation),
+    resolver: yupResolver(verifyCodeValidation),
   });
 
   return (

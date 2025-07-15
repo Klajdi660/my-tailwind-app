@@ -6,7 +6,7 @@ export { FormTemplate } from "./Auth/FormTemplate";
 export { UserSaveForm } from "./Auth/UserSaveForm";
 export { LoginForm } from "./Auth/LoginForm";
 export { RegisterForm } from "./Auth/RegisterForm";
-export { VerifyAccountForm } from "./Auth/VerifyAccountForm";
+export { VerifyCodeForm } from "./Auth/VerifyCodeForm";
 export { LoginHelpForm } from "./Auth/LogiHelpForm";
 
 // Browse

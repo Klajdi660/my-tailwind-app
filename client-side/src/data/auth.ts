@@ -6,8 +6,8 @@ import {
   LoginInputMetadata,
   RegisterInputMetadata,
   EmailOrPhoneButtonType,
-  VerifyAccountInputMetadata,
   LoginHelpDataType,
+  VerifyCodeInputMetadata,
 } from "../types";
 import { paths } from "./general";
 import { APP_URL } from "../configs";
@@ -134,23 +134,46 @@ export const loginHelpFormData: Record<string, LoginHelpDataType> = {
   },
 };
 
-export const verifyAccountFormData: FormDataType<VerifyAccountInputMetadata> = {
-  metadata: {
-    formName: "verify-account",
-    formTitle: "Verify your account",
-    description: "to continue to Groove",
-    footerTitle: "Remember Password?",
-    footerLink: "Go back",
-    buttonName: "Verify Account",
-    linkTo: LOGIN,
-  },
-  inputMetadata: [
-    {
-      name: "code",
-      placeholder: "Enter 6 digit code",
-      type: "text",
+export const verifyCodeFormData: Record<
+  string,
+  FormDataType<VerifyCodeInputMetadata>
+> = {
+  "verify-account": {
+    metadata: {
+      formName: "verify-account",
+      formTitle: "Verify your account",
+      description: "to continue to Groove",
+      footerTitle: "Cancel verify account?",
+      footerLink: "Go back",
+      buttonName: "Verify Account",
+      linkTo: LOGIN,
     },
-  ],
+    inputMetadata: [
+      {
+        name: "code",
+        placeholder: "Enter 6 digit code",
+        type: "text",
+      },
+    ],
+  },
+  "reset-password": {
+    metadata: {
+      formName: "reset-password",
+      formTitle: "Reset your password",
+      description: "to continue to Groove",
+      footerTitle: "Remember Password?",
+      footerLink: "Go back",
+      buttonName: "Reset",
+      linkTo: LOGIN,
+    },
+    inputMetadata: [
+      {
+        name: "code",
+        placeholder: "Enter 6 digit code",
+        type: "text",
+      },
+    ],
+  },
 };
 
 export const formList: FormItemList = {

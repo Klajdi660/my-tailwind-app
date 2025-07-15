@@ -1,7 +1,7 @@
 // Auth
 export { LoginPage } from "./Auth/LoginPage";
 export { RegisterPage } from "./Auth/RegisterPage";
-export { VerifyAccountPage } from "./Auth/VerifyAccountPage";
+export { VerifyCodePage } from "./Auth/VerifyCodePage";
 export { SaveDataAuthPage } from "./Auth/SaveDataAuthPage";
 export { ResetPasswordPage } from "./Auth/ResetPasswordPage";
 export { LoginHelpPage } from "./Auth/LoginHelpPage";

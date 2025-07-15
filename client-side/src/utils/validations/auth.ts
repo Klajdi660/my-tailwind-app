@@ -165,7 +165,7 @@ export const resetPassValidation = yup.object({
     .required({ message: "Please enter password again" }),
 });
 
-export const verifyAccountValidation = yup.object({
+export const verifyCodeValidation = yup.object({
   code: yup
     .string()
     .required("Please enter 6 digit code")

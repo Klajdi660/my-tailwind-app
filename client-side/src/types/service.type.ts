@@ -1,9 +1,9 @@
 import {
   LoginValues,
-  VerifyAccountValues,
   RegisterUserValues,
   LoginHelpValues,
-} from "./page.type";
+  VerifyCodeValues,
+} from "../types";
 
 // Auth
 
@@ -18,7 +18,7 @@ export interface AuthService {
   loginSavedUser: () => Promise<void>;
   socialAuth: (tokenParam: string) => Promise<void>;
   register: (data: RegisterUserValues) => Promise<void>;
-  verifyAccount: (data: VerifyAccountValues) => Promise<void>;
+  verifyCode: (data: VerifyCodeValues) => Promise<void>;
   loginHelp: (data: LoginHelpValues) => Promise<void>;
 }
 

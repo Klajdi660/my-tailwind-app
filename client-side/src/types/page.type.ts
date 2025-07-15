@@ -20,7 +20,7 @@ export interface RegisterUserValues {
   phonePrefix?: string;
 }
 
-export interface VerifyAccountValues {
+export interface VerifyCodeValues {
   code: number | string;
   email?: string;
 }

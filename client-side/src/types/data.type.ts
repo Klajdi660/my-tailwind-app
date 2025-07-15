@@ -37,7 +37,7 @@ interface InputFieldMetadata<Name extends string> {
 }
 
 export type LoginInputMetadata = InputFieldMetadata<"identifier" | "password">;
-export type VerifyAccountInputMetadata = InputFieldMetadata<"code">;
+export type VerifyCodeInputMetadata = InputFieldMetadata<"code">;
 export type RegisterInputMetadata = InputFieldMetadata<
   "identifier" | "username" | "fullname" | "password"
 >;
@@ -122,13 +122,14 @@ export type PathProperties = {
   DISCOVER: string;
   SOCIAL_AUTH: string;
   GAME_DETAILS: string;
-  VERIFY_ACCOUNT: string;
+  VERIFY_CODE: string;
   PASSWORD_CODE: string;
   FORGOT_PASSWORD: string;
   RESET_PASSWORD: string;
   SAVE_AUTH_DATA: string;
   ACCOUNT_SAVED: string;
   LOGIN_HELP: string;
+  MY_GAMES: string;
 };
 
 export type FontSizesProperties = {

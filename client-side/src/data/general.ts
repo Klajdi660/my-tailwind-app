@@ -21,7 +21,7 @@ export const paths: PathProperties = {
   DISCOVER: "/discover",
   SOCIAL_AUTH: "/social-auth",
   GAME_DETAILS: "/game-detail",
-  VERIFY_ACCOUNT: "/verify-account",
+  VERIFY_CODE: "/verify-code",
   PASSWORD_CODE: "/password-code",
   FORGOT_PASSWORD: "/forgot-password",
   // RESET_PASSWORD: "/reset-password",
@@ -30,6 +30,7 @@ export const paths: PathProperties = {
   SAVE_AUTH_DATA: "/save-auth",
   ACCOUNT_SAVED: "/account-saved",
   LOGIN_HELP: "/login-help",
+  MY_GAMES: "/my-games",
 };
 
 export const fontSizes: FontSizesProperties = {
