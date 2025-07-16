@@ -65,7 +65,7 @@ export const useAuthService = (): AuthService => {
 
   const login = async (values: LoginValues): Promise<void> => {
     try {
-      // dispatch(setLoading(true));
+      dispatch(setLoading(true));
 
       const { identifier, password, phonePrefix } = values;
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
@@ -73,10 +73,22 @@ export const useAuthService = (): AuthService => {
 
       const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, payload);
 
-      // dispatch(setLoading(false));
+      dispatch(setLoading(false));
 
-      const { error, data } = loginResp;
-      if (error) throw loginResp;
+      const { error, message, data } = loginResp;
+      if (error) {
+        if (data && +data.user.verified === 0) {
+          notify({
+            variant: "error",
+            description: message,
+          });
+          navigate(LOGIN_HELP, {
+            state: { nameForm: "preVerifyAcount" },
+          });
+          return;
+        }
+        throw loginResp;
+      }
 
       const { aToken, rToken, user } = data;
       user.extra = {
@@ -93,15 +105,7 @@ export const useAuthService = (): AuthService => {
       localStorage.setItem("rtoken", rToken);
       localStorage.setItem("user", JSON.stringify(user));
     } catch (error: any) {
-      if (!error?.data?.verified) {
-        console.log("error :>> ", error);
-        navigate(LOGIN_HELP, {
-          state: { nameForm: "preVerifyAcount" },
-        });
-        return;
-      }
-      console.log("error 2 :>> ", error);
-      // dispatch(setLoading(false));
+      dispatch(setLoading(false));
       notify({
         variant: "error",
         description: error.message,

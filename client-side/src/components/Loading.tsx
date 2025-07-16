@@ -36,5 +36,3 @@ export const Loading: FC = () => {
     </div>
   );
 };
-
-// bg-glassmorphism

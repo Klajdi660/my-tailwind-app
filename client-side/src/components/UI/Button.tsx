@@ -1,8 +1,8 @@
 import { Tooltip } from "antd";
 import { forwardRef, FC, Ref } from "react";
 import { Icon } from "./Icon";
-import { ButtonProps } from "../../types";
 import { classNames } from "../../utils";
+import { ButtonProps } from "../../types";
 
 export const Button: FC<ButtonProps> = forwardRef(
   (
