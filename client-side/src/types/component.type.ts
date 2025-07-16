@@ -267,7 +267,7 @@ export interface EditProfileValues {
   username: string;
 }
 
-export interface UserMenuProps {
+export interface ProfileDropdownMenuProps {
   hidden: () => void;
 }
 
