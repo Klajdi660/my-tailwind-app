@@ -8,6 +8,7 @@ export { LoginForm } from "./Auth/LoginForm";
 export { RegisterForm } from "./Auth/RegisterForm";
 export { VerifyCodeForm } from "./Auth/VerifyCodeForm";
 export { LoginHelpForm } from "./Auth/LogiHelpForm";
+export { AuthForm } from "./Auth/AuthForm";
 
 // Browse
 export { FilterBy } from "./Browse/FilterBy";

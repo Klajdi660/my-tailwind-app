@@ -7,7 +7,7 @@ export interface LoginHelpValues {
 
 export interface LoginValues {
   password: string;
-  remember?: boolean;
+  // remember?: boolean;
   identifier: string;
   phonePrefix?: string;
 }

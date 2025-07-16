@@ -15,11 +15,11 @@ import {
 } from "../../components";
 import { iconName } from "../../assets";
 import { RegisterUserValues } from "../../types";
-import { registerFormData, paths, userRegex } from "../../data";
-import { classNames, phonePrefixData, registerValidation } from "../../utils";
+import { authFormData, paths, userRegex } from "../../data";
+import { classNames, phonePrefixData, authValidation } from "../../utils";
 
 interface RegisterFormProps {
-  onSubmit: (values: RegisterUserValues) => Promise<void>;
+  onSubmit: (values: RegisterUserValues | any) => Promise<void>;
 }
 
 export const RegisterForm: FC<RegisterFormProps> = (props) => {
@@ -27,7 +27,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
 
   const { HOME } = paths;
   const { isPhoneNumberRegex } = userRegex;
-  const { metadata, inputMetadata } = registerFormData;
+  const { metadata, inputMetadata } = authFormData.register;
   const {
     formName,
     formTitle,
@@ -50,7 +50,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
     handleSubmit,
   } = useForm({
     mode: "all",
-    resolver: yupResolver(registerValidation),
+    resolver: yupResolver(authValidation.register),
   });
 
   return (

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { RegisterForm } from "../../components";
+import { AuthForm } from "../../components";
 import { useAuthService } from "../../services";
 import { RegisterUserValues } from "../../types";
 
@@ -14,5 +14,5 @@ export const RegisterPage: FC = () => {
     }
   };
 
-  return <RegisterForm onSubmit={onSubmitRegister} />;
+  return <AuthForm onSubmit={onSubmitRegister} nameForm="register" />;
 };

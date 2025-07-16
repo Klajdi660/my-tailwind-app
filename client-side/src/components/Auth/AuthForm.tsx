@@ -14,20 +14,21 @@ import {
   Title,
 } from "../../components";
 import { iconName } from "../../assets";
-import { LoginValues } from "../../types";
-import { authFormData, paths, userRegex } from "../../data";
+import { authFormData, AuthFormName, paths, userRegex } from "../../data";
 import { classNames, authValidation, phonePrefixData } from "../../utils";
+import { LoginValues, RegisterUserValues } from "../../types";
 
-interface LoginFormProps {
-  onSubmit: (values: LoginValues | any) => Promise<void>;
+interface AuthFormProps {
+  onSubmit: (values: LoginValues | RegisterUserValues | any) => Promise<void>;
+  nameForm: AuthFormName;
 }
 
-export const LoginForm: FC<LoginFormProps> = (props) => {
-  const { onSubmit } = props;
+export const AuthForm: FC<AuthFormProps> = (props) => {
+  const { onSubmit, nameForm } = props;
 
   const { HOME } = paths;
   const { isPhoneNumberRegex } = userRegex;
-  const { metadata, inputMetadata } = authFormData.login;
+  const { metadata, inputMetadata } = authFormData[nameForm];
   const {
     formName,
     formTitle,
@@ -50,7 +51,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
     handleSubmit,
   } = useForm({
     mode: "all",
-    resolver: yupResolver(authValidation.login),
+    resolver: yupResolver(authValidation[nameForm]),
   });
 
   return (

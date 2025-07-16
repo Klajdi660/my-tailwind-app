@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { LoginValues } from "../../types";
-import { LoginForm } from "../../components";
+import { AuthForm } from "../../components";
 import { useAuthService } from "../../services";
 
 export const LoginPage: FC = () => {
@@ -14,5 +14,5 @@ export const LoginPage: FC = () => {
     }
   };
 
-  return <LoginForm onSubmit={onSubmitLogin} />;
+  return <AuthForm onSubmit={onSubmitLogin} nameForm="login" />;
 };
