@@ -6,14 +6,12 @@ import { userIcon } from "../../assets";
 import { classNames } from "../../utils";
 import { UserMenuProps } from "../../types";
 import { useAppSelector } from "../../store";
+import { profileMenuItems } from "../../data";
 import { Image, Icon } from "../../components";
 import { useAuthService } from "../../services";
-import { profileMenuItems, paths } from "../../data";
 
 const UserMenu: FC<UserMenuProps> = (props) => {
   const { hidden } = props;
-
-  const { PROFILE } = paths;
 
   const { setModalOpen } = useStore();
   const { logout } = useAuthService();
@@ -22,8 +20,8 @@ const UserMenu: FC<UserMenuProps> = (props) => {
 
   const { user } = useAppSelector((state) => state.user);
 
-  const { username, extra } = user;
-  const { firstName, lastName, avatar } = extra;
+  const { email, username, extra } = user;
+  const { firstName, avatar } = extra;
 
   const menuItems = profileMenuItems({
     navigate,
@@ -32,85 +30,37 @@ const UserMenu: FC<UserMenuProps> = (props) => {
     setModalOpen,
   });
 
-  const navigateToProfile = () => {
-    hidden();
-    navigate(`${PROFILE}/account`);
-  };
-
   return (
-    //    <div className="p-2 space-y-2 min-w-[300px]">
-    //   <div
-    //     className="flex_justify_center flex-col gap-2 p-3 bg-main rounded hover:bg-primary-opacity cursor-pointer group"
-    //     onClick={navigateToProfile}
-    //   >
-    //     <Image
-    //       imgUrl={avatar || userIcon}
-    //       styles="w-12 h-12 rounded-full object-cover"
-    //       name="sidebar user"
-    //       effect="blur"
-    //     />
-    //     <div className="flex text-sm text-secondary">
-    //       <span className="break-all text-onNeutralBg group-hover:text-primary">
-    //         {firstName}
-    //       </span>
-    //       <span className="text-secondary group-hover:text-primary">
-    //         @{username}
-    //       </span>
-    //     </div>
-    //   </div>
-    //   <hr className="w-full border-t border-divider" />
-    //   <ul className="list-none divide divide-divider">
-    //     {menuItems.map((item) => (
-    //       <li
-    //         className="rounded cursor-pointer text-onNeutralBg hover:text-primary group hover:bg-primary-opacity"
-    //         key={item.id}
-    //       >
-    //         <button className="w-full p-4 text-left" onClick={item.onClick}>
-    //           <div className="flex gap-3">
-    //             <Icon name={item.icon} className="group-hover:text-primary" />
-    //             <p className="text-sm whitespace-nowrap">{item.name}</p>
-    //           </div>
-    //         </button>
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </div>
-    <div className="p-2 space-y-2 min-w-[300px]">
-      <div
-        className="gap-2 p-3 rounded flex_justify_between hover:bg-primary-opacity cursor-pointer group"
-        onClick={navigateToProfile}
-      >
+    <div className="space-y-2 min-w-[300px]">
+      <div className="flex_justify_center flex-col gap-2 p-3 bg-primary-opacity rounded">
         <Image
           imgUrl={avatar || userIcon}
-          styles="w-12 h-12 p-1 rounded-full object-cover"
+          styles="w-12 h-12 rounded-full object-cover"
           name="sidebar user"
           effect="blur"
         />
-        <div className="flex flex-col flex-1 text-sm text-secondary">
-          <span className="break-all text-onNeutralBg group-hover:text-primary">
-            {firstName} {lastName}
+        <div className="flex_justify_center flex-col">
+          <span className="text-onNeutralBg">
+            {firstName} &middot; {email || username}
           </span>
-          <span className="text-secondary group-hover:text-primary">
-            @{username}
-          </span>
+          <span className="text-secondary">{email || username}</span>
         </div>
       </div>
-      <hr className="w-full border-t border-divider" />
-      <ul className="list-none divide divide-divider">
+      <div>
         {menuItems.map((item) => (
-          <li
-            className="rounded cursor-pointer text-onNeutralBg hover:text-primary group hover:bg-primary-opacity"
+          <div
             key={item.id}
+            className="flex_justify_start gap-2 py-2 px-4 text-onNeutralBg rounded cursor-pointer hover:bg-primary-opacity"
           >
-            <button className="w-full p-4 text-left" onClick={item.onClick}>
-              <div className="flex gap-3">
-                <Icon name={item.icon} className="group-hover:text-primary" />
-                <p className="text-sm whitespace-nowrap">{item.name}</p>
-              </div>
-            </button>
-          </li>
+            <Icon
+              name={item.icon}
+              className="group-hover:text-primary"
+              size={18}
+            />
+            <p className="text-sm whitespace-nowrap">{item.name}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

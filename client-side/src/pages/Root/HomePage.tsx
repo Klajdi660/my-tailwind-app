@@ -1,14 +1,3 @@
-// import { FC } from "react";
-// import { GamesSlider } from "../../components";
-
-// export const HomePage: FC = () => {
-//   return (
-//     <>
-//       <GamesSlider />
-//     </>
-//   );
-// };
-
 import { motion } from "framer-motion";
 import { FC, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";

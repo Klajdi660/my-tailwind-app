@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { FC } from "react";
-import { Icon } from "../components";
+import { Link } from "react-router-dom";
 import { NotificationProps } from "../types";
+import { Divider, Icon } from "../components";
 
 export const Notification: FC<NotificationProps[]> = (notificationList) => {
   return (
@@ -30,7 +30,7 @@ export const Notification: FC<NotificationProps[]> = (notificationList) => {
           </li>
         ))}
       </ul>
-      <hr className="w-full border-t border-divider" />
+      <Divider />
       <Link
         className="inline-block w-full p-3 text-sm text-center text-onNeutralBg hover:text-primary hover:bg-primary-opacity"
         to={"/notifications"}

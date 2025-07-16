@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { SmallModal } from "./ModalContent";
-import { Button } from "../Button";
 import { useStore } from "../../../hooks";
+import { Button, Divider } from "../../../components";
 import { useProfileService } from "../../../services";
 
 export const RemovePhotoModal: FC = () => {
@@ -39,14 +39,11 @@ export const RemovePhotoModal: FC = () => {
       </div>
 
       <div className="modal-body flex flex-col pt-4 gap-6 text-onNeutralBg">
-        <hr className="w-full border-t border-divider" />
-
+        <Divider />
         <p className="text-base">
           Are you sure? Having a profile picture helps others recognize you.
         </p>
-
-        <hr className="w-full border-t border-divider" />
-
+        <Divider />
         <div className="flex_justify_end">
           <Button
             label="Cancel"

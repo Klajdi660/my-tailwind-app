@@ -109,6 +109,7 @@ export { ChangeProfilePhotoModal } from "./UI/Modals/ChangeProfilePhotoModal";
 export { FormDivider } from "./UI/FormDivider";
 export { FormRedirect } from "./UI/FormRedirect";
 export { EmailOrPhoneButton } from "./UI/Buttons/EmailOrPhoneButton";
+export { Divider } from "./UI/Divider";
 
 // Others Component
 export { Footer } from "./Footer";

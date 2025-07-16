@@ -3,8 +3,8 @@ import { SmallModal } from "./ModalContent";
 import { useStore } from "../../../hooks";
 import { useAppSelector } from "../../../store";
 import { avatarProfileList } from "../../../data";
-import { Image, Button, Icon } from "../../../components";
 import { useProfileService } from "../../../services";
+import { Image, Button, Icon } from "../../../components";
 
 export const ChangeProfilePhotoModal: FC = () => {
   const { updateDisplayPicture } = useProfileService();
@@ -64,7 +64,7 @@ export const ChangeProfilePhotoModal: FC = () => {
       </div>
       {avatar ? (
         <div className="modal-body flex flex-col pt-4 gap-6 text-onNeutralBg">
-          {/* <hr className="w-full border-t border-divider" /> */}
+          {/* <Divider /> */}
           <p className="text-base text-center">
             {firstName}, help others recognize you!
           </p>
