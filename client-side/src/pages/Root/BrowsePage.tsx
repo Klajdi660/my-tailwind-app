@@ -16,7 +16,7 @@ export const BrowsePage: FC = () => {
     <>
       {isShowScrollUpBtn && (
         <button
-          className="flex_justify_center w-10 h-10 fixed bottom-6 right-6 bg-card hover:bg-primary z-50 rounded-full shadow-lg group"
+          className="flex_justify_center w-10 h-10 fixed bottom-6 right-6 bg-card hover:bg-primary z-50 rounded-full shadow-lg animate-bounce group"
           onClick={scrollToTop}
         >
           <Icon name="MdKeyboardArrowUp" className="group-hover:text-white" />
