@@ -43,6 +43,68 @@ export const emailOrPhoneButtonList: EmailOrPhoneButtonType[] = [
   { id: 2, label: "sms", name: "SMS" },
 ];
 
+export const loginFormData: FormDataType<LoginInputMetadata> = {
+  metadata: {
+    formName: "login",
+    formTitle: "Log in",
+    description: "to continue to Groove",
+    footerTitle: "Don't have an account?",
+    footerLink: "Sign up",
+    buttonName: "Logi in",
+    linkTo: REGISTER,
+  },
+  inputMetadata: [
+    {
+      name: "identifier",
+      placeholder: "Email, username or phone number",
+      type: "text",
+    },
+    {
+      name: "password",
+      placeholder: "Password",
+      type: "password",
+      iconVisible: "AiOutlineEye",
+      iconHidden: "AiOutlineEyeInvisible",
+    },
+  ],
+};
+
+export const registerFormData: FormDataType<RegisterInputMetadata> = {
+  metadata: {
+    formName: "register",
+    formTitle: "Create your account",
+    description: "to continue to Groove",
+    footerLink: "Log in",
+    footerTitle: "Have an account?",
+    buttonName: "Sign up",
+    linkTo: LOGIN,
+  },
+  inputMetadata: [
+    {
+      name: "identifier",
+      placeholder: "Email or phone number",
+      type: "text",
+    },
+    {
+      name: "username",
+      placeholder: "Username",
+      type: "text",
+    },
+    {
+      name: "fullname",
+      placeholder: "Full Name",
+      type: "text",
+    },
+    {
+      name: "password",
+      placeholder: "Password",
+      type: "password",
+      iconVisible: "AiOutlineEye",
+      iconHidden: "AiOutlineEyeInvisible",
+    },
+  ],
+};
+
 export const authFormData: AuthFormDataTypes = {
   login: {
     metadata: {

@@ -16,11 +16,18 @@ import {
 import { iconName } from "../../assets";
 import { authFormData, AuthFormName, paths, userRegex } from "../../data";
 import { classNames, authValidation, phonePrefixData } from "../../utils";
-import { LoginValues, RegisterUserValues } from "../../types";
 
 interface AuthFormProps {
-  onSubmit: (values: LoginValues | RegisterUserValues | any) => Promise<void>;
+  onSubmit: (values: AuthFormValuesTypes) => Promise<void>;
   nameForm: AuthFormName;
+}
+
+interface AuthFormValuesTypes {
+  identifier: string;
+  password: string;
+  username: string;
+  fullname: string;
+  phonePrefix: string;
 }
 
 export const AuthForm: FC<AuthFormProps> = (props) => {
@@ -45,11 +52,15 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
 
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
+  const handleFormSubmit = (values: AuthFormValuesTypes) => {
+    onSubmit({ ...values, phonePrefix });
+  };
+
   const {
     register: form,
     formState: { errors, isValid },
     handleSubmit,
-  } = useForm({
+  } = useForm<AuthFormValuesTypes>({
     mode: "all",
     resolver: yupResolver(authValidation[nameForm]),
   });
@@ -70,9 +81,7 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
         <FormDivider />
         <form
           className="flex flex-col gap-2"
-          onSubmit={handleSubmit((values) =>
-            onSubmit({ ...values, phonePrefix })
-          )}
+          onSubmit={handleSubmit(handleFormSubmit)}
         >
           {inputMetadata.map((item) => (
             <fieldset key={item.name}>

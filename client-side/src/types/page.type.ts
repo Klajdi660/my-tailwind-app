@@ -7,9 +7,9 @@ export interface LoginHelpValues {
 
 export interface LoginValues {
   password: string;
-  // remember?: boolean;
+  remember?: boolean;
   identifier: string;
-  phonePrefix?: string;
+  phonePrefix: string;
 }
 
 export interface RegisterUserValues {
@@ -17,7 +17,7 @@ export interface RegisterUserValues {
   password: string;
   username: string;
   identifier: string;
-  phonePrefix?: string;
+  phonePrefix: string;
 }
 
 export interface VerifyCodeValues {

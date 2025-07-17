@@ -49,6 +49,7 @@ export const ProfileDropdownMenu: FC<ProfileDropdownMenuProps> = (props) => {
           <div
             key={item.id}
             className="flex_justify_start gap-2 py-2 px-4 text-onNeutralBg rounded cursor-pointer hover:bg-primary-opacity"
+            onClick={item.onClick}
           >
             <Icon
               name={item.icon}
