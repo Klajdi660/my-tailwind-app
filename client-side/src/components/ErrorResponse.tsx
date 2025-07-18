@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../hooks";
-import { Divider } from "../components";
 import { errorAuthResponseMap } from "../data";
 
 export const ErrorResponse: FC = () => {
@@ -29,11 +28,8 @@ export const ErrorResponse: FC = () => {
   };
 
   return (
-    <>
-      <div className="w-full bg-red-200 rounded bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80 p-4">
-        {renderErrorWithLink()}
-      </div>
-      <Divider />
-    </>
+    <div className="w-full bg-red-200 rounded bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80 p-4">
+      {renderErrorWithLink()}
+    </div>
   );
 };

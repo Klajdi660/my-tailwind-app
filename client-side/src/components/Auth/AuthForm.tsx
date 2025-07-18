@@ -12,6 +12,7 @@ import {
   Button,
   Title,
   ErrorResponse,
+  FormDivider,
 } from "../../components";
 import { iconName } from "../../assets";
 import { authFormData, AuthFormName, paths, userRegex } from "../../data";
@@ -80,7 +81,9 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
         <Title name={formTitle} desc={description} type="medium" />
-        {errorResponse ? <ErrorResponse /> : <SocialAuthButton />}
+        {errorResponse && <ErrorResponse />}
+        <SocialAuthButton />
+        <FormDivider />
         <form
           className="flex flex-col gap-2"
           onSubmit={handleSubmit(handleFormSubmit)}
