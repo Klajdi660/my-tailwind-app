@@ -9,6 +9,12 @@ const initialState: AuthContextType = {
   setLToken: (lToken) => {},
   authenticateUser: () => {},
   unAuthenticateUser: () => {},
+  errorResponse: false,
+  setErrorResponse: () => {},
+  errorTypeResponse: "",
+  setErrorTypeResponse: () => {},
+  errorResponseMessage: "",
+  setErrorResponseMessage: () => {},
 };
 
 const getUserFromLocalStorage = (): User | null => {
@@ -29,6 +35,9 @@ const AuthContext = createContext(initialState);
 const AuthProvider: FC<ProviderProps> = ({ children }) => {
   const [lToken, setLToken] = useState("");
   const [signupData, setSignUpData] = useState();
+  const [errorResponse, setErrorResponse] = useState<boolean>(false);
+  const [errorTypeResponse, setErrorTypeResponse] = useState<string>("");
+  const [errorResponseMessage, setErrorResponseMessage] = useState<string>("");
   // const [user, setUser] = useState<User | null>(null);
   const [user, setUser] = useState<User | null>(getUserFromLocalStorage());
 
@@ -71,6 +80,12 @@ const AuthProvider: FC<ProviderProps> = ({ children }) => {
         setLToken,
         signupData,
         setSignUpData,
+        errorResponse,
+        setErrorResponse,
+        errorTypeResponse,
+        setErrorTypeResponse,
+        errorResponseMessage,
+        setErrorResponseMessage,
       }}
     >
       {children}

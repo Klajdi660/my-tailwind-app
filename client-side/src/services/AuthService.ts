@@ -5,7 +5,7 @@ import {
   setUser,
   setAToken,
   setRToken,
-  setLoading,
+  // setLoading,
   useAppSelector,
   setUserLastLogin,
   setIsAuthenticated,
@@ -21,7 +21,7 @@ import {
 } from "../types";
 import { paths, userRegex } from "../data";
 import { HttpClient } from "../client";
-import { useNotification } from "../hooks";
+import { useAuth, useNotification } from "../hooks";
 
 const {
   LOGIN_API,
@@ -55,8 +55,10 @@ const parseIdentifier = (
 };
 
 export const useAuthService = (): AuthService => {
-  const { VERIFY_CODE, LOGIN, LOGIN_HELP } = paths;
+  const { VERIFY_CODE, LOGIN } = paths;
 
+  const { setErrorResponse, setErrorTypeResponse, setErrorResponseMessage } =
+    useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -65,7 +67,7 @@ export const useAuthService = (): AuthService => {
 
   const login = async (values: LoginValues): Promise<void> => {
     try {
-      dispatch(setLoading(true));
+      // dispatch(setLoading(true));
 
       const { identifier, password, phonePrefix } = values;
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
@@ -73,22 +75,10 @@ export const useAuthService = (): AuthService => {
 
       const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, payload);
 
-      dispatch(setLoading(false));
+      // dispatch(setLoading(false));
 
-      const { error, message, data } = loginResp;
-      if (error) {
-        if (data && +data.user.verified === 0) {
-          notify({
-            variant: "error",
-            description: message,
-          });
-          navigate(LOGIN_HELP, {
-            state: { nameForm: "preVerifyAcount" },
-          });
-          return;
-        }
-        throw loginResp;
-      }
+      const { error, data } = loginResp;
+      if (error) throw loginResp;
 
       const { aToken, rToken, user } = data;
       user.extra = {
@@ -105,11 +95,14 @@ export const useAuthService = (): AuthService => {
       localStorage.setItem("rtoken", rToken);
       localStorage.setItem("user", JSON.stringify(user));
     } catch (error: any) {
-      dispatch(setLoading(false));
-      notify({
-        variant: "error",
-        description: error.message,
-      });
+      setErrorResponse(true);
+      setErrorTypeResponse(error.errorType);
+      setErrorResponseMessage(error.message);
+      // dispatch(setLoading(false));
+      // notify({
+      //   variant: "error",
+      //   description: error.message,
+      // });
       throw error;
     }
   };

@@ -5,17 +5,18 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   IconButton,
-  FormDivider,
   FormRedirect,
   Image,
   SocialAuthButton,
   ErrorFormMessage,
   Button,
   Title,
+  ErrorResponse,
 } from "../../components";
 import { iconName } from "../../assets";
 import { authFormData, AuthFormName, paths, userRegex } from "../../data";
 import { classNames, authValidation, phonePrefixData } from "../../utils";
+import { useAuth } from "../../hooks";
 
 interface AuthFormProps {
   onSubmit: (values: AuthFormValuesTypes) => Promise<void>;
@@ -32,6 +33,8 @@ interface AuthFormValuesTypes {
 
 export const AuthForm: FC<AuthFormProps> = (props) => {
   const { onSubmit, nameForm } = props;
+
+  const { errorResponse } = useAuth();
 
   const { HOME } = paths;
   const { isPhoneNumberRegex } = userRegex;
@@ -77,8 +80,7 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
         <Title name={formTitle} desc={description} type="medium" />
-        <SocialAuthButton />
-        <FormDivider />
+        {errorResponse ? <ErrorResponse /> : <SocialAuthButton />}
         <form
           className="flex flex-col gap-2"
           onSubmit={handleSubmit(handleFormSubmit)}

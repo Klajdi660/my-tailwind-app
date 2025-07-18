@@ -24,6 +24,7 @@ export interface AuthService {
 
 export interface AuthResponse {
   error: boolean;
+  errorType: string;
   message: string;
   data: {
     user: any;

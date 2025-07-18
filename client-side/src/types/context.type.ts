@@ -11,6 +11,12 @@ export interface AuthContextType {
   setLToken: (lToken: string) => void;
   authenticateUser: (user: User) => void;
   setSignUpData: (signupData: RegisterUserValues | any) => void;
+  errorResponse: boolean;
+  setErrorResponse: (error: boolean) => void;
+  errorTypeResponse: string;
+  setErrorTypeResponse: (errorType: string) => void;
+  errorResponseMessage: string;
+  setErrorResponseMessage: (message: string) => void;
 }
 
 export interface FormContextType {

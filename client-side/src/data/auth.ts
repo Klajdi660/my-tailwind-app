@@ -13,7 +13,7 @@ import { paths } from "./general";
 import { APP_URL } from "../configs";
 import { endpoints } from "../services";
 
-const { REGISTER, LOGIN } = paths;
+const { REGISTER, LOGIN, LOGIN_HELP, RESET_PASSWORD } = paths;
 const { OAUTH_GOOGLE_API } = endpoints;
 
 export type AuthFormName = "login" | "register";
@@ -21,6 +21,22 @@ interface AuthFormDataTypes {
   login: FormDataType<LoginInputMetadata>;
   register: FormDataType<RegisterInputMetadata>;
 }
+
+interface ErrorAuthResponseMap {
+  linkText: string;
+  to: string;
+  state?: Record<string, string>;
+}
+
+export const errorAuthResponseMap: Record<string, ErrorAuthResponseMap> = {
+  "no-account": { linkText: "create a new account", to: REGISTER },
+  "invalid-password": { linkText: "reset your password", to: RESET_PASSWORD },
+  "user-not-verified": {
+    linkText: "verify your account",
+    to: LOGIN_HELP,
+    state: { nameForm: "prevVerifyAcount" },
+  },
+};
 
 export const userRegex: Record<string, RegExp> = {
   emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -185,8 +201,8 @@ export const loginHelpFormData: Record<string, LoginHelpDataType> = {
     emailButtonName: "Email Me",
     smsButtonName: "Text Me",
   },
-  preVerifyAcount: {
-    formName: "pre-verify-account",
+  prevVerifyAcount: {
+    formName: "prev-verify-account",
     formTitle: "Verify Account",
     formDescription: "How would you like to verify your account?",
     description: "to continue to Groove",
