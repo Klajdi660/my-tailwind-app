@@ -20,7 +20,7 @@ export const useNotification = () => {
       </div>,
       {
         theme: "dark",
-        autoClose: 5000,
+        // autoClose: 5000,
         draggable: true,
         closeOnClick: true,
         pauseOnHover: false,

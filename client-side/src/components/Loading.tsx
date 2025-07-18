@@ -1,25 +1,10 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { iconName } from "../assets";
 import { Image } from "../components";
-// import { useStore } from "../hooks";
-import { useAppSelector } from "../store";
+import { useDelayedLoading } from "../hooks";
 
 export const Loading: FC = () => {
-  // const { loading } = useStore();
-  const { loading } = useAppSelector((state) => state.auth);
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    // if (loading) {
-    //   setIsLoading(true);
-    // } else {
-    //   setTimeout(() => {
-    //     setIsLoading(false);
-    //   }, 1000);
-    // }
-    loading ? setIsLoading(true) : setIsLoading(false);
-  }, [loading]);
+  const isLoading = useDelayedLoading();
 
   if (!isLoading) return null;
 

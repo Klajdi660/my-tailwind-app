@@ -116,12 +116,12 @@ export const useAuthService = (): AuthService => {
 
   const loginSavedUser = async (): Promise<void> => {
     try {
-      dispatch(setLoading(true));
+      // dispatch(setLoading(true));
 
       const loginSavedUserResp =
         await HttpClient.get<AuthResponse>(LOGIN_SAVED_USER_API);
 
-      dispatch(setLoading(false));
+      // dispatch(setLoading(false));
 
       const { error, message, data } = loginSavedUserResp;
       if (error) {
@@ -147,7 +147,7 @@ export const useAuthService = (): AuthService => {
       localStorage.rtoken = rToken;
       localStorage.user = JSON.stringify(user);
     } catch (error) {
-      dispatch(setLoading(false));
+      // dispatch(setLoading(false));
       notify({
         variant: "error",
         description: "Login failed. Try again later.",
@@ -189,7 +189,7 @@ export const useAuthService = (): AuthService => {
 
   const register = async (values: RegisterUserValues): Promise<void> => {
     try {
-      setLoading(true);
+      // setLoading(true);
 
       const { identifier, phonePrefix, ...rest } = values;
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
@@ -200,7 +200,7 @@ export const useAuthService = (): AuthService => {
         payload
       );
 
-      setLoading(false);
+      // setLoading(false);
 
       const { error, message, data } = registerResp;
       if (error) {
@@ -224,7 +224,7 @@ export const useAuthService = (): AuthService => {
 
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
     } catch (error) {
-      setLoading(false);
+      // setLoading(false);
       console.error(`Signup failed: ${error}`);
       throw error;
     }
@@ -232,14 +232,14 @@ export const useAuthService = (): AuthService => {
 
   const verifyCode = async (values: VerifyCodeValues): Promise<void> => {
     try {
-      setLoading(true);
+      // setLoading(true);
 
       const verifyEmailResp = await HttpClient.post<AuthResponse>(
         VERIFY_EMAIL_API,
         values
       );
 
-      setLoading(false);
+      // setLoading(false);
 
       const { error, message } = verifyEmailResp;
 
@@ -258,7 +258,7 @@ export const useAuthService = (): AuthService => {
 
       navigate(LOGIN);
     } catch (error) {
-      setLoading(false);
+      // setLoading(false);
       console.error(`Verify email failed: ${error}`);
       throw error;
     }

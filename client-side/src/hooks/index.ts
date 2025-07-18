@@ -8,3 +8,4 @@ export { useUserSelectedData } from "./useUserSelectedData";
 export { useMediaResponsive } from "./useMediaResponsive";
 export * from "./useGames";
 export { useScrollPosition } from "./useScrollPosition";
+export { useDelayedLoading } from "./useDelayedLoading";
