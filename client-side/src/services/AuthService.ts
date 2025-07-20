@@ -57,8 +57,7 @@ const parseIdentifier = (
 export const useAuthService = (): AuthService => {
   const { VERIFY_CODE, LOGIN } = paths;
 
-  const { setErrorResponse, setErrorTypeResponse, setErrorResponseMessage } =
-    useAuth();
+  const { setErrorResponse } = useAuth();
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -95,9 +94,11 @@ export const useAuthService = (): AuthService => {
       localStorage.setItem("rtoken", rToken);
       localStorage.setItem("user", JSON.stringify(user));
     } catch (error: any) {
-      setErrorResponse(true);
-      setErrorTypeResponse(error.errorType);
-      setErrorResponseMessage(error.message);
+      setErrorResponse({
+        error: true,
+        errorType: error.errorType,
+        errorMessage: error.message,
+      });
       // dispatch(setLoading(false));
       // notify({
       //   variant: "error",
@@ -196,13 +197,14 @@ export const useAuthService = (): AuthService => {
       // setLoading(false);
 
       const { error, message, data } = registerResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+      // if (error) {
+      //   notify({
+      //     variant: "error",
+      //     description: message,
+      //   });
+      //   return;
+      // }
+      if (error) throw registerResp;
 
       notify({
         variant: "success",
@@ -216,7 +218,12 @@ export const useAuthService = (): AuthService => {
       };
 
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
-    } catch (error) {
+    } catch (error: any) {
+      setErrorResponse({
+        error: true,
+        errorType: error.errorType,
+        errorMessage: error.message,
+      });
       // setLoading(false);
       console.error(`Signup failed: ${error}`);
       throw error;

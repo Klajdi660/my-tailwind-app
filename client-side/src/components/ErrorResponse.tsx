@@ -4,22 +4,34 @@ import { useAuth } from "../hooks";
 import { errorAuthResponseMap } from "../data";
 
 export const ErrorResponse: FC = () => {
-  const { errorTypeResponse, errorResponseMessage } = useAuth();
+  const { errorResponse, setErrorResponse } = useAuth();
 
-  const errorConfig = errorAuthResponseMap[errorTypeResponse || ""];
+  const { errorType, errorMessage } = errorResponse;
+
+  const errorConfig = errorAuthResponseMap[errorType || ""];
 
   const renderErrorWithLink = () => {
-    if (!errorConfig) return <p>{errorResponseMessage}</p>;
+    if (!errorConfig) return <p>{errorMessage}</p>;
 
     const { linkText, to, state } = errorConfig;
-    const [beforeLink, afterLink] = errorResponseMessage.split(
+    const [beforeLink, afterLink] = errorMessage.split(
       new RegExp(linkText, "i")
     );
 
     return (
       <p>
         {beforeLink}
-        <Link to={to} state={state}>
+        <Link
+          to={to}
+          state={state}
+          onClick={() =>
+            setErrorResponse({
+              error: false,
+              errorType: "",
+              errorMessage: "",
+            })
+          }
+        >
           <span className="underline hover:text-primary">{linkText}</span>
         </Link>
         {afterLink}

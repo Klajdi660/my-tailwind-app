@@ -31,6 +31,7 @@ interface ErrorAuthResponseMap {
 export const errorAuthResponseMap: Record<string, ErrorAuthResponseMap> = {
   "no-account": { linkText: "create a new account", to: REGISTER },
   "invalid-password": { linkText: "reset your password", to: RESET_PASSWORD },
+  "existing-user": { linkText: "log in", to: LOGIN },
   "user-not-verified": {
     linkText: "verify your account",
     to: LOGIN_HELP,
