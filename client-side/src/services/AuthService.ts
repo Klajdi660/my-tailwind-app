@@ -5,7 +5,6 @@ import {
   setUser,
   setAToken,
   setRToken,
-  // setLoading,
   useAppSelector,
   setUserLastLogin,
   setIsAuthenticated,
@@ -19,8 +18,9 @@ import {
   LoginHelpValues,
   VerifyCodeValues,
 } from "../types";
-import { paths, userRegex } from "../data";
+import { paths } from "../data";
 import { HttpClient } from "../client";
+import { parseIdentifier } from "../utils";
 import { useAuth, useNotification, useStore } from "../hooks";
 
 const {
@@ -32,27 +32,6 @@ const {
   FORGOT_PASSWORD_API,
   LOGIN_SAVED_USER_API,
 } = endpoints;
-
-const { emailRegex, phoneNumberRegex } = userRegex;
-
-const parseIdentifier = (
-  identifier: string,
-  phonePrefix?: string
-): Record<string, string> => {
-  if (phoneNumberRegex.test(identifier)) {
-    return {
-      phoneNr: phonePrefix ? `${phonePrefix}${identifier}` : identifier,
-      email: "",
-      username: "",
-    };
-  }
-
-  if (emailRegex.test(identifier)) {
-    return { email: identifier, phoneNr: "", username: "" };
-  }
-
-  return { username: identifier, email: "", phoneNr: "" };
-};
 
 export const useAuthService = (): AuthService => {
   const { VERIFY_CODE, LOGIN } = paths;
@@ -67,11 +46,11 @@ export const useAuthService = (): AuthService => {
 
   const login = async (values: LoginValues): Promise<void> => {
     try {
-      setLoading(true);
-
       const { identifier, password, phonePrefix } = values;
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
       const payload = { ...parsedIdentifier, password };
+
+      setLoading(true);
 
       const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, payload);
 
@@ -109,50 +88,7 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const loginSavedUser = async (): Promise<void> => {
-    try {
-      // dispatch(setLoading(true));
-
-      const loginSavedUserResp =
-        await HttpClient.get<AuthResponse>(LOGIN_SAVED_USER_API);
-
-      // dispatch(setLoading(false));
-
-      const { error, message, data } = loginSavedUserResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
-
-      const { aToken, rToken, user } = data;
-      user.extra = {
-        ...JSON.parse(user.extra),
-      };
-
-      dispatch(setAToken(aToken));
-      dispatch(setRToken(rToken));
-      dispatch(setUser(user));
-      dispatch(setIsAuthenticated(true));
-      // dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
-
-      localStorage.atoken = aToken;
-      localStorage.rtoken = rToken;
-      localStorage.user = JSON.stringify(user);
-    } catch (error) {
-      // dispatch(setLoading(false));
-      notify({
-        variant: "error",
-        description: "Login failed. Try again later.",
-      });
-      console.error(`Login failed: ${error}`);
-      throw error;
-    }
-  };
-
-  const socialAuth = async (tokenParam: string) => {
+  const loginWithSocialApp = async (tokenParam: string) => {
     try {
       const query = new URLSearchParams(tokenParam);
 
@@ -178,6 +114,49 @@ export const useAuthService = (): AuthService => {
       localStorage.user = JSON.stringify(user);
     } catch (error) {
       console.error(`SocialAuth login failed: ${error}`);
+      throw error;
+    }
+  };
+
+  const loginWithSavedUser = async (): Promise<void> => {
+    try {
+      setLoading(true);
+
+      const loginSavedUserResp =
+        await HttpClient.get<AuthResponse>(LOGIN_SAVED_USER_API);
+
+      setLoading(false);
+
+      const { error, message, data } = loginSavedUserResp;
+      if (error) {
+        notify({
+          variant: "error",
+          description: message,
+        });
+        return;
+      }
+
+      const { aToken, rToken, user } = data;
+      user.extra = {
+        ...JSON.parse(user.extra),
+      };
+
+      dispatch(setAToken(aToken));
+      dispatch(setRToken(rToken));
+      dispatch(setUser(user));
+      dispatch(setIsAuthenticated(true));
+      // dispatch(setUserLastLogin({ id: user.id, lastLogin: user.lastLogin }));
+
+      localStorage.atoken = aToken;
+      localStorage.rtoken = rToken;
+      localStorage.user = JSON.stringify(user);
+    } catch (error) {
+      setLoading(false);
+      notify({
+        variant: "error",
+        description: "Login failed. Try again later.",
+      });
+      console.error(`Login failed: ${error}`);
       throw error;
     }
   };
@@ -354,10 +333,10 @@ export const useAuthService = (): AuthService => {
     login,
     logout,
     register,
-    socialAuth,
+    loginWithSocialApp,
     verifyCode,
     resetPassword,
     loginHelp,
-    loginSavedUser,
+    loginWithSavedUser,
   };
 };

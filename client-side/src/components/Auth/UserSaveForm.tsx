@@ -19,7 +19,7 @@ import { convertTimeAgoName, isTokenExpired, nameTruncate } from "../../utils";
 export const UserSaveForm: FC = () => {
   const { LOGIN, HOME } = paths;
 
-  const { loginSavedUser } = useAuthService();
+  const { loginWithSavedUser } = useAuthService();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ export const UserSaveForm: FC = () => {
   const onSubmitLoginSavedUserHandler = async (token: string) => {
     try {
       dispatch(setCurrentAuthUserToken(token));
-      await loginSavedUser();
+      await loginWithSavedUser();
     } catch (error) {
       console.error(`Failed to login! ${error}`);
     }

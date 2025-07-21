@@ -3,7 +3,7 @@ import { useLocation, Navigate } from "react-router-dom";
 import { useAuthService } from "../../services";
 
 export const SocialAuth: FC = () => {
-  const { socialAuth } = useAuthService();
+  const { loginWithSocialApp } = useAuthService();
 
   const location = useLocation();
 
@@ -11,7 +11,7 @@ export const SocialAuth: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await socialAuth(tokenParam);
+      await loginWithSocialApp(tokenParam);
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
