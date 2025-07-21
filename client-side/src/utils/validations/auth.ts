@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { AuthFormName } from "../../data";
+import { AuthFormName } from "../../types";
 
 const userRegex: Record<string, RegExp> = {
   emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
