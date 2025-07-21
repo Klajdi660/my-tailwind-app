@@ -1,22 +1,22 @@
 import { FC } from "react";
 import { useLocation } from "react-router-dom";
+import { ErrorPage } from "../ErrorPage";
 import { VerifyCodeValues } from "../../types";
 import { useAuthService } from "../../services";
 import { verifyCodeFormData } from "../../data";
 import { VerifyCodeForm } from "../../components";
-import { ErrorPage } from "../ErrorPage";
 
 export const VerifyCodePage: FC = () => {
   const location = useLocation();
   const { verifyCode, register } = useAuthService();
 
-  const { verifyCodData } = location.state || {};
+  const { verifyCodeData } = location.state || {};
 
   const onSubmitVerifyCode = async (values: VerifyCodeValues) => {
     try {
       await verifyCode({
         code: values.code,
-        email: verifyCodData?.email,
+        email: verifyCodeData?.email,
       });
     } catch (error) {
       console.error("Failed sending code");
@@ -25,7 +25,7 @@ export const VerifyCodePage: FC = () => {
 
   const resendCodeHandler = async () => {
     try {
-      await register(verifyCodData);
+      await register(verifyCodeData);
     } catch (error) {
       console.error("Failed to resend code");
     }
@@ -33,11 +33,11 @@ export const VerifyCodePage: FC = () => {
 
   return (
     <>
-      {verifyCodData && verifyCodData.nameForm ? (
+      {verifyCodeData && verifyCodeData.nameForm ? (
         <VerifyCodeForm
           onSubmit={onSubmitVerifyCode}
           resendCodeHandler={resendCodeHandler}
-          data={verifyCodeFormData[verifyCodData.nameForm]}
+          data={verifyCodeFormData[verifyCodeData.nameForm]}
         />
       ) : (
         <ErrorPage />

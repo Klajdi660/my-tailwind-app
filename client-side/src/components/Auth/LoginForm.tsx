@@ -14,13 +14,9 @@ import {
   Title,
 } from "../../components";
 import { iconName } from "../../assets";
-import { LoginValues } from "../../types";
+import { LoginFormProps } from "../../types";
 import { loginFormData, paths, userRegex } from "../../data";
 import { classNames, phonePrefixData, loginValidation } from "../../utils";
-
-interface LoginFormProps {
-  onSubmit: (values: LoginValues) => Promise<void>;
-}
 
 export const LoginForm: FC<LoginFormProps> = (props) => {
   const { onSubmit } = props;

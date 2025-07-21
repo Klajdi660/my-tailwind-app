@@ -10,7 +10,7 @@ export const LoginHelpPage: FC = () => {
 
   const { loginHelp } = useAuthService();
 
-  const { nameForm } = location.state || {};
+  const { toFormName } = location.state || {};
 
   const onSubmitLogiHelp = async (values: LoginHelpValues) => {
     try {
@@ -22,7 +22,7 @@ export const LoginHelpPage: FC = () => {
 
   return (
     <LoginHelpForm
-      metadata={loginHelpFormData[nameForm]}
+      metadata={loginHelpFormData[toFormName]}
       onSubmit={onSubmitLogiHelp}
     />
   );

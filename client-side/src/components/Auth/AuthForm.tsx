@@ -14,23 +14,11 @@ import {
   ErrorResponse,
   FormDivider,
 } from "../../components";
-import { iconName } from "../../assets";
-import { authFormData, AuthFormName, paths, userRegex } from "../../data";
-import { classNames, authValidation, phonePrefixData } from "../../utils";
 import { useAuth } from "../../hooks";
-
-interface AuthFormProps {
-  onSubmit: (values: AuthFormValuesTypes) => Promise<void>;
-  nameForm: AuthFormName;
-}
-
-interface AuthFormValuesTypes {
-  identifier: string;
-  password: string;
-  username: string;
-  fullname: string;
-  phonePrefix: string;
-}
+import { iconName } from "../../assets";
+import { authFormData, paths, userRegex } from "../../data";
+import { AuthFormProps, AuthFormValuesTypes } from "../../types";
+import { classNames, authValidation, phonePrefixData } from "../../utils";
 
 export const AuthForm: FC<AuthFormProps> = (props) => {
   const { onSubmit, nameForm } = props;
@@ -42,12 +30,14 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
   const { metadata, inputMetadata } = authFormData[nameForm];
   const {
     formName,
+    toFormName,
     formTitle,
     description,
     footerTitle,
     footerLink,
     buttonName,
     linkTo,
+    otherLink,
   } = metadata;
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
@@ -160,9 +150,11 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
         </form>
         <FormRedirect
           formName={formName}
+          toFormName={toFormName}
           footerTitle={footerTitle}
           footerLink={footerLink}
           linkTo={linkTo}
+          otherLink={otherLink}
         />
       </div>
     </div>

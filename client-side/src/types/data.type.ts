@@ -1,4 +1,15 @@
 // Auth
+export interface AuthFormDataTypes {
+  login: FormDataType<LoginInputMetadata>;
+  register: FormDataType<RegisterInputMetadata>;
+}
+
+export interface ErrorAuthResponseMap {
+  linkText: string;
+  to: string;
+  state?: Record<string, string>;
+}
+
 export interface SocialAuthList {
   id: number;
   name: string;
@@ -51,6 +62,12 @@ export interface FormDataType<T extends { name: string }> {
     footerLink: string;
     buttonName: string;
     linkTo: string;
+    toFormName?: string;
+    otherLink?: {
+      otherLinkName: string;
+      otherLinkPName: string;
+      otherLinkTo: string;
+    };
   };
   inputMetadata: T[];
 }

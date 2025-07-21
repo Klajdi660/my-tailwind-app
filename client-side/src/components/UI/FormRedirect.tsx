@@ -1,27 +1,36 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { paths } from "../../data";
-
-interface FormRedirectProps {
-  formName: string;
-  footerTitle: string;
-  footerLink: string;
-  linkTo: string;
-}
+import { FormRedirectProps } from "../../types";
 
 export const FormRedirect: FC<FormRedirectProps> = (props) => {
-  const { formName, footerTitle, footerLink, linkTo } = props;
+  const {
+    toFormName,
+    footerTitle,
+    footerLink,
+    linkTo,
+    otherLink,
+    resendCodeHandler,
+  } = props;
 
-  const { LOGIN_HELP } = paths;
+  const { otherLinkName, otherLinkTo, otherLinkPName } = otherLink || {};
 
   return (
     <div className="flex flex-col gap-4">
-      {formName === "login" && (
+      {otherLink && (
         <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
-          Forgot Password?
-          <Link to={LOGIN_HELP} state={{ nameForm: "forgotPassword" }}>
+          {otherLinkName}
+          <Link
+            to={otherLinkTo || ""}
+            state={{ toFormName }}
+            onClick={(e) => {
+              if (resendCodeHandler) {
+                e.preventDefault();
+                resendCodeHandler();
+              }
+            }}
+          >
             <p className="text-primary hover:underline underline-offset-2 cursor-pointer">
-              Reset
+              {otherLinkPName}
             </p>
           </Link>
         </div>

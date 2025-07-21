@@ -1,8 +1,9 @@
 import { Tooltip } from "antd";
 import { forwardRef, FC, Ref } from "react";
-import { Icon } from "./Icon";
+import { Icon, Spinner } from "../../components";
 import { classNames } from "../../utils";
 import { ButtonProps } from "../../types";
+import { useStore } from "../../hooks";
 
 export const Button: FC<ButtonProps> = forwardRef(
   (
@@ -22,6 +23,8 @@ export const Button: FC<ButtonProps> = forwardRef(
     },
     ref: Ref<HTMLButtonElement>
   ) => {
+    const { loading } = useStore();
+
     return (
       <button
         className={classNames(
@@ -42,31 +45,35 @@ export const Button: FC<ButtonProps> = forwardRef(
         onClick={onClick}
         {...props}
       >
-        <Tooltip arrow={false} title={tooltipTitle} trigger={["hover"]}>
-          <div
-            className={classNames("flex_justify_center", labelIconClassName)}
-          >
-            {labelIcon && (
-              <Icon
-                name={labelIcon}
-                className={classNames(
-                  variant === "none" && iconClassName,
-                  variant === "outlined" && "text-primary",
-                  variant === "contained" && "text-white",
-                  variant === "delete" && "text-white",
-                  variant === "filled" && "text-white",
-                  variant === "gradient" && "text-white"
-                )}
-                size={size}
-              />
-            )}
-            {label && (
-              <div className="text-center font-normal whitespace-nowrap">
-                {label}
-              </div>
-            )}
-          </div>
-        </Tooltip>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <Tooltip arrow={false} title={tooltipTitle} trigger={["hover"]}>
+            <div
+              className={classNames("flex_justify_center", labelIconClassName)}
+            >
+              {labelIcon && (
+                <Icon
+                  name={labelIcon}
+                  className={classNames(
+                    variant === "none" && iconClassName,
+                    variant === "outlined" && "text-primary",
+                    variant === "contained" && "text-white",
+                    variant === "delete" && "text-white",
+                    variant === "filled" && "text-white",
+                    variant === "gradient" && "text-white"
+                  )}
+                  size={size}
+                />
+              )}
+              {label && (
+                <div className="text-center font-normal whitespace-nowrap">
+                  {label}
+                </div>
+              )}
+            </div>
+          </Tooltip>
+        )}
       </button>
     );
   }

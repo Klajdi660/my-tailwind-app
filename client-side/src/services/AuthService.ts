@@ -21,7 +21,7 @@ import {
 } from "../types";
 import { paths, userRegex } from "../data";
 import { HttpClient } from "../client";
-import { useAuth, useNotification } from "../hooks";
+import { useAuth, useNotification, useStore } from "../hooks";
 
 const {
   LOGIN_API,
@@ -58,6 +58,7 @@ export const useAuthService = (): AuthService => {
   const { VERIFY_CODE, LOGIN } = paths;
 
   const { setErrorResponse } = useAuth();
+  const { setLoading } = useStore();
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ export const useAuthService = (): AuthService => {
 
   const login = async (values: LoginValues): Promise<void> => {
     try {
-      // dispatch(setLoading(true));
+      setLoading(true);
 
       const { identifier, password, phonePrefix } = values;
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
@@ -74,7 +75,7 @@ export const useAuthService = (): AuthService => {
 
       const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, payload);
 
-      // dispatch(setLoading(false));
+      setLoading(false);
 
       const { error, data } = loginResp;
       if (error) throw loginResp;
@@ -94,12 +95,12 @@ export const useAuthService = (): AuthService => {
       localStorage.setItem("rtoken", rToken);
       localStorage.setItem("user", JSON.stringify(user));
     } catch (error: any) {
+      setLoading(false);
       setErrorResponse({
         error: true,
         errorType: error.errorType,
         errorMessage: error.message,
       });
-      // dispatch(setLoading(false));
       // notify({
       //   variant: "error",
       //   description: error.message,
@@ -183,7 +184,7 @@ export const useAuthService = (): AuthService => {
 
   const register = async (values: RegisterUserValues): Promise<void> => {
     try {
-      // setLoading(true);
+      setLoading(true);
 
       const { identifier, phonePrefix, ...rest } = values;
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
@@ -194,16 +195,10 @@ export const useAuthService = (): AuthService => {
         payload
       );
 
-      // setLoading(false);
+      setLoading(false);
 
-      const { error, message, data } = registerResp;
-      // if (error) {
-      //   notify({
-      //     variant: "error",
-      //     description: message,
-      //   });
-      //   return;
-      // }
+      const { error, message } = registerResp;
+
       if (error) throw registerResp;
 
       notify({
@@ -213,7 +208,6 @@ export const useAuthService = (): AuthService => {
 
       const verifyCodeData = {
         ...payload,
-        codeExpire: data.codeExpire,
         nameForm: "verify-account",
       };
 
@@ -224,7 +218,7 @@ export const useAuthService = (): AuthService => {
         errorType: error.errorType,
         errorMessage: error.message,
       });
-      // setLoading(false);
+      setLoading(false);
       console.error(`Signup failed: ${error}`);
       throw error;
     }

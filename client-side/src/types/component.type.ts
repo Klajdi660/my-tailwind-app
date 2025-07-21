@@ -1,8 +1,34 @@
 import { ReactNode } from "react";
 import { Effect } from "react-lazy-load-image-component";
 import { GameParams, GameReviewsParams } from "./general.type";
+import {
+  FormDataType,
+  LoginHelpDataType,
+  VerifyCodeInputMetadata,
+} from "./data.type";
+import {
+  LoginHelpValues,
+  LoginValues,
+  RegisterUserValues,
+  VerifyCodeValues,
+} from "./page.type";
 
 // Auth
+export type AuthFormName = "login" | "register";
+
+export interface AuthFormValuesTypes {
+  identifier: string;
+  password: string;
+  username: string;
+  fullname: string;
+  phonePrefix: string;
+}
+
+export interface AuthFormProps {
+  onSubmit: (values: AuthFormValuesTypes) => Promise<void>;
+  nameForm: AuthFormName;
+}
+
 export interface FormProps {
   listForm: FormListItem[] | any;
   onSubmit?: any;
@@ -12,6 +38,25 @@ export interface FormProps {
   files?: any;
   setFiles?: any;
   hasProvider?: boolean;
+}
+
+export interface LoginHelpFormProps {
+  metadata: LoginHelpDataType;
+  onSubmit: (values: LoginHelpValues) => Promise<void>;
+}
+
+export interface LoginFormProps {
+  onSubmit: (values: LoginValues) => Promise<void>;
+}
+
+export interface RegisterFormProps {
+  onSubmit: (values: RegisterUserValues) => Promise<void>;
+}
+
+export interface VerifyCodeFormProps {
+  onSubmit: (values: VerifyCodeValues) => Promise<void>;
+  resendCodeHandler: () => Promise<void>;
+  data: FormDataType<VerifyCodeInputMetadata>;
 }
 
 export interface FormListItem {
@@ -186,6 +231,7 @@ export interface CheckoutCardFormProps {
 }
 
 // Common
+
 export interface ErrorFormMessageProps {
   errorMessage?: { message: string } | any;
 }
@@ -314,6 +360,11 @@ export interface TrackCardSkeletonProps {
 }
 
 // UI
+export interface EmailOrPhoneButtonProps {
+  selectedMethod: string;
+  setSelectedMethod: (method: string) => void;
+}
+
 export interface ShowMoreButtonProps {
   className?: string;
   onClick?: () => void;
@@ -424,6 +475,24 @@ export type ModalDefaultStyles = {
   footer?: object;
   header?: object;
 };
+
+export interface FormRedirectProps {
+  formName: string;
+  toFormName?: string;
+  footerTitle: string;
+  footerLink: string;
+  linkTo: string;
+  resendCodeHandler?: () => void;
+  otherLink?: {
+    otherLinkName: string;
+    otherLinkPName: string;
+    otherLinkTo: string;
+  };
+}
+
+export interface ScrollToTopProps {
+  children: ReactNode;
+}
 
 // Other Component
 export interface LanguageProps {

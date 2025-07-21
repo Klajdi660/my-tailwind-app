@@ -2,11 +2,7 @@ import { FC, Fragment } from "react";
 import { Button } from "../Button";
 import { classNames } from "../../../utils";
 import { emailOrPhoneButtonList } from "../../../data";
-
-interface EmailOrPhoneButtonProps {
-  selectedMethod: string;
-  setSelectedMethod: (method: string) => void;
-}
+import { EmailOrPhoneButtonProps } from "../../../types";
 
 export const EmailOrPhoneButton: FC<EmailOrPhoneButtonProps> = (props) => {
   const { selectedMethod, setSelectedMethod } = props;

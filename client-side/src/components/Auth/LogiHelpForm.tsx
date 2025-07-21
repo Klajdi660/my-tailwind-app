@@ -18,12 +18,7 @@ import {
 } from "../../components";
 import { paths } from "../../data";
 import { iconName } from "../../assets";
-import { LoginHelpDataType, LoginHelpValues } from "../../types";
-
-export interface LoginHelpFormProps {
-  metadata: LoginHelpDataType;
-  onSubmit: (values: LoginHelpValues) => Promise<void>;
-}
+import { LoginHelpFormProps } from "../../types";
 
 export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
   const { metadata, onSubmit } = props;

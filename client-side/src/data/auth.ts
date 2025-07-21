@@ -8,6 +8,8 @@ import {
   EmailOrPhoneButtonType,
   LoginHelpDataType,
   VerifyCodeInputMetadata,
+  ErrorAuthResponseMap,
+  AuthFormDataTypes,
 } from "../types";
 import { paths } from "./general";
 import { APP_URL } from "../configs";
@@ -16,22 +18,10 @@ import { endpoints } from "../services";
 const { REGISTER, LOGIN, LOGIN_HELP, RESET_PASSWORD } = paths;
 const { OAUTH_GOOGLE_API } = endpoints;
 
-export type AuthFormName = "login" | "register";
-interface AuthFormDataTypes {
-  login: FormDataType<LoginInputMetadata>;
-  register: FormDataType<RegisterInputMetadata>;
-}
-
-interface ErrorAuthResponseMap {
-  linkText: string;
-  to: string;
-  state?: Record<string, string>;
-}
-
 export const errorAuthResponseMap: Record<string, ErrorAuthResponseMap> = {
   "no-account": { linkText: "create a new account", to: REGISTER },
   "invalid-password": { linkText: "reset your password", to: RESET_PASSWORD },
-  "existing-user": { linkText: "log in", to: LOGIN },
+  "existing-user": { linkText: "sign in", to: LOGIN },
   "user-not-verified": {
     linkText: "verify your account",
     to: LOGIN_HELP,
@@ -126,12 +116,18 @@ export const authFormData: AuthFormDataTypes = {
   login: {
     metadata: {
       formName: "login",
+      toFormName: "forgotPassword",
       formTitle: "Log in",
       description: "to continue to Groove",
       footerTitle: "Don't have an account?",
       footerLink: "Sign up",
       buttonName: "Logi in",
       linkTo: REGISTER,
+      otherLink: {
+        otherLinkName: "Forgot Password?",
+        otherLinkPName: "Reset",
+        otherLinkTo: LOGIN_HELP,
+      },
     },
     inputMetadata: [
       {
@@ -233,6 +229,11 @@ export const verifyCodeFormData: Record<
       footerLink: "Go back",
       buttonName: "Verify Account",
       linkTo: LOGIN,
+      otherLink: {
+        otherLinkName: "Didn't recieve code?",
+        otherLinkPName: "Resend",
+        otherLinkTo: "#",
+      },
     },
     inputMetadata: [
       {

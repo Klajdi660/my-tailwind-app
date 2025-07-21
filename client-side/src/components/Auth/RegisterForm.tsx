@@ -14,13 +14,9 @@ import {
   Title,
 } from "../../components";
 import { iconName } from "../../assets";
-import { RegisterUserValues } from "../../types";
+import { RegisterFormProps } from "../../types";
 import { paths, registerFormData, userRegex } from "../../data";
 import { classNames, phonePrefixData, registerValidation } from "../../utils";
-
-interface RegisterFormProps {
-  onSubmit: (values: RegisterUserValues) => Promise<void>;
-}
 
 export const RegisterForm: FC<RegisterFormProps> = (props) => {
   const { onSubmit } = props;

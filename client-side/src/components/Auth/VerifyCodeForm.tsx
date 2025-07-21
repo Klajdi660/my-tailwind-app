@@ -3,11 +3,6 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  FormDataType,
-  VerifyCodeInputMetadata,
-  VerifyCodeValues,
-} from "../../types";
-import {
   Button,
   ErrorFormMessage,
   FormRedirect,
@@ -16,13 +11,8 @@ import {
 } from "../../components";
 import { paths } from "../../data";
 import { iconName } from "../../assets";
+import { VerifyCodeFormProps } from "../../types";
 import { classNames, verifyCodeValidation } from "../../utils";
-
-interface VerifyCodeFormProps {
-  onSubmit: (values: VerifyCodeValues) => Promise<void>;
-  resendCodeHandler: () => Promise<void>;
-  data: FormDataType<VerifyCodeInputMetadata>;
-}
 
 export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
   const { onSubmit, resendCodeHandler, data } = props;
@@ -37,6 +27,7 @@ export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
     footerTitle,
     footerLink,
     linkTo,
+    otherLink,
   } = metadata;
 
   const {
@@ -98,19 +89,13 @@ export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
             disabled={!isValid}
           />
         </form>
-        <div className="flex justify-center text-sm text-onNeutralBg">
-          Didn't recieve code? &nbsp;
-          <div className="cursor-pointer" onClick={resendCodeHandler}>
-            <p className="text-primary hover:underline underline-offset-2">
-              Resend
-            </p>
-          </div>
-        </div>
         <FormRedirect
           formName={formName}
           footerTitle={footerTitle}
           footerLink={footerLink}
           linkTo={linkTo}
+          resendCodeHandler={resendCodeHandler}
+          otherLink={otherLink}
         />
       </div>
     </div>

@@ -112,6 +112,7 @@ export { FormDivider } from "./UI/FormDivider";
 export { FormRedirect } from "./UI/FormRedirect";
 export { EmailOrPhoneButton } from "./UI/Buttons/EmailOrPhoneButton";
 export { Divider } from "./UI/Divider";
+export { Spinner } from "./UI/Spinner";
 
 // Others Component
 export { Footer } from "./Footer";
