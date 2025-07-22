@@ -60,7 +60,7 @@ export const PersonalDetails: FC = () => {
       await updateProfile(values);
       setIsFormChanged(false);
     } catch (error) {
-      console.error(`Failed to update personal details! ${error}`);
+      console.error(`personal_details_error: ${JSON.stringify(error)}`);
     }
   };
 

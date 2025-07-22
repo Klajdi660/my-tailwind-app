@@ -143,6 +143,7 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
           <Button
             className={classNames("mt-4", isValid && "hover:brightness-110")}
             type="submit"
+            isSubmitting={true}
             label={buttonName}
             variant="contained"
             disabled={!isValid}

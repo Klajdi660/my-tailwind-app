@@ -30,7 +30,7 @@ export const ChangeUsernameModal: FC = () => {
         handleModalClose();
       }
     } catch (error) {
-      console.error(`Failed to change username! ${error}`);
+      console.error(`change_username_modal_error: ${JSON.stringify(error)}`);
     }
   };
 

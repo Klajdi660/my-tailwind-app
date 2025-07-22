@@ -23,7 +23,7 @@ export const RemovePhotoModal: FC = () => {
 
       handleRemoveModalClose();
     } catch (error) {
-      console.error(`Failed to remove cover photo! ${error}`);
+      console.error(`remove_photo_modal_erro: ${JSON.stringify(error)}`);
     }
   };
 

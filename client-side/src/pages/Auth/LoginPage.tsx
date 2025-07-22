@@ -13,7 +13,7 @@ export const LoginPage: FC = () => {
     try {
       await login(values);
     } catch (error) {
-      console.error("Failed to login");
+      console.error(`login_page_error: ${JSON.stringify(error)}`);
     }
   };
 

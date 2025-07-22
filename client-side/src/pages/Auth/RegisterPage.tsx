@@ -13,7 +13,7 @@ export const RegisterPage: FC = () => {
     try {
       await register(values);
     } catch (error) {
-      console.error(`Failed to register! ${error}`);
+      console.error(`register_page_error: ${JSON.stringify(error)}`);
     }
   };
 

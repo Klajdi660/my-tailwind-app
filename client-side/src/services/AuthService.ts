@@ -18,23 +18,23 @@ import {
   LoginHelpValues,
   VerifyCodeValues,
 } from "../types";
-import { paths } from "../data";
+import { notifyVariant, paths } from "../data";
 import { HttpClient } from "../client";
 import { parseIdentifier } from "../utils";
 import { useAuth, useNotification, useStore } from "../hooks";
 
-const {
-  LOGIN_API,
-  LOGOUT_API,
-  REGISTER_API,
-  VERIFY_EMAIL_API,
-  RESET_PASSWORD_API,
-  FORGOT_PASSWORD_API,
-  LOGIN_SAVED_USER_API,
-} = endpoints;
-
 export const useAuthService = (): AuthService => {
+  const {
+    LOGIN_API,
+    LOGOUT_API,
+    REGISTER_API,
+    LOGIN_HELP_API,
+    VERIFY_EMAIL_API,
+    RESET_PASSWORD_API,
+    LOGIN_SAVED_USER_API,
+  } = endpoints;
   const { VERIFY_CODE, LOGIN } = paths;
+  const { ERROR, SUCCESS, INFO } = notifyVariant;
 
   const { setErrorResponse } = useAuth();
   const { setLoading } = useStore();
@@ -57,6 +57,7 @@ export const useAuthService = (): AuthService => {
       setLoading(false);
 
       const { error, data } = loginResp;
+
       if (error) throw loginResp;
 
       const { aToken, rToken, user } = data;
@@ -80,10 +81,52 @@ export const useAuthService = (): AuthService => {
         errorType: error.errorType,
         errorMessage: error.message,
       });
-      // notify({
-      //   variant: "error",
-      //   description: error.message,
-      // });
+
+      throw error;
+    }
+  };
+
+  const loginHelp = async (values: LoginHelpValues): Promise<void> => {
+    try {
+      const { email, phoneNumber, phonePrefix } = values;
+
+      const payload = phoneNumber
+        ? { email: "", phoneNr: `${phonePrefix}${phoneNumber}` }
+        : { email, phoneNr: "" };
+
+      setLoading(true);
+
+      const loginHelpResp = await HttpClient.post<AuthResponse>(
+        LOGIN_HELP_API,
+        payload
+      );
+
+      setLoading(false);
+
+      const { error, message, data } = loginHelpResp;
+
+      if (error) throw loginHelpResp;
+
+      notify({
+        variant: SUCCESS,
+        description: message,
+      });
+
+      const verifyCodeData = {
+        ...payload,
+        username: data.username,
+        toFormName: "verify-account",
+      };
+
+      navigate(VERIFY_CODE, { state: { verifyCodeData } });
+    } catch (error: any) {
+      setLoading(false);
+      setErrorResponse({
+        error: true,
+        errorType: error.errorType,
+        errorMessage: error.message,
+      });
+
       throw error;
     }
   };
@@ -113,7 +156,6 @@ export const useAuthService = (): AuthService => {
       localStorage.rtoken = rToken;
       localStorage.user = JSON.stringify(user);
     } catch (error) {
-      console.error(`SocialAuth login failed: ${error}`);
       throw error;
     }
   };
@@ -127,14 +169,9 @@ export const useAuthService = (): AuthService => {
 
       setLoading(false);
 
-      const { error, message, data } = loginSavedUserResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+      const { error, data } = loginSavedUserResp;
+
+      if (error) throw loginSavedUserResp;
 
       const { aToken, rToken, user } = data;
       user.extra = {
@@ -150,24 +187,24 @@ export const useAuthService = (): AuthService => {
       localStorage.atoken = aToken;
       localStorage.rtoken = rToken;
       localStorage.user = JSON.stringify(user);
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       notify({
-        variant: "error",
-        description: "Login failed. Try again later.",
+        variant: ERROR,
+        description: error.message || "Login failed, try again later",
       });
-      console.error(`Login failed: ${error}`);
+
       throw error;
     }
   };
 
   const register = async (values: RegisterUserValues): Promise<void> => {
     try {
-      setLoading(true);
-
       const { identifier, phonePrefix, ...rest } = values;
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
       const payload = { ...parsedIdentifier, ...rest };
+
+      setLoading(true);
 
       const registerResp = await HttpClient.post<RegisterResponse>(
         REGISTER_API,
@@ -181,7 +218,7 @@ export const useAuthService = (): AuthService => {
       if (error) throw registerResp;
 
       notify({
-        variant: "success",
+        variant: SUCCESS,
         description: `${message}`,
       });
 
@@ -192,47 +229,45 @@ export const useAuthService = (): AuthService => {
 
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
     } catch (error: any) {
+      setLoading(false);
       setErrorResponse({
         error: true,
         errorType: error.errorType,
         errorMessage: error.message,
       });
-      setLoading(false);
-      console.error(`Signup failed: ${error}`);
+
       throw error;
     }
   };
 
   const verifyCode = async (values: VerifyCodeValues): Promise<void> => {
     try {
-      // setLoading(true);
+      setLoading(true);
 
-      const verifyEmailResp = await HttpClient.post<AuthResponse>(
+      const verifyCodeResp = await HttpClient.post<AuthResponse>(
         VERIFY_EMAIL_API,
         values
       );
 
-      // setLoading(false);
+      setLoading(false);
 
-      const { error, message } = verifyEmailResp;
+      const { error, message } = verifyCodeResp;
 
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+      if (error) throw verifyCodeResp;
 
       notify({
-        variant: "success",
+        variant: SUCCESS,
         description: message,
       });
 
       navigate(LOGIN);
-    } catch (error) {
-      // setLoading(false);
-      console.error(`Verify email failed: ${error}`);
+    } catch (error: any) {
+      setLoading(false);
+      notify({
+        variant: SUCCESS,
+        description: error.message,
+      });
+
       throw error;
     }
   };
@@ -253,42 +288,10 @@ export const useAuthService = (): AuthService => {
       // localStorage.removeItem("lastLocation");
     } catch (error) {
       notify({
-        variant: "error",
-        description: "Logout failed.",
+        variant: ERROR,
+        description: "Log out failed",
       });
-      console.error(`Logout failed: ${error}`);
-      throw error;
-    }
-  };
 
-  const loginHelp = async (values: LoginHelpValues): Promise<void> => {
-    try {
-      const { email, phoneNumber, phonePrefix } = values;
-
-      const payload = phoneNumber
-        ? { email: "", phoneNumber: `${phonePrefix}${phoneNumber}` }
-        : { email, phoneNumber: "" };
-
-      const forgotPasswordResp = await HttpClient.post<AuthResponse>(
-        FORGOT_PASSWORD_API,
-        payload
-      );
-
-      const { error, message } = forgotPasswordResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
-
-      notify({
-        variant: "info",
-        description: message,
-      });
-    } catch (error) {
-      console.error(`Forgot Pass Failed: ${error}`);
       throw error;
     }
   };
@@ -300,31 +303,29 @@ export const useAuthService = (): AuthService => {
   ): Promise<void> => {
     try {
       const params = new URLSearchParams({ email, hash }).toString();
-      const url = `${RESET_PASSWORD_API}?${params}`;
+
+      setLoading(true);
 
       const resetPasswordResp = await HttpClient.post<AuthResponse>(
-        url,
+        `${RESET_PASSWORD_API}?${params}`,
         values
       );
 
+      setLoading(false);
+
       const { error, message } = resetPasswordResp;
 
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+      if (error) throw resetPasswordResp;
 
       notify({
-        variant: "info",
+        variant: INFO,
         description: message,
       });
 
       navigate(LOGIN);
-    } catch (error) {
-      console.error(`Reset password failed: ${error}`);
+    } catch (error: any) {
+      setLoading(false);
+      notify({ variant: ERROR, description: error.message });
       throw error;
     }
   };

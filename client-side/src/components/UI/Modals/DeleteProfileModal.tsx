@@ -41,7 +41,7 @@ export const DeleteProfileModal: FC = () => {
       await deleteProfile(values);
       handleModalOpen();
     } catch (error) {
-      console.error(`Failed to change password! ${error}`);
+      console.error(`delete_profile_modal_error: ${JSON.stringify(error)}`);
     }
   };
 

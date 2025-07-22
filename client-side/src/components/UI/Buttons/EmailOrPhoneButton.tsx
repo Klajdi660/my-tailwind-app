@@ -13,6 +13,7 @@ export const EmailOrPhoneButton: FC<EmailOrPhoneButtonProps> = (props) => {
         <Fragment key={item.name}>
           <Button
             type="button"
+            isSubmitting={false}
             variant="none"
             label={item.name}
             className={classNames(

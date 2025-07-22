@@ -26,13 +26,14 @@ export interface AuthResponse {
   error: boolean;
   errorType: string;
   message: string;
-  data: {
-    user: any;
-    aToken: string;
-    rToken: string;
-    // lToken: string;
-  };
-  lToken(lToken: any): unknown;
+  data: Record<string, any>;
+}
+
+export interface ErrorResponse {
+  error: boolean;
+  errorType?: string;
+  message: string;
+  data?: object;
 }
 
 export interface RegisterResponse {

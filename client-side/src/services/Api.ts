@@ -4,6 +4,7 @@ export const endpoints = {
   LOGOUT_API: "/auth/logout",
   REGISTER_API: "/auth/register",
   OAUTH_GOOGLE_API: "/auth/google",
+  LOGIN_HELP_API: "/auth/login-help",
   VERIFY_EMAIL_API: "/auth/verify-email",
   RESET_PASSWORD_API: "/auth/reset-password",
   FORGOT_PASSWORD_API: "/auth/forgot-password",

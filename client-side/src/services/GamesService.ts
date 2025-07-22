@@ -9,18 +9,20 @@ import {
   ServerResponse,
 } from "../types";
 import { useNotification, useStore } from "../hooks";
-
-const {
-  GET_GAME_LIST_API,
-  GET_GAME_DETAIL_API,
-  GET_GAME_VIDEOS_API,
-  GET_GAME_SLIDER_API,
-  GET_GAME_REVIEWS_API,
-  GET_GAME_GENRE_LIST_API,
-  GET_GAME_PLATFORM_LIST_API,
-} = gameEndpoints;
+import { notifyVariant } from "../data";
 
 export const useGamesService = () => {
+  const {
+    GET_GAME_LIST_API,
+    GET_GAME_DETAIL_API,
+    GET_GAME_VIDEOS_API,
+    GET_GAME_SLIDER_API,
+    GET_GAME_REVIEWS_API,
+    GET_GAME_GENRE_LIST_API,
+    GET_GAME_PLATFORM_LIST_API,
+  } = gameEndpoints;
+  const { ERROR } = notifyVariant;
+
   const { setLoading } = useStore();
   const [notify] = useNotification();
 
@@ -36,7 +38,7 @@ export const useGamesService = () => {
     const { error, message, data } = getGameListResp;
     if (error) {
       notify({
-        variant: "error",
+        variant: ERROR,
         description: message,
       });
       return;
@@ -52,7 +54,7 @@ export const useGamesService = () => {
     const { error, message, data } = getGameSliderResp;
     if (error) {
       notify({
-        variant: "error",
+        variant: ERROR,
         description: message,
       });
       return;
@@ -77,7 +79,7 @@ export const useGamesService = () => {
       const { error, message, data } = getGameDetailResp;
       if (error) {
         notify({
-          variant: "error",
+          variant: ERROR,
           description: message,
         });
         return;
@@ -86,7 +88,6 @@ export const useGamesService = () => {
       return data;
     } catch (error) {
       setLoading(false);
-      console.error(`Get games list field: ${error}`);
       throw error;
     }
   };
@@ -103,14 +104,13 @@ export const useGamesService = () => {
       const { error, message, data } = getGameVideosResp;
       if (error) {
         notify({
-          variant: "error",
+          variant: ERROR,
           description: message,
         });
         return [];
       }
       return data;
     } catch (error) {
-      console.error(`Get game videos field: ${error}`);
       throw error;
     }
   };
@@ -127,7 +127,7 @@ export const useGamesService = () => {
       const { error, message, data } = getGameReviewsResp;
       if (error) {
         notify({
-          variant: "error",
+          variant: ERROR,
           description: message,
         });
         return [];
@@ -135,7 +135,6 @@ export const useGamesService = () => {
 
       return data;
     } catch (error) {
-      console.error(`Get game revies field: ${error}`);
       throw error;
     }
   };
@@ -149,7 +148,7 @@ export const useGamesService = () => {
       const { error, message, data } = getGameGenreListResp;
       if (error) {
         notify({
-          variant: "error",
+          variant: ERROR,
           description: message,
         });
         return [];
@@ -157,7 +156,6 @@ export const useGamesService = () => {
 
       return data;
     } catch (error) {
-      console.error(`Get game genre list field: ${error}`);
       throw error;
     }
   };
@@ -171,7 +169,7 @@ export const useGamesService = () => {
       const { error, message, data } = getGamePlatformListResp;
       if (error) {
         notify({
-          variant: "error",
+          variant: ERROR,
           description: message,
         });
         return [];
@@ -179,7 +177,6 @@ export const useGamesService = () => {
 
       return data;
     } catch (error) {
-      console.error(`Get game platform list field: ${error}`);
       throw error;
     }
   };

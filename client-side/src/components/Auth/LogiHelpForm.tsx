@@ -12,6 +12,7 @@ import {
   Button,
   EmailOrPhoneButton,
   ErrorFormMessage,
+  ErrorResponse,
   FormRedirect,
   Image,
   Title,
@@ -19,6 +20,7 @@ import {
 import { paths } from "../../data";
 import { iconName } from "../../assets";
 import { LoginHelpFormProps } from "../../types";
+import { useAuth } from "../../hooks";
 
 export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
   const { metadata, onSubmit } = props;
@@ -38,6 +40,8 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
     smsButtonName,
   } = metadata;
   const { HOME } = paths;
+
+  const { errorResponse } = useAuth();
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [selectedMethod, setSelectedMethod] = useState<string>("email");
@@ -64,6 +68,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
         <Title name={formTitle} desc={description} type="medium" />
+        {errorResponse.error && <ErrorResponse />}
         <p className="text-md">{formDescription}</p>
         <EmailOrPhoneButton
           selectedMethod={selectedMethod}
@@ -133,6 +138,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
           <Button
             className={classNames("mt-4", isValid && "hover:brightness-110")}
             type="submit"
+            isSubmitting={true}
             label={selectedMethod === "email" ? emailButtonName : smsButtonName}
             variant="contained"
             disabled={!isValid}

@@ -36,7 +36,7 @@ export const GeneralSettings: FC = () => {
     try {
       await updateProfile(values);
     } catch (error) {
-      console.error(`Failed to update general details setting! ${error}`);
+      console.error(`general_settings_error: ${JSON.stringify(error)}`);
     }
   };
 

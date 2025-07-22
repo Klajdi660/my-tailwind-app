@@ -16,7 +16,7 @@ export const LoginHelpPage: FC = () => {
     try {
       await loginHelp(values);
     } catch (error) {
-      console.error("Failed to send request for login help");
+      console.error(`login_help_page_error: ${JSON.stringify(error)}`);
     }
   };
 

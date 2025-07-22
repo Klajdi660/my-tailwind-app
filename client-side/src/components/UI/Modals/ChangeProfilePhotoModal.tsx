@@ -42,7 +42,9 @@ export const ChangeProfilePhotoModal: FC = () => {
         setIsUpdatingProfileImg(false);
       }
     } catch (error) {
-      console.error(`Failed to upload display picture! ${error}`);
+      console.error(
+        `change_profile_photo_modal_error ${JSON.stringify(error)}`
+      );
     }
   };
 

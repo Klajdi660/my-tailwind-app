@@ -26,7 +26,7 @@ const getUserFromLocalStorage = (): User | null => {
       return user;
     }
   } catch (error) {
-    console.error("Error parsing user from localStorage", error);
+    console.error(`auth_context_error: ${JSON.stringify(error)}`);
   }
   return null;
 };

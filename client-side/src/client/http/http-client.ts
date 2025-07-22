@@ -52,7 +52,7 @@ instance.interceptors.response.use(
         originalRequest.headers["Authorization"] = `Bearer ${atoken}`;
         return axios(originalRequest);
       } catch (error) {
-        console.error(`Axios Response Error: ${error}`);
+        console.error(`axios_response_rror: ${JSON.stringify(error)}`);
       }
     }
 

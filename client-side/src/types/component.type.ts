@@ -406,7 +406,7 @@ export interface ButtonProps {
   tooltipTitle?: string;
   iconClassName?: string;
   labelIconClassName?: string;
-  // isSubmitting?: boolean;
+  isSubmitting?: boolean;
   type?: "button" | "submit" | "reset";
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }

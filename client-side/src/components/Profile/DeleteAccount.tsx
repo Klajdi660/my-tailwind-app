@@ -16,7 +16,7 @@ export const DeleteAccount: FC = () => {
     try {
       await cancelDeleteProfile();
     } catch (error) {
-      console.error(`Failed to cancel delete user! ${error}`);
+      console.error(`delete_account_error: ${JSON.stringify(error)}`);
     }
   };
 

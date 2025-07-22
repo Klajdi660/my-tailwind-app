@@ -59,7 +59,7 @@ export const PaymentSettings: FC = () => {
     try {
       await addNewCreditCard(values);
     } catch (error) {
-      console.error(`Failed to add new credit card! ${error}`);
+      console.error(`payment_settings_error: ${JSON.stringify(error)}`);
     }
   };
 

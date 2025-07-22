@@ -14,19 +14,21 @@ import {
 } from "../types";
 import { HttpClient } from "../client";
 import { useNotification, useStore } from "../hooks";
-
-const {
-  UPDATE_PROFILE_API,
-  DELETE_PROFILE_API,
-  CHANGE_PASSWORD_API,
-  CHANGE_USERNAME_API,
-  UPDATE_PROFILE_PICTURE_API,
-  DELETE_PROFILE_PICTURE_API,
-  CANCEL_DELETION_ACCOUNT_API,
-  ADD_NEW_CREDIR_CARD_API,
-} = profileEndpoints;
+import { notifyVariant } from "../data";
 
 export const useProfileService = () => {
+  const {
+    UPDATE_PROFILE_API,
+    DELETE_PROFILE_API,
+    CHANGE_PASSWORD_API,
+    CHANGE_USERNAME_API,
+    UPDATE_PROFILE_PICTURE_API,
+    DELETE_PROFILE_PICTURE_API,
+    CANCEL_DELETION_ACCOUNT_API,
+    ADD_NEW_CREDIR_CARD_API,
+  } = profileEndpoints;
+  const { ERROR, SUCCESS } = notifyVariant;
+
   const { setLoading } = useStore();
   const [notify] = useNotification();
   const dispatch = useDispatch();
@@ -43,13 +45,8 @@ export const useProfileService = () => {
       setLoading(false);
 
       const { error, message, data } = profileDetailsResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return { error: true, message: false };
-      }
+
+      if (error) throw profileDetailsResp;
 
       data.extra = {
         ...JSON.parse(data.extra),
@@ -59,13 +56,17 @@ export const useProfileService = () => {
       dispatch(setUser(data));
 
       notify({
-        variant: "success",
+        variant: SUCCESS,
         description: message,
       });
       return { error: false, message };
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
-      console.error(`Get user details failed: ${error} `);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+
       throw error;
     }
   };
@@ -82,13 +83,8 @@ export const useProfileService = () => {
       setLoading(false);
 
       const { error, message, data } = profileDetailsResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+
+      if (error) throw profileDetailsResp;
 
       const extra = JSON.parse(data.extra);
 
@@ -100,12 +96,16 @@ export const useProfileService = () => {
       dispatch(setUser(data));
 
       notify({
-        variant: "success",
+        variant: SUCCESS,
         description: message,
       });
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
-      console.error(`Get user details failed: ${error} `);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+
       throw error;
     }
   };
@@ -125,7 +125,7 @@ export const useProfileService = () => {
       const { error, message, data } = profilePhotoResp;
       if (error) {
         notify({
-          variant: "error",
+          variant: ERROR,
           description: message,
         });
         return;
@@ -146,7 +146,7 @@ export const useProfileService = () => {
       // );
 
       notify({
-        variant: "success",
+        variant: SUCCESS,
         description: message,
       });
     } catch (error) {
@@ -164,7 +164,7 @@ export const useProfileService = () => {
       const { error, message, data } = removeProfilePhotoResp;
       if (error) {
         notify({
-          variant: "error",
+          variant: ERROR,
           description: message,
         });
         return;
@@ -186,7 +186,7 @@ export const useProfileService = () => {
       // );
 
       notify({
-        variant: "success",
+        variant: SUCCESS,
         description: message,
       });
     } catch (error) {
@@ -206,13 +206,8 @@ export const useProfileService = () => {
       setLoading(false);
 
       const { error, message, data } = deleteProfileResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+
+      if (error) throw deleteProfileResp;
 
       dispatch(setIsAccountDelete({ isAccountDelete: true }));
       dispatch(
@@ -222,12 +217,16 @@ export const useProfileService = () => {
       );
 
       notify({
-        variant: "success",
+        variant: SUCCESS,
         description: message,
       });
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
-      console.error(`Delete user failed: ${error} `);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+
       throw error;
     }
   };
@@ -242,23 +241,22 @@ export const useProfileService = () => {
       setLoading(false);
 
       const { error, message } = cancelDeleteProfileResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+
+      if (error) throw cancelDeleteProfileResp;
 
       dispatch(setIsAccountDelete({ isAccountDelete: false }));
 
       notify({
-        variant: "success",
+        variant: SUCCESS,
         description: message,
       });
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
-      console.error(`Cancel delete user failed: ${error}`);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+
       throw error;
     }
   };
@@ -277,21 +275,20 @@ export const useProfileService = () => {
       setLoading(false);
 
       const { error, message } = changePasswordResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+
+      if (error) throw changePasswordResp;
 
       notify({
-        variant: "success",
+        variant: SUCCESS,
         description: message,
       });
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
-      console.error(`Change password failed: ${error}`);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+
       throw error;
     }
   };
@@ -304,20 +301,19 @@ export const useProfileService = () => {
       );
 
       const { error, message } = newCreditCardResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+
+      if (error) throw newCreditCardResp;
 
       notify({
-        variant: "success",
+        variant: SUCCESS,
         description: message,
       });
-    } catch (error) {
-      console.error(`Get user details failed: ${error} `);
+    } catch (error: any) {
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+
       throw error;
     }
   };

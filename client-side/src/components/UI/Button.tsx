@@ -8,17 +8,18 @@ import { useStore } from "../../hooks";
 export const Button: FC<ButtonProps> = forwardRef(
   (
     {
-      type = "button",
       size,
       label,
       variant,
+      onClick,
       disabled,
       className,
       labelIcon,
+      isSubmitting,
       tooltipTitle,
       iconClassName,
+      type = "button",
       labelIconClassName = "flex-row gap-2",
-      onClick,
       ...props
     },
     ref: Ref<HTMLButtonElement>
@@ -45,7 +46,7 @@ export const Button: FC<ButtonProps> = forwardRef(
         onClick={onClick}
         {...props}
       >
-        {loading ? (
+        {loading && isSubmitting ? (
           <Spinner />
         ) : (
           <Tooltip arrow={false} title={tooltipTitle} trigger={["hover"]}>

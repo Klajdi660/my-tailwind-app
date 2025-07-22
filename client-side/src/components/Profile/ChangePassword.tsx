@@ -23,7 +23,7 @@ export const ChangePassword: FC = () => {
     try {
       await changePassword(values);
     } catch (error) {
-      console.error(`Failed to change password! ${error}`);
+      console.error(`change_password_error: ${JSON.stringify(error)}`);
     }
   };
 

@@ -18,7 +18,7 @@ export const SaveDataAuthPage: FC = () => {
     try {
       await saveAuthUser({ remember: true });
     } catch (error) {
-      console.error(`Failed to save auth user! ${error}`);
+      console.error(`save_data_auth_page_error: ${JSON.stringify(error)}`);
     }
   };
 

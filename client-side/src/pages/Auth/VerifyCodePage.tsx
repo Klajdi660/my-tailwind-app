@@ -19,7 +19,7 @@ export const VerifyCodePage: FC = () => {
         email: verifyCodeData?.email,
       });
     } catch (error) {
-      console.error("Failed sending code");
+      console.error(`verify_code_page_error: ${JSON.stringify(error)}`);
     }
   };
 
@@ -27,17 +27,17 @@ export const VerifyCodePage: FC = () => {
     try {
       await register(verifyCodeData);
     } catch (error) {
-      console.error("Failed to resend code");
+      console.error(`verify_code_page_error_2: ${JSON.stringify(error)}`);
     }
   };
 
   return (
     <>
-      {verifyCodeData && verifyCodeData.nameForm ? (
+      {verifyCodeData && verifyCodeData.toFormName ? (
         <VerifyCodeForm
           onSubmit={onSubmitVerifyCode}
           resendCodeHandler={resendCodeHandler}
-          data={verifyCodeFormData[verifyCodeData.nameForm]}
+          data={verifyCodeFormData[verifyCodeData.toFormName]}
         />
       ) : (
         <ErrorPage />

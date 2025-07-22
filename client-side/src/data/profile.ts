@@ -1,4 +1,4 @@
-import { paths } from "./general";
+import { paths } from "./general.data";
 import {
   GenderProperties,
   ProfileMenuItems,

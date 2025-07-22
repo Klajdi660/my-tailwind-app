@@ -12,7 +12,7 @@ export const ResetPasswordPage: FC = () => {
     try {
       await resetPassword(values, email, hash);
     } catch (error) {
-      console.error(`Failed to update password! ${error}`);
+      console.error(`reset_password_page_error: ${JSON.stringify(error)}`);
     }
   };
 

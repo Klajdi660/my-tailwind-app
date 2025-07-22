@@ -8,7 +8,15 @@ import {
   SettingsLinksParams,
   FontSizesProperties,
   NotificationItemList,
+  NotifyVartiantTypes,
 } from "../types";
+
+export const notifyVariant: NotifyVartiantTypes = {
+  INFO: "info",
+  ERROR: "error",
+  SUCCESS: "success",
+  WARNING: "warning",
+};
 
 export const dateFormat: string = "DD-MM-YYYY HH:mm:ss";
 

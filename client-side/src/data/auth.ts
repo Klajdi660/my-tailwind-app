@@ -11,7 +11,7 @@ import {
   ErrorAuthResponseMap,
   AuthFormDataTypes,
 } from "../types";
-import { paths } from "./general";
+import { paths } from "./general.data";
 import { APP_URL } from "../configs";
 import { endpoints } from "../services";
 
@@ -25,7 +25,7 @@ export const errorAuthResponseMap: Record<string, ErrorAuthResponseMap> = {
   "user-not-verified": {
     linkText: "verify your account",
     to: LOGIN_HELP,
-    state: { nameForm: "prevVerifyAcount" },
+    state: { toFormName: "prevVerifyAccount" },
   },
 };
 
@@ -198,7 +198,7 @@ export const loginHelpFormData: Record<string, LoginHelpDataType> = {
     emailButtonName: "Email Me",
     smsButtonName: "Text Me",
   },
-  prevVerifyAcount: {
+  prevVerifyAccount: {
     formName: "prev-verify-account",
     formTitle: "Verify Account",
     formDescription: "How would you like to verify your account?",

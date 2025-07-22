@@ -75,7 +75,7 @@ export const UserSaveForm: FC = () => {
       dispatch(setCurrentAuthUserToken(token));
       await loginWithSavedUser();
     } catch (error) {
-      console.error(`Failed to login! ${error}`);
+      console.error(`user_save_form_error: ${JSON.stringify(error)}`);
     }
   };
 

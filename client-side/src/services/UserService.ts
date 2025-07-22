@@ -10,12 +10,12 @@ import {
   useAppSelector,
   setSavedAuthUser,
 } from "../store";
-import { paths } from "../data";
-
-const { GET_USER_DETAILS_API, SAVE_AUTH_USER_API } = userEndpoints;
+import { notifyVariant, paths } from "../data";
 
 export const useUserService = () => {
   const { DISCOVER } = paths;
+  const { ERROR } = notifyVariant;
+  const { GET_USER_DETAILS_API, SAVE_AUTH_USER_API } = userEndpoints;
 
   const { setLoading } = useStore();
   const [notify] = useNotification();
@@ -39,22 +39,22 @@ export const useUserService = () => {
 
       setLoading(false);
 
-      const { error, message, data } = userDetailsResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-      }
+      const { error, data } = userDetailsResp;
+
+      if (error) throw userDetailsResp;
 
       data.extra = {
         ...JSON.parse(data.extra),
       };
 
       dispatch(setUser(data));
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
-      console.error(`Get user details failed: ${error} `);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+
       throw error;
     }
   };
@@ -66,14 +66,9 @@ export const useUserService = () => {
         values
       );
 
-      const { error, message, data } = saveAuthUserResp;
-      if (error) {
-        notify({
-          variant: "error",
-          description: message,
-        });
-        return;
-      }
+      const { error, data } = saveAuthUserResp;
+
+      if (error) throw saveAuthUserResp;
 
       const { saveAuthUserToken } = data;
       data.user.extra = {
@@ -95,8 +90,12 @@ export const useUserService = () => {
       );
 
       navigate(DISCOVER);
-    } catch (error) {
-      console.error(`Save auth user failed: ${error} `);
+    } catch (error: any) {
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+
       throw error;
     }
   };

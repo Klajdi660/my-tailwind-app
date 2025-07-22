@@ -4,6 +4,13 @@ export interface ProviderProps {
   children: ReactNode;
 }
 
+export interface NotifyVartiantTypes {
+  INFO: string;
+  ERROR: string;
+  SUCCESS: string;
+  WARNING: string;
+}
+
 // Config
 export interface ThemeConfig {
   modes: string[];
