@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { Form, Progress } from "antd";
 import { Link } from "react-router-dom";
 import OtpInput from "react18-input-otp";
-import { FC, useState, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { useForms } from "../../hooks";
 import { classNames } from "../../utils";
 import { Button } from "../../components";

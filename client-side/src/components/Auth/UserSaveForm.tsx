@@ -1,19 +1,19 @@
 import moment from "moment";
 import { FC, useEffect } from "react";
-import { Tooltip, Badge } from "antd";
+import { Badge, Tooltip } from "antd";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  useAppSelector,
   clearSavedAuthUser,
-  setCurrentAuthUserToken,
   clearUserLastLogin,
+  setCurrentAuthUserToken,
+  useAppSelector,
 } from "../../store";
 import { Icon, Image } from "../../components";
 import { useAuthService } from "../../services";
-import { userIcon, iconName } from "../../assets";
-import { paths, thresholdsLastLognBadgeColor, dateFormat } from "../../data";
+import { iconName, userIcon } from "../../assets";
+import { dateFormat, paths, thresholdsLastLognBadgeColor } from "../../data";
 import { convertTimeAgoName, isTokenExpired, nameTruncate } from "../../utils";
 
 export const UserSaveForm: FC = () => {

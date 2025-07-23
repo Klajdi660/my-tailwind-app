@@ -4,26 +4,24 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  IconButton,
-  FormRedirect,
-  Image,
-  SocialAuthButton,
-  ErrorFormMessage,
   Button,
-  Title,
+  ErrorFormMessage,
   ErrorResponse,
   FormDivider,
+  FormRedirect,
+  IconButton,
+  Image,
+  SocialAuthButton,
+  Title,
 } from "../../components";
 import { useAuth } from "../../hooks";
 import { iconName } from "../../assets";
 import { authFormData, paths, userRegex } from "../../data";
 import { AuthFormProps, AuthFormValuesTypes } from "../../types";
-import { classNames, authValidation, phonePrefixData } from "../../utils";
+import { authValidation, classNames, phonePrefixData } from "../../utils";
 
 export const AuthForm: FC<AuthFormProps> = (props) => {
   const { onSubmit, nameForm } = props;
-
-  const { errorResponse } = useAuth();
 
   const { HOME } = paths;
   const { isPhoneNumberRegex } = userRegex;
@@ -39,6 +37,8 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
     linkTo,
     otherLink,
   } = metadata;
+
+  const { errorResponse } = useAuth();
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);

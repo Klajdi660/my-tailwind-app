@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Tooltip, Progress } from "antd";
+import { Progress, Tooltip } from "antd";
 import { GameTabDetail } from "./GameTabDetail";
 import { paths } from "../../data";
 import { classNames } from "../../utils";
 import { useAppSelector } from "../../store";
-import { useStore, useCart, useMediaResponsive, useGames } from "../../hooks";
-import { HeaderBannerSkeleton, Button, Image, Icon } from "../../components";
+import { useCart, useGames, useMediaResponsive, useStore } from "../../hooks";
+import { Button, HeaderBannerSkeleton, Icon, Image } from "../../components";
 
 export const GameDetail: FC = () => {
   const { useGameDetail } = useGames();

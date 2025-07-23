@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { paths } from "../../data";
 import { Image } from "../../components";
 import { GenreCardProps } from "../../types";
-import { nameTruncate, formatGenreName } from "../../utils";
+import { formatGenreName, nameTruncate } from "../../utils";
 
 export const GenreCard: FC<GenreCardProps> = (props) => {
   const { genreId, genreName, genreImg, genreCount } = props;

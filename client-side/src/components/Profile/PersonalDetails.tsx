@@ -2,12 +2,12 @@ import dayjs from "dayjs";
 import { FC, useState } from "react";
 import { DatePicker, Select } from "antd";
 // import { Country } from "country-state-city";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Button } from "../../components";
 import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
-import { genderList, dateFormatList } from "../../data";
-import { phonePrefixData, filterPhonePrefix } from "../../utils";
+import { dateFormatList, genderList } from "../../data";
+import { filterPhonePrefix, phonePrefixData } from "../../utils";
 
 export const PersonalDetails: FC = () => {
   const { updateProfile } = useProfileService();

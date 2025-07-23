@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  IconButton,
+  Button,
+  ErrorFormMessage,
   FormDivider,
   FormRedirect,
+  IconButton,
   Image,
   SocialAuthButton,
-  ErrorFormMessage,
-  Button,
   Title,
 } from "../../components";
 import { iconName } from "../../assets";

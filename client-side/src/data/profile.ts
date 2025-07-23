@@ -1,24 +1,24 @@
 import { paths } from "./general.data";
 import {
+  AvatarProfileList,
+  CardImgListParams,
+  CardImgParams,
+  CurrListParams,
   GenderProperties,
   ProfileMenuItems,
-  AvatarProfileList,
   SettingListParams,
-  CurrListParams,
-  CardImgParams,
-  CardImgListParams,
 } from "../types";
 import {
   avatar1,
   avatar2,
   avatar3,
   avatar4,
-  usaExpCardImg,
   discoverCardImg,
   maestroCardImg,
   masterCardImg,
-  visaCardImg,
   noCardTypeImg,
+  usaExpCardImg,
+  visaCardImg,
 } from "../assets";
 
 const { PROFILE } = paths;

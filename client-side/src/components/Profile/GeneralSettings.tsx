@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { useStore } from "../../hooks";
 import { countriesList } from "../../utils";
 import { useProfileService } from "../../services";
-import { useAppSelector, updateThemeConfig } from "../../store";
-import { themeList, languageList, currencyList } from "../../data";
+import { updateThemeConfig, useAppSelector } from "../../store";
+import { currencyList, languageList, themeList } from "../../data";
 
 export const GeneralSettings: FC = () => {
   const { timeZones } = useStore();

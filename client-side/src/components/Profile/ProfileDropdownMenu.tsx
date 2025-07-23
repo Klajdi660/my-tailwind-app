@@ -4,7 +4,7 @@ import { useStore } from "../../hooks";
 import { userIcon } from "../../assets";
 import { useAppSelector } from "../../store";
 import { profileMenuItems } from "../../data";
-import { Image, Icon } from "../../components";
+import { Icon, Image } from "../../components";
 import { useAuthService } from "../../services";
 import { ProfileDropdownMenuProps } from "../../types";
 

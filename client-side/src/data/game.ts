@@ -1,9 +1,9 @@
 import {
-  ImageDimsOptions,
-  GameIconMapsProperties,
-  GameTabsButtonProperties,
   GameFilterListProperties,
+  GameIconMapsProperties,
   GameRatingListProperties,
+  GameTabsButtonProperties,
+  ImageDimsOptions,
 } from "../types";
 
 export const gameIconMap: GameIconMapsProperties = {

@@ -1,15 +1,15 @@
 import { FC } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-  Image,
   Button,
-  Overlay,
-  Searchbar,
   CartButton,
-  ProfileDropdown,
+  DesktopToggleButton,
+  Image,
   MobileToggleButton,
   NotificationButton,
-  DesktopToggleButton,
+  Overlay,
+  ProfileDropdown,
+  Searchbar,
 } from "../components";
 import { paths } from "../data";
 import { useAppSelector } from "../store";

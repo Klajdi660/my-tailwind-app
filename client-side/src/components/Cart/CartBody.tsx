@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Badge } from "antd";
 import { useAuth } from "../../hooks";
 import { CartBodyProps } from "../../types";
-import { CartItem, CartFooter, Icon } from "../../components";
+import { CartFooter, CartItem, Icon } from "../../components";
 
 export const CartBody: FC<CartBodyProps> = (props) => {
   const {

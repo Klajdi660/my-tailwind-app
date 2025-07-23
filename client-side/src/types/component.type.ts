@@ -7,9 +7,9 @@ import {
   VerifyCodeInputMetadata,
 } from "./data.type";
 import {
+  CreateUserValues,
   LoginHelpValues,
   LoginValues,
-  RegisterUserValues,
   VerifyCodeValues,
 } from "./page.type";
 
@@ -50,7 +50,7 @@ export interface LoginFormProps {
 }
 
 export interface RegisterFormProps {
-  onSubmit: (values: RegisterUserValues) => Promise<void>;
+  onSubmit: (values: CreateUserValues) => Promise<void>;
 }
 
 export interface VerifyCodeFormProps {

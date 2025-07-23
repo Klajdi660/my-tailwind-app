@@ -9,7 +9,7 @@ import { useAppSelector } from "../../../store";
 import { DeleteProfileValues } from "../../../types";
 import { useProfileService } from "../../../services";
 import { ErrorFormMessage } from "../../../components";
-import { deleteProfileValidation, classNames } from "../../../utils";
+import { classNames, deleteProfileValidation } from "../../../utils";
 
 export const DeleteProfileModal: FC = () => {
   const { deleteProfile } = useProfileService();

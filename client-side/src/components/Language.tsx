@@ -2,7 +2,7 @@
 import { Select } from "antd";
 import { State } from "country-state-city";
 import { Country } from "country-state-city";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import React, { FC, useState } from "react";
 import { Button } from "../components";
 import { LanguageProps } from "../types";

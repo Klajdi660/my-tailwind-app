@@ -4,6 +4,10 @@ export interface ProviderProps {
   children: ReactNode;
 }
 
+export interface NameOfFormTypes {
+  LOGIN: "login";
+  REGISTER: "register";
+}
 export interface NotifyVartiantTypes {
   INFO: string;
   ERROR: string;

@@ -1,9 +1,4 @@
-import {
-  LoginValues,
-  RegisterUserValues,
-  LoginHelpValues,
-  VerifyCodeValues,
-} from "../types";
+import { LoginHelpValues, LoginValues, VerifyCodeValues } from "../types";
 
 // Auth
 
@@ -17,7 +12,6 @@ export interface AuthService {
   login: (data: LoginValues) => Promise<void>;
   loginWithSavedUser: () => Promise<void>;
   loginWithSocialApp: (tokenParam: string) => Promise<void>;
-  register: (data: RegisterUserValues) => Promise<void>;
   verifyCode: (data: VerifyCodeValues) => Promise<void>;
   loginHelp: (data: LoginHelpValues) => Promise<void>;
 }
@@ -36,7 +30,7 @@ export interface ErrorResponse {
   data?: object;
 }
 
-export interface RegisterResponse {
+export interface CreateUserResponse {
   error: boolean;
   message: string;
   data: {
@@ -44,7 +38,6 @@ export interface RegisterResponse {
     email: string;
     codeExpire: string;
   };
-  lToken(lToken: any): unknown;
 }
 
 // Games

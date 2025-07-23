@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Tooltip } from "antd";
 import { useStore } from "../../hooks";
 import { useAppSelector } from "../../store";
-import { Icon, Button } from "../../components";
+import { Button, Icon } from "../../components";
 
 export const UserInfo: FC = () => {
   const { setModalOpen } = useStore();

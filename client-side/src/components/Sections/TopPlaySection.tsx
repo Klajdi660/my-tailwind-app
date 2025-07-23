@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Title,
-  TopPlayCard,
-  TitleSkeleton,
   ShowMoreButton,
+  Title,
+  TitleSkeleton,
+  TopPlayCard,
   TrackCardSkeleton,
 } from "../../components";
 import { paths } from "../../data";

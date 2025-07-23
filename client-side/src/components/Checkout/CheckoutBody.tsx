@@ -1,8 +1,8 @@
 import { FC } from "react";
 import {
+  CheckoutCardForm,
   CheckoutFooter,
   CheckoutMomoForm,
-  CheckoutCardForm,
   CheckoutPaymentMethod,
 } from "../../components";
 import { CheckoutBodyProps } from "../../types";

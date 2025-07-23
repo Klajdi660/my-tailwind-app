@@ -1,10 +1,10 @@
 import { FC } from "react";
 import {
-  UserInfo,
-  PersonalDetails,
   ChangePassword,
   DeleteAccount,
+  PersonalDetails,
   ProfilePhoto,
+  UserInfo,
 } from "../../components";
 
 export const AccountSettings: FC = () => {

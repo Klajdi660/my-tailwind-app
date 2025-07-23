@@ -1,16 +1,15 @@
 import { useDispatch } from "react-redux";
 import { profileEndpoints } from "./Api";
 import {
-  setUser,
-  // setSavedAuthUser,
-  setIsAccountDelete,
   setAccountDeleteDaysDifference,
+  setIsAccountDelete,
+  setUser,
 } from "../store";
 import {
-  EditProfileValues,
-  DeleteProfileValues,
-  UserDetailsResponse,
   ChangePasswordValues,
+  DeleteProfileValues,
+  EditProfileValues,
+  UserDetailsResponse,
 } from "../types";
 import { HttpClient } from "../client";
 import { useNotification, useStore } from "../hooks";

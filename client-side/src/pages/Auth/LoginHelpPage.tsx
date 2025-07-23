@@ -14,6 +14,8 @@ export const LoginHelpPage: FC = () => {
 
   const onSubmitLogiHelp = async (values: LoginHelpValues) => {
     try {
+      values.action =
+        toFormName === "prev_verify_user" ? "verify_user" : toFormName;
       await loginHelp(values);
     } catch (error) {
       console.error(`login_help_page_error: ${JSON.stringify(error)}`);

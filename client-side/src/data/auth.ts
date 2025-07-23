@@ -1,15 +1,15 @@
 import {
-  FormItemList,
+  AuthFormDataTypes,
+  EmailOrPhoneButtonType,
+  ErrorAuthResponseMap,
   FormDataType,
-  SocialAuthList,
-  ThresholdsLastLognBadgeColor,
+  FormItemList,
+  LoginHelpDataType,
   LoginInputMetadata,
   RegisterInputMetadata,
-  EmailOrPhoneButtonType,
-  LoginHelpDataType,
+  SocialAuthList,
+  ThresholdsLastLognBadgeColor,
   VerifyCodeInputMetadata,
-  ErrorAuthResponseMap,
-  AuthFormDataTypes,
 } from "../types";
 import { paths } from "./general.data";
 import { APP_URL } from "../configs";
@@ -25,7 +25,7 @@ export const errorAuthResponseMap: Record<string, ErrorAuthResponseMap> = {
   "user-not-verified": {
     linkText: "verify your account",
     to: LOGIN_HELP,
-    state: { toFormName: "prevVerifyAccount" },
+    state: { toFormName: "prev_verify_user" },
   },
 };
 
@@ -116,12 +116,12 @@ export const authFormData: AuthFormDataTypes = {
   login: {
     metadata: {
       formName: "login",
-      toFormName: "forgotPassword",
+      toFormName: "forgot_password",
       formTitle: "Log in",
       description: "to continue to Groove",
       footerTitle: "Don't have an account?",
       footerLink: "Sign up",
-      buttonName: "Logi in",
+      buttonName: "Log in",
       linkTo: REGISTER,
       otherLink: {
         otherLinkName: "Forgot Password?",
@@ -182,8 +182,8 @@ export const authFormData: AuthFormDataTypes = {
 };
 
 export const loginHelpFormData: Record<string, LoginHelpDataType> = {
-  forgotPassword: {
-    formName: "forgot-password",
+  forgot_password: {
+    formName: "forgot_password",
     formTitle: "Reset Password",
     formDescription: "How would you like to reset your password?",
     description: "to continue to Groove",
@@ -198,8 +198,8 @@ export const loginHelpFormData: Record<string, LoginHelpDataType> = {
     emailButtonName: "Email Me",
     smsButtonName: "Text Me",
   },
-  prevVerifyAccount: {
-    formName: "prev-verify-account",
+  prev_verify_account: {
+    formName: "prev_verify_account",
     formTitle: "Verify Account",
     formDescription: "How would you like to verify your account?",
     description: "to continue to Groove",

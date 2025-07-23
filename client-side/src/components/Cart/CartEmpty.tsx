@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { emptyCartImg } from "../../assets";
 import { CartEmptyPorps } from "../../types";
-import { Image, Icon } from "../../components";
+import { Icon, Image } from "../../components";
 
 export const CartEmpty: FC<CartEmptyPorps> = (props) => {
   const { setOpenSwitch } = props;

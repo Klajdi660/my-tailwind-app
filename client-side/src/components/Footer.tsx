@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FC } from "react";
 import { Icon } from "../components";
-import { pageLink, downloadBtnList } from "../data";
+import { downloadBtnList, pageLink } from "../data";
 
 export const Footer: FC = () => {
   return (

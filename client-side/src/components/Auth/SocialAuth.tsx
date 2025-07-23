@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useLocation, Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useAuthService } from "../../services";
 
 export const SocialAuth: FC = () => {

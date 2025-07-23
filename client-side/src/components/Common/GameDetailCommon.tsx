@@ -1,8 +1,8 @@
 import { FC } from "react";
 import {
   DeveloperListProps,
-  PublisherListPorps,
   PlatformIconListProps,
+  PublisherListPorps,
 } from "../../types";
 import { gameIconMap } from "../../data";
 import { Icon, Image } from "../../components";

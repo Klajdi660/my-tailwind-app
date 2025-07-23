@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  IconButton,
+  Button,
+  ErrorFormMessage,
   FormDivider,
   FormRedirect,
+  IconButton,
   Image,
   SocialAuthButton,
-  ErrorFormMessage,
-  Button,
   Title,
 } from "../../components";
 import { iconName } from "../../assets";
 import { LoginFormProps } from "../../types";
 import { loginFormData, paths, userRegex } from "../../data";
-import { classNames, phonePrefixData, loginValidation } from "../../utils";
+import { classNames, loginValidation, phonePrefixData } from "../../utils";
 
 export const LoginForm: FC<LoginFormProps> = (props) => {
   const { onSubmit } = props;

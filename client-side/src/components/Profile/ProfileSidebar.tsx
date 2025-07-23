@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Icon } from "../../components";
 import { classNames } from "../../utils";
-import { settingsLinks, paths } from "../../data";
+import { paths, settingsLinks } from "../../data";
 
 export const ProfileSidebar: FC = () => {
   const { PROFILE } = paths;

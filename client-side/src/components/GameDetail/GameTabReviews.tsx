@@ -2,8 +2,8 @@
 import { FC, useState } from "react";
 import { userIcon } from "../../assets";
 import { calculateTimePassed } from "../../utils";
-import { ReadMore, StarRating, Image } from "../../components";
-import { ReviewContentProps, GameTabReviewsProps } from "../../types";
+import { Image, ReadMore, StarRating } from "../../components";
+import { GameTabReviewsProps, ReviewContentProps } from "../../types";
 
 const ReviewContent: FC<ReviewContentProps> = (props) => {
   const { gameReviews } = props;

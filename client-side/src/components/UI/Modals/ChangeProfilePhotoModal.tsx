@@ -1,10 +1,10 @@
-import { FC, ChangeEvent, useRef } from "react";
+import { ChangeEvent, FC, useRef } from "react";
 import { SmallModal } from "./ModalContent";
 import { useStore } from "../../../hooks";
 import { useAppSelector } from "../../../store";
 import { avatarProfileList } from "../../../data";
 import { useProfileService } from "../../../services";
-import { Image, Button, Icon } from "../../../components";
+import { Button, Icon, Image } from "../../../components";
 
 export const ChangeProfilePhotoModal: FC = () => {
   const { updateDisplayPicture } = useProfileService();

@@ -1,13 +1,13 @@
 import { Select } from "antd";
 import { FC, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import {
   classNames,
-  shippingAddressValidation,
   countriesList,
+  shippingAddressValidation,
 } from "../../utils";
-import { ErrorFormMessage, Button, Icon } from "../../components";
+import { Button, ErrorFormMessage, Icon } from "../../components";
 
 export const ShippingAddressSettings: FC = () => {
   const [openShippingSection, setOpenShippingSection] =

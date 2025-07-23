@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
 import {
-  ProfileSidebar,
-  ProfileSidebarMobile,
   AccountSettings,
   GeneralSettings,
-  ShippingAddressSettings,
   PaymentSettings,
+  ProfileSidebar,
+  ProfileSidebarMobile,
+  ShippingAddressSettings,
   Title,
 } from "../../components";
 import { useMediaResponsive } from "../../hooks";

@@ -2,20 +2,18 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { endpoints } from "./Api";
 import {
-  setUser,
   setAToken,
-  setRToken,
-  useAppSelector,
-  setUserLastLogin,
   setIsAuthenticated,
+  setRToken,
+  setUser,
+  setUserLastLogin,
+  useAppSelector,
 } from "../store";
 import {
-  AuthService,
   AuthResponse,
-  LoginValues,
-  RegisterResponse,
-  RegisterUserValues,
+  AuthService,
   LoginHelpValues,
+  LoginValues,
   VerifyCodeValues,
 } from "../types";
 import { notifyVariant, paths } from "../data";
@@ -27,9 +25,8 @@ export const useAuthService = (): AuthService => {
   const {
     LOGIN_API,
     LOGOUT_API,
-    REGISTER_API,
     LOGIN_HELP_API,
-    VERIFY_EMAIL_API,
+    VERIFY_ACCOUNT_API,
     RESET_PASSWORD_API,
     LOGIN_SAVED_USER_API,
   } = endpoints;
@@ -88,10 +85,10 @@ export const useAuthService = (): AuthService => {
 
   const loginHelp = async (values: LoginHelpValues): Promise<void> => {
     try {
-      const { email, phoneNumber, phonePrefix } = values;
+      const { email, phoneNr, phonePrefix } = values;
 
-      const payload = phoneNumber
-        ? { email: "", phoneNr: `${phonePrefix}${phoneNumber}` }
+      const payload = phoneNr
+        ? { email: "", phoneNr: `${phonePrefix}${phoneNr}` }
         : { email, phoneNr: "" };
 
       setLoading(true);
@@ -115,7 +112,7 @@ export const useAuthService = (): AuthService => {
       const verifyCodeData = {
         ...payload,
         username: data.username,
-        toFormName: "verify-account",
+        toFormName: "verify_user",
       };
 
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
@@ -198,54 +195,12 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const register = async (values: RegisterUserValues): Promise<void> => {
-    try {
-      const { identifier, phonePrefix, ...rest } = values;
-      const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
-      const payload = { ...parsedIdentifier, ...rest };
-
-      setLoading(true);
-
-      const registerResp = await HttpClient.post<RegisterResponse>(
-        REGISTER_API,
-        payload
-      );
-
-      setLoading(false);
-
-      const { error, message } = registerResp;
-
-      if (error) throw registerResp;
-
-      notify({
-        variant: SUCCESS,
-        description: `${message}`,
-      });
-
-      const verifyCodeData = {
-        ...payload,
-        nameForm: "verify-account",
-      };
-
-      navigate(VERIFY_CODE, { state: { verifyCodeData } });
-    } catch (error: any) {
-      setLoading(false);
-      setErrorResponse({
-        error: true,
-        errorType: error.errorType,
-        errorMessage: error.message,
-      });
-
-      throw error;
-    }
-  };
-
   const verifyCode = async (values: VerifyCodeValues): Promise<void> => {
     try {
       setLoading(true);
 
       const verifyCodeResp = await HttpClient.post<AuthResponse>(
-        VERIFY_EMAIL_API,
+        VERIFY_ACCOUNT_API,
         values
       );
 
@@ -333,7 +288,6 @@ export const useAuthService = (): AuthService => {
   return {
     login,
     logout,
-    register,
     loginWithSocialApp,
     verifyCode,
     resetPassword,

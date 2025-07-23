@@ -11,8 +11,7 @@ import {
 import { cardImgList } from "../../data";
 import { useAppSelector } from "../../store";
 import { useProfileService } from "../../services";
-
-import { ErrorFormMessage, Button, Image, Icon } from "../../components";
+import { Button, ErrorFormMessage, Icon, Image } from "../../components";
 
 const cvvContent = (
   <div className="flex flex-col text-onNeutralBg p-2 gap-4">

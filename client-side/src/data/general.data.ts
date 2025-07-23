@@ -1,15 +1,21 @@
 import {
-  GridList,
-  NavLinkList,
-  PageLinkItem,
-  LangMapParams,
-  PathProperties,
   DownloadBtnList,
-  SettingsLinksParams,
   FontSizesProperties,
+  GridList,
+  LangMapParams,
+  NameOfFormTypes,
+  NavLinkList,
   NotificationItemList,
   NotifyVartiantTypes,
+  PageLinkItem,
+  PathProperties,
+  SettingsLinksParams,
 } from "../types";
+
+export const nameOfForm: NameOfFormTypes = {
+  LOGIN: "login",
+  REGISTER: "register",
+};
 
 export const notifyVariant: NotifyVartiantTypes = {
   INFO: "info",

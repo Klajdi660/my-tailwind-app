@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { FC, useState, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { paths } from "../../data";
 import { iconName } from "../../assets";
 import { classNames } from "../../utils";
 import { useGames } from "../../hooks";
 // import { useAppSelector } from "../../store";
-import { Image, Button, PlatformIconList } from "../../components";
+import { Button, Image, PlatformIconList } from "../../components";
 
 export const HomePage: FC = () => {
   const { LOGIN, /*ACCOUNT_SAVED,*/ HOME } = paths;

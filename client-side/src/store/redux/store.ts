@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
-  PURGE,
-  PAUSE,
   FLUSH,
+  PAUSE,
   PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
   REGISTER,
   REHYDRATE,
-  persistStore,
-  persistReducer,
 } from "redux-persist";
 import { rootPersistConfig, rootReducer } from "./slices";
 

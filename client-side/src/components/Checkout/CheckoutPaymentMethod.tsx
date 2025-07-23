@@ -3,7 +3,7 @@ import { Radio } from "antd";
 import type { RadioChangeEvent } from "antd";
 import { Image } from "../../components";
 import { classNames } from "../../utils";
-import { mobileMoneyImg, bankImg } from "../../assets";
+import { bankImg, mobileMoneyImg } from "../../assets";
 import { CheckoutPaymentMethodProps } from "../../types";
 
 export const CheckoutPaymentMethod: FC<CheckoutPaymentMethodProps> = (

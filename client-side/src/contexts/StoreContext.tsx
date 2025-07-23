@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import { FC, createContext, useState } from "react";
+import { createContext, FC, useState } from "react";
 import {
   ProviderProps,
   StoreContextType,

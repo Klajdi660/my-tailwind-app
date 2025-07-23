@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { MediaSection, BrowseFilter, Icon } from "../../components";
 import { useScrollPosition } from "../../hooks";
+import { BrowseFilter, Icon, MediaSection } from "../../components";
 
 export const BrowsePage: FC = () => {
   const isShowScrollUpBtn = useScrollPosition();

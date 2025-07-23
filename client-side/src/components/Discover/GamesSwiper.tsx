@@ -7,7 +7,7 @@ import { paths } from "../../data";
 import { useGames, useMediaResponsive } from "../../hooks";
 import { classNames } from "../../utils";
 import { GamesSwiperProps } from "../../types";
-import { MediaCard, GenreCard, Title, Icon } from "../../components";
+import { GenreCard, Icon, MediaCard, Title } from "../../components";
 
 export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
   const { sectionName, titleName, dateParam, orderingParam, swiperType } =

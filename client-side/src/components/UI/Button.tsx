@@ -1,5 +1,5 @@
 import { Tooltip } from "antd";
-import { forwardRef, FC, Ref } from "react";
+import { FC, forwardRef, Ref } from "react";
 import { Icon, Spinner } from "../../components";
 import { classNames } from "../../utils";
 import { ButtonProps } from "../../types";

@@ -1,19 +1,19 @@
 import { useRoutes } from "react-router-dom";
 import {
-  HomePage,
-  LoginPage,
   BrowsePage,
-  ProfilePage,
-  DiscoverPage,
-  RegisterPage,
-  GameDetailPage,
   ComingSoonPage,
-  VerifyCodePage,
-  ResetPasswordPage,
-  LoginHelpPage,
-  PasswordConfirmCodePage,
-  SaveDataAuthPage,
+  DiscoverPage,
   ErrorPage,
+  GameDetailPage,
+  HomePage,
+  LoginHelpPage,
+  LoginPage,
+  PasswordConfirmCodePage,
+  ProfilePage,
+  RegisterPage,
+  ResetPasswordPage,
+  SaveDataAuthPage,
+  VerifyCodePage,
 } from "../pages";
 import { paths } from "../data";
 import { PrivateGuard, PublicGuard } from "../guards";
@@ -52,6 +52,16 @@ export const Routes = () =>
       index: true,
     },
     {
+      path: REGISTER,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <RegisterPage />
+          </PublicLayout>
+        </PublicGuard>
+      ),
+    },
+    {
       path: LOGIN,
       element: (
         <PublicGuard>
@@ -61,16 +71,6 @@ export const Routes = () =>
         </PublicGuard>
       ),
       index: true,
-    },
-    {
-      path: REGISTER,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <RegisterPage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
     },
     {
       path: SAVE_AUTH_DATA,

@@ -1,8 +1,9 @@
 // Auth
 export interface LoginHelpValues {
   email?: string;
-  phoneNumber?: string;
+  phoneNr?: string;
   phonePrefix?: string;
+  action?: string;
 }
 
 export interface LoginValues {
@@ -12,7 +13,7 @@ export interface LoginValues {
   phonePrefix: string;
 }
 
-export interface RegisterUserValues {
+export interface CreateUserValues {
   fullname: string;
   password: string;
   username: string;
@@ -21,6 +22,6 @@ export interface RegisterUserValues {
 }
 
 export interface VerifyCodeValues {
-  code: number | string;
-  email?: string;
+  code: string;
+  username?: string;
 }

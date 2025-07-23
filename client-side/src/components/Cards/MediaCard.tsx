@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { paths } from "../../data";
 import { nameTruncate } from "../../utils";
 import { MediaCardProps } from "../../types";
-import { PlatformIconList, Image } from "../../components";
+import { Image, PlatformIconList } from "../../components";
 
 export const MediaCard: FC<MediaCardProps> = (props) => {
   const { game } = props;

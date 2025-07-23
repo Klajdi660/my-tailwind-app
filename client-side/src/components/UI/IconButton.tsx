@@ -1,4 +1,4 @@
-import { forwardRef, FC, Ref } from "react";
+import { FC, forwardRef, Ref } from "react";
 import { Icon } from "./Icon";
 import { classNames } from "../../utils";
 import { IconButtonProps } from "../../types";

@@ -2,12 +2,11 @@ import { FC } from "react";
 import { useLocation } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import {
+  CartSwitcher,
+  Loading,
   Modal,
   Navbar,
   Sidebar,
-  // TopPlay,
-  Loading,
-  CartSwitcher,
   TabTitle,
 } from "../components";
 import { useStore } from "../hooks";
@@ -29,7 +28,6 @@ export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
       <TabTitle />
       <Loading />
       <Sidebar />
-
       <main className="relative w-full mx-auto overflow-hidden main_section">
         <Navbar />
         <div

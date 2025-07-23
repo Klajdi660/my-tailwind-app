@@ -4,7 +4,7 @@ import { paths } from "../../data";
 import { Icon } from "../../components";
 import { CartItemProps } from "../../types";
 import { useCart, useNotification } from "../../hooks";
-import { classNames, nameTruncate, calculateTotalPrice } from "../../utils";
+import { calculateTotalPrice, classNames, nameTruncate } from "../../utils";
 
 export const CartItem: FC<CartItemProps> = (props) => {
   const {

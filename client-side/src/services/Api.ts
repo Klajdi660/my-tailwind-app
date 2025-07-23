@@ -5,7 +5,7 @@ export const endpoints = {
   REGISTER_API: "/auth/register",
   OAUTH_GOOGLE_API: "/auth/google",
   LOGIN_HELP_API: "/auth/login-help",
-  VERIFY_EMAIL_API: "/auth/verify-email",
+  VERIFY_ACCOUNT_API: "/auth/verify-account",
   RESET_PASSWORD_API: "/auth/reset-password",
   FORGOT_PASSWORD_API: "/auth/forgot-password",
   LOGIN_SAVED_USER_API: "/auth/login-saved-user",
@@ -13,6 +13,7 @@ export const endpoints = {
 
 // USER ENDPOINTS
 export const userEndpoints = {
+  CREATE_USER_API: "/user/create",
   CONTACT_API: "",
   DELETE_USER_API: "",
   UPDATE_USER_API: "",
