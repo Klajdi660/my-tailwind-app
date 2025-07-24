@@ -1,4 +1,4 @@
-import { LoginHelpValues, LoginValues, VerifyAccountValues } from "../types";
+import { LoginHelpValues, LoginValues } from "../types";
 
 // Auth
 
@@ -29,7 +29,7 @@ export interface ErrorResponse {
   data?: object;
 }
 
-export interface CreateUserResponse {
+export interface CreateAccountResponse {
   error: boolean;
   message: string;
   data: {

@@ -27,6 +27,7 @@ export const errorAuthResponseMap: Record<string, ErrorAuthResponseMap> = {
     to: LOGIN_HELP,
     state: { toFormName: "prev-verify-account" },
   },
+  "code-expired": { linkText: "request a new otp code" },
 };
 
 export const userRegex: Record<string, RegExp> = {

@@ -1,17 +1,17 @@
 import { FC } from "react";
 import { nameOfForm } from "../../data";
 import { AuthForm } from "../../components";
-import { CreateUserValues } from "../../types";
 import { useUserService } from "../../services";
+import { CreateAccountValues } from "../../types";
 
 export const RegisterPage: FC = () => {
   const { REGISTER } = nameOfForm;
 
-  const { createUser } = useUserService();
+  const { createAccount } = useUserService();
 
-  const onSubmitRegister = async (values: CreateUserValues) => {
+  const onSubmitRegister = async (values: CreateAccountValues) => {
     try {
-      await createUser(values);
+      await createAccount(values);
     } catch (error) {
       console.error(`register_page_error: ${JSON.stringify(error)}`);
     }

@@ -110,6 +110,7 @@ export const useAuthService = (): AuthService => {
       const verifyCodeData = {
         username: data.username,
         toFormName,
+        action,
       };
 
       navigate(VERIFY_CODE, { state: { verifyCodeData } });

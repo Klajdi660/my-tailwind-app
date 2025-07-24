@@ -5,14 +5,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
   ErrorFormMessage,
+  ErrorResponse,
   FormRedirect,
   Image,
   Title,
 } from "../../components";
 import { paths } from "../../data";
 import { iconName } from "../../assets";
-import { VerifyCodeFormProps } from "../../types";
+import { VerifyAccountValues, VerifyCodeFormProps } from "../../types";
 import { classNames, verifyCodeValidation } from "../../utils";
+import { useAuth } from "../../hooks";
 
 export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
   const { onSubmit, resendCodeHandler, data } = props;
@@ -30,10 +32,17 @@ export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
     otherLink,
   } = metadata;
 
+  const { errorResponse } = useAuth();
+
+  const handleFormSubmit = (values: VerifyAccountValues) => {
+    onSubmit(values, reset);
+  };
+
   const {
     register: form,
     formState: { errors, isValid },
     handleSubmit,
+    reset,
   } = useForm({
     mode: "all",
     resolver: yupResolver(verifyCodeValidation),
@@ -51,7 +60,11 @@ export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
         <Title name={formTitle} desc={description} type="medium" />
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+        {errorResponse.error && <ErrorResponse />}
+        <form
+          className="flex flex-col gap-2"
+          onSubmit={handleSubmit(handleFormSubmit)}
+        >
           {inputMetadata.map((item) => (
             <fieldset key={item.name}>
               <div

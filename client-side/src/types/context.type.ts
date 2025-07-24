@@ -1,4 +1,4 @@
-import { CreateUserValues, FormItem, User } from "../types";
+import { CreateAccountValues, FormItem, User } from "../types";
 
 export interface ErrorResponseTypes {
   error: boolean;
@@ -11,12 +11,12 @@ export interface AuthContextType {
   user?: User | null;
   isAuthenticated: boolean;
   lToken: string | undefined;
-  signupData?: CreateUserValues | any;
+  signupData?: CreateAccountValues | any;
   updateUser: () => void;
   unAuthenticateUser: () => void;
   setLToken: (lToken: string) => void;
   authenticateUser: (user: User) => void;
-  setSignUpData: (signupData: CreateUserValues | any) => void;
+  setSignUpData: (signupData: CreateAccountValues | any) => void;
   errorResponse: ErrorResponseTypes;
   setErrorResponse: (error: ErrorResponseTypes) => void;
 }

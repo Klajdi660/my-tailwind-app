@@ -7,7 +7,6 @@ export const ErrorResponse: FC = () => {
   const { errorResponse, setErrorResponse } = useAuth();
 
   const { errorType, errorMessage } = errorResponse;
-
   const errorConfig = errorAuthResponseMap[errorType || ""];
 
   const renderErrorWithLink = () => {
@@ -21,19 +20,25 @@ export const ErrorResponse: FC = () => {
     return (
       <p>
         {beforeLink}
-        <Link
-          to={to}
-          state={state}
-          onClick={() =>
-            setErrorResponse({
-              error: false,
-              errorType: "",
-              errorMessage: "",
-            })
-          }
-        >
-          <span className="underline hover:text-primary">{linkText}</span>
-        </Link>
+        {to ? (
+          <Link
+            to={to}
+            state={state}
+            onClick={() =>
+              setErrorResponse({
+                error: false,
+                errorType: "",
+                errorMessage: "",
+              })
+            }
+          >
+            <span className="underline hover:text-primary">{linkText}</span>
+          </Link>
+        ) : (
+          <span className="underline cursor-pointer hover:text-primary">
+            {linkText}
+          </span>
+        )}
         {afterLink}
       </p>
     );

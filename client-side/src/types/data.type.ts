@@ -6,7 +6,7 @@ export interface AuthFormDataTypes {
 
 export interface ErrorAuthResponseMap {
   linkText: string;
-  to: string;
+  to?: string;
   state?: Record<string, string>;
 }
 

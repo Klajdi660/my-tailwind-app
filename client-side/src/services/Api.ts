@@ -12,8 +12,9 @@ export const endpoints = {
 
 // USER ENDPOINTS
 export const userEndpoints = {
-  CREATE_USER_API: "/user/create",
+  CREATE_ACCOUNT_API: "/user/create",
   VERIFY_ACCOUNT_API: "/user/verify",
+  VERIFY_CODE_API: "/user/verify-code",
   CONTACT_API: "",
   DELETE_USER_API: "",
   UPDATE_USER_API: "",

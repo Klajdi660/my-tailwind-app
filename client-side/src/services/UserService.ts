@@ -4,10 +4,11 @@ import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import {
   AuthResponse,
-  CreateUserResponse,
-  CreateUserValues,
+  CreateAccountValues,
   UserDetailsResponse,
   VerifyAccountValues,
+  CreateAccountResponse,
+  VerifyCodeValues,
 } from "../types";
 import { useAuth, useNotification, useStore } from "../hooks";
 import {
@@ -23,10 +24,11 @@ export const useUserService = () => {
   const { DISCOVER, VERIFY_CODE, LOGIN } = paths;
   const { ERROR, SUCCESS } = notifyVariant;
   const {
-    CREATE_USER_API,
+    CREATE_ACCOUNT_API,
     GET_USER_DETAILS_API,
     SAVE_AUTH_USER_API,
     VERIFY_ACCOUNT_API,
+    VERIFY_CODE_API,
   } = userEndpoints;
 
   const { setErrorResponse } = useAuth();
@@ -37,7 +39,7 @@ export const useUserService = () => {
 
   const { user } = useAppSelector((state) => state.user);
 
-  const createUser = async (values: CreateUserValues): Promise<void> => {
+  const createAccount = async (values: CreateAccountValues): Promise<void> => {
     try {
       const { identifier, phonePrefix, ...rest } = values;
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
@@ -45,16 +47,16 @@ export const useUserService = () => {
 
       setLoading(true);
 
-      const registerResp = await HttpClient.post<CreateUserResponse>(
-        CREATE_USER_API,
+      const createAccountResp = await HttpClient.post<CreateAccountResponse>(
+        CREATE_ACCOUNT_API,
         payload
       );
 
       setLoading(false);
 
-      const { error, message } = registerResp;
+      const { error, message } = createAccountResp;
 
-      if (error) throw registerResp;
+      if (error) throw createAccountResp;
 
       notify({
         variant: SUCCESS,
@@ -106,6 +108,43 @@ export const useUserService = () => {
         variant: SUCCESS,
         description: error.message,
       });
+
+      throw error;
+    }
+  };
+
+  const verifyCode = async (values: VerifyCodeValues): Promise<void> => {
+    try {
+      setLoading(true);
+
+      const verifyCodeResp = await HttpClient.post<AuthResponse>(
+        VERIFY_CODE_API,
+        values
+      );
+
+      setLoading(false);
+
+      const { error, message } = verifyCodeResp;
+
+      if (error) throw verifyCodeResp;
+
+      notify({
+        variant: SUCCESS,
+        description: message,
+      });
+
+      navigate(LOGIN);
+    } catch (error: any) {
+      setLoading(false);
+      setErrorResponse({
+        error: true,
+        errorType: error.errorType,
+        errorMessage: error.message,
+      });
+      // notify({
+      //   variant: SUCCESS,
+      //   description: error.message,
+      // });
 
       throw error;
     }
@@ -196,8 +235,9 @@ export const useUserService = () => {
   const dowbloadFile = async () => {};
 
   return {
-    createUser,
+    createAccount,
     verifyAccount,
+    verifyCode,
     getUsers,
     editUser,
     confirmUser,

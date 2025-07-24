@@ -14,7 +14,7 @@ export interface LoginValues {
   phonePrefix: string;
 }
 
-export interface CreateUserValues {
+export interface CreateAccountValues {
   fullname: string;
   password: string;
   username: string;
@@ -25,4 +25,10 @@ export interface CreateUserValues {
 export interface VerifyAccountValues {
   code: string;
   username?: string;
+}
+
+export interface VerifyCodeValues {
+  action: string;
+  username: string;
+  code: string;
 }

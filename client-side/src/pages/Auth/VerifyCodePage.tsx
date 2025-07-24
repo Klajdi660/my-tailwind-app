@@ -5,29 +5,37 @@ import { VerifyAccountValues } from "../../types";
 import { useUserService } from "../../services";
 import { verifyCodeFormData } from "../../data";
 import { VerifyCodeForm } from "../../components";
+import { UseFormReset } from "react-hook-form";
 
 export const VerifyCodePage: FC = () => {
   const location = useLocation();
-  const { createUser, verifyAccount } = useUserService();
+  const { createAccount, verifyAccount, verifyCode } = useUserService();
 
   const { verifyCodeData } = location.state || {};
+  const { action, toFormName, username } = verifyCodeData;
 
-  const onSubmitVerifyCode = async (values: VerifyAccountValues) => {
+  const onSubmitVerifyCode = async (
+    values: VerifyAccountValues,
+    reset: UseFormReset<VerifyAccountValues>
+  ) => {
     try {
-      if (["verify-account"].includes(verifyCodeData.toFormName)) {
-        await verifyAccount({
-          code: values.code,
-          username: verifyCodeData.username,
-        });
-      }
+      const payload = {
+        code: values.code,
+        username,
+      };
+
+      toFormName === "verify-account"
+        ? await verifyAccount(payload)
+        : await verifyCode({ ...payload, action });
     } catch (error) {
+      reset();
       console.error(`verify_code_page_error: ${JSON.stringify(error)}`);
     }
   };
 
   const resendCodeHandler = async () => {
     try {
-      await createUser(verifyCodeData);
+      await createAccount(verifyCodeData);
     } catch (error) {
       console.error(`verify_code_page_error_2: ${JSON.stringify(error)}`);
     }
@@ -35,11 +43,11 @@ export const VerifyCodePage: FC = () => {
 
   return (
     <>
-      {verifyCodeData && verifyCodeData.toFormName ? (
+      {verifyCodeData && toFormName ? (
         <VerifyCodeForm
           onSubmit={onSubmitVerifyCode}
           resendCodeHandler={resendCodeHandler}
-          data={verifyCodeFormData[verifyCodeData.toFormName]}
+          data={verifyCodeFormData[toFormName]}
         />
       ) : (
         <ErrorPage />

@@ -7,11 +7,12 @@ import {
   VerifyCodeInputMetadata,
 } from "./data.type";
 import {
-  CreateUserValues,
+  CreateAccountValues,
   LoginHelpValues,
   LoginValues,
   VerifyAccountValues,
 } from "./page.type";
+import { UseFormReset } from "react-hook-form";
 
 // Auth
 export type AuthFormName = "login" | "register";
@@ -50,11 +51,14 @@ export interface LoginFormProps {
 }
 
 export interface RegisterFormProps {
-  onSubmit: (values: CreateUserValues) => Promise<void>;
+  onSubmit: (values: CreateAccountValues) => Promise<void>;
 }
 
 export interface VerifyCodeFormProps {
-  onSubmit: (values: VerifyAccountValues) => Promise<void>;
+  onSubmit: (
+    values: VerifyAccountValues,
+    reset: UseFormReset<VerifyAccountValues>
+  ) => Promise<void>;
   resendCodeHandler: () => Promise<void>;
   data: FormDataType<VerifyCodeInputMetadata>;
 }
