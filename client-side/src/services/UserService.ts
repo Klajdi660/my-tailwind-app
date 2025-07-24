@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import {
+  AuthResponse,
   CreateUserResponse,
   CreateUserValues,
   UserDetailsResponse,
+  VerifyAccountValues,
 } from "../types";
 import { useAuth, useNotification, useStore } from "../hooks";
 import {
@@ -18,10 +20,14 @@ import { notifyVariant, paths } from "../data";
 import { parseIdentifier } from "../utils";
 
 export const useUserService = () => {
-  const { DISCOVER, VERIFY_CODE } = paths;
+  const { DISCOVER, VERIFY_CODE, LOGIN } = paths;
   const { ERROR, SUCCESS } = notifyVariant;
-  const { CREATE_USER_API, GET_USER_DETAILS_API, SAVE_AUTH_USER_API } =
-    userEndpoints;
+  const {
+    CREATE_USER_API,
+    GET_USER_DETAILS_API,
+    SAVE_AUTH_USER_API,
+    VERIFY_ACCOUNT_API,
+  } = userEndpoints;
 
   const { setErrorResponse } = useAuth();
   const { setLoading } = useStore();
@@ -57,7 +63,7 @@ export const useUserService = () => {
 
       const verifyCodeData = {
         username: payload.username,
-        toFormName: "verify_user",
+        toFormName: "verify-account",
       };
 
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
@@ -67,6 +73,38 @@ export const useUserService = () => {
         error: true,
         errorType: error.errorType,
         errorMessage: error.message,
+      });
+
+      throw error;
+    }
+  };
+
+  const verifyAccount = async (values: VerifyAccountValues): Promise<void> => {
+    try {
+      setLoading(true);
+
+      const verifyAccountResp = await HttpClient.post<AuthResponse>(
+        VERIFY_ACCOUNT_API,
+        values
+      );
+
+      setLoading(false);
+
+      const { error, message } = verifyAccountResp;
+
+      if (error) throw verifyAccountResp;
+
+      notify({
+        variant: SUCCESS,
+        description: message,
+      });
+
+      navigate(LOGIN);
+    } catch (error: any) {
+      setLoading(false);
+      notify({
+        variant: SUCCESS,
+        description: error.message,
       });
 
       throw error;
@@ -159,6 +197,7 @@ export const useUserService = () => {
 
   return {
     createUser,
+    verifyAccount,
     getUsers,
     editUser,
     confirmUser,

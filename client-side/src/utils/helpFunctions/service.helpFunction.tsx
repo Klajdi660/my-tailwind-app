@@ -5,7 +5,7 @@ export const parseIdentifier = (
   phonePrefix: string
 ): Record<string, string> => {
   const { emailRegex, phoneNumberRegex } = userRegex;
-  console.log("identifier :>> ", identifier);
+
   if (phoneNumberRegex.test(identifier)) {
     return {
       phoneNr: phonePrefix ? `${phonePrefix}${identifier}` : identifier,

@@ -17,6 +17,11 @@ export const nameOfForm: NameOfFormTypes = {
   REGISTER: "register",
 };
 
+export const loginHelpActionName: Record<string, string> = {
+  "forgot-password": "forgot_password",
+  "prev-verify-account": "verify_user",
+};
+
 export const notifyVariant: NotifyVartiantTypes = {
   INFO: "info",
   ERROR: "error",

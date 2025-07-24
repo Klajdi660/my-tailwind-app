@@ -25,6 +25,7 @@ export interface EmailOrPhoneButtonType {
 
 export interface LoginHelpDataType {
   formName: string;
+  toFormName?: string;
   formTitle: string;
   formDescription: string;
   description: string;

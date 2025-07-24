@@ -25,7 +25,7 @@ export const errorAuthResponseMap: Record<string, ErrorAuthResponseMap> = {
   "user-not-verified": {
     linkText: "verify your account",
     to: LOGIN_HELP,
-    state: { toFormName: "prev_verify_user" },
+    state: { toFormName: "prev-verify-account" },
   },
 };
 
@@ -116,7 +116,7 @@ export const authFormData: AuthFormDataTypes = {
   login: {
     metadata: {
       formName: "login",
-      toFormName: "forgot_password",
+      toFormName: "forgot-password",
       formTitle: "Log in",
       description: "to continue to Groove",
       footerTitle: "Don't have an account?",
@@ -147,6 +147,7 @@ export const authFormData: AuthFormDataTypes = {
   register: {
     metadata: {
       formName: "register",
+      toFormName: "",
       formTitle: "Create your account",
       description: "to continue to Groove",
       footerLink: "Log in",
@@ -182,8 +183,9 @@ export const authFormData: AuthFormDataTypes = {
 };
 
 export const loginHelpFormData: Record<string, LoginHelpDataType> = {
-  forgot_password: {
-    formName: "forgot_password",
+  "forgot-password": {
+    formName: "forgot-password",
+    toFormName: "reset-password",
     formTitle: "Reset Password",
     formDescription: "How would you like to reset your password?",
     description: "to continue to Groove",
@@ -198,8 +200,9 @@ export const loginHelpFormData: Record<string, LoginHelpDataType> = {
     emailButtonName: "Email Me",
     smsButtonName: "Text Me",
   },
-  prev_verify_account: {
-    formName: "prev_verify_account",
+  "prev-verify-account": {
+    formName: "prev-verify-account",
+    toFormName: "verify-account",
     formTitle: "Verify Account",
     formDescription: "How would you like to verify your account?",
     description: "to continue to Groove",

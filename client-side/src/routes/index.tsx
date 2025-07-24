@@ -52,16 +52,6 @@ export const Routes = () =>
       index: true,
     },
     {
-      path: REGISTER,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <RegisterPage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
       path: LOGIN,
       element: (
         <PublicGuard>
@@ -71,6 +61,16 @@ export const Routes = () =>
         </PublicGuard>
       ),
       index: true,
+    },
+    {
+      path: REGISTER,
+      element: (
+        <PublicGuard>
+          <PublicLayout>
+            <RegisterPage />
+          </PublicLayout>
+        </PublicGuard>
+      ),
     },
     {
       path: SAVE_AUTH_DATA,

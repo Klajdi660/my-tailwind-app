@@ -14,11 +14,10 @@ import {
   AuthService,
   LoginHelpValues,
   LoginValues,
-  VerifyCodeValues,
 } from "../types";
-import { notifyVariant, paths } from "../data";
 import { HttpClient } from "../client";
 import { parseIdentifier } from "../utils";
+import { notifyVariant, paths } from "../data";
 import { useAuth, useNotification, useStore } from "../hooks";
 
 export const useAuthService = (): AuthService => {
@@ -26,7 +25,6 @@ export const useAuthService = (): AuthService => {
     LOGIN_API,
     LOGOUT_API,
     LOGIN_HELP_API,
-    VERIFY_ACCOUNT_API,
     RESET_PASSWORD_API,
     LOGIN_SAVED_USER_API,
   } = endpoints;
@@ -85,11 +83,11 @@ export const useAuthService = (): AuthService => {
 
   const loginHelp = async (values: LoginHelpValues): Promise<void> => {
     try {
-      const { email, phoneNr, phonePrefix } = values;
+      const { action, toFormName, email, phoneNr, phonePrefix } = values;
 
       const payload = phoneNr
-        ? { email: "", phoneNr: `${phonePrefix}${phoneNr}` }
-        : { email, phoneNr: "" };
+        ? { action, email: "", phoneNr: `${phonePrefix}${phoneNr}` }
+        : { action, email, phoneNr: "" };
 
       setLoading(true);
 
@@ -110,9 +108,8 @@ export const useAuthService = (): AuthService => {
       });
 
       const verifyCodeData = {
-        ...payload,
         username: data.username,
-        toFormName: "verify_user",
+        toFormName,
       };
 
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
@@ -195,38 +192,6 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const verifyCode = async (values: VerifyCodeValues): Promise<void> => {
-    try {
-      setLoading(true);
-
-      const verifyCodeResp = await HttpClient.post<AuthResponse>(
-        VERIFY_ACCOUNT_API,
-        values
-      );
-
-      setLoading(false);
-
-      const { error, message } = verifyCodeResp;
-
-      if (error) throw verifyCodeResp;
-
-      notify({
-        variant: SUCCESS,
-        description: message,
-      });
-
-      navigate(LOGIN);
-    } catch (error: any) {
-      setLoading(false);
-      notify({
-        variant: SUCCESS,
-        description: error.message,
-      });
-
-      throw error;
-    }
-  };
-
   const logout = async (): Promise<void> => {
     try {
       await HttpClient.get<AuthResponse>(LOGOUT_API);
@@ -289,7 +254,6 @@ export const useAuthService = (): AuthService => {
     login,
     logout,
     loginWithSocialApp,
-    verifyCode,
     resetPassword,
     loginHelp,
     loginWithSavedUser,

@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { nameOfForm } from "../../data";
+import { AuthForm } from "../../components";
 import { CreateUserValues } from "../../types";
 import { useUserService } from "../../services";
-import { AuthForm /*RegisterForm*/ } from "../../components";
 
 export const RegisterPage: FC = () => {
   const { REGISTER } = nameOfForm;
@@ -18,5 +18,4 @@ export const RegisterPage: FC = () => {
   };
 
   return <AuthForm onSubmit={onSubmitRegister} nameForm={REGISTER} />;
-  // return <RegisterForm onSubmit={onSubmitRegister} />;
 };

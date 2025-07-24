@@ -4,6 +4,7 @@ export interface LoginHelpValues {
   phoneNr?: string;
   phonePrefix?: string;
   action?: string;
+  toFormName?: string;
 }
 
 export interface LoginValues {
@@ -21,7 +22,7 @@ export interface CreateUserValues {
   phonePrefix: string;
 }
 
-export interface VerifyCodeValues {
+export interface VerifyAccountValues {
   code: string;
   username?: string;
 }
