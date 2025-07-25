@@ -33,7 +33,7 @@ export const useUserService = () => {
     RESEND_CODE_API,
   } = userEndpoints;
 
-  const { setLoading, setErrorResponse } = useStore();
+  const { setLoading, setServiceResponse } = useStore();
   const [notify] = useNotification();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -72,10 +72,10 @@ export const useUserService = () => {
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
     } catch (error: any) {
       setLoading(false);
-      setErrorResponse({
-        error: true,
-        errorType: error.errorType,
-        errorMessage: error.message,
+      setServiceResponse({
+        serviceError: true,
+        serviceMessage: error.message,
+        serviceMessageName: error.errorType,
       });
 
       throw error;
@@ -137,10 +137,10 @@ export const useUserService = () => {
       navigate(LOGIN);
     } catch (error: any) {
       setLoading(false);
-      setErrorResponse({
-        error: true,
-        errorType: error.errorType,
-        errorMessage: error.message,
+      setServiceResponse({
+        serviceError: true,
+        serviceMessage: error.message,
+        serviceMessageName: error.errorType,
       });
       // notify({
       //   variant: SUCCESS,
@@ -166,16 +166,21 @@ export const useUserService = () => {
 
       if (error) throw resendCodeResp;
 
-      notify({
-        variant: SUCCESS,
-        description: message,
+      // notify({
+      //   variant: SUCCESS,
+      //   description: message,
+      // });
+      setServiceResponse({
+        serviceError: false,
+        serviceSubmitting: true,
+        serviceMessage: message,
       });
     } catch (error: any) {
       setLoading(false);
-      setErrorResponse({
-        error: true,
-        errorType: error.errorType,
-        errorMessage: error.message,
+      setServiceResponse({
+        serviceError: true,
+        serviceMessage: error.message,
+        serviceMessageName: error.errorType,
       });
       throw error;
     }

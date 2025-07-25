@@ -31,7 +31,7 @@ export const useAuthService = (): AuthService => {
   const { VERIFY_CODE, LOGIN } = paths;
   const { ERROR, SUCCESS, INFO } = notifyVariant;
 
-  const { setLoading, setErrorResponse } = useStore();
+  const { setLoading, setServiceResponse } = useStore();
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -70,10 +70,10 @@ export const useAuthService = (): AuthService => {
       localStorage.setItem("user", JSON.stringify(user));
     } catch (error: any) {
       setLoading(false);
-      setErrorResponse({
-        error: true,
-        errorType: error.errorType,
-        errorMessage: error.message,
+      setServiceResponse({
+        serviceError: true,
+        serviceMessage: error.message,
+        serviceMessageName: error.errorType,
       });
 
       throw error;
@@ -119,13 +119,18 @@ export const useAuthService = (): AuthService => {
         action,
       };
 
+      setServiceResponse({
+        serviceError: false,
+        serviceSubmitting: true,
+        serviceMessage: message,
+      });
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
     } catch (error: any) {
       setLoading(false);
-      setErrorResponse({
-        error: true,
-        errorType: error.errorType,
-        errorMessage: error.message,
+      setServiceResponse({
+        serviceError: true,
+        serviceMessage: error.message,
+        serviceMessageName: error.errorType,
       });
 
       throw error;

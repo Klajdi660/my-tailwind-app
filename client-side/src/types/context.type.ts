@@ -1,9 +1,10 @@
 import { FormItem, User } from "../types";
 
-export interface ErrorResponseTypes {
-  error?: boolean;
-  errorType?: string;
-  errorMessage?: string;
+export interface ServiceResponseTypes {
+  serviceError?: boolean;
+  serviceSubmitting?: boolean;
+  serviceMessage?: string;
+  serviceMessageName?: string;
 }
 
 export interface AuthContextType {
@@ -55,6 +56,6 @@ export interface StoreContextType {
   setTranslations: (translations: TranslationsResponse) => void;
   setIsUpdatingProfileImg: (isUpdatingProfileImg: boolean) => void;
   setUserLangData: (userLangData: { [key: string]: string }) => void;
-  errorResponse: ErrorResponseTypes;
-  setErrorResponse: (value: ErrorResponseTypes) => void;
+  serviceResponse: ServiceResponseTypes;
+  setServiceResponse: (value: ServiceResponseTypes) => void;
 }

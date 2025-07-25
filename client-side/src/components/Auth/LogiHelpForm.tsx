@@ -12,9 +12,9 @@ import {
   Button,
   EmailOrPhoneButton,
   ErrorFormMessage,
-  ErrorResponse,
   FormRedirect,
   Image,
+  ServiceResponse,
   Title,
 } from "../../components";
 import { paths } from "../../data";
@@ -41,7 +41,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
   } = metadata;
   const { HOME } = paths;
 
-  const { errorResponse } = useStore();
+  const { serviceResponse } = useStore();
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [selectedMethod, setSelectedMethod] = useState<string>("email");
@@ -73,7 +73,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
         <Title name={formTitle} desc={description} type="medium" />
-        {errorResponse.error && <ErrorResponse />}
+        {serviceResponse.serviceError && <ServiceResponse />}
         <p className="text-md">{formDescription}</p>
         <EmailOrPhoneButton
           selectedMethod={selectedMethod}
@@ -84,9 +84,6 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
         </p>
         <form
           className="flex flex-col gap-2"
-          // onSubmit={handleSubmit((values) =>
-          //   onSubmit({ ...values, phonePrefix })
-          // )}
           onSubmit={handleSubmit(handleFormSubmit)}
         >
           {selectedMethod === "email" ? (

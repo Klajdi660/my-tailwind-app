@@ -5,9 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
   ErrorFormMessage,
-  ErrorResponse,
   FormRedirect,
   Image,
+  ServiceResponse,
   Title,
 } from "../../components";
 import { paths } from "../../data";
@@ -32,7 +32,8 @@ export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
     otherLink,
   } = metadata;
 
-  const { errorResponse } = useStore();
+  const { serviceResponse } = useStore();
+  const { serviceError, serviceSubmitting } = serviceResponse;
 
   const handleFormSubmit = (values: VerifyAccountValues) => {
     onSubmit(values, reset);
@@ -60,9 +61,10 @@ export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
         <Title name={formTitle} desc={description} type="medium" />
-        {errorResponse.error && (
-          <ErrorResponse resendCodeHandler={resendCodeHandler} />
+        {serviceError && (
+          <ServiceResponse resendCodeHandler={resendCodeHandler} />
         )}
+        {serviceSubmitting && <ServiceResponse />}
         <form
           className="flex flex-col gap-2"
           onSubmit={handleSubmit(handleFormSubmit)}

@@ -13,7 +13,7 @@ export const FormRedirect: FC<FormRedirectProps> = (props) => {
     resendCodeHandler,
   } = props;
 
-  const { setErrorResponse } = useStore();
+  const { setServiceResponse } = useStore();
 
   const { otherLinkName, otherLinkTo, otherLinkPName } = otherLink || {};
 
@@ -26,7 +26,7 @@ export const FormRedirect: FC<FormRedirectProps> = (props) => {
             to={otherLinkTo || ""}
             state={{ toFormName }}
             onClick={(e) => {
-              setErrorResponse({});
+              setServiceResponse({});
               if (resendCodeHandler) {
                 e.preventDefault();
                 resendCodeHandler();
@@ -44,7 +44,7 @@ export const FormRedirect: FC<FormRedirectProps> = (props) => {
         <Link
           to={linkTo}
           onClick={() => {
-            setErrorResponse({});
+            setServiceResponse({});
           }}
         >
           <p className="text-primary hover:underline underline-offset-2">

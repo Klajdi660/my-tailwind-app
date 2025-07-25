@@ -10,6 +10,7 @@ import {
   AiOutlineSetting,
   AiOutlineEyeInvisible,
   AiOutlineExclamationCircle,
+  AiOutlineWarning,
 } from "react-icons/ai";
 import {
   BiPlus,
@@ -70,6 +71,7 @@ import {
   MdOutlineSort,
   MdOutlineCheckBoxOutlineBlank,
   MdOutlineCheckCircleOutline,
+  MdOutlineCheckCircle,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import {
@@ -98,6 +100,7 @@ const icons: IconsMap = {
   AiOutlineSetting,
   AiOutlineEyeInvisible,
   AiOutlineExclamationCircle,
+  AiOutlineWarning,
   FaClock,
   BiPlus,
   BiLock,
@@ -159,6 +162,7 @@ const icons: IconsMap = {
   MdOutlineSort,
   MdOutlineCheckCircleOutline,
   MdOutlineCheckBoxOutlineBlank,
+  MdOutlineCheckCircle,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,

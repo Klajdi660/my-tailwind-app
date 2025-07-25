@@ -125,4 +125,4 @@ export { Language } from "./Language";
 export { Searchbar } from "./SearchBar";
 export { Notification } from "./Notification";
 export { GamesSlider } from "./GamesSlider";
-export { ErrorResponse } from "./ErrorResponse";
+export { ServiceResponse } from "./ServiceResponse";

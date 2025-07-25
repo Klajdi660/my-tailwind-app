@@ -4,7 +4,7 @@ export interface AuthFormDataTypes {
   register: FormDataType<RegisterInputMetadata>;
 }
 
-export interface ErrorAuthResponseMap {
+export interface ServiceResponseMap {
   linkText: string;
   to?: string;
   state?: Record<string, string>;

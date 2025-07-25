@@ -1,12 +1,12 @@
 import {
   AuthFormDataTypes,
   EmailOrPhoneButtonType,
-  ErrorAuthResponseMap,
   FormDataType,
   FormItemList,
   LoginHelpDataType,
   LoginInputMetadata,
   RegisterInputMetadata,
+  ServiceResponseMap,
   SocialAuthList,
   ThresholdsLastLognBadgeColor,
   VerifyCodeInputMetadata,
@@ -18,7 +18,7 @@ import { endpoints } from "../services";
 const { REGISTER, LOGIN, LOGIN_HELP, RESET_PASSWORD } = paths;
 const { OAUTH_GOOGLE_API } = endpoints;
 
-export const errorAuthResponseMap: Record<string, ErrorAuthResponseMap> = {
+export const serviceResponseMap: Record<string, ServiceResponseMap> = {
   "no-account": { linkText: "create a new account", to: REGISTER },
   "invalid-password": { linkText: "reset your password", to: RESET_PASSWORD },
   "existing-user": { linkText: "sign in", to: LOGIN },

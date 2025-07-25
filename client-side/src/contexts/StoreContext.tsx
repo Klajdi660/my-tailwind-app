@@ -37,8 +37,8 @@ const initialState: StoreContextType = {
   setToggleSearch: (toggleSearch) => {},
   setSelectedTimeZone: (selectedTimeZone) => {},
   setIsUpdatingProfileImg: (isUpdatingProfileImg) => {},
-  errorResponse: {},
-  setErrorResponse: () => {},
+  serviceResponse: {},
+  setServiceResponse: () => {},
 };
 
 const StoreContext = createContext(initialState);
@@ -59,7 +59,7 @@ const StoreProvider: FC<ProviderProps> = ({ children }) => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const [toggleSearch, setToggleSearch] = useState<boolean>(false);
   const [modals, setModals] = useState<Record<string, boolean>>({});
-  const [errorResponse, setErrorResponse] = useState({});
+  const [serviceResponse, setServiceResponse] = useState({});
 
   let timeZones = moment.tz.names();
   let usersTimeZone = moment.tz.guess();
@@ -93,6 +93,7 @@ const StoreProvider: FC<ProviderProps> = ({ children }) => {
         userLangData,
         translations,
         usersTimeZone,
+        serviceResponse,
         selectedTimeZone,
         isUpdatingProfileImg,
         setLang,
@@ -107,6 +108,7 @@ const StoreProvider: FC<ProviderProps> = ({ children }) => {
         setToggleSearch,
         setTranslations,
         setUserLangData,
+        setServiceResponse,
         setSelectedTimeZone,
         setIsUpdatingProfileImg,
       }}

@@ -6,11 +6,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
   ErrorFormMessage,
-  ErrorResponse,
   FormDivider,
   FormRedirect,
   IconButton,
   Image,
+  ServiceResponse,
   SocialAuthButton,
   Title,
 } from "../../components";
@@ -38,7 +38,7 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
     otherLink,
   } = metadata;
 
-  const { errorResponse } = useStore();
+  const { serviceResponse } = useStore();
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -71,7 +71,7 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
         <Title name={formTitle} desc={description} type="medium" />
-        {errorResponse.error && <ErrorResponse />}
+        {serviceResponse.serviceError && <ServiceResponse />}
         <SocialAuthButton />
         <FormDivider />
         <form
