@@ -1,20 +1,14 @@
 import { createContext, FC, useEffect, useMemo, useState } from "react";
-import {
-  AuthContextType,
-  ErrorResponseTypes,
-  ProviderProps,
-  User,
-} from "../types";
+import { AuthContextType, ProviderProps, User } from "../types";
 
 const initialState: AuthContextType = {
   lToken: "",
   isAuthenticated: false,
   updateUser: () => {},
-  setSignUpData: () => {},
   setLToken: (lToken) => {},
   authenticateUser: () => {},
   unAuthenticateUser: () => {},
-  errorResponse: { error: false, errorType: "", errorMessage: "" },
+  errorResponse: {},
   setErrorResponse: () => {},
 };
 
@@ -35,12 +29,7 @@ const AuthContext = createContext(initialState);
 
 const AuthProvider: FC<ProviderProps> = ({ children }) => {
   const [lToken, setLToken] = useState("");
-  const [signupData, setSignUpData] = useState();
-  const [errorResponse, setErrorResponse] = useState<ErrorResponseTypes>({
-    error: false,
-    errorType: "",
-    errorMessage: "",
-  });
+  const [errorResponse, setErrorResponse] = useState({});
   // const [user, setUser] = useState<User | null>(null);
   const [user, setUser] = useState<User | null>(getUserFromLocalStorage());
 
@@ -81,8 +70,6 @@ const AuthProvider: FC<ProviderProps> = ({ children }) => {
         unAuthenticateUser,
         lToken,
         setLToken,
-        signupData,
-        setSignUpData,
         errorResponse,
         setErrorResponse,
       }}

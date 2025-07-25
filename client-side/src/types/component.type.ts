@@ -43,7 +43,10 @@ export interface FormProps {
 
 export interface LoginHelpFormProps {
   metadata: LoginHelpDataType;
-  onSubmit: (values: LoginHelpValues) => Promise<void>;
+  onSubmit: (
+    values: LoginHelpValues,
+    reset: UseFormReset<LoginHelpValues>
+  ) => Promise<void>;
 }
 
 export interface LoginFormProps {

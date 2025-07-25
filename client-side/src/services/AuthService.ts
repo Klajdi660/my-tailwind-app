@@ -99,11 +99,12 @@ export const useAuthService = (): AuthService => {
       setLoading(false);
 
       const { error, message, data } = loginHelpResp;
+
+      if (error) throw loginHelpResp;
+
       const { username } = data;
       const extra = JSON.parse(data.extra);
       const { firstName, lastName } = extra;
-
-      if (error) throw loginHelpResp;
 
       notify({
         variant: SUCCESS,

@@ -26,11 +26,7 @@ export const FormRedirect: FC<FormRedirectProps> = (props) => {
             to={otherLinkTo || ""}
             state={{ toFormName }}
             onClick={(e) => {
-              setErrorResponse({
-                error: false,
-                errorType: "",
-                errorMessage: "",
-              });
+              setErrorResponse({});
               if (resendCodeHandler) {
                 e.preventDefault();
                 resendCodeHandler();
@@ -48,11 +44,7 @@ export const FormRedirect: FC<FormRedirectProps> = (props) => {
         <Link
           to={linkTo}
           onClick={() => {
-            setErrorResponse({
-              error: false,
-              errorType: "",
-              errorMessage: "",
-            });
+            setErrorResponse({});
           }}
         >
           <p className="text-primary hover:underline underline-offset-2">

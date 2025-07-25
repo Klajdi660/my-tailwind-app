@@ -1,3 +1,5 @@
+import { UseFormReset } from "react-hook-form";
+
 // Auth
 export interface LoginHelpValues {
   email?: string;
@@ -5,6 +7,7 @@ export interface LoginHelpValues {
   phonePrefix?: string;
   action?: string;
   toFormName?: string;
+  // reset?: UseFormReset<LoginHelpValues>;
 }
 
 export interface LoginValues {

@@ -19,7 +19,7 @@ import {
 } from "../../components";
 import { paths } from "../../data";
 import { iconName } from "../../assets";
-import { LoginHelpFormProps } from "../../types";
+import { LoginHelpFormProps, LoginHelpValues } from "../../types";
 import { useAuth } from "../../hooks";
 
 export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
@@ -46,10 +46,15 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [selectedMethod, setSelectedMethod] = useState<string>("email");
 
+  const handleFormSubmit = (values: LoginHelpValues) => {
+    onSubmit({ ...values, phonePrefix }, reset);
+  };
+
   const {
     register: form,
     formState: { errors, isValid },
     handleSubmit,
+    reset,
   } = useForm({
     mode: "all",
     resolver: yupResolver(emailOrPhoneValidation),
@@ -79,9 +84,10 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
         </p>
         <form
           className="flex flex-col gap-2"
-          onSubmit={handleSubmit((values) =>
-            onSubmit({ ...values, phonePrefix })
-          )}
+          // onSubmit={handleSubmit((values) =>
+          //   onSubmit({ ...values, phonePrefix })
+          // )}
+          onSubmit={handleSubmit(handleFormSubmit)}
         >
           {selectedMethod === "email" ? (
             <fieldset>
@@ -98,7 +104,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
                   placeholder={emailPlaceholder}
                   type="text"
                   {...form("email")}
-                  autoComplete="on"
+                  autoComplete="off"
                 />
               </div>
               <ErrorFormMessage errorMessage={errors?.email?.message} />
@@ -129,7 +135,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
                   placeholder={smsPlaceholder}
                   type="text"
                   {...form("phoneNumber")}
-                  autoComplete="on"
+                  autoComplete="off"
                 />
               </div>
               <ErrorFormMessage errorMessage={errors?.phoneNumber?.message} />
