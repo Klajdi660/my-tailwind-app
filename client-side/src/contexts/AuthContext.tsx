@@ -8,8 +8,6 @@ const initialState: AuthContextType = {
   setLToken: (lToken) => {},
   authenticateUser: () => {},
   unAuthenticateUser: () => {},
-  errorResponse: {},
-  setErrorResponse: () => {},
 };
 
 const getUserFromLocalStorage = (): User | null => {
@@ -29,7 +27,6 @@ const AuthContext = createContext(initialState);
 
 const AuthProvider: FC<ProviderProps> = ({ children }) => {
   const [lToken, setLToken] = useState("");
-  const [errorResponse, setErrorResponse] = useState({});
   // const [user, setUser] = useState<User | null>(null);
   const [user, setUser] = useState<User | null>(getUserFromLocalStorage());
 
@@ -70,8 +67,6 @@ const AuthProvider: FC<ProviderProps> = ({ children }) => {
         unAuthenticateUser,
         lToken,
         setLToken,
-        errorResponse,
-        setErrorResponse,
       }}
     >
       {children}

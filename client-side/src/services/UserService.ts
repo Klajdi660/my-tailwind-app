@@ -11,7 +11,7 @@ import {
   VerifyCodeValues,
   ResendCodeValues,
 } from "../types";
-import { useAuth, useNotification, useStore } from "../hooks";
+import { useNotification, useStore } from "../hooks";
 import {
   setRemember,
   setSavedAuthUser,
@@ -33,8 +33,7 @@ export const useUserService = () => {
     RESEND_CODE_API,
   } = userEndpoints;
 
-  const { setErrorResponse } = useAuth();
-  const { setLoading } = useStore();
+  const { setLoading, setErrorResponse } = useStore();
   const [notify] = useNotification();
   const dispatch = useDispatch();
   const navigate = useNavigate();

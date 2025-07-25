@@ -37,6 +37,8 @@ const initialState: StoreContextType = {
   setToggleSearch: (toggleSearch) => {},
   setSelectedTimeZone: (selectedTimeZone) => {},
   setIsUpdatingProfileImg: (isUpdatingProfileImg) => {},
+  errorResponse: {},
+  setErrorResponse: () => {},
 };
 
 const StoreContext = createContext(initialState);
@@ -57,6 +59,7 @@ const StoreProvider: FC<ProviderProps> = ({ children }) => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const [toggleSearch, setToggleSearch] = useState<boolean>(false);
   const [modals, setModals] = useState<Record<string, boolean>>({});
+  const [errorResponse, setErrorResponse] = useState({});
 
   let timeZones = moment.tz.names();
   let usersTimeZone = moment.tz.guess();

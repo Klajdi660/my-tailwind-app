@@ -14,7 +14,7 @@ import {
   SocialAuthButton,
   Title,
 } from "../../components";
-import { useAuth } from "../../hooks";
+import { useStore } from "../../hooks";
 import { iconName } from "../../assets";
 import { authFormData, paths, userRegex } from "../../data";
 import { AuthFormProps, AuthFormValuesTypes } from "../../types";
@@ -38,7 +38,7 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
     otherLink,
   } = metadata;
 
-  const { errorResponse } = useAuth();
+  const { errorResponse } = useStore();
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);

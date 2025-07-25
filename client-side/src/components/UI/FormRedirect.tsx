@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import { useStore } from "../../hooks";
 import { FormRedirectProps } from "../../types";
-import { useAuth } from "../../hooks";
 
 export const FormRedirect: FC<FormRedirectProps> = (props) => {
   const {
@@ -13,7 +13,7 @@ export const FormRedirect: FC<FormRedirectProps> = (props) => {
     resendCodeHandler,
   } = props;
 
-  const { setErrorResponse } = useAuth();
+  const { setErrorResponse } = useStore();
 
   const { otherLinkName, otherLinkTo, otherLinkPName } = otherLink || {};
 

@@ -15,8 +15,6 @@ export interface AuthContextType {
   unAuthenticateUser: () => void;
   setLToken: (lToken: string) => void;
   authenticateUser: (user: User) => void;
-  errorResponse: ErrorResponseTypes;
-  setErrorResponse: (value: ErrorResponseTypes) => void;
 }
 
 export interface FormContextType {
@@ -57,4 +55,6 @@ export interface StoreContextType {
   setTranslations: (translations: TranslationsResponse) => void;
   setIsUpdatingProfileImg: (isUpdatingProfileImg: boolean) => void;
   setUserLangData: (userLangData: { [key: string]: string }) => void;
+  errorResponse: ErrorResponseTypes;
+  setErrorResponse: (value: ErrorResponseTypes) => void;
 }

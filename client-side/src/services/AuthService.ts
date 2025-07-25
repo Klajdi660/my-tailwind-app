@@ -18,7 +18,7 @@ import {
 import { HttpClient } from "../client";
 import { parseIdentifier } from "../utils";
 import { notifyVariant, paths } from "../data";
-import { useAuth, useNotification, useStore } from "../hooks";
+import { useNotification, useStore } from "../hooks";
 
 export const useAuthService = (): AuthService => {
   const {
@@ -31,8 +31,7 @@ export const useAuthService = (): AuthService => {
   const { VERIFY_CODE, LOGIN } = paths;
   const { ERROR, SUCCESS, INFO } = notifyVariant;
 
-  const { setErrorResponse } = useAuth();
-  const { setLoading } = useStore();
+  const { setLoading, setErrorResponse } = useStore();
   const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();

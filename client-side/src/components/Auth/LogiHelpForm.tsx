@@ -18,9 +18,9 @@ import {
   Title,
 } from "../../components";
 import { paths } from "../../data";
+import { useStore } from "../../hooks";
 import { iconName } from "../../assets";
 import { LoginHelpFormProps, LoginHelpValues } from "../../types";
-import { useAuth } from "../../hooks";
 
 export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
   const { metadata, onSubmit } = props;
@@ -41,7 +41,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
   } = metadata;
   const { HOME } = paths;
 
-  const { errorResponse } = useAuth();
+  const { errorResponse } = useStore();
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [selectedMethod, setSelectedMethod] = useState<string>("email");

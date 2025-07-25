@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../hooks";
+import { useStore } from "../hooks";
 import { errorAuthResponseMap } from "../data";
 
 interface ErrorResponseProps {
@@ -10,7 +10,7 @@ interface ErrorResponseProps {
 export const ErrorResponse: FC<ErrorResponseProps> = (props) => {
   const { resendCodeHandler } = props;
 
-  const { errorResponse, setErrorResponse } = useAuth();
+  const { errorResponse, setErrorResponse } = useStore();
 
   const { errorType, errorMessage = "" } = errorResponse;
   const errorConfig = errorAuthResponseMap[errorType || ""];

@@ -11,10 +11,10 @@ import {
   Title,
 } from "../../components";
 import { paths } from "../../data";
+import { useStore } from "../../hooks";
 import { iconName } from "../../assets";
 import { VerifyAccountValues, VerifyCodeFormProps } from "../../types";
 import { classNames, verifyCodeValidation } from "../../utils";
-import { useAuth } from "../../hooks";
 
 export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
   const { onSubmit, resendCodeHandler, data } = props;
@@ -32,7 +32,7 @@ export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
     otherLink,
   } = metadata;
 
-  const { errorResponse } = useAuth();
+  const { errorResponse } = useStore();
 
   const handleFormSubmit = (values: VerifyAccountValues) => {
     onSubmit(values, reset);
