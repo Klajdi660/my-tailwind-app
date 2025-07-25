@@ -9,6 +9,7 @@ import {
   VerifyAccountValues,
   CreateAccountResponse,
   VerifyCodeValues,
+  ResendCodeValues,
 } from "../types";
 import { useAuth, useNotification, useStore } from "../hooks";
 import {
@@ -29,6 +30,7 @@ export const useUserService = () => {
     SAVE_AUTH_USER_API,
     VERIFY_ACCOUNT_API,
     VERIFY_CODE_API,
+    RESEND_CODE_API,
   } = userEndpoints;
 
   const { setErrorResponse } = useAuth();
@@ -150,6 +152,36 @@ export const useUserService = () => {
     }
   };
 
+  const resendCode = async (values: ResendCodeValues): Promise<void> => {
+    try {
+      setLoading(true);
+
+      const resendCodeResp = await HttpClient.post<AuthResponse>(
+        RESEND_CODE_API,
+        values
+      );
+
+      setLoading(false);
+
+      const { error, message } = resendCodeResp;
+
+      if (error) throw resendCodeResp;
+
+      notify({
+        variant: SUCCESS,
+        description: message,
+      });
+    } catch (error: any) {
+      setLoading(false);
+      setErrorResponse({
+        error: true,
+        errorType: error.errorType,
+        errorMessage: error.message,
+      });
+      throw error;
+    }
+  };
+
   const getUsers = async () => {};
 
   const getUserDetails = async () => {
@@ -238,6 +270,7 @@ export const useUserService = () => {
     createAccount,
     verifyAccount,
     verifyCode,
+    resendCode,
     getUsers,
     editUser,
     confirmUser,

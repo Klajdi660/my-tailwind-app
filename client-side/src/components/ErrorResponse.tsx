@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../hooks";
 import { errorAuthResponseMap } from "../data";
 
-export const ErrorResponse: FC = () => {
+interface ErrorResponseProps {
+  resendCodeHandler?: () => void;
+}
+
+export const ErrorResponse: FC<ErrorResponseProps> = (props) => {
+  const { resendCodeHandler } = props;
+
   const { errorResponse, setErrorResponse } = useAuth();
 
   const { errorType, errorMessage } = errorResponse;
@@ -35,7 +41,10 @@ export const ErrorResponse: FC = () => {
             <span className="underline hover:text-primary">{linkText}</span>
           </Link>
         ) : (
-          <span className="underline cursor-pointer hover:text-primary">
+          <span
+            className="underline cursor-pointer hover:text-primary"
+            onClick={resendCodeHandler}
+          >
             {linkText}
           </span>
         )}

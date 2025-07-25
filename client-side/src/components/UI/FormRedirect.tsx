@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { FormRedirectProps } from "../../types";
+import { useAuth } from "../../hooks";
 
 export const FormRedirect: FC<FormRedirectProps> = (props) => {
   const {
@@ -11,6 +12,8 @@ export const FormRedirect: FC<FormRedirectProps> = (props) => {
     otherLink,
     resendCodeHandler,
   } = props;
+
+  const { setErrorResponse } = useAuth();
 
   const { otherLinkName, otherLinkTo, otherLinkPName } = otherLink || {};
 
@@ -23,6 +26,11 @@ export const FormRedirect: FC<FormRedirectProps> = (props) => {
             to={otherLinkTo || ""}
             state={{ toFormName }}
             onClick={(e) => {
+              setErrorResponse({
+                error: false,
+                errorType: "",
+                errorMessage: "",
+              });
               if (resendCodeHandler) {
                 e.preventDefault();
                 resendCodeHandler();
@@ -37,7 +45,16 @@ export const FormRedirect: FC<FormRedirectProps> = (props) => {
       )}
       <div className="flex_justify_center gap-2 text-sm text-onNeutralBg">
         {footerTitle}
-        <Link to={linkTo}>
+        <Link
+          to={linkTo}
+          onClick={() => {
+            setErrorResponse({
+              error: false,
+              errorType: "",
+              errorMessage: "",
+            });
+          }}
+        >
           <p className="text-primary hover:underline underline-offset-2">
             {footerLink}
           </p>

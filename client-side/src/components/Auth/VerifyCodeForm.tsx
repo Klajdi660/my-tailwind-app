@@ -60,7 +60,9 @@ export const VerifyCodeForm: FC<VerifyCodeFormProps> = (props) => {
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
         <Title name={formTitle} desc={description} type="medium" />
-        {errorResponse.error && <ErrorResponse />}
+        {errorResponse.error && (
+          <ErrorResponse resendCodeHandler={resendCodeHandler} />
+        )}
         <form
           className="flex flex-col gap-2"
           onSubmit={handleSubmit(handleFormSubmit)}

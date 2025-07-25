@@ -256,6 +256,11 @@ export const verifyCodeFormData: Record<
       footerLink: "Go back",
       buttonName: "Reset",
       linkTo: LOGIN,
+      otherLink: {
+        otherLinkName: "Didn't recieve code?",
+        otherLinkPName: "Resend",
+        otherLinkTo: "#",
+      },
     },
     inputMetadata: [
       {

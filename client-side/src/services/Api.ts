@@ -15,6 +15,7 @@ export const userEndpoints = {
   CREATE_ACCOUNT_API: "/user/create",
   VERIFY_ACCOUNT_API: "/user/verify",
   VERIFY_CODE_API: "/user/verify-code",
+  RESEND_CODE_API: "/user/resend-code",
   CONTACT_API: "",
   DELETE_USER_API: "",
   UPDATE_USER_API: "",

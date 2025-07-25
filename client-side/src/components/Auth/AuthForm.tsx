@@ -59,6 +59,8 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
     resolver: yupResolver(authValidation[nameForm]),
   });
 
+  console.log("errorResponse :>> ", errorResponse);
+
   return (
     <div
       className={classNames(

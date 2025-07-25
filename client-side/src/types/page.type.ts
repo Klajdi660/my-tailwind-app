@@ -32,3 +32,11 @@ export interface VerifyCodeValues {
   username: string;
   code: string;
 }
+
+export interface ResendCodeValues {
+  action: string;
+  username: string;
+  fullname: string;
+  email?: string;
+  phoneNr?: string;
+}

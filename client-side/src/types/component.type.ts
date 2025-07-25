@@ -89,13 +89,13 @@ export interface FormTemplateProps {
   schema: any;
   onSubmit: (values: any) => Promise<void>;
   defaultValues?: any;
-  resendCodeHandler?: any;
+  resendCodeHandler?: () => void;
 }
 
 export interface OTPCodeFormProps {
   data: any;
   onSubmit: any;
-  resendCodeHandler: any;
+  resendCodeHandler: () => void;
 }
 
 // Browse

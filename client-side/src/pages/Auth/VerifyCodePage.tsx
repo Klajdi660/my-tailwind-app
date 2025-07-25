@@ -1,18 +1,19 @@
 import { FC } from "react";
+import { UseFormReset } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import { ErrorPage } from "../ErrorPage";
-import { VerifyAccountValues } from "../../types";
 import { useUserService } from "../../services";
 import { verifyCodeFormData } from "../../data";
+import { VerifyAccountValues } from "../../types";
 import { VerifyCodeForm } from "../../components";
-import { UseFormReset } from "react-hook-form";
 
 export const VerifyCodePage: FC = () => {
   const location = useLocation();
-  const { createAccount, verifyAccount, verifyCode } = useUserService();
+  const { verifyAccount, verifyCode, resendCode } = useUserService();
 
   const { verifyCodeData } = location.state || {};
-  const { action, toFormName, username } = verifyCodeData;
+  const { action, toFormName, username, email, phoneNr, fullname } =
+    verifyCodeData;
 
   const onSubmitVerifyCode = async (
     values: VerifyAccountValues,
@@ -35,7 +36,7 @@ export const VerifyCodePage: FC = () => {
 
   const resendCodeHandler = async () => {
     try {
-      await createAccount(verifyCodeData);
+      await resendCode({ username, action, email, phoneNr, fullname });
     } catch (error) {
       console.error(`verify_code_page_error_2: ${JSON.stringify(error)}`);
     }

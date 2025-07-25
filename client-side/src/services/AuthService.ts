@@ -99,6 +99,9 @@ export const useAuthService = (): AuthService => {
       setLoading(false);
 
       const { error, message, data } = loginHelpResp;
+      const { username } = data;
+      const extra = JSON.parse(data.extra);
+      const { firstName, lastName } = extra;
 
       if (error) throw loginHelpResp;
 
@@ -108,7 +111,10 @@ export const useAuthService = (): AuthService => {
       });
 
       const verifyCodeData = {
-        username: data.username,
+        username,
+        email: email ? email : "",
+        phoneNr: phoneNr ? `${phonePrefix}${phoneNr}` : "",
+        fullname: `${firstName} ${lastName}`,
         toFormName,
         action,
       };
