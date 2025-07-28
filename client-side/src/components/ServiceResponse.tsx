@@ -52,14 +52,17 @@ export const ServiceResponse: FC<ServiceResponseProps> = (props) => {
   return (
     <div
       className={classNames(
-        "w-full flex_justify_center gap-4 p-4 rounded bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80",
+        "w-full flex_justify_start gap-2 p-4 rounded bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80",
         serviceError ? "bg-red-200" : "bg-green-200"
       )}
     >
-      <Icon
-        name={serviceError ? "AiOutlineWarning" : "MdOutlineCheckCircle"}
-        size={45}
-      />
+      <div>
+        <Icon
+          name={serviceError ? "AiOutlineWarning" : "MdOutlineCheckCircle"}
+          size={25}
+        />
+      </div>
+
       {renderServiceResponseWithLink()}
     </div>
   );
