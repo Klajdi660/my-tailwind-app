@@ -52,8 +52,9 @@ export const ServiceResponse: FC<ServiceResponseProps> = (props) => {
   return (
     <div
       className={classNames(
-        "w-full flex_justify_start gap-2 p-4 rounded bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80",
-        serviceError ? "bg-red-200" : "bg-green-200"
+        "w-full flex_justify_start gap-2 p-4 rounded",
+        serviceError ? "bg-red-200" : "bg-green-500/20"
+        // bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80
       )}
     >
       <div>
