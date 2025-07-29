@@ -1,0 +1,60 @@
+{
+  "app": {
+    "port": 8080,
+    "prefix": "/api",
+    "client_url": "http://localhost:3000"
+  },
+  "logLevel": "info",
+  "token": {
+    "access_token_expires": 1,
+    "refresh_token_expires": 59
+  },
+  "mysql": {
+    "connectionLimit": 10,
+    "host": "localhost",
+    "user": "root",
+    "port": 3306,
+    "password": "",
+    "database": "groove"
+  },
+  "redis_feed": {
+    "host": "127.0.01",
+    "port": 6379
+  },
+  "mail": {
+    "service": "gmail",
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "secure": false,
+    "email": "grooveit96@gmail.com",
+    "password": "vfvbqstwxcauoydk"
+  },
+  "google": {
+    "client_id": "520444729444-77uefhl8fv8a3708n1rf5tev6j9tdtf9.apps.googleusercontent.com",
+    "client_secret": "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",
+    "callback_url": "http://localhost:8080/api/auth/google/callback"
+  },
+  "otp": {
+    "otpLength": 6,
+    "otpConfig": {
+      "lowerCaseAlphabets": false,
+      "upperCaseAlphabets": true,
+      "specialChars": false
+    }
+  },
+  "rwg": {
+    "rwg_url": "https://api.rawg.io/api",
+    "rwg_key": "5e59bc246cf8419fb6556b220c462685"
+  },
+  "twitch": {
+    "tw_auth_url": "https://id.twitch.tv/oauth2/token",
+    "tw_base_url": "https://api.igdb.com/v4",
+    "tw_client_id": "90glkqgpxqwkhw0j23wrcjvmq03aoh",
+    "tw_client_secret": "erdz0ocnbmp7wvh9ouyp7k3rkslnxb"
+  },
+  "cloudinary": {
+    "api_key": "221733471778223",
+    "api_secret": "1ZdoT62w3blDFxzNfnyRwGKwJtg",
+    "cloud_name": "dpgexgnsn"
+  }
+}
