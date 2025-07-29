@@ -9,13 +9,6 @@ export interface NameOfFormTypes {
   REGISTER: "register";
 }
 
-export interface NotifyVartiantTypes {
-  INFO: string;
-  ERROR: string;
-  SUCCESS: string;
-  WARNING: string;
-}
-
 // Config
 export interface ThemeConfig {
   modes: string[];
@@ -52,9 +45,15 @@ export interface ThemeConfig {
 }
 
 // Hooks
+export type NotifyVariant =
+  | "default"
+  | "info"
+  | "error"
+  | "success"
+  | "warning";
 export interface NotifyParams {
-  variant: string;
-  description: string | any;
+  variant: NotifyVariant;
+  description: string;
 }
 
 export interface FetchResponse<T> {

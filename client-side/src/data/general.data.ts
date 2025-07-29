@@ -6,7 +6,7 @@ import {
   NameOfFormTypes,
   NavLinkList,
   NotificationItemList,
-  NotifyVartiantTypes,
+  NotifyVariant,
   PageLinkItem,
   PathProperties,
   SettingsLinksParams,
@@ -22,7 +22,8 @@ export const loginHelpActionName: Record<string, string> = {
   "prev-verify-account": "verify_user",
 };
 
-export const notifyVariant: NotifyVartiantTypes = {
+export const notifyVariant: Record<string, NotifyVariant> = {
+  DEFAULT: "default",
   INFO: "info",
   ERROR: "error",
   SUCCESS: "success",

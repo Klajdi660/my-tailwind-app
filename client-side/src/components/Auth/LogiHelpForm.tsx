@@ -68,7 +68,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
         "flex_justify_center h-screen"
       )}
     >
-      <div className="flex flex-col p-8 gap-6 bg-card rounded w-[450px] max-w-[100vw] lg:max-w-[calc(100vw-80px)]">
+      <div className="flex flex-col p-8 gap-6 bg-card rounded w-[450px] max-w-[100vw] lg:max-w-[calc(100vw-80px)] text-onNeutralBg">
         <Link to={HOME} className="flex_justify_center">
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
