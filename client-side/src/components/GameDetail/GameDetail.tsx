@@ -10,8 +10,9 @@ import { Button, HeaderBannerSkeleton, Icon, Image } from "../../components";
 
 export const GameDetail: FC = () => {
   const { useGameDetail } = useGames();
-  const { gameId } = useParams<{ gameId: string | any }>();
+  const { gameId } = useParams();
   const { gameDetail, gameReviews, gameVideos } = useGameDetail(gameId);
+
   const { BROWSE } = paths;
 
   const { loading } = useStore();
@@ -20,18 +21,6 @@ export const GameDetail: FC = () => {
   const navigate = useNavigate();
 
   const cart = useAppSelector((state) => state.cart.items);
-
-  const gameInCart = cart.find((item: any) => item.id === id);
-
-  const getColor = (rating: number) => {
-    if (rating >= 4) return "green";
-    if (rating >= 2) return "#0077B5";
-    return "red";
-  };
-
-  const addToCartHandler = () => {
-    addGameToCart(gameDetail);
-  };
 
   if (!gameDetail) return null;
   if (!gameVideos) return null;
@@ -45,6 +34,18 @@ export const GameDetail: FC = () => {
     background_image,
     background_image_additional,
   } = gameDetail;
+
+  const gameInCart = cart.find((item: any) => item.id === id);
+
+  const getColor = (rating: number) => {
+    if (rating >= 4) return "green";
+    if (rating >= 2) return "#0077B5";
+    return "red";
+  };
+
+  const addToCartHandler = () => {
+    addGameToCart(gameDetail);
+  };
 
   return (
     <div className="game_detail flex flex-col md:flex-row">
