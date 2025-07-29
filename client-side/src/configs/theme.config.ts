@@ -8,11 +8,7 @@ export const themeConfig: ThemeConfig = {
       primaryOpacity: "rgba(16, 116, 144, 0.1)",
     },
   },
-  sidebars: {
-    folded: "80",
-    // full: "200"
-    full: "240",
-  },
+  sidebars: { folded: "80", full: "240" },
   modes: ["light", "dark"],
   players: ["lined", "boxed"],
   fontFamilies: ["fira sans", "roboto", "lato", "inter", "poppins"],
@@ -29,7 +25,6 @@ export const themeConfig: ThemeConfig = {
       // onNeutralBgDivider: "#e5e5e5",
       // onNeutralBgSecondary: "#737373",
       // neutralBgOpacity: "rgba(255, 255, 255, 0.7)",
-
       neutralBg: "#eef2f6",
       neutralBgOpacity: "rgba(255, 255, 255, 0.7)",
       neutralBgAlt: "#ffffff",
@@ -79,4 +74,17 @@ export const defaultThemeConfig = {
   color: Object.keys(themeConfig?.colors)?.[0],
   mode: themeConfig?.modes?.[prefersDark ? 0 : 1],
   sidebar: Object.keys(themeConfig?.sidebars)?.[0],
+};
+
+export const themeMode: Record<string, string> = {
+  light: "theme_light",
+  dark: "theme_dark",
+};
+
+export const defaultStyles: Record<string, number> = {
+  aside: 320,
+  noAside: 0,
+  navHeight: 80,
+  playerHeight: 70,
+  logoWidth: 120,
 };

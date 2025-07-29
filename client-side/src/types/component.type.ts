@@ -497,10 +497,6 @@ export interface FormRedirectProps {
   };
 }
 
-export interface ScrollToTopProps {
-  children: ReactNode;
-}
-
 // Other Component
 export interface LanguageProps {
   onSelectLanguage: (language: string) => void;

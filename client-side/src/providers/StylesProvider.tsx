@@ -1,10 +1,17 @@
 import { FC } from "react";
 import { startCase } from "lodash";
+import {
+  defaultStyles,
+  defaultThemeConfig,
+  themeConfig,
+  themeMode,
+} from "../configs";
 import { useAppSelector } from "../store";
 import { useMediaResponsive } from "../hooks";
-import { defaultThemeConfig, themeConfig } from "../configs";
 
 export const StylesProvider: FC = () => {
+  const { aside, noAside, navHeight, playerHeight, logoWidth } = defaultStyles;
+
   const { isMobile, isLargeScreen, isExtraLargeScreen } = useMediaResponsive();
 
   const themeStorage = useAppSelector((state) => state.theme);
@@ -14,18 +21,13 @@ export const StylesProvider: FC = () => {
 
   const { colors, themes, sidebars } = themeConfig || {};
 
-  const theme = mode === "light" ? "theme_light" : "theme_dark";
-
+  const theme = themeMode[mode];
   const themeObj = themes?.[theme];
   const colorObj = colors?.[color];
   const sT = sidebars?.[sidebar];
 
-  const aside = 320;
-  const asideMobile = isExtraLargeScreen ? aside : 0;
-  const navHeight = 80;
-  const playerHeight = 70;
-
-  const sidebarWidth = isLargeScreen ? sT : 0;
+  const asideMobile = isExtraLargeScreen ? aside : noAside;
+  const sidebarWidth = isLargeScreen ? sT : noAside;
 
   const {
     cardBg,
@@ -45,14 +47,11 @@ export const StylesProvider: FC = () => {
 
   const styles = `
     :root {   
-      --main-margin-top: ${
-        `${navHeight}px`
-        // !isMobile ? `${navHeight * 2}px` : `${navHeight}px`
-      };
+      --main-margin-top: ${navHeight}px;
       --cardBg: ${cardBg};
       --primary: ${primary};
       --playerBg: ${player};
-      --logo-width: ${120}px;
+      --logo-width: ${logoWidth}px;
       --switchBg: ${switchBg};
       --neutralBg: ${neutralBg};
       --aside-width: ${aside}px;
@@ -69,7 +68,6 @@ export const StylesProvider: FC = () => {
       --neutralBgOpacity: ${neutralBgOpacity};
       --primary-light-gray: ${primaryLightGray};
       --nav-width: calc(100vw - ${asideMobile}px);
-      // --nav-width: calc(100vw - ${asideMobile}px - ${isMobile ? "0" : "5"}px);
       --onNeutralBgDivider: ${onNeutralBgDivider};
       --sidebar-horizontal-width: ${sidebarWidth}px;
       --onNeutralBgSecondary: ${onNeutralBgSecondary};

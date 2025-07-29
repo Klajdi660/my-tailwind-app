@@ -85,7 +85,6 @@ export { TrackCardSkeleton } from "./Skeleton/TrackCardSkeleton";
 export { HeaderBannerSkeleton } from "./Skeleton/HeaderBannerSkeleton";
 
 // UI
-export { ScrollToTop } from "./UI/ScrollToTop";
 export { Tab } from "./UI/Tab";
 export { Icon } from "./UI/Icon";
 export { Image } from "./UI/Image";

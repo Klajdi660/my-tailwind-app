@@ -1,10 +1,6 @@
 import { useMediaQuery } from "react-responsive";
 
 export const useMediaResponsive = () => {
-  const isMobile = useMediaQuery({
-    query: "(min-width: 1024px)",
-  });
-
   const isLargeScreen = useMediaQuery({
     query: "(min-width: 1024px)",
   });
@@ -18,7 +14,7 @@ export const useMediaResponsive = () => {
   });
 
   return {
-    isMobile: !isMobile,
+    isMobile: !isLargeScreen,
     isLargeScreen,
     isExtraLargeScreen,
     isTopPlayHidden,

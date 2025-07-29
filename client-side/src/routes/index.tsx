@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import {
   BrowsePage,
   ComingSoonPage,
@@ -38,157 +38,51 @@ const {
   MY_GAMES,
 } = paths;
 
-export const Routes = () =>
-  useRoutes([
-    {
-      path: HOME,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <HomePage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-      index: true,
-    },
-    {
-      path: LOGIN,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <LoginPage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-      index: true,
-    },
-    {
-      path: REGISTER,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <RegisterPage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
-      path: SAVE_AUTH_DATA,
-      element: (
-        <PrivateGuard>
-          <PrivateLayout>
-            <SaveDataAuthPage />
-          </PrivateLayout>
-        </PrivateGuard>
-      ),
-    },
-    {
-      path: ACCOUNT_SAVED,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <UserSaveForm />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
-      path: BROWSE,
-      element: (
-        <PrivateGuard>
-          <PrivateLayout>
-            <BrowsePage />
-          </PrivateLayout>
-        </PrivateGuard>
-      ),
-    },
-    {
-      path: DISCOVER,
-      element: (
-        <PrivateGuard>
-          <PrivateLayout>
-            <DiscoverPage />
-          </PrivateLayout>
-        </PrivateGuard>
-      ),
-    },
-    {
-      path: MY_GAMES,
-      element: <ComingSoonPage />,
-    },
-    {
-      path: `${GAME_DETAILS}/:gameId`,
-      element: (
-        <PrivateGuard>
-          <PrivateLayout>
-            <GameDetailPage />
-          </PrivateLayout>
-        </PrivateGuard>
-      ),
-    },
-    {
-      path: LOGIN_HELP,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <LoginHelpPage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
-      path: PASSWORD_CODE,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <PasswordConfirmCodePage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
-      path: `${PROFILE}/:profileId`,
-      element: (
-        <PrivateGuard>
-          <PrivateLayout>
-            <ProfilePage />
-          </PrivateLayout>
-        </PrivateGuard>
-      ),
-    },
-    {
-      path: RESET_PASSWORD,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <ResetPasswordPage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
-      path: SOCIAL_AUTH,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <SocialAuth />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
-      path: VERIFY_CODE,
-      element: (
-        <PublicGuard>
-          <PublicLayout>
-            <VerifyCodePage />
-          </PublicLayout>
-        </PublicGuard>
-      ),
-    },
-    {
-      path: "*",
-      // element: <ComingSoonPage />,
-      element: <ErrorPage />,
-    },
-  ]);
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    children: [
+      {
+        element: <PublicGuard />,
+        children: [
+          {
+            element: <PublicLayout />,
+            errorElement: <ErrorPage />,
+            children: [
+              { index: true, path: HOME, element: <HomePage /> },
+              { path: LOGIN, element: <LoginPage /> },
+              { path: LOGIN_HELP, element: <LoginHelpPage /> },
+              { path: REGISTER, element: <RegisterPage /> },
+              { path: SOCIAL_AUTH, element: <SocialAuth /> },
+              { path: VERIFY_CODE, element: <VerifyCodePage /> },
+              { path: ACCOUNT_SAVED, element: <UserSaveForm /> },
+              { path: RESET_PASSWORD, element: <ResetPasswordPage /> },
+              { path: PASSWORD_CODE, element: <PasswordConfirmCodePage /> },
+            ],
+          },
+        ],
+      },
+      {
+        element: <PrivateGuard />,
+        children: [
+          {
+            element: <PrivateLayout />,
+            errorElement: <ErrorPage />,
+            children: [
+              { path: BROWSE, element: <BrowsePage /> },
+              { path: DISCOVER, element: <DiscoverPage /> },
+              { path: MY_GAMES, element: <ComingSoonPage /> },
+              { path: SAVE_AUTH_DATA, element: <SaveDataAuthPage /> },
+              { path: `${PROFILE}/:profileId`, element: <ProfilePage /> },
+              { path: `${GAME_DETAILS}/:gameId`, element: <GameDetailPage /> },
+            ],
+          },
+        ],
+      },
+      {
+        path: "*",
+        element: <ErrorPage />,
+      },
+    ],
+  },
+]);

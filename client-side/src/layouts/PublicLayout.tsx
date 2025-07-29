@@ -1,12 +1,11 @@
 import { FC } from "react";
-import { ProviderProps } from "../types";
-import { Loading } from "../components";
+import { Outlet } from "react-router-dom";
+import { ScrollProvider } from "../providers";
 
-export const PublicLayout: FC<ProviderProps> = ({ children }) => {
+export const PublicLayout: FC = () => {
   return (
-    <>
-      <Loading />
-      {children}
-    </>
+    <ScrollProvider>
+      <Outlet />
+    </ScrollProvider>
   );
 };

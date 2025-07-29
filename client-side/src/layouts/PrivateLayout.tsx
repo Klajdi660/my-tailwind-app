@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import {
   CartSwitcher,
@@ -10,10 +10,9 @@ import {
   TabTitle,
 } from "../components";
 import { useStore } from "../hooks";
-import { ProviderProps } from "../types";
 import { classNames, getAside } from "../utils";
 
-export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
+export const PrivateLayout: FC = () => {
   const { openSwitch } = useStore();
   const [parent] = useAutoAnimate();
   const { pathname } = useLocation();
@@ -37,10 +36,9 @@ export const PrivateLayout: FC<ProviderProps> = ({ children }) => {
             hasAside ? "main_width" : "other_main_width"
           )}
         >
-          {children}
+          <Outlet />
         </div>
       </main>
-      {/* <TopPlay /> */}
       {openSwitch && <CartSwitcher />}
       <Modal />
     </div>

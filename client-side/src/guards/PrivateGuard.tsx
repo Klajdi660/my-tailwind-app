@@ -1,13 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { paths } from "../data";
 import { useStore } from "../hooks";
-import { ProviderProps } from "../types";
 import { useAppSelector } from "../store";
 import { isTokenExpired } from "../utils";
 
-export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
+export const PrivateGuard: FC = () => {
   const { HOME } = paths;
 
   const { setModalOpen, closeAllModals } = useStore();
@@ -26,9 +24,9 @@ export const PrivateGuard: FC<ProviderProps> = ({ children }) => {
     const interval = setInterval(checkATokenExpiry, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [closeAllModals, setModalOpen]);
 
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-  return isAuthenticated ? children : <Navigate to={HOME} />;
+  return isAuthenticated ? <Outlet /> : <Navigate to={HOME} />;
 };
