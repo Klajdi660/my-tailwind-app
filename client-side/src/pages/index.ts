@@ -5,7 +5,6 @@ export { VerifyCodePage } from "./Auth/VerifyCodePage";
 export { SaveDataAuthPage } from "./Auth/SaveDataAuthPage";
 export { ResetPasswordPage } from "./Auth/ResetPasswordPage";
 export { LoginHelpPage } from "./Auth/LoginHelpPage";
-export { PasswordConfirmCodePage } from "./Auth/PasswordConfirmCodePage";
 
 // Profile
 export { ProfilePage } from "./Profile/ProfilePage";

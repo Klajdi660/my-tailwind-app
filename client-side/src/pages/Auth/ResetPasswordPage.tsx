@@ -1,26 +1,23 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { FormTemplate } from "../../components";
-import { useAuthService } from "../../services";
-import { resetPassValidation } from "../../utils";
+// import { useAuthService } from "../../services";
 
 export const ResetPasswordPage: FC = () => {
-  const { email, hash } = useParams();
-  const { resetPassword } = useAuthService();
+  const location = useLocation();
+  // const { resetPassword } = useAuthService();
 
-  const onSubmitResetPassHandler = async (values: any) => {
+  const { toFormName } = location.state || {};
+
+  const onSubmitResetPassword = async (values: any) => {
     try {
-      await resetPassword(values, email, hash);
+      // await resetPassword(values);
     } catch (error) {
       console.error(`reset_password_page_error: ${JSON.stringify(error)}`);
     }
   };
 
   return (
-    // <FormTemplate
-    //   onSubmit={onSubmitResetPassHandler}
-    //   schema={resetPassValidation}
-    // />
-    <></>
+    <FormTemplate nameForm={toFormName} onSubmit={onSubmitResetPassword} />
   );
 };

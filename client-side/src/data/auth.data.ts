@@ -1,13 +1,11 @@
 import {
   FormDataTypes,
   EmailOrPhoneButtonType,
-  FormDataType,
   FormItemList,
   LoginHelpDataType,
   ServiceResponseMap,
   SocialAuthList,
   ThresholdsLastLognBadgeColor,
-  VerifyCodeInputMetadata,
 } from "../types";
 import { paths } from "./general.data";
 import { APP_PREFIX, APP_URL } from "../configs";
@@ -149,17 +147,21 @@ export const formData: FormDataTypes = {
       footerLink: "Go back",
       buttonName: "Reset",
       linkTo: LOGIN,
-      otherLink: {
-        otherLinkName: "Didn't recieve code?",
-        otherLinkPName: "Resend",
-        otherLinkTo: "#",
-      },
     },
     inputMetadata: [
       {
-        name: "code",
-        placeholder: "Enter 6 digit code",
-        type: "text",
+        name: "password",
+        placeholder: "Password",
+        type: "password",
+        iconVisible: "AiOutlineEye",
+        iconHidden: "AiOutlineEyeInvisible",
+      },
+      {
+        name: "confirmPassword",
+        placeholder: "Confirm password",
+        type: "password",
+        iconVisible: "AiOutlineEye",
+        iconHidden: "AiOutlineEyeInvisible",
       },
     ],
   },
@@ -199,58 +201,6 @@ export const loginHelpFormData: Record<string, LoginHelpDataType> = {
     smsPlaceholder: "Phone number",
     emailButtonName: "Email Me",
     smsButtonName: "Text Me",
-  },
-};
-
-export const verifyCodeFormData: Record<
-  string,
-  FormDataType<VerifyCodeInputMetadata>
-> = {
-  "verify-account": {
-    metadata: {
-      formName: "verify-account",
-      formTitle: "Verify your account",
-      description: "to continue to Groove",
-      footerTitle: "Cancel verify account?",
-      footerLink: "Go back",
-      buttonName: "Verify Account",
-      linkTo: LOGIN,
-      otherLink: {
-        otherLinkName: "Didn't recieve code?",
-        otherLinkPName: "Resend",
-        otherLinkTo: "#",
-      },
-    },
-    inputMetadata: [
-      {
-        name: "code",
-        placeholder: "Enter 6 digit code",
-        type: "text",
-      },
-    ],
-  },
-  "reset-password": {
-    metadata: {
-      formName: "reset-password",
-      formTitle: "Reset your password",
-      description: "to continue to Groove",
-      footerTitle: "Remember Password?",
-      footerLink: "Go back",
-      buttonName: "Reset",
-      linkTo: LOGIN,
-      otherLink: {
-        otherLinkName: "Didn't recieve code?",
-        otherLinkPName: "Resend",
-        otherLinkTo: "#",
-      },
-    },
-    inputMetadata: [
-      {
-        name: "code",
-        placeholder: "Enter 6 digit code",
-        type: "text",
-      },
-    ],
   },
 };
 

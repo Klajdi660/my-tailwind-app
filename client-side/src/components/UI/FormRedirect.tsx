@@ -24,7 +24,7 @@ export const FormRedirect: FC<FormRedirectProps> = (props) => {
           {otherLinkName}
           <Link
             to={otherLinkTo || ""}
-            state={{ toFormName }}
+            state={{ toFormName: "forgot-password" }}
             onClick={(e) => {
               setServiceResponse({});
               if (resendCodeHandler) {

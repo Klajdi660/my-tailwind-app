@@ -22,7 +22,7 @@ import { notifyVariant, paths } from "../data";
 import { parseIdentifier } from "../utils";
 
 export const useUserService = () => {
-  const { DISCOVER, VERIFY_CODE, LOGIN } = paths;
+  const { DISCOVER, VERIFY_CODE, LOGIN, RESET_PASSWORD } = paths;
   const { ERROR, SUCCESS } = notifyVariant;
   const {
     CREATE_ACCOUNT_API,
@@ -116,25 +116,21 @@ export const useUserService = () => {
 
   const verifyCode = async (values: VerifyCodeValues): Promise<void> => {
     try {
+      const { toFormName, ...rest } = values;
       setLoading(true);
 
       const verifyCodeResp = await HttpClient.post<AuthResponse>(
         VERIFY_CODE_API,
-        values
+        rest
       );
 
       setLoading(false);
 
-      const { error, message } = verifyCodeResp;
+      const { error } = verifyCodeResp;
 
       if (error) throw verifyCodeResp;
 
-      notify({
-        variant: SUCCESS,
-        description: message,
-      });
-
-      navigate(LOGIN);
+      navigate(RESET_PASSWORD, { state: { toFormName } });
     } catch (error: any) {
       setLoading(false);
       setServiceResponse({
@@ -142,11 +138,6 @@ export const useUserService = () => {
         serviceMessage: error.message,
         serviceMessageName: error.errorType,
       });
-      // notify({
-      //   variant: SUCCESS,
-      //   description: error.message,
-      // });
-
       throw error;
     }
   };

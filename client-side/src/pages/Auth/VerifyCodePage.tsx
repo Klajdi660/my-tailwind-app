@@ -22,7 +22,7 @@ export const VerifyCodePage: FC = () => {
 
       toFormName === "verify-account"
         ? await verifyAccount(payload)
-        : await verifyCode({ ...payload, action });
+        : await verifyCode({ ...payload, action, toFormName });
     } catch (error) {
       values.reset?.();
       console.error(`verify_code_page_error: ${JSON.stringify(error)}`);

@@ -3,7 +3,7 @@ export interface FormDataTypes {
   login: FormDataType<LoginInputMetadata>;
   register: FormDataType<RegisterInputMetadata>;
   "verify-account": FormDataType<VerifyCodeInputMetadata>;
-  "reset-password": FormDataType<VerifyCodeInputMetadata>;
+  "reset-password": FormDataType<ResetPasswordInputMetadata>;
 }
 
 export interface ServiceResponseMap {
@@ -54,6 +54,9 @@ export type LoginInputMetadata = InputFieldMetadata<"identifier" | "password">;
 export type VerifyCodeInputMetadata = InputFieldMetadata<"code">;
 export type RegisterInputMetadata = InputFieldMetadata<
   "identifier" | "username" | "fullname" | "password"
+>;
+export type ResetPasswordInputMetadata = InputFieldMetadata<
+  "password" | "confirmPassword"
 >;
 
 export interface FormDataType<T extends { name: string }> {

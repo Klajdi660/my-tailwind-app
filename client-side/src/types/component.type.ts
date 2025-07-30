@@ -15,6 +15,7 @@ export type FormName =
 export interface FormValuesTypes {
   identifier: string;
   password: string;
+  confirmPassword: string;
   username: string;
   fullname: string;
   phonePrefix: string;

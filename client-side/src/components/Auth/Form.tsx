@@ -66,7 +66,7 @@ export const Form: FC<FormProps> = (props) => {
               className="w-full h-12 px-2 text-sm text-onNeutralBg bg-transparent no-focus outline-0 disabled:text-secondary rounded"
               placeholder={item.placeholder}
               type={
-                item.name === "password"
+                ["password", "confirmPassword"].includes(item.name)
                   ? showPassword
                     ? "text"
                     : "password"
@@ -88,7 +88,7 @@ export const Form: FC<FormProps> = (props) => {
                 "focus-within:opacity-100 focus-within:pointer-events-auto"
               )}
             >
-              {item.name === "password" && (
+              {["password", "confirmPassword"].includes(item.name) && (
                 <IconButton
                   name={showPassword ? item.iconHidden : item.iconVisible}
                   iconClassName="text-secondary hover:text-onNeutralBg hover:scale-[1.1]"
