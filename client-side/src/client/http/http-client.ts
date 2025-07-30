@@ -4,10 +4,10 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import { store } from "../../store";
-import { APP_URL, AXIOS_TIMEOUT_DURATION } from "../../configs";
+import { APP_PREFIX, APP_URL, AXIOS_TIMEOUT_DURATION } from "../../configs";
 
 const instance = axios.create({
-  baseURL: APP_URL,
+  baseURL: `${APP_URL}${APP_PREFIX}`,
   timeout: AXIOS_TIMEOUT_DURATION,
   headers: {
     "Content-Type": "application/json",

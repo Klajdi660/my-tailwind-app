@@ -12,7 +12,7 @@ import {
   VerifyCodeInputMetadata,
 } from "../types";
 import { paths } from "./general.data";
-import { APP_URL } from "../configs";
+import { APP_PREFIX, APP_URL } from "../configs";
 import { endpoints } from "../services";
 
 const { REGISTER, LOGIN, LOGIN_HELP, RESET_PASSWORD } = paths;
@@ -42,7 +42,7 @@ export const socialAuthList: SocialAuthList[] = [
     id: 1,
     name: "Google",
     icon: "FcGoogle",
-    link: `${APP_URL}${OAUTH_GOOGLE_API}`,
+    link: `${APP_URL}${APP_PREFIX}${OAUTH_GOOGLE_API}`,
   },
 ];
 
