@@ -69,6 +69,7 @@ export { ProfileSidebar } from "./Profile/ProfileSidebar";
 export { ProfileSidebarMobile } from "./Profile/ProfileSidebarMobile";
 export { ShippingAddressSettings } from "./Profile/ShippingAddressSettings";
 export { ProfileDropdownMenu } from "./Profile/ProfileDropdownMenu";
+export { ProfileView } from "./Profile/ProfileView";
 
 // SECTIONS
 export { MediaSection } from "./Sections/MediaSection";

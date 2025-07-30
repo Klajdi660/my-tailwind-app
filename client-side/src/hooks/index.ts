@@ -1,3 +1,5 @@
+export * from "./useGames";
+
 export { useCart } from "./useCart";
 export { useAuth } from "./useAuth";
 export { useForms } from "./useForm";
@@ -6,6 +8,5 @@ export { useStore } from "./useStore";
 export { useNotification } from "./useNotification";
 export { useUserSelectedData } from "./useUserSelectedData";
 export { useMediaResponsive } from "./useMediaResponsive";
-export * from "./useGames";
 export { useScrollPosition } from "./useScrollPosition";
 export { useDelayedLoading } from "./useDelayedLoading";

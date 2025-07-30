@@ -27,8 +27,7 @@ const AuthContext = createContext(initialState);
 
 const AuthProvider: FC<ProviderProps> = ({ children }) => {
   const [lToken, setLToken] = useState("");
-  // const [user, setUser] = useState<User | null>(null);
-  const [user, setUser] = useState<User | null>(getUserFromLocalStorage());
+  const [user, setUser] = useState<User | null>(getUserFromLocalStorage()); // null
 
   // const atoken = localStorage.getItem("atoken");
 

@@ -51,6 +51,11 @@ export const paths: PathProperties = {
   ACCOUNT_SAVED: "/account-saved",
   LOGIN_HELP: "/login-help",
   MY_GAMES: "/my-games",
+  WISHLIST: "/wishlist",
+  STORE: "/store",
+  COLLECTION: "/collection",
+  PLATFORMS: "/platforms",
+  GENRES: "/genres",
 };
 
 export const fontSizes: FontSizesProperties = {

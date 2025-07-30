@@ -1,10 +1,10 @@
-import { io /*Socket*/ } from "socket.io-client";
-// import { store } from "../../store";
+import { io } from "socket.io-client";
+import { store } from "../../store";
 import { SOCKET_URL } from "../../configs";
 
 const instance = io(SOCKET_URL, {
   query: {
-    // token: store.getState().auth.accessToken,
+    token: store.getState().auth.atoken,
   },
 });
 
@@ -23,5 +23,3 @@ export class SocketClient {
     return this.instance.emit(event, ...args);
   }
 }
-
-// export default new SocketClient();

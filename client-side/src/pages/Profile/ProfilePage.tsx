@@ -1,23 +1,13 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
 import {
-  AccountSettings,
-  GeneralSettings,
-  PaymentSettings,
   ProfileSidebar,
   ProfileSidebarMobile,
-  ShippingAddressSettings,
+  ProfileView,
   Title,
 } from "../../components";
 import { useMediaResponsive } from "../../hooks";
 import { firstLetterToUpperCase } from "../../utils";
-
-const profileComponents: Record<string, JSX.Element> = {
-  account: <AccountSettings />,
-  general: <GeneralSettings />,
-  shipping: <ShippingAddressSettings />,
-  payments: <PaymentSettings />,
-};
 
 export const ProfilePage: FC = () => {
   const { isMobile } = useMediaResponsive();
@@ -35,15 +25,7 @@ export const ProfilePage: FC = () => {
       />
       <div className="flex flex-col md:flex-row justify-between text-onNeutralBg gap-6">
         {isMobile ? <ProfileSidebarMobile /> : <ProfileSidebar />}
-        {profileComponents[profileId] ? (
-          profileComponents[profileId]
-        ) : (
-          <div className="w-full h-20 flex_justify_center bg-card rounded">
-            <p className="text-base text-onNeutralBg text-red-500">
-              {profileSectionName} section does not exist
-            </p>
-          </div>
-        )}
+        <ProfileView profileId={profileId} />
       </div>
     </section>
   );

@@ -14,8 +14,7 @@ export const SocialAuth: FC = () => {
       await loginWithSocialApp(tokenParam);
     };
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tokenParam]);
+  }, [loginWithSocialApp, tokenParam]);
 
   return (
     <>

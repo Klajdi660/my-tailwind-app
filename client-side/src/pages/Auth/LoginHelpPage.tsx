@@ -1,10 +1,10 @@
 import { FC } from "react";
+import { UseFormReset } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import { LoginHelpValues } from "../../types";
-import { loginHelpActionName, loginHelpFormData } from "../../data";
 import { useAuthService } from "../../services";
 import { LoginHelpForm } from "../../components";
-import { UseFormReset } from "react-hook-form";
+import { loginHelpActionName, loginHelpFormData } from "../../data";
 
 export const LoginHelpPage: FC = () => {
   const location = useLocation();

@@ -21,8 +21,8 @@ export const PrivateLayout: FC = () => {
 
   return (
     <div
-      className="flex flex-col max-w-full m-auto xl:flex-row app bg-main text-onNeutralBg"
       id="main_app"
+      className="flex flex-col max-w-full m-auto xl:flex-row app bg-main text-onNeutralBg"
     >
       <TabTitle />
       <Loading />

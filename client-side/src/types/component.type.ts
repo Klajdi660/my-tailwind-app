@@ -98,7 +98,7 @@ export interface FormTemplateProps {
 export interface OTPCodeFormProps {
   data: any;
   onSubmit: any;
-  resendCodeHandler: () => void;
+  resendCodeHandler?: () => void;
 }
 
 // Browse
@@ -310,6 +310,11 @@ export interface ReviewContentProps {
 }
 
 // Profile
+
+export interface ProfileViewProps {
+  profileId: string;
+}
+
 export interface ChangePasswordValues {
   newPassword: string;
   currentPassword: string;

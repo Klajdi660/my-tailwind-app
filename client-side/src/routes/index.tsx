@@ -36,6 +36,11 @@ const {
   ACCOUNT_SAVED,
   LOGIN_HELP,
   MY_GAMES,
+  WISHLIST,
+  STORE,
+  COLLECTION,
+  PLATFORMS,
+  GENRES,
 } = paths;
 
 export const router = createBrowserRouter([
@@ -70,8 +75,13 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,
             children: [
               { path: BROWSE, element: <BrowsePage /> },
+              { path: STORE, element: <ComingSoonPage /> },
               { path: DISCOVER, element: <DiscoverPage /> },
+              { path: GENRES, element: <ComingSoonPage /> },
               { path: MY_GAMES, element: <ComingSoonPage /> },
+              { path: WISHLIST, element: <ComingSoonPage /> },
+              { path: PLATFORMS, element: <ComingSoonPage /> },
+              { path: COLLECTION, element: <ComingSoonPage /> },
               { path: SAVE_AUTH_DATA, element: <SaveDataAuthPage /> },
               { path: `${PROFILE}/:profileId`, element: <ProfilePage /> },
               { path: `${GAME_DETAILS}/:gameId`, element: <GameDetailPage /> },

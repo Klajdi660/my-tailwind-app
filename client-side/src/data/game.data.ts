@@ -36,10 +36,10 @@ export const gameFilterList: GameFilterListProperties[] = [
   { id: 1, name: "Platforms", value: "platform", width: "300px" },
   { id: 2, name: "Genres", value: "genre", width: "300px" },
   { id: 3, name: "Rating", value: "rating", width: "0px" },
-  // { id: 4, name: "Name" },
-  // { id: 5, name: "Relevance" },
-  // { id: 6, name: "Popularity" },
-  // { id: 7, name: "Release date" },
+  // { id: 4, name: "Name", value: "name", width: "" },
+  // { id: 5, name: "Relevance", value: "relevance", width: "" },
+  // { id: 6, name: "Popularity", value: "popularity", width: "" },
+  // { id: 7, name: "Release date", value: "release", width: "" },
 ];
 
 export const gameRatingList: GameRatingListProperties[] = [

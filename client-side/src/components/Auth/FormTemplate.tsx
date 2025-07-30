@@ -54,12 +54,11 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
           </>
         )}
         {["verify-account", "password-code"]?.includes(formName) ? (
-          // <OTPCodeForm
-          //   onSubmit={onSubmit}
-          //   resendCodeHandler={resendCodeHandler}
-          //   data={data}
-          // />
-          <></>
+          <OTPCodeForm
+            onSubmit={onSubmit}
+            resendCodeHandler={resendCodeHandler}
+            data={data}
+          />
         ) : (
           <>
             <Form

@@ -148,6 +148,11 @@ export type PathProperties = {
   ACCOUNT_SAVED: string;
   LOGIN_HELP: string;
   MY_GAMES: string;
+  WISHLIST: string;
+  STORE: string;
+  COLLECTION: string;
+  PLATFORMS: string;
+  GENRES: string;
 };
 
 export type FontSizesProperties = {
