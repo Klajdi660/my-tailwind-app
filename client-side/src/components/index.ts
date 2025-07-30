@@ -1,14 +1,10 @@
 // AUTH
 export { Form } from "./Auth/Form";
 export { SocialAuth } from "./Auth/SocialAuth";
-export { OTPCodeForm } from "./Auth/OTPCodeForm";
 export { FormTemplate } from "./Auth/FormTemplate";
 export { UserSaveForm } from "./Auth/UserSaveForm";
-export { LoginForm } from "./Auth/LoginForm";
-export { RegisterForm } from "./Auth/RegisterForm";
 export { VerifyCodeForm } from "./Auth/VerifyCodeForm";
 export { LoginHelpForm } from "./Auth/LogiHelpForm";
-export { AuthForm } from "./Auth/AuthForm";
 
 // Browse
 export { FilterBy } from "./Browse/FilterBy";
@@ -110,9 +106,9 @@ export { DesktopToggleButton } from "./UI/Buttons/DesktopToggleButton";
 export { ChangeProfilePhotoModal } from "./UI/Modals/ChangeProfilePhotoModal";
 export { FormDivider } from "./UI/FormDivider";
 export { FormRedirect } from "./UI/FormRedirect";
-export { EmailOrPhoneButton } from "./UI/Buttons/EmailOrPhoneButton";
 export { Divider } from "./UI/Divider";
 export { Spinner } from "./UI/Spinner";
+export { LoginHelpButton } from "./UI/Buttons/LoginHelpButton";
 
 // Others Component
 export { Footer } from "./Footer";

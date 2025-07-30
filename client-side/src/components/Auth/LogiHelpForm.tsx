@@ -10,10 +10,10 @@ import {
 } from "../../utils";
 import {
   Button,
-  EmailOrPhoneButton,
   ErrorFormMessage,
   FormRedirect,
   Image,
+  LoginHelpButton,
   ServiceResponse,
   Title,
 } from "../../components";
@@ -27,13 +27,10 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
   const {
     formName,
     formTitle,
-    formDescription,
     description,
     footerTitle,
     footerLink,
     linkTo,
-    emailText,
-    smsText,
     emailPlaceholder,
     smsPlaceholder,
     emailButtonName,
@@ -42,6 +39,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
   const { HOME } = paths;
 
   const { serviceResponse } = useStore();
+  const { serviceError } = serviceResponse;
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [selectedMethod, setSelectedMethod] = useState<string>("email");
@@ -73,15 +71,11 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
           <Image imgUrl={iconName} name="form_logo" width={140} />
         </Link>
         <Title name={formTitle} desc={description} type="medium" />
-        {serviceResponse.serviceError && <ServiceResponse />}
-        <p className="text-md">{formDescription}</p>
-        <EmailOrPhoneButton
+        {serviceError && <ServiceResponse />}
+        <LoginHelpButton
           selectedMethod={selectedMethod}
           setSelectedMethod={setSelectedMethod}
         />
-        <p className="text-md">
-          {selectedMethod === "email" ? emailText : smsText}
-        </p>
         <form
           className="flex flex-col gap-2"
           onSubmit={handleSubmit(handleFormSubmit)}

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { nameOfForm } from "../../data";
 import { LoginValues } from "../../types";
-import { AuthForm, FormTemplate } from "../../components";
+import { FormTemplate } from "../../components";
 import { useAuthService } from "../../services";
 
 export const LoginPage: FC = () => {
@@ -17,6 +17,5 @@ export const LoginPage: FC = () => {
     }
   };
 
-  // return <AuthForm onSubmit={onSubmitLogin} nameForm={LOGIN} />;
   return <FormTemplate onSubmit={onSubmitLogin} nameForm={LOGIN} />;
 };

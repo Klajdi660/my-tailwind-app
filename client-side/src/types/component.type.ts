@@ -6,12 +6,7 @@ import {
   LoginHelpDataType,
   VerifyCodeInputMetadata,
 } from "./data.type";
-import {
-  CreateAccountValues,
-  LoginHelpValues,
-  LoginValues,
-  VerifyAccountValues,
-} from "./page.type";
+import { LoginHelpValues, VerifyAccountValues } from "./page.type";
 import { UseFormReset } from "react-hook-form";
 
 // Auth
@@ -23,11 +18,6 @@ export interface AuthFormValuesTypes {
   username: string;
   fullname: string;
   phonePrefix: string;
-}
-
-export interface AuthFormProps {
-  onSubmit: (values: AuthFormValuesTypes) => Promise<void>;
-  nameForm: AuthFormName;
 }
 
 export interface FormProps {
@@ -49,14 +39,6 @@ export interface LoginHelpFormProps {
     values: LoginHelpValues,
     reset: UseFormReset<LoginHelpValues>
   ) => Promise<void>;
-}
-
-export interface LoginFormProps {
-  onSubmit: (values: LoginValues) => Promise<void>;
-}
-
-export interface RegisterFormProps {
-  onSubmit: (values: CreateAccountValues) => Promise<void>;
 }
 
 export interface VerifyCodeFormProps {
@@ -95,12 +77,6 @@ export interface FormTemplateProps {
   schema?: any;
   onSubmit: (values: any) => Promise<void>;
   defaultValues?: any;
-  resendCodeHandler?: () => void;
-}
-
-export interface OTPCodeFormProps {
-  data: any;
-  onSubmit: any;
   resendCodeHandler?: () => void;
 }
 
@@ -375,7 +351,7 @@ export interface TrackCardSkeletonProps {
 }
 
 // UI
-export interface EmailOrPhoneButtonProps {
+export interface LoginHelpButtonProps {
   selectedMethod: string;
   setSelectedMethod: (method: string) => void;
 }
