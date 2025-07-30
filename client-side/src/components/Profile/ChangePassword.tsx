@@ -42,7 +42,7 @@ export const ChangePassword: FC = () => {
           </span>
         )}
       </div>
-      <Form
+      {/* <Form
         listForm={listForm}
         schema={updatePasswordValidation}
         onSubmit={handleOnSubmit}
@@ -51,7 +51,7 @@ export const ChangePassword: FC = () => {
           newPassword: !isPasswordEnabled ? "**********" : "",
           confirmNewPassword: !isPasswordEnabled ? "**********" : "",
         }}
-      />
+      /> */}
     </div>
   );
 };

@@ -6,9 +6,10 @@ export const PasswordConfirmCodePage: FC = () => {
   const onSubmitPassConfirmCode = async () => {};
 
   return (
-    <FormTemplate
-      schema={verifyValidation}
-      onSubmit={onSubmitPassConfirmCode}
-    />
+    // <FormTemplate
+    //   schema={verifyValidation}
+    //   onSubmit={onSubmitPassConfirmCode}
+    // />
+    <></>
   );
 };

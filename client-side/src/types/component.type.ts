@@ -31,14 +31,16 @@ export interface AuthFormProps {
 }
 
 export interface FormProps {
-  listForm: FormListItem[] | any;
-  onSubmit?: any;
+  nameForm: AuthFormName;
+  listForm?: FormListItem[] | any;
+  // onSubmit?: any;
   schema?: any;
   defaultValues?: any;
   data?: any;
   files?: any;
   setFiles?: any;
   hasProvider?: boolean;
+  onSubmit: (values: AuthFormValuesTypes) => Promise<void>;
 }
 
 export interface LoginHelpFormProps {
@@ -88,8 +90,9 @@ export interface FormListItem {
 }
 
 export interface FormTemplateProps {
+  nameForm: AuthFormName;
   data?: any;
-  schema: any;
+  schema?: any;
   onSubmit: (values: any) => Promise<void>;
   defaultValues?: any;
   resendCodeHandler?: () => void;

@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
   ErrorFormMessage,
-  FormDivider,
   FormRedirect,
   IconButton,
   Image,
@@ -73,7 +72,6 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
         <Title name={formTitle} desc={description} type="medium" />
         {serviceResponse.serviceError && <ServiceResponse />}
         <SocialAuthButton />
-        <FormDivider />
         <form
           className="flex flex-col gap-2"
           onSubmit={handleSubmit(handleFormSubmit)}
@@ -84,8 +82,8 @@ export const AuthForm: FC<AuthFormProps> = (props) => {
                 className={classNames(
                   "flex items-center relative rounded",
                   errors[item.name]
-                    ? "border border-red-500 hover:border-red-500"
-                    : "border border-divider focus-within:border-primary hover:border-primary"
+                    ? "border border-red-500"
+                    : "border border-divider focus-within:border-primary"
                 )}
               >
                 {item.name === "identifier" &&

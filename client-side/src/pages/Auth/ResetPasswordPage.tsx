@@ -17,9 +17,10 @@ export const ResetPasswordPage: FC = () => {
   };
 
   return (
-    <FormTemplate
-      onSubmit={onSubmitResetPassHandler}
-      schema={resetPassValidation}
-    />
+    // <FormTemplate
+    //   onSubmit={onSubmitResetPassHandler}
+    //   schema={resetPassValidation}
+    // />
+    <></>
   );
 };
