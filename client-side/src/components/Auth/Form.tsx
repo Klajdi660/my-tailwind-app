@@ -1,17 +1,17 @@
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { authValidation, classNames, phonePrefixData } from "../../utils";
-import { AuthFormValuesTypes, FormProps } from "../../types";
+import { formValidation, classNames, phonePrefixData } from "../../utils";
+import { FormValuesTypes, FormProps } from "../../types";
 import { Button, ErrorFormMessage, IconButton } from "../../components";
-import { authFormData, userRegex } from "../../data";
+import { formData, userRegex } from "../../data";
 import { Select } from "antd";
 
 export const Form: FC<FormProps> = (props) => {
   const { nameForm, onSubmit } = props;
 
   const { isPhoneNumberRegex } = userRegex;
-  const { metadata, inputMetadata } = authFormData[nameForm];
+  const { metadata, inputMetadata } = formData[nameForm];
   const { buttonName } = metadata;
 
   const [phonePrefix, setPhonePrefix] = useState<string>("");
@@ -20,7 +20,7 @@ export const Form: FC<FormProps> = (props) => {
 
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
-  const handleFormSubmit = (values: AuthFormValuesTypes) => {
+  const handleFormSubmit = (values: FormValuesTypes) => {
     onSubmit({ ...values, phonePrefix });
   };
 
@@ -28,9 +28,9 @@ export const Form: FC<FormProps> = (props) => {
     register: form,
     formState: { errors, isValid },
     handleSubmit,
-  } = useForm<AuthFormValuesTypes>({
+  } = useForm<FormValuesTypes>({
     mode: "all",
-    resolver: yupResolver(authValidation[nameForm]),
+    resolver: yupResolver(formValidation[nameForm]),
   });
 
   return (

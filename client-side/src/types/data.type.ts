@@ -1,7 +1,9 @@
 // Auth
-export interface AuthFormDataTypes {
+export interface FormDataTypes {
   login: FormDataType<LoginInputMetadata>;
   register: FormDataType<RegisterInputMetadata>;
+  "verify-account": FormDataType<VerifyCodeInputMetadata>;
+  "reset-password": FormDataType<VerifyCodeInputMetadata>;
 }
 
 export interface ServiceResponseMap {

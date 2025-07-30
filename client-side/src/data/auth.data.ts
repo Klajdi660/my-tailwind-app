@@ -1,11 +1,9 @@
 import {
-  AuthFormDataTypes,
+  FormDataTypes,
   EmailOrPhoneButtonType,
   FormDataType,
   FormItemList,
   LoginHelpDataType,
-  LoginInputMetadata,
-  RegisterInputMetadata,
   ServiceResponseMap,
   SocialAuthList,
   ThresholdsLastLognBadgeColor,
@@ -51,69 +49,7 @@ export const emailOrPhoneButtonList: EmailOrPhoneButtonType[] = [
   { id: 2, label: "sms", name: "SMS" },
 ];
 
-export const loginFormData: FormDataType<LoginInputMetadata> = {
-  metadata: {
-    formName: "login",
-    formTitle: "Log in",
-    description: "to continue to Groove",
-    footerTitle: "Don't have an account?",
-    footerLink: "Sign up",
-    buttonName: "Logi in",
-    linkTo: REGISTER,
-  },
-  inputMetadata: [
-    {
-      name: "identifier",
-      placeholder: "Email, username or phone number",
-      type: "text",
-    },
-    {
-      name: "password",
-      placeholder: "Password",
-      type: "password",
-      iconVisible: "AiOutlineEye",
-      iconHidden: "AiOutlineEyeInvisible",
-    },
-  ],
-};
-
-export const registerFormData: FormDataType<RegisterInputMetadata> = {
-  metadata: {
-    formName: "register",
-    formTitle: "Create your account",
-    description: "to continue to Groove",
-    footerLink: "Log in",
-    footerTitle: "Have an account?",
-    buttonName: "Sign up",
-    linkTo: LOGIN,
-  },
-  inputMetadata: [
-    {
-      name: "identifier",
-      placeholder: "Email or phone number",
-      type: "text",
-    },
-    {
-      name: "username",
-      placeholder: "Username",
-      type: "text",
-    },
-    {
-      name: "fullname",
-      placeholder: "Full Name",
-      type: "text",
-    },
-    {
-      name: "password",
-      placeholder: "Password",
-      type: "password",
-      iconVisible: "AiOutlineEye",
-      iconHidden: "AiOutlineEyeInvisible",
-    },
-  ],
-};
-
-export const authFormData: AuthFormDataTypes = {
+export const formData: FormDataTypes = {
   login: {
     metadata: {
       formName: "login",
@@ -178,6 +114,52 @@ export const authFormData: AuthFormDataTypes = {
         type: "password",
         iconVisible: "AiOutlineEye",
         iconHidden: "AiOutlineEyeInvisible",
+      },
+    ],
+  },
+  "verify-account": {
+    metadata: {
+      formName: "verify-account",
+      formTitle: "Verify your account",
+      description: "to continue to Groove",
+      footerTitle: "Cancel verify account?",
+      footerLink: "Go back",
+      buttonName: "Verify Account",
+      linkTo: LOGIN,
+      otherLink: {
+        otherLinkName: "Didn't recieve code?",
+        otherLinkPName: "Resend",
+        otherLinkTo: "#",
+      },
+    },
+    inputMetadata: [
+      {
+        name: "code",
+        placeholder: "Enter 6 digit code",
+        type: "text",
+      },
+    ],
+  },
+  "reset-password": {
+    metadata: {
+      formName: "reset-password",
+      formTitle: "Reset your password",
+      description: "to continue to Groove",
+      footerTitle: "Remember Password?",
+      footerLink: "Go back",
+      buttonName: "Reset",
+      linkTo: LOGIN,
+      otherLink: {
+        otherLinkName: "Didn't recieve code?",
+        otherLinkPName: "Resend",
+        otherLinkTo: "#",
+      },
+    },
+    inputMetadata: [
+      {
+        name: "code",
+        placeholder: "Enter 6 digit code",
+        type: "text",
       },
     ],
   },

@@ -1,11 +1,9 @@
 import { FC } from "react";
-import { UseFormReset } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import { ErrorPage } from "../ErrorPage";
 import { useUserService } from "../../services";
-import { verifyCodeFormData } from "../../data";
+import { FormTemplate } from "../../components";
 import { VerifyAccountValues } from "../../types";
-import { VerifyCodeForm } from "../../components";
 
 export const VerifyCodePage: FC = () => {
   const location = useLocation();
@@ -15,10 +13,7 @@ export const VerifyCodePage: FC = () => {
   const { action, toFormName, username, email, phoneNr, fullname } =
     verifyCodeData;
 
-  const onSubmitVerifyCode = async (
-    values: VerifyAccountValues,
-    reset: UseFormReset<VerifyAccountValues>
-  ) => {
+  const onSubmitVerifyCode = async (values: VerifyAccountValues) => {
     try {
       const payload = {
         code: values.code,
@@ -29,7 +24,7 @@ export const VerifyCodePage: FC = () => {
         ? await verifyAccount(payload)
         : await verifyCode({ ...payload, action });
     } catch (error) {
-      reset();
+      values.reset?.();
       console.error(`verify_code_page_error: ${JSON.stringify(error)}`);
     }
   };
@@ -45,10 +40,10 @@ export const VerifyCodePage: FC = () => {
   return (
     <>
       {verifyCodeData && toFormName ? (
-        <VerifyCodeForm
+        <FormTemplate
+          nameForm={toFormName}
           onSubmit={onSubmitVerifyCode}
           resendCodeHandler={resendCodeHandler}
-          data={verifyCodeFormData[toFormName]}
         />
       ) : (
         <ErrorPage />

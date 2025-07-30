@@ -1,36 +1,29 @@
 import { ReactNode } from "react";
-import { Effect } from "react-lazy-load-image-component";
-import { GameParams, GameReviewsParams } from "./general.type";
-import {
-  FormDataType,
-  LoginHelpDataType,
-  VerifyCodeInputMetadata,
-} from "./data.type";
-import { LoginHelpValues, VerifyAccountValues } from "./page.type";
 import { UseFormReset } from "react-hook-form";
+import { Effect } from "react-lazy-load-image-component";
+import { LoginHelpValues } from "./page.type";
+import { LoginHelpDataType } from "./data.type";
+import { GameParams, GameReviewsParams } from "./general.type";
 
 // Auth
-export type AuthFormName = "login" | "register";
+export type FormName =
+  | "login"
+  | "register"
+  | "verify-account"
+  | "reset-password";
 
-export interface AuthFormValuesTypes {
+export interface FormValuesTypes {
   identifier: string;
   password: string;
   username: string;
   fullname: string;
   phonePrefix: string;
+  code: string;
 }
 
 export interface FormProps {
-  nameForm: AuthFormName;
-  listForm?: FormListItem[] | any;
-  // onSubmit?: any;
-  schema?: any;
-  defaultValues?: any;
-  data?: any;
-  files?: any;
-  setFiles?: any;
-  hasProvider?: boolean;
-  onSubmit: (values: AuthFormValuesTypes) => Promise<void>;
+  nameForm: FormName;
+  onSubmit: (values: FormValuesTypes) => Promise<void>;
 }
 
 export interface LoginHelpFormProps {
@@ -41,40 +34,8 @@ export interface LoginHelpFormProps {
   ) => Promise<void>;
 }
 
-export interface VerifyCodeFormProps {
-  onSubmit: (
-    values: VerifyAccountValues,
-    reset: UseFormReset<VerifyAccountValues>
-  ) => Promise<void>;
-  resendCodeHandler: () => Promise<void>;
-  data: FormDataType<VerifyCodeInputMetadata>;
-}
-
-export interface FormListItem {
-  name: string | any;
-  iconName: string;
-  type: string;
-  label: string;
-  linkTo: string;
-  btnTxt: string;
-  formType: string;
-  formName: string;
-  formTitle: string;
-  footerLink: string;
-  footerTitle: string;
-  description: string;
-  item: string | undefined;
-  props: {
-    type: string;
-    placeholder: string;
-    disabled: boolean | undefined;
-  };
-}
-
 export interface FormTemplateProps {
-  nameForm: AuthFormName;
-  data?: any;
-  schema?: any;
+  nameForm: FormName;
   onSubmit: (values: any) => Promise<void>;
   defaultValues?: any;
   resendCodeHandler?: () => void;

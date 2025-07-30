@@ -1,3 +1,5 @@
+import { UseFormReset } from "react-hook-form";
+
 // Auth
 export interface LoginHelpValues {
   email?: string;
@@ -23,6 +25,7 @@ export interface CreateAccountValues {
 
 export interface VerifyAccountValues {
   code: string;
+  reset?: UseFormReset<VerifyAccountValues>;
   username?: string;
 }
 

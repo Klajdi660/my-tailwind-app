@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { AuthFormName } from "../../types";
+import { FormName } from "../../types";
 
 const userRegex: Record<string, RegExp> = {
   emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -173,7 +173,9 @@ export const verifyCodeValidation = yup.object({
     .matches(/^\d{6}$/, "Code must be exactly 6 digits"),
 });
 
-export const authValidation: Record<AuthFormName, any> = {
+export const formValidation: Record<FormName, any> = {
   register: registerValidation,
   login: loginValidation,
+  "verify-account": verifyCodeValidation,
+  "reset-password": verifyCodeValidation,
 };

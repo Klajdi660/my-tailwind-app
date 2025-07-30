@@ -3,7 +3,6 @@ export { Form } from "./Auth/Form";
 export { SocialAuth } from "./Auth/SocialAuth";
 export { FormTemplate } from "./Auth/FormTemplate";
 export { UserSaveForm } from "./Auth/UserSaveForm";
-export { VerifyCodeForm } from "./Auth/VerifyCodeForm";
 export { LoginHelpForm } from "./Auth/LogiHelpForm";
 
 // Browse

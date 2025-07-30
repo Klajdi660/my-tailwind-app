@@ -12,13 +12,13 @@ import { useStore } from "../../hooks";
 import { iconName } from "../../assets";
 import { classNames } from "../../utils";
 import { FormTemplateProps } from "../../types";
-import { authFormData, paths } from "../../data";
+import { formData, paths } from "../../data";
 
 export const FormTemplate: FC<FormTemplateProps> = (props) => {
   const { nameForm, onSubmit, resendCodeHandler } = props;
 
   const { HOME } = paths;
-  const { metadata } = authFormData[nameForm];
+  const { metadata } = formData[nameForm];
   const {
     formName,
     toFormName,
