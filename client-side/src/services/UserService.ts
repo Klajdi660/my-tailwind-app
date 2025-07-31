@@ -3,13 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { userEndpoints } from "./Api";
 import { HttpClient } from "../client";
 import {
-  AuthResponse,
   CreateAccountValues,
-  UserDetailsResponse,
   VerifyAccountValues,
-  CreateAccountResponse,
   VerifyCodeValues,
   ResendCodeValues,
+  ServerResponse,
+  ServerResponseError,
 } from "../types";
 import { useNotification, useStore } from "../hooks";
 import {
@@ -41,23 +40,24 @@ export const useUserService = () => {
   const { user } = useAppSelector((state) => state.user);
 
   const createAccount = async (values: CreateAccountValues): Promise<void> => {
+    const { identifier, phonePrefix, reset, ...rest } = values;
+
     try {
-      const { identifier, phonePrefix, ...rest } = values;
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
       const payload = { ...parsedIdentifier, ...rest };
 
       setLoading(true);
 
-      const createAccountResp = await HttpClient.post<CreateAccountResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         CREATE_ACCOUNT_API,
         payload
       );
 
       setLoading(false);
 
-      const { error, message } = createAccountResp;
+      const { error, message } = response;
 
-      if (error) throw createAccountResp;
+      if (error) throw response;
 
       notify({
         variant: SUCCESS,
@@ -70,32 +70,35 @@ export const useUserService = () => {
       };
 
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`create_account_error: ${JSON.stringify(error)}`);
+      reset();
       setLoading(false);
       setServiceResponse({
         serviceError: true,
         serviceMessage: error.message,
         serviceMessageName: error.errorType,
       });
-
-      throw error;
     }
   };
 
   const verifyAccount = async (values: VerifyAccountValues): Promise<void> => {
+    const { reset, ...rest } = values;
+
     try {
       setLoading(true);
 
-      const verifyAccountResp = await HttpClient.post<AuthResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         VERIFY_ACCOUNT_API,
-        values
+        rest
       );
 
       setLoading(false);
 
-      const { error, message } = verifyAccountResp;
+      const { error, message } = response;
 
-      if (error) throw verifyAccountResp;
+      if (error) throw response;
 
       notify({
         variant: SUCCESS,
@@ -103,42 +106,46 @@ export const useUserService = () => {
       });
 
       navigate(LOGIN);
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`verify_account_error: ${JSON.stringify(error)}`);
+      reset();
       setLoading(false);
       notify({
         variant: SUCCESS,
         description: error.message,
       });
-
-      throw error;
     }
   };
 
   const verifyCode = async (values: VerifyCodeValues): Promise<void> => {
+    const { toFormName, reset, ...rest } = values;
+
     try {
-      const { toFormName, ...rest } = values;
       setLoading(true);
 
-      const verifyCodeResp = await HttpClient.post<AuthResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         VERIFY_CODE_API,
         rest
       );
 
       setLoading(false);
 
-      const { error } = verifyCodeResp;
+      const { error } = response;
 
-      if (error) throw verifyCodeResp;
+      if (error) throw response;
 
       navigate(RESET_PASSWORD, { state: { toFormName } });
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`verify_code_error: ${JSON.stringify(error)}`);
+      reset();
       setLoading(false);
       setServiceResponse({
         serviceError: true,
         serviceMessage: error.message,
         serviceMessageName: error.errorType,
       });
-      throw error;
     }
   };
 
@@ -146,16 +153,16 @@ export const useUserService = () => {
     try {
       setLoading(true);
 
-      const resendCodeResp = await HttpClient.post<AuthResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         RESEND_CODE_API,
         values
       );
 
       setLoading(false);
 
-      const { error, message } = resendCodeResp;
+      const { error, message } = response;
 
-      if (error) throw resendCodeResp;
+      if (error) throw response;
 
       // notify({
       //   variant: SUCCESS,
@@ -166,14 +173,15 @@ export const useUserService = () => {
         serviceSubmitting: true,
         serviceMessage: message,
       });
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`resend_code_error: ${JSON.stringify(error)}`);
       setLoading(false);
       setServiceResponse({
         serviceError: true,
         serviceMessage: error.message,
         serviceMessageName: error.errorType,
       });
-      throw error;
     }
   };
 
@@ -184,24 +192,26 @@ export const useUserService = () => {
       const userId = user?.id;
       if (!userId) throw new Error("User ID is not available");
 
-      const url = `${GET_USER_DETAILS_API}/${userId}`;
-
       setLoading(true);
 
-      const userDetailsResp = await HttpClient.get<UserDetailsResponse>(url);
+      const response = await HttpClient.get<ServerResponse>(
+        `${GET_USER_DETAILS_API}/${userId}`
+      );
 
       setLoading(false);
 
-      const { error, data } = userDetailsResp;
+      const { error, data } = response;
 
-      if (error) throw userDetailsResp;
+      if (error) throw response;
 
       data.extra = {
         ...JSON.parse(data.extra),
       };
 
       dispatch(setUser(data));
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`get_user_details_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
         variant: ERROR,
@@ -214,14 +224,11 @@ export const useUserService = () => {
 
   const saveAuthUser = async (values: any): Promise<void> => {
     try {
-      const saveAuthUserResp = await HttpClient.post<any>(
-        SAVE_AUTH_USER_API,
-        values
-      );
+      const response = await HttpClient.post<any>(SAVE_AUTH_USER_API, values);
 
-      const { error, data } = saveAuthUserResp;
+      const { error, data } = response;
 
-      if (error) throw saveAuthUserResp;
+      if (error) throw response;
 
       const { saveAuthUserToken } = data;
       data.user.extra = {
@@ -243,13 +250,13 @@ export const useUserService = () => {
       );
 
       navigate(DISCOVER);
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`save_auth_user_error: ${JSON.stringify(error)}`);
       notify({
         variant: ERROR,
         description: error.message,
       });
-
-      throw error;
     }
   };
 

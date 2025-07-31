@@ -45,7 +45,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
   const [selectedMethod, setSelectedMethod] = useState<string>("email");
 
   const handleFormSubmit = (values: LoginHelpValues) => {
-    onSubmit({ ...values, phonePrefix }, reset);
+    onSubmit({ ...values, phonePrefix, reset });
   };
 
   const {

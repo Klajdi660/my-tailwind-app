@@ -9,13 +9,9 @@ export const RegisterPage: FC = () => {
 
   const { createAccount } = useUserService();
 
-  const onSubmitRegister = async (values: CreateAccountValues) => {
-    try {
-      await createAccount(values);
-    } catch (error) {
-      console.error(`register_page_error: ${JSON.stringify(error)}`);
-    }
+  const handleSubmit = async (values: CreateAccountValues) => {
+    await createAccount(values);
   };
 
-  return <FormTemplate onSubmit={onSubmitRegister} nameForm={REGISTER} />;
+  return <FormTemplate nameForm={REGISTER} onSubmit={handleSubmit} />;
 };

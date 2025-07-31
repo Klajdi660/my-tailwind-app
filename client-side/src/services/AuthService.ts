@@ -10,10 +10,11 @@ import {
   useAppSelector,
 } from "../store";
 import {
-  AuthResponse,
   AuthService,
+  ServerResponseError,
   LoginHelpValues,
   LoginValues,
+  ServerResponse,
 } from "../types";
 import { HttpClient } from "../client";
 import { parseIdentifier } from "../utils";
@@ -39,20 +40,25 @@ export const useAuthService = (): AuthService => {
   const { user } = useAppSelector((state) => state.user);
 
   const login = async (values: LoginValues): Promise<void> => {
+    const { reset, ...rest } = values;
+
     try {
-      const { identifier, password, phonePrefix } = values;
+      const { identifier, password, phonePrefix } = rest;
       const parsedIdentifier = parseIdentifier(identifier, phonePrefix);
       const payload = { ...parsedIdentifier, password };
 
       setLoading(true);
 
-      const loginResp = await HttpClient.post<AuthResponse>(LOGIN_API, payload);
+      const response = await HttpClient.post<ServerResponse>(
+        LOGIN_API,
+        payload
+      );
 
       setLoading(false);
 
-      const { error, data } = loginResp;
+      const { error, data } = response;
 
-      if (error) throw loginResp;
+      if (error) throw response;
 
       const { aToken, rToken, user } = data;
       user.extra = {
@@ -68,38 +74,39 @@ export const useAuthService = (): AuthService => {
       localStorage.setItem("atoken", aToken);
       localStorage.setItem("rtoken", rToken);
       localStorage.setItem("user", JSON.stringify(user));
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`login_error: ${JSON.stringify(error)}`);
+      reset({ password: "" });
       setLoading(false);
       setServiceResponse({
         serviceError: true,
         serviceMessage: error.message,
         serviceMessageName: error.errorType,
       });
-
-      throw error;
     }
   };
 
   const loginHelp = async (values: LoginHelpValues): Promise<void> => {
-    try {
-      const { action, toFormName, email, phoneNr, phonePrefix } = values;
+    const { action, toFormName, email, phoneNr, phonePrefix, reset } = values;
 
+    try {
       const payload = phoneNr
         ? { action, email: "", phoneNr: `${phonePrefix}${phoneNr}` }
         : { action, email, phoneNr: "" };
 
       setLoading(true);
 
-      const loginHelpResp = await HttpClient.post<AuthResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         LOGIN_HELP_API,
         payload
       );
 
       setLoading(false);
 
-      const { error, message, data } = loginHelpResp;
+      const { error, message, data } = response;
 
-      if (error) throw loginHelpResp;
+      if (error) throw response;
 
       const { username } = data;
       const extra = JSON.parse(data.extra);
@@ -125,15 +132,16 @@ export const useAuthService = (): AuthService => {
         serviceMessage: message,
       });
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`login_help_error: ${JSON.stringify(error)}`);
+      reset?.();
       setLoading(false);
       setServiceResponse({
         serviceError: true,
         serviceMessage: error.message,
         serviceMessageName: error.errorType,
       });
-
-      throw error;
     }
   };
 
@@ -161,7 +169,9 @@ export const useAuthService = (): AuthService => {
       localStorage.atoken = aToken;
       localStorage.rtoken = rToken;
       localStorage.user = JSON.stringify(user);
-    } catch (error) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`login_with_social_app_error: ${JSON.stringify(error)}`);
       throw error;
     }
   };
@@ -170,14 +180,14 @@ export const useAuthService = (): AuthService => {
     try {
       setLoading(true);
 
-      const loginSavedUserResp =
-        await HttpClient.get<AuthResponse>(LOGIN_SAVED_USER_API);
+      const response =
+        await HttpClient.get<ServerResponse>(LOGIN_SAVED_USER_API);
 
       setLoading(false);
 
-      const { error, data } = loginSavedUserResp;
+      const { error, data } = response;
 
-      if (error) throw loginSavedUserResp;
+      if (error) throw response;
 
       const { aToken, rToken, user } = data;
       user.extra = {
@@ -193,7 +203,8 @@ export const useAuthService = (): AuthService => {
       localStorage.atoken = aToken;
       localStorage.rtoken = rToken;
       localStorage.user = JSON.stringify(user);
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
       setLoading(false);
       notify({
         variant: ERROR,
@@ -206,7 +217,7 @@ export const useAuthService = (): AuthService => {
 
   const logout = async (): Promise<void> => {
     try {
-      await HttpClient.get<AuthResponse>(LOGOUT_API);
+      await HttpClient.get<ServerResponse>(LOGOUT_API);
 
       dispatch(setAToken(null));
       dispatch(setRToken(null));
@@ -218,7 +229,9 @@ export const useAuthService = (): AuthService => {
       localStorage.removeItem("user");
       localStorage.removeItem("rtoken");
       // localStorage.removeItem("lastLocation");
-    } catch (error) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`logout_error: ${JSON.stringify(error)}`);
       notify({
         variant: ERROR,
         description: "Log out failed",
@@ -238,16 +251,16 @@ export const useAuthService = (): AuthService => {
 
       setLoading(true);
 
-      const resetPasswordResp = await HttpClient.post<AuthResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         `${RESET_PASSWORD_API}?${params}`,
         values
       );
 
       setLoading(false);
 
-      const { error, message } = resetPasswordResp;
+      const { error, message } = response;
 
-      if (error) throw resetPasswordResp;
+      if (error) throw response;
 
       notify({
         variant: INFO,
@@ -255,7 +268,9 @@ export const useAuthService = (): AuthService => {
       });
 
       navigate(LOGIN);
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`reset_password_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({ variant: ERROR, description: error.message });
       throw error;

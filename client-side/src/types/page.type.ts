@@ -7,12 +7,14 @@ export interface LoginHelpValues {
   phonePrefix?: string;
   action?: string;
   toFormName?: string;
+  reset?: UseFormReset<LoginHelpValues>;
 }
 
 export interface LoginValues {
   password: string;
   identifier: string;
   phonePrefix: string;
+  reset: UseFormReset<LoginValues>;
 }
 
 export interface CreateAccountValues {
@@ -21,12 +23,13 @@ export interface CreateAccountValues {
   username: string;
   identifier: string;
   phonePrefix: string;
+  reset: UseFormReset<CreateAccountValues>;
 }
 
 export interface VerifyAccountValues {
   code: string;
-  reset?: UseFormReset<VerifyAccountValues>;
-  username?: string;
+  username: string;
+  reset: UseFormReset<any>;
 }
 
 export interface VerifyCodeValues {
@@ -34,6 +37,7 @@ export interface VerifyCodeValues {
   username: string;
   code: string;
   toFormName: string;
+  reset: UseFormReset<any>;
 }
 
 export interface ResendCodeValues {

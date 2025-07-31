@@ -9,13 +9,9 @@ export const LoginPage: FC = () => {
 
   const { login } = useAuthService();
 
-  const onSubmitLogin = async (values: LoginValues) => {
-    try {
-      await login(values);
-    } catch (error) {
-      console.error(`login_page_error: ${JSON.stringify(error)}`);
-    }
+  const handleSubmit = async (values: LoginValues) => {
+    await login(values);
   };
 
-  return <FormTemplate onSubmit={onSubmitLogin} nameForm={LOGIN} />;
+  return <FormTemplate nameForm={LOGIN} onSubmit={handleSubmit} />;
 };

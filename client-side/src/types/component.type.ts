@@ -20,6 +20,7 @@ export interface FormValuesTypes {
   fullname: string;
   phonePrefix: string;
   code: string;
+  reset: UseFormReset<FormValuesTypes>;
 }
 
 export interface FormProps {
@@ -29,10 +30,7 @@ export interface FormProps {
 
 export interface LoginHelpFormProps {
   metadata: LoginHelpDataType;
-  onSubmit: (
-    values: LoginHelpValues,
-    reset: UseFormReset<LoginHelpValues>
-  ) => Promise<void>;
+  onSubmit: (values: LoginHelpValues) => Promise<void>;
 }
 
 export interface FormTemplateProps {

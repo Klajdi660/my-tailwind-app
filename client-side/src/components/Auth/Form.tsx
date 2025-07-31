@@ -21,13 +21,14 @@ export const Form: FC<FormProps> = (props) => {
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
   const handleFormSubmit = (values: FormValuesTypes) => {
-    onSubmit({ ...values, phonePrefix });
+    onSubmit({ ...values, phonePrefix, reset });
   };
 
   const {
     register: form,
     formState: { errors, isValid },
     handleSubmit,
+    reset,
   } = useForm<FormValuesTypes>({
     mode: "all",
     resolver: yupResolver(formValidation[nameForm]),

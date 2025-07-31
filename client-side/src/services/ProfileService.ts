@@ -9,7 +9,8 @@ import {
   ChangePasswordValues,
   DeleteProfileValues,
   EditProfileValues,
-  UserDetailsResponse,
+  ServerResponse,
+  ServerResponseError,
 } from "../types";
 import { HttpClient } from "../client";
 import { useNotification, useStore } from "../hooks";
@@ -36,16 +37,16 @@ export const useProfileService = () => {
     try {
       setLoading(true);
 
-      const profileDetailsResp = await HttpClient.post<UserDetailsResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         CHANGE_USERNAME_API,
         values
       );
 
       setLoading(false);
 
-      const { error, message, data } = profileDetailsResp;
+      const { error, message, data } = response;
 
-      if (error) throw profileDetailsResp;
+      if (error) throw response;
 
       data.extra = {
         ...JSON.parse(data.extra),
@@ -59,13 +60,14 @@ export const useProfileService = () => {
         description: message,
       });
       return { error: false, message };
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`change_username_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
         variant: ERROR,
         description: error.message,
       });
-
       throw error;
     }
   };
@@ -74,16 +76,16 @@ export const useProfileService = () => {
     try {
       setLoading(true);
 
-      const profileDetailsResp = await HttpClient.post<UserDetailsResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         UPDATE_PROFILE_API,
         values
       );
 
       setLoading(false);
 
-      const { error, message, data } = profileDetailsResp;
+      const { error, message, data } = response;
 
-      if (error) throw profileDetailsResp;
+      if (error) throw response;
 
       const extra = JSON.parse(data.extra);
 
@@ -98,7 +100,9 @@ export const useProfileService = () => {
         variant: SUCCESS,
         description: message,
       });
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`update_profile_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
         variant: ERROR,
@@ -115,20 +119,15 @@ export const useProfileService = () => {
         "Content-Type": "multipart/form-data",
       };
 
-      const profilePhotoResp = await HttpClient.put<UserDetailsResponse>(
+      const response = await HttpClient.put<ServerResponse>(
         UPDATE_PROFILE_PICTURE_API,
         formData,
         { headers }
       );
 
-      const { error, message, data } = profilePhotoResp;
-      if (error) {
-        notify({
-          variant: ERROR,
-          description: message,
-        });
-        return;
-      }
+      const { error, message, data } = response;
+
+      if (error) throw response;
 
       const extra = JSON.parse(data.extra);
       data.extra = {
@@ -148,26 +147,25 @@ export const useProfileService = () => {
         variant: SUCCESS,
         description: message,
       });
-    } catch (error) {
+    } catch (err) {
+      const error = err as ServerResponseError;
       console.error(`Failed to upload profile photo: ${error}`);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
     }
   };
 
   const removeDisplayPicture = async () => {
     try {
-      const removeProfilePhotoResp =
-        await HttpClient.delete<UserDetailsResponse>(
-          DELETE_PROFILE_PICTURE_API
-        );
+      const response = await HttpClient.delete<ServerResponse>(
+        DELETE_PROFILE_PICTURE_API
+      );
 
-      const { error, message, data } = removeProfilePhotoResp;
-      if (error) {
-        notify({
-          variant: ERROR,
-          description: message,
-        });
-        return;
-      }
+      const { error, message, data } = response;
+
+      if (error) throw response;
 
       const extra = JSON.parse(data.extra);
       data.extra = {
@@ -188,8 +186,13 @@ export const useProfileService = () => {
         variant: SUCCESS,
         description: message,
       });
-    } catch (error) {
+    } catch (err) {
+      const error = err as ServerResponseError;
       console.error(`Failed to remove profile photo: ${error}`);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
     }
   };
 
@@ -197,16 +200,16 @@ export const useProfileService = () => {
     try {
       setLoading(true);
 
-      const deleteProfileResp = await HttpClient.post<UserDetailsResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         DELETE_PROFILE_API,
         values
       );
 
       setLoading(false);
 
-      const { error, message, data } = deleteProfileResp;
+      const { error, message, data } = response;
 
-      if (error) throw deleteProfileResp;
+      if (error) throw response;
 
       dispatch(setIsAccountDelete({ isAccountDelete: true }));
       dispatch(
@@ -219,13 +222,14 @@ export const useProfileService = () => {
         variant: SUCCESS,
         description: message,
       });
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`delete_profile_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
         variant: ERROR,
         description: error.message,
       });
-
       throw error;
     }
   };
@@ -234,14 +238,15 @@ export const useProfileService = () => {
     try {
       setLoading(true);
 
-      const cancelDeleteProfileResp =
-        await HttpClient.post<UserDetailsResponse>(CANCEL_DELETION_ACCOUNT_API);
+      const response = await HttpClient.post<ServerResponse>(
+        CANCEL_DELETION_ACCOUNT_API
+      );
 
       setLoading(false);
 
-      const { error, message } = cancelDeleteProfileResp;
+      const { error, message } = response;
 
-      if (error) throw cancelDeleteProfileResp;
+      if (error) throw response;
 
       dispatch(setIsAccountDelete({ isAccountDelete: false }));
 
@@ -249,13 +254,14 @@ export const useProfileService = () => {
         variant: SUCCESS,
         description: message,
       });
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.log(`cancel_delete_profile_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
         variant: ERROR,
         description: error.message,
       });
-
       throw error;
     }
   };
@@ -266,22 +272,24 @@ export const useProfileService = () => {
     try {
       setLoading(true);
 
-      const changePasswordResp = await HttpClient.post<UserDetailsResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         CHANGE_PASSWORD_API,
         values
       );
 
       setLoading(false);
 
-      const { error, message } = changePasswordResp;
+      const { error, message } = response;
 
-      if (error) throw changePasswordResp;
+      if (error) throw response;
 
       notify({
         variant: SUCCESS,
         description: message,
       });
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`change_password_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
         variant: ERROR,
@@ -294,25 +302,26 @@ export const useProfileService = () => {
 
   const addNewCreditCard = async (values: object): Promise<void> => {
     try {
-      const newCreditCardResp = await HttpClient.post<UserDetailsResponse>(
+      const response = await HttpClient.post<ServerResponse>(
         ADD_NEW_CREDIR_CARD_API,
         values
       );
 
-      const { error, message } = newCreditCardResp;
+      const { error, message } = response;
 
-      if (error) throw newCreditCardResp;
+      if (error) throw response;
 
       notify({
         variant: SUCCESS,
         description: message,
       });
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`add_new_credit_card_error: ${JSON.stringify(error)}`);
       notify({
         variant: ERROR,
         description: error.message,
       });
-
       throw error;
     }
   };

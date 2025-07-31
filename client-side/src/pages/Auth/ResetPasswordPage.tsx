@@ -9,7 +9,7 @@ export const ResetPasswordPage: FC = () => {
 
   const { toFormName } = location.state || {};
 
-  const onSubmitResetPassword = async (values: any) => {
+  const handleSubmit = async (values: any) => {
     try {
       // await resetPassword(values);
     } catch (error) {
@@ -17,7 +17,5 @@ export const ResetPasswordPage: FC = () => {
     }
   };
 
-  return (
-    <FormTemplate nameForm={toFormName} onSubmit={onSubmitResetPassword} />
-  );
+  return <FormTemplate nameForm={toFormName} onSubmit={handleSubmit} />;
 };

@@ -7,6 +7,7 @@ import {
   GameReviewsResponse,
   GameVideosResponse,
   ServerResponse,
+  ServerResponseError,
 } from "../types";
 import { useNotification, useStore } from "../hooks";
 import { notifyVariant } from "../data";
@@ -27,40 +28,45 @@ export const useGamesService = () => {
   const [notify] = useNotification();
 
   const getGames = async (pageParam: number | any, params: object) => {
-    const getGameListResp = await HttpClient.get<ServerResponse>(
-      GET_GAME_LIST_API,
-      {
+    try {
+      const response = await HttpClient.get<ServerResponse>(GET_GAME_LIST_API, {
         page: pageParam,
         ...params,
-      }
-    );
+      });
 
-    const { error, message, data } = getGameListResp;
-    if (error) {
+      const { error, data } = response;
+
+      if (error) throw response;
+
+      return data;
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`get_games_error: ${JSON.stringify(error)}`);
       notify({
         variant: ERROR,
-        description: message,
+        description: error.message,
       });
-      return;
     }
-
-    return data;
   };
 
   const getGamesSlider = async () => {
-    const getGameSliderResp =
-      await HttpClient.get<ServerResponse>(GET_GAME_SLIDER_API);
+    try {
+      const response =
+        await HttpClient.get<ServerResponse>(GET_GAME_SLIDER_API);
 
-    const { error, message, data } = getGameSliderResp;
-    if (error) {
+      const { error, data } = response;
+
+      if (error) throw response;
+
+      return data;
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`get_games_slider_error: ${JSON.stringify(error)}`);
       notify({
         variant: ERROR,
-        description: message,
+        description: error.message,
       });
-      return;
     }
-
-    return data;
   };
 
   const getGameDetail = async (
@@ -69,25 +75,26 @@ export const useGamesService = () => {
     try {
       setLoading(true);
 
-      const getGameDetailResp = await HttpClient.get<ServerResponse>(
+      const response = await HttpClient.get<ServerResponse>(
         GET_GAME_DETAIL_API,
         { gameId }
       );
 
       setLoading(false);
 
-      const { error, message, data } = getGameDetailResp;
-      if (error) {
-        notify({
-          variant: ERROR,
-          description: message,
-        });
-        return;
-      }
+      const { error, data } = response;
+
+      if (error) throw response;
 
       return data;
-    } catch (error) {
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`get_game_detail_error: ${JSON.stringify(error)}`);
       setLoading(false);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
       throw error;
     }
   };
@@ -96,22 +103,24 @@ export const useGamesService = () => {
     gameId: string
   ): Promise<GameVideosResponse[]> => {
     try {
-      const getGameVideosResp = await HttpClient.get<ServerResponse>(
+      const response = await HttpClient.get<ServerResponse>(
         GET_GAME_VIDEOS_API,
         { gameId }
       );
 
-      const { error, message, data } = getGameVideosResp;
-      if (error) {
-        notify({
-          variant: ERROR,
-          description: message,
-        });
-        return [];
-      }
+      const { error, data } = response;
+
+      if (error) throw response;
+
       return data;
-    } catch (error) {
-      throw error;
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`get_game_videos_error: ${JSON.stringify(error)}`);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+      return [];
     }
   };
 
@@ -119,65 +128,68 @@ export const useGamesService = () => {
     gameId: string
   ): Promise<GameReviewsResponse[]> => {
     try {
-      const getGameReviewsResp = await HttpClient.get<ServerResponse>(
+      const response = await HttpClient.get<ServerResponse>(
         GET_GAME_REVIEWS_API,
         { gameId }
       );
 
-      const { error, message, data } = getGameReviewsResp;
-      if (error) {
-        notify({
-          variant: ERROR,
-          description: message,
-        });
-        return [];
-      }
+      const { error, data } = response;
+
+      if (error) throw response;
 
       return data;
-    } catch (error) {
-      throw error;
+    } catch (err) {
+      const error = err as ServerResponse;
+      console.error(`get_game_reviews_error: ${JSON.stringify(error)}`);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+      return [];
     }
   };
 
   const getGameGenreList = async (): Promise<GameGenreListResponse[]> => {
     try {
-      const getGameGenreListResp = await HttpClient.get<ServerResponse>(
+      const response = await HttpClient.get<ServerResponse>(
         GET_GAME_GENRE_LIST_API
       );
 
-      const { error, message, data } = getGameGenreListResp;
-      if (error) {
-        notify({
-          variant: ERROR,
-          description: message,
-        });
-        return [];
-      }
+      const { error, data } = response;
+
+      if (error) throw response;
 
       return data;
-    } catch (error) {
-      throw error;
+    } catch (err) {
+      const error = err as ServerResponse;
+      console.error(`get_game_genre_list_error: ${JSON.stringify(error)}`);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+      return [];
     }
   };
 
   const getGamePlatformList = async (): Promise<GamePlatformListResponse[]> => {
     try {
-      const getGamePlatformListResp = await HttpClient.get<ServerResponse>(
+      const response = await HttpClient.get<ServerResponse>(
         GET_GAME_PLATFORM_LIST_API
       );
 
-      const { error, message, data } = getGamePlatformListResp;
-      if (error) {
-        notify({
-          variant: ERROR,
-          description: message,
-        });
-        return [];
-      }
+      const { error, data } = response;
+
+      if (error) throw response;
 
       return data;
-    } catch (error) {
-      throw error;
+    } catch (err) {
+      const error = err as ServerResponse;
+      console.error(`get_game_platform_list_error: ${JSON.stringify(error)}`);
+      notify({
+        variant: ERROR,
+        description: error.message,
+      });
+      return [];
     }
   };
 

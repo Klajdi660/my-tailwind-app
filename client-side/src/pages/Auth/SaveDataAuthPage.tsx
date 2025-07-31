@@ -14,15 +14,11 @@ export const SaveDataAuthPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onSubmitSaveAuthUserHandler = async () => {
-    try {
-      await saveAuthUser({ remember: true });
-    } catch (error) {
-      console.error(`save_data_auth_page_error: ${JSON.stringify(error)}`);
-    }
+  const handleSubmit = async () => {
+    await saveAuthUser({ remember: true });
   };
 
-  const onCancelSaveAuthUserHandler = async () => {
+  const handleCancel = async () => {
     dispatch(setRemember(false));
     navigate(DISCOVER);
   };
@@ -40,13 +36,13 @@ export const SaveDataAuthPage: FC = () => {
           <Button
             label="Save info"
             variant="contained"
-            onClick={onSubmitSaveAuthUserHandler}
+            onClick={handleSubmit}
           />
           <Button
             label="Not now"
             variant="none"
             className="text-primary hover:text-onNeutralBg"
-            onClick={onCancelSaveAuthUserHandler}
+            onClick={handleCancel}
           />
         </div>
       </div>

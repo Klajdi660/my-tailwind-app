@@ -15,37 +15,20 @@ export interface AuthService {
   loginHelp: (data: LoginHelpValues) => Promise<void>;
 }
 
-export interface AuthResponse {
+export interface ServerResponse {
   error: boolean;
-  errorType: string;
   message: string;
-  data: Record<string, any>;
-}
-
-export interface ErrorResponse {
-  error: boolean;
   errorType?: string;
-  message: string;
-  data?: object;
+  data?: any;
 }
 
-export interface CreateAccountResponse {
-  error: boolean;
+export interface ServerResponseError {
   message: string;
-  data: {
-    name: string;
-    email: string;
-    codeExpire: string;
-  };
+  errorType?: string;
+  [key: string]: any;
 }
 
 // Games
-export interface ServerResponse {
-  data?: any;
-  error: boolean;
-  message: string;
-}
-
 export interface GameGenreListResponse {
   id: number;
   name: string;
@@ -205,11 +188,4 @@ export interface GameDetailResponse {
   user_game: any;
   website: string;
   youtube_count: number;
-}
-
-// Profile/User
-export interface UserDetailsResponse {
-  data?: any;
-  error: boolean;
-  message: string;
 }

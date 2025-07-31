@@ -13,28 +13,17 @@ export const VerifyCodePage: FC = () => {
   const { action, toFormName, username, email, phoneNr, fullname } =
     verifyCodeData;
 
-  const onSubmitVerifyCode = async (values: VerifyAccountValues) => {
-    try {
-      const payload = {
-        code: values.code,
-        username,
-      };
-
-      toFormName === "verify-account"
-        ? await verifyAccount(payload)
-        : await verifyCode({ ...payload, action, toFormName });
-    } catch (error) {
-      values.reset?.();
-      console.error(`verify_code_page_error: ${JSON.stringify(error)}`);
+  const handleSubmit = async (values: VerifyAccountValues) => {
+    const isVerifyAccount = ["verify-account"].includes(toFormName);
+    if (isVerifyAccount) {
+      await verifyAccount({ ...values, username });
+    } else {
+      await verifyCode({ ...values, action, toFormName });
     }
   };
 
   const resendCodeHandler = async () => {
-    try {
-      await resendCode({ username, action, email, phoneNr, fullname });
-    } catch (error) {
-      console.error(`verify_code_page_error_2: ${JSON.stringify(error)}`);
-    }
+    await resendCode({ username, action, email, phoneNr, fullname });
   };
 
   return (
@@ -42,7 +31,7 @@ export const VerifyCodePage: FC = () => {
       {verifyCodeData && toFormName ? (
         <FormTemplate
           nameForm={toFormName}
-          onSubmit={onSubmitVerifyCode}
+          onSubmit={handleSubmit}
           resendCodeHandler={resendCodeHandler}
         />
       ) : (
