@@ -10,7 +10,7 @@ export type FormName =
   | "login"
   | "register"
   | "verify-account"
-  | "reset-password";
+  | "forgot-password";
 
 export interface FormValuesTypes {
   identifier: string;
@@ -437,7 +437,8 @@ export interface FormRedirectProps {
   otherLink?: {
     otherLinkName: string;
     otherLinkPName: string;
-    otherLinkTo: string;
+    otherLinkTo?: string;
+    hasResendCode?: boolean;
   };
 }
 

@@ -18,7 +18,7 @@ export const nameOfForm: NameOfFormTypes = {
 };
 
 export const loginHelpActionName: Record<string, string> = {
-  "forgot-password": "forgot_password",
+  "prev-forgot-password": "forgot_password",
   "prev-verify-account": "verify_user",
 };
 

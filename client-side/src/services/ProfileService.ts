@@ -256,7 +256,7 @@ export const useProfileService = () => {
       });
     } catch (err) {
       const error = err as ServerResponseError;
-      console.log(`cancel_delete_profile_error: ${JSON.stringify(error)}`);
+      console.error(`cancel_delete_profile_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
         variant: ERROR,

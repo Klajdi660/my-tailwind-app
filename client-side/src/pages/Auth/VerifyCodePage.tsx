@@ -18,12 +18,13 @@ export const VerifyCodePage: FC = () => {
     if (isVerifyAccount) {
       await verifyAccount({ ...values, username });
     } else {
-      await verifyCode({ ...values, action, toFormName });
+      await verifyCode({ ...values, username, action, toFormName });
     }
   };
 
   const resendCodeHandler = async () => {
-    await resendCode({ username, action, email, phoneNr, fullname });
+    console.log("resendCodeHandler :>>");
+    // await resendCode({ username, action, email, phoneNr, fullname });
   };
 
   return (

@@ -1,7 +1,12 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userEndpoints } from "./Api";
-import { HttpClient } from "../client";
+import {
+  setRemember,
+  setSavedAuthUser,
+  setUser,
+  useAppSelector,
+} from "../store";
 import {
   CreateAccountValues,
   VerifyAccountValues,
@@ -10,15 +15,10 @@ import {
   ServerResponse,
   ServerResponseError,
 } from "../types";
-import { useNotification, useStore } from "../hooks";
-import {
-  setRemember,
-  setSavedAuthUser,
-  setUser,
-  useAppSelector,
-} from "../store";
-import { notifyVariant, paths } from "../data";
+import { HttpClient } from "../client";
 import { parseIdentifier } from "../utils";
+import { notifyVariant, paths } from "../data";
+import { useNotification, useStore } from "../hooks";
 
 export const useUserService = () => {
   const { DISCOVER, VERIFY_CODE, LOGIN, RESET_PASSWORD } = paths;
@@ -131,9 +131,15 @@ export const useUserService = () => {
 
       setLoading(false);
 
-      const { error } = response;
+      const { error, message } = response;
 
       if (error) throw response;
+
+      setServiceResponse({
+        serviceError: false,
+        serviceSubmitting: true,
+        serviceMessage: message,
+      });
 
       navigate(RESET_PASSWORD, { state: { toFormName } });
     } catch (err) {
@@ -170,7 +176,7 @@ export const useUserService = () => {
       // });
       setServiceResponse({
         serviceError: false,
-        serviceSubmitting: true,
+        // serviceSubmitting: true,
         serviceMessage: message,
       });
     } catch (err) {

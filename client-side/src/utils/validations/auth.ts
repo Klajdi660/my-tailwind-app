@@ -177,5 +177,5 @@ export const formValidation: Record<FormName, any> = {
   register: registerValidation,
   login: loginValidation,
   "verify-account": verifyCodeValidation,
-  "reset-password": resetPassValidation,
+  "forgot-password": verifyCodeValidation,
 };

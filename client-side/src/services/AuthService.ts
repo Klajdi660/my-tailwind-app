@@ -30,7 +30,7 @@ export const useAuthService = (): AuthService => {
     LOGIN_SAVED_USER_API,
   } = endpoints;
   const { VERIFY_CODE, LOGIN } = paths;
-  const { ERROR, SUCCESS, INFO } = notifyVariant;
+  const { ERROR, INFO } = notifyVariant;
 
   const { setLoading, setServiceResponse } = useStore();
   const [notify] = useNotification();
@@ -111,11 +111,6 @@ export const useAuthService = (): AuthService => {
       const { username } = data;
       const extra = JSON.parse(data.extra);
       const { firstName, lastName } = extra;
-
-      notify({
-        variant: SUCCESS,
-        description: message,
-      });
 
       const verifyCodeData = {
         username,

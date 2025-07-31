@@ -3,7 +3,7 @@ export interface FormDataTypes {
   login: FormDataType<LoginInputMetadata>;
   register: FormDataType<RegisterInputMetadata>;
   "verify-account": FormDataType<VerifyCodeInputMetadata>;
-  "reset-password": FormDataType<ResetPasswordInputMetadata>;
+  "forgot-password": FormDataType<VerifyCodeInputMetadata>;
 }
 
 export interface ServiceResponseMap {
@@ -72,7 +72,7 @@ export interface FormDataType<T extends { name: string }> {
     otherLink?: {
       otherLinkName: string;
       otherLinkPName: string;
-      otherLinkTo: string;
+      otherLinkTo?: string;
     };
   };
   inputMetadata: T[];

@@ -59,6 +59,7 @@ export const FormTemplate: FC<FormTemplateProps> = (props) => {
           footerLink={footerLink}
           linkTo={linkTo}
           otherLink={otherLink}
+          resendCodeHandler={resendCodeHandler}
         />
       </div>
     </div>

@@ -1,11 +1,11 @@
+import { Select } from "antd";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { formValidation, classNames, phonePrefixData } from "../../utils";
+import { formData, userRegex } from "../../data";
 import { FormValuesTypes, FormProps } from "../../types";
 import { Button, ErrorFormMessage, IconButton } from "../../components";
-import { formData, userRegex } from "../../data";
-import { Select } from "antd";
+import { formValidation, classNames, phonePrefixData } from "../../utils";
 
 export const Form: FC<FormProps> = (props) => {
   const { nameForm, onSubmit } = props;
@@ -49,7 +49,7 @@ export const Form: FC<FormProps> = (props) => {
                 : "border border-divider focus-within:border-primary"
             )}
           >
-            {item.name === "identifier" &&
+            {["identifier"].includes(item.name) &&
               isPhoneNumberRegex.test(identifierValue) && (
                 <Select
                   options={phonePrefixData.map(({ key, ...rest }) => ({
@@ -74,10 +74,10 @@ export const Form: FC<FormProps> = (props) => {
                   : item.type
               }
               {...form(item.name)}
-              autoComplete="on"
+              autoComplete={["identifier"].includes(item.name) ? "on" : "off"}
               onChange={(e) => {
                 form(item.name).onChange(e);
-                if (item.name === "identifier") {
+                if (["identifier"].includes(item.name)) {
                   setIdentifierValue(e.target.value);
                 }
               }}

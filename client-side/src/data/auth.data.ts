@@ -11,12 +11,16 @@ import { paths } from "./general.data";
 import { APP_PREFIX, APP_URL } from "../configs";
 import { endpoints } from "../services";
 
-const { REGISTER, LOGIN, LOGIN_HELP, RESET_PASSWORD } = paths;
+const { REGISTER, LOGIN, LOGIN_HELP } = paths;
 const { OAUTH_GOOGLE_API } = endpoints;
 
 export const serviceResponseMap: Record<string, ServiceResponseMap> = {
   "no-account": { linkText: "create a new account", to: REGISTER },
-  "invalid-password": { linkText: "reset your password", to: RESET_PASSWORD },
+  "invalid-password": {
+    linkText: "reset your password",
+    to: LOGIN_HELP,
+    state: { toFormName: "prev-forgot-password" },
+  },
   "existing-user": { linkText: "sign in", to: LOGIN },
   "user-not-verified": {
     linkText: "verify your account",
@@ -51,7 +55,7 @@ export const formData: FormDataTypes = {
   login: {
     metadata: {
       formName: "login",
-      toFormName: "forgot-password",
+      toFormName: "prev-forgot-password",
       formTitle: "Log in",
       description: "to continue to Groove",
       footerTitle: "Don't have an account?",
@@ -83,7 +87,7 @@ export const formData: FormDataTypes = {
     metadata: {
       formName: "register",
       toFormName: "",
-      formTitle: "Create your account",
+      formTitle: "Create account",
       description: "to continue to Groove",
       footerLink: "Log in",
       footerTitle: "Have an account?",
@@ -118,11 +122,35 @@ export const formData: FormDataTypes = {
   "verify-account": {
     metadata: {
       formName: "verify-account",
+      toFormName: "verify-account",
       formTitle: "Verify your account",
       description: "to continue to Groove",
       footerTitle: "Cancel verify account?",
       footerLink: "Go back",
       buttonName: "Verify Account",
+      linkTo: LOGIN,
+      otherLink: {
+        otherLinkName: "Didn't recieve code?",
+        otherLinkPName: "Resend",
+      },
+    },
+    inputMetadata: [
+      {
+        name: "code",
+        placeholder: "Enter 6 digit code",
+        type: "text",
+      },
+    ],
+  },
+  "forgot-password": {
+    metadata: {
+      formName: "forgot-password",
+      toFormName: "reset-password",
+      formTitle: "Enter code to reset password",
+      description: "to continue to Groove",
+      footerTitle: "Remember Password?",
+      footerLink: "Go back",
+      buttonName: "Send",
       linkTo: LOGIN,
       otherLink: {
         otherLinkName: "Didn't recieve code?",
@@ -137,41 +165,30 @@ export const formData: FormDataTypes = {
         type: "text",
       },
     ],
-  },
-  "reset-password": {
-    metadata: {
-      formName: "reset-password",
-      formTitle: "Reset your password",
-      description: "to continue to Groove",
-      footerTitle: "Remember Password?",
-      footerLink: "Go back",
-      buttonName: "Reset",
-      linkTo: LOGIN,
-    },
-    inputMetadata: [
-      {
-        name: "password",
-        placeholder: "Password",
-        type: "password",
-        iconVisible: "AiOutlineEye",
-        iconHidden: "AiOutlineEyeInvisible",
-      },
-      {
-        name: "confirmPassword",
-        placeholder: "Confirm password",
-        type: "password",
-        iconVisible: "AiOutlineEye",
-        iconHidden: "AiOutlineEyeInvisible",
-      },
-    ],
+    // inputMetadata: [
+    //   {
+    //     name: "password",
+    //     placeholder: "Password",
+    //     type: "password",
+    //     iconVisible: "AiOutlineEye",
+    //     iconHidden: "AiOutlineEyeInvisible",
+    //   },
+    //   {
+    //     name: "confirmPassword",
+    //     placeholder: "Confirm password",
+    //     type: "password",
+    //     iconVisible: "AiOutlineEye",
+    //     iconHidden: "AiOutlineEyeInvisible",
+    //   },
+    // ],
   },
 };
 
 export const loginHelpFormData: Record<string, LoginHelpDataType> = {
-  "forgot-password": {
-    formName: "forgot-password",
-    toFormName: "reset-password",
-    formTitle: "Reset Password",
+  "prev-forgot-password": {
+    formName: "prev-forgot-password",
+    toFormName: "forgot-password",
+    formTitle: "Update password",
     formDescription: "How would you like to reset your password?",
     description: "to continue to Groove",
     footerTitle: "Remember Password?",
