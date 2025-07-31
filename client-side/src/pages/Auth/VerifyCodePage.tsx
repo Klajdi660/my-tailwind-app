@@ -23,8 +23,7 @@ export const VerifyCodePage: FC = () => {
   };
 
   const resendCodeHandler = async () => {
-    console.log("resendCodeHandler :>>");
-    // await resendCode({ username, action, email, phoneNr, fullname });
+    await resendCode({ username, action, email, phoneNr, fullname });
   };
 
   return (
