@@ -134,15 +134,9 @@ export const useUserService = () => {
 
       setLoading(false);
 
-      const { error, message } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
-
-      setServiceResponse({
-        serviceError: false,
-        serviceSubmitting: true,
-        serviceMessage: message,
-      });
+      setServiceResponse({});
 
       navigate(RESET_PASSWORD, {
         state: { toFormName, username: rest.username },

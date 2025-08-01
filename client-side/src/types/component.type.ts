@@ -24,6 +24,8 @@ export interface FormValuesTypes {
   reset: UseFormReset<FormValuesTypes>;
 }
 
+export type FormFieldName = keyof Omit<FormValuesTypes, "reset">;
+
 export interface FormProps {
   nameForm: FormName;
   onSubmit: (values: FormValuesTypes) => Promise<void>;

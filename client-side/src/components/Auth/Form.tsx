@@ -2,8 +2,9 @@ import { Select } from "antd";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useStore } from "../../hooks";
 import { formData, userRegex } from "../../data";
-import { FormValuesTypes, FormProps } from "../../types";
+import { FormValuesTypes, FormProps, FormFieldName } from "../../types";
 import { Button, ErrorFormMessage, IconButton } from "../../components";
 import { formValidation, classNames, phonePrefixData } from "../../utils";
 
@@ -14,6 +15,8 @@ export const Form: FC<FormProps> = (props) => {
   const { metadata, inputMetadata } = formData[nameForm];
   const { buttonName } = metadata;
 
+  const { setServiceResponse } = useStore();
+
   const [phonePrefix, setPhonePrefix] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [identifierValue, setIdentifierValue] = useState<string>("");
@@ -22,6 +25,19 @@ export const Form: FC<FormProps> = (props) => {
 
   const handleFormSubmit = (values: FormValuesTypes) => {
     onSubmit({ ...values, phonePrefix, reset });
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    name: FormFieldName
+  ) => {
+    form(name).onChange(e);
+
+    setServiceResponse({});
+
+    if (name === "identifier") {
+      setIdentifierValue(e.target.value);
+    }
   };
 
   const {
@@ -75,12 +91,15 @@ export const Form: FC<FormProps> = (props) => {
               }
               {...form(item.name)}
               autoComplete={["identifier"].includes(item.name) ? "on" : "off"}
-              onChange={(e) => {
-                form(item.name).onChange(e);
-                if (["identifier"].includes(item.name)) {
-                  setIdentifierValue(e.target.value);
-                }
-              }}
+              onChange={
+                (e) => handleInputChange(e, item.name)
+                //   {
+                //   form(item.name).onChange(e);
+                //   if (["identifier"].includes(item.name)) {
+                //     setIdentifierValue(e.target.value);
+                //   }
+                // }
+              }
             />
             <span
               className={classNames(
