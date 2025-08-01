@@ -22,7 +22,7 @@ import { useNotification, useStore } from "../hooks";
 
 export const useUserService = () => {
   const { DISCOVER, VERIFY_CODE, LOGIN, RESET_PASSWORD } = paths;
-  const { ERROR, SUCCESS } = notifyVariant;
+  const { ERROR, SUCCESS, INFO } = notifyVariant;
   const {
     CREATE_ACCOUNT_API,
     GET_USER_DETAILS_API,
@@ -30,6 +30,7 @@ export const useUserService = () => {
     VERIFY_ACCOUNT_API,
     VERIFY_CODE_API,
     RESEND_CODE_API,
+    RESET_PASSWORD_API,
   } = userEndpoints;
 
   const { setLoading, setServiceResponse } = useStore();
@@ -100,6 +101,8 @@ export const useUserService = () => {
 
       if (error) throw response;
 
+      setServiceResponse({});
+
       notify({
         variant: SUCCESS,
         description: message,
@@ -141,7 +144,9 @@ export const useUserService = () => {
         serviceMessage: message,
       });
 
-      navigate(RESET_PASSWORD, { state: { toFormName } });
+      navigate(RESET_PASSWORD, {
+        state: { toFormName, username: rest.username },
+      });
     } catch (err) {
       const error = err as ServerResponseError;
       console.error(`verify_code_error: ${JSON.stringify(error)}`);
@@ -191,7 +196,34 @@ export const useUserService = () => {
     }
   };
 
-  const getUsers = async () => {};
+  const resetPassword = async (values: any): Promise<void> => {
+    try {
+      setLoading(true);
+
+      const response = await HttpClient.post<ServerResponse>(
+        RESET_PASSWORD_API,
+        values
+      );
+
+      setLoading(false);
+
+      const { error, message } = response;
+
+      if (error) throw response;
+
+      notify({
+        variant: INFO,
+        description: message,
+      });
+
+      navigate(LOGIN);
+    } catch (err) {
+      const error = err as ServerResponseError;
+      console.error(`reset_password_error: ${JSON.stringify(error)}`);
+      setLoading(false);
+      notify({ variant: ERROR, description: error.message });
+    }
+  };
 
   const getUserDetails = async () => {
     try {
@@ -266,25 +298,13 @@ export const useUserService = () => {
     }
   };
 
-  const confirmUser = async () => {};
-
-  const editUser = async () => {};
-
-  const exportUsers = async () => {};
-
-  const dowbloadFile = async () => {};
-
   return {
-    createAccount,
-    verifyAccount,
     verifyCode,
     resendCode,
-    getUsers,
-    editUser,
-    confirmUser,
-    exportUsers,
-    dowbloadFile,
     saveAuthUser,
+    createAccount,
+    verifyAccount,
+    resetPassword,
     getUserDetails,
   };
 };

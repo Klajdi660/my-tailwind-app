@@ -2,11 +2,8 @@
 export const endpoints = {
   LOGIN_API: "/auth/login",
   LOGOUT_API: "/auth/logout",
-  REGISTER_API: "/auth/register",
   OAUTH_GOOGLE_API: "/auth/google",
   LOGIN_HELP_API: "/auth/login-help",
-  RESET_PASSWORD_API: "/auth/reset-password",
-  FORGOT_PASSWORD_API: "/auth/forgot-password",
   LOGIN_SAVED_USER_API: "/auth/login-saved-user",
 };
 
@@ -16,6 +13,8 @@ export const userEndpoints = {
   VERIFY_ACCOUNT_API: "/user/verify",
   VERIFY_CODE_API: "/user/verify-code",
   RESEND_CODE_API: "/user/resend-code",
+  RESET_PASSWORD_API: "/user/reset-password",
+  SAVE_AUTH_USER_API: "/user/save-auth-user",
   CONTACT_API: "",
   DELETE_USER_API: "",
   UPDATE_USER_API: "",
@@ -23,7 +22,6 @@ export const userEndpoints = {
   CHANGE_PASSWORD_API: "",
   UPDATE_USER_PHOTO_API: "",
   GET_USER_DETAILS_API: "/user",
-  SAVE_AUTH_USER_API: "/user/save-auth-user",
 };
 
 // PROFILE ENDPOINTS

@@ -4,6 +4,7 @@ export interface FormDataTypes {
   register: FormDataType<RegisterInputMetadata>;
   "verify-account": FormDataType<VerifyCodeInputMetadata>;
   "forgot-password": FormDataType<VerifyCodeInputMetadata>;
+  "reset-password": FormDataType<ResetPasswordInputMetadata>;
 }
 
 export interface ServiceResponseMap {

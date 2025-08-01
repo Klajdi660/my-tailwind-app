@@ -3,16 +3,11 @@ import { LoginHelpValues, LoginValues } from "../types";
 // Auth
 
 export interface AuthService {
-  resetPassword: (
-    hash: string | any,
-    email: string | any,
-    data: any
-  ) => Promise<void>;
   logout: () => Promise<void>;
-  login: (data: LoginValues) => Promise<void>;
   loginWithSavedUser: () => Promise<void>;
-  loginWithSocialApp: (tokenParam: string) => Promise<void>;
+  login: (data: LoginValues) => Promise<void>;
   loginHelp: (data: LoginHelpValues) => Promise<void>;
+  loginWithSocialApp: (tokenParam: string) => Promise<void>;
 }
 
 export interface ServerResponse {

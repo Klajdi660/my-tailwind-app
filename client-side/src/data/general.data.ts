@@ -15,6 +15,7 @@ import {
 export const nameOfForm: NameOfFormTypes = {
   LOGIN: "login",
   REGISTER: "register",
+  RESET_PASSWORD: "reset-password",
 };
 
 export const loginHelpActionName: Record<string, string> = {

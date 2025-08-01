@@ -123,10 +123,6 @@ export const loginValidation = yup.object({
     .max(60, "Your password must contain between 5 - 60 characters"),
 });
 
-export const verifyValidation = yup.object({
-  code1: yup.number().required(),
-});
-
 export const emailOrPhoneValidation = yup.object().shape({
   email: yup.string().when("$selectedMethod", {
     is: "email",
@@ -178,4 +174,5 @@ export const formValidation: Record<FormName, any> = {
   login: loginValidation,
   "verify-account": verifyCodeValidation,
   "forgot-password": verifyCodeValidation,
+  "reset-password": resetPassValidation,
 };

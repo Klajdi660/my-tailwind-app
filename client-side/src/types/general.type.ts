@@ -7,6 +7,7 @@ export interface ProviderProps {
 export interface NameOfFormTypes {
   LOGIN: "login";
   REGISTER: "register";
+  RESET_PASSWORD: "reset-password";
 }
 
 // Config

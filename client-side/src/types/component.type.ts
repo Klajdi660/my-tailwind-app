@@ -10,7 +10,8 @@ export type FormName =
   | "login"
   | "register"
   | "verify-account"
-  | "forgot-password";
+  | "forgot-password"
+  | "reset-password";
 
 export interface FormValuesTypes {
   identifier: string;

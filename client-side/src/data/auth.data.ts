@@ -165,22 +165,33 @@ export const formData: FormDataTypes = {
         type: "text",
       },
     ],
-    // inputMetadata: [
-    //   {
-    //     name: "password",
-    //     placeholder: "Password",
-    //     type: "password",
-    //     iconVisible: "AiOutlineEye",
-    //     iconHidden: "AiOutlineEyeInvisible",
-    //   },
-    //   {
-    //     name: "confirmPassword",
-    //     placeholder: "Confirm password",
-    //     type: "password",
-    //     iconVisible: "AiOutlineEye",
-    //     iconHidden: "AiOutlineEyeInvisible",
-    //   },
-    // ],
+  },
+  "reset-password": {
+    metadata: {
+      formName: "reset-password",
+      formTitle: "Reset password",
+      description: "to continue to Groove",
+      footerTitle: "Remember Password?",
+      footerLink: "Go back",
+      buttonName: "Send",
+      linkTo: LOGIN,
+    },
+    inputMetadata: [
+      {
+        name: "password",
+        placeholder: "Password",
+        type: "password",
+        iconVisible: "AiOutlineEye",
+        iconHidden: "AiOutlineEyeInvisible",
+      },
+      {
+        name: "confirmPassword",
+        placeholder: "Confirm password",
+        type: "password",
+        iconVisible: "AiOutlineEye",
+        iconHidden: "AiOutlineEyeInvisible",
+      },
+    ],
   },
 };
 

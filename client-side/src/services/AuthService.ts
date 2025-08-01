@@ -22,15 +22,10 @@ import { notifyVariant, paths } from "../data";
 import { useNotification, useStore } from "../hooks";
 
 export const useAuthService = (): AuthService => {
-  const {
-    LOGIN_API,
-    LOGOUT_API,
-    LOGIN_HELP_API,
-    RESET_PASSWORD_API,
-    LOGIN_SAVED_USER_API,
-  } = endpoints;
-  const { VERIFY_CODE, LOGIN } = paths;
-  const { ERROR, INFO } = notifyVariant;
+  const { LOGIN_API, LOGOUT_API, LOGIN_HELP_API, LOGIN_SAVED_USER_API } =
+    endpoints;
+  const { VERIFY_CODE } = paths;
+  const { ERROR } = notifyVariant;
 
   const { setLoading, setServiceResponse } = useStore();
   const [notify] = useNotification();
@@ -236,47 +231,10 @@ export const useAuthService = (): AuthService => {
     }
   };
 
-  const resetPassword = async (
-    values: any,
-    email: string,
-    hash: string
-  ): Promise<void> => {
-    try {
-      const params = new URLSearchParams({ email, hash }).toString();
-
-      setLoading(true);
-
-      const response = await HttpClient.post<ServerResponse>(
-        `${RESET_PASSWORD_API}?${params}`,
-        values
-      );
-
-      setLoading(false);
-
-      const { error, message } = response;
-
-      if (error) throw response;
-
-      notify({
-        variant: INFO,
-        description: message,
-      });
-
-      navigate(LOGIN);
-    } catch (err) {
-      const error = err as ServerResponseError;
-      console.error(`reset_password_error: ${JSON.stringify(error)}`);
-      setLoading(false);
-      notify({ variant: ERROR, description: error.message });
-      throw error;
-    }
-  };
-
   return {
     login,
     logout,
     loginWithSocialApp,
-    resetPassword,
     loginHelp,
     loginWithSavedUser,
   };

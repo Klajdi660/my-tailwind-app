@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useLocation } from "react-router-dom";
+import { nameOfForm } from "../../data";
 import { ErrorPage } from "../ErrorPage";
 import { useUserService } from "../../services";
 import { FormTemplate } from "../../components";
@@ -9,6 +10,7 @@ export const VerifyCodePage: FC = () => {
   const location = useLocation();
   const { verifyAccount, verifyCode, resendCode } = useUserService();
 
+  const { RESET_PASSWORD } = nameOfForm;
   const { verifyCodeData } = location.state || {};
   const { action, toFormName, username, email, phoneNr, fullname } =
     verifyCodeData;
@@ -18,7 +20,12 @@ export const VerifyCodePage: FC = () => {
     if (isVerifyAccount) {
       await verifyAccount({ ...values, username });
     } else {
-      await verifyCode({ ...values, username, action, toFormName });
+      await verifyCode({
+        ...values,
+        username,
+        action,
+        toFormName: RESET_PASSWORD,
+      });
     }
   };
 
