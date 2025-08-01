@@ -79,29 +79,6 @@ export interface FormDataType<T extends { name: string }> {
   inputMetadata: T[];
 }
 
-export interface FormItem {
-  type?: string;
-  name?: string;
-  label?: string;
-  linkTo?: string;
-  btnTxt?: string;
-  formType?: string;
-  formName?: string;
-  formTitle?: string;
-  footerLink?: string;
-  description?: string;
-  footerTitle?: string;
-  props?: {
-    type: string;
-    disabled?: boolean;
-    placeholder: string;
-  };
-}
-
-export interface FormItemList {
-  [key: string]: FormItem[];
-}
-
 export interface ThresholdsLastLognBadgeColor {
   limit: number | any;
   color: string;

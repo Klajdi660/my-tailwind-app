@@ -6,7 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { router } from "./routes";
-import { themeConfig } from "./utils";
+import { appThemeConfig } from "./configs";
 import { persistor, store } from "./store";
 import { StylesProvider } from "./providers";
 import { AuthProvider, StoreProvider } from "./contexts";
@@ -32,7 +32,7 @@ const Application = () => {
           <AuthProvider>
             <QueryClientProvider client={queryClient}>
               <StoreProvider>
-                <ConfigProvider theme={themeConfig}>
+                <ConfigProvider theme={appThemeConfig}>
                   <App>
                     <StylesProvider />
                     <ToastContainer />

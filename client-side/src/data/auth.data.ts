@@ -1,40 +1,39 @@
 import {
   FormDataTypes,
   EmailOrPhoneButtonType,
-  FormItemList,
   LoginHelpDataType,
   ServiceResponseMap,
   SocialAuthList,
   ThresholdsLastLognBadgeColor,
 } from "../types";
 import { paths } from "./general.data";
-import { APP_PREFIX, APP_URL } from "../configs";
 import { endpoints } from "../services";
+import { APP_PREFIX, APP_URL } from "../configs";
 
-const { REGISTER, LOGIN, LOGIN_HELP } = paths;
 const { OAUTH_GOOGLE_API } = endpoints;
+const { REGISTER, LOGIN, LOGIN_HELP } = paths;
 
 export const serviceResponseMap: Record<string, ServiceResponseMap> = {
-  "no-account": { linkText: "create a new account", to: REGISTER },
   "invalid-password": {
     linkText: "reset your password",
     to: LOGIN_HELP,
     state: { toFormName: "prev-forgot-password" },
   },
-  "existing-user": { linkText: "sign in", to: LOGIN },
   "user-not-verified": {
     linkText: "verify your account",
     to: LOGIN_HELP,
     state: { toFormName: "prev-verify-account" },
   },
+  "existing-user": { linkText: "sign in", to: LOGIN },
   "code-expired": { linkText: "request a new otp code" },
+  "no-account": { linkText: "create a new account", to: REGISTER },
 };
 
 export const userRegex: Record<string, RegExp> = {
-  emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  phoneNumberRegex: /^\+?\d{7,15}$/,
   isPhoneNumberRegex: /^\d+$/,
+  phoneNumberRegex: /^\+?\d{7,15}$/,
   usernameRegex: /^[a-zA-Z0-9_]{3,30}$/,
+  emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 };
 
 export const socialAuthList: SocialAuthList[] = [
@@ -54,30 +53,30 @@ export const emailOrPhoneButtonList: EmailOrPhoneButtonType[] = [
 export const formData: FormDataTypes = {
   login: {
     metadata: {
+      linkTo: REGISTER,
       formName: "login",
-      toFormName: "prev-forgot-password",
       formTitle: "Log in",
+      buttonName: "Log in",
+      footerLink: "Sign up",
+      toFormName: "prev-forgot-password",
       description: "to continue to Groove",
       footerTitle: "Don't have an account?",
-      footerLink: "Sign up",
-      buttonName: "Log in",
-      linkTo: REGISTER,
       otherLink: {
-        otherLinkName: "Forgot Password?",
         otherLinkPName: "Reset",
         otherLinkTo: LOGIN_HELP,
+        otherLinkName: "Forgot Password?",
       },
     },
     inputMetadata: [
       {
+        type: "text",
         name: "identifier",
         placeholder: "Email, username or phone number",
-        type: "text",
       },
       {
+        type: "password",
         name: "password",
         placeholder: "Password",
-        type: "password",
         iconVisible: "AiOutlineEye",
         iconHidden: "AiOutlineEyeInvisible",
       },
@@ -85,35 +84,34 @@ export const formData: FormDataTypes = {
   },
   register: {
     metadata: {
-      formName: "register",
-      toFormName: "",
-      formTitle: "Create account",
-      description: "to continue to Groove",
-      footerLink: "Log in",
-      footerTitle: "Have an account?",
-      buttonName: "Sign up",
       linkTo: LOGIN,
+      formName: "register",
+      footerLink: "Log in",
+      buttonName: "Sign up",
+      formTitle: "Create account",
+      footerTitle: "Have an account?",
+      description: "to continue to Groove",
     },
     inputMetadata: [
       {
+        type: "text",
         name: "identifier",
         placeholder: "Email or phone number",
-        type: "text",
       },
       {
+        type: "text",
         name: "username",
         placeholder: "Username",
-        type: "text",
       },
       {
+        type: "text",
         name: "fullname",
         placeholder: "Full Name",
-        type: "text",
       },
       {
+        type: "password",
         name: "password",
         placeholder: "Password",
-        type: "password",
         iconVisible: "AiOutlineEye",
         iconHidden: "AiOutlineEyeInvisible",
       },
@@ -121,74 +119,74 @@ export const formData: FormDataTypes = {
   },
   "verify-account": {
     metadata: {
+      linkTo: LOGIN,
+      footerLink: "Go back",
       formName: "verify-account",
       toFormName: "verify-account",
+      buttonName: "Verify Account",
       formTitle: "Verify your account",
       description: "to continue to Groove",
       footerTitle: "Cancel verify account?",
-      footerLink: "Go back",
-      buttonName: "Verify Account",
-      linkTo: LOGIN,
       otherLink: {
-        otherLinkName: "Didn't recieve code?",
         otherLinkPName: "Resend",
+        otherLinkName: "Didn't recieve code?",
       },
     },
     inputMetadata: [
       {
+        type: "text",
         name: "code",
         placeholder: "Enter 6 digit code",
-        type: "text",
       },
     ],
   },
   "forgot-password": {
     metadata: {
+      linkTo: LOGIN,
+      buttonName: "Send",
+      footerLink: "Go back",
       formName: "forgot-password",
       toFormName: "reset-password",
-      formTitle: "Enter code to reset password",
-      description: "to continue to Groove",
       footerTitle: "Remember Password?",
-      footerLink: "Go back",
-      buttonName: "Send",
-      linkTo: LOGIN,
+      description: "to continue to Groove",
+      formTitle: "Enter code to reset password",
       otherLink: {
-        otherLinkName: "Didn't recieve code?",
-        otherLinkPName: "Resend",
         otherLinkTo: "#",
+        otherLinkPName: "Resend",
+        otherLinkName: "Didn't recieve code?",
       },
     },
     inputMetadata: [
       {
+        type: "text",
         name: "code",
         placeholder: "Enter 6 digit code",
-        type: "text",
       },
     ],
   },
   "reset-password": {
     metadata: {
+      linkTo: LOGIN,
+      buttonName: "Send",
+      footerLink: "Go back",
       formName: "reset-password",
       formTitle: "Reset password",
-      description: "to continue to Groove",
       footerTitle: "Remember Password?",
-      footerLink: "Go back",
-      buttonName: "Send",
-      linkTo: LOGIN,
+      description: "to continue to Groove",
     },
     inputMetadata: [
       {
+        type: "password",
         name: "password",
         placeholder: "Password",
-        type: "password",
         iconVisible: "AiOutlineEye",
         iconHidden: "AiOutlineEyeInvisible",
       },
       {
-        name: "confirmPassword",
-        placeholder: "Confirm password",
         type: "password",
+        name: "confirmPassword",
         iconVisible: "AiOutlineEye",
+        placeholder: "Confirm password",
         iconHidden: "AiOutlineEyeInvisible",
       },
     ],
@@ -197,235 +195,46 @@ export const formData: FormDataTypes = {
 
 export const loginHelpFormData: Record<string, LoginHelpDataType> = {
   "prev-forgot-password": {
-    formName: "prev-forgot-password",
-    toFormName: "forgot-password",
-    formTitle: "Update password",
-    formDescription: "How would you like to reset your password?",
-    description: "to continue to Groove",
-    footerTitle: "Remember Password?",
-    footerLink: "Go back",
     linkTo: LOGIN,
+    footerLink: "Go back",
+    smsButtonName: "Text Me",
+    emailPlaceholder: "Email",
+    emailButtonName: "Email Me",
+    formTitle: "Update password",
+    toFormName: "forgot-password",
+    smsPlaceholder: "Phone number",
+    formName: "prev-forgot-password",
+    footerTitle: "Remember Password?",
+    description: "to continue to Groove",
+    formDescription: "How would you like to reset your password?",
     emailText:
       "We will send you an email with instructions on how to reset your password",
     smsText: "We will text you a verification code to reset your password",
-    emailPlaceholder: "Email",
-    smsPlaceholder: "Phone number",
-    emailButtonName: "Email Me",
-    smsButtonName: "Text Me",
   },
   "prev-verify-account": {
-    formName: "prev-verify-account",
-    toFormName: "verify-account",
+    linkTo: LOGIN,
+    footerLink: "Go back",
+    smsButtonName: "Text Me",
+    emailPlaceholder: "Email",
+    emailButtonName: "Email Me",
     formTitle: "Verify Account",
-    formDescription: "How would you like to verify your account?",
+    toFormName: "verify-account",
+    smsPlaceholder: "Phone number",
+    formName: "prev-verify-account",
     description: "to continue to Groove",
     footerTitle: "Cancel verify account?",
-    footerLink: "Go back",
-    linkTo: LOGIN,
+    formDescription: "How would you like to verify your account?",
+    smsText: "We will text you a verification code to verify your account",
     emailText:
       "We will send you an email with instructions on how to verify your account",
-    smsText: "We will text you a verification code to verify your account",
-    emailPlaceholder: "Email",
-    smsPlaceholder: "Phone number",
-    emailButtonName: "Email Me",
-    smsButtonName: "Text Me",
   },
-};
-
-export const formList: FormItemList = {
-  login: [
-    {
-      btnTxt: "Log in",
-      formType: "auth",
-      formName: "login",
-      formTitle: "Log in",
-      linkTo: "/register",
-      footerLink: "Sign up",
-      description: "to continue to Groove",
-      footerTitle: "Don't have an account?",
-    },
-    {
-      type: "input",
-      props: {
-        type: "text",
-        placeholder: "Email, phone number or username",
-      },
-      name: "identifier",
-    },
-    {
-      type: "input",
-      name: "password",
-      props: {
-        placeholder: "Password",
-        type: "password",
-      },
-    },
-    {
-      type: "checkbox",
-      name: "remember",
-      props: {
-        placeholder: "",
-        type: "checkbox",
-      },
-      label: "Remember Me",
-    },
-  ],
-  register: [
-    {
-      formType: "auth",
-      linkTo: "/login",
-      btnTxt: "Sign up",
-      formName: "register",
-      footerLink: "Log in",
-      formTitle: "Create your account",
-      description: "to continue to Groove",
-      footerTitle: "Have an account?",
-    },
-    {
-      type: "input",
-      name: "email",
-      props: {
-        type: "email",
-        placeholder: "Email Address",
-      },
-    },
-    {
-      type: "input",
-      name: "mobile",
-      props: {
-        type: "text",
-        placeholder: "Phone number",
-      },
-    },
-    {
-      type: "input",
-      name: "password",
-      props: {
-        type: "password",
-        placeholder: "Password",
-      },
-    },
-    {
-      type: "input",
-      name: "fullName",
-      props: {
-        type: "text",
-        placeholder: "Full Name",
-      },
-    },
-    {
-      type: "input",
-      name: "username",
-      props: {
-        type: "text",
-        placeholder: "Username",
-      },
-    },
-  ],
-  "verify-account": [
-    {
-      formType: "auth",
-      linkTo: "/login",
-      footerLink: "Go back",
-      btnTxt: "Verify Account",
-      formName: "verify-account",
-      formTitle: "Verify your account",
-      footerTitle: "Remember Password?",
-      description: "to continue to Groove",
-    },
-  ],
-  "forgot-password": [
-    {
-      formType: "auth",
-      linkTo: "/login",
-      footerLink: "Go back",
-      btnTxt: "Reset Password",
-      formName: "forgot-password",
-      formTitle: "Reset Password",
-      footerTitle: "Remember Password?",
-      description:
-        "Enter your email address, and we'll send a link to reset password to continue to Groove",
-    },
-    {
-      type: "input",
-      name: "email",
-      props: {
-        type: "email",
-        placeholder: "Email Address",
-      },
-    },
-  ],
-  "reset-password": [
-    {
-      linkTo: "/login",
-      formType: "auth",
-      footerLink: "Go back",
-      btnTxt: "Reset Password",
-      formName: "reset-password",
-      formTitle: "Choose New Password",
-      footerTitle: "Remember Password?",
-      description: "to continue to Groove",
-    },
-    {
-      type: "input",
-      name: "password",
-      props: {
-        placeholder: "New Password",
-        type: "password",
-      },
-    },
-    {
-      type: "input",
-      name: "confirmPassword",
-      props: {
-        type: "confirmPassword",
-        placeholder: "Confirm New Password",
-      },
-    },
-  ],
-  "password-code": [
-    {
-      linkTo: "/login",
-      formType: "auth",
-      footerLink: "Go back",
-      btnTxt: "Reset Password",
-      formName: "password-code",
-      footerTitle: "Remember Password?",
-      formTitle: "Continue Reset Password",
-      description: "Enter code to continue to Groove",
-    },
-  ],
-  profile: [
-    {
-      btnTxt: "Save",
-      formName: "profile",
-      formTitle: "Profile",
-    },
-    {
-      type: "input",
-      name: "username",
-      props: {
-        type: "text",
-        placeholder: "Username",
-      },
-    },
-    {
-      type: "input",
-      name: "email",
-      props: {
-        disabled: true,
-        type: "text",
-        placeholder: "Email",
-      },
-    },
-  ],
 };
 
 export const thresholdsLastLognBadgeColor: ThresholdsLastLognBadgeColor[] = [
-  { limit: 30, color: "green" }, // Less than 30 minutes
-  { limit: 60, color: "yellow" }, // More than 30 minutes but less than 1 hour
-  { limit: 24 * 60, color: "orange" }, // More than 1 hour but less than 24 hours
-  { limit: 24 * 60 * 7, color: "red" }, // More than a day but less than a week
-  { limit: 24 * 60 * 30, color: "purple" }, // More than a week but less than a month
-  { limit: Infinity, color: "gray" }, // More than a month
+  { limit: 30, color: "green" },
+  { limit: 60, color: "yellow" },
+  { limit: 24 * 60, color: "orange" },
+  { limit: 24 * 60 * 7, color: "red" },
+  { limit: 24 * 60 * 30, color: "purple" },
+  { limit: Infinity, color: "gray" },
 ];

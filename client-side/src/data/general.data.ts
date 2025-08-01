@@ -46,8 +46,6 @@ export const paths: PathProperties = {
   PASSWORD_CODE: "/password-code",
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password",
-  // RESET_PASSWORD: "/reset-password/:email/:hash",
-  // CHANGE_PASSWORD: "update-password/:email/:username/:h/:exp",
   SAVE_AUTH_DATA: "/save-auth",
   ACCOUNT_SAVED: "/account-saved",
   LOGIN_HELP: "/login-help",

@@ -1,4 +1,12 @@
+import { theme } from "antd";
 import { ThemeConfig } from "../types";
+
+export const appThemeConfig = {
+  algorithm: theme.defaultAlgorithm,
+  token: {
+    colorPrimary: "#0077B5",
+  },
+};
 
 export const themeConfig: ThemeConfig = {
   colors: {
@@ -8,36 +16,36 @@ export const themeConfig: ThemeConfig = {
       primaryOpacity: "rgba(16, 116, 144, 0.1)",
     },
   },
-  sidebars: { folded: "80", full: "240" },
   modes: ["light", "dark"],
   players: ["lined", "boxed"],
+  sidebars: { folded: "80", full: "240" },
   fontFamilies: ["fira sans", "roboto", "lato", "inter", "poppins"],
   themes: {
     theme_light: {
-      neutralBg: "#eef2f6",
-      neutralBgOpacity: "rgba(255, 255, 255, 0.7)",
-      neutralBgAlt: "#ffffff",
-      onNeutralBg: "#404040",
-      onNeutralBgSecondary: "#737373",
-      onNeutralBgDivider: "#e5e5e5",
-      switchBg: "#f8fafc",
       cardBg: "#ffffff",
-      cardSkeletonBg: "#c9d7e2",
-      cardBgHover: "#e5edf5",
       player: "#919191",
+      switchBg: "#f8fafc",
+      neutralBg: "#eef2f6",
+      cardBgHover: "#e5edf5",
+      onNeutralBg: "#404040",
+      neutralBgAlt: "#ffffff",
+      cardSkeletonBg: "#c9d7e2",
+      onNeutralBgDivider: "#e5e5e5",
+      onNeutralBgSecondary: "#737373",
+      neutralBgOpacity: "rgba(255, 255, 255, 0.7)",
     },
     theme_dark: {
-      neutralBg: "#1f2937",
-      neutralBgOpacity: "rgba(31, 41, 55, 0.7)",
-      neutralBgAlt: "#0f1521",
-      onNeutralBg: "#ffffff",
-      onNeutralBgSecondary: "#a3a3a3",
-      onNeutralBgDivider: "#2a2f3d",
-      switchBg: "#171c29",
       cardBg: "#111827",
-      cardSkeletonBg: "#1b2132",
-      cardBgHover: "#374152",
       player: "#ffffff",
+      switchBg: "#171c29",
+      neutralBg: "#1f2937",
+      cardBgHover: "#374152",
+      onNeutralBg: "#ffffff",
+      neutralBgAlt: "#0f1521",
+      cardSkeletonBg: "#1b2132",
+      onNeutralBgDivider: "#2a2f3d",
+      onNeutralBgSecondary: "#a3a3a3",
+      neutralBgOpacity: "rgba(31, 41, 55, 0.7)",
     },
   },
 };
@@ -54,14 +62,14 @@ export const defaultThemeConfig = {
 };
 
 export const themeMode: Record<string, string> = {
-  light: "theme_light",
   dark: "theme_dark",
+  light: "theme_light",
 };
 
 export const defaultStyles: Record<string, number> = {
   aside: 320,
   noAside: 0,
   navHeight: 80,
-  playerHeight: 70,
   logoWidth: 120,
+  playerHeight: 70,
 };

@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import moment from "moment";
-import { theme } from "antd";
 import { Country } from "country-state-city";
 import { GameParams } from "../types";
 
@@ -122,13 +121,6 @@ export const getDataPeriod = () => {
 
 export const firstLetterToUpperCase = (name: string) => {
   return `${name[0].toLocaleUpperCase()}${name.slice(1)}`;
-};
-
-export const themeConfig = {
-  algorithm: theme.defaultAlgorithm,
-  token: {
-    colorPrimary: "#0077B5",
-  },
 };
 
 // Setttings

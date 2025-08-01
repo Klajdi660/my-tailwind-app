@@ -1,4 +1,4 @@
-import { FormItem, User } from "../types";
+import { User } from "../types";
 
 export interface ServiceResponseTypes {
   serviceError?: boolean;
@@ -16,10 +16,6 @@ export interface AuthContextType {
   unAuthenticateUser: () => void;
   setLToken: (lToken: string) => void;
   authenticateUser: (user: User) => void;
-}
-
-export interface FormContextType {
-  listForm: FormItem[];
 }
 
 export interface TranslationsResponse {
