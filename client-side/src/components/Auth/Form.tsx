@@ -91,15 +91,7 @@ export const Form: FC<FormProps> = (props) => {
               }
               {...form(item.name)}
               autoComplete={["identifier"].includes(item.name) ? "on" : "off"}
-              onChange={
-                (e) => handleInputChange(e, item.name)
-                //   {
-                //   form(item.name).onChange(e);
-                //   if (["identifier"].includes(item.name)) {
-                //     setIdentifierValue(e.target.value);
-                //   }
-                // }
-              }
+              onChange={(e) => handleInputChange(e, item.name)}
             />
             <span
               className={classNames(
