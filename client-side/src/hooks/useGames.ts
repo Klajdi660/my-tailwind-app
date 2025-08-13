@@ -61,12 +61,16 @@ export const useGames = () => {
   };
 
   const useGameGenreList = () => {
-    const { data: gameGenreList, isLoading } = useQuery({
+    const { data, isPending, isSuccess } = useQuery({
       queryKey: ["genres"],
       queryFn: async () => await getGameGenreList(),
     });
 
-    return { gameGenreList, isLoading };
+    return {
+      gameGenreList: data,
+      isGameGenreListLoading: isPending,
+      isGameGenreListSuccess: isSuccess,
+    };
   };
 
   const useGamePlatformList = () => {

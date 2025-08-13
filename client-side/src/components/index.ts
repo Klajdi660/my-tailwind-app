@@ -108,6 +108,7 @@ export { FormRedirect } from "./UI/FormRedirect";
 export { Divider } from "./UI/Divider";
 export { Spinner } from "./UI/Spinner";
 export { LoginHelpButton } from "./UI/Buttons/LoginHelpButton";
+export { SwiperButton } from "./UI/Buttons/SwiperButton";
 
 // Others Component
 export { Footer } from "./Footer";

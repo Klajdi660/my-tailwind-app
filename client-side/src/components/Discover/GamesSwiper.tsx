@@ -1,31 +1,24 @@
-import { motion } from "framer-motion";
 import { Navigation } from "swiper/modules";
 import { FC, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
-import { paths } from "../../data";
 import { useGames, useMediaResponsive } from "../../hooks";
 import { classNames } from "../../utils";
 import { GamesSwiperProps } from "../../types";
-import { GenreCard, Icon, MediaCard, Title } from "../../components";
+import { GenreCard, MediaCard, SwiperButton } from "../../components";
 
 export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
   const { sectionName, titleName, dateParam, orderingParam, swiperType } =
     props;
-
-  const { BROWSE } = paths;
 
   const { isMobile } = useMediaResponsive();
   const { useGameList, useGameGenreList } = useGames();
 
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isCardHovered, setIsCardHovered] = useState(false);
 
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
-
-  const navigate = useNavigate();
 
   const params = {
     dates: dateParam,
@@ -34,67 +27,25 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
   };
 
   const { gameList } = useGameList(params);
-  const { gameGenreList } = useGameGenreList();
-  if (!gameList) return;
+  const { gameGenreList, isGameGenreListSuccess } = useGameGenreList();
+
+  const isGameGenreList =
+    swiperType === "genre" && isGameGenreListSuccess && gameGenreList;
 
   return (
-    <div className={classNames(sectionName, "flex flex-col gap-4")}>
-      <div className="flex_justify_between">
-        <button
-          type="button"
-          className="flex_justify_center"
-          onClick={() => navigate(BROWSE)}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <motion.div
-            whileHover={{ color: "#1f9bee" }}
-            transition={{ type: "tween", duration: 0.3 }}
-          >
-            <Title name={titleName} type="small" divider={false} />
-          </motion.div>
-          <motion.div
-            animate={isHovered ? { x: 5 } : { x: 0 }}
-            transition={{ type: "tween", duration: 0.3 }}
-          >
-            <Icon name="MdKeyboardArrowRight" size={30} />
-          </motion.div>
-        </button>
-        <div className="flex gap-2">
-          <button
-            ref={prevRef}
-            disabled={isBeginning}
-            type="button"
-            className={classNames(
-              "w-8 h-8 flex_justify_center transition-colors duration-500 rounded-full group",
-              isBeginning ? "bg-card" : "bg-card hover:bg-primary-opacity"
-            )}
-          >
-            <Icon
-              name="MdKeyboardArrowLeft"
-              className={classNames(
-                isBeginning ? "text-secondary" : "group-hover:text-primary"
-              )}
-            />
-          </button>
-          <button
-            ref={nextRef}
-            disabled={isEnd}
-            type="button"
-            className={classNames(
-              "w-8 h-8 flex_justify_center transition-colors duration-500 rounded-full group",
-              isEnd ? "bg-card" : "bg-card hover:bg-primary-opacity"
-            )}
-          >
-            <Icon
-              name="MdKeyboardArrowRight"
-              className={classNames(
-                isEnd ? "text-secondary" : "group-hover:text-primary"
-              )}
-            />
-          </button>
-        </div>
-      </div>
+    <div
+      className={classNames(sectionName, "flex flex-col gap-4")}
+      onMouseEnter={() => setIsCardHovered(true)}
+      onMouseLeave={() => setIsCardHovered(false)}
+    >
+      <SwiperButton
+        titleName={titleName}
+        prevRef={prevRef}
+        nextRef={nextRef}
+        isEnd={isEnd}
+        isBeginning={isBeginning}
+        isCardHovered={isCardHovered}
+      />
       <div className="flex items-center">
         <SwiperComponent
           modules={[Navigation]}
@@ -110,23 +61,13 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
             setIsBeginning(swiper.isBeginning);
             setIsEnd(swiper.isEnd);
           }}
-          onReachBeginning={() => setIsBeginning(true)}
-          onReachEnd={() => setIsEnd(true)}
+          // onReachBeginning={() => setIsBeginning(true)}
+          // onReachEnd={() => setIsEnd(true)}
           slidesPerView={isMobile ? 2 : 5}
-          // slidesPerView="auto"
           spaceBetween={10}
         >
-          {swiperType !== "genre"
-            ? gameList?.pages?.map((page, index) => (
-                <div key={index}>
-                  {page?.results?.map((game) => (
-                    <SwiperSlide key={game.id}>
-                      <MediaCard key={game.id} game={game} />
-                    </SwiperSlide>
-                  ))}
-                </div>
-              ))
-            : gameGenreList?.map((genre: any) => (
+          {isGameGenreList
+            ? gameGenreList.map((genre: any) => (
                 <SwiperSlide key={genre.id}>
                   <GenreCard
                     genreId={genre.id}
@@ -135,6 +76,16 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
                     genreCount={genre.games_count}
                   />
                 </SwiperSlide>
+              ))
+            : gameList &&
+              gameList.pages.map((page, index) => (
+                <div key={index}>
+                  {page?.results?.map((game) => (
+                    <SwiperSlide key={game.id}>
+                      <MediaCard key={game.id} game={game} />
+                    </SwiperSlide>
+                  ))}
+                </div>
               ))}
         </SwiperComponent>
       </div>

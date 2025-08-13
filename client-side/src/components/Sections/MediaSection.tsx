@@ -27,6 +27,7 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
 
   const { gameList, isLoading, fetchNextPage, hasNextPage } =
     useGameList(params);
+
   if (!gameList) return;
 
   const dataLength = gameList.pages.reduce(
