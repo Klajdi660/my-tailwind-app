@@ -1,18 +1,24 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+const formatTabPath = (key: string) => {
+  return key
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 export const TabTitle: FC = () => {
   const { pathname } = useLocation();
-  const pathKey = pathname.split("/")[1];
+  const pathKey = pathname.split("/")[1] || "";
 
   const capitalizedPathKey = pathKey
-    ? `${pathKey[0].toUpperCase() + pathKey.slice(1)}  | GrooveIT`
-    : "";
+    ? `${formatTabPath(pathKey)} | GrooveIT`
+    : "GrooveIT";
 
   useEffect(() => {
     document.title = capitalizedPathKey;
-  }, [pathname]);
+  }, [capitalizedPathKey, pathname]);
 
-  return <></>;
+  return null;
 };
