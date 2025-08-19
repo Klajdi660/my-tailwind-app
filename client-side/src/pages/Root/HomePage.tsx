@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { FC, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { paths } from "../../data";
@@ -64,14 +63,12 @@ export const HomePage: FC = () => {
         <div className="flex flex-col gap-10">
           <div className="flex_justify_between">
             <Link to={HOME}>
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <Image
-                  imgUrl={iconName}
-                  name="App Logo"
-                  width={150}
-                  effect="opacity"
-                />
-              </motion.div>
+              <Image
+                imgUrl={iconName}
+                name="App Logo"
+                width={150}
+                effect="opacity"
+              />
             </Link>
             <Button
               className="flex_justify_center w-24 h-10 bg-primary text-white hover:brightness-110"
@@ -152,7 +149,7 @@ export const HomePage: FC = () => {
                   {gameDetail.name}
                 </div>
                 <div className="flex flex-row gap-6">
-                  <motion.div className="hover:brightness-110">
+                  <div className="hover:brightness-110">
                     <Button
                       className="w-60 h-14 bg-white bg-opacity-10 text-white text-xl font-normal rounded-full"
                       iconClassName="text-white"
@@ -161,15 +158,15 @@ export const HomePage: FC = () => {
                       labelIcon="CiShoppingTag"
                       size={25}
                     />
-                  </motion.div>
-                  <motion.div className="hover:brightness-110">
+                  </div>
+                  <div className="hover:brightness-110">
                     <Button
                       className="w-14 h-14 bg-white bg-opacity-10 text-white text-xl font-normal rounded-full"
                       iconClassName="text-white"
                       variant="none"
                       labelIcon="BsThreeDots"
                     />
-                  </motion.div>
+                  </div>
                 </div>
               </div>
 
