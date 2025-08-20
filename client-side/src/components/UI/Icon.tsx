@@ -72,6 +72,7 @@ import {
   MdOutlineCheckBoxOutlineBlank,
   MdOutlineCheckCircleOutline,
   MdOutlineCheckCircle,
+  MdKeyboardArrowDown,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import {
@@ -163,6 +164,7 @@ const icons: IconsMap = {
   MdOutlineCheckCircleOutline,
   MdOutlineCheckBoxOutlineBlank,
   MdOutlineCheckCircle,
+  MdKeyboardArrowDown,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,
