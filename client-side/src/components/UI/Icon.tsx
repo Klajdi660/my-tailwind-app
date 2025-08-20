@@ -47,7 +47,12 @@ import { FaCcPaypal } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiUpload, FiEdit } from "react-icons/fi";
-import { HiMenuAlt2, HiCheck, HiOutlineUpload } from "react-icons/hi";
+import {
+  HiMenuAlt2,
+  HiCheck,
+  HiOutlineUpload,
+  HiOutlinePencil,
+} from "react-icons/hi";
 import { HiChartBar } from "react-icons/hi2";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoCloseCircleOutline } from "react-icons/io5";
@@ -141,6 +146,7 @@ const icons: IconsMap = {
   HiOutlineUpload,
   HiMenuAlt2,
   HiChartBar,
+  HiOutlinePencil,
   IoMdNotificationsOutline,
   LiaCarSideSolid,
   LiaSignOutAltSolid,
