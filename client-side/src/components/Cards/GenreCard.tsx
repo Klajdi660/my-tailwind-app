@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { paths } from "../../data";
 import { Image } from "../../components";
 import { GenreCardProps } from "../../types";
-import { formatGenreName, nameTruncate } from "../../utils";
 
 export const GenreCard: FC<GenreCardProps> = (props) => {
   const { genreId, genreName, genreImg, genreCount } = props;
@@ -24,6 +23,8 @@ export const GenreCard: FC<GenreCardProps> = (props) => {
     navigate(`${BROWSE}?${params.toString()}`);
   };
 
+  const cleanedGenreName = genreName.replace(/games/i, "").trim();
+
   return (
     <button
       type="button"
@@ -38,7 +39,7 @@ export const GenreCard: FC<GenreCardProps> = (props) => {
       />
       <div className="flex flex-col items-start">
         <span className="font-semibold group-hover:text-primary">
-          {nameTruncate(formatGenreName(genreName), 8)} Games
+          {cleanedGenreName}
         </span>
         <span className="text-secondary">{genreCount} games</span>
       </div>
