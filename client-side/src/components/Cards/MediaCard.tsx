@@ -14,23 +14,20 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
 
   return (
     <div
-      className="shadow-sm bg-card rounded duration-300 ease-in cursor-pointer text-onNeutralBg group"
+      className="shadow-sm p-3 bg-card rounded duration-300 ease-in cursor-pointer text-onNeutralBg hover:bg-card-hover group"
       onClick={() => navigate(`${GAME_DETAILS}/${id}`)}
     >
       {background_image && (
-        <div className="transition-opacity duration-300 ease-in-out group-hover:opacity-75">
-          <Image
-            styles="h-40 object-cover aspect-square rounded-t"
-            width="100%"
-            imgUrl={background_image}
-            name="image"
-            effect="blur"
-          />
-        </div>
+        <Image
+          styles="object-cover aspect-square w-full h-full overflow-hidden shadow_card rounded"
+          imgUrl={background_image}
+          name="image"
+          effect="blur"
+        />
       )}
-      <div className="flex flex-col gap-2 desc text-left p-3">
+      <div className="flex flex-col gap-2 desc text-left pt-3">
         <h6 className="text-sm font-semibold text-onNeutralBg">
-          {nameTruncate(name, 30)}
+          {nameTruncate(name, 16)}
         </h6>
         <p className="flex flex-col gap-2 text-xs font-normal text-secondary">
           <span className="flex gap-2">
