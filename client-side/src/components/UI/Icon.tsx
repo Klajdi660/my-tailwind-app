@@ -21,7 +21,12 @@ import {
   BiChevronsRight,
   BiSelectMultiple,
 } from "react-icons/bi";
-import { BsGlobe, BsThreeDots, BsShieldLock } from "react-icons/bs";
+import {
+  BsGlobe,
+  BsThreeDots,
+  BsShieldLock,
+  BsThreeDotsVertical,
+} from "react-icons/bs";
 import { CiShoppingTag } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
 import {
@@ -118,6 +123,7 @@ const icons: IconsMap = {
   BsGlobe,
   BsThreeDots,
   BsShieldLock,
+  BsThreeDotsVertical,
   CiShoppingTag,
   CgGames,
   FaXbox,

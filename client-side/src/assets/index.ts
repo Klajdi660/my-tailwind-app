@@ -1,5 +1,6 @@
 import icon from "./app/icon.png";
 import noImg from "./app/noImg.jpg";
+import noImage from "./app/noImage.jpg";
 import iconName from "./app/iconName.png";
 import emptyCartImg from "./app/emptyCart.svg";
 import bankImg from "./card/visa.png";
@@ -19,6 +20,7 @@ import avatar4 from "./user/avatar4.png";
 export {
   icon,
   noImg,
+  noImage,
   bankImg,
   avatar1,
   avatar2,

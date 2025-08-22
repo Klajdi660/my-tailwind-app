@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { paths } from "../../data";
+import { noImage } from "../../assets";
 import { nameTruncate } from "../../utils";
 import { MediaCardProps } from "../../types";
 import { Image, PlatformIconList } from "../../components";
@@ -13,32 +14,33 @@ export const MediaCard: FC<MediaCardProps> = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="shadow-sm p-3 bg-card rounded duration-300 ease-in cursor-pointer text-onNeutralBg hover:bg-card-hover group"
-      onClick={() => navigate(`${GAME_DETAILS}/${id}`)}
-    >
-      {background_image && (
+    <div>
+      <div
+        className="relative cursor-pointer group"
+        onClick={() => navigate(`${GAME_DETAILS}/${id}`)}
+      >
         <Image
-          styles="object-cover aspect-square w-full h-full overflow-hidden shadow_card rounded"
-          imgUrl={background_image}
+          styles="w-full h-36 object-cover shadow-md rounded"
+          imgUrl={background_image || noImage}
+          width="100%"
           name="image"
           effect="blur"
         />
-      )}
-      <div className="flex flex-col gap-2 desc text-left pt-3">
-        <h6 className="text-sm font-semibold text-onNeutralBg">
-          {nameTruncate(name, 16)}
+        <div className=" h-36 absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded"></div>
+      </div>
+      <div className="flex flex-col gap-2">
+        <h6
+          className="text-sm font-semibold text-onNeutralBg cursor-pointer hover:text-primary"
+          onClick={() => navigate(`${GAME_DETAILS}/${id}`)}
+        >
+          {nameTruncate(name, 20)}
         </h6>
-        <p className="flex flex-col gap-2 text-xs font-normal text-secondary">
-          <span className="flex gap-2">
-            <PlatformIconList
-              className="text-secondary"
-              platforms={parent_platforms
-                .slice(0, 3)
-                .map((p: any) => p.platform)}
-            />
-          </span>
-        </p>
+        <div className="flex gap-2">
+          <PlatformIconList
+            className="text-secondary"
+            platforms={parent_platforms.slice(0, 3).map((p: any) => p.platform)}
+          />
+        </div>
       </div>
     </div>
   );
