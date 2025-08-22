@@ -38,6 +38,7 @@ export interface StoreContextType {
   modals: Record<string, boolean>;
   translations: TranslationsResponse;
   userLangData: { [key: string]: string };
+  isFolded: boolean;
   closeAllModals: () => void;
   setLang: (lang: string) => void;
   setLoading: (loading: boolean) => void;

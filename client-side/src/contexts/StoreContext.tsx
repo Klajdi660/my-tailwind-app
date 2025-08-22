@@ -6,6 +6,7 @@ import {
   TranslationsResponse,
 } from "../types";
 import { useAppSelector } from "../store";
+import { defaultThemeConfig } from "../configs";
 
 const initialState: StoreContextType = {
   lang: "",
@@ -13,6 +14,7 @@ const initialState: StoreContextType = {
   currency: "",
   userStore: {},
   timeZones: [],
+  isFolded: false,
   shippingTo: "",
   loading: false,
   translations: {},
@@ -45,6 +47,8 @@ const StoreContext = createContext(initialState);
 
 const StoreProvider: FC<ProviderProps> = ({ children }) => {
   const { user } = useAppSelector((state) => state.user);
+  const theme = useAppSelector((state) => state.theme);
+
   const [lang, setLang] = useState<string>("en");
   const [currency, setCurrency] = useState<string | null>(null);
   const [userStore, setUserStore] = useState<Object>({});
@@ -63,6 +67,9 @@ const StoreProvider: FC<ProviderProps> = ({ children }) => {
 
   let timeZones = moment.tz.names();
   let usersTimeZone = moment.tz.guess();
+
+  const { sidebar } = theme || defaultThemeConfig;
+  const isFolded = sidebar === "folded";
 
   const setModalOpen = (key: string, value: boolean) => {
     setModals((prev) => ({
@@ -96,6 +103,7 @@ const StoreProvider: FC<ProviderProps> = ({ children }) => {
         serviceResponse,
         selectedTimeZone,
         isUpdatingProfileImg,
+        isFolded,
         setLang,
         setLoading,
         setCurrency,

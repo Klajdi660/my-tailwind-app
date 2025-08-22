@@ -11,7 +11,10 @@ export const Footer: FC = () => {
           {downloadBtnList.map((item) => (
             <div className="relative group" key={item.name}>
               <button className="w-12 h-12 rounded flex_justify_center group-hover:bg-primary-opacity">
-                <Icon name={item.icon} className="text-secondary" />
+                <Icon
+                  name={item.icon}
+                  className="text-secondary group-hover:text-primary"
+                />
               </button>
             </div>
           ))}

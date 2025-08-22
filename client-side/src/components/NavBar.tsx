@@ -14,7 +14,6 @@ import {
 import { paths } from "../data";
 import { useAppSelector } from "../store";
 import { icon, iconName } from "../assets";
-import { defaultThemeConfig } from "../configs";
 import { classNames, getAside } from "../utils";
 import { useMediaResponsive, useStore } from "../hooks";
 
@@ -22,18 +21,15 @@ export const Navbar: FC = () => {
   const { LOGIN, DISCOVER } = paths;
 
   const { isMobile } = useMediaResponsive();
-  const { toggleSearch, setToggleSearch } = useStore();
+  const { toggleSearch, setToggleSearch, isFolded } = useStore();
   const { pathname } = useLocation();
 
   const navigate = useNavigate();
 
-  const theme = useAppSelector((state) => state.theme);
   const { atoken } = useAppSelector((state) => state.auth);
 
   const hasAside = getAside(pathname);
 
-  const { sidebar } = theme || defaultThemeConfig;
-  const isFolded = sidebar === "folded";
   const showFull = Boolean(isFolded && !isMobile);
 
   return (
