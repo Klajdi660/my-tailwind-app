@@ -58,8 +58,7 @@ export const useGamesService = () => {
       setLoading(true);
 
       const response = await HttpClient.get<ServerResponse>(
-        GET_GAME_DETAIL_API,
-        { gameId }
+        `${GET_GAME_DETAIL_API}/${gameId}`
       );
 
       setLoading(false);
@@ -79,8 +78,7 @@ export const useGamesService = () => {
   ): Promise<GameVideosResponse[]> => {
     try {
       const response = await HttpClient.get<ServerResponse>(
-        GET_GAME_VIDEOS_API,
-        { gameId }
+        `${GET_GAME_VIDEOS_API}/:${gameId}`
       );
 
       if (response.error) throw response;
@@ -97,8 +95,7 @@ export const useGamesService = () => {
   ): Promise<GameReviewsResponse[]> => {
     try {
       const response = await HttpClient.get<ServerResponse>(
-        GET_GAME_REVIEWS_API,
-        { gameId }
+        `${GET_GAME_REVIEWS_API}/${gameId}`
       );
 
       if (response.error) throw response;
