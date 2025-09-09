@@ -24,12 +24,12 @@ export const useGames = () => {
       queryKey: ["games", params],
       queryFn: async ({ pageParam = 1 }) => await getGames(pageParam, params),
       getNextPageParam: (lastPage, allPages) => {
-        return lastPage.next ? allPages.length + 1 : undefined;
+        return lastPage?.next ? allPages.length + 1 : undefined;
       },
       initialPageParam: 1,
     });
 
-    return { gameList, isLoading, fetchNextPage, hasNextPage };
+    return { gameList: gameList?.pages, isLoading, fetchNextPage, hasNextPage };
   };
 
   const useGameDetail = (gameId: number | any) => {

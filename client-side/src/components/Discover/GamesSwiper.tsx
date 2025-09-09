@@ -32,20 +32,24 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
   const isGameGenreList =
     swiperType === "genre" && isGameGenreListSuccess && gameGenreList;
 
+  console.log("gameList :>> ", gameList);
+
   return (
     <div
       className={classNames(sectionName, "flex flex-col gap-4")}
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => setIsCardHovered(false)}
     >
-      <SwiperButton
-        titleName={titleName}
-        prevRef={prevRef}
-        nextRef={nextRef}
-        isEnd={isEnd}
-        isBeginning={isBeginning}
-        isCardHovered={isCardHovered}
-      />
+      {((gameList && gameList[0]?.results?.length) || isGameGenreList) && (
+        <SwiperButton
+          titleName={titleName}
+          prevRef={prevRef}
+          nextRef={nextRef}
+          isEnd={isEnd}
+          isBeginning={isBeginning}
+          isCardHovered={isCardHovered}
+        />
+      )}
       <div className="flex items-center">
         <SwiperComponent
           modules={[Navigation]}
@@ -76,9 +80,9 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
                 </SwiperSlide>
               ))
             : gameList &&
-              gameList.pages.map((page, index) => (
+              gameList.map((page, index) => (
                 <div key={index}>
-                  {page?.results?.map((game) => (
+                  {page.results.map((game) => (
                     <SwiperSlide key={game.id}>
                       <MediaCard key={game.id} game={game} />
                     </SwiperSlide>
@@ -90,61 +94,3 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
     </div>
   );
 };
-
-//  <div className="relative">
-//         <SwiperComponent
-//           slidesPerView={isMobile ? 2 : 5}
-//           spaceBetween={10}
-//           navigation={{
-//             nextEl: ".custom-next",
-//             prevEl: ".custom-prev",
-//           }}
-//           modules={[Navigation]}
-//           centeredSlides={false}
-//           onSlideChange={(swiper) => {
-//             setIsBeginning(swiper.isBeginning);
-//             setIsEnd(swiper.isEnd);
-//           }}
-//         >
-//           {isGameGenreList &&
-//             sortedGameGenres.map((genre: any) => (
-//               <SwiperSlide key={genre.id}>
-//                 <GenreCard
-//                   genreId={genre.id}
-//                   genreName={genre.name}
-//                   genreImg={genre.image_background}
-//                   genreCount={genre.games_count}
-//                 />
-//               </SwiperSlide>
-//             ))}
-//         </SwiperComponent>
-//         <div className="absolute inset-y-0 left-0 flex items-center">
-//           <button
-//             className={classNames(
-//               "custom-prev w-10 h-10 rounded-full flex justify-center items-center z-10 group hover:bg-primary-opacity transition-opacity duration-300",
-//               isBeginning ? "opacity-0 pointer-events-none" : "opacity-100"
-//             )}
-//           >
-//             <Icon
-//               name="MdKeyboardArrowLeft"
-//               size={30}
-//               className="text-onNeutralBg group-hover:text-primary"
-//             />
-//           </button>
-//         </div>
-
-//         <div className="absolute inset-y-0 right-0 flex items-center">
-//           <button
-//             className={classNames(
-//               "custom-next w-10 h-10 rounded-full flex justify-center items-center z-10 group hover:bg-primary-opacity transition-opacity duration-300",
-//               isEnd ? "opacity-0 pointer-events-none" : "opacity-100"
-//             )}
-//           >
-//             <Icon
-//               name="MdKeyboardArrowRight"
-//               size={30}
-//               className="text-onNeutralBg group-hover:text-primary"
-//             />
-//           </button>
-//         </div>
-//       </div>

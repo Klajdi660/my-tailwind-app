@@ -29,9 +29,9 @@ export const useProfileService = () => {
   } = profileEndpoints;
   const { ERROR, SUCCESS } = notifyVariant;
 
+  const dispatch = useDispatch();
   const { setLoading } = useStore();
   const [notify] = useNotification();
-  const dispatch = useDispatch();
 
   const changeUsername = async (values: EditProfileValues) => {
     try {

@@ -5,8 +5,6 @@ import { GamesSwiper } from "../../components";
 export const DiscoverPage: FC = () => {
   const { currentDate, lastYear } = getDataPeriod();
 
-  // flex flex-col gap-6
-
   return (
     <section className="discover_page">
       <div className="flex flex-col gap-y-6">

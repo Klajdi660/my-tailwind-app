@@ -30,7 +30,7 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
 
   if (!gameList) return;
 
-  const dataLength = gameList.pages.reduce(
+  const dataLength = gameList.reduce(
     (total, page) => total + page.results.length,
     0
   );
@@ -52,8 +52,8 @@ export const MediaSection: FC<MediaSectionProps> = (props) => {
             </div>
           </div>
         )}
-        {gameList.pages &&
-          gameList.pages.map((page, index) => {
+        {gameList &&
+          gameList.map((page, index) => {
             return (
               <div
                 ref={parent}

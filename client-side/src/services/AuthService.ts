@@ -22,16 +22,15 @@ import { notifyVariant, paths } from "../data";
 import { useNotification, useStore } from "../hooks";
 
 export const useAuthService = (): AuthService => {
-  const { LOGIN_API, LOGOUT_API, LOGIN_HELP_API, LOGIN_SAVED_USER_API } =
-    endpoints;
   const { VERIFY_CODE } = paths;
   const { ERROR } = notifyVariant;
+  const { LOGIN_API, LOGOUT_API, LOGIN_HELP_API, LOGIN_SAVED_USER_API } =
+    endpoints;
 
-  const { setLoading, setServiceResponse } = useStore();
-  const [notify] = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const [notify] = useNotification();
+  const { setLoading, setServiceResponse } = useStore();
   const { user } = useAppSelector((state) => state.user);
 
   const login = async (values: LoginValues): Promise<void> => {

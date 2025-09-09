@@ -21,8 +21,6 @@ import { notifyVariant, paths } from "../data";
 import { useNotification, useStore } from "../hooks";
 
 export const useUserService = () => {
-  const { DISCOVER, VERIFY_CODE, LOGIN, RESET_PASSWORD } = paths;
-  const { ERROR, SUCCESS, INFO } = notifyVariant;
   const {
     CREATE_ACCOUNT_API,
     GET_USER_DETAILS_API,
@@ -32,12 +30,13 @@ export const useUserService = () => {
     RESEND_CODE_API,
     RESET_PASSWORD_API,
   } = userEndpoints;
+  const { ERROR, SUCCESS, INFO } = notifyVariant;
+  const { DISCOVER, VERIFY_CODE, LOGIN, RESET_PASSWORD } = paths;
 
-  const { setLoading, setServiceResponse } = useStore();
-  const [notify] = useNotification();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [notify] = useNotification();
+  const { setLoading, setServiceResponse } = useStore();
   const { user } = useAppSelector((state) => state.user);
 
   const createAccount = async (values: CreateAccountValues): Promise<void> => {
