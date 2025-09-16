@@ -8,7 +8,6 @@ import {
 } from "../types";
 import { paths } from "./general.data";
 import { endpoints } from "../services";
-import { APP_PREFIX, APP_URL } from "../configs";
 
 const { OAUTH_GOOGLE_API } = endpoints;
 const { REGISTER, LOGIN, LOGIN_HELP } = paths;
@@ -41,7 +40,7 @@ export const socialAuthList: SocialAuthList[] = [
     id: 1,
     name: "Google",
     icon: "FcGoogle",
-    link: `${APP_URL}${APP_PREFIX}${OAUTH_GOOGLE_API}`,
+    link: `${process.env.REACT_APP_URL}${process.env.REACT_APP_PREFIX}${OAUTH_GOOGLE_API}`,
   },
 ];
 

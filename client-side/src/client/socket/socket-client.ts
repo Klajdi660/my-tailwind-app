@@ -1,8 +1,9 @@
 import { io } from "socket.io-client";
 import { store } from "../../store";
-import { SOCKET_URL } from "../../configs";
 
-const instance = io(SOCKET_URL, {
+const url = process.env.REACT_APP_SOCKET_URL || "";
+
+const instance = io(url, {
   query: {
     token: store.getState().auth.atoken,
   },
