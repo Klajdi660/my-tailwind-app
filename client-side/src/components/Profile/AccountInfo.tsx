@@ -11,7 +11,7 @@ export const AccountInfo: FC = () => {
   const { avatar, firstName, lastName, phoneNr, address, balance } = user.extra;
 
   return (
-    <div className="w-64 h-full flex flex-col gap-4 p-6 bg-card rounded">
+    <div className="w-full md:w-1/2 h-full flex flex-col gap-4 p-6 bg-card rounded">
       <div className="flex flex-col gap-4">
         <Image
           imgUrl={avatar ?? userIcon}

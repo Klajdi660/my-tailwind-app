@@ -26,6 +26,7 @@ import {
   BsThreeDots,
   BsShieldLock,
   BsThreeDotsVertical,
+  BsNintendoSwitch
 } from "react-icons/bs";
 import { CiShoppingTag, CiEdit } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
@@ -101,7 +102,6 @@ import {
   RiDeleteBinLine,
 } from "react-icons/ri";
 import { SlLocationPin, SlSocialDropbox } from "react-icons/sl";
-import { SiNintendo } from "react-icons/si";
 import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
 
@@ -125,6 +125,7 @@ const icons: IconsMap = {
   BiChevronsRight,
   BiSelectMultiple,
   BsGlobe,
+  BsNintendoSwitch,
   BsThreeDots,
   BsShieldLock,
   BsThreeDotsVertical,
@@ -195,8 +196,7 @@ const icons: IconsMap = {
   RiDeleteBinLine,
   SlLocationPin,
   SlSocialDropbox,
-  SiNintendo,
-  IoCloseCircleOutline,
+    IoCloseCircleOutline,
   MdOutlineMail,
   MdOutlinePhoneAndroid,
 };

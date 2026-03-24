@@ -9,7 +9,7 @@ export const AccountPaymentMethods: FC = () => {
   console.log("user.extra :>> ", user.extra);
 
   return (
-    <div className="w-[500px] h-full flex flex-col justify-between gap-8 p-6 bg-card rounded">
+    <div className="w-full h-full flex flex-col justify-between gap-8 p-6 bg-card rounded">
       <div className="flex_justify_between">
         <Typography.Title
           level={4}

@@ -8,9 +8,9 @@ import {
 
 export const AccountSettings: FC = () => {
   return (
-    <div className="flex_justify_between w-full gap-6">
+    <div className="w-full flex md:flex-row flex-col gap-6">
       <AccountInfo />
-      <div className="w-[500px] h-full flex flex-col gap-6">
+      <div className="w-full flex flex-col gap-6">
         <AccountDetails />
         <AccountShippingAddress />
       </div>
