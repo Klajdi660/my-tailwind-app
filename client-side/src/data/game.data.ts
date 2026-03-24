@@ -14,7 +14,7 @@ export const gameIconMap: GameIconMapsProperties = {
   linux: "FaLinux",
   ios: "MdPhoneIphone",
   android: "FaAndroid",
-  nintendo: "SiNintendo",
+  nintendo: "BsNintendoSwitch",
   playstation: "FaPlaystation",
 };
 
