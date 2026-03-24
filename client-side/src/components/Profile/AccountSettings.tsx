@@ -1,20 +1,20 @@
 import { FC } from "react";
 import {
-  ChangePassword,
-  DeleteAccount,
-  PersonalDetails,
-  ProfilePhoto,
-  UserInfo,
+  AccountDetails,
+  AccountInfo,
+  AccountPaymentMethods,
+  AccountShippingAddress,
 } from "../../components";
 
 export const AccountSettings: FC = () => {
   return (
-    <div className="flex flex-col gap-4">
-      <ProfilePhoto />
-      <UserInfo />
-      <PersonalDetails />
-      <ChangePassword />
-      <DeleteAccount />
+    <div className="w-full flex md:flex-row flex-col gap-6">
+      <AccountInfo />
+      <div className="w-full flex flex-col gap-6">
+        <AccountDetails />
+        <AccountShippingAddress />
+      </div>
+      <AccountPaymentMethods />
     </div>
   );
 };

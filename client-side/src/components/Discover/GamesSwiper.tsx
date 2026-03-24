@@ -32,7 +32,6 @@ export const GamesSwiper: FC<GamesSwiperProps> = (props) => {
   const isGameGenreList =
     swiperType === "genre" && isGameGenreListSuccess && gameGenreList;
 
-  console.log("gameList :>> ", gameList);
 
   return (
     <div
