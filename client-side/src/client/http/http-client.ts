@@ -5,6 +5,7 @@ import axios, {
 } from "axios";
 import { store } from "../../store";
 
+
 const instance = axios.create({
   baseURL: `${process.env.REACT_APP_URL}/${process.env.REACT_APP_PREFIX}`,
   timeout: Number(process.env.REACT_APP_AXIOS_TIMEOUT_DURATION),

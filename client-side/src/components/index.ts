@@ -51,14 +51,16 @@ export { GameTabReviews } from "./GameDetail/GameTabReviews";
 export { SliderGames } from "./Home/SliderGames";
 
 // PROFILE
-export { UserInfo } from "./Profile/UserInfo";
-export { ProfilePhoto } from "./Profile/ProfilePhoto";
+export { AccountInfo } from "./Profile/AccountInfo";
+export { AccountDetails } from "./Profile/AccountDetails";
+export { AccountShippingAddress } from "./Profile/AccountShippingAddress";
+export { AccountPaymentMethods } from "./Profile/AccountPaymentMethods";
+
 export { DeleteAccount } from "./Profile/DeleteAccount";
 export { ChangePassword } from "./Profile/ChangePassword";
 export { AccountSettings } from "./Profile/AccountSettings";
 export { GeneralSettings } from "./Profile/GeneralSettings";
 export { PaymentSettings } from "./Profile/PaymentSettings";
-export { PersonalDetails } from "./Profile/PersonalDetails";
 export { ProfileDropdown } from "./Profile/ProfileDropDown";
 export { ProfileSidebar } from "./Profile/ProfileSidebar";
 export { ProfileSidebarMobile } from "./Profile/ProfileSidebarMobile";

@@ -27,7 +27,7 @@ import {
   BsShieldLock,
   BsThreeDotsVertical,
 } from "react-icons/bs";
-import { CiShoppingTag } from "react-icons/ci";
+import { CiShoppingTag, CiEdit } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
 import {
   FaXbox,
@@ -60,7 +60,7 @@ import {
 } from "react-icons/hi";
 import { HiChartBar } from "react-icons/hi2";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { IoCloseCircleOutline } from "react-icons/io5";
+import { IoCloseCircleOutline, IoWalletOutline } from "react-icons/io5";
 import { LiaSignOutAltSolid, LiaCarSideSolid } from "react-icons/lia";
 import { LuShip, LuArrowDownUp } from "react-icons/lu";
 import {
@@ -83,6 +83,10 @@ import {
   MdOutlineCheckCircleOutline,
   MdOutlineCheckCircle,
   MdKeyboardArrowDown,
+  MdOutlineLocationOn,
+  MdOutlineMail,
+  MdOutlinePhoneAndroid,
+  MdOutlineVerifiedUser,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import {
@@ -125,6 +129,7 @@ const icons: IconsMap = {
   BsShieldLock,
   BsThreeDotsVertical,
   CiShoppingTag,
+  CiEdit,
   CgGames,
   FaXbox,
   FaApple,
@@ -153,6 +158,7 @@ const icons: IconsMap = {
   HiMenuAlt2,
   HiChartBar,
   HiOutlinePencil,
+  IoWalletOutline,
   IoMdNotificationsOutline,
   LiaCarSideSolid,
   LiaSignOutAltSolid,
@@ -172,11 +178,13 @@ const icons: IconsMap = {
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
   MdKeyboardArrowUp,
+  MdOutlineVerifiedUser,
   MdOutlineSort,
   MdOutlineCheckCircleOutline,
   MdOutlineCheckBoxOutlineBlank,
   MdOutlineCheckCircle,
   MdKeyboardArrowDown,
+  MdOutlineLocationOn,
   GoArrowLeft,
   PiWarningCircle,
   PiWarningCircleBold,
@@ -189,6 +197,8 @@ const icons: IconsMap = {
   SlSocialDropbox,
   SiNintendo,
   IoCloseCircleOutline,
+  MdOutlineMail,
+  MdOutlinePhoneAndroid,
 };
 
 export const Icon: FC<IconParams> = ({
