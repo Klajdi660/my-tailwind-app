@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { Button, Tag } from "antd";
 import creditCardType from "credit-card-type";
-import { firstLetterToUpperCase } from "../../utils";
-import { useAppSelector } from "../../store";
 import { Icon } from "../../components";
-import { Tag } from "antd";
+import { useAppSelector } from "../../store";
+import { firstLetterToUpperCase } from "../../utils";
 
 export const PaymentSettings: FC = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -15,7 +15,7 @@ export const PaymentSettings: FC = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4 text-onNeutralBg">
+    <div className="flex flex-col gap-2 text-onNeutralBg">
       {savedCards.length > 0 && (
         <>
           {savedCards.map((card: any) => {
@@ -26,15 +26,24 @@ export const PaymentSettings: FC = () => {
             return (
               <div
                 key={card.cardNr}
-                className="flex_justify_between p-4 bg-primary-opacity rounded"
+                className="flex_justify_between p-4 bg-main rounded"
               >
                 <div className="flex_justify_start gap-4">
                   <Icon name="FaCreditCard" size={30} />
                   <p>
                     {cardType} - {card.cardNr.slice(-4)}
                   </p>
-                  {card.isDefault && <Tag variant="filled" color="#87d068">Default</Tag>}
+                  {card.isDefault && (
+                    <Tag variant="filled" color="blue">
+                      Default
+                    </Tag>
+                  )}
                 </div>
+                <Button
+                  variant="text"
+                  color="default"
+                  icon={<Icon name="BsThreeDots" />}
+                />
               </div>
             );
           })}

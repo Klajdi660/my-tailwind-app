@@ -319,3 +319,11 @@ input[type="checkbox"] {
   --swiper-theme-color: white !important;
   --swiper-navigation-size: 15px !important;
 }
+
+/* Button */
+.ant-btn,
+.ant-btn span {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
