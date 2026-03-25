@@ -141,24 +141,25 @@ export const navlinks: NavLinkList[] = [
 
 export const settingsLinks: SettingsLinksParams[] = [
   {
-    id: "general",
-    name: "General Settings",
-    icon: "AiOutlineSetting",
-  },
-  {
     id: "account",
-    name: "Account Settings",
+    name: "Account",
     icon: "MdOutlineSwitchAccount",
   },
   {
+    id: "general",
+    name: "Settings",
+    icon: "AiOutlineSetting",
+  },
+
+  {
     id: "shipping",
-    name: "Shipping Address",
-    icon: "LuShip",
+    name: "Security",
+    icon: "MdOutlineVerifiedUser",
   },
   {
     id: "payments",
-    name: "Payment Methods",
-    icon: "MdOutlinePayment",
+    name: "Transactions",
+    icon: "GrTransaction",
   },
 ];
 

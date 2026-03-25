@@ -26,7 +26,7 @@ import {
   BsThreeDots,
   BsShieldLock,
   BsThreeDotsVertical,
-  BsNintendoSwitch
+  BsNintendoSwitch,
 } from "react-icons/bs";
 import { CiShoppingTag, CiEdit } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
@@ -90,6 +90,7 @@ import {
   MdOutlineVerifiedUser,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
+import { GrTransaction } from "react-icons/gr";
 import {
   PiWarningCircle,
   PiWarningCircleBold,
@@ -102,6 +103,7 @@ import {
   RiDeleteBinLine,
 } from "react-icons/ri";
 import { SlLocationPin, SlSocialDropbox } from "react-icons/sl";
+import { TbTransactionDollar } from "react-icons/tb";
 import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
 
@@ -196,9 +198,11 @@ const icons: IconsMap = {
   RiDeleteBinLine,
   SlLocationPin,
   SlSocialDropbox,
-    IoCloseCircleOutline,
+  IoCloseCircleOutline,
   MdOutlineMail,
   MdOutlinePhoneAndroid,
+  TbTransactionDollar,
+  GrTransaction,
 };
 
 export const Icon: FC<IconParams> = ({

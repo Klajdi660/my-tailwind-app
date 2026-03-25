@@ -62,8 +62,6 @@ export { AccountSettings } from "./Profile/AccountSettings";
 export { GeneralSettings } from "./Profile/GeneralSettings";
 export { PaymentSettings } from "./Profile/PaymentSettings";
 export { ProfileDropdown } from "./Profile/ProfileDropDown";
-export { ProfileSidebar } from "./Profile/ProfileSidebar";
-export { ProfileSidebarMobile } from "./Profile/ProfileSidebarMobile";
 export { ShippingAddressSettings } from "./Profile/ShippingAddressSettings";
 export { ProfileDropdownMenu } from "./Profile/ProfileDropdownMenu";
 export { ProfileView } from "./Profile/ProfileView";
@@ -74,6 +72,7 @@ export { TopPlaySection } from "./Sections/TopPlaySection";
 
 // SIDEBAR
 export { Sidebar } from "./Sidebar/Sidebar";
+export { ProfileSidebar } from "./Sidebar/ProfileSidebar";
 
 // SKELETON
 export { TitleSkeleton } from "./Skeleton/TitleSkeleton";
