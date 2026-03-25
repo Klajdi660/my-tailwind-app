@@ -75,7 +75,7 @@ export const Form: FC<FormProps> = (props) => {
                   optionLabelProp="selected"
                   className="contactNr-select bg-primary-opacity ml-2"
                   placeholder="Prefix"
-                  dropdownStyle={{ width: 250 }}
+                  styles={{ popup: { root: { width: 250 } } }}
                   onChange={(value) => setPhonePrefix(value)}
                 />
               )}

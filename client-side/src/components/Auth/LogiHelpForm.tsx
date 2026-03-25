@@ -118,7 +118,7 @@ export const LoginHelpForm: FC<LoginHelpFormProps> = (props) => {
                   optionLabelProp="selected"
                   className="contactNr-select bg-primary-opacity"
                   placeholder="Prefix"
-                  dropdownStyle={{ width: 250 }}
+                  styles={{ popup: { root: { width: 250 } } }}
                   onChange={(value) => setPhonePrefix(value)}
                 />
                 <input

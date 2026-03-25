@@ -30,7 +30,7 @@ export const MediaCard: FC<MediaCardProps> = ({ game }) => {
       </div>
       <div className="flex flex-col gap-1">
         <div className="flex flex-col">
-          <p className="text-xs text-secondary">{genres[0].name}</p>
+          <p className="text-xs text-secondary">{genres[0]?.name}</p>
           <h6
             className="text-sm font-semibold text-onNeutralBg cursor-pointer hover:text-primary"
             onClick={() => navigate(`${GAME_DETAILS}/${id}`)}

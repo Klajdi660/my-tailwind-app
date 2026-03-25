@@ -173,7 +173,7 @@ export const PersonalDetails: FC = () => {
                 optionLabelProp="selected"
                 className="contactNr-select bg-primary-opacity"
                 placeholder="Prefix"
-                dropdownStyle={{ width: 250 }}
+                styles={{ popup: { root: { width: 250 } } }}
                 defaultValue={phonePrfx ? phonePrfx : null}
                 showSearch
                 filterOption={filterPhonePrefix}
