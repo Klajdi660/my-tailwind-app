@@ -78,7 +78,7 @@ export const useGamesService = () => {
   ): Promise<GameVideosResponse[]> => {
     try {
       const response = await HttpClient.get<ServerResponse>(
-        `${GET_GAME_VIDEOS_API}/:${gameId}`,
+        `${GET_GAME_VIDEOS_API}/${gameId}`,
       );
 
       if (response.error) throw response;

@@ -29,7 +29,7 @@ export const Form: FC<FormProps> = (props) => {
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    name: FormFieldName
+    name: FormFieldName,
   ) => {
     form(name).onChange(e);
 
@@ -62,7 +62,7 @@ export const Form: FC<FormProps> = (props) => {
               "flex items-center relative rounded",
               errors[item.name]
                 ? "border border-red-500"
-                : "border border-divider focus-within:border-primary"
+                : "border border-divider focus-within:border-primary",
             )}
           >
             {["identifier"].includes(item.name) &&
@@ -75,12 +75,12 @@ export const Form: FC<FormProps> = (props) => {
                   optionLabelProp="selected"
                   className="contactNr-select bg-primary-opacity ml-2"
                   placeholder="Prefix"
-                  dropdownStyle={{ width: 250 }}
+                  styles={{ popup: { root: { width: 250 } } }}
                   onChange={(value) => setPhonePrefix(value)}
                 />
               )}
             <input
-              className="w-full h-12 px-2 text-sm text-onNeutralBg bg-transparent no-focus outline-0 disabled:text-secondary rounded"
+              className="w-full h-12 px-2 text-sm text-onNeutralBg bg-transparent no-focus outline-0 disabled:text-secondary"
               placeholder={item.placeholder}
               type={
                 ["password", "confirmPassword"].includes(item.name)
@@ -97,7 +97,7 @@ export const Form: FC<FormProps> = (props) => {
               className={classNames(
                 "absolute right-2 top-[50%] translate-y-[-50%]",
                 "opacity-0 pointer-events-none transition-opacity duration-200",
-                "focus-within:opacity-100 focus-within:pointer-events-auto"
+                "focus-within:opacity-100 focus-within:pointer-events-auto",
               )}
             >
               {["password", "confirmPassword"].includes(item.name) && (

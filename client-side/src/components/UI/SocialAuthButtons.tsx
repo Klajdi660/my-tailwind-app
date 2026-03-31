@@ -8,10 +8,10 @@ export const SocialAuthButton: FC = () => {
     <>
       <div className="flex flex-col gap-3 social_medium_buttons">
         {socialAuthList.map((item) => (
-          <Link key={item.id} to={item.link} className="link group">
+          <Link key={item.id} to={item.link} className="link">
             <button className="flex_justify_center items-center w-full p-3 gap-2 text-left border rounded border-divider hover:bg-primary-opacity">
               <Icon name={item.icon} size={25} />
-              <span className="text-sm text-onNeutralBg group-hover:text-primary">
+              <span className="text-sm text-onNeutralBg">
                 Log in with {item.name}
               </span>
             </button>

@@ -37,7 +37,7 @@ export const socialAuthList: SocialAuthList[] = [
     id: 1,
     name: "Google",
     icon: "FcGoogle",
-    link: `${process.env.REACT_APP_URL}${process.env.REACT_APP_PREFIX}${endpoints.OAUTH_GOOGLE_API}`,
+    link: `${process.env.REACT_APP_URL}/${process.env.REACT_APP_PREFIX}${endpoints.OAUTH_GOOGLE_API}`,
   },
 ];
 
