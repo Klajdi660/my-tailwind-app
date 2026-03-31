@@ -13,7 +13,9 @@ export const themeConfig: ThemeConfig = {
     cyan: {
       primary: "#0077B5",
       primaryLightGray: "#107490",
-      primaryOpacity: "rgba(16, 116, 144, 0.1)",
+      // primaryOpacity: "rgba(16, 116, 144, 0.1)",
+      // primaryOpacity:"rgba(255, 255, 255, 0.1)" // dark
+      primaryOpacity: "rgba(0, 0, 0, 0.05)", // light
     },
   },
   modes: ["light", "dark"],

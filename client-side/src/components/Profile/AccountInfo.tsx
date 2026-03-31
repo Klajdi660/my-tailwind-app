@@ -37,23 +37,23 @@ export const AccountInfo: FC = () => {
           />
         </div>
         <div className="flex_justify_between">
-          <Icon name="MdOutlineVerifiedUser" className="text-gray-400" />
+          <p className="text-gray-400">Account Status</p>
           <p>{verified ? "Verified" : "Not Verified"}</p>
         </div>
         <div className="flex_justify_between">
-          <Icon name="IoWalletOutline" className="text-gray-400" />
+          <p className="text-gray-400">Balance</p>
           <p>{balance ?? "$0.00"}</p>
         </div>
         <div className="flex_justify_between">
-          <Icon name="MdOutlineLocationOn" className="text-gray-400" />
+          <p className="text-gray-400">Address</p>
           <p>{address ?? "---"}</p>
         </div>
         <div className="flex_justify_between">
-          <Icon name="MdOutlineMail" className="text-gray-400" />
+          <p className="text-gray-400">Email</p>
           <p>{email ?? "---"}</p>
         </div>
         <div className="flex_justify_between">
-          <Icon name="MdOutlinePhoneAndroid" className="text-gray-400" />
+          <p className="text-gray-400">Phone Number</p>
           <p>{phoneNr ?? "---"}</p>
         </div>
       </div>
