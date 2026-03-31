@@ -13,8 +13,8 @@ import {
   ServerResponseError,
 } from "../types";
 import { HttpClient } from "../client";
-import { useNotification, useStore } from "../hooks";
 import { notifyVariant } from "../data";
+import { useNotification, useStore } from "../hooks";
 
 export const useProfileService = () => {
   const {
@@ -27,7 +27,6 @@ export const useProfileService = () => {
     CANCEL_DELETION_ACCOUNT_API,
     ADD_NEW_CREDIR_CARD_API,
   } = profileEndpoints;
-  const { ERROR, SUCCESS } = notifyVariant;
 
   const dispatch = useDispatch();
   const { setLoading } = useStore();
@@ -39,33 +38,31 @@ export const useProfileService = () => {
 
       const response = await HttpClient.post<ServerResponse>(
         CHANGE_USERNAME_API,
-        values
+        values,
       );
 
       setLoading(false);
 
-      const { error, message, data } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
-
-      data.extra = {
-        ...JSON.parse(data.extra),
+      response.data.extra = {
+        ...JSON.parse(response.data.extra),
       };
 
-      localStorage.setItem("user", JSON.stringify(data));
-      dispatch(setUser(data));
+      localStorage.setItem("user", JSON.stringify(response.data));
+      dispatch(setUser(response.data));
 
       notify({
-        variant: SUCCESS,
-        description: message,
+        variant: notifyVariant.SUCCESS,
+        description: response.message,
       });
-      return { error: false, message };
+      return { error: false, message: response.message };
     } catch (err) {
       const error = err as ServerResponseError;
       console.error(`change_username_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
       throw error;
@@ -78,34 +75,32 @@ export const useProfileService = () => {
 
       const response = await HttpClient.post<ServerResponse>(
         UPDATE_PROFILE_API,
-        values
+        values,
       );
 
       setLoading(false);
 
-      const { error, message, data } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
+      const extra = JSON.parse(response.data.extra);
 
-      const extra = JSON.parse(data.extra);
-
-      data.extra = {
+      response.data.extra = {
         ...extra,
       };
 
-      localStorage.setItem("user", JSON.stringify(data));
-      dispatch(setUser(data));
+      localStorage.setItem("user", JSON.stringify(response.data));
+      dispatch(setUser(response.data));
 
       notify({
-        variant: SUCCESS,
-        description: message,
+        variant: notifyVariant.SUCCESS,
+        description: response.message,
       });
     } catch (err) {
       const error = err as ServerResponseError;
       console.error(`update_profile_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
 
@@ -122,36 +117,34 @@ export const useProfileService = () => {
       const response = await HttpClient.put<ServerResponse>(
         UPDATE_PROFILE_PICTURE_API,
         formData,
-        { headers }
+        { headers },
       );
 
-      const { error, message, data } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
-
-      const extra = JSON.parse(data.extra);
-      data.extra = {
+      const extra = JSON.parse(response.data.extra);
+      response.data.extra = {
         ...extra,
       };
 
-      localStorage.setItem("user", JSON.stringify(data));
-      dispatch(setUser(data));
+      localStorage.setItem("user", JSON.stringify(response.data));
+      dispatch(setUser(response.data));
       // dispatch(
       //   setSavedAuthUser({
-      //     id: data.id,
-      //     photo: data.extra.avatar,
+      //     id: response.data.id,
+      //     photo: response.data.extra.avatar,
       //   })
       // );
 
       notify({
-        variant: SUCCESS,
-        description: message,
+        variant: notifyVariant.SUCCESS,
+        description: response.message,
       });
     } catch (err) {
       const error = err as ServerResponseError;
       console.error(`Failed to upload profile photo: ${error}`);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
     }
@@ -160,37 +153,35 @@ export const useProfileService = () => {
   const removeDisplayPicture = async () => {
     try {
       const response = await HttpClient.delete<ServerResponse>(
-        DELETE_PROFILE_PICTURE_API
+        DELETE_PROFILE_PICTURE_API,
       );
 
-      const { error, message, data } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
-
-      const extra = JSON.parse(data.extra);
-      data.extra = {
+      const extra = JSON.parse(response.data.extra);
+      response.data.extra = {
         ...extra,
       };
 
-      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("user", JSON.stringify(response.data));
 
-      dispatch(setUser(data));
+      dispatch(setUser(response.data));
       // dispatch(
       //   setSavedAuthUser({
-      //     id: data.id,
-      //     photo: data.extra.avatar,
+      //     id: response.data.id,
+      //     photo: response.data.extra.avatar,
       //   })
       // );
 
       notify({
-        variant: SUCCESS,
-        description: message,
+        variant: notifyVariant.SUCCESS,
+        description: response.message,
       });
     } catch (err) {
       const error = err as ServerResponseError;
       console.error(`Failed to remove profile photo: ${error}`);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
     }
@@ -202,32 +193,30 @@ export const useProfileService = () => {
 
       const response = await HttpClient.post<ServerResponse>(
         DELETE_PROFILE_API,
-        values
+        values,
       );
 
       setLoading(false);
 
-      const { error, message, data } = response;
-
-      if (error) throw response;
+      if (response.error) throw response;
 
       dispatch(setIsAccountDelete({ isAccountDelete: true }));
       dispatch(
         setAccountDeleteDaysDifference({
-          accoundDeleteDaysDifference: data.daysDifference,
-        })
+          accoundDeleteDaysDifference: response.data.daysDifference,
+        }),
       );
 
       notify({
-        variant: SUCCESS,
-        description: message,
+        variant: notifyVariant.SUCCESS,
+        description: response.message,
       });
     } catch (err) {
       const error = err as ServerResponseError;
       console.error(`delete_profile_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
       throw error;
@@ -239,27 +228,25 @@ export const useProfileService = () => {
       setLoading(true);
 
       const response = await HttpClient.post<ServerResponse>(
-        CANCEL_DELETION_ACCOUNT_API
+        CANCEL_DELETION_ACCOUNT_API,
       );
 
       setLoading(false);
 
-      const { error, message } = response;
-
-      if (error) throw response;
+      if (response.error) throw response;
 
       dispatch(setIsAccountDelete({ isAccountDelete: false }));
 
       notify({
-        variant: SUCCESS,
-        description: message,
+        variant: notifyVariant.SUCCESS,
+        description: response.message,
       });
     } catch (err) {
       const error = err as ServerResponseError;
       console.error(`cancel_delete_profile_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
       throw error;
@@ -267,14 +254,14 @@ export const useProfileService = () => {
   };
 
   const changePassword = async (
-    values: ChangePasswordValues
+    values: ChangePasswordValues,
   ): Promise<void> => {
     try {
       setLoading(true);
 
       const response = await HttpClient.post<ServerResponse>(
         CHANGE_PASSWORD_API,
-        values
+        values,
       );
 
       setLoading(false);
@@ -284,7 +271,7 @@ export const useProfileService = () => {
       if (error) throw response;
 
       notify({
-        variant: SUCCESS,
+        variant: notifyVariant.SUCCESS,
         description: message,
       });
     } catch (err) {
@@ -292,7 +279,7 @@ export const useProfileService = () => {
       console.error(`change_password_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
 
@@ -304,22 +291,20 @@ export const useProfileService = () => {
     try {
       const response = await HttpClient.post<ServerResponse>(
         ADD_NEW_CREDIR_CARD_API,
-        values
+        values,
       );
 
-      const { error, message } = response;
-
-      if (error) throw response;
+      if (response.error) throw response;
 
       notify({
-        variant: SUCCESS,
-        description: message,
+        variant: notifyVariant.SUCCESS,
+        description: response.message,
       });
     } catch (err) {
       const error = err as ServerResponseError;
       console.error(`add_new_credit_card_error: ${JSON.stringify(error)}`);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
       throw error;

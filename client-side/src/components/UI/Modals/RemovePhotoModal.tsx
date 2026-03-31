@@ -32,7 +32,7 @@ export const RemovePhotoModal: FC = () => {
       open={modals["removePhotoModal"]}
       onCancel={handleModalClose}
       width={400}
-      destroyOnClose={true}
+      destroyOnHidden={true}
     >
       <div className="modal-header w-full text-xl text-onNeutralBg font-semibold flex items-center">
         Delete profile photo

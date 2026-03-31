@@ -22,8 +22,6 @@ import { notifyVariant, paths } from "../data";
 import { useNotification, useStore } from "../hooks";
 
 export const useAuthService = (): AuthService => {
-  const { VERIFY_CODE } = paths;
-  const { ERROR } = notifyVariant;
   const { LOGIN_API, LOGOUT_API, LOGIN_HELP_API, LOGIN_SAVED_USER_API } =
     endpoints;
 
@@ -45,16 +43,14 @@ export const useAuthService = (): AuthService => {
 
       const response = await HttpClient.post<ServerResponse>(
         LOGIN_API,
-        payload
+        payload,
       );
 
       setLoading(false);
 
-      const { error, data } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
-
-      const { aToken, rToken, user } = data;
+      const { aToken, rToken, user } = response.data;
       user.extra = {
         ...JSON.parse(user.extra),
       };
@@ -70,7 +66,6 @@ export const useAuthService = (): AuthService => {
       localStorage.setItem("user", JSON.stringify(user));
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`login_error: ${JSON.stringify(error)}`);
       reset({ password: "" });
       setLoading(false);
       setServiceResponse({
@@ -93,24 +88,20 @@ export const useAuthService = (): AuthService => {
 
       const response = await HttpClient.post<ServerResponse>(
         LOGIN_HELP_API,
-        payload
+        payload,
       );
 
       setLoading(false);
 
-      const { error, message, data } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
-
-      const { username } = data;
-      const extra = JSON.parse(data.extra);
-      const { firstName, lastName } = extra;
+      const extra = JSON.parse(response.data.extra);
 
       const verifyCodeData = {
-        username,
+        username: response.data.username,
         email: email ? email : "",
         phoneNr: phoneNr ? `${phonePrefix}${phoneNr}` : "",
-        fullname: `${firstName} ${lastName}`,
+        fullname: `${extra.firstName} ${extra.lastName}`,
         toFormName,
         action,
       };
@@ -118,12 +109,11 @@ export const useAuthService = (): AuthService => {
       setServiceResponse({
         serviceError: false,
         serviceSubmitting: true,
-        serviceMessage: message,
+        serviceMessage: response.message,
       });
-      navigate(VERIFY_CODE, { state: { verifyCodeData } });
+      navigate(paths.VERIFY_CODE, { state: { verifyCodeData } });
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`login_help_error: ${JSON.stringify(error)}`);
       reset?.();
       setLoading(false);
       setServiceResponse({
@@ -144,23 +134,20 @@ export const useAuthService = (): AuthService => {
       const user = JSON.parse(queryUser || "");
       const token = JSON.parse(tokens || "");
 
-      const { aToken, rToken } = token;
-
       user.extra = {
         ...JSON.parse(user.extra),
       };
 
-      dispatch(setAToken(aToken));
-      dispatch(setRToken(rToken));
+      dispatch(setAToken(token.aToken));
+      dispatch(setRToken(token.rToken));
       dispatch(setUser(user));
       dispatch(setIsAuthenticated(true));
 
-      localStorage.atoken = aToken;
-      localStorage.rtoken = rToken;
+      localStorage.atoken = token.aToken;
+      localStorage.rtoken = token.rToken;
       localStorage.user = JSON.stringify(user);
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`login_with_social_app_error: ${JSON.stringify(error)}`);
       throw error;
     }
   };
@@ -174,11 +161,9 @@ export const useAuthService = (): AuthService => {
 
       setLoading(false);
 
-      const { error, data } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
-
-      const { aToken, rToken, user } = data;
+      const { aToken, rToken, user } = response.data;
       user.extra = {
         ...JSON.parse(user.extra),
       };
@@ -196,7 +181,7 @@ export const useAuthService = (): AuthService => {
       const error = err as ServerResponseError;
       setLoading(false);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message || "Login failed, try again later",
       });
 
@@ -220,9 +205,8 @@ export const useAuthService = (): AuthService => {
       // localStorage.removeItem("lastLocation");
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`logout_error: ${JSON.stringify(error)}`);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: "Log out failed",
       });
 

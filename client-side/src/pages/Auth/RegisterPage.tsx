@@ -5,13 +5,13 @@ import { useUserService } from "../../services";
 import { CreateAccountValues } from "../../types";
 
 export const RegisterPage: FC = () => {
-  const { REGISTER } = nameOfForm;
-
   const { createAccount } = useUserService();
 
   const handleSubmit = async (values: CreateAccountValues) => {
     await createAccount(values);
   };
 
-  return <FormTemplate nameForm={REGISTER} onSubmit={handleSubmit} />;
+  return (
+    <FormTemplate nameForm={nameOfForm.REGISTER} onSubmit={handleSubmit} />
+  );
 };

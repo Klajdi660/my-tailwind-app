@@ -16,26 +16,23 @@ export const LoginHelpButton: FC<LoginHelpButtonProps> = (props) => {
   return (
     <>
       <p className="text-md">{formDescription}</p>
-      <div className="flex_justify_center gap-4">
-        {emailOrPhoneButtonList.map((item, index) => (
-          <Fragment key={item.name}>
-            <Button
-              type="button"
-              isSubmitting={false}
-              variant="none"
-              label={item.name}
-              className={classNames(
-                "w-full text-onNeutralBg text-sm border border-divider hover:text-primary hover:bg-primary-opacity",
-                selectedMethod === item.label &&
-                  "bg-primary-opacity text-primary"
-              )}
-              onClick={() => setSelectedMethod(item.label)}
-            />
-
-            {index < emailOrPhoneButtonList.length - 1 && (
-              <span className="text-onNeutralBg text-sm">OR</span>
+      <div className="flex_justify_start flex-col gap-4">
+        {emailOrPhoneButtonList.map((item) => (
+          <Button
+            key={item.name}
+            type="button"
+            isSubmitting={false}
+            variant="none"
+            label={item.label}
+            labelIcon={
+              selectedMethod === item.name ? "FaDotCircle" : "FaRegCircle"
+            }
+            className={classNames(
+              "w-full flex text-onNeutralBg text-sm border border-divider hover:text-primary hover:bg-primary-opacity",
+              selectedMethod === item.name && "bg-primary-opacity text-primary",
             )}
-          </Fragment>
+            onClick={() => setSelectedMethod(item.name)}
+          />
         ))}
       </div>
       <p className="text-md">

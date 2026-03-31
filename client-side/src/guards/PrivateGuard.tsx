@@ -6,8 +6,6 @@ import { useAppSelector } from "../store";
 import { isTokenExpired } from "../utils";
 
 export const PrivateGuard: FC = () => {
-  const { HOME } = paths;
-
   const { setModalOpen, closeAllModals } = useStore();
 
   useEffect(() => {
@@ -28,5 +26,5 @@ export const PrivateGuard: FC = () => {
 
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={HOME} />;
+  return isAuthenticated ? <Outlet /> : <Navigate to={paths.HOME} />;
 };

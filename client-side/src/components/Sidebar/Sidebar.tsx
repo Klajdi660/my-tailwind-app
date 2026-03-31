@@ -1,7 +1,7 @@
 import { Tooltip } from "antd";
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { navlinks } from "../../data";
+import { sidebarList } from "../../data";
 import { classNames } from "../../utils";
 import { useAppSelector } from "../../store";
 import { Icon, Overlay } from "../../components";
@@ -30,10 +30,6 @@ export const Sidebar: FC = () => {
     setToggleMenu && setToggleMenu(false);
   }, [pathname]);
 
-  const navLists = useMemo(() => {
-    return navlinks;
-  }, []);
-
   const hoverWidth = themeConfig.sidebars.full;
 
   return (
@@ -58,53 +54,53 @@ export const Sidebar: FC = () => {
             isFolded ? "mt-4" : "mt-0",
           )}
         >
-          {navLists.map((navList) => (
-            <div key={navList.name}>
+          {sidebarList.map((list) => (
+            <div key={list.name}>
               {(!isFolded || toggleNav) && (
                 <span
                   className={classNames(
                     "block p-3 mx-3 text-gray-400 text-sm uppercase",
                   )}
                 >
-                  {navList.name}
+                  {list.name}
                 </span>
               )}
               <ul>
-                {navList.subLinks.map((link) => (
+                {list.subList.map((sbList) => (
                   <li
-                    key={link.name}
+                    key={sbList.name}
                     className={classNames(
-                      `dropdown_${link.id}`,
+                      `dropdown_${sbList.id}`,
                       "relative px-[10px] group pb-1",
                     )}
                   >
                     <Tooltip
                       placement="right"
-                      title={isFolded && link.name}
+                      title={isFolded && sbList.name}
                       arrow={true}
-                      color="var(--switchBg)"
+                      // color="var(--switchBg)"
                       trigger={["hover"]}
                     >
                       <button
                         className={classNames(
                           "flex flex-row items-center gap-2 h-12 w-full outline-0 border-none pl-[20px] hover:bg-primary-opacity rounded",
-                          pathname.includes(link.to) &&
+                          pathname.includes(sbList.to) &&
                             "rounded bg-primary-opacity",
                         )}
-                        onClick={() => handleLinkClick(link)}
+                        onClick={() => handleLinkClick(sbList)}
                       >
                         <Icon
-                          name={link.icon}
+                          name={sbList.icon}
                           className={classNames(
                             "text-onNeutralBg group-hover:!text-primary",
-                            pathname.includes(link.to) && "!text-primary",
+                            pathname.includes(sbList.to) && "!text-primary",
                           )}
                           size={20}
                         />
                         <div
                           className={classNames(
                             "group-hover:text-primary text-sm flex items-center gap-3 whitespace-nowrap",
-                            pathname.includes(link.to)
+                            pathname.includes(sbList.to)
                               ? "text-primary"
                               : "text-onNeutralBg",
                             !(isFolded && !isMobile) || toggleNav
@@ -112,7 +108,7 @@ export const Sidebar: FC = () => {
                               : "invisible w-0 opacity-0",
                           )}
                         >
-                          {link.name}
+                          {sbList.name}
                         </div>
                       </button>
                     </Tooltip>

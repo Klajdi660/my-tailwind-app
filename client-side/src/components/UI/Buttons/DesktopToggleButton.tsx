@@ -20,7 +20,7 @@ export const DesktopToggleButton: FC = () => {
         className="flex_justify_center w-10 h-10 rounded-full hover:bg-primary-opacity group"
         onClick={() => changeTheme({ sidebar })}
       >
-        <Icon name="HiMenuAlt2" className="group-hover:text-primary" />
+        <Icon name="RxHamburgerMenu" className="group-hover:text-primary" />
       </button>
     </div>
   );

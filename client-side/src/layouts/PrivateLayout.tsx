@@ -33,7 +33,7 @@ export const PrivateLayout: FC = () => {
           ref={parent}
           className={classNames(
             "page_content relative overflow-y-scroll hide_scrollbar p-3 sm:p-6 mb-6 mt-main-top",
-            hasAside ? "main_width" : "other_main_width"
+            hasAside ? "main_width" : "other_main_width",
           )}
         >
           <Outlet />

@@ -4,12 +4,10 @@ import { paths } from "../data";
 import { useAppSelector } from "../store";
 
 export const PublicGuard: FC = () => {
-  const { DISCOVER, SAVE_AUTH_DATA } = paths;
-
-  const { isAuthenticated } = useAppSelector((state) => state.auth);
   const { remember } = useAppSelector((state) => state.user);
+  const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-  const navigateTo = remember ? DISCOVER : SAVE_AUTH_DATA;
+  const navigateTo = remember ? paths.DISCOVER : paths.SAVE_AUTH_DATA;
 
   return !isAuthenticated ? <Outlet /> : <Navigate to={navigateTo} />;
 };

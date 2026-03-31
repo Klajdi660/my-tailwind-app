@@ -1,14 +1,9 @@
 import { FC } from "react";
 import { Button, Typography } from "antd";
-import { useAppSelector } from "../../store";
 import { Icon } from "../UI/Icon";
 import { PaymentSettings } from "./PaymentSettings";
 
 export const AccountPaymentMethods: FC = () => {
-  const { user } = useAppSelector((state) => state.user);
-
-  console.log("user.extra :>> ", user.extra);
-
   return (
     <div className="w-full h-full flex flex-col gap-4 p-6 bg-card rounded">
       <div className="flex_justify_between">

@@ -2,12 +2,10 @@ import { FC } from "react";
 import { Button } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { Icon } from "../../components";
-import { paths, settingsLinks } from "../../data";
 import { classNames } from "../../utils";
+import { paths, settingsLinks } from "../../data";
 
 export const ProfileSidebar: FC = () => {
-  const { PROFILE } = paths;
-
   const { profileId } = useParams<{ profileId: string | any }>();
 
   const navigate = useNavigate();
@@ -26,7 +24,7 @@ export const ProfileSidebar: FC = () => {
           color="default"
           key={settingLink.id}
           icon={<Icon name={settingLink.icon} />}
-          onClick={() => navigate(`${PROFILE}/${settingLink.id}`)}
+          onClick={() => navigate(`${paths.ACCOUNT}/${settingLink.id}`)}
         >
           {settingLink.name}
         </Button>

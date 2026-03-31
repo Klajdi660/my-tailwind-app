@@ -98,7 +98,7 @@ export interface TopPlayCardProps {
 type SetQuantitiesType = (
   value:
     | { [id: string]: number }
-    | ((prev: { [id: string]: number }) => { [id: string]: number })
+    | ((prev: { [id: string]: number }) => { [id: string]: number }),
 ) => void;
 
 export interface CartBodyProps {
@@ -340,7 +340,7 @@ export interface SmallModalProps {
   cancelText?: string;
   okButtonProps?: any;
   cancelButtonProps?: any;
-  destroyOnClose?: boolean;
+  destroyOnHidden?: boolean;
 }
 
 export interface ButtonProps {

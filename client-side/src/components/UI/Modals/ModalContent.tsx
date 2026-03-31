@@ -15,7 +15,7 @@ export const SmallModal: FC<SmallModalProps> = (props) => {
     onCancel,
     closable = true,
     okText = "btn_submit",
-    destroyOnClose = false,
+    destroyOnHidden = false,
     cancelText = "btn_cancel",
     okButtonProps = { style: { display: "none" } },
     cancelButtonProps = { style: { display: "none" } },
@@ -44,7 +44,7 @@ export const SmallModal: FC<SmallModalProps> = (props) => {
       onCancel={onCancel}
       cancelText={cancelText}
       okButtonProps={okButtonProps}
-      destroyOnClose={destroyOnClose}
+      destroyOnHidden={destroyOnHidden}
       cancelButtonProps={cancelButtonProps}
       width={isMobile ? "50vw" : width || "60vw"}
     >

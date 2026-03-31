@@ -118,7 +118,7 @@ export type PathProperties = {
   HOME: string;
   LOGIN: string;
   BROWSE: string;
-  PROFILE: string;
+  ACCOUNT: string;
   REGISTER: string;
   DISCOVER: string;
   SOCIAL_AUTH: string;
@@ -142,9 +142,9 @@ export type FontSizesProperties = {
   [key: string]: string;
 };
 
-export interface NavLinkList {
+export interface SidebarList {
   name: string;
-  subLinks: {
+  subList: {
     id: string;
     to: string;
     name: string;

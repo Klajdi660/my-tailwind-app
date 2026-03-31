@@ -7,12 +7,9 @@ import { Button, Icon } from "../../components";
 import { useUserService } from "../../services";
 
 export const SaveDataAuthPage: FC = () => {
-  const { DISCOVER } = paths;
-
-  const { saveAuthUser } = useUserService();
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { saveAuthUser } = useUserService();
 
   const handleSubmit = async () => {
     await saveAuthUser({ remember: true });
@@ -20,7 +17,7 @@ export const SaveDataAuthPage: FC = () => {
 
   const handleCancel = async () => {
     dispatch(setRemember(false));
-    navigate(DISCOVER);
+    navigate(paths.DISCOVER);
   };
 
   return (

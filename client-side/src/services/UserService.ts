@@ -30,7 +30,6 @@ export const useUserService = () => {
     RESEND_CODE_API,
     RESET_PASSWORD_API,
   } = userEndpoints;
-  const { ERROR, SUCCESS, INFO } = notifyVariant;
   const { DISCOVER, VERIFY_CODE, LOGIN, RESET_PASSWORD } = paths;
 
   const dispatch = useDispatch();
@@ -50,18 +49,16 @@ export const useUserService = () => {
 
       const response = await HttpClient.post<ServerResponse>(
         CREATE_ACCOUNT_API,
-        payload
+        payload,
       );
 
       setLoading(false);
 
-      const { error, message } = response;
-
-      if (error) throw response;
+      if (response.error) throw response;
 
       notify({
-        variant: SUCCESS,
-        description: `${message}`,
+        variant: notifyVariant.SUCCESS,
+        description: `${response.message}`,
       });
 
       const verifyCodeData = {
@@ -72,7 +69,6 @@ export const useUserService = () => {
       navigate(VERIFY_CODE, { state: { verifyCodeData } });
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`create_account_error: ${JSON.stringify(error)}`);
       reset();
       setLoading(false);
       setServiceResponse({
@@ -91,30 +87,27 @@ export const useUserService = () => {
 
       const response = await HttpClient.post<ServerResponse>(
         VERIFY_ACCOUNT_API,
-        rest
+        rest,
       );
 
       setLoading(false);
 
-      const { error, message } = response;
-
-      if (error) throw response;
+      if (response.error) throw response;
 
       setServiceResponse({});
 
       notify({
-        variant: SUCCESS,
-        description: message,
+        variant: notifyVariant.SUCCESS,
+        description: response.message,
       });
 
       navigate(LOGIN);
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`verify_account_error: ${JSON.stringify(error)}`);
       reset();
       setLoading(false);
       notify({
-        variant: SUCCESS,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
     }
@@ -128,7 +121,7 @@ export const useUserService = () => {
 
       const response = await HttpClient.post<ServerResponse>(
         VERIFY_CODE_API,
-        rest
+        rest,
       );
 
       setLoading(false);
@@ -142,7 +135,6 @@ export const useUserService = () => {
       });
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`verify_code_error: ${JSON.stringify(error)}`);
       reset();
       setLoading(false);
       setServiceResponse({
@@ -159,27 +151,20 @@ export const useUserService = () => {
 
       const response = await HttpClient.post<ServerResponse>(
         RESEND_CODE_API,
-        values
+        values,
       );
 
       setLoading(false);
 
-      const { error, message } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
-
-      // notify({
-      //   variant: SUCCESS,
-      //   description: message,
-      // });
       setServiceResponse({
         serviceError: false,
         serviceSubmitting: true,
-        serviceMessage: message,
+        serviceMessage: response.message,
       });
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`resend_code_error: ${JSON.stringify(error)}`);
       setLoading(false);
       setServiceResponse({
         serviceError: true,
@@ -195,26 +180,23 @@ export const useUserService = () => {
 
       const response = await HttpClient.post<ServerResponse>(
         RESET_PASSWORD_API,
-        values
+        values,
       );
 
       setLoading(false);
 
-      const { error, message } = response;
-
-      if (error) throw response;
+      if (response.error) throw response;
 
       notify({
-        variant: INFO,
-        description: message,
+        variant: notifyVariant.INFO,
+        description: response.message,
       });
 
       navigate(LOGIN);
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`reset_password_error: ${JSON.stringify(error)}`);
       setLoading(false);
-      notify({ variant: ERROR, description: error.message });
+      notify({ variant: notifyVariant.ERROR, description: error.message });
     }
   };
 
@@ -226,26 +208,23 @@ export const useUserService = () => {
       setLoading(true);
 
       const response = await HttpClient.get<ServerResponse>(
-        `${GET_USER_DETAILS_API}/${userId}`
+        `${GET_USER_DETAILS_API}/${userId}`,
       );
 
       setLoading(false);
 
-      const { error, data } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
-
-      data.extra = {
-        ...JSON.parse(data.extra),
+      response.data.extra = {
+        ...JSON.parse(response.data.extra),
       };
 
-      dispatch(setUser(data));
+      dispatch(setUser(response.data));
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`get_user_details_error: ${JSON.stringify(error)}`);
       setLoading(false);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
 
@@ -257,16 +236,14 @@ export const useUserService = () => {
     try {
       const response = await HttpClient.post<any>(SAVE_AUTH_USER_API, values);
 
-      const { error, data } = response;
+      if (response.error) throw response;
 
-      if (error) throw response;
-
-      const { saveAuthUserToken } = data;
-      data.user.extra = {
-        ...JSON.parse(data.user.extra),
+      const { saveAuthUserToken } = response.data;
+      response.data.user.extra = {
+        ...JSON.parse(response.data.user.extra),
       };
 
-      const { id, username, email, extra } = data.user;
+      const { id, username, email, extra } = response.data.user;
       const { avatar } = extra;
 
       dispatch(setRemember(true));
@@ -277,15 +254,14 @@ export const useUserService = () => {
           email,
           photo: avatar,
           saveAuthUserToken,
-        })
+        }),
       );
 
       navigate(DISCOVER);
     } catch (err) {
       const error = err as ServerResponseError;
-      console.error(`save_auth_user_error: ${JSON.stringify(error)}`);
       notify({
-        variant: ERROR,
+        variant: notifyVariant.ERROR,
         description: error.message,
       });
     }

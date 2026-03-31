@@ -9,7 +9,6 @@ import {
   AiOutlineDelete,
   AiOutlineSetting,
   AiOutlineEyeInvisible,
-  AiOutlineExclamationCircle,
   AiOutlineWarning,
 } from "react-icons/ai";
 import {
@@ -25,11 +24,10 @@ import {
   BsGlobe,
   BsThreeDots,
   BsShieldLock,
-  BsThreeDotsVertical,
   BsNintendoSwitch,
 } from "react-icons/bs";
-import { CiShoppingTag, CiEdit } from "react-icons/ci";
 import { CgGames } from "react-icons/cg";
+import { CiShoppingTag, CiEdit } from "react-icons/ci";
 import {
   FaXbox,
   FaApple,
@@ -49,10 +47,11 @@ import {
   FaRegCircle,
   FaDotCircle,
 } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { FaCcPaypal } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
-import { FcGoogle } from "react-icons/fc";
 import { FiAlertTriangle, FiUpload, FiEdit } from "react-icons/fi";
+
 import {
   HiMenuAlt2,
   HiCheck,
@@ -104,6 +103,9 @@ import {
 } from "react-icons/ri";
 import { SlLocationPin, SlSocialDropbox } from "react-icons/sl";
 import { TbTransactionDollar } from "react-icons/tb";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { GiHamburgerMenu } from "react-icons/gi";
+
 import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
 
@@ -115,94 +117,94 @@ const icons: IconsMap = {
   AiOutlineUser,
   AiOutlineDelete,
   AiOutlineSetting,
-  AiOutlineEyeInvisible,
-  AiOutlineExclamationCircle,
   AiOutlineWarning,
-  FaClock,
+  AiOutlineEyeInvisible,
   BiPlus,
   BiLock,
   BiGame,
   BiMinus,
-  BiSearch,
-  BiChevronsRight,
-  BiSelectMultiple,
   BsGlobe,
-  BsNintendoSwitch,
+  BiSearch,
   BsThreeDots,
   BsShieldLock,
-  BsThreeDotsVertical,
-  CiShoppingTag,
+  BiChevronsRight,
+  BiSelectMultiple,
+  BsNintendoSwitch,
   CiEdit,
   CgGames,
+  CiShoppingTag,
+  FiEdit,
   FaXbox,
+  FaCheck,
   FaApple,
+  FaClock,
   FaLinux,
   FaTiktok,
+  FcGoogle,
+  FiUpload,
   FaYoutube,
   FaAndroid,
   FaWindows,
   FaRegUser,
+  FaCcPaypal,
   FaFacebook,
   FaOpencart,
-  FaWpexplorer,
-  FaPlaystation,
-  FaCirclePlus,
-  FaCreditCard,
-  FaCcPaypal,
-  FaCheck,
   FaRegCircle,
   FaDotCircle,
-  FcGoogle,
-  FiUpload,
+  FaCreditCard,
+  FaCirclePlus,
+  FaWpexplorer,
+  FaPlaystation,
   FiAlertTriangle,
-  FiEdit,
+  GoArrowLeft,
+  GrTransaction,
+  GiHamburgerMenu,
   HiCheck,
-  HiOutlineUpload,
   HiMenuAlt2,
   HiChartBar,
+  HiOutlineUpload,
   HiOutlinePencil,
   IoWalletOutline,
   IoMdNotificationsOutline,
-  LiaCarSideSolid,
-  LiaSignOutAltSolid,
   LuShip,
   LuArrowDownUp,
+  LiaCarSideSolid,
+  LiaSignOutAltSolid,
   MdHome,
   MdClear,
   MdLogin,
   MdCancel,
   MdStorefront,
+  MdOutlineMail,
+  MdOutlineSort,
   MdPhoneIphone,
   MdOutlineGames,
   MdOutlineCancel,
   MdOutlinePayment,
   MdOutlineExplore,
-  MdOutlineSwitchAccount,
-  MdKeyboardArrowRight,
-  MdKeyboardArrowLeft,
   MdKeyboardArrowUp,
-  MdOutlineVerifiedUser,
-  MdOutlineSort,
-  MdOutlineCheckCircleOutline,
-  MdOutlineCheckBoxOutlineBlank,
-  MdOutlineCheckCircle,
   MdKeyboardArrowDown,
   MdOutlineLocationOn,
-  GoArrowLeft,
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight,
+  MdOutlineCheckCircle,
+  MdOutlineVerifiedUser,
+  MdOutlinePhoneAndroid,
+  MdOutlineSwitchAccount,
+  MdOutlineCheckCircleOutline,
+  MdOutlineCheckBoxOutlineBlank,
+  PiKeyholeThin,
   PiWarningCircle,
   PiWarningCircleBold,
-  PiKeyholeThin,
   RiFirefoxLine,
   RiInstagramFill,
-  RiSecurePaymentLine,
   RiDeleteBinLine,
+  RxHamburgerMenu,
+  RiSecurePaymentLine,
   SlLocationPin,
   SlSocialDropbox,
   IoCloseCircleOutline,
-  MdOutlineMail,
-  MdOutlinePhoneAndroid,
   TbTransactionDollar,
-  GrTransaction,
 };
 
 export const Icon: FC<IconParams> = ({
@@ -212,7 +214,6 @@ export const Icon: FC<IconParams> = ({
   onClick,
   ...props
 }) => {
-  // const Icons = icons?.[name] || icons?.["MdHome"];
   const Icons = name in icons ? icons[name] : icons["MdHome"];
 
   return (

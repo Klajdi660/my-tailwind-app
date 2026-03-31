@@ -1,4 +1,3 @@
-import icon from "./app/icon.png";
 import noImg from "./app/noImg.jpg";
 import noImage from "./app/noImage.jpg";
 import iconName from "./app/iconName.png";
@@ -16,6 +15,8 @@ import avatar1 from "./user/avatar1.png";
 import avatar2 from "./user/avatar2.png";
 import avatar3 from "./user/avatar3.png";
 import avatar4 from "./user/avatar4.png";
+import logo from "./app/logo.png";
+import icon from "./app/icon.png";
 
 export {
   icon,
@@ -36,4 +37,5 @@ export {
   mobileMoneyImg,
   maestroCardImg,
   discoverCardImg,
+  logo,
 };

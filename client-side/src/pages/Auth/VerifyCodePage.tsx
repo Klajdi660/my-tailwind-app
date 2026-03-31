@@ -10,21 +10,19 @@ export const VerifyCodePage: FC = () => {
   const location = useLocation();
   const { verifyAccount, verifyCode, resendCode } = useUserService();
 
-  const { RESET_PASSWORD } = nameOfForm;
   const { verifyCodeData } = location.state || {};
   const { action, toFormName, username, email, phoneNr, fullname } =
     verifyCodeData;
 
   const handleSubmit = async (values: VerifyAccountValues) => {
-    const isVerifyAccount = ["verify-account"].includes(toFormName);
-    if (isVerifyAccount) {
+    if (toFormName === "verify-account") {
       await verifyAccount({ ...values, username });
     } else {
       await verifyCode({
         ...values,
         username,
         action,
-        toFormName: RESET_PASSWORD,
+        toFormName: nameOfForm.RESET_PASSWORD,
       });
     }
   };

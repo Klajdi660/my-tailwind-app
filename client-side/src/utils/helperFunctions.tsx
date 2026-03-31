@@ -9,17 +9,12 @@ export const classNames = (...classes: any) => {
 
 export const isTokenExpired = (token: string): boolean => {
   const tokenData = token ? JSON.parse(atob(token?.split(".")[1])) : "";
-
-  const currentTime = dayjs().unix();
-  const tokenExpirationTime = tokenData.exp;
-
-  return currentTime > parseInt(tokenExpirationTime);
+  return dayjs().unix() > parseInt(tokenData.exp);
 };
 
 export const nameTruncate = (str: string, len?: number) => {
   if (!len) {
-    const namePart = str.split("@")[0];
-    return `${namePart}...`;
+    return `${str.split("@")[0]}...`;
   }
 
   return str?.length
@@ -64,7 +59,7 @@ const calculateShippingCost = (price: number | any) => {
 
 export const calculateTotalPrice = (
   cartItems: GameParams[],
-  quantities: { [id: string]: number }
+  quantities: { [id: string]: number },
 ) => {
   let shipping = 0;
   const subTotalPrice = cartItems.reduce((total, item) => {

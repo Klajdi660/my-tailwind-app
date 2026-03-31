@@ -9,23 +9,20 @@ import {
 import { paths } from "./general.data";
 import { endpoints } from "../services";
 
-const { OAUTH_GOOGLE_API } = endpoints;
-const { REGISTER, LOGIN, LOGIN_HELP } = paths;
-
 export const serviceResponseMap: Record<string, ServiceResponseMap> = {
   "invalid-password": {
     linkText: "reset your password",
-    to: LOGIN_HELP,
+    to: paths.LOGIN_HELP,
     state: { toFormName: "prev-forgot-password" },
   },
   "user-not-verified": {
     linkText: "verify your account",
-    to: LOGIN_HELP,
+    to: paths.LOGIN_HELP,
     state: { toFormName: "prev-verify-account" },
   },
-  "existing-user": { linkText: "sign in", to: LOGIN },
+  "existing-user": { linkText: "sign in", to: paths.LOGIN },
   "code-expired": { linkText: "request a new otp code" },
-  "no-account": { linkText: "create a new account", to: REGISTER },
+  "no-account": { linkText: "create a new account", to: paths.REGISTER },
 };
 
 export const userRegex: Record<string, RegExp> = {
@@ -40,19 +37,19 @@ export const socialAuthList: SocialAuthList[] = [
     id: 1,
     name: "Google",
     icon: "FcGoogle",
-    link: `${process.env.REACT_APP_URL}${process.env.REACT_APP_PREFIX}${OAUTH_GOOGLE_API}`,
+    link: `${process.env.REACT_APP_URL}${process.env.REACT_APP_PREFIX}${endpoints.OAUTH_GOOGLE_API}`,
   },
 ];
 
 export const emailOrPhoneButtonList: EmailOrPhoneButtonType[] = [
-  { id: 1, label: "email", name: "Email" },
-  { id: 2, label: "sms", name: "SMS" },
+  { id: 1, name: "email", label: "Email" },
+  { id: 2, name: "sms", label: "Text Message (SMS)" },
 ];
 
 export const formData: FormDataTypes = {
   login: {
     metadata: {
-      linkTo: REGISTER,
+      linkTo: paths.REGISTER,
       formName: "login",
       formTitle: "Log in",
       buttonName: "Log in",
@@ -62,7 +59,7 @@ export const formData: FormDataTypes = {
       footerTitle: "Don't have an account?",
       otherLink: {
         otherLinkPName: "Reset",
-        otherLinkTo: LOGIN_HELP,
+        otherLinkTo: paths.LOGIN_HELP,
         otherLinkName: "Forgot Password?",
       },
     },
@@ -83,7 +80,7 @@ export const formData: FormDataTypes = {
   },
   register: {
     metadata: {
-      linkTo: LOGIN,
+      linkTo: paths.LOGIN,
       formName: "register",
       footerLink: "Log in",
       buttonName: "Sign up",
@@ -118,7 +115,7 @@ export const formData: FormDataTypes = {
   },
   "verify-account": {
     metadata: {
-      linkTo: LOGIN,
+      linkTo: paths.LOGIN,
       footerLink: "Go back",
       formName: "verify-account",
       toFormName: "verify-account",
@@ -141,7 +138,7 @@ export const formData: FormDataTypes = {
   },
   "forgot-password": {
     metadata: {
-      linkTo: LOGIN,
+      linkTo: paths.LOGIN,
       buttonName: "Send",
       footerLink: "Go back",
       formName: "forgot-password",
@@ -165,7 +162,7 @@ export const formData: FormDataTypes = {
   },
   "reset-password": {
     metadata: {
-      linkTo: LOGIN,
+      linkTo: paths.LOGIN,
       buttonName: "Send",
       footerLink: "Go back",
       formName: "reset-password",
@@ -194,7 +191,7 @@ export const formData: FormDataTypes = {
 
 export const loginHelpFormData: Record<string, LoginHelpDataType> = {
   "prev-forgot-password": {
-    linkTo: LOGIN,
+    linkTo: paths.LOGIN,
     footerLink: "Go back",
     smsButtonName: "Text Me",
     emailPlaceholder: "Email",
@@ -211,7 +208,7 @@ export const loginHelpFormData: Record<string, LoginHelpDataType> = {
     smsText: "We will text you a verification code to reset your password",
   },
   "prev-verify-account": {
-    linkTo: LOGIN,
+    linkTo: paths.LOGIN,
     footerLink: "Go back",
     smsButtonName: "Text Me",
     emailPlaceholder: "Email",

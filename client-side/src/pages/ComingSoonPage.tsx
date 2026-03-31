@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { paths } from "../data";
 
 export const ComingSoonPage: FC = () => {
-  const { DISCOVER } = paths;
-
   return (
     <div className="h-screen flex_justify_center">
       <div className="text-center">
@@ -13,7 +11,7 @@ export const ComingSoonPage: FC = () => {
           The page you are looking for might be coming soon.
         </p>
         <div className="mt-6">
-          <Link to={DISCOVER} className="text-primary hover:underline">
+          <Link to={paths.DISCOVER} className="text-primary hover:underline">
             Go back
           </Link>
         </div>

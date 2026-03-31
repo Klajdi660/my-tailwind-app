@@ -4,12 +4,12 @@ import {
   GridList,
   LangMapParams,
   NameOfFormTypes,
-  NavLinkList,
   NotificationItemList,
   NotifyVariant,
   PageLinkItem,
   PathProperties,
   SettingsLinksParams,
+  SidebarList,
 } from "../types";
 
 export const nameOfForm: NameOfFormTypes = {
@@ -35,26 +35,26 @@ export const dateFormat: string = "DD-MM-YYYY HH:mm:ss";
 
 export const paths: PathProperties = {
   HOME: "/",
+  STORE: "/store",
   LOGIN: "/login",
+  GENRES: "/genres",
   BROWSE: "/browse",
-  PROFILE: "/profile",
-  REGISTER: "/register",
+  ACCOUNT: "/profile",
   DISCOVER: "/discover",
-  SOCIAL_AUTH: "/social-auth",
-  GAME_DETAILS: "/game-detail",
-  VERIFY_CODE: "/verify-code",
-  PASSWORD_CODE: "/password-code",
-  FORGOT_PASSWORD: "/forgot-password",
-  RESET_PASSWORD: "/reset-password",
-  SAVE_AUTH_DATA: "/save-auth",
-  ACCOUNT_SAVED: "/account-saved",
-  LOGIN_HELP: "/login-help",
+  REGISTER: "/register",
   MY_GAMES: "/my-games",
   WISHLIST: "/wishlist",
-  STORE: "/store",
-  COLLECTION: "/collection",
   PLATFORMS: "/platforms",
-  GENRES: "/genres",
+  COLLECTION: "/collection",
+  LOGIN_HELP: "/login-help",
+  VERIFY_CODE: "/verify-code",
+  SOCIAL_AUTH: "/social-auth",
+  GAME_DETAILS: "/game-detail",
+  SAVE_AUTH_DATA: "/save-auth",
+  PASSWORD_CODE: "/password-code",
+  ACCOUNT_SAVED: "/account-saved",
+  RESET_PASSWORD: "/reset-password",
+  FORGOT_PASSWORD: "/forgot-password",
 };
 
 export const fontSizes: FontSizesProperties = {
@@ -65,10 +65,10 @@ export const fontSizes: FontSizesProperties = {
   "extra-large": "text-3xl",
 };
 
-export const navlinks: NavLinkList[] = [
+export const sidebarList: SidebarList[] = [
   {
     name: "Home",
-    subLinks: [
+    subList: [
       {
         tooltip: "hover",
         id: "discover",
@@ -87,7 +87,7 @@ export const navlinks: NavLinkList[] = [
   },
   {
     name: "You",
-    subLinks: [
+    subList: [
       {
         id: "my_games",
         to: "/my-games",
@@ -113,7 +113,7 @@ export const navlinks: NavLinkList[] = [
   },
   {
     name: "Explore",
-    subLinks: [
+    subList: [
       {
         id: "collection",
         tooltip: "hover",
@@ -134,6 +134,18 @@ export const navlinks: NavLinkList[] = [
         icon: "BiGame",
         name: "Genres",
         tooltip: "hover",
+      },
+    ],
+  },
+  {
+    name: "Account",
+    subList: [
+      {
+        id: "account",
+        icon: "AiOutlineUser",
+        to: "/profile",
+        tooltip: "hover",
+        name: "Account",
       },
     ],
   },

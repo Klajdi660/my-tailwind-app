@@ -52,13 +52,13 @@ export const useGamesService = () => {
   };
 
   const getGameDetail = async (
-    gameId: string
+    gameId: string,
   ): Promise<GameDetailResponse | any> => {
     try {
       setLoading(true);
 
       const response = await HttpClient.get<ServerResponse>(
-        `${GET_GAME_DETAIL_API}/${gameId}`
+        `${GET_GAME_DETAIL_API}/${gameId}`,
       );
 
       setLoading(false);
@@ -74,11 +74,11 @@ export const useGamesService = () => {
   };
 
   const getGameVideos = async (
-    gameId: string
+    gameId: string,
   ): Promise<GameVideosResponse[]> => {
     try {
       const response = await HttpClient.get<ServerResponse>(
-        `${GET_GAME_VIDEOS_API}/:${gameId}`
+        `${GET_GAME_VIDEOS_API}/:${gameId}`,
       );
 
       if (response.error) throw response;
@@ -91,11 +91,11 @@ export const useGamesService = () => {
   };
 
   const getGameReviews = async (
-    gameId: string
+    gameId: string,
   ): Promise<GameReviewsResponse[]> => {
     try {
       const response = await HttpClient.get<ServerResponse>(
-        `${GET_GAME_REVIEWS_API}/${gameId}`
+        `${GET_GAME_REVIEWS_API}/${gameId}`,
       );
 
       if (response.error) throw response;
@@ -110,7 +110,7 @@ export const useGamesService = () => {
   const getGameGenreList = async (): Promise<GameGenreListResponse[]> => {
     try {
       const response = await HttpClient.get<ServerResponse>(
-        GET_GAME_GENRE_LIST_API
+        GET_GAME_GENRE_LIST_API,
       );
 
       if (response.error) throw response;
@@ -125,7 +125,7 @@ export const useGamesService = () => {
   const getGamePlatformList = async (): Promise<GamePlatformListResponse[]> => {
     try {
       const response = await HttpClient.get<ServerResponse>(
-        GET_GAME_PLATFORM_LIST_API
+        GET_GAME_PLATFORM_LIST_API,
       );
 
       if (response.error) throw response;

@@ -21,8 +21,6 @@ import {
   visaCardImg,
 } from "../assets";
 
-const { PROFILE } = paths;
-
 // General
 export const themeList: SettingListParams[] = [
   { value: "default", label: "System default" },
@@ -122,7 +120,7 @@ export const profileMenuItems = ({
     icon: "AiOutlineUser",
     onClick: () => {
       hidden();
-      navigate(`${PROFILE}/account`);
+      navigate(`${paths.ACCOUNT}/account`);
     },
   },
   {
@@ -131,7 +129,7 @@ export const profileMenuItems = ({
     icon: "AiOutlineSetting",
     onClick: () => {
       hidden();
-      navigate(`${PROFILE}/general`);
+      navigate(`${paths.ACCOUNT}/general`);
     },
   },
   {
@@ -140,7 +138,7 @@ export const profileMenuItems = ({
     name: "GrooveIT Wallet",
     onClick: () => {
       hidden();
-      navigate(`${PROFILE}/payments`);
+      navigate(`${paths.ACCOUNT}/payments`);
     },
   },
   {

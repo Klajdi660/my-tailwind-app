@@ -20,20 +20,18 @@ export const registerValidation = yup.object({
 
         if (!value) return false;
 
-        const { emailRegex, phoneNumberRegex, isPhoneNumberRegex } = userRegex;
+        if (userRegex.emailRegex.test(value)) return true;
+        if (userRegex.phoneNumberRegex.test(value)) return true;
 
-        if (emailRegex.test(value)) return true;
-        if (phoneNumberRegex.test(value)) return true;
-
-        if (value.includes("@") && !emailRegex.test(value)) {
+        if (value.includes("@") && !userRegex.emailRegex.test(value)) {
           return createError({
             path,
             message: "Please enter a valid email address",
           });
         }
 
-        if (isPhoneNumberRegex.test(value)) {
-          if (phoneNumberRegex.test(value)) {
+        if (userRegex.isPhoneNumberRegex.test(value)) {
+          if (userRegex.phoneNumberRegex.test(value)) {
             return true;
           } else {
             return createError({
@@ -42,7 +40,7 @@ export const registerValidation = yup.object({
             });
           }
         }
-      }
+      },
     ),
   username: yup
     .string()
@@ -63,7 +61,7 @@ export const registerValidation = yup.object({
     .matches(/[A-Z]/, "Your password must contain at least one capital letter")
     .matches(
       /[!@#$%^&*(),.?":{}|<>]/,
-      "Your password must contain at least one symbol"
+      "Your password must contain at least one symbol",
     ),
 });
 
@@ -79,26 +77,19 @@ export const loginValidation = yup.object({
 
         if (!value) return false;
 
-        const {
-          emailRegex,
-          phoneNumberRegex,
-          isPhoneNumberRegex,
-          usernameRegex,
-        } = userRegex;
+        if (userRegex.emailRegex.test(value)) return true;
+        if (userRegex.phoneNumberRegex.test(value)) return true;
+        if (userRegex.usernameRegex.test(value)) return true;
 
-        if (emailRegex.test(value)) return true;
-        if (phoneNumberRegex.test(value)) return true;
-        if (usernameRegex.test(value)) return true;
-
-        if (value.includes("@") && !emailRegex.test(value)) {
+        if (value.includes("@") && !userRegex.emailRegex.test(value)) {
           return createError({
             path,
             message: "Please enter a valid email address",
           });
         }
 
-        if (isPhoneNumberRegex.test(value)) {
-          if (phoneNumberRegex.test(value)) {
+        if (userRegex.isPhoneNumberRegex.test(value)) {
+          if (userRegex.phoneNumberRegex.test(value)) {
             return true;
           } else {
             return createError({
@@ -108,13 +99,13 @@ export const loginValidation = yup.object({
           }
         }
 
-        if (!usernameRegex.test(value)) {
+        if (!userRegex.usernameRegex.test(value)) {
           return createError({
             path,
             message: "Please enter a valid username",
           });
         }
-      }
+      },
     ),
   password: yup
     .string()

@@ -260,6 +260,7 @@ input[type="checkbox"] {
 }
 
 /* Tooltip */
+.ant-tooltip-container,
 .ant-tooltip .ant-tooltip-inner {
   color: var(--onNeutralBg) !important;
   background: var(--switchBg) !important;
