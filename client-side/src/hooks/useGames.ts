@@ -1,7 +1,23 @@
+import { useMemo } from "react";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useGamesService } from "../services";
 import { FetchResponse, GameParams } from "../types";
 import { gameFilterList, gameRatingList } from "../data";
+
+/** Slider API may return a bare array or a paginated `{ results }` payload. */
+function normalizeGamesSliderData(data: unknown): GameParams[] {
+  if (!data) return [];
+  if (Array.isArray(data)) return data as GameParams[];
+  if (
+    typeof data === "object" &&
+    data !== null &&
+    "results" in data &&
+    Array.isArray((data as FetchResponse<GameParams>).results)
+  ) {
+    return (data as FetchResponse<GameParams>).results;
+  }
+  return [];
+}
 
 export const useGames = () => {
   const {
@@ -52,12 +68,17 @@ export const useGames = () => {
   };
 
   const useGameSlider = () => {
-    const { data: gamesSlider } = useQuery({
+    const { data, isPending: isSliderPending } = useQuery({
       queryKey: ["games-slider"],
       queryFn: async () => await getGamesSlider(),
     });
 
-    return { gamesSlider };
+    const gamesSlider = useMemo(
+      () => normalizeGamesSliderData(data),
+      [data],
+    );
+
+    return { gamesSlider, isSliderPending };
   };
 
   const useGameGenreList = () => {

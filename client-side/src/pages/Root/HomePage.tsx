@@ -1,10 +1,12 @@
 import { FC, FormEvent, useCallback, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FreeMode, Mousewheel } from "swiper/modules";
+import { Autoplay, EffectFade, FreeMode, Mousewheel } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/effect-fade";
 import { languageMaps, paths } from "../../data";
+import type { GameParams } from "../../types";
 import { iconName } from "../../assets";
 import { classNames } from "../../utils";
 import { useGames } from "../../hooks";
@@ -21,16 +23,14 @@ const JOIN_REASONS: {
     description:
       "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
     icon: "MdOutlineTv",
-    iconClass:
-      "text-fuchsia-400 drop-shadow-[0_0_20px_rgba(232,121,249,0.65)]",
+    iconClass: "text-fuchsia-400 drop-shadow-[0_0_20px_rgba(232,121,249,0.65)]",
   },
   {
     title: "Download your shows to watch offline",
     description:
       "Save your favorites easily and always have something to watch.",
     icon: "MdOutlineFileDownload",
-    iconClass:
-      "text-purple-400 drop-shadow-[0_0_20px_rgba(168,85,247,0.65)]",
+    iconClass: "text-purple-400 drop-shadow-[0_0_20px_rgba(168,85,247,0.65)]",
   },
   {
     title: "Watch everywhere",
@@ -77,13 +77,34 @@ const FOOTER_LINK_COLUMNS: { label: string; href: string }[][] = [
 const footerLinkClass =
   "text-sm text-white/80 underline underline-offset-2 transition hover:text-white";
 
+const HERO_PLATFORMS_FALLBACK = ["PC", "PS5", "Xbox", "Switch"] as const;
+
+function platformLabelsForGame(game: GameParams | undefined): string[] {
+  if (!game) return [];
+  const fromParent =
+    game.parent_platforms
+      ?.map((p) => p.platform.name)
+      .filter((n): n is string => Boolean(n)) ?? [];
+  if (fromParent.length) return [...new Set(fromParent)];
+  const fromPlatforms =
+    game.platforms
+      ?.map((p) => p.platform.name)
+      .filter((n): n is string => Boolean(n)) ?? [];
+  return [...new Set(fromPlatforms)];
+}
+
 export const HomePage: FC = () => {
-  const { LOGIN, REGISTER, GAME_DETAILS, HOME, LOGIN_HELP } = paths;
+  const { LOGIN, REGISTER, GAME_DETAILS, HOME, LOGIN_HELP, STORE, DISCOVER } =
+    paths;
   const { useGameSlider } = useGames();
-  const { gamesSlider } = useGameSlider();
+  const { gamesSlider, isSliderPending } = useGameSlider();
+
+  const trendingSwiperKey = useMemo(
+    () => gamesSlider.map((g: { id: number }) => g.id).join("-"),
+    [gamesSlider],
+  );
 
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
   const [footerEmail, setFooterEmail] = useState("");
   const [trendingNav, setTrendingNav] = useState({
     canPrev: false,
@@ -91,6 +112,16 @@ export const HomePage: FC = () => {
   });
 
   const trendingSwiperRef = useRef<SwiperType | null>(null);
+  const heroMainSwiperRef = useRef<SwiperType | null>(null);
+  const heroThumbSwiperRef = useRef<SwiperType | null>(null);
+  const heroSwiperSyncLock = useRef(false);
+
+  const [heroThumbChrome, setHeroThumbChrome] = useState({
+    index: 0,
+    progress: 0,
+    canPrev: false,
+    canNext: true,
+  });
 
   const syncTrendingNav = useCallback((swiper: SwiperType) => {
     setTrendingNav({
@@ -98,26 +129,6 @@ export const HomePage: FC = () => {
       canNext: !swiper.isEnd,
     });
   }, []);
-
-  const mosaicTiles = useMemo(() => {
-    if (!gamesSlider?.length) return [];
-    const tiles: any[] = [];
-    for (let i = 0; i < 42; i++) {
-      tiles.push(gamesSlider[i % gamesSlider.length]);
-    }
-    return tiles;
-  }, [gamesSlider]);
-
-  const onEmailSubmit = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
-      const q = email.trim()
-        ? `?email=${encodeURIComponent(email.trim())}`
-        : "";
-      navigate(`${REGISTER}${q}`);
-    },
-    [email, navigate, REGISTER],
-  );
 
   const onFooterEmailSubmit = useCallback(
     (e: FormEvent) => {
@@ -130,37 +141,110 @@ export const HomePage: FC = () => {
     [footerEmail, navigate, REGISTER],
   );
 
-  if (!gamesSlider?.length) return null;
+  const onHeroMainSlideChange = useCallback((swiper: SwiperType) => {
+    if (heroSwiperSyncLock.current) return;
+    heroSwiperSyncLock.current = true;
+    const thumb = heroThumbSwiperRef.current;
+    if (thumb && thumb.activeIndex !== swiper.activeIndex) {
+      thumb.slideTo(swiper.activeIndex);
+    }
+    requestAnimationFrame(() => {
+      const t = heroThumbSwiperRef.current;
+      if (t) {
+        setHeroThumbChrome({
+          index: t.activeIndex,
+          progress: t.progress,
+          canPrev: !t.isBeginning,
+          canNext: !t.isEnd,
+        });
+      }
+      heroSwiperSyncLock.current = false;
+    });
+  }, []);
+
+  const onHeroThumbSlideChange = useCallback((swiper: SwiperType) => {
+    setHeroThumbChrome({
+      index: swiper.activeIndex,
+      progress: swiper.progress,
+      canPrev: !swiper.isBeginning,
+      canNext: !swiper.isEnd,
+    });
+    if (heroSwiperSyncLock.current) return;
+    heroSwiperSyncLock.current = true;
+    const main = heroMainSwiperRef.current;
+    if (main && main.activeIndex !== swiper.activeIndex) {
+      main.slideTo(swiper.activeIndex);
+    }
+    requestAnimationFrame(() => {
+      heroSwiperSyncLock.current = false;
+    });
+  }, []);
+
+  const onHeroThumbProgress = useCallback((swiper: SwiperType) => {
+    setHeroThumbChrome((prev) => ({
+      ...prev,
+      progress: swiper.progress,
+    }));
+  }, []);
+
+  if (isSliderPending || gamesSlider.length === 0) return null;
+
+  const heroActiveGame = (gamesSlider[heroThumbChrome.index] ??
+    gamesSlider[0]) as GameParams;
+  const apiPlatformLabels = platformLabelsForGame(heroActiveGame);
+  const heroPlatformLabels =
+    apiPlatformLabels.length > 0
+      ? apiPlatformLabels
+      : [...HERO_PLATFORMS_FALLBACK];
 
   return (
     <div className="min-h-screen bg-black font-sans text-white antialiased">
       {/* —— Hero —— */}
       <section className="relative flex min-h-[100dvh] flex-col overflow-x-hidden">
-        {/* Poster mosaic */}
         <div
-          className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+          className="pointer-events-none absolute inset-0 isolate z-0 min-h-[100dvh]"
           aria-hidden
         >
-          <div className="absolute inset-[-18%] grid rotate-[-6deg] scale-110 grid-cols-5 gap-1 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-9">
-            {mosaicTiles.map((g, i) => (
-              <div
-                key={`${g.id}-${i}`}
-                className="aspect-[2/3] overflow-hidden"
-              >
-                <Image
-                  imgUrl={g.background_image}
-                  name=""
-                  styles="h-full w-full object-cover"
-                  effect="opacity"
-                />
-              </div>
-            ))}
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/78 to-black/92" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
+          {gamesSlider.length > 1 ? (
+            <Swiper
+              modules={[Autoplay, EffectFade]}
+              effect="fade"
+              rewind
+              speed={1000}
+              autoplay={{
+                delay: 6500,
+                disableOnInteraction: false,
+              }}
+              onSwiper={(swiper) => {
+                heroMainSwiperRef.current = swiper;
+              }}
+              onSlideChange={onHeroMainSlideChange}
+              className="hero-home-swiper relative z-0 h-full min-h-[100dvh] w-full [&_.swiper-slide]:!h-full"
+            >
+              {gamesSlider.map(
+                (game: { id: number; background_image: string }) => (
+                  <SwiperSlide key={game.id}>
+                    <img
+                      src={game.background_image}
+                      alt=""
+                      className="h-full min-h-[100dvh] w-full object-cover object-[center_20%]"
+                    />
+                  </SwiperSlide>
+                ),
+              )}
+            </Swiper>
+          ) : (
+            <img
+              src={gamesSlider[0]?.background_image ?? "/hero-gaming.png"}
+              alt=""
+              className="relative z-0 h-full min-h-[100dvh] w-full object-cover object-[center_20%]"
+            />
+          )}
+          {/* Above Swiper fade slides (internal z-index); without z-10 the tint never shows */}
+          <div className="absolute inset-0 z-10 min-h-[100dvh] w-full bg-black/60" />
         </div>
 
-        <div className="relative z-10 flex min-h-[100dvh] flex-col px-4 pb-8 pt-4 sm:px-10 sm:pt-6 md:px-14">
+        <div className="relative z-10 flex min-h-[100dvh] flex-col px-4 pb-8 pt-4 sm:px-10 sm:pt-6 md:px-40">
           {/* Nav */}
           <header className="flex shrink-0 items-center justify-between">
             <Link to={HOME} className="block w-28 sm:w-36 md:w-40">
@@ -179,48 +263,202 @@ export const HomePage: FC = () => {
             </Link>
           </header>
 
-          {/* Center CTA */}
-          <div className="mx-auto flex max-w-4xl flex-1 flex-col justify-center gap-6 py-12 text-center sm:gap-7 md:py-16">
-            <h1 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-              Unlimited movies, TV shows, and more
-            </h1>
-            <p className="text-lg font-medium sm:text-xl md:text-2xl">
-              Starts at EUR 4.99. Cancel anytime.
-            </p>
-            <p className="text-base text-white/95 sm:text-lg md:text-xl">
-              Ready to watch? Enter your email to create or restart your
-              membership.
-            </p>
+          {/* CTA (~60% left) + bottom-right horizontal swiper */}
+          <div className="flex w-full flex-1 flex-col gap-10 py-8 sm:py-12 lg:flex-row lg:items-stretch lg:justify-between lg:gap-10 lg:py-10 min-h-0">
+            <div className="flex w-full max-w-xl flex-col justify-center text-left sm:max-w-2xl lg:w-[58%] lg:max-w-none lg:shrink-0">
+              <h1 className="text-[1.65rem] font-extrabold leading-[1.1] tracking-tight text-white [text-shadow:0_0_40px_rgba(0,0,0,0.85),0_0_80px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-[3.35rem]">
+                <span className="text-white">Unlock </span>
+                <span className="bg-gradient-to-r from-red-500 via-rose-500 to-blue-500 bg-clip-text text-transparent">
+                  the Arena of{" "}
+                </span>
+                <span className="text-white">Bold Gaming</span>
+              </h1>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-white/90 sm:mt-6 sm:text-lg md:text-xl">
+                Immerse yourself in cutting-edge worlds where reality bends to
+                your will. The next era of interactive entertainment starts now.
+              </p>
 
-            <form
-              onSubmit={onEmailSubmit}
-              className="mx-auto flex w-full max-w-3xl flex-col gap-3 xs:flex-row xs:items-stretch xs:gap-2"
-            >
-              <label className="sr-only" htmlFor="home-email">
-                Email address
-              </label>
-              <input
-                id="home-email"
-                type="email"
-                name="email"
-                autoComplete="email"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="min-h-12 w-full flex-1 rounded border border-white/55 bg-black/55 px-4 py-3 text-base text-white placeholder:text-white/55 outline-none ring-0 transition focus:border-white sm:min-h-14 sm:px-5 sm:text-lg"
-              />
-              <button
-                type="submit"
-                className="flex min-h-12 shrink-0 items-center justify-center gap-1 rounded bg-primary px-5 text-base font-semibold text-white transition hover:brightness-110 sm:min-h-14 sm:px-7 sm:text-lg"
-              >
-                Get Started
-                <Icon
-                  name="MdKeyboardArrowRight"
-                  size={26}
-                  className="!text-white"
-                />
-              </button>
-            </form>
+              <div className="mt-7 flex flex-wrap gap-3 sm:mt-8 sm:gap-4">
+                <Link
+                  to={STORE}
+                  className="inline-flex items-center gap-2 rounded border border-white/40 bg-black/45 px-5 py-3 text-sm font-semibold text-white shadow-lg backdrop-blur-md transition hover:bg-black/60 sm:px-6 sm:text-base"
+                >
+                  <Icon
+                    name="MdShoppingBag"
+                    size={22}
+                    className="!text-white"
+                  />
+                  Shop Now
+                </Link>
+                <Link
+                  to={DISCOVER}
+                  className="inline-flex items-center gap-2 rounded border border-white/40 bg-black/45 px-5 py-3 text-sm font-semibold text-white shadow-lg backdrop-blur-md transition hover:bg-black/60 sm:px-6 sm:text-base"
+                >
+                  <Icon
+                    name="MdOutlinePlayArrow"
+                    size={24}
+                    className="!text-white"
+                  />
+                  Watch Streaming
+                </Link>
+              </div>
+
+              <div className="mt-10 flex flex-wrap items-stretch gap-0 sm:mt-12">
+                <div className="flex min-w-[7.5rem] flex-col border-r border-white/25 pr-6 sm:min-w-[8.5rem] sm:pr-8">
+                  <span className="text-base font-bold text-red-400 sm:text-lg">
+                    CLASSIFIED
+                  </span>
+                  <span className="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/75 sm:text-xs">
+                    Clearance level
+                  </span>
+                </div>
+                <div className="flex min-w-[7.5rem] flex-col border-r border-white/25 px-6 sm:min-w-[8.5rem] sm:px-8">
+                  <span className="text-base font-bold text-white sm:text-lg">
+                    ACTIVE
+                  </span>
+                  <span className="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/75 sm:text-xs">
+                    Status
+                  </span>
+                </div>
+                <div className="flex min-w-[7.5rem] flex-col pl-6 sm:min-w-[8.5rem] sm:pl-8">
+                  <span className="text-base font-bold text-cyan-400 sm:text-lg">
+                    SOLO/CO-OP
+                  </span>
+                  <span className="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/75 sm:text-xs">
+                    Mode
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-10 sm:mt-12">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/80">
+                  Available on:
+                </p>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {heroPlatformLabels.map((p) => (
+                    <li key={p}>
+                      <span className="inline-flex rounded border border-white/25 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm sm:text-sm">
+                        {p}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Bottom-right: ~3 cards, nav + progress + index */}
+            {gamesSlider.length > 0 && (
+              <div className="relative z-20 mt-auto flex w-full flex-col items-stretch lg:mt-0 lg:w-[42%] lg:max-w-[540px] lg:flex-none lg:justify-end lg:self-end">
+                <Swiper
+                  key={`hero-thumb-${trendingSwiperKey}`}
+                  slidesPerView={2.15}
+                  spaceBetween={12}
+                  breakpoints={{
+                    480: { slidesPerView: 2.35, spaceBetween: 14 },
+                    1024: { slidesPerView: 3, spaceBetween: 16 },
+                  }}
+                  grabCursor
+                  observer
+                  observeParents
+                  onSwiper={(swiper) => {
+                    heroThumbSwiperRef.current = swiper;
+                    setHeroThumbChrome({
+                      index: swiper.activeIndex,
+                      progress: swiper.progress,
+                      canPrev: !swiper.isBeginning,
+                      canNext: !swiper.isEnd,
+                    });
+                    requestAnimationFrame(() => swiper.update());
+                  }}
+                  onSlideChange={onHeroThumbSlideChange}
+                  onProgress={onHeroThumbProgress}
+                  className="hero-thumb-swiper w-full [&_.swiper-slide]:!h-auto"
+                >
+                  {gamesSlider.map(
+                    (game: {
+                      id: number;
+                      name: string;
+                      background_image: string;
+                    }) => (
+                      <SwiperSlide key={game.id}>
+                        <Link
+                          to={`${GAME_DETAILS}/${game.id}`}
+                          aria-label={game.name}
+                          className="group relative block h-[140px] w-full overflow-hidden rounded-xl ring-1 ring-white/35 shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition duration-300 hover:ring-white/60 hover:brightness-110 sm:rounded-2xl"
+                        >
+                          <Image
+                            imgUrl={game.background_image}
+                            name={game.name}
+                            styles="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                            effect="opacity"
+                          />
+                        </Link>
+                      </SwiperSlide>
+                    ),
+                  )}
+                </Swiper>
+
+                <div className="mt-4 flex w-full items-center gap-3 sm:mt-5 sm:gap-4">
+                  <div className="flex shrink-0 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => heroThumbSwiperRef.current?.slidePrev()}
+                      disabled={!heroThumbChrome.canPrev}
+                      className={classNames(
+                        "flex h-9 w-9 items-center justify-center rounded-full border border-white/45 bg-black/55 text-white shadow-lg backdrop-blur-sm transition sm:h-10 sm:w-10",
+                        heroThumbChrome.canPrev
+                          ? "hover:border-white/70 hover:bg-black/70"
+                          : "cursor-not-allowed opacity-35",
+                      )}
+                      aria-label="Previous slide"
+                    >
+                      <Icon
+                        name="MdKeyboardArrowLeft"
+                        size={22}
+                        className="!text-white"
+                      />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => heroThumbSwiperRef.current?.slideNext()}
+                      disabled={!heroThumbChrome.canNext}
+                      className={classNames(
+                        "flex h-9 w-9 items-center justify-center rounded-full border border-white/45 bg-black/55 text-white shadow-lg backdrop-blur-sm transition sm:h-10 sm:w-10",
+                        heroThumbChrome.canNext
+                          ? "hover:border-white/70 hover:bg-black/70"
+                          : "cursor-not-allowed opacity-35",
+                      )}
+                      aria-label="Next slide"
+                    >
+                      <Icon
+                        name="MdKeyboardArrowRight"
+                        size={22}
+                        className="!text-white"
+                      />
+                    </button>
+                  </div>
+
+                  <div className="relative h-1 min-w-0 flex-1 overflow-hidden rounded-full bg-white/20">
+                    <div
+                      className="h-full min-w-[6%] rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.35)] transition-[width] duration-150 ease-out"
+                      style={{
+                        width: `${Math.min(
+                          100,
+                          Math.max(
+                            gamesSlider.length <= 1 ? 100 : 8,
+                            heroThumbChrome.progress * 100,
+                          ),
+                        )}%`,
+                      }}
+                    />
+                  </div>
+
+                  <span className="shrink-0 tabular-nums text-sm font-semibold tracking-tight text-white sm:text-base">
+                    {String(heroThumbChrome.index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -234,6 +472,7 @@ export const HomePage: FC = () => {
 
           <div className="relative">
             <Swiper
+              key={trendingSwiperKey}
               modules={[FreeMode, Mousewheel]}
               slidesPerView="auto"
               spaceBetween={16}
@@ -251,9 +490,13 @@ export const HomePage: FC = () => {
                 sensitivity: 1,
                 releaseOnEdges: true,
               }}
+              observer
+              observeParents
+              watchSlidesProgress
               onSwiper={(swiper) => {
                 trendingSwiperRef.current = swiper;
                 syncTrendingNav(swiper);
+                requestAnimationFrame(() => swiper.update());
               }}
               onSlideChange={syncTrendingNav}
               onProgress={(swiper) => syncTrendingNav(swiper)}

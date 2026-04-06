@@ -8,7 +8,7 @@ const maxWidth = "max-w-[1140px] mx-auto md:px-8 sm:px-6 px-4 xl:px-0";
 
 export const GamesSlider: FC = () => {
   const { useGameSlider, useGameDetail } = useGames();
-  const { gamesSlider } = useGameSlider();
+  const { gamesSlider, isSliderPending } = useGameSlider();
 
   const [selectedGameId, setSelectedGameId] = useState<number | undefined>();
   const [backgroundImage, setBackgroundImage] = useState<string | undefined>();
@@ -65,7 +65,7 @@ export const GamesSlider: FC = () => {
     }, 5000);
   };
 
-  if (!gamesSlider) return null;
+  if (isSliderPending || gamesSlider.length === 0) return null;
 
   return (
     <div
