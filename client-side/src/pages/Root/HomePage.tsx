@@ -77,20 +77,50 @@ const FOOTER_LINK_COLUMNS: { label: string; href: string }[][] = [
 const footerLinkClass =
   "text-sm text-white/80 underline underline-offset-2 transition hover:text-white";
 
-const HERO_PLATFORMS_FALLBACK = ["PC", "PS5", "Xbox", "Switch"] as const;
+const HERO_PLATFORM_CHIPS_FALLBACK: { name: string; slug: string }[] = [
+  { name: "PC", slug: "pc" },
+  { name: "PS5", slug: "playstation5" },
+  { name: "Xbox", slug: "xbox" },
+  { name: "Switch", slug: "nintendo-switch" },
+];
 
-function platformLabelsForGame(game: GameParams | undefined): string[] {
+function platformChipsForGame(
+  game: GameParams | undefined,
+): { name: string; slug: string }[] {
   if (!game) return [];
-  const fromParent =
-    game.parent_platforms
-      ?.map((p) => p.platform.name)
-      .filter((n): n is string => Boolean(n)) ?? [];
-  if (fromParent.length) return [...new Set(fromParent)];
-  const fromPlatforms =
-    game.platforms
-      ?.map((p) => p.platform.name)
-      .filter((n): n is string => Boolean(n)) ?? [];
-  return [...new Set(fromPlatforms)];
+  const seen = new Set<string>();
+  const out: { name: string; slug: string }[] = [];
+  const add = (name: string, slug?: string) => {
+    if (!name?.trim()) return;
+    const key = (slug || name).toLowerCase().replace(/\s+/g, "-");
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push({ name: name.trim(), slug: key });
+  };
+  for (const row of game.parent_platforms ?? []) {
+    const pl = row.platform;
+    if (pl?.name) add(pl.name, pl.slug);
+  }
+  if (out.length) return out;
+  for (const row of game.platforms ?? []) {
+    const pl = row.platform;
+    if (pl?.name) add(pl.name, pl.slug);
+  }
+  return out;
+}
+
+/** Maps API slug/name to an icon registered in `Icon`. */
+function iconNameForPlatform(slug: string, name: string): string {
+  const hay = `${slug} ${name}`.toLowerCase();
+  if (/playstation|^ps\d|sony/.test(hay)) return "FaPlaystation";
+  if (/xbox/.test(hay)) return "FaXbox";
+  if (/nintendo|\bswitch\b/.test(hay)) return "BsNintendoSwitch";
+  if (/\bpc\b|windows/.test(hay)) return "FaWindows";
+  if (/macos|\bmac\b|ios|iphone|ipad|apple/.test(hay)) return "FaApple";
+  if (/linux|steam|ubuntu/.test(hay)) return "FaLinux";
+  if (/android/.test(hay)) return "FaAndroid";
+  if (/web|browser/.test(hay)) return "BsGlobe";
+  return "BiGame";
 }
 
 export const HomePage: FC = () => {
@@ -191,11 +221,12 @@ export const HomePage: FC = () => {
 
   const heroActiveGame = (gamesSlider[heroThumbChrome.index] ??
     gamesSlider[0]) as GameParams;
-  const apiPlatformLabels = platformLabelsForGame(heroActiveGame);
-  const heroPlatformLabels =
-    apiPlatformLabels.length > 0
-      ? apiPlatformLabels
-      : [...HERO_PLATFORMS_FALLBACK];
+  const heroHeadlineThirdLine = heroActiveGame?.name?.trim() || "Bold Gaming";
+  const apiPlatformChips = platformChipsForGame(heroActiveGame);
+  const heroPlatformChips =
+    apiPlatformChips.length > 0
+      ? apiPlatformChips
+      : [...HERO_PLATFORM_CHIPS_FALLBACK];
 
   return (
     <div className="min-h-screen bg-black font-sans text-white antialiased">
@@ -264,14 +295,14 @@ export const HomePage: FC = () => {
           </header>
 
           {/* CTA (~60% left) + bottom-right horizontal swiper */}
-          <div className="flex w-full flex-1 flex-col gap-10 py-8 sm:py-12 lg:flex-row lg:items-stretch lg:justify-between lg:gap-10 lg:py-10 min-h-0">
+          <div className="flex w-full flex-1 flex-col gap-10 py-8 sm:py-12 lg:flex-row lg:items-stretch lg:justify-between lg:py-10 min-h-0">
             <div className="flex w-full max-w-xl flex-col justify-center text-left sm:max-w-2xl lg:w-[58%] lg:max-w-none lg:shrink-0">
-              <h1 className="text-[1.65rem] font-extrabold leading-[1.1] tracking-tight text-white [text-shadow:0_0_40px_rgba(0,0,0,0.85),0_0_80px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-[3.35rem]">
-                <span className="text-white">Unlock </span>
+              <h1 className="flex flex-col gap-1 text-[1.65rem] font-extrabold leading-[1.05] tracking-tight text-white [text-shadow:0_0_40px_rgba(0,0,0,0.85),0_0_80px_rgba(0,0,0,0.45)] sm:gap-1.5 sm:text-4xl md:text-5xl lg:text-[3.35rem]">
+                <span className="text-white">Unlock</span>
                 <span className="bg-gradient-to-r from-red-500 via-rose-500 to-blue-500 bg-clip-text text-transparent">
-                  the Arena of{" "}
+                  the Arena of
                 </span>
-                <span className="text-white">Bold Gaming</span>
+                <span className="text-white">{heroHeadlineThirdLine}</span>
               </h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-white/90 sm:mt-6 sm:text-lg md:text-xl">
                 Immerse yourself in cutting-edge worlds where reality bends to
@@ -303,7 +334,7 @@ export const HomePage: FC = () => {
                 </Link>
               </div>
 
-              <div className="mt-10 flex flex-wrap items-stretch gap-0 sm:mt-12">
+              <div className="w-4/5 mt-10 flex flex-wrap items-stretch gap-0 border-y border-white/25 py-6 sm:mt-12 sm:py-7">
                 <div className="flex min-w-[7.5rem] flex-col border-r border-white/25 pr-6 sm:min-w-[8.5rem] sm:pr-8">
                   <span className="text-base font-bold text-red-400 sm:text-lg">
                     CLASSIFIED
@@ -335,10 +366,15 @@ export const HomePage: FC = () => {
                   Available on:
                 </p>
                 <ul className="mt-3 flex flex-wrap gap-2">
-                  {heroPlatformLabels.map((p) => (
-                    <li key={p}>
-                      <span className="inline-flex rounded border border-white/25 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm sm:text-sm">
-                        {p}
+                  {heroPlatformChips.map((p) => (
+                    <li key={p.slug}>
+                      <span className="inline-flex items-center gap-2 rounded border border-white/25 bg-black/25 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm sm:text-sm">
+                        <Icon
+                          name={iconNameForPlatform(p.slug, p.name)}
+                          size={18}
+                          className="!text-white/95 shrink-0"
+                        />
+                        {p.name}
                       </span>
                     </li>
                   ))}
