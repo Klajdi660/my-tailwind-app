@@ -11,11 +11,12 @@ export const AccountSettings: FC = () => {
     <div className="flex">
       <div className="w-full flex flex-col md:flex-row text-onNeutralBg gap-6">
         <AccountInfo />
-        <div className="w-full flex flex-col gap-6">
+        <AccountDetails />
+        {/* <div className="w-full flex flex-col gap-6">
           <AccountDetails />
           <AccountShippingAddress />
         </div>
-        <AccountPaymentMethods />
+        <AccountPaymentMethods /> */}
       </div>
     </div>
   );

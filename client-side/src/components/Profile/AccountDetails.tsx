@@ -9,7 +9,7 @@ export const AccountDetails: FC = () => {
   const { firstName, lastName, dateOfBirth, gender } = user.extra;
 
   return (
-    <div className="flex justify-between flex-col gap-4 p-6 bg-card rounded">
+    <div className="w-full h-full flex flex-col gap-4 p-6 bg-card rounded">
       <div className="flex_justify_between">
         <Typography.Title
           level={4}
@@ -25,21 +25,23 @@ export const AccountDetails: FC = () => {
           icon={<Icon name="CiEdit" size={24} />}
         />
       </div>
-      <div className="flex_justify_between">
-        <span className="text-gray-400">First Name</span>
-        <span>{firstName ?? "---"}</span>
-      </div>
-      <div className="flex_justify_between">
-        <span className="text-gray-400">Last Name</span>
-        <span>{lastName ?? "---"}</span>
-      </div>
-      <div className="flex_justify_between">
-        <span className="text-gray-400">Date of Birth</span>
-        <span>{dateOfBirth ?? "---"}</span>
-      </div>
-      <div className="flex_justify_between">
-        <span className="text-gray-400">Gender</span>
-        <span>{gender ?? "---"}</span>
+      <div className="flex flex-col gap-4">
+        <div className="flex_justify_between">
+          <span className="text-gray-400">First Name</span>
+          <span>{firstName ?? "---"}</span>
+        </div>
+        <div className="flex_justify_between">
+          <span className="text-gray-400">Last Name</span>
+          <span>{lastName ?? "---"}</span>
+        </div>
+        <div className="flex_justify_between">
+          <span className="text-gray-400">Date of Birth</span>
+          <span>{dateOfBirth ?? "---"}</span>
+        </div>
+        <div className="flex_justify_between">
+          <span className="text-gray-400">Gender</span>
+          <span>{gender ?? "---"}</span>
+        </div>
       </div>
     </div>
   );

@@ -17,6 +17,7 @@ import {
   BiGame,
   BiMinus,
   BiSearch,
+  BiWifi,
   BiChevronsRight,
   BiSelectMultiple,
 } from "react-icons/bi";
@@ -125,6 +126,7 @@ const icons: IconsMap = {
   BiMinus,
   BsGlobe,
   BiSearch,
+  BiWifi,
   BsThreeDots,
   BsShieldLock,
   BiChevronsRight,
