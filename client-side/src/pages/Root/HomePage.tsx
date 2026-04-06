@@ -417,10 +417,16 @@ export const HomePage: FC = () => {
                       background_image: string;
                     }) => (
                       <SwiperSlide key={game.id}>
-                        <Link
-                          to={`${GAME_DETAILS}/${game.id}`}
+                        <button
+                          type="button"
                           aria-label={game.name}
-                          className="group relative block h-[140px] w-full overflow-hidden rounded-xl ring-1 ring-white/35 shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition duration-300 hover:ring-white/60 hover:brightness-110 sm:rounded-2xl"
+                          onClick={() => {
+                            const i = gamesSlider.findIndex(
+                              (g: { id: number }) => g.id === game.id,
+                            );
+                            if (i >= 0) heroThumbSwiperRef.current?.slideTo(i);
+                          }}
+                          className="group relative block h-[140px] w-full cursor-pointer overflow-hidden rounded-xl border-0 bg-transparent p-0 text-left ring-1 ring-white/35 shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition duration-300 hover:ring-white/60 hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60 sm:rounded-2xl"
                         >
                           <Image
                             imgUrl={game.background_image}
@@ -428,7 +434,7 @@ export const HomePage: FC = () => {
                             styles="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                             effect="opacity"
                           />
-                        </Link>
+                        </button>
                       </SwiperSlide>
                     ),
                   )}
