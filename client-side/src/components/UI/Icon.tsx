@@ -59,7 +59,7 @@ import {
   HiOutlineUpload,
   HiOutlinePencil,
 } from "react-icons/hi";
-import { HiChartBar } from "react-icons/hi2";
+import { HiChartBar, HiOutlineTrophy } from "react-icons/hi2";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoCloseCircleOutline, IoWalletOutline } from "react-icons/io5";
 import { LiaSignOutAltSolid, LiaCarSideSolid } from "react-icons/lia";
@@ -75,6 +75,10 @@ import {
   MdOutlineCancel,
   MdOutlinePayment,
   MdOutlineExplore,
+  MdOutlineTv,
+  MdOutlineFileDownload,
+  MdTravelExplore,
+  MdChildFriendly,
   MdOutlineSwitchAccount,
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
@@ -164,6 +168,7 @@ const icons: IconsMap = {
   HiCheck,
   HiMenuAlt2,
   HiChartBar,
+  HiOutlineTrophy,
   HiOutlineUpload,
   HiOutlinePencil,
   IoWalletOutline,
@@ -184,6 +189,10 @@ const icons: IconsMap = {
   MdOutlineCancel,
   MdOutlinePayment,
   MdOutlineExplore,
+  MdOutlineTv,
+  MdOutlineFileDownload,
+  MdTravelExplore,
+  MdChildFriendly,
   MdKeyboardArrowUp,
   MdKeyboardArrowDown,
   MdOutlineLocationOn,

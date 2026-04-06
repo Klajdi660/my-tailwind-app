@@ -1,161 +1,466 @@
-import { FC, useEffect, useState } from "react";
+import { FC, FormEvent, useCallback, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { paths } from "../../data";
+import { FreeMode, Mousewheel } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { languageMaps, paths } from "../../data";
 import { iconName } from "../../assets";
 import { classNames } from "../../utils";
 import { useGames } from "../../hooks";
-// import { useAppSelector } from "../../store";
-import { Button, Image } from "../../components";
+import { Icon, Image } from "../../components";
+
+const JOIN_REASONS: {
+  title: string;
+  description: string;
+  icon: string;
+  iconClass: string;
+}[] = [
+  {
+    title: "Enjoy on your TV",
+    description:
+      "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
+    icon: "MdOutlineTv",
+    iconClass:
+      "text-fuchsia-400 drop-shadow-[0_0_20px_rgba(232,121,249,0.65)]",
+  },
+  {
+    title: "Download your shows to watch offline",
+    description:
+      "Save your favorites easily and always have something to watch.",
+    icon: "MdOutlineFileDownload",
+    iconClass:
+      "text-purple-400 drop-shadow-[0_0_20px_rgba(168,85,247,0.65)]",
+  },
+  {
+    title: "Watch everywhere",
+    description:
+      "Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.",
+    icon: "MdTravelExplore",
+    iconClass: "text-pink-400 drop-shadow-[0_0_20px_rgba(244,114,182,0.65)]",
+  },
+  {
+    title: "Create profiles for kids",
+    description:
+      "Send kids on adventures with their favorite characters in a space made just for them — free with your membership.",
+    icon: "MdChildFriendly",
+    iconClass: "text-rose-400 drop-shadow-[0_0_20px_rgba(251,113,133,0.65)]",
+  },
+];
+
+const FOOTER_LINK_COLUMNS: { label: string; href: string }[][] = [
+  [
+    { label: "FAQ", href: "#" },
+    { label: "Investor Relations", href: "#" },
+    { label: "Privacy", href: "#" },
+    { label: "Speed Test", href: "#" },
+  ],
+  [
+    { label: "Help Center", href: "#" },
+    { label: "Jobs", href: "#" },
+    { label: "Cookie Preferences", href: "#" },
+    { label: "Legal Notices", href: "#" },
+  ],
+  [
+    { label: "Account", href: paths.ACCOUNT },
+    { label: "Ways to Watch", href: "#" },
+    { label: "Corporate Information", href: "#" },
+    { label: "Only on Netflix", href: "#" },
+  ],
+  [
+    { label: "Media Center", href: "#" },
+    { label: "Terms of Use", href: "#" },
+    { label: "Contact Us", href: "#" },
+  ],
+];
+
+const footerLinkClass =
+  "text-sm text-white/80 underline underline-offset-2 transition hover:text-white";
 
 export const HomePage: FC = () => {
-  const { LOGIN, /*ACCOUNT_SAVED,*/ HOME } = paths;
-
-  const { useGameSlider, useGameDetail } = useGames();
+  const { LOGIN, REGISTER, GAME_DETAILS, HOME, LOGIN_HELP } = paths;
+  const { useGameSlider } = useGames();
   const { gamesSlider } = useGameSlider();
 
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [footerEmail, setFooterEmail] = useState("");
+  const [trendingNav, setTrendingNav] = useState({
+    canPrev: false,
+    canNext: true,
+  });
 
-  const [backgroundImage, setBackgroundImage] = useState<string | undefined>();
-  const [selectedGameId, setSelectedGameId] = useState<number | undefined>();
-  const { gameDetail } = useGameDetail(selectedGameId) as any;
+  const trendingSwiperRef = useRef<SwiperType | null>(null);
 
-  // const { saveAuthUserData } = useAppSelector((state) => state.user);
+  const syncTrendingNav = useCallback((swiper: SwiperType) => {
+    setTrendingNav({
+      canPrev: !swiper.isBeginning,
+      canNext: !swiper.isEnd,
+    });
+  }, []);
 
-  // const navigateTo = saveAuthUserData.length > 0 ? ACOUNT_SAVED : LOGIN;
-  const navigateTo = LOGIN;
-
-  useEffect(() => {
-    if (gamesSlider && gamesSlider.length > 0) {
-      const initialBackgroundImage =
-        gamesSlider[0].background_image || undefined;
-      const initialGameId = gamesSlider[0].id || undefined;
-      setBackgroundImage(initialBackgroundImage);
-      setSelectedGameId(initialGameId);
+  const mosaicTiles = useMemo(() => {
+    if (!gamesSlider?.length) return [];
+    const tiles: any[] = [];
+    for (let i = 0; i < 42; i++) {
+      tiles.push(gamesSlider[i % gamesSlider.length]);
     }
+    return tiles;
   }, [gamesSlider]);
 
-  const selectedGameHandler = (
-    gameId: number,
-    imgUrl: string,
-    _parent_platforms: any,
-  ) => {
-    setSelectedGameId(gameId);
-    setBackgroundImage(imgUrl);
-  };
+  const onEmailSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
+      const q = email.trim()
+        ? `?email=${encodeURIComponent(email.trim())}`
+        : "";
+      navigate(`${REGISTER}${q}`);
+    },
+    [email, navigate, REGISTER],
+  );
 
-  if (!gamesSlider) return null;
+  const onFooterEmailSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
+      const q = footerEmail.trim()
+        ? `?email=${encodeURIComponent(footerEmail.trim())}`
+        : "";
+      navigate(`${REGISTER}${q}`);
+    },
+    [footerEmail, navigate, REGISTER],
+  );
+
+  if (!gamesSlider?.length) return null;
 
   return (
-    <div className="w-full h-screen">
-      <Image
-        styles="fixed h-screen w-full object-cover"
-        imgUrl={backgroundImage}
-        name="/"
-      />
-      <div className="bg-black/60 fixed top-0 left-0 w-full h-screen"></div>
-      <div className="w-full h-screen flex flex-col justify-between px-4 pt-6 pb-8 sm:px-6 sm:py-8 md:px-12 md:py-10 lg:px-24 xl:px-40 absolute z-[100] min-h-0">
-        <div className="flex flex-col gap-6 md:gap-10 shrink-0">
-          <div className="flex_justify_between items-center gap-4">
-            <Link to={HOME} className="shrink-0">
-              <Image
-                imgUrl={iconName}
-                name="App Logo"
-                styles="w-[100px] h-auto sm:w-[120px] md:w-[150px] object-contain"
-                effect="opacity"
-              />
-            </Link>
-            <Button
-              className="flex_justify_center shrink-0 min-h-10 w-24 bg-primary text-white hover:brightness-110"
-              variant="none"
-              label="Sign in"
-              onClick={() => navigate(navigateTo)}
-            />
-          </div>
-          <div className="w-full flex flex-row flex-nowrap items-start gap-3 sm:gap-4 overflow-x-auto overscroll-x-contain pb-1 -mx-1 px-1 md:overflow-visible md:justify-between md:gap-2 lg:gap-4 [scrollbar-width:thin]">
-            {gamesSlider.map((game: any) => (
+    <div className="min-h-screen bg-black font-sans text-white antialiased">
+      {/* —— Hero —— */}
+      <section className="relative flex min-h-[100dvh] flex-col overflow-x-hidden">
+        {/* Poster mosaic */}
+        <div
+          className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+          aria-hidden
+        >
+          <div className="absolute inset-[-18%] grid rotate-[-6deg] scale-110 grid-cols-5 gap-1 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-9">
+            {mosaicTiles.map((g, i) => (
               <div
-                key={game.id}
-                className="relative flex items-end group shrink-0"
+                key={`${g.id}-${i}`}
+                className="aspect-[2/3] overflow-hidden"
               >
                 <Image
-                  imgUrl={game.background_image}
-                  styles={classNames(
-                    "rounded-2xl md:rounded-3xl object-cover transition-all duration-300 cursor-pointer touch-manipulation",
-                    selectedGameId === game.id
-                      ? "w-24 h-24 p-1 sm:w-32 sm:h-32 sm:p-1.5 md:w-40 md:h-40 md:p-2 bg-white bg-opacity-10"
-                      : "w-[4.5rem] h-[4.5rem] sm:w-24 sm:h-24 md:w-28 md:h-28 opacity-80",
-                  )}
+                  imgUrl={g.background_image}
+                  name=""
+                  styles="h-full w-full object-cover"
                   effect="opacity"
-                  onClick={() =>
-                    selectedGameHandler(
-                      game.id,
-                      game.background_image,
-                      game.parent_platforms,
-                    )
-                  }
                 />
               </div>
             ))}
           </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/78 to-black/92" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
         </div>
-        <div className="mt-auto min-h-0 shrink pb-[max(0.5rem,env(safe-area-inset-bottom))]">
-          {gameDetail && (
-            <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-6 lg:gap-10">
-              <div className="flex flex-col gap-6 md:gap-12 lg:gap-16 min-w-0 md:max-w-[min(100%,42rem)]">
-                <div className="text-white text-3xl sm:text-4xl md:text-5xl font-newCenturySchoolbook leading-tight break-words">
-                  {gameDetail.name}
-                </div>
-                <div className="flex flex-row flex-wrap items-center gap-3 sm:gap-6">
-                  <div className="hover:brightness-110 w-full xs:w-auto min-w-0">
-                    <Button
-                      className="w-full xs:w-60 h-12 sm:h-14 bg-white bg-opacity-10 text-white text-lg sm:text-xl font-normal rounded-full justify-center"
-                      iconClassName="text-white"
-                      variant="none"
-                      label="Buy Game"
-                      labelIcon="CiShoppingTag"
-                      size={25}
-                    />
-                  </div>
-                  <div className="hover:brightness-110 shrink-0">
-                    <Button
-                      className="w-12 h-12 sm:w-14 sm:h-14 bg-white bg-opacity-10 text-white text-xl font-normal rounded-full"
-                      iconClassName="text-white"
-                      variant="none"
-                      labelIcon="BsThreeDots"
-                    />
-                  </div>
-                </div>
-              </div>
 
-              <div className="flex flex-col gap-4 sm:gap-6 w-full xs:w-auto xs:max-w-[13rem] sm:max-w-none mx-auto md:mx-0 md:w-auto shrink-0 items-center md:items-end">
-                <Image
-                  imgUrl={gameDetail.background_image}
-                  styles={classNames(
-                    "w-full max-w-[208px] xs:max-w-none sm:w-52 aspect-[208/240] sm:aspect-auto sm:h-60 rounded-lg object-cover transition-all duration-300",
-                  )}
-                  effect="blur"
+        <div className="relative z-10 flex min-h-[100dvh] flex-col px-4 pb-8 pt-4 sm:px-10 sm:pt-6 md:px-14">
+          {/* Nav */}
+          <header className="flex shrink-0 items-center justify-between">
+            <Link to={HOME} className="block w-28 sm:w-36 md:w-40">
+              <Image
+                imgUrl={iconName}
+                name="Logo"
+                styles="h-auto w-full object-contain"
+                effect="opacity"
+              />
+            </Link>
+            <Link
+              to={LOGIN}
+              className="rounded bg-primary px-3 py-1.5 text-sm font-medium text-white transition hover:brightness-110 sm:px-5 sm:py-2 sm:text-base"
+            >
+              Sign In
+            </Link>
+          </header>
+
+          {/* Center CTA */}
+          <div className="mx-auto flex max-w-4xl flex-1 flex-col justify-center gap-6 py-12 text-center sm:gap-7 md:py-16">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+              Unlimited movies, TV shows, and more
+            </h1>
+            <p className="text-lg font-medium sm:text-xl md:text-2xl">
+              Starts at EUR 4.99. Cancel anytime.
+            </p>
+            <p className="text-base text-white/95 sm:text-lg md:text-xl">
+              Ready to watch? Enter your email to create or restart your
+              membership.
+            </p>
+
+            <form
+              onSubmit={onEmailSubmit}
+              className="mx-auto flex w-full max-w-3xl flex-col gap-3 xs:flex-row xs:items-stretch xs:gap-2"
+            >
+              <label className="sr-only" htmlFor="home-email">
+                Email address
+              </label>
+              <input
+                id="home-email"
+                type="email"
+                name="email"
+                autoComplete="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="min-h-12 w-full flex-1 rounded border border-white/55 bg-black/55 px-4 py-3 text-base text-white placeholder:text-white/55 outline-none ring-0 transition focus:border-white sm:min-h-14 sm:px-5 sm:text-lg"
+              />
+              <button
+                type="submit"
+                className="flex min-h-12 shrink-0 items-center justify-center gap-1 rounded bg-primary px-5 text-base font-semibold text-white transition hover:brightness-110 sm:min-h-14 sm:px-7 sm:text-lg"
+              >
+                Get Started
+                <Icon
+                  name="MdKeyboardArrowRight"
+                  size={26}
+                  className="!text-white"
                 />
-                <div className="flex justify-between gap-3 w-full max-w-[208px] sm:max-w-none sm:w-52">
-                  <Button
-                    className="min-w-0 flex-1 h-10 bg-white bg-opacity-10 text-white text-sm sm:text-lg font-normal rounded-xl px-2"
-                    iconClassName="text-white"
-                    variant="none"
-                    label={gameDetail.metacritic}
-                    labelIcon="HiChartBar"
-                  />
-                  <Button
-                    className="min-w-0 flex-1 h-10 bg-white bg-opacity-10 text-white text-sm sm:text-lg font-normal rounded-xl px-2"
-                    iconClassName="text-white"
-                    variant="none"
-                    label={`${gameDetail.playtime}h`}
-                    labelIcon="FaClock"
-                  />
-                </div>
-              </div>
-            </div>
-          )}
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* —— Trending Now —— */}
+      <section className="relative bg-black pb-16 pt-2 sm:pb-20">
+        <div className="mx-auto max-w-[100vw] px-4 sm:px-10 md:px-14">
+          <h2 className="mb-5 text-xl font-bold sm:mb-6 sm:text-2xl md:text-3xl">
+            Trending Now
+          </h2>
+
+          <div className="relative">
+            <Swiper
+              modules={[FreeMode, Mousewheel]}
+              slidesPerView="auto"
+              spaceBetween={16}
+              breakpoints={{
+                640: { spaceBetween: 20 },
+                1024: { spaceBetween: 24 },
+              }}
+              freeMode={{
+                enabled: true,
+                momentum: true,
+                momentumRatio: 0.65,
+              }}
+              mousewheel={{
+                forceToAxis: true,
+                sensitivity: 1,
+                releaseOnEdges: true,
+              }}
+              onSwiper={(swiper) => {
+                trendingSwiperRef.current = swiper;
+                syncTrendingNav(swiper);
+              }}
+              onSlideChange={syncTrendingNav}
+              onProgress={(swiper) => syncTrendingNav(swiper)}
+              onResize={syncTrendingNav}
+              watchOverflow
+              className={classNames(
+                "hide_scrollbar trending-swiper [&_.swiper-slide]:!overflow-visible -mx-1 px-1 py-2",
+                trendingNav.canPrev ? "pl-12 sm:pl-14" : "pl-1",
+                trendingNav.canNext ? "pr-12 sm:pr-14" : "pr-1",
+              )}
+              wrapperClass="items-end !overflow-visible"
+            >
+              {gamesSlider.map((game: any, index: number) => (
+                <SwiperSlide
+                  key={game.id}
+                  className="!flex !h-auto !w-auto shrink-0 !overflow-visible"
+                >
+                  <Link
+                    to={`${GAME_DETAILS}/${game.id}`}
+                    className="group flex w-auto shrink-0 items-end pt-2"
+                  >
+                    <span
+                      className="pointer-events-none relative z-30 min-w-[2.25rem] shrink-0 select-none text-right text-[3.5rem] font-black leading-[0.78] text-transparent sm:min-w-[2.75rem] sm:text-[4.25rem] md:text-[5rem]"
+                      style={{
+                        WebkitTextStroke: "2.5px rgba(255,255,255,0.95)",
+                        paintOrder: "stroke fill",
+                      }}
+                      aria-hidden
+                    >
+                      {index + 1}
+                    </span>
+                    <div className="relative z-20 -ml-10 h-[252px] w-[180px] shrink-0 overflow-hidden rounded-md shadow-lg ring-1 ring-white/10 transition group-hover:ring-white/25 sm:-ml-11">
+                      <Image
+                        imgUrl={game.background_image}
+                        name={game.name}
+                        styles="h-[252px] w-[180px] object-cover"
+                        effect="opacity"
+                      />
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            <button
+              type="button"
+              onClick={() => trendingSwiperRef.current?.slidePrev()}
+              disabled={!trendingNav.canPrev}
+              className={classNames(
+                "absolute left-0 top-1/2 z-20 flex h-[72%] max-h-60 w-10 -translate-y-1/2 items-center justify-center rounded bg-black/55 text-white shadow-lg backdrop-blur-[2px] transition hover:bg-black/75 sm:w-12 md:w-14",
+                trendingNav.canPrev
+                  ? "pointer-events-auto opacity-100"
+                  : "pointer-events-none opacity-0",
+              )}
+              aria-label="Previous"
+              aria-hidden={!trendingNav.canPrev}
+            >
+              <Icon
+                name="MdKeyboardArrowLeft"
+                size={28}
+                className="!text-white"
+              />
+            </button>
+            <button
+              type="button"
+              onClick={() => trendingSwiperRef.current?.slideNext()}
+              disabled={!trendingNav.canNext}
+              className={classNames(
+                "absolute right-0 top-1/2 z-20 flex h-[72%] max-h-60 w-10 -translate-y-1/2 items-center justify-center rounded bg-black/55 text-white shadow-lg backdrop-blur-[2px] transition hover:bg-black/75 sm:w-12 md:w-14",
+                trendingNav.canNext
+                  ? "pointer-events-auto opacity-100"
+                  : "pointer-events-none opacity-0",
+              )}
+              aria-label="Next"
+              aria-hidden={!trendingNav.canNext}
+            >
+              <Icon
+                name="MdKeyboardArrowRight"
+                size={28}
+                className="!text-white"
+              />
+            </button>
+          </div>
+
+          <h2 className="mb-5 mt-14 text-xl font-bold sm:mb-6 sm:mt-16 sm:text-2xl md:mt-20 md:text-3xl">
+            More Reasons to Join
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
+            {JOIN_REASONS.map((item) => (
+              <article
+                key={item.title}
+                className="relative flex min-h-[220px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-violet-950/55 via-zinc-950/80 to-black p-6 ring-1 ring-white/[0.06] sm:min-h-[240px] sm:rounded-3xl sm:p-8"
+              >
+                <h3 className="pr-14 text-lg font-bold leading-snug text-white sm:text-xl">
+                  {item.title}
+                </h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-white/75 sm:text-base">
+                  {item.description}
+                </p>
+                <div
+                  className="pointer-events-none absolute bottom-5 right-4 sm:bottom-6 sm:right-5"
+                  aria-hidden
+                >
+                  <Icon name={item.icon} size={52} className={item.iconClass} />
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-white/10 bg-black">
+        <div className="mx-auto max-w-[100vw] px-4 py-16 sm:px-10 sm:py-20 md:px-14">
+          <p className="mx-auto max-w-2xl text-center text-lg font-normal text-white sm:text-xl">
+            Ready to watch? Enter your email to create or restart your
+            membership.
+          </p>
+
+          <form
+            onSubmit={onFooterEmailSubmit}
+            className="mx-auto mt-6 flex w-full max-w-3xl flex-col gap-3 xs:mt-8 xs:flex-row xs:items-stretch xs:gap-2"
+          >
+            <label className="sr-only" htmlFor="footer-email">
+              Email address
+            </label>
+            <input
+              id="footer-email"
+              type="email"
+              name="email"
+              autoComplete="email"
+              placeholder="Email address"
+              value={footerEmail}
+              onChange={(e) => setFooterEmail(e.target.value)}
+              className="min-h-12 w-full flex-1 rounded border border-white/55 bg-black/80 px-4 py-3 text-base text-white placeholder:text-white/55 outline-none ring-0 transition focus:border-white sm:min-h-14 sm:px-5 sm:text-lg"
+            />
+            <button
+              type="submit"
+              className="flex min-h-12 shrink-0 items-center justify-center gap-1 rounded bg-primary px-5 text-base font-semibold text-white transition hover:brightness-110 sm:min-h-14 sm:px-7 sm:text-lg"
+            >
+              Get Started
+              <Icon
+                name="MdKeyboardArrowRight"
+                size={26}
+                className="!text-white"
+              />
+            </button>
+          </form>
+
+          <p className="mt-12 text-base text-white/90 sm:mt-14">
+            Questions?{" "}
+            <Link to={LOGIN_HELP} className={footerLinkClass}>
+              Contact us.
+            </Link>
+          </p>
+
+          <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 sm:gap-y-4">
+            {FOOTER_LINK_COLUMNS.map((column, colIndex) => (
+              <ul key={colIndex} className="flex flex-col gap-3 sm:gap-3.5">
+                {column.map((item) => (
+                  <li key={item.label}>
+                    {item.href.startsWith("/") ? (
+                      <Link to={item.href} className={footerLinkClass}>
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a href={item.href} className={footerLinkClass}>
+                        {item.label}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+
+          <div className="relative mt-10 inline-flex sm:mt-12">
+            <Icon
+              name="BsGlobe"
+              size={18}
+              className="pointer-events-none absolute left-3 top-1/2 z-[1] -translate-y-1/2 !text-white/90"
+            />
+            <select
+              aria-label="Language"
+              defaultValue="US"
+              className="h-11 min-w-[148px] cursor-pointer appearance-none rounded border border-white/40 bg-black py-2 pl-10 pr-10 text-sm text-white outline-none ring-0 transition hover:border-white/55 focus:border-white"
+            >
+              {Object.entries(languageMaps).map(([key, { label }]) => (
+                <option key={key} value={key} className="bg-black">
+                  {label}
+                </option>
+              ))}
+            </select>
+            <Icon
+              name="MdKeyboardArrowDown"
+              size={20}
+              className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 !text-white/90"
+            />
+          </div>
+
+          <p className="mt-6 text-sm text-white/55">Netflix Albania</p>
+
+          <p className="mt-6 text-xs leading-relaxed text-white/45 sm:text-[0.8125rem]">
+            This page is protected by Google reCAPTCHA to ensure you&apos;re not
+            a bot.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
