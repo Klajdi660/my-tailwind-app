@@ -31,12 +31,9 @@ export const HeroModule: FC = () => {
   useEffect(() => {
     if (gamesSlider && gamesSlider.length > 0) {
       const platforms = gamesSlider[0].parent_platforms || [];
-      console.log("platforms :>> ", platforms);
       setPlatformsIcon(platforms);
     }
   }, [gamesSlider]);
-
-  console.log("[platformsIcon] :>> ", [platformsIcon]);
 
   const heroActiveGame = (gamesSlider[heroThumbChrome.index] ??
     gamesSlider[0]) as GameParams;
