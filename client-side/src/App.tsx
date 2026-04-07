@@ -3,14 +3,14 @@ import { ToastContainer } from "react-toastify";
 import { ConfigProvider, App } from "antd";
 import { HelmetProvider } from "react-helmet-async";
 import { RouterProvider } from "react-router-dom";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { PersistGate } from "redux-persist/integration/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { router } from "./routes";
+import { queryClient } from "./client";
 import { appThemeConfig } from "./configs";
 import { persistor, store } from "./store";
 import { StylesProvider } from "./providers";
 import { AuthProvider, StoreProvider } from "./contexts";
-
 import "./index.css";
 import "swiper/css";
 import "swiper/css/thumbs";
@@ -21,8 +21,6 @@ import "swiper/swiper-bundle.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "react-lazy-load-image-component/src/effects/opacity.css";
-
-const queryClient = new QueryClient();
 
 const Application = () => {
   return (
