@@ -79,6 +79,10 @@ module.exports = {
       borderRadius: {
         DEFAULT: "var(--border-radius)",
       },
+      fontFamily: {
+        orbitron: ["Orbitron", "sans-serif"],
+        audiowide: ["Audiowide", "sans-serif"],
+      },
       // fontFamily: {
       //   luminariFantasy: ["Luminari", "fantasy"],
       //   impactFantasy: ["Impact", "fantasy"],

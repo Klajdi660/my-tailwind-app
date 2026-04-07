@@ -1,16 +1,18 @@
 import { Provider } from "react-redux";
-import { ToastContainer } from "react-toastify";
 import { ConfigProvider, App } from "antd";
+import { ToastContainer } from "react-toastify";
+import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { RouterProvider } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { PersistGate } from "redux-persist/integration/react";
-import { router } from "./routes";
+import { Router } from "./routes";
 import { queryClient } from "./client";
+import { TabTitle } from "./components";
 import { appThemeConfig } from "./configs";
 import { persistor, store } from "./store";
-import { StylesProvider } from "./providers";
 import { AuthProvider, StoreProvider } from "./contexts";
+import { ScrollProvider, StylesProvider } from "./providers";
+
 import "./index.css";
 import "swiper/css";
 import "swiper/css/thumbs";
@@ -31,11 +33,16 @@ const Application = () => {
             <QueryClientProvider client={queryClient}>
               <StoreProvider>
                 <ConfigProvider theme={appThemeConfig}>
-                  <App>
-                    <StylesProvider />
-                    <ToastContainer />
-                    <RouterProvider router={router} />
-                  </App>
+                  <BrowserRouter>
+                    <App>
+                      <TabTitle />
+                      <StylesProvider />
+                      <ToastContainer />
+                      <ScrollProvider>
+                        <Router />
+                      </ScrollProvider>
+                    </App>
+                  </BrowserRouter>
                 </ConfigProvider>
               </StoreProvider>
             </QueryClientProvider>

@@ -1,14 +1,7 @@
 import { FC } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import {
-  CartSwitcher,
-  Loading,
-  Modal,
-  Navbar,
-  Sidebar,
-  TabTitle,
-} from "../components";
+import { CartSwitcher, Loading, Modal, Navbar, Sidebar } from "../components";
 import { useStore } from "../hooks";
 import { classNames, getAside } from "../utils";
 
@@ -21,10 +14,9 @@ export const PrivateLayout: FC = () => {
 
   return (
     <div
-      id="main_app"
+      id="private_section"
       className="flex flex-col max-w-full m-auto xl:flex-row app bg-main text-onNeutralBg"
     >
-      <TabTitle />
       <Loading />
       <Sidebar />
       <main className="relative w-full mx-auto overflow-hidden main_section">

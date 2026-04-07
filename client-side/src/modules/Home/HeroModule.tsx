@@ -9,6 +9,7 @@ import { iconName } from "../../assets";
 import { GameParams } from "../../types";
 import { classNames } from "../../utils";
 import { Icon, Image, PlatformIconList } from "../../components";
+import { Typography } from "antd";
 
 export const HeroModule: FC = () => {
   const { useGameSlider } = useGames();
@@ -134,7 +135,6 @@ export const HeroModule: FC = () => {
       </div>
 
       <div className="relative z-10 flex min-h-[100dvh] flex-col px-4 pb-8 pt-4 sm:px-10 sm:pt-6 md:px-40">
-        {/* Nav */}
         <header className="flex shrink-0 items-center justify-between">
           <Link to={paths.HOME} className="block w-28 sm:w-36 md:w-40">
             <Image
@@ -154,14 +154,13 @@ export const HeroModule: FC = () => {
 
         {/* CTA (~60% left) + bottom-right horizontal swiper */}
         <div className="flex w-full flex-1 flex-col gap-10 py-8 sm:py-12 lg:flex-row lg:items-stretch lg:justify-between lg:py-10 min-h-0">
-          <div className="flex w-full max-w-xl flex-col justify-center text-left sm:max-w-2xl lg:w-[58%] lg:max-w-none lg:shrink-0">
-            <h1 className="flex flex-col gap-1 text-[1.65rem] font-extrabold leading-[1.05] tracking-tight text-white [text-shadow:0_0_40px_rgba(0,0,0,0.85),0_0_80px_rgba(0,0,0,0.45)] sm:gap-1.5 sm:text-4xl md:text-5xl lg:text-[3.35rem]">
-              <span className="text-white">Unlock</span>
-              <span className="bg-gradient-to-r from-red-500 via-rose-500 to-blue-500 bg-clip-text text-transparent">
-                the Arena of
-              </span>
-              <span className="text-white">{heroHeadlineThirdLine}</span>
-            </h1>
+          <div className="flex w-full max-w-xl flex-col justify-center text-left sm:max-w-2xl lg:w-1/2 lg:max-w-none lg:shrink-0">
+            <div className="flex flex-col text-white text-7xl font-semibold font-orbitron">
+              <span>Unlock</span>
+              <span className="text-primary">the Arena of</span>
+              {/* <span>{heroHeadlineThirdLine}</span> */}
+              <span>Bold Gaming</span>
+            </div>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-white/90 sm:mt-6 sm:text-lg md:text-xl">
               Immerse yourself in cutting-edge worlds where reality bends to
               your will. The next era of interactive entertainment starts now.
@@ -343,9 +342,9 @@ export const HeroModule: FC = () => {
                   />
                 </div>
 
-                {/* <span className="shrink-0 tabular-nums text-sm font-semibold tracking-tight text-white sm:text-base">
+                <span className="shrink-0 tabular-nums text-sm font-semibold tracking-tight text-white sm:text-base">
                   {String(heroThumbChrome.index + 1).padStart(2, "0")}
-                </span> */}
+                </span>
               </div>
             </div>
           )}

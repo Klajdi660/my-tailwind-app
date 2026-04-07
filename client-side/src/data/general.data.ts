@@ -225,3 +225,60 @@ export const languageMaps: LangMapParams = {
   IT: { label: "Italian", value: "IT" },
   AL: { label: "Albanian", value: "AL" },
 };
+
+export const FOOTER_LINK_COLUMNS: { label: string; href: string }[][] = [
+  [
+    { label: "FAQ", href: "#" },
+    { label: "Investor Relations", href: "#" },
+    { label: "Privacy", href: "#" },
+    { label: "Speed Test", href: "#" },
+  ],
+  [
+    { label: "Help Center", href: "#" },
+    { label: "Jobs", href: "#" },
+    { label: "Cookie Preferences", href: "#" },
+    { label: "Legal Notices", href: "#" },
+  ],
+  [
+    { label: "Account", href: paths.ACCOUNT },
+    { label: "Ways to Watch", href: "#" },
+    { label: "Corporate Information", href: "#" },
+    { label: "Only on Netflix", href: "#" },
+  ],
+  [
+    { label: "Media Center", href: "#" },
+    { label: "Terms of Use", href: "#" },
+    { label: "Contact Us", href: "#" },
+  ],
+];
+
+export const JOIN_REASONS: Record<string, string>[] = [
+  {
+    title: "Enjoy on your TV",
+    description:
+      "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
+    icon: "MdOutlineTv",
+    iconClass: "text-fuchsia-400 drop-shadow-[0_0_20px_rgba(232,121,249,0.65)]",
+  },
+  {
+    title: "Download your shows to watch offline",
+    description:
+      "Save your favorites easily and always have something to watch.",
+    icon: "MdOutlineFileDownload",
+    iconClass: "text-purple-400 drop-shadow-[0_0_20px_rgba(168,85,247,0.65)]",
+  },
+  {
+    title: "Watch everywhere",
+    description:
+      "Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.",
+    icon: "MdTravelExplore",
+    iconClass: "text-pink-400 drop-shadow-[0_0_20px_rgba(244,114,182,0.65)]",
+  },
+  {
+    title: "Create profiles for kids",
+    description:
+      "Send kids on adventures with their favorite characters in a space made just for them — free with your membership.",
+    icon: "MdChildFriendly",
+    iconClass: "text-rose-400 drop-shadow-[0_0_20px_rgba(251,113,133,0.65)]",
+  },
+];
