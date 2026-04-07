@@ -20,7 +20,7 @@ export const Footer: FC = () => {
   );
 
   return (
-    <footer className="border-t border-white/10 bg-main text-onNeutralBg">
+    <footer className="text-white">
       <div className="mx-auto max-w-[100vw] px-4 py-16 sm:px-10 sm:py-20 md:px-14">
         <p className="mx-auto max-w-2xl text-center text-lg font-normal sm:text-xl">
           Ready to watch? Enter your email to create or restart your membership.
@@ -45,14 +45,14 @@ export const Footer: FC = () => {
           />
           <button
             type="submit"
-            className="flex min-h-12 shrink-0 items-center justify-center gap-1 rounded bg-primary px-5 text-base font-semibold transition hover:brightness-110 sm:min-h-14 sm:px-7 sm:text-lg"
+            className="flex min-h-12 shrink-0 items-center justify-center gap-1 rounded bg-primary px-5 font-semibold transition hover:brightness-110 sm:min-h-14 sm:px-7 sm:text-lg"
           >
             Get Started
             <Icon name="MdKeyboardArrowRight" size={26} />
           </button>
         </form>
 
-        <p className="mt-12 text-base sm:mt-14">
+        <p className="mt-12 sm:mt-14">
           Questions?{" "}
           <Link
             to={paths.LOGIN_HELP}
@@ -64,10 +64,7 @@ export const Footer: FC = () => {
 
         <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 sm:gap-y-4">
           {FOOTER_LINK_COLUMNS.map((column, colIndex) => (
-            <ul
-              key={colIndex}
-              className="flex flex-col gap-3 sm:gap-3.5 text-onNeutralBg"
-            >
+            <ul key={colIndex} className="flex flex-col gap-3 sm:gap-3.5">
               {column.map((item) => (
                 <li key={item.label}>
                   {item.href.startsWith("/") ? (

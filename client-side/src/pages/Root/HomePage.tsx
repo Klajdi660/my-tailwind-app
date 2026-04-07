@@ -10,9 +10,9 @@ export const HomePage: FC = () => {
   if (isSliderPending || gamesSlider.length === 0) return null;
 
   return (
-    <section className="home_section flex flex-col gap-10">
+    <section className="home_section flex flex-col">
       <HeroModule />
-      <section className="px-4 sm:px-10 md:px-40">
+      <section className="px-4 sm:px-10 md:px-40 bg-black pt-10">
         <TrendingModule />
         <Footer />
       </section>
