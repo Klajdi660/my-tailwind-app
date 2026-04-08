@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { paths } from "../../data";
+import { Platforms } from "../../components";
 import { TopPlayCardProps } from "../../types";
-import { PlatformIconList } from "../../components";
 import { classNames, nameTruncate } from "../../utils";
 
 export const TopPlayCard: FC<TopPlayCardProps> = (props) => {
@@ -14,7 +14,7 @@ export const TopPlayCard: FC<TopPlayCardProps> = (props) => {
       key={item.id}
       className={classNames(
         "relative p-3 flex items-center text-base !text-onNeutralBg hover:bg-card-hover hover:rounded cursor-pointer group border-divider focus-within:bg-primary-opacity focus-within:rounded",
-        listDivider ? "py-3" : "py-2"
+        listDivider ? "py-3" : "py-2",
       )}
     >
       <Link
@@ -25,7 +25,7 @@ export const TopPlayCard: FC<TopPlayCardProps> = (props) => {
           <div className="relative w-12 h-12">
             <div
               className={classNames(
-                "absolute w-full h-full group-hover:bg-main group-hover:opacity-70 bg-transparent"
+                "absolute w-full h-full group-hover:bg-main group-hover:opacity-70 bg-transparent",
               )}
             />
             <img
@@ -37,8 +37,8 @@ export const TopPlayCard: FC<TopPlayCardProps> = (props) => {
           <div className="flex flex-col flex-1 w-full gap-1 text-onNeutralBg group-hover:text-primary">
             <span className="text-sm">{nameTruncate(item.name, 25)}</span>
             <div className="flex flex-col gap-3 xs:flex-row">
-              <PlatformIconList
-                platforms={item.parent_platforms.map((p) => p.platform)}
+              <Platforms
+                platforms={item.parent_platforms}
                 className="group-hover:text-primary"
               />
             </div>

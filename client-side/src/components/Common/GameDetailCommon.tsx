@@ -1,25 +1,40 @@
 import { FC } from "react";
 import {
   DeveloperListProps,
-  PlatformIconListProps,
+  PlatformsProps,
   PublisherListPorps,
 } from "../../types";
 import { gameIconMap } from "../../data";
 import { Icon, Image } from "../../components";
+import { classNames } from "../../utils";
 
-export const PlatformIconList: FC<PlatformIconListProps> = ({
+export const Platforms: FC<PlatformsProps> = ({
   platforms,
   className,
+  showNames = false,
 }) => {
+  const normalizedPlatforms = platforms
+    .map((item) => ("platform" in item ? item.platform : item))
+    .slice(0, 4);
+
   return (
     <>
-      {platforms.map((p) => (
-        <Icon
+      {normalizedPlatforms.map((p) => (
+        <span
           key={p.id}
-          name={gameIconMap[p.slug]}
-          className={className}
-          size={15}
-        />
+          className={classNames(
+            "inline-flex items-center gap-2",
+            showNames && "border border-white/25 rounded px-2 py-1",
+            className,
+          )}
+        >
+          <Icon name={gameIconMap[p.slug]} className={className} size={15} />
+          {showNames && (
+            <span className={className ? `${className} text-xs` : "text-xs"}>
+              {p.name}
+            </span>
+          )}
+        </span>
       ))}
     </>
   );

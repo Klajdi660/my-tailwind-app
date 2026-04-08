@@ -185,13 +185,15 @@ export interface ErrorFormMessageProps {
   errorMessage?: { message: string } | any;
 }
 
-export interface PlatformIconListProps {
+export interface PlatformsProps {
   className?: string;
-  platforms: {
-    id: number;
-    name: string;
-    slug: string;
-  }[];
+  showNames?: boolean;
+  platforms: (
+    | {
+        platform: { id: number; name: string; slug: string };
+      }
+    | { id: number; name: string; slug: string }
+  )[];
 }
 
 interface PublisherList {

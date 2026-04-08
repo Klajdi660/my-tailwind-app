@@ -3,13 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { gameIconMap, paths } from "../../data";
+import { paths } from "../../data";
 import { useGames } from "../../hooks";
 import { iconName } from "../../assets";
 import { GameParams } from "../../types";
 import { classNames } from "../../utils";
-import { Icon, Image, PlatformIconList } from "../../components";
-import { Typography } from "antd";
+import { Icon, Image, Platforms } from "../../components";
 
 export const HeroModule: FC = () => {
   const { useGameSlider } = useGames();
@@ -19,65 +18,73 @@ export const HeroModule: FC = () => {
   const heroMainSwiperRef = useRef<SwiperType | null>(null);
   const heroThumbSwiperRef = useRef<SwiperType | null>(null);
 
-  const [heroThumbChrome, setHeroThumbChrome] = useState({
+  const [, setHeroThumbChrome] = useState({
     index: 0,
     progress: 0,
     canPrev: false,
     canNext: true,
   });
-  const [platformsIcon, setPlatformsIcon] = useState<
-    GameParams["parent_platforms"]
-  >([]);
+  const [activeGameIndex, setActiveGameIndex] = useState(0);
+  const [platforms, setPlatforms] = useState<GameParams["parent_platforms"]>(
+    [],
+  );
 
   useEffect(() => {
     if (gamesSlider && gamesSlider.length > 0) {
       const platforms = gamesSlider[0].parent_platforms || [];
-      setPlatformsIcon(platforms);
+      setPlatforms(platforms);
+      setActiveGameIndex(0);
     }
   }, [gamesSlider]);
 
-  const heroActiveGame = (gamesSlider[heroThumbChrome.index] ??
+  const heroActiveGame = (gamesSlider[activeGameIndex] ??
     gamesSlider[0]) as GameParams;
   const heroHeadlineThirdLine = heroActiveGame?.name?.trim() || "Bold Gaming";
 
-  const onHeroMainSlideChange = useCallback((swiper: SwiperType) => {
-    if (heroSwiperSyncLock.current) return;
-    heroSwiperSyncLock.current = true;
-    const thumb = heroThumbSwiperRef.current;
-    if (thumb && thumb.activeIndex !== swiper.activeIndex) {
-      thumb.slideTo(swiper.activeIndex);
-    }
-    requestAnimationFrame(() => {
-      const t = heroThumbSwiperRef.current;
-      if (t) {
-        setHeroThumbChrome({
-          index: t.activeIndex,
-          progress: t.progress,
-          canPrev: !t.isBeginning,
-          canNext: !t.isEnd,
-        });
-      }
-      heroSwiperSyncLock.current = false;
-    });
-  }, []);
+  const syncPlatformsByIndex = useCallback(
+    (index: number) => {
+      setPlatforms(gamesSlider[index]?.parent_platforms || []);
+    },
+    [gamesSlider],
+  );
 
-  const onHeroThumbSlideChange = useCallback((swiper: SwiperType) => {
-    setHeroThumbChrome({
-      index: swiper.activeIndex,
-      progress: swiper.progress,
-      canPrev: !swiper.isBeginning,
-      canNext: !swiper.isEnd,
-    });
-    if (heroSwiperSyncLock.current) return;
-    heroSwiperSyncLock.current = true;
-    const main = heroMainSwiperRef.current;
-    if (main && main.activeIndex !== swiper.activeIndex) {
-      main.slideTo(swiper.activeIndex);
-    }
-    requestAnimationFrame(() => {
-      heroSwiperSyncLock.current = false;
-    });
-  }, []);
+  const onHeroMainSlideChange = useCallback(
+    (swiper: SwiperType) => {
+      setActiveGameIndex(swiper.activeIndex);
+      syncPlatformsByIndex(swiper.activeIndex);
+      if (heroSwiperSyncLock.current) return;
+      heroSwiperSyncLock.current = true;
+      const thumb = heroThumbSwiperRef.current;
+      if (thumb && thumb.activeIndex !== swiper.activeIndex) {
+        thumb.slideTo(swiper.activeIndex);
+      }
+      requestAnimationFrame(() => {
+        const t = heroThumbSwiperRef.current;
+        if (t) {
+          setHeroThumbChrome({
+            index: t.activeIndex,
+            progress: t.progress,
+            canPrev: !t.isBeginning,
+            canNext: !t.isEnd,
+          });
+        }
+        heroSwiperSyncLock.current = false;
+      });
+    },
+    [syncPlatformsByIndex],
+  );
+
+  const onHeroThumbSlideChange = useCallback(
+    (swiper: SwiperType) => {
+      setHeroThumbChrome({
+        index: swiper.activeIndex,
+        progress: swiper.progress,
+        canPrev: !swiper.isBeginning,
+        canNext: !swiper.isEnd,
+      });
+    },
+    [],
+  );
 
   const onHeroThumbProgress = useCallback((swiper: SwiperType) => {
     setHeroThumbChrome((prev) => ({
@@ -86,10 +93,50 @@ export const HeroModule: FC = () => {
     }));
   }, []);
 
+  const slideHeroThumbToGameId = useCallback(
+    (gameId: number) => {
+      const i = gamesSlider.findIndex((g) => g.id === gameId);
+      if (i >= 0) {
+        heroMainSwiperRef.current?.slideTo(i);
+        heroThumbSwiperRef.current?.slideTo(i);
+        setActiveGameIndex(i);
+        syncPlatformsByIndex(i);
+      }
+    },
+    [gamesSlider, syncPlatformsByIndex],
+  );
+
   const trendingSwiperKey = useMemo(
     () => gamesSlider.map((g: { id: number }) => g.id).join("-"),
     [gamesSlider],
   );
+
+  const activeGame = gamesSlider[activeGameIndex] || gamesSlider[0];
+
+  const releasedDateLabel = useMemo(() => {
+    if (!activeGame?.released) return "N/A";
+    const parsed = new Date(activeGame.released);
+    if (Number.isNaN(parsed.getTime())) return activeGame.released;
+
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    }).format(parsed);
+  }, [activeGame]);
+
+  const genresLabel = useMemo(() => {
+    if (!activeGame?.genres?.length) return "N/A";
+    return activeGame.genres
+      .slice(0, 2)
+      .map((genre) => genre.name)
+      .join(", ");
+  }, [activeGame]);
+
+  const ratingLabel = useMemo(() => {
+    if (!activeGame?.rating && activeGame?.rating !== 0) return "N/A";
+    return `${activeGame.rating.toFixed(1)}`;
+  }, [activeGame]);
 
   return (
     <section className="relative flex min-h-[100dvh] flex-col overflow-x-hidden">
@@ -109,6 +156,7 @@ export const HeroModule: FC = () => {
             }}
             onSwiper={(swiper) => {
               heroMainSwiperRef.current = swiper;
+              setActiveGameIndex(swiper.activeIndex);
             }}
             onSlideChange={onHeroMainSlideChange}
             className="hero-home-swiper relative z-0 h-full min-h-[100dvh] w-full [&_.swiper-slide]:!h-full"
@@ -158,13 +206,8 @@ export const HeroModule: FC = () => {
             <div className="flex flex-col text-white text-7xl font-semibold font-orbitron">
               <span>Unlock</span>
               <span className="text-primary">the Arena of</span>
-              {/* <span>{heroHeadlineThirdLine}</span> */}
-              <span>Bold Gaming</span>
+              <span>{heroHeadlineThirdLine}</span>
             </div>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/90 sm:mt-6 sm:text-lg md:text-xl">
-              Immerse yourself in cutting-edge worlds where reality bends to
-              your will. The next era of interactive entertainment starts now.
-            </p>
 
             <div className="mt-7 flex flex-wrap gap-3 sm:mt-8 sm:gap-4">
               <Link
@@ -183,33 +226,33 @@ export const HeroModule: FC = () => {
                   size={24}
                   className="!text-white"
                 />
-                Watch Streaming
+                Watch TRAILER
               </Link>
             </div>
 
             <div className="w-4/5 mt-10 flex flex-wrap items-stretch gap-0 border-y border-white/25 py-6 sm:mt-12 sm:py-7">
               <div className="flex min-w-[7.5rem] flex-col border-r border-white/25 pr-6 sm:min-w-[8.5rem] sm:pr-8">
-                <span className="text-base font-bold text-red-400 sm:text-lg">
-                  CLASSIFIED
+                <span className="text-base font-bold text-white sm:text-lg">
+                  {releasedDateLabel}
                 </span>
                 <span className="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/75 sm:text-xs">
-                  Clearance level
+                  RELEASED DATE
                 </span>
               </div>
               <div className="flex min-w-[7.5rem] flex-col border-r border-white/25 px-6 sm:min-w-[8.5rem] sm:px-8">
                 <span className="text-base font-bold text-white sm:text-lg">
-                  ACTIVE
+                  {genresLabel}
                 </span>
                 <span className="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/75 sm:text-xs">
-                  Status
+                  GENRES
                 </span>
               </div>
               <div className="flex min-w-[7.5rem] flex-col pl-6 sm:min-w-[8.5rem] sm:pl-8">
-                <span className="text-base font-bold text-cyan-400 sm:text-lg">
-                  SOLO/CO-OP
+                <span className="text-base font-bold text-white sm:text-lg">
+                  {ratingLabel}
                 </span>
                 <span className="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/75 sm:text-xs">
-                  Mode
+                  RATING
                 </span>
               </div>
             </div>
@@ -219,11 +262,10 @@ export const HeroModule: FC = () => {
                 Available on:
               </p>
               <ul className="mt-3 flex flex-wrap gap-2">
-                <PlatformIconList
-                  className="text-secondary"
-                  platforms={platformsIcon
-                    .slice(0, 4)
-                    .map((p: any) => p.platform)}
+                <Platforms
+                  className="text-white"
+                  showNames
+                  platforms={platforms}
                 />
               </ul>
             </div>
@@ -257,45 +299,34 @@ export const HeroModule: FC = () => {
                 onProgress={onHeroThumbProgress}
                 className="hero-thumb-swiper w-full [&_.swiper-slide]:!h-auto"
               >
-                {gamesSlider.map(
-                  (game: {
-                    id: number;
-                    name: string;
-                    background_image: string;
-                  }) => (
-                    <SwiperSlide key={game.id}>
-                      <button
-                        type="button"
-                        aria-label={game.name}
-                        onClick={() => {
-                          const i = gamesSlider.findIndex(
-                            (g: { id: number }) => g.id === game.id,
-                          );
-                          if (i >= 0) heroThumbSwiperRef.current?.slideTo(i);
-                        }}
-                        className="group relative block h-[140px] w-full cursor-pointer overflow-hidden rounded-xl border-0 bg-transparent p-0 text-left ring-1 ring-white/35 shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition duration-300 hover:ring-white/60 hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60 sm:rounded-2xl"
-                      >
-                        <Image
-                          imgUrl={game.background_image}
-                          name={game.name}
-                          styles="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                          effect="opacity"
-                        />
-                      </button>
-                    </SwiperSlide>
-                  ),
-                )}
+                {gamesSlider.map((game) => (
+                  <SwiperSlide key={game.id}>
+                    <button
+                      type="button"
+                      aria-label={game.name}
+                      onClick={() => slideHeroThumbToGameId(game.id)}
+                      className="group relative block h-[140px] w-full cursor-pointer overflow-hidden rounded-xl border-0 bg-transparent p-0 text-left ring-1 ring-white/35 shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition duration-300 hover:ring-white/60 hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60 sm:rounded-2xl"
+                    >
+                      <Image
+                        imgUrl={game.background_image}
+                        name={game.name}
+                        styles="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                        effect="opacity"
+                      />
+                    </button>
+                  </SwiperSlide>
+                ))}
               </Swiper>
 
               <div className="mt-4 flex w-full items-center gap-3 sm:mt-5 sm:gap-4">
                 <div className="flex shrink-0 gap-2">
                   <button
                     type="button"
-                    onClick={() => heroThumbSwiperRef.current?.slidePrev()}
-                    disabled={!heroThumbChrome.canPrev}
+                    onClick={() => heroMainSwiperRef.current?.slidePrev()}
+                    disabled={activeGameIndex <= 0}
                     className={classNames(
                       "flex h-9 w-9 items-center justify-center rounded-full border border-white/45 bg-black/55 text-white shadow-lg backdrop-blur-sm transition sm:h-10 sm:w-10",
-                      heroThumbChrome.canPrev
+                      activeGameIndex > 0
                         ? "hover:border-white/70 hover:bg-black/70"
                         : "cursor-not-allowed opacity-35",
                     )}
@@ -309,11 +340,11 @@ export const HeroModule: FC = () => {
                   </button>
                   <button
                     type="button"
-                    onClick={() => heroThumbSwiperRef.current?.slideNext()}
-                    disabled={!heroThumbChrome.canNext}
+                    onClick={() => heroMainSwiperRef.current?.slideNext()}
+                    disabled={activeGameIndex >= gamesSlider.length - 1}
                     className={classNames(
                       "flex h-9 w-9 items-center justify-center rounded-full border border-white/45 bg-black/55 text-white shadow-lg backdrop-blur-sm transition sm:h-10 sm:w-10",
-                      heroThumbChrome.canNext
+                      activeGameIndex < gamesSlider.length - 1
                         ? "hover:border-white/70 hover:bg-black/70"
                         : "cursor-not-allowed opacity-35",
                     )}
@@ -335,7 +366,7 @@ export const HeroModule: FC = () => {
                         100,
                         Math.max(
                           gamesSlider.length <= 1 ? 100 : 8,
-                          heroThumbChrome.progress * 100,
+                          (activeGameIndex / (gamesSlider.length - 1 || 1)) * 100,
                         ),
                       )}%`,
                     }}
@@ -343,7 +374,7 @@ export const HeroModule: FC = () => {
                 </div>
 
                 <span className="shrink-0 tabular-nums text-sm font-semibold tracking-tight text-white sm:text-base">
-                  {String(heroThumbChrome.index + 1).padStart(2, "0")}
+                  {String(activeGameIndex + 1).padStart(2, "0")}
                 </span>
               </div>
             </div>

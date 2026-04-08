@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { GameTabReviews } from "./GameTabReviews";
 import {
   DeveloperList,
-  PlatformIconList,
+  Platforms,
   PublisherList,
   ReadMore,
   Tab,
@@ -55,9 +55,7 @@ export const GameTabDetail: FC<GameTabDetailProps> = (props) => {
             </p>
             <p className="flex flex-raw gap-1 items-center">
               Platform:
-              <PlatformIconList
-                platforms={parent_platforms.map((p: any) => p.platform)}
-              />
+              <Platforms platforms={parent_platforms} />
             </p>
           </>
         )}
