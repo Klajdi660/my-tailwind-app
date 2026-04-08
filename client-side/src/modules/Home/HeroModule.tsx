@@ -74,17 +74,14 @@ export const HeroModule: FC = () => {
     [syncPlatformsByIndex],
   );
 
-  const onHeroThumbSlideChange = useCallback(
-    (swiper: SwiperType) => {
-      setHeroThumbChrome({
-        index: swiper.activeIndex,
-        progress: swiper.progress,
-        canPrev: !swiper.isBeginning,
-        canNext: !swiper.isEnd,
-      });
-    },
-    [],
-  );
+  const onHeroThumbSlideChange = useCallback((swiper: SwiperType) => {
+    setHeroThumbChrome({
+      index: swiper.activeIndex,
+      progress: swiper.progress,
+      canPrev: !swiper.isBeginning,
+      canNext: !swiper.isEnd,
+    });
+  }, []);
 
   const onHeroThumbProgress = useCallback((swiper: SwiperType) => {
     setHeroThumbChrome((prev) => ({
@@ -144,40 +141,34 @@ export const HeroModule: FC = () => {
         className="pointer-events-none absolute inset-0 isolate z-0 min-h-[100dvh]"
         aria-hidden
       >
-        {gamesSlider.length > 1 ? (
-          <Swiper
-            modules={[Autoplay, EffectFade]}
-            effect="fade"
-            rewind
-            speed={1000}
-            autoplay={{
-              delay: 6500,
-              disableOnInteraction: false,
-            }}
-            onSwiper={(swiper) => {
-              heroMainSwiperRef.current = swiper;
-              setActiveGameIndex(swiper.activeIndex);
-            }}
-            onSlideChange={onHeroMainSlideChange}
-            className="hero-home-swiper relative z-0 h-full min-h-[100dvh] w-full [&_.swiper-slide]:!h-full"
-          >
-            {gamesSlider.map((game: GameParams) => (
-              <SwiperSlide key={game.id}>
-                <img
-                  src={game.background_image}
-                  alt=""
-                  className="h-full min-h-[100dvh] w-full object-cover object-[center_20%]"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        ) : (
-          <img
-            src={gamesSlider[0]?.background_image ?? "/hero-gaming.png"}
-            alt=""
-            className="relative z-0 h-full min-h-[100dvh] w-full object-cover object-[center_20%]"
-          />
-        )}
+        <Swiper
+          modules={[Autoplay, EffectFade]}
+          effect="fade"
+          rewind
+          speed={1000}
+          autoplay={{
+            delay: 6500,
+            disableOnInteraction: false,
+          }}
+          onSwiper={(swiper) => {
+            heroMainSwiperRef.current = swiper;
+            setActiveGameIndex(swiper.activeIndex);
+          }}
+          onSlideChange={onHeroMainSlideChange}
+          className="hero-home-swiper relative z-0 h-full min-h-[100dvh] w-full [&_.swiper-slide]:!h-full"
+        >
+          {gamesSlider.map((game) => (
+            <SwiperSlide key={game.id}>
+              <Image
+                imgUrl={game.background_image}
+                name={game.name}
+                effect="opacity"
+                styles="h-full min-h-[100dvh] w-full object-cover object-[center_20%]"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
         {/* Above Swiper fade slides (internal z-index); without z-10 the tint never shows */}
         <div className="absolute inset-0 z-10 min-h-[100dvh] w-full bg-black/60" />
       </div>
@@ -366,7 +357,8 @@ export const HeroModule: FC = () => {
                         100,
                         Math.max(
                           gamesSlider.length <= 1 ? 100 : 8,
-                          (activeGameIndex / (gamesSlider.length - 1 || 1)) * 100,
+                          (activeGameIndex / (gamesSlider.length - 1 || 1)) *
+                            100,
                         ),
                       )}%`,
                     }}
