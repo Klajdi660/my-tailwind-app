@@ -31,7 +31,7 @@ export const HomeImage: FC<HomeImageProps> = ({
 
   return (
     <div
-      className="pointer-events-none absolute inset-0 isolate z-0 min-h-[100dvh]"
+      className="pointer-events-none absolute left-0 right-0 top-0 isolate z-0 h-[100dvh] overflow-hidden"
       aria-hidden
     >
       <Swiper

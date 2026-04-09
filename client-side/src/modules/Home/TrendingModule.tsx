@@ -33,7 +33,7 @@ export const TrendingModule: FC = () => {
 
   return (
     <section className="trending_section relative">
-      <h2 className="text-xl font-bold sm:mb-6 sm:text-2xl md:text-3xl">
+      <h2 className="text-xl text-white font-bold sm:mb-6 sm:text-2xl md:text-3xl">
         What's Hot This Week
       </h2>
 
