@@ -15,14 +15,14 @@ export const Button: FC<ButtonProps> = forwardRef(
       disabled,
       className,
       labelIcon,
-      isSubmitting,
+      isSubmitting = false,
       tooltipTitle,
       iconClassName,
       type = "button",
       labelIconClassName = "flex-row gap-2",
       ...props
     },
-    ref: Ref<HTMLButtonElement>
+    ref: Ref<HTMLButtonElement>,
   ) => {
     const { loading } = useStore();
 
@@ -37,8 +37,8 @@ export const Button: FC<ButtonProps> = forwardRef(
             "bg-primary text-white hover:brightness-110",
           variant === "gradient" &&
             "bg-gradient-to-r from-button_gradient_from to-button_gradient_to text-white",
-          "rounded font-semibold text-sm p-3 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none",
-          className
+          "rounded font-semibold text-sm py-2 px-4 disabled:cursor-not-allowed disabled:opacity-50 transition duration-300 ease-linear scale-1 outline-none",
+          className,
         )}
         disabled={disabled}
         type={type}
@@ -62,13 +62,13 @@ export const Button: FC<ButtonProps> = forwardRef(
                     variant === "contained" && "text-white",
                     variant === "delete" && "text-white",
                     variant === "filled" && "text-white",
-                    variant === "gradient" && "text-white"
+                    variant === "gradient" && "text-white",
                   )}
                   size={size}
                 />
               )}
               {label && (
-                <div className="text-center font-normal whitespace-nowrap">
+                <div className="text-center font-semibold whitespace-nowrap">
                   {label}
                 </div>
               )}
@@ -77,7 +77,7 @@ export const Button: FC<ButtonProps> = forwardRef(
         )}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

@@ -85,6 +85,7 @@ export { HeaderBannerSkeleton } from "./Skeleton/HeaderBannerSkeleton";
 export { Tab } from "./UI/Tab";
 export { Icon } from "./UI/Icon";
 export { Image } from "./UI/Image";
+export { HomeImage } from "./Images/HomeImage";
 export { Title } from "./UI/Title";
 export { Modal } from "./UI/Modals";
 export { Button } from "./UI/Button";
@@ -113,7 +114,7 @@ export { SwiperButton } from "./UI/Buttons/SwiperButton";
 
 // Others Component
 export { Footer } from "./Footer";
-export { Header } from "./Header";
+export { HomeHeader } from "./Headers/HomeHeader";
 export { Navbar } from "./NavBar";
 export { ShowApp } from "./ShowApp";
 export { Loading } from "./Loading";

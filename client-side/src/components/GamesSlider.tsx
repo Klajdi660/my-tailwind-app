@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { useGames } from "../hooks";
-import { Button, Header, Image } from "../components";
+import { Button, HomeHeader, Image } from "../components";
 import { classNames } from "../utils";
 import { motion } from "framer-motion";
 
@@ -45,7 +45,7 @@ export const GamesSlider: FC = () => {
   const selectedGameHandler = (
     gameId: number,
     imgUrl: string,
-    index: number
+    index: number,
   ) => {
     setSelectedGameId(gameId);
     setBackgroundImage(imgUrl);
@@ -79,7 +79,7 @@ export const GamesSlider: FC = () => {
       }}
     >
       <div className={classNames(maxWidth, "flex flex-col gap-16")}>
-        <Header />
+        <HomeHeader />
         <div className="flex flex-col justify-between">
           <div className="flex items-start gap-2">
             {gamesSlider.map((game: any, index: number) => (
@@ -90,7 +90,7 @@ export const GamesSlider: FC = () => {
                     "rounded-3xl object-cover cursor-pointer transition-all duration-500 ease-in-out transform",
                     selectedGameId === game.id
                       ? "w-40 h-40 shadow-lg border-2 border-white p-1 scale-105"
-                      : "w-28 h-28 opacity-80 scale-100"
+                      : "w-28 h-28 opacity-80 scale-100",
                   )}
                   effect="opacity"
                   onClick={() =>

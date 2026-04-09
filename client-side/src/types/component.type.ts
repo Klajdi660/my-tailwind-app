@@ -458,3 +458,8 @@ export interface NotificationProps {
   time: string;
   content: string;
 }
+
+// Images
+export interface HomeImageProps {
+  setActiveGameId: (id: number) => void;
+}

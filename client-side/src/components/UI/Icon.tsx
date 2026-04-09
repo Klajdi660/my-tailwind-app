@@ -17,7 +17,6 @@ import {
   BiGame,
   BiMinus,
   BiSearch,
-  BiWifi,
   BiChevronsRight,
   BiSelectMultiple,
 } from "react-icons/bi";
@@ -37,7 +36,6 @@ import {
   FaYoutube,
   FaAndroid,
   FaWindows,
-  FaRegUser,
   FaFacebook,
   FaOpencart,
   FaWpexplorer,
@@ -49,25 +47,17 @@ import {
   FaDotCircle,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { FaCcPaypal } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
-import { FiAlertTriangle, FiUpload, FiEdit } from "react-icons/fi";
-
-import {
-  HiMenuAlt2,
-  HiCheck,
-  HiOutlineUpload,
-  HiOutlinePencil,
-} from "react-icons/hi";
+import { FiAlertTriangle, FiUpload } from "react-icons/fi";
+import { HiMenuAlt2, HiCheck, HiOutlineUpload } from "react-icons/hi";
 import { HiChartBar, HiOutlineTrophy } from "react-icons/hi2";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { IoCloseCircleOutline, IoWalletOutline } from "react-icons/io5";
+import { IoCloseCircleOutline } from "react-icons/io5";
 import { LiaSignOutAltSolid, LiaCarSideSolid } from "react-icons/lia";
 import { LuShip, LuArrowDownUp } from "react-icons/lu";
 import {
   MdHome,
   MdClear,
-  MdLogin,
   MdCancel,
   MdStorefront,
   MdPhoneIphone,
@@ -82,18 +72,13 @@ import {
   MdOutlineSwitchAccount,
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
-  MdShoppingBag,
-  MdOutlinePlayArrow,
   MdKeyboardArrowUp,
   MdOutlineSort,
   MdOutlineCheckBoxOutlineBlank,
-  MdOutlineCheckCircleOutline,
   MdOutlineCheckCircle,
   MdKeyboardArrowDown,
-  MdOutlineLocationOn,
-  MdOutlineMail,
-  MdOutlinePhoneAndroid,
   MdOutlineVerifiedUser,
+  MdOutlinePlayCircle,
 } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import { GrTransaction } from "react-icons/gr";
@@ -106,15 +91,12 @@ import {
   RiFirefoxLine,
   RiInstagramFill,
   RiSecurePaymentLine,
-  RiDeleteBinLine,
 } from "react-icons/ri";
 import { SlLocationPin, SlSocialDropbox } from "react-icons/sl";
-import { TbTransactionDollar } from "react-icons/tb";
+import { TbShoppingBag } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { GiHamburgerMenu } from "react-icons/gi";
-
-import { IconParams, IconsMap } from "../../types";
 import { classNames } from "../../utils";
+import { IconParams, IconsMap } from "../../types";
 
 const icons: IconsMap = {
   AiFillStar,
@@ -132,7 +114,6 @@ const icons: IconsMap = {
   BiMinus,
   BsGlobe,
   BiSearch,
-  BiWifi,
   BsThreeDots,
   BsShieldLock,
   BiChevronsRight,
@@ -141,7 +122,6 @@ const icons: IconsMap = {
   CiEdit,
   CgGames,
   CiShoppingTag,
-  FiEdit,
   FaXbox,
   FaCheck,
   FaApple,
@@ -153,8 +133,6 @@ const icons: IconsMap = {
   FaYoutube,
   FaAndroid,
   FaWindows,
-  FaRegUser,
-  FaCcPaypal,
   FaFacebook,
   FaOpencart,
   FaRegCircle,
@@ -166,14 +144,11 @@ const icons: IconsMap = {
   FiAlertTriangle,
   GoArrowLeft,
   GrTransaction,
-  GiHamburgerMenu,
   HiCheck,
   HiMenuAlt2,
   HiChartBar,
   HiOutlineTrophy,
   HiOutlineUpload,
-  HiOutlinePencil,
-  IoWalletOutline,
   IoMdNotificationsOutline,
   LuShip,
   LuArrowDownUp,
@@ -181,10 +156,8 @@ const icons: IconsMap = {
   LiaSignOutAltSolid,
   MdHome,
   MdClear,
-  MdLogin,
   MdCancel,
   MdStorefront,
-  MdOutlineMail,
   MdOutlineSort,
   MdPhoneIphone,
   MdOutlineGames,
@@ -197,29 +170,24 @@ const icons: IconsMap = {
   MdChildFriendly,
   MdKeyboardArrowUp,
   MdKeyboardArrowDown,
-  MdOutlineLocationOn,
   MdKeyboardArrowLeft,
   MdKeyboardArrowRight,
-  MdShoppingBag,
-  MdOutlinePlayArrow,
+  MdOutlinePlayCircle,
   MdOutlineCheckCircle,
   MdOutlineVerifiedUser,
-  MdOutlinePhoneAndroid,
   MdOutlineSwitchAccount,
-  MdOutlineCheckCircleOutline,
   MdOutlineCheckBoxOutlineBlank,
   PiKeyholeThin,
   PiWarningCircle,
   PiWarningCircleBold,
   RiFirefoxLine,
   RiInstagramFill,
-  RiDeleteBinLine,
   RxHamburgerMenu,
   RiSecurePaymentLine,
   SlLocationPin,
   SlSocialDropbox,
   IoCloseCircleOutline,
-  TbTransactionDollar,
+  TbShoppingBag,
 };
 
 export const Icon: FC<IconParams> = ({
