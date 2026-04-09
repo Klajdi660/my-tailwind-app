@@ -74,7 +74,7 @@ export const HeroModule: FC<HeroModuleProps> = ({
 
   return (
     <div className="flex w-full flex-1 items-center py-8 sm:py-12 lg:py-10">
-      <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-[1fr_300px]">
+      <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-[1fr_400px]">
         <div className="flex flex-col justify-center gap-8">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-white/80 sm:text-sm">
             {releasedDateLabel}
@@ -122,7 +122,8 @@ export const HeroModule: FC<HeroModuleProps> = ({
             <Swiper
               modules={[Autoplay, FreeMode, Mousewheel]}
               direction="vertical"
-              slidesPerView={3}
+              slidesPerView={4}
+              slidesPerGroup={1}
               spaceBetween={12}
               autoplay={{
                 delay: 3500,
@@ -144,22 +145,23 @@ export const HeroModule: FC<HeroModuleProps> = ({
               }}
               onSlideChange={onRightPreviewSlideChange}
               onProgress={syncRightPreviewNav}
-              className="hide_scrollbar h-[360px] [&_.swiper-slide]:!h-auto"
+              className="hide_scrollbar h-[min(52dvh,520px)] min-h-[460px] shrink-0 sm:h-[500px] sm:min-h-0 [&_.swiper-slide]:box-border [&_.swiper-slide]:!h-[calc((100%-36px)/4)] [&_.swiper-slide]:min-h-0 [&_.swiper-slide]:!overflow-hidden"
             >
               {gamesSlider.map((game) => (
-                <SwiperSlide key={game.id}>
+                <SwiperSlide key={game.id} className="!flex">
                   <button
                     type="button"
                     onClick={() => slideHeroThumbToGameId(game.id)}
                     className={classNames(
-                      "group flex w-full items-center gap-4 rounded-lg p-2 text-left transition hover:bg-black/20",
+                      "group flex h-full min-h-0 w-full items-center gap-4 rounded-lg p-2 text-left transition hover:bg-black/20",
                       game.id === heroActiveGame?.id && "bg-black/25",
                     )}
                   >
-                    <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg">
+                    <div className="relative h-24 w-44 shrink-0 overflow-hidden rounded-lg">
                       <Image
                         imgUrl={game.background_image}
                         name={game.name}
+                        width="100%"
                         height="100%"
                         styles="h-full w-full object-cover"
                         effect="opacity"
