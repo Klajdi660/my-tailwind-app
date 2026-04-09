@@ -254,31 +254,35 @@ export const FOOTER_LINK_COLUMNS: { label: string; href: string }[][] = [
 
 export const JOIN_REASONS: Record<string, string>[] = [
   {
-    title: "Enjoy on your TV",
+    id: "innovation",
+    title: "Innovation",
     description:
-      "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
-    icon: "MdOutlineTv",
+      "Built with tournament-grade accuracy, seamless responsiveness, and zero-compromise performance. Every element is crafted to feel sharper, faster, and effortlessly intuitive giving players.",
+    icon: "BsStars",
     iconClass: "text-fuchsia-400 drop-shadow-[0_0_20px_rgba(232,121,249,0.65)]",
   },
   {
-    title: "Download your shows to watch offline",
+    id: "performance",
+    title: "Smooth Performance",
     description:
-      "Save your favorites easily and always have something to watch.",
-    icon: "MdOutlineFileDownload",
+      "Experience smooth, ultra-responsive gameplay engineered to feel weightless. Every action, transition, and interaction is optimized for speed delivering peak performance without friction, lag, or compromise.",
+    icon: "RiFocusMode",
     iconClass: "text-purple-400 drop-shadow-[0_0_20px_rgba(168,85,247,0.65)]",
   },
   {
-    title: "Watch everywhere",
+    id: "fair_play",
+    title: "Fair Play",
     description:
-      "Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.",
-    icon: "MdTravelExplore",
+      "Every decision, feature, and design is shaped around what players truly need. From fair mechanics to intuitive interfaces and transparent systems, we prioritize the player experience feel valued, respected, and empowered.",
+    icon: "AiOutlineSafety",
     iconClass: "text-pink-400 drop-shadow-[0_0_20px_rgba(244,114,182,0.65)]",
   },
   {
-    title: "Create profiles for kids",
+    id: "accessibility",
+    title: "Accessibility",
     description:
-      "Send kids on adventures with their favorite characters in a space made just for them — free with your membership.",
-    icon: "MdChildFriendly",
+      "Designed for every player, everywhere. From optimized layouts to inclusive controls and seamless cross-device performance, we ensure that gamers across all regions, languages, and skill levels.",
+    icon: "IoMdGlobe",
     iconClass: "text-rose-400 drop-shadow-[0_0_20px_rgba(251,113,133,0.65)]",
   },
 ];

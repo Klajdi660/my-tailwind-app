@@ -144,26 +144,23 @@ export const TrendingModule: FC = () => {
           <Icon name="MdKeyboardArrowRight" size={28} className="!text-white" />
         </button>
       </div>
-      <h2 className="mb-5 mt-14 text-xl font-bold sm:mb-6 sm:mt-16 sm:text-2xl md:mt-20 md:text-3xl">
+      <h2 className="mb-5 mt-14 text-white text-xl font-bold sm:mb-6 sm:mt-16 sm:text-2xl md:mt-20 md:text-3xl">
         More Reasons to Join
       </h2>
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
         {JOIN_REASONS.map((item) => (
           <article
-            key={item.title}
-            className="relative flex min-h-[220px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-violet-950/55 via-zinc-950/80 to-black p-6 ring-1 ring-white/[0.06] sm:min-h-[240px] sm:rounded-3xl sm:p-8"
+            key={item.id}
+            className="relative flex flex-col rounded gap-2 p-4 bg-gradient-to-br from-violet-950/55 via-zinc-950/80 to-black ring-1 ring-white/[0.06]"
           >
-            <h3 className="pr-14 text-lg font-bold leading-snug text-white sm:text-xl">
+            <h3 className="text-xl font-bold leading-snug text-white">
               {item.title}
             </h3>
-            <p className="mt-3 flex-1 text-sm leading-relaxed text-white/75 sm:text-base">
+            <p className="flex-1 text-base leading-relaxed text-white/75">
               {item.description}
             </p>
-            <div
-              className="pointer-events-none absolute bottom-5 right-4 sm:bottom-6 sm:right-5"
-              aria-hidden
-            >
-              <Icon name={item.icon} size={52} className={item.iconClass} />
+            <div className="flex_justify_end">
+              <Icon name={item.icon} size={54} className={item.iconClass} />
             </div>
           </article>
         ))}

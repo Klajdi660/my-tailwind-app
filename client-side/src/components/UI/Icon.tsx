@@ -10,6 +10,7 @@ import {
   AiOutlineSetting,
   AiOutlineEyeInvisible,
   AiOutlineWarning,
+  AiOutlineSafety,
 } from "react-icons/ai";
 import {
   BiPlus,
@@ -21,6 +22,7 @@ import {
   BiSelectMultiple,
 } from "react-icons/bi";
 import {
+  BsStars,
   BsGlobe,
   BsThreeDots,
   BsShieldLock,
@@ -51,7 +53,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { FiAlertTriangle, FiUpload } from "react-icons/fi";
 import { HiMenuAlt2, HiCheck, HiOutlineUpload } from "react-icons/hi";
 import { HiChartBar, HiOutlineTrophy } from "react-icons/hi2";
-import { IoMdNotificationsOutline } from "react-icons/io";
+import { IoMdNotificationsOutline, IoMdGlobe } from "react-icons/io";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { LiaSignOutAltSolid, LiaCarSideSolid } from "react-icons/lia";
 import { LuShip, LuArrowDownUp } from "react-icons/lu";
@@ -65,10 +67,6 @@ import {
   MdOutlineCancel,
   MdOutlinePayment,
   MdOutlineExplore,
-  MdOutlineTv,
-  MdOutlineFileDownload,
-  MdTravelExplore,
-  MdChildFriendly,
   MdOutlineSwitchAccount,
   MdKeyboardArrowRight,
   MdKeyboardArrowLeft,
@@ -88,6 +86,7 @@ import {
   PiKeyholeThin,
 } from "react-icons/pi";
 import {
+  RiFocusMode,
   RiFirefoxLine,
   RiInstagramFill,
   RiSecurePaymentLine,
@@ -107,12 +106,14 @@ const icons: IconsMap = {
   AiOutlineDelete,
   AiOutlineSetting,
   AiOutlineWarning,
+  AiOutlineSafety,
   AiOutlineEyeInvisible,
   BiPlus,
   BiLock,
   BiGame,
   BiMinus,
   BsGlobe,
+  BsStars,
   BiSearch,
   BsThreeDots,
   BsShieldLock,
@@ -149,6 +150,7 @@ const icons: IconsMap = {
   HiChartBar,
   HiOutlineTrophy,
   HiOutlineUpload,
+  IoMdGlobe,
   IoMdNotificationsOutline,
   LuShip,
   LuArrowDownUp,
@@ -164,10 +166,6 @@ const icons: IconsMap = {
   MdOutlineCancel,
   MdOutlinePayment,
   MdOutlineExplore,
-  MdOutlineTv,
-  MdOutlineFileDownload,
-  MdTravelExplore,
-  MdChildFriendly,
   MdKeyboardArrowUp,
   MdKeyboardArrowDown,
   MdKeyboardArrowLeft,
@@ -180,6 +178,7 @@ const icons: IconsMap = {
   PiKeyholeThin,
   PiWarningCircle,
   PiWarningCircleBold,
+  RiFocusMode,
   RiFirefoxLine,
   RiInstagramFill,
   RxHamburgerMenu,
