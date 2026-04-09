@@ -7,7 +7,7 @@ import { paths } from "../../data";
 import { useGames } from "../../hooks";
 import { classNames } from "../../utils";
 import { HeroModuleProps } from "../../types";
-import { Button, Image } from "../../components";
+import { Button, Image, Platforms } from "../../components";
 
 export const HeroModule: FC<HeroModuleProps> = ({
   activeGameId,
@@ -57,11 +57,6 @@ export const HeroModule: FC<HeroModuleProps> = ({
       .join(", ");
   }, [activeGame]);
 
-  const ratingLabel = useMemo(() => {
-    if (!activeGame?.rating && activeGame?.rating !== 0) return "N/A";
-    return `${activeGame.rating.toFixed(1)}`;
-  }, [activeGame]);
-
   const syncRightPreviewNav = useCallback((swiper: SwiperType) => {
     setRightPreviewNav({
       canPrev: !swiper.isBeginning,
@@ -80,19 +75,28 @@ export const HeroModule: FC<HeroModuleProps> = ({
   return (
     <div className="flex w-full flex-1 items-center py-8 sm:py-12 lg:py-10">
       <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-[1fr_300px]">
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center gap-8">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-white/80 sm:text-sm">
             {releasedDateLabel}
             <span className="mx-2 text-white/35">|</span>
             {genresLabel}
           </p>
-          <h1 className="mt-3 font-orbitron text-5xl font-semibold leading-[0.92] text-white sm:text-6xl lg:text-7xl">
-            {heroActiveGame?.name || "Game Highlight"}
-          </h1>
-          <p className="mt-2 text-sm font-medium uppercase tracking-[0.12em] text-white/75 sm:text-base">
-            Rating {ratingLabel}
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="flex flex-col gap-2">
+            <h1 className="font-orbitron text-5xl font-semibold leading-[0.92] text-white sm:text-6xl lg:text-7xl">
+              {heroActiveGame?.name || "Game Highlight"}
+            </h1>
+            <div className="flex_justify_start gap-3">
+              <p className="text-sm font-medium uppercase tracking-[0.12em] text-white/75 sm:text-base shrink-0">
+                Available On
+              </p>
+              <Platforms
+                className="text-white"
+                showNames
+                platforms={activeGame?.parent_platforms || []}
+              />
+            </div>
+          </div>
+          <div className="mt-2 flex flex-wrap gap-3">
             <Button
               type="button"
               label="Buy"
@@ -112,10 +116,10 @@ export const HeroModule: FC<HeroModuleProps> = ({
         </div>
         <div>
           <div className="mb-5 flex items-center justify-between">
-            <h3 className="font-orbitron text-lg font-semibold text-white sm:text-xl">
+            <h3 className="text-lg font-semibold text-white sm:text-xl">
               Trending now
             </h3>
-            <span className="font-orbitron text-sm font-semibold text-white/85">
+            <span className="text-sm font-semibold text-white/85">
               ({activeGameId + 1}/{gamesSlider.length})
             </span>
           </div>
