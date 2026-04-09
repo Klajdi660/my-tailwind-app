@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { FC, useCallback, useMemo, useRef, useState } from "react";
-import { FreeMode, Mousewheel } from "swiper/modules";
+import { Autoplay, FreeMode, Mousewheel } from "swiper/modules";
 import { paths } from "../../data";
 import { useGames } from "../../hooks";
 import { classNames } from "../../utils";
@@ -17,7 +17,6 @@ export const HeroModule: FC<HeroModuleProps> = ({
   const { useGameSlider } = useGames();
   const { gamesSlider } = useGameSlider();
 
-  const heroMainSwiperRef = useRef<SwiperType | null>(null);
   const rightPreviewSwiperRef = useRef<SwiperType | null>(null);
   const [rightPreviewNav, setRightPreviewNav] = useState({
     canPrev: false,
@@ -30,7 +29,6 @@ export const HeroModule: FC<HeroModuleProps> = ({
     (gameId: number) => {
       const i = gamesSlider.findIndex((g) => g.id === gameId);
       if (i >= 0) {
-        heroMainSwiperRef.current?.slideTo(i);
         setActiveGameId(i);
       }
     },
@@ -70,6 +68,14 @@ export const HeroModule: FC<HeroModuleProps> = ({
       canNext: !swiper.isEnd,
     });
   }, []);
+
+  const onRightPreviewSlideChange = useCallback(
+    (swiper: SwiperType) => {
+      syncRightPreviewNav(swiper);
+      setActiveGameId(swiper.activeIndex);
+    },
+    [setActiveGameId, syncRightPreviewNav],
+  );
 
   return (
     <div className="flex w-full flex-1 items-center py-8 sm:py-12 lg:py-10">
@@ -113,12 +119,17 @@ export const HeroModule: FC<HeroModuleProps> = ({
               ({activeGameId + 1}/{gamesSlider.length})
             </span>
           </div>
-          <div className="relative">
+          <div className="group/preview relative">
             <Swiper
-              modules={[FreeMode, Mousewheel]}
+              modules={[Autoplay, FreeMode, Mousewheel]}
               direction="vertical"
               slidesPerView={3}
               spaceBetween={12}
+              autoplay={{
+                delay: 3500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
               freeMode={{
                 enabled: true,
                 momentum: true,
@@ -132,7 +143,7 @@ export const HeroModule: FC<HeroModuleProps> = ({
                 rightPreviewSwiperRef.current = swiper;
                 syncRightPreviewNav(swiper);
               }}
-              onSlideChange={syncRightPreviewNav}
+              onSlideChange={onRightPreviewSlideChange}
               onProgress={syncRightPreviewNav}
               className="hide_scrollbar h-[360px] [&_.swiper-slide]:!h-auto"
             >
@@ -176,8 +187,9 @@ export const HeroModule: FC<HeroModuleProps> = ({
               onClick={() => rightPreviewSwiperRef.current?.slidePrev()}
               disabled={!rightPreviewNav.canPrev}
               className={classNames(
-                "absolute left-1/2 top-0 z-10 flex h-6 w-10 -translate-x-1/2 items-center justify-center rounded text-white transition",
-                rightPreviewNav.canPrev && "bg-black/50 hover:bg-black/70",
+                "pointer-events-none absolute left-1/2 top-0 z-10 flex h-6 w-10 -translate-x-1/2 items-center justify-center rounded text-white opacity-0 transition-opacity",
+                rightPreviewNav.canPrev &&
+                  "bg-black/50 hover:bg-black/70 group-hover/preview:pointer-events-auto group-hover/preview:opacity-100",
               )}
               labelIcon="MdKeyboardArrowUp"
               iconClassName={classNames(
@@ -193,8 +205,9 @@ export const HeroModule: FC<HeroModuleProps> = ({
               onClick={() => rightPreviewSwiperRef.current?.slideNext()}
               disabled={!rightPreviewNav.canNext}
               className={classNames(
-                "absolute bottom-0 left-1/2 z-10 flex h-6 w-10 -translate-x-1/2 items-center justify-center rounded text-white transition",
-                rightPreviewNav.canNext && "bg-black/50 hover:bg-black/70",
+                "pointer-events-none absolute bottom-0 left-1/2 z-10 flex h-6 w-10 -translate-x-1/2 items-center justify-center rounded text-white opacity-0 transition-opacity",
+                rightPreviewNav.canNext &&
+                  "bg-black/50 hover:bg-black/70 group-hover/preview:pointer-events-auto group-hover/preview:opacity-100",
               )}
               labelIcon="MdKeyboardArrowDown"
               labelIconClassName={classNames(

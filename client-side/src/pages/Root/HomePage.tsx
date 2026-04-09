@@ -13,7 +13,7 @@ export const HomePage: FC = () => {
 
   return (
     <section className="home_section relative flex flex-col min-h-dvh overflow-hidden">
-      <HomeImage setActiveGameId={setActiveGameId} />
+      <HomeImage activeGameId={activeGameId} setActiveGameId={setActiveGameId} />
       <div className="relative z-10 flex min-h-[100dvh] flex-col px-4 pb-8 pt-4 sm:px-10 sm:pt-6 md:px-40">
         <HomeHeader />
         <HeroModule

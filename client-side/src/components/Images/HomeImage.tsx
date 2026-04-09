@@ -1,4 +1,4 @@
-import { FC, useCallback, useRef } from "react";
+import { FC, useCallback, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay, EffectFade } from "swiper/modules";
@@ -6,7 +6,10 @@ import { useGames } from "../../hooks";
 import { Image } from "../../components";
 import { HomeImageProps } from "../../types";
 
-export const HomeImage: FC<HomeImageProps> = ({ setActiveGameId }) => {
+export const HomeImage: FC<HomeImageProps> = ({
+  activeGameId,
+  setActiveGameId,
+}) => {
   const { useGameSlider } = useGames();
   const { gamesSlider } = useGameSlider();
 
@@ -19,6 +22,13 @@ export const HomeImage: FC<HomeImageProps> = ({ setActiveGameId }) => {
     [setActiveGameId],
   );
 
+  useEffect(() => {
+    const swiper = heroMainSwiperRef.current;
+    if (!swiper) return;
+    if (swiper.activeIndex === activeGameId) return;
+    swiper.slideTo(activeGameId);
+  }, [activeGameId]);
+
   return (
     <div
       className="pointer-events-none absolute inset-0 isolate z-0 min-h-[100dvh]"
@@ -29,6 +39,10 @@ export const HomeImage: FC<HomeImageProps> = ({ setActiveGameId }) => {
         effect="fade"
         rewind
         speed={1000}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
         onSwiper={(swiper) => {
           heroMainSwiperRef.current = swiper;
           setActiveGameId(swiper.activeIndex);

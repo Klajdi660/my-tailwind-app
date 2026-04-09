@@ -461,5 +461,6 @@ export interface NotificationProps {
 
 // Images
 export interface HomeImageProps {
+  activeGameId: number;
   setActiveGameId: (id: number) => void;
 }
