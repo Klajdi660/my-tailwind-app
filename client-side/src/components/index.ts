@@ -38,6 +38,7 @@ export { Skeleton } from "./Common/Skeleton";
 export { TabTitle } from "./Common/TabTittle";
 export { StarRating } from "./Common/StarRating";
 export { ErrorFormMessage } from "./Common/ErrorFormMessage";
+export { ScrollToTopButton } from "./Common/ScrollToTopButton";
 
 // Discover
 export { GamesSwiper } from "./Discover/GamesSwiper";

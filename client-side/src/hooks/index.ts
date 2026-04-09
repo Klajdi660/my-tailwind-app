@@ -9,3 +9,4 @@ export { useUserSelectedData } from "./useUserSelectedData";
 export { useMediaResponsive } from "./useMediaResponsive";
 export { useScrollPosition } from "./useScrollPosition";
 export { useDelayedLoading } from "./useDelayedLoading";
+export { useScrollToTop } from "./useScrollToTop";
