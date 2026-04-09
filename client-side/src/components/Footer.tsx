@@ -23,7 +23,8 @@ export const Footer: FC = () => {
     <footer className="text-white">
       <div className="mx-auto max-w-[100vw] px-4 py-16 sm:px-10 sm:py-20 md:px-14">
         <p className="mx-auto max-w-2xl text-center text-lg font-normal sm:text-xl">
-          Ready to watch? Enter your email to create or restart your membership.
+          Subscribe? Get exclusive access to new releases, special tournaments,
+          and insider gaming news delivered straight to your inbox.
         </p>
 
         <form
@@ -47,8 +48,11 @@ export const Footer: FC = () => {
             type="submit"
             className="flex min-h-12 shrink-0 items-center justify-center gap-1 rounded bg-primary px-5 font-semibold transition hover:brightness-110 sm:min-h-14 sm:px-7 sm:text-lg"
           >
-            Get Started
-            <Icon name="MdKeyboardArrowRight" size={26} />
+            <Icon
+              name="MdKeyboardArrowRight"
+              size={26}
+              className="text-white"
+            />
           </button>
         </form>
 
@@ -112,7 +116,7 @@ export const Footer: FC = () => {
           />
         </div>
 
-        <p className="mt-6 text-sm">Netflix Albania</p>
+        <p className="mt-6 text-sm">GrooveIT Albania</p>
 
         <p className="mt-6 text-xs leading-relaxed sm:text-[0.8125rem]">
           This page is protected by Google reCAPTCHA to ensure you&apos;re not a

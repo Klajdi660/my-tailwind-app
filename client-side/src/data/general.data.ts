@@ -286,3 +286,42 @@ export const JOIN_REASONS: Record<string, string>[] = [
     iconClass: "text-rose-400 drop-shadow-[0_0_20px_rgba(251,113,133,0.65)]",
   },
 ];
+
+export const FAQ_ITEMS: Record<string, string>[] = [
+  {
+    id: "account",
+    question: "How do I create an account?",
+    answer:
+      "Sign up with your email, verify your account, and you can start playing immediately.",
+  },
+  {
+    id: "privacy",
+    question: "Is my personal data safe?",
+    answer:
+      "Yes. We use secure encryption and strict access controls to protect your data.",
+  },
+  {
+    id: "fees",
+    question: "Are there any hidden fees?",
+    answer:
+      "No hidden fees. Any charges are clearly shown before you confirm a purchase.",
+  },
+  {
+    id: "withdrawals",
+    question: "How long do withdrawals take?",
+    answer:
+      "Most withdrawals are processed within 24-72 hours depending on your payment provider.",
+  },
+  {
+    id: "upgrade",
+    question: "Can I upgrade my plan later?",
+    answer:
+      "Absolutely. You can change your plan anytime from your account settings.",
+  },
+  {
+    id: "cancel",
+    question: "Can I cancel my subscription?",
+    answer:
+      "Yes, you can cancel at any time. Your current plan remains active until the billing cycle ends.",
+  },
+];

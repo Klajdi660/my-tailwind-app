@@ -5,8 +5,8 @@ import { FreeMode, Mousewheel } from "swiper/modules";
 import { useGames } from "../../hooks";
 import { classNames } from "../../utils";
 import { Link } from "react-router-dom";
-import { JOIN_REASONS, paths } from "../../data";
 import { Icon, Image } from "../../components";
+import { FAQ_ITEMS, JOIN_REASONS, paths } from "../../data";
 
 export const TrendingModule: FC = () => {
   const { useGameSlider } = useGames();
@@ -16,6 +16,7 @@ export const TrendingModule: FC = () => {
     canPrev: false,
     canNext: true,
   });
+  const [openFaqId, setOpenFaqId] = useState<string>("");
 
   const trendingSwiperRef = useRef<SwiperType | null>(null);
 
@@ -164,6 +165,44 @@ export const TrendingModule: FC = () => {
             </div>
           </article>
         ))}
+      </div>
+
+      <h2 className="mb-5 mt-14 text-white text-xl font-bold sm:mb-6 sm:mt-16 sm:text-2xl md:mt-20 md:text-3xl">
+        Frequently Asked Questions
+      </h2>
+
+      <div className="flex flex-col gap-4">
+        {FAQ_ITEMS.map((item) => {
+          const isOpen = openFaqId === item.id;
+
+          return (
+            <article
+              key={item.id}
+              className="rounded-md border border-white/10 bg-[#0c1324]/95 px-5 py-4"
+            >
+              <button
+                type="button"
+                onClick={() => setOpenFaqId(isOpen ? "" : item.id)}
+                className="flex w-full items-center justify-between gap-3 text-left"
+              >
+                <span className="text-lg font-semibold text-white">
+                  {item.question}
+                </span>
+                <Icon
+                  name={isOpen ? "MdKeyboardArrowUp" : "MdKeyboardArrowDown"}
+                  size={20}
+                  className="!text-white"
+                />
+              </button>
+
+              {isOpen && (
+                <p className="mt-3 text-base leading-relaxed text-white/75">
+                  {item.answer}
+                </p>
+              )}
+            </article>
+          );
+        })}
       </div>
     </section>
   );
