@@ -114,15 +114,10 @@ export const HeroModule: FC<HeroModuleProps> = ({
             />
           </div>
         </div>
-        <div>
-          <div className="mb-5 flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-white sm:text-xl">
-              Trending now
-            </h3>
-            <span className="text-sm font-semibold text-white/85">
-              ({activeGameId + 1}/{gamesSlider.length})
-            </span>
-          </div>
+        <div className="flex flex-col gap-4">
+          <p className="text-2xl font-orbitron font-semibold text-white">
+            Trending now
+          </p>
           <div className="group/preview relative">
             <Swiper
               modules={[Autoplay, FreeMode, Mousewheel]}
@@ -171,7 +166,7 @@ export const HeroModule: FC<HeroModuleProps> = ({
                       />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-xl font-semibold leading-tight text-white">
+                      <p className="truncate text-lg font-semibold leading-tight text-white">
                         {game.name}
                       </p>
                       <p className="mt-1 truncate text-sm text-white/75">
