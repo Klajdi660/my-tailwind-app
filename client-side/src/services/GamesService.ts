@@ -1,5 +1,6 @@
 import { gameEndpoints } from "./Api";
 import {
+  DailyGamesPayload,
   GameDetailResponse,
   GameGenreListResponse,
   GamePlatformListResponse,
@@ -13,6 +14,7 @@ import { HttpClient } from "../client";
 export const useGamesService = () => {
   const {
     GET_GAME_LIST_API,
+    GET_GAME_DAILY_API,
     GET_GAME_DETAIL_API,
     GET_GAME_VIDEOS_API,
     GET_GAME_SLIDER_API,
@@ -35,6 +37,27 @@ export const useGamesService = () => {
       return response.data;
     } catch (error) {
       console.error(`get_games_error: ${JSON.stringify(error)}`);
+    }
+  };
+
+  const getDailyGames = async (params?: {
+    date?: string;
+    limit?: number;
+    /** IANA timezone; sent as `tz` so the API can set `dayRelation` (today vs tomorrow). */
+    tz?: string;
+  }): Promise<DailyGamesPayload | undefined> => {
+    try {
+      const tz = params?.tz ?? Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const response = await HttpClient.get<ServerResponse>(
+        GET_GAME_DAILY_API,
+        { ...params, tz },
+      );
+
+      if (response.error) throw response;
+
+      return response.data as DailyGamesPayload;
+    } catch (error) {
+      console.error(`get_daily_games_error: ${JSON.stringify(error)}`);
     }
   };
 
@@ -139,6 +162,7 @@ export const useGamesService = () => {
 
   return {
     getGames,
+    getDailyGames,
     getGameDetail,
     getGameVideos,
     getGameReviews,

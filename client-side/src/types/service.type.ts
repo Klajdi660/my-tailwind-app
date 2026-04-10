@@ -1,3 +1,4 @@
+import type { GameParams } from "./general.type";
 import { LoginHelpValues, LoginValues } from "../types";
 
 // Auth
@@ -24,6 +25,15 @@ export interface ServerResponseError {
 }
 
 // Games
+/** Payload from `GET /games/daily` (`dailyRandomGamesHandler`). */
+export interface DailyGamesPayload {
+  date: string;
+  /** Whether `date` is calendar today or tomorrow for `tz` (IANA). */
+  dayRelation: "today" | "tomorrow" | "other";
+  count: number;
+  games: GameParams[];
+}
+
 export interface GameGenreListResponse {
   id: number;
   name: string;

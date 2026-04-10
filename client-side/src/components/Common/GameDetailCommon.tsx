@@ -24,7 +24,7 @@ export const Platforms: FC<PlatformsProps> = ({
           key={p.id}
           className={classNames(
             "inline-flex items-center gap-2",
-            // showNames && "border border-white/25 rounded px-2 py-1",
+            showNames && "border border-white/25 rounded px-2 py-1",
             className,
           )}
         >

@@ -22,6 +22,7 @@ function normalizeGamesSliderData(data: unknown): GameParams[] {
 export const useGames = () => {
   const {
     getGames,
+    getDailyGames,
     getGameDetail,
     getGamesSlider,
     getGameGenreList,
@@ -73,12 +74,25 @@ export const useGames = () => {
       queryFn: async () => await getGamesSlider(),
     });
 
-    const gamesSlider = useMemo(
-      () => normalizeGamesSliderData(data),
-      [data],
-    );
+    const gamesSlider = useMemo(() => normalizeGamesSliderData(data), [data]);
 
     return { gamesSlider, isSliderPending };
+  };
+
+  /** Deterministic daily picks from `GET /games/daily` (optional `date` YYYY-MM-DD, `limit` 1–40, `tz` IANA for `dayRelation`). */
+  const useDailyGames = (params?: {
+    date?: string;
+    limit?: number;
+    tz?: string;
+  }) => {
+    const { data, isPending: isDailyPending } = useQuery({
+      queryKey: ["games-daily", params],
+      queryFn: async () => await getDailyGames(params),
+    });
+
+    const dailyGames = useMemo(() => data?.games ?? [], [data]);
+
+    return { dailyPayload: data, dailyGames, isDailyPending };
   };
 
   const useGameGenreList = () => {
@@ -133,6 +147,7 @@ export const useGames = () => {
   return {
     useGameGenreList,
     useGameSlider,
+    useDailyGames,
     useGameDetail,
     useGameList,
     useGamePlatformList,
