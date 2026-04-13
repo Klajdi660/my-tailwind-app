@@ -361,8 +361,20 @@ export const HomePage: FC = () => {
                         observer
                         observeParents
                         loop={false}
-                        slidesPerView="auto"
+                        slidesPerView={1}
+                        slidesPerGroup={1}
                         spaceBetween={12}
+                        centerInsufficientSlides
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                            slidesPerGroup: 2,
+                          },
+                          1024: {
+                            slidesPerView: 3,
+                            slidesPerGroup: 3,
+                          },
+                        }}
                         onSwiper={(swiper) => {
                           previewSwiperRef.current = swiper;
                           syncSwiperEdges(swiper);
@@ -382,7 +394,7 @@ export const HomePage: FC = () => {
                         {previewSlides.map(({ game, globalIndex }) => (
                           <SwiperSlide
                             key={`${globalIndex}-${game.id}`}
-                            className="!w-[min(100%,188px)] sm:!w-[208px] lg:!w-52"
+                            className="!box-border"
                           >
                             <button
                               type="button"
