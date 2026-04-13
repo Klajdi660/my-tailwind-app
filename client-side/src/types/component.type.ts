@@ -349,6 +349,7 @@ export interface ButtonProps {
   variant:
     | "outlined"
     | "none"
+    | "clear"
     | "contained"
     | "gradient"
     | "filled"

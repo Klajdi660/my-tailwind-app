@@ -332,6 +332,12 @@ input[type="checkbox"] {
   align-items: stretch;
 }
 
+/* Home hero preview: native horizontal scroll (no Swiper tail gap) */
+.home-preview-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
 /* Button */
 .ant-btn,
 .ant-btn span {

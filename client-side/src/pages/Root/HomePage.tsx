@@ -1,5 +1,7 @@
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
+  Button,
+  Icon,
   Image,
   Platforms,
   ScrollToTopButton,
@@ -7,7 +9,10 @@ import {
 } from "../../components";
 import { useGames } from "../../hooks";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperApi } from "swiper";
 import type { GameParams } from "../../types";
+import { useNavigate } from "react-router-dom";
+import { paths } from "../../data";
 
 /** Local calendar `YYYY-MM-DD` (avoids UTC drift vs daily API `date`). */
 function formatLocalCalendarDay(addDays: number): string {
@@ -24,6 +29,7 @@ const DAILY_TODAY_LIMIT = 2;
 const DAILY_TOMORROW_LIMIT = 8;
 
 export const HomePage: FC = () => {
+  const navigate = useNavigate();
   const { useDailyGames } = useGames();
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const todayYmd = formatLocalCalendarDay(0);
@@ -53,6 +59,32 @@ export const HomePage: FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   /** After user clicks a swiper thumb, header follows active slide; before that, “Tomorrow” is highlighted in the header only. */
   const [swiperThumbClicked, setSwiperThumbClicked] = useState(false);
+  const previewSwiperRef = useRef<SwiperApi | null>(null);
+  const [swiperEdge, setSwiperEdge] = useState({
+    isBeginning: true,
+    isEnd: false,
+  });
+
+  /** `isEnd` / `isBeginning` are unreliable with `slidesPerView: "auto"`; combine `progress` + translate. */
+  const syncSwiperEdges = useCallback((sw: SwiperApi) => {
+    if (sw.destroyed) return;
+    const p =
+      typeof sw.progress === "number" && Number.isFinite(sw.progress)
+        ? sw.progress
+        : 0;
+    const maxT = sw.maxTranslate();
+    const minT = sw.minTranslate();
+    const t = sw.translate;
+    const px = 2;
+    const nearEnd =
+      Number.isFinite(maxT) && Number.isFinite(t) && t <= maxT + px;
+    const nearStart =
+      Number.isFinite(minT) && Number.isFinite(t) && t >= minT - px;
+    setSwiperEdge({
+      isBeginning: sw.isBeginning || p <= 0.002 || nearStart,
+      isEnd: sw.isEnd || p >= 0.998 || nearEnd,
+    });
+  }, []);
 
   const activeDay = useMemo<"today" | "tomorrow">(() => {
     if (activeIndex < todayCount) return "today";
@@ -65,25 +97,19 @@ export const HomePage: FC = () => {
 
   const activeGame = useMemo(() => {
     if (!gamesSlider.length) return null;
-    return gamesSlider[activeIndex] ?? gamesSlider[0];
+    const safe = Math.min(Math.max(0, activeIndex), gamesSlider.length - 1);
+    return gamesSlider[safe];
   }, [activeIndex, gamesSlider]);
 
-  /** Next 4 slides after `activeIndex` with stable global indices (avoids `indexOf` when ids repeat). */
-  const previewEntries = useMemo(() => {
-    if (!gamesSlider.length) return [];
-    const n = gamesSlider.length;
-    const out: { game: GameParams; globalIndex: number }[] = [];
-    for (let i = 0; i < 4; i++) {
-      const globalIndex = (activeIndex + 1 + i) % n;
-      out.push({ game: gamesSlider[globalIndex], globalIndex });
-    }
-    return out;
-  }, [activeIndex, gamesSlider]);
+  /** Right strip: all games; swipe does not change hero — only a thumb click does. */
+  const previewSlides = useMemo(() => {
+    return gamesSlider.map((game, globalIndex) => ({ game, globalIndex }));
+  }, [gamesSlider]);
 
   /** Index in the preview strip of the first “tomorrow” game. */
   const firstTomorrowPreviewIndex = useMemo(() => {
-    return previewEntries.findIndex((e) => e.globalIndex >= todayCount);
-  }, [previewEntries, todayCount]);
+    return previewSlides.findIndex((e) => e.globalIndex >= todayCount);
+  }, [previewSlides, todayCount]);
 
   /** Highlights header “Tomorrow” (dots + label) before any swiper click; no line drawn on swiper tiles. */
   const showSingleTomorrowLine =
@@ -98,20 +124,39 @@ export const HomePage: FC = () => {
   const useHeaderDayAccent =
     hasKnownRelation && (swiperThumbClicked || showSingleTomorrowLine);
 
-  const totalGames = gamesSlider.length;
-
   useEffect(() => {
     if (gamesSlider.length === 0) return;
     setActiveIndex((i) => Math.min(i, gamesSlider.length - 1));
   }, [gamesSlider.length]);
 
-  const goToPrev = () => {
-    setActiveIndex((prev) => (prev - 1 + totalGames) % totalGames);
+  /** Arrow buttons only move the thumbnail Swiper; hero updates only on thumb click. */
+  const swiperSlidePrev = () => {
+    const sw = previewSwiperRef.current;
+    if (!sw || sw.destroyed || sw.isBeginning) return;
+    sw.slidePrev();
   };
 
-  const goToNext = () => {
-    setActiveIndex((prev) => (prev + 1) % totalGames);
+  const swiperSlideNext = () => {
+    const sw = previewSwiperRef.current;
+    if (!sw || sw.destroyed || sw.isEnd) return;
+    sw.slideNext();
   };
+
+  const handlePreviewThumbClick = (globalIndex: number) => {
+    setSwiperThumbClicked(true);
+    setActiveIndex(globalIndex);
+    previewSwiperRef.current?.slideTo(globalIndex);
+  };
+
+  useEffect(() => {
+    const sw = previewSwiperRef.current;
+    if (!sw || sw.destroyed) return;
+    sw.update();
+    requestAnimationFrame(() => {
+      if (!previewSwiperRef.current || previewSwiperRef.current.destroyed) return;
+      syncSwiperEdges(previewSwiperRef.current);
+    });
+  }, [previewSlides.length, syncSwiperEdges]);
 
   if (isSliderPending) return null;
 
@@ -128,6 +173,7 @@ export const HomePage: FC = () => {
       <section className="relative min-h-dvh w-full overflow-hidden bg-black text-white">
         <div className="absolute inset-0 z-0 [&_.lazy-load-image-background]:!absolute [&_.lazy-load-image-background]:!inset-0 [&_.lazy-load-image-background]:!block [&_.lazy-load-image-background]:!h-full [&_.lazy-load-image-background]:!w-full [&_.lazy-load-image-background]:!max-w-none">
           <Image
+            key={`hero-bg-${activeGame.id}-${activeIndex}`}
             imgUrl={activeGame.background_image}
             name={activeGame.name}
             effect="opacity"
@@ -137,18 +183,17 @@ export const HomePage: FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-black/25" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-dvh w-full max-w-[1400px] flex-col px-4 pb-6 pt-4 sm:px-8 sm:pb-10 sm:pt-6 lg:px-12">
+        <div className="relative z-10 mx-auto flex min-h-dvh w-full flex-col px-40 py-10">
           <header className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-semibold tracking-wide">Astral</h1>
-              <span className="rounded-full border border-white/35 px-3 py-1 text-xs text-white/85">
-                All movies
-              </span>
-            </div>
-            <div className="flex items-center gap-4 text-sm text-white/80">
-              <button className="transition hover:text-white">Search</button>
-              <button className="transition hover:text-white">Menu</button>
-            </div>
+            <h1 className="text-primary text-5xl font-bold font-orbitron tracking-wide">
+              GrooveIT
+            </h1>
+            <Button
+              type="button"
+              variant="contained"
+              label="Sign In"
+              onClick={() => navigate(paths.LOGIN)}
+            />
           </header>
 
           <div className="swipper_section mt-auto">
@@ -195,7 +240,7 @@ export const HomePage: FC = () => {
                       <span className="text-7xl font-extralight leading-none text-white/95">
                         {String(activeIndex + 1).padStart(2, "0")}
                       </span>
-                      <h2 className="max-w-xl text-4xl font-semibold leading-tight sm:text-7xl">
+                      <h2 className="max-w-xl text-4xl font-semibold font-orbitron leading-tight sm:text-7xl">
                         {activeGame.name}
                       </h2>
                     </div>
@@ -239,29 +284,7 @@ export const HomePage: FC = () => {
                 </div>
               </div>
 
-              {/* Center: prev / next at bottom (single row) */}
-              <div className="hidden min-w-0 shrink-0 flex-col justify-end lg:flex lg:w-auto">
-                <div className="flex flex-row gap-3">
-                  <button
-                    type="button"
-                    onClick={goToPrev}
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/45 text-xl text-white transition hover:border-white/70"
-                    aria-label="Previous slide"
-                  >
-                    &#8249;
-                  </button>
-                  <button
-                    type="button"
-                    onClick={goToNext}
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/45 text-xl text-white transition hover:border-white/70"
-                    aria-label="Next slide"
-                  >
-                    &#8250;
-                  </button>
-                </div>
-              </div>
-
-              {/* Right: Tomorrow · swiper thumbnails */}
+              {/* Right: Tomorrow · prev/next left/right, vertically centered on thumbnails */}
               <aside className="flex min-h-0 min-w-0 flex-1 flex-col gap-3 overflow-visible lg:max-w-none">
                 <div className="flex items-start gap-2">
                   <div className="mt-3 flex flex-col items-center">
@@ -298,70 +321,98 @@ export const HomePage: FC = () => {
                 </div>
 
                 <div className="mt-auto flex min-h-0 w-full min-w-0 flex-1 flex-col justify-end overflow-visible">
-                  <Swiper
-                    observer
-                    observeParents
-                    slidesPerView="auto"
-                    spaceBetween={12}
-                    className="w-full min-w-0 overflow-visible"
-                    key={gamesSlider.length}
-                  >
-                    {previewEntries.map(({ game, globalIndex }) => (
-                      <SwiperSlide
-                        key={`${globalIndex}-${game.id}`}
-                        className="!box-border !w-[min(100%,168px)] sm:!w-[188px] lg:!w-44"
-                      >
+                  <div className="relative min-w-0 w-full overflow-visible">
+                    <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-30 flex items-center justify-between">
+                      {!swiperEdge.isBeginning ? (
                         <button
                           type="button"
-                          onClick={() => {
-                            setSwiperThumbClicked(true);
-                            setActiveIndex(globalIndex);
-                          }}
-                          className="group relative w-full overflow-hidden rounded-xl border border-white/15 bg-black/40 text-left transition"
+                          onClick={swiperSlidePrev}
+                          aria-label="Scroll thumbnails back"
+                          className="flex items-center justify-center pointer-events-auto h-28 w-8 shrink-0 rounded-xl bg-black/70 text-white shadow-lg backdrop-blur-sm transition hover:border-white/70"
                         >
-                          <div className="relative h-64 w-full overflow-hidden [&_.lazy-load-image-background]:!absolute [&_.lazy-load-image-background]:!inset-0 [&_.lazy-load-image-background]:!block [&_.lazy-load-image-background]:!h-full [&_.lazy-load-image-background]:!w-full">
-                            <Image
-                              imgUrl={game.background_image}
-                              name={game.name}
-                              effect="opacity"
-                              styles="block h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 to-transparent" />
-                            <span className="absolute left-2 top-2 z-20 rounded-md bg-black/55 px-2 py-1 text-xs text-white/90">
-                              {String((globalIndex + 1) % 100).padStart(2, "0")}
-                            </span>
-                          </div>
-                          <div className="h-14 p-3">
-                            <p className="line-clamp-2 text-sm font-medium">
-                              {game.name}
-                            </p>
-                          </div>
+                          <Icon
+                            name="MdKeyboardArrowLeft"
+                            size={26}
+                            className="text-white"
+                          />
                         </button>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
+                      ) : (
+                        <span className="h-28 w-8 shrink-0" aria-hidden />
+                      )}
+                      {!swiperEdge.isEnd ? (
+                        <button
+                          type="button"
+                          onClick={swiperSlideNext}
+                          aria-label="Scroll thumbnails forward"
+                          className="flex items-center justify-center pointer-events-auto h-28 w-8 shrink-0 rounded-xl bg-black/70 text-white shadow-lg backdrop-blur-sm transition hover:border-white/70"
+                        >
+                          <Icon
+                            name="MdKeyboardArrowRight"
+                            size={26}
+                            className="text-white"
+                          />
+                        </button>
+                      ) : (
+                        <span className="h-28 w-8 shrink-0" aria-hidden />
+                      )}
+                    </div>
+                    <div className="min-w-0 w-full overflow-visible">
+                      <Swiper
+                        observer
+                        observeParents
+                        loop={false}
+                        slidesPerView="auto"
+                        spaceBetween={12}
+                        onSwiper={(swiper) => {
+                          previewSwiperRef.current = swiper;
+                          syncSwiperEdges(swiper);
+                        }}
+                        onSlideChange={(swiper) => syncSwiperEdges(swiper)}
+                        onSlideChangeTransitionEnd={(swiper) =>
+                          syncSwiperEdges(swiper)
+                        }
+                        onProgress={(swiper) => syncSwiperEdges(swiper)}
+                        onTouchEnd={(swiper) => syncSwiperEdges(swiper)}
+                        onTransitionEnd={(swiper) => syncSwiperEdges(swiper)}
+                        onReachEnd={(swiper) => syncSwiperEdges(swiper)}
+                        onReachBeginning={(swiper) => syncSwiperEdges(swiper)}
+                        className="w-full min-w-0 overflow-visible"
+                        key={gamesSlider.length}
+                      >
+                        {previewSlides.map(({ game, globalIndex }) => (
+                          <SwiperSlide
+                            key={`${globalIndex}-${game.id}`}
+                            className="!w-[min(100%,188px)] sm:!w-[208px] lg:!w-52"
+                          >
+                            <button
+                              type="button"
+                              aria-label={game.name}
+                              onClick={() => handlePreviewThumbClick(globalIndex)}
+                              className="group relative w-full overflow-hidden rounded-xl bg-black/40 text-left transition"
+                            >
+                              <div className="relative h-80 w-full overflow-hidden [&_.lazy-load-image-background]:!absolute [&_.lazy-load-image-background]:!inset-0 [&_.lazy-load-image-background]:!block [&_.lazy-load-image-background]:!h-full [&_.lazy-load-image-background]:!w-full">
+                                <Image
+                                  imgUrl={game.background_image}
+                                  name={game.name}
+                                  effect="opacity"
+                                  styles="block h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 to-transparent" />
+                                <span className="absolute left-2 top-2 z-40 rounded-md bg-black/55 px-2 py-1 text-xs text-white/90">
+                                  {String((globalIndex + 1) % 100).padStart(
+                                    2,
+                                    "0",
+                                  )}
+                                </span>
+                              </div>
+                            </button>
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
+                    </div>
+                  </div>
                 </div>
               </aside>
-            </div>
-
-            {/* Mobile: nav under content */}
-            <div className="mt-6 flex justify-center gap-3 lg:hidden">
-              <button
-                type="button"
-                onClick={goToPrev}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/45 text-xl text-white transition hover:border-white/70"
-                aria-label="Previous slide"
-              >
-                &#8249;
-              </button>
-              <button
-                type="button"
-                onClick={goToNext}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/45 text-xl text-white transition hover:border-white/70"
-                aria-label="Next slide"
-              >
-                &#8250;
-              </button>
             </div>
           </div>
         </div>
