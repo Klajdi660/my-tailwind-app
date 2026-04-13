@@ -25,8 +25,9 @@ function formatLocalCalendarDay(addDays: number): string {
   return `${y}-${m}-${day}`;
 }
 
-const DAILY_TODAY_LIMIT = 2;
-const DAILY_TOMORROW_LIMIT = 8;
+/** Left column = 1 “today” pick; right swiper = 9 “tomorrow” picks (10 games total). */
+const DAILY_TODAY_LIMIT = 1;
+const DAILY_TOMORROW_LIMIT = 9;
 
 export const HomePage: FC = () => {
   const navigate = useNavigate();
@@ -101,12 +102,15 @@ export const HomePage: FC = () => {
     return gamesSlider[safe];
   }, [activeIndex, gamesSlider]);
 
-  /** Right strip: all games; swipe does not change hero — only a thumb click does. */
+  /** Right swiper only: games after “today” (up to 9). Left hero uses index 0 alone. */
   const previewSlides = useMemo(() => {
-    return gamesSlider.map((game, globalIndex) => ({ game, globalIndex }));
-  }, [gamesSlider]);
+    return gamesSlider.slice(todayCount).map((game, i) => ({
+      game,
+      globalIndex: todayCount + i,
+    }));
+  }, [gamesSlider, todayCount]);
 
-  /** Index in the preview strip of the first “tomorrow” game. */
+  /** Index in the preview strip of the first “tomorrow” game (always 0 when tomorrow exists). */
   const firstTomorrowPreviewIndex = useMemo(() => {
     return previewSlides.findIndex((e) => e.globalIndex >= todayCount);
   }, [previewSlides, todayCount]);
@@ -145,7 +149,8 @@ export const HomePage: FC = () => {
   const handlePreviewThumbClick = (globalIndex: number) => {
     setSwiperThumbClicked(true);
     setActiveIndex(globalIndex);
-    previewSwiperRef.current?.slideTo(globalIndex);
+    const local = previewSlides.findIndex((s) => s.globalIndex === globalIndex);
+    if (local >= 0) previewSwiperRef.current?.slideTo(local);
   };
 
   useEffect(() => {
